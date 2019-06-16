@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+    <header>
+        <title>Project Index</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.2/css/bootstrap.css" />
+        <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-3.3.1.min.js"></script>
+    </header>
+    <body>
+        <div style='padding:10px 0 0 20px;'>
+            <form class="form-inline">
+                    <input id=keywords__ID class=form-control style='width:360px' placeholder="keywords">
+                    <button id=apply__ID type=button class="btn btn-secondary" title='Load'>Refresh</button>
+            </form>
+        </div>
+        <div id=panel__ID class=panel__ID>
+            <a target=_blank href=001/index.html>001 Template</a>
+        </div>
+    </body>
+    <script>
+            $('#apply__ID').on('click',function(){
+                $('#panel__ID a').show();
+                $('#panel__ID br').show();
+                var words=$('#keywords__ID').val().split(' ');
+                $('#panel__ID a').each(function(){
+                    var name=$(this).html().toUpperCase();
+                    for(var i=0;i<words.length;i++){
+                        var word=words[i].toUpperCase(); 
+                        if(word!=""){
+                            if(name.indexOf(word)==-1){
+                                $(this).hide();
+                                $(this).next('br').hide();
+                                break;
+                            }
+                        }
+                    }
+                })
+            })
+            //--------------------------------------------------------
+    </script>
+    <style>
+        #D__ID{
+            background-color:#fff;
+            height:100%;
+            overflow: auto;
+            animation: vm_module_fadein 1.0s;
+        }
+        .panel__ID{
+            padding:30px 50px 10px 50px;
+            font-size:14px;
+    		max-width: 100%;
+    		column-count: 4;
+    		column-width: 300px;
+    		column-gap: 30px;
+            font-size:14px;
+        }
+        .panel__ID a {
+            text-decoration: none;
+        }
+        .panel__ID a:link {
+            color:#555;
+        }
+        .panel__ID a:visited {
+            color:#555;
+        }
+        .panel__ID a:hover {
+            color:red;
+        }
+        .panel__ID a:active {
+            color:#555;
+        }
+        #keywords__ID::placeholder {
+            color: #ccc;
+            padding-left:6px;
+        }        
+        @media screen and (max-width:768px){
+            .panel__ID{
+                padding:0;
+            }
+        }
+    </style>
+
+</html>
