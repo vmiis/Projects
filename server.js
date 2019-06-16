@@ -1,6 +1,6 @@
 const express	=require('express');
 const http		=require('http');
-const fs 	 	=require('fs');
+const fs		=require('fs');
 //---------------------------------------------------
 var password={}
 //---------------------------------------------------
@@ -9,7 +9,7 @@ server.use(express.static(__dirname + '/sites'));
 server.post('/', function (req, res) {
 	var r_data='';
 	req.on('data',function(data){
-        r_data+=data;
+      r_data+=data;
     });
     req.on('end',function(){
 		d=JSON.parse(r_data);
@@ -21,10 +21,9 @@ server.post('/', function (req, res) {
 				else res.send("The file was saved!");
 			});
 		}
-		var ip=req.connection.remoteAddress; 
+		var ip=req.connection.remoteAddress;
 		console.log(ip);
-		console.log(d.path)
-		if(ip=="::ffff:127.0.0.1a" || ip=="::1a"){
+		if(ip=="::ffff:127.0.0.1" || ip=="::1"){
 			write();
 		}
 		else{

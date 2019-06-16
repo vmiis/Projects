@@ -5,12 +5,11 @@
                 <span id=vm_username></span>
             </div>
         </div>
-        <div bottom-right-corner style='display:none' id=_sys_dev_toolbar_0>
-            <span id=_sys_dev_toolbar_debug_info></span>
-            , <u id=_sys_dev_toolbar_editor style='cursor:pointer'>edit current module</u>
-            , <u id=_sys_dev_toolbar_code style='cursor:pointer'>source code of current module</u>
-            , <u id=_sys_dev_toolbar_list style='cursor:pointer'>module list</u>
-            , <u id=_sys_dev_toolbar_system style='cursor:pointer'>system info</u>
+        <div bottom-right-corner style='display:none' id=_sys_dev_info_0>
+            <span style='color:#888'>Dev Info:</span> <span id=_sys_dev_info_elapsed></span>
+            , <u id=_sys_dev_info_code style='cursor:pointer'>source code of current module</u>
+            , <u id=_sys_dev_info_list style='cursor:pointer'>module list</u>
+            , <u id=_sys_dev_info_system style='cursor:pointer'>system info</u>
         </div>
         <div alert class="modal fade" id="vm_alert_information" tabindex="-1" role="dialog" aria-labelledby="vm_dialog" aria-hidden="true" data-backdrop="static">
             <div class="modal-dialog" role="document">
@@ -34,18 +33,9 @@
     <script>
         $vm._start_frame=function(){
             //------------------------------------
-            if($vm.debug!=undefined) $('#_sys_dev_toolbar_0').show();
+            if($vm.debug!=undefined) $('#_sys_dev_info_0').show();
             //------------------------------------
-            $('#_sys_dev_toolbar_editor').on('click',function(){
-                if($vm.active_name!=undefined){
-                    var url=$vm.module_list[$vm.active_name].url;
-                    $.get(url,function(txt){
-                        $vm.load_module('module-editor','',{code:txt,url:url,module_name:$vm.active_name})
-                    },'text');
-                }
-            })
-            //------------------------------------
-            $('#_sys_dev_toolbar_system').on('click',function(){
+            $('#_sys_dev_info_system').on('click',function(){
                 var txt="<body>\r\n";
                     txt+="\t<header>\r\n";
                     $('#header >div').each(function(){
@@ -96,7 +86,7 @@
                 win.document.body.innerHTML="<pre>"+txt+"</pre><title>System Infomation</title><style> .c{color:red;} .c1{color:blue;} .c2{color:green;} body{ font-family:Courier New;font-size:12px; white-space: nowrap; } </style>";
             })
             //------------------------------------
-            $('#_sys_dev_toolbar_code').on('click',function(){
+            $('#_sys_dev_info_code').on('click',function(){
                 if($vm.active_name!=undefined){
                     var url=$vm.module_list[$vm.active_name].url;
                     $.get(url,function(txt){
@@ -108,16 +98,14 @@
                 }
             })
             //------------------------------------
-            $('#_sys_dev_toolbar_list').on('click',function(){
+            $('#_sys_dev_info_list').on('click',function(){
                 var txt="";
                 var s=[];
                 for(a in $vm.module_list){
-                    if(a!='module-editor'){
-                        var L=a.length;
-                        var tt="";
-                        for(k=0;k<50-L;k++) tt+="&nbsp;"; 
-                        s.push(a+tt+JSON.stringify($vm.module_list[a]));
-                    }
+                    var L=a.length;
+                    var tt="";
+                    for(k=0;k<50-L;k++) tt+="&nbsp;"; 
+                    s.push(a+tt+JSON.stringify($vm.module_list[a]));
                 }
                 s.sort();
                 for(i in s){
@@ -204,7 +192,6 @@
                     "https://surveyjs.azureedge.net/1.0.73/survey.jquery.min.js",
                     "https://unpkg.com/formiojs@latest/dist/formio.full.min.css",
                     "https://unpkg.com/formiojs@latest/dist/formio.full.min.js",
-                    "https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.4/ace.js",
                     /*
                     "https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js",
                     "https://apis.google.com/js/plusone.js",
@@ -250,7 +237,8 @@
                 if(a.length==1){
                     $vm.load_module("home",'',{});
                     console.log("home module(1)  "+(new Date().getTime()-$vm.start_time)+'ms');
-                    $('#_sys_dev_toolbar_debug_info').text("loading home page time:"+(new Date().getTime()-$vm.start_time).toString()+"ms")
+                    //$('#vm_system_info').text((new Date().getTime()-$vm.start_time).toString()+"ms")
+                    $('#_sys_dev_info_elapsed').text((new Date().getTime()-$vm.start_time).toString()+"ms")
                 }
                 else if(a.length==2){
                     $vm.search_module=a[1].split('&')[0].replace(/\//g,'_');
@@ -258,7 +246,8 @@
                     if($vm.search_module=='home'){
                         $vm.load_module("home",'',{});
                         console.log("home module(2) "+(new Date().getTime()-$vm.start_time)+'ms');
-                        $('#_sys_dev_toolbar_debug_info').text("loading home page time:"+(new Date().getTime()-$vm.start_time).toString()+"ms")
+                        //$('#vm_system_info').text((new Date().getTime()-$vm.start_time).toString()+"ms")
+                        $('#_sys_dev_info_elapsed').text((new Date().getTime()-$vm.start_time).toString()+"ms")
                     }
                     else{
                         //-------------------------------------
@@ -271,7 +260,8 @@
                                 else location.replace($vm.module_list[$vm.search_module].url);
                                 
                                 console.log($vm.search_module+"  "+(new Date().getTime()-$vm.start_time)+'ms');
-                                $('#_sys_dev_toolbar_debug_info').text("loading the start page time:"+(new Date().getTime()-$vm.start_time).toString()+"ms")
+                                //$('#vm_system_info').text((new Date().getTime()-$vm.start_time).toString()+"ms")
+                                $('#_sys_dev_info_elapsed').text((new Date().getTime()-$vm.start_time).toString()+"ms")
                             }
                             I++; if(I>50){
                                 clearInterval(loop); alert($vm.search_module+" is not installed.");
@@ -335,7 +325,7 @@
             color:#fff;
             z-index: 99999;
         }
-        #_sys_dev_toolbar_0{
+        #_sys_dev_info_0{
             display:block;
             position:fixed;
             bottom:3px;
