@@ -1,0 +1,34 @@
+<div id=D__ID>
+	<div class='text-center' style='max-width:800px;margin-left:auto;margin-right:auto;'>
+		alslaksl adalsklas
+		aal;d;
+		<br>
+		<button id=yes__ID class=btn>I agreen</button> <button id=no__ID class=btn>No thanks</button>
+	</div>
+	<script>
+		function F__ID(){
+			var m=$vm.module_list['__MODULE__'];
+			if(m.prefix==undefined) m.prefix="";
+
+			$('#yes__ID').on('click',function(){	$vm.load_module(m.prefix+'q1','',{});	})
+			$('#no__ID').on('click',function(){		$vm.load_module(m.prefix+'no-thanks','',{}); })
+		}
+		$vm.home_ready=1;
+	</script>
+	<style>
+		#D__ID{
+			height:100%;
+	        overflow:auto;
+			animation: vm_module_fadein 1.0s;
+	        padding-bottom:10%;
+			margin-top:-100px;
+			padding-top:80px;
+			color:#fff;
+		}
+	    @media screen and (max-width: 992px) {
+	        #D__ID{
+	            animation: vm_module_fadein 1.0s;
+	        }
+	    }
+	</style>
+</div>

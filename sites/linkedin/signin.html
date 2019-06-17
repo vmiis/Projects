@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+    <body>
+        <script src="https://secure.aadcdn.microsoftonline-p.com/lib/1.0.0/js/msal.js"></script>
+    </body>
+    <script>
+        //------------------------------------
+        var m365_scope={
+            scopes: ["user.read","User.ReadBasic.All",/*"group.read.all",*/"Files.Read.All","Sites.ReadWrite.All"]
+        };
+        var msalConfig={
+            auth: {
+                clientId: 'f39f8959-8cd7-4570-8c0f-548306bf899a',
+            },
+            cache: {
+                cacheLocation: "localStorage",
+                storeAuthStateInCookie: true,
+            }
+        };
+        var m365_msal=new Msal.UserAgentApplication(msalConfig);
+        var account=m365_msal.getAccount();
+        if(account==null){
+            m365_msal.handleRedirectCallback((error, response) => {
+            });
+            m365_msal.loginRedirect(m365_scope).then(function (loginResponse){
+            }).catch(function (error) {
+                console.log(error);
+            });
+        }
+        else{
+        }
+    </script>
+</html>

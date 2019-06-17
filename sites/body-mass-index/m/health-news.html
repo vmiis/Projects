@@ -1,0 +1,91 @@
+<div id=D__ID>
+	<div class=panel__ID>
+        <span class=hd__ID>Health News</span>
+        <hr class=hr__ID>
+        <div id=news__ID style='margin-bottom:20px'></div>
+	</div>
+	<script>
+		function F__ID(){
+            $vm.api_address="https://api.wappsystem.com";
+            var get_news=function(sid,feed){
+                $vm.request({cmd:'proxy',url:feed},function(res){
+                    var $xml=$($.parseXML(res.result));     
+                    $channel = $xml.find( "channel" );
+                    var txt="";
+                    var I=0;
+                    var dt1=new Date().getTime();
+                    $channel.find("item").each(function(index){ 
+                        if(I>10) return false;
+                        var lk=$(this).find('link').text();
+                        var sc=$(this).find('source').text();
+                        var t=$(this).find('title').text();
+                        var pd=$(this).find('pubDate').text();
+                        var dt2=new Date(pd).getTime();
+                        t=t.replace(' - '+sc,'');
+                        var im=$(this).find('media\\:content,content').attr("url");
+                        if(im!=undefined){
+                            var m=Math.floor((dt1-dt2)/1000/60);
+                            var h=Math.floor(m/60);
+                            var d=Math.floor(h/24);
+                            var tt="";
+                            if(d==1) tt="1 day ago "
+                            else if(d>1) tt=d+" days ago "
+                            else if(h==1) tt="1 hour ago "
+                            else if(h>1) tt=h+" hours ago "
+                            else if(m==1) tt="1 minute ago "
+                            else if(m>1) tt=m+" minutes ago "
+                            I++
+                            txt+="<a rss target=_blank href='"+lk+"'><div style='padding:6px 6px 1px 6px; display:flex'><img height=70 src="+im+" style='float:left' />";
+                            txt+="<div style='display:inline-block;padding-left:8px; float:left'><span>"+t+"</span><br><span style='color:#aaa'>"+sc+", "+tt+"</span></div></div></a>";
+                        }
+                    });
+                    $('#'+sid+'__ID').html(txt);   
+                });
+            }
+            get_news("news","https://news.google.com/rss/topics/CAAqIQgKIhtDQkFTRGdvSUwyMHZNR3QwTlRFU0FtVnVLQUFQAQ?hl=en-AU&gl=AU&ceid=AU%3Aen");
+		}
+	</script>
+	<style>
+		#D__ID{
+			height:100%;
+			animation: vm_module_fadein 1.0s;
+            background-color: #fff;
+		}
+        .hd__ID{
+            color:#138478;
+            font-size: 160%;
+            margin:3px 10px;
+            width:300px;
+        }
+        .hr__ID{
+            height:1px;
+            margin: 3px 0 12px 0;
+            width:70%;
+            background-image: linear-gradient(to right, #f03314, #dcea46);
+        }
+        .panel__ID{
+            padding: 30px 60px;
+            margin: 0 auto;
+            max-width: 1000px;            
+        }
+        .panel__ID a {
+            text-decoration: none;
+        }
+        .panel__ID li {
+            font-size: 100%;
+            color:#555;
+        }
+        .panel__ID a:link {
+            color:#555;
+        }
+        .panel__ID a:visited {
+            color:#555;
+        }
+        .panel__ID a:hover {
+            color:red;
+        }
+        .panel__ID a:active {
+            color:#555;
+        }
+	</style>
+</div>

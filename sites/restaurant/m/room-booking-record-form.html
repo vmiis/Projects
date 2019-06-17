@@ -1,0 +1,119 @@
+<div id=D__ID>
+	<div id=form_container__ID>
+		<div id=header__ID>
+			Room booking
+		</div>
+		<form id=F__ID>
+			<div class="container">
+				<input type=text name="Room_uid" style="display:none">
+				<div class="row row__ID">
+					<div class="col-sm col-lg-4">
+						<span>Room number</span>
+						<input type=text class="form-control" name="Room_number" readonly required>
+					</div>
+					<div class="col-sm col-lg-8">
+						<span>Room name</span>
+						<input type=text class="form-control" name="Room_name" readonly required>
+					</div>
+				</div>
+				<div class="row row__ID">
+					<div class="col-sm col-lg-6">
+						<span>Date</span>
+						<input type=date class="form-control" name="Date" readonly required>
+					</div>
+					<div class="col-sm col-lg-6">
+						<span>Time</span>
+						<input type=time class="form-control" name="Time" readonly required>
+					</div>
+				</div>
+				<div class="row row__ID">
+					<div class="col-sm col-lg-6">
+						<span>Duration (hours)</span>
+						<select class="form-control" name="Duration" required>
+							<option>0.5</option>
+							<option>1.0</option>
+							<option>1.5</option>
+							<option>2.0</option>
+							<option>2.5</option>
+							<option>3.0</option>
+							<option>3.5</option>
+							<option>4.0</option>
+							<option>4.5</option>
+							<option>5.0</option>
+							<option>5.5</option>
+							<option>6.0</option>
+							<option>6.5</option>
+							<option>7.0</option>
+							<option>7.5</option>
+							<option>8.0</option>
+							<option>8.5</option>
+							<option>9.0</option>
+							<option>9.5</option>
+							<option>10.0</option>
+						</select>
+					</div>
+					<div class="col-sm col-lg-6">
+						<span>Color</span><br>
+						<input type=color name="Color" style='width:100px;height:38px;border:none' value='#ebebeb' required>
+					</div>
+				</div>
+				<div class="row row__ID">
+					<div class="col">
+						<span>Description</span>
+						<textarea class="form-control" name="Description" style='min-height:100px'></textarea>
+					</div>
+				</div>
+				<div class="row row__ID">
+					<div class="col">
+						<span>Contact name</span>
+						<input type=text class="form-control" name="Contact_name">
+					</div>
+				</div>
+				<div class="row row__ID">
+					<div class="col">
+						<span>Contact phone</span>
+						<input type=text class="form-control" name="Contact_phone">
+					</div>
+				</div>
+				<div class="row row__ID">
+					<div class="col">
+						<span>Contact email</span>
+						<input type=text class="form-control" name="Contact_email">
+					</div>
+				</div>
+				<br>
+				<div class="row c_print">
+					<div class=col>
+						<button id=submit__ID type="submit" class="btn btn-secondary">Submit</button>
+						<button id=delete__ID type="button" class="btn btn-secondary">Delete</button>
+					</div>
+				</div>
+			</div>
+		</form>
+	</div>
+	<script>
+		function F__ID(){
+			//-------------------------------------
+			VmInclude:__COMPONENT__/f/form.01.js
+			//-------------------------------------
+			var load=m.load;
+			m.load=function(){
+				load();
+			}
+			//-------------------------------------
+			m.before_submit=function(data,index){
+				index.I1=data.Date;
+				index.I2=data.Time;
+				index.I3=data.Room_uid;
+				return true;
+			}
+			//-------------------------------------
+		}
+	</script>
+	<style>
+		#form_container__ID{
+			max-width:700px;
+		}
+		VmInclude:__COMPONENT__/f/form.01.css
+	</style>
+</div>

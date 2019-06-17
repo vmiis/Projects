@@ -1,0 +1,268 @@
+<div id=D__ID>
+   <div class="jumbotron-fluid home">
+     <div class="container">
+       <div class="row">
+           <div class="col-xl-6 col-md-12 col-sm-12 order-xl-2">
+               <h1>Welcome to SleepFix</h1>
+               <p>Take part in an exciting online research study using a new smartphone
+                application that aims to help improve your sleep and daytime functioning.</p>
+                <p>SleepFix is a smartphone application designed to treat insomnia through sleep consolidation
+                therapy. Sleep consolidation therapy works to improve the balance between actual sleep time and
+                the total amount of time spent in bed.</p>
+                <p>The study is for individuals with sleep problems who are aged between 18 and 65 and have access to
+                a smartphone.</p>
+                <p>To determine if you are eligible to participate, you will need to complete a series of questionnaires
+                which take less than 2 minutes. If you are eligible you will be invited to provide consent and take
+                part in the study. The study will involve using the SleepFix application every day for three weeks. You
+                can use the application for a further three weeks if you wish. You will also be asked to complete a
+                series questionnaires (which take up to 5 minutes to complete) at the following timepoints; at start
+                of the study, weekly (for 3 weeks), after 6 weeks and 12 weeks.</p>
+                <p>In addition, all participants will be randomly assigned to using SleepFix with a Fitbit which will track
+                your sleep or SleepFix by itself. We will send you a Fitbit at no cost for you to use if you are in that
+                group. If you already have a Fitbit that tracks your sleep you can use it during the study.</p>
+                <p>
+                Your participation in this study is voluntary.</p>
+                <!--
+                <p>If you are interested in participating, please respond to the statement below.</p>
+                <p>I agree on completing a number of screening questionnaires to determine if I am suitable for the
+                study.</p>
+                -->
+            
+                <b style='color:#fff'>
+                    We are currently not taking any more registrations due to a large amount of interest.
+                    Please check back soon or email Woolcock.sleepfix@sydney.edu.au to register for the waiting list
+                    <br>
+                    <br>
+                </b>
+            
+                <div class="row">
+                    <!--        
+                    <div class="col-xl-5 col-md-12 col-sm-12">
+                        <button type="button" id="btn2__ID" class="btn btn-primary btn-lg">I agree</button>
+                        <button type="button" id="btn1__ID" class="btn btn-primary btn-lg greenbutton">No thanks</button>
+                    </div>
+                -->
+                    <div class="col-xl-5 col-md-12 col-sm-12">
+                       <p style="font-size:10px">If you have any questions, please contact us on 02 9114 0481 or Woolcock.Sleepfix@sydney.edu.au.</p>
+                   </div>
+                 </div>
+            </div>
+            <div class="col-xl-5 col-sm-12 order-xl-1 text-center"> <img src="https://www.sfix.com.au/images/phone-lrg.png" alt="Sleep App" class="mx-auto"/>
+            </div>
+        </div>
+    </div>
+  </div>
+
+   <script>
+      function F__ID(){
+         //-------------------------------------
+         $(document).ready(function(){
+             $(window).scrollTop(0);
+         });
+         //-------------------------------------
+         var this_module=$vm.module_list[$vm.vm['__ID'].name];
+         var prefix=this_module.prefix; if(prefix==undefined) prefix="";
+         $('#vm_system_info').hide()
+         //-------------------------------------
+         $('#btn1__ID').on('click',function(){
+            $vm.alert("Completing questionnaires is necessary to be part of the study. If you do not wish to submit the\
+            screening questionnaires, this may not be the right time for you to be part of the study. If you have\
+            any questions, please contact us on 02 9114 0481 or woolcock.sleepfix@woolcock.org.");
+         })
+         //-------------------------------------
+         $('#btn2__ID').on('click',function(){
+             //alert("Not ready yet.");
+            $vm.load_module_v2(prefix+'screening-form','',{});
+         })
+         //-------------------------------------
+         $('#test__ID').on('click',function(){
+            $vm.load_module_v2(prefix+'screening-form','',{});
+         })
+         //-------------------------------------
+         $('#D__ID').css('min-height',$vm.min_height);
+         //-------------------------------------
+      }
+   </script>
+   <style>
+      #D__ID{
+         height:100%;
+         animation: vm_module_fadein 1.0s;
+         overflow: auto;
+      }
+   </style>
+   <style third-party>
+       .home {
+           	/*background-color: #004955 !important;*/
+           	/*background-image: url(images/form-bg.jpg) !important;*/
+           	background-size: cover;
+           	background-repeat: repeat-x;
+           	background-position: center top;
+           	background-attachment: fixed;
+
+           	margin-bottom: 0px !important;
+           	border-radius: 0px;
+           	padding-top: 21px; /*100px-80px*/
+       }
+       .home img {
+           	width: 560px;
+           	height: auto;
+           	margin-left: -65px !important;
+       }
+       @media (max-width: 1200px) {
+           .home img {
+               	width: 360px;
+               	height: auto;
+               	margin-left: 0px !important;
+            }
+           	.home h1 {
+               	font-family: 'Roboto Slab';
+                font-weight: 100;
+               	font-size: 32px;
+               	color: #FCFBF5;
+               	letter-spacing: 0;
+               	/*line-height: 72px;*/
+               	margin-top: 30px !important;
+           }
+       }
+       .home h1 {
+           	font-family: 'Roboto Slab';
+            font-weight: 100;
+           	font-size: 32px;
+           	color: #FCFBF5;
+           	letter-spacing: 0;
+           	/*line-height: 72px;*/
+           	margin-top: 30px;
+       }
+       .home p {
+           	font-family: 'Nunito Sans';
+            font-weight: 100;
+           	font-size: 13px;
+           	color: #FFFFFF;
+           	letter-spacing: 0;
+       }
+       /* HOME BUTTONS */
+       .home .btn-primary, .home .btn-primary:active, .home .btn-primary:visited, .home .btn-primary:focus {
+           	background-color: #45496A;
+           	border-color: #45496A;
+           	font-family: 'Nunito Sans';
+            font-weight: 100;
+           	font-size: 12px;
+           	letter-spacing: 1px;
+           	color: #FFFFFF;
+           	text-align: center;
+           	line-height: 18px;
+           	/*text-transform: uppercase;*/
+           	border-radius: 5px;
+           	/*padding: 16px 30px;*/
+           	margin: 0 10px 10px 0;
+       }
+       .home .btn-primary:hover {
+           	background-color: #35395D;
+           	border-color: #35395D;
+           	font-family: 'Nunito Sans';
+            font-weight: 100;
+           	font-size: 12px;
+           	letter-spacing: 1px;
+           	color: #FFFFFF;
+           	text-align: center;
+           	line-height: 18px;
+           	/*text-transform: uppercase;*/
+           	border-radius: 5px;
+           	/*padding: 16px 30px;*/
+           	margin: 0 10px 10px 0;
+       }
+       .home .greenbutton, .home .greenbutton:active, .home .greenbutton:visited, .home .greenbutton:focus {
+           	background-color: #23807F;
+           	border-color: #23807F;
+           	font-family: 'Nunito Sans';
+            font-weight: 100;
+           	font-size: 12px;
+           	letter-spacing: 1px;
+           	color: #FFFFFF;
+           	text-align: center;
+           	line-height: 18px;
+           	/*text-transform: uppercase;*/
+           	border-radius: 5px;
+           /*	padding: 16px 30px;*/
+           	margin: 0 10px 10px 0;
+       }
+       .home .greenbutton:hover {
+           	background-color: #1F6363;
+           	border-color: #1F6363;
+           	font-family: 'Nunito Sans';
+            font-weight: 100;
+           	font-size: 12px;
+           	letter-spacing: 1px;
+           	color: #FFFFFF;
+           	text-align: center;
+           	line-height: 18px;
+           	/*text-transform: uppercase;*/
+           	border-radius: 5px;
+           	/*padding: 16px 30px;*/
+           	margin: 0 10px 10px 0;
+       }
+       @media (max-width: 600px) {
+
+       .home .btn-primary, .home .btn-primary:active, .home .btn-primary:visited, .home .btn-primary:focus {
+       	background-color: #45496A;
+       	border-color: #45496A;
+       	font-family: 'Nunito Sans';
+        font-weight: 100;
+       	font-size: 12px;
+       	letter-spacing: 1px;
+       	color: #FFFFFF;
+       	text-align: center;
+       	line-height: 18px;
+       	/*text-transform: uppercase;*/
+       	border-radius: 5px;
+       	padding: 8px 15px;
+       	margin: 0 10px 10px 0;
+       }
+       .home .btn-primary:hover {
+       	background-color: #35395D;
+       	border-color: #35395D;
+       	font-family: 'Nunito Sans';
+        font-weight: 100;
+       	font-size: 12px;
+       	letter-spacing: 1px;
+       	color: #FFFFFF;
+       	text-align: center;
+       	line-height: 18px;
+       	/*text-transform: uppercase;*/
+       	border-radius: 5px;
+       	padding: 8px 15px;
+       	margin: 0 10px 10px 0;
+       }
+       .home .greenbutton, .home .greenbutton:active, .home .greenbutton:visited, .home .greenbutton:focus {
+       	background-color: #23807F;
+       	border-color: #23807F;
+       	font-family: 'Nunito Sans';
+        font-weight: 100;
+       	font-size: 12px;
+       	letter-spacing: 1px;
+       	color: #FFFFFF;
+       	text-align: center;
+       	line-height: 18px;
+       	/*text-transform: uppercase;*/
+       	border-radius: 5px;
+       	padding: 8px 15px;
+       	margin: 0 10px 10px 0;
+       }
+       .home .greenbutton:hover {
+       	background-color: #1F6363;
+       	border-color: #1F6363;
+       	font-family: 'Nunito Sans';
+        font-weight: 100;
+       	font-size: 12px;
+       	letter-spacing: 1px;
+       	color: #FFFFFF;
+       	text-align: center;
+       	line-height: 18px;
+       	/*text-transform: uppercase;*/
+       	border-radius: 5px;
+       	padding: 8px 15px;
+       	margin: 0 10px 10px 0;
+       }
+   }
+   </style>
+</div>

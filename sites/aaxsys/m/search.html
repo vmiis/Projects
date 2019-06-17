@@ -1,0 +1,191 @@
+<div id=D__ID>
+    <section id=form_container__ID>
+        <div><h3>Aaxsys Search</h3></div>
+        <div class=row>
+            <div class=col-lg-4>
+                <form id=F__ID>
+                    <div class="container">
+                        <div class="row row__ID">
+                            <div class="col-sm col-lg-5">City</div>
+                            <div class="col-sm col-lg-7">
+                                <select id=City__ID class="form-control">
+                                    <option>San Francisco</option>
+                                    <option>Sydney</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row row__ID">
+                            <div class="col-sm col-lg-5">Reservation begins</div>
+                            <div class="col-sm col-lg-7"><input type="date" placeholder='yyyy-mm-dd' id=dtA__ID class="form-control" name="dtA" /></div>
+                        </div>
+                        <div class="row row__ID">
+                            <div class="col-sm col-lg-5">Reservation ends</div>
+                            <div class="col-sm col-lg-7"><input type="date" placeholder='yyyy-mm-dd' id=dtB__ID class="form-control" name="dtB" /></div>
+                        </div>
+                        <div class="row row__ID">
+                            <div class="col-sm col-lg-5">Furnished/<br>Unfurnished</div>
+                            <div class="col-sm col-lg-7">
+                                <select id=Furn__ID class="form-control" style='margin-right:20px;display:inline-block;width:auto;'>
+                                    <option value="FURNISHED" selected="">FURNISHED</option>
+                                    <option value="FURNISHED">Furnished</option>
+                                    <option value="UNFURNISHED">Unfurnished</option>
+                                    <option value="BOTH">Both</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row row__ID">
+                            <div class="col-sm col-lg-5">ADDITIONAL SELECTION CRITERIA</div>
+                            <div class="col-sm col-lg-7">
+                                Parking
+                                <input type="checkbox" name="PARKING">
+                                &nbsp; Smoking
+                                <input type="checkbox" name="SMOKING">
+                                &nbsp; Pets
+                                <input type="checkbox" name="PETS">
+                                &nbsp; Cable
+                                <input type="checkbox" name="CABLE">
+                                &nbsp; Sofabeds
+                                <input type="checkbox" name="SOFABEDS">
+                                &nbsp; Maid service
+                                <input type="checkbox" name="MAIDSERVICE">
+                                &nbsp; Gym/Health club
+                                <input type="checkbox" name="HEALTHCLUB">
+                                &nbsp; Fast internet
+                                <input type="checkbox" name="BROADBAND">
+                            </div>
+                        </div>
+                        <br>
+                        <button id=search__ID type=button class="btn btn-secondary">Search</button>
+                        <button id=reset__ID type=button class="btn btn-secondary">Reset</button>
+                    </div>
+                </form>
+            </div>
+            <div class=col-lg-8>
+                <div style='border: 0px solid #fff; width:100%;'>
+                    <div class=row>
+                        <div class=col-lg-4>
+                            <img id=img01__ID class="img-fluid rounded" style='padding:2px' />
+                        </div>
+                        <div class=col-lg-8>
+                            <div id=txt01__ID></div>
+                        </div>
+                    </div>
+                    <div class=row>
+                        <div class=col-lg-4>
+                            <img id=img02__ID class="img-fluid rounded" style='padding:2px' />
+                        </div>
+                        <div class=col-lg-8>
+                            <div id=txt02__ID></div>
+                        </div>
+                    </div>
+                    <div class=row>
+                        <div class=col-lg-4>
+                            <img id=img03__ID class="img-fluid rounded" style='padding:2px' />
+                        </div>
+                        <div class=col-lg-8>
+                            <div id=txt03__ID></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script>
+        function F__ID(){
+            //--------------------------------------------------------
+            $('#D__ID').on('load',function(){
+                if($('#dtA__ID').val()=='') $('#dtA__ID').val('2019-04-01');
+                if($('#dtB__ID').val()=='') $('#dtB__ID').val('2019-04-10');
+                //$('#search__ID').triggerHandler('click');
+            })
+            //--------------------------------------------------------
+            $('#search__ID').on('click',function(){
+                var p="?Source=AAXSYS&Vendor=AMSI-SF&Type=XML";
+                p+="&City="+$('#City__ID').val();
+                p+="&BEDROOMS=&Results=3";
+                p+="&Furnished="+$('#Furn__ID').val();
+                p+="&BeginDay="+$('#dtA__ID').val().split('-')[2];
+                p+="&BeginMonth="+$('#dtA__ID').val().split('-')[1];
+                p+="&BeginYear="+$('#dtA__ID').val().split('-')[0];
+                p+="&EndDay="+$('#dtB__ID').val().split('-')[2];
+                p+="&EndMonth="+$('#dtB__ID').val().split('-')[1];
+                p+="&EndYear="+$('#dtB__ID').val().split('-')[0];
+                var url="http://www.aaxsys.com/cgi-bin/availxml";
+                $vm.request({cmd:'proxy',url:url+p},function(res){
+                    var $xml=$.parseXML(res.result);
+                    var jn=$vm.xmlToJson($xml);
+                    console.log(jn);
+
+                    var units=jn.SearchResults.AvailableUnits.Unit;
+                    for(var i=0;i<units.length && i<3;i++){
+                        var lk=units[i].PictureLink;
+                        $('#img0'+(1+i)+'__ID').attr('src',"http://www.aaxsys.com/"+units[i].PictureLink);
+                        var txt="";
+                        if(units[i].Accommodates!='[object Object]') txt+="Accommodates: "+units[i].Accommodates+"<br>"
+                        txt+="Address: "+units[i].Address+"<br>";
+                        txt+="Bathrooms: "+units[i].Bathrooms+"<br>";
+                        txt+="Bedrooms: "+units[i].Bedrooms+"<br>";
+                        txt+="Amenities: "+units[i].Amenities+"<br>";
+                        txt+="Rates: "+units[i].Rate+"<br>";
+                        $('#txt0'+(1+i)+'__ID').html(txt);
+                    }
+                });
+            })
+            $('#reset__ID').on('click',function(){
+                $("#F__ID")[0].reset();
+            })
+            //--------------------------------------------------------
+        }
+    </script>
+    <style>
+        #D__ID{
+            height:100%;
+            overflow: auto;
+            animation: vm_module_fadein 1.0s;
+            background-color: #465a69;
+        }
+        #form_container__ID{
+            padding-top:50px;
+            padding-left:20px;
+            padding-right:20px;
+            /*max-width: 500px;*/
+            font-family: Verdana,sans-serif;
+            font-size: 15px;
+            line-height: 1.5;
+            color: #fff;
+        }
+        #form_container__ID .row__ID{
+            padding:3px 0;
+        }
+        #header__ID{
+            background-color:#727b84;
+            color:#fff;
+            padding:10px 15px 10px 15px;
+            font-size:130%'
+        }
+        #F__ID{
+            border:1px solid #bbb;
+            padding:6px 15px 20px 15px;
+        }
+        #F__ID label
+            display: inline-block;
+            margin: .6rem 0 .3rem 0;
+        }
+    
+        #F__ID fieldset {
+            border: 0px solid #c0c0c0;
+            margin: 0;
+            padding: 0;
+        }
+        @media screen and (max-width:768px){
+            #form_container__ID{
+                padding:20px 10px 50px 10px;
+            }
+        }
+    </style>
+</div>
+
+
+
+
+

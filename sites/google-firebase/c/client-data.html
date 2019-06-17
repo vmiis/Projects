@@ -1,0 +1,46 @@
+<div id=D__ID>
+    <div>
+        VmInclude:__COMPONENT__/g/grid.firebase.01.html
+    </div>
+    <script>
+        function F__ID(){
+            //-------------------------------------
+            VmInclude:__COMPONENT__/g/grid.firebase.01.js
+            //-------------------------------------
+            var fields="First_name,Last_name,Phone";
+            m.fields="_Form,"+fields+",_Delete"; //,Submit_date,Submitted_by
+            m.fields_e=fields;
+            $('#title__ID').text("Clients");
+            //-------------------------------------
+            m.data_process=function(res){
+                m.records=[];
+                res.forEach((doc) => {
+                    console.log(doc);
+                    console.log(doc.data());
+                    var d=doc.data();
+                    m.records.push({
+                        "_id":doc.id,
+                        //"Submit_date":doc._document.proto.createTime,
+                        //"Submitted_by":res.value[i].createdBy.user.displayName,
+                        Data:{
+                            "First_name":d.First_name,
+                            "Last_name":d.Last_name,
+                            "Phone":d.Phone,
+                        }
+                    })
+                });
+            }
+            //-------------------------------------
+            /*
+            m.set_req=function(){
+                m.endpoint  =m.Table+"/?expand=fields";
+                m.endpoint_d=m.Table;
+            }
+            */
+            //-------------------------------------
+        }
+    </script>
+    <style>
+        VmInclude:__COMPONENT__/g/grid.01.css
+    </style>
+</div>

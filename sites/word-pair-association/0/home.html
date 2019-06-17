@@ -1,0 +1,69 @@
+<div id=D__ID>
+	<div id=page_1__ID class=home_page_1>
+		<div class="container">
+			<div class=panel__ID>
+				<div class="row align-items-center">
+					<div class="col text-center">
+						<p style='font-size:30px'> 
+							Paired association learning can be defined as a system of learning in which items (such as words, letters, numbers, symbols etc.) 
+							are matched so that presentation of one member of the pair will cue the recall of the other member.
+						</p>
+						<p>
+							<a id=get_in__ID class='btn btn-success' >Start Test</a>
+						</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div id=news__ID>
+	</div>
+	<script>
+		$vm.load_component('health-news','news__ID',{})
+		$('#D__ID').on('load',function(){
+			$('#get_in__ID').on('click',function(){
+				$vm.load_module('word-pair-association','',{})
+			})
+		})
+	</script>
+	<style>
+		#D__ID{
+			height:100%;
+			animation: vm_module_fadein 1.0s, D__ID 3s;
+		}
+		#page_1__ID{
+			display: flex;
+			align-items: center;
+			color: #fff;
+		    line-height: 1.1;
+		}
+		#page_1__ID h1{
+		    font-size: 80px;
+		    font-family: "Gaegu", cursive;
+		}
+		#demo__ID{
+			padding:0 50px;
+			background-color: #fff;
+		}
+        .panel__ID{
+            color:#fff;
+            background: rgba(0, 0, 0, 0.7);
+            border-radius: 25px;
+            padding:30px 50px 20px 50px;
+        }
+		@keyframes D__ID {
+			from {padding-top: 300px;}
+			to {padding-top: 0px;}
+		}
+	    @media screen and (max-width: 992px) {
+	        #D__ID{
+	            animation: vm_module_fadein 1.0s;
+	        }
+	    }
+	</style>
+	<script>
+		function F__ID(){
+			$vm['home_ready']=1;
+		}
+	</script>
+</div>

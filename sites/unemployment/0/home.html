@@ -1,0 +1,74 @@
+<div id=D__ID>
+	<div id=page_1__ID class=home_page_1>
+		<div class="panel__ID" >
+			<p style='font-size:16px'> 
+					Unemployment is a measure of the way the labour market is operating at any time and is 
+					widely used and discussed by economists, government, and the media to measure the level 
+					of spare labour capacity in the economy
+			</p>
+			<p class=text-center>
+				<a id=au__ID class='btn btn-success' >Australia</a>
+				<a id=ch__ID class='btn btn-success' >China</a>
+				<a id=us__ID class='btn btn-success' >US</a>
+			</p>
+		</div>
+	</div>
+	<div id=news__ID>
+	</div>
+	<script>
+		$vm.load_component('news','news__ID',{topic:"Unemployment",rss:"https://news.google.com/rss/search?q=unemployment&hl=en-AU&gl=AU&ceid=AU%3Aen"})
+		$('#D__ID').on('load',function(){
+			$('#au__ID').on('click',function(){
+				$vm.load_module("australia-unemployment",'',{})
+			})
+			$('#ch__ID').on('click',function(){
+				$vm.load_module("china-unemployment",'',{})
+			})
+			$('#us__ID').on('click',function(){
+				$vm.load_module("united-states-unemployment",'',{})
+			})
+		})
+	</script>
+	<style>
+		#D__ID{
+			height:100%;
+			animation: vm_module_fadein 1.0s, D__ID 3s;
+		}
+		#page_1__ID{
+			display: flex;
+			align-items: center;
+			color: #fff;
+		    line-height: 1.1;
+		}
+		#page_1__ID h1{
+		    font-size: 80px;
+		    font-family: "Gaegu", cursive;
+		}
+		#demo__ID{
+			padding:0 50px;
+			background-color: #fff;
+		}
+        .panel__ID{
+            color:#fff;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 25px;
+            padding:30px 50px 20px 50px;
+			margin:0 auto 130px auto;
+			max-width:800px;
+        }
+		@keyframes D__ID {
+			from {padding-top: 300px;}
+			to {padding-top: 0px;}
+		}
+	    @media screen and (max-width: 992px) {
+	        #D__ID{
+	            animation: vm_module_fadein 1.0s;
+	        }
+	    }
+	</style>
+	<script>
+		function F__ID(){
+			$vm['home_ready']=1;
+		}
+	</script>
+</div>

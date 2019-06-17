@@ -1,0 +1,53 @@
+<div id=D__ID>
+	<div id=page_1__ID class=home_page_1>
+		<div class="container">
+			<div class="row align-items-center">
+			<div class="col text-center">
+				<p class=>WELCOME TO 5 <i class="fas fa-star"></i> HOTEL</p>
+				<h1>A Best Place To Stay</h1>
+			</div>
+			</div>
+		</div>
+	</div>
+	<div id=demo__ID>
+	</div>
+	<script>
+		$vm.load_component('demo','demo__ID',{})
+		$('#D__ID').on('load',function(){
+		})
+	</script>
+	<style>
+		#D__ID{
+			height:100%;
+			animation: vm_module_fadein 1.0s, D__ID 3s;
+		}
+		#page_1__ID{
+			display: flex;
+			align-items: center;
+			color: #fff;
+		    line-height: 1.1;
+		}
+		#page_1__ID h1{
+		    font-size: 80px;
+		    font-family: "Gaegu", cursive;
+		}
+		#demo__ID{
+			padding:0 50px;
+			background-color: #fff;
+		}
+		@keyframes D__ID {
+			from {padding-top: 300px;}
+			to {padding-top: 0px;}
+		}
+	    @media screen and (max-width: 992px) {
+	        #D__ID{
+	            animation: vm_module_fadein 1.0s;
+	        }
+	    }
+	</style>
+	<script>
+		function F__ID(){
+			$vm['home_ready']=1;
+		}
+	</script>
+</div>

@@ -1,0 +1,36 @@
+<div id=D__ID>
+	<div>
+		<div id=posts__ID>
+
+		</div>
+	</div>
+	<script>
+		function F__ID(){
+            $('#D__ID').on('load',function(){
+                FB.api('/me/posts', function(response) {
+					var txt="";
+					for(i in response.data){
+						var a=response.data[i];
+						txt="<b>No. "+(parseInt(i)+1)+" </b><br>";
+						txt+="<b>Message: </b><br>";
+						txt+=a.message;
+						txt+="<br><b>Created time: </b><br>";
+						txt+=a.created_time;
+						txt+="<br><br>";
+					}
+					$('#posts__ID').html(txt);
+                });
+            })
+		}
+	</script>
+	<style>
+		#D__ID{
+			height:100%;
+			animation: vm_module_fadein 1.0s;
+            background-color: #fff;
+		}
+		#posts__ID{
+			padding:20px;
+		}
+	</style>
+</div>
