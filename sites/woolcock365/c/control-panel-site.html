@@ -1,0 +1,115 @@
+<div id=D__ID>
+    <div id=panel__ID>
+    	<div class='nav__ID'>
+            <span>Microsoft 365 Site (<span id=site_name__ID></span>)</span>
+            <ul>
+                <li><a href=?/sharepoint-list>Sharepoint List</a></li>
+            </ul>
+        </div>
+    </div>
+    <script>
+        function F__ID(){
+            //--------------------------------------------------------
+            var m=$vm.module_list["__MODULE__"];
+            $vm.module_list["__MODULE__"].show=function(){
+                document.title="Panel | "+$vm.default_title;
+                $("meta[name='description']").attr("content","Control Panel");
+            }
+            //--------------------------------------------------------
+            var this_module=$vm.module_list[$vm.vm['__ID'].name];
+            //--------------------------------------------------------
+            $('#D__ID').on('load',function(){
+                var site_name=m.input.site_name;
+            })
+            //--------------------------------------------------------
+            $('#panel__ID a').on('click',function(e){
+                e.preventDefault();
+                var href=$(this).attr('href');
+                var app=$(this).attr('app');
+                if(href!=undefined){
+                    href=href.replace('?\/','');
+                    href=href.replace(/\//g,'_');
+                    if(app==undefined) $vm.load_module(href,'',{});
+                    else if($vm.module_list[href]!=undefined) window.open($vm.module_list[href].url);
+                    else alert("The '"+ href +"' is not defined in the module list");
+                }
+            })
+            //--------------------------------------------------------
+            $('#panel__ID a').each(function(){
+                var href=$(this).attr('href');
+                if(href!=undefined){
+                    href=href.replace('?\/','');
+                    href=href.replace(/\//g,'_');
+                    if($vm.module_list[href]!=undefined){
+                        var url=$vm.module_list[href].url;
+                        $(this).attr('title',url);
+                    }
+                }
+            })
+            //--------------------------------------------------------
+            if($vm.localhost==true) $('#builder__ID').show();
+            //--------------------------------------------------------
+            $('#apply__ID').on('click',function(){
+                $('#panel__ID span').hide();
+                var word=$('#filter__ID').val().toUpperCase();
+                $('#panel__ID a').each(function(){
+                    var href=$(this).attr('href');
+                    var name=$(this).html().toUpperCase();
+                    if(name.indexOf(word)!=-1){
+                        $(this).parent().show();
+                        $(this).parent().parent().prev().show();
+                    }
+                    else{
+                        console.log(word)
+                        $(this).parent().hide();
+                    }
+                })
+            })
+            //--------------------------------------------------------
+        }
+    </script>
+    <style>
+        #D__ID{
+    		background-color:#fff;
+    		height:100%;
+    		overflow: auto;
+    		animation: vm_module_fadein 1.0s;
+    	}
+        #panel__ID{
+    		padding:10px 0 0 20px;
+            font-size:14px;
+    	}
+    	#panel__ID a {
+    		text-decoration: none;
+    	}
+    	#panel__ID li {
+    		color:#555;
+    	}
+    	#panel__ID a:link {
+    		color:#555;
+    	}
+    	#panel__ID a:visited {
+    		color:#555;
+    	}
+    	#panel__ID a:hover {
+    		color:red;
+    	}
+    	#panel__ID a:active {
+    		color:#555;
+    	}
+        .nav__ID{
+	        padding:6px 26px 6px 6px;
+	        float:left;
+	    }
+	    .nav__ID span{
+			color:#283f55;
+			font-weight: bold;
+			margin:3px 10px;
+	    }
+    	@media screen and (max-width:768px){
+    		#panel__ID{
+    			padding:10px 0 0 10px;
+    		}
+    	}
+    </style>
+</div>

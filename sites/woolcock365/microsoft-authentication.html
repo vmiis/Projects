@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="https://secure.aadcdn.microsoftonline-p.com/lib/1.0.0/js/msal.js"></script>
+    </head>
+    <body>
+        <script>
+            console.log("microsoft authentication in a hidden iframe");
+            $vm={};
+            var hosting_path0=window.location.href.split('#')[0];
+            var hosting_path=hosting_path0.substring(0, hosting_path0.split('?')[0].lastIndexOf('/'));
+            $vm.msalConfig={
+                auth: {
+                    clientId: '3bcb40c5-fec0-4b3b-ba67-f4d46d577f97', 
+                    redirectUri:hosting_path+"/microsoft-authentication.html"
+                },
+                cache: {
+                    cacheLocation: "localStorage",
+                    storeAuthStateInCookie: true
+                },
+            };
+            $vm.m365_msal=new Msal.UserAgentApplication($vm.msalConfig);
+        </script>
+    </body>
+</html>

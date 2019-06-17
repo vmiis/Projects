@@ -1,0 +1,146 @@
+<div id=D__ID>
+    <div>
+        VmInclude:__COMPONENT__/g/grid.01.html
+    </div>
+    <script>
+        function F__ID(){
+            //-------------------------------------
+            VmInclude:__COMPONENT__/g/grid.365.01.js
+            //-------------------------------------
+            var fields="Contract_Type,First_Name,Surname,Gender,Date_Of_Birth,_Approvied_by";
+            m.fields="_Form,"+fields+",Submit_date,Submitted_by,_Delete";
+            //-------------------------------------
+            m.set_req=function(){
+                m.endpoint=m.Table+"/items?$expand=Author&$select=*,Author/FirstName,Author/LastName";
+                m.endpoint_p1=m.Table1+"/items?$expand=Author&$select=*,Author/FirstName,Author/LastName";
+                //m.endpoint=m.Table+"/items?$filter=(ID eq 2) or (ID eq 1)";
+            }
+            //-------------------------------------
+            m.data_process=function(res){
+                $('#vm_data_loader').hide();
+                m.records=[];
+                m.ids=[];
+                for(var i=0;i<res.value.length;i++){
+                    var d=res.value[i].Data;
+                    var jd=JSON.parse(d);
+                    var Data={}
+                    for(p in jd){
+                        Data[p]=jd[p];
+                    }
+                    m.records.push({
+                        "_id":res.value[i]['ID'],
+                        "Submit_date":res.value[i]['Created'],
+                        "Submitted_by":res.value[i].Author.FirstName+" "+res.value[i].Author.LastName,
+                        Data:Data
+                    })
+                    m.ids.push(res.value[i]['ID']);
+                }
+                m.filter_p1="";
+                for(var i=0;i<m.ids.length;i++){
+                    if(m.filter_p1!="") m.filter_p1=" or ";
+                    m.filter_p1="( PID eq "+ m.ids[i] +")";
+                }
+                if(m.filter_p1!="") m.filter_p1="&filter="+m.filter_p1;
+                m.request_data_p1();
+            }
+            //-------------------------------------
+            m.request_data=function(){
+                $('#vm_data_loader').show();
+                $vm.m365_msal.acquireTokenSilent($vm.m365_scope_sharepoint).then(function (tokenResponse) {
+                    m.ajax(m.endpoint,tokenResponse,function(data){
+                        m.data_process(data);
+                    })
+                }).catch(function (error) {
+                    $('#vm_data_loader').hide();
+                    console.log(error);
+                    $vm.alert("You haven't signed in, or your previous session has expired.")
+                });
+            }
+            //-------------------------------------
+            m.data_process_p1=function(res){
+                m.records_p1=[];
+                for(var i=0;i<res.value.length;i++){
+                    var d=res.value[i].Data;
+                    var jd=JSON.parse(d);
+                    var Data={}
+                    for(p in jd){
+                        Data[p]=jd[p];
+                    }
+                    m.records_p1.push({
+                        "_id":res.value[i]['ID'],
+                        "PID":res.value[i]['PID'],
+                        "Submit_date":res.value[i]['Created'],
+                        "Submitted_by":res.value[i].Author.FirstName+" "+res.value[i].Author.LastName,
+                        Data:Data
+                    })
+                }
+                m.render();
+            }
+            //-------------------------------------
+            m.request_data_p1=function(){
+                $vm.m365_msal.acquireTokenSilent($vm.m365_scope_sharepoint).then(function (tokenResponse) {
+                    m.ajax(m.endpoint_p1+m.filter_p1,tokenResponse,function(data){
+                        m.data_process_p1(data);
+                    })
+                }).catch(function (error) {
+                    console.log(error);
+                    $vm.alert("You haven't signed in, or your previous session has expired.")
+                });
+            }
+            //-------------------------------------
+            m.cell_render=function(records,I,field,td){
+                switch(field){
+                    case '_Approvied_by':
+                        td.html("");
+                        var id=records[I]._id;
+                        for(var i=0;i<m.records_p1.length;i++){
+                            if(m.records_p1[i].PID==id){
+                                td.html(m.records_p1[i].Submitted_by +" on "+m.records_p1[i].Submit_date.split('T')[0]);
+                                m.records[I].record_p1=m.records_p1[i];
+                                break;
+                            }
+                        }
+                        break;
+                        /*
+                    case '_Delete':
+                        if(records[I].Data['FormStatus']=='Completion') td.html("");
+                        break;
+                        */
+                }
+            }
+            //-------------------------------------
+            
+            //component
+            //-------------------------------------
+            m.ajax=function(endpoint,tokenResponse,callback){
+                var mt1=new Date().getTime();
+                var xmlHttp = new XMLHttpRequest();
+                xmlHttp.onreadystatechange = function () {
+                    if (this.readyState == 4 && this.status == 200){
+                        var data=JSON.parse(this.responseText);  
+                        var mt2=new Date().getTime();
+                        var tt_all=mt2-mt1;
+                        console.log((this.response.length/1000).toFixed(1)+"kb/"+tt_all.toString()+"ms");
+                        callback(data);
+                    }
+                    else if(this.readyState == 4 && this.status == 403){
+                        $vm.alert("No permission");
+                        callback({});
+                    }
+                    if(this.status == 404){
+                        $vm.alert(endpoint+", 404 (Not found)");
+                        callback({});
+                    }
+                }
+                xmlHttp.open("GET", endpoint, true); // true for asynchronous
+                xmlHttp.setRequestHeader('Authorization', 'Bearer ' + tokenResponse.accessToken);
+                xmlHttp.setRequestHeader("Accept", "application/json");  
+                xmlHttp.send();
+            }
+            //-------------------------------------
+        }
+    </script>
+    <style>
+        VmInclude:__COMPONENT__/g/grid.01.css
+    </style>
+</div>

@@ -5,7 +5,14 @@ const fs		=require('fs');
 var password={}
 //---------------------------------------------------
 const server 		=express();
+//---------------------------------------------------
+server.get('/*', function(req, res, next){
+    console.log(req.connection.remoteAddress.replace("::ffff:","")+" --- "+req.url);
+    next();
+});
+//---------------------------------------------------
 server.use(express.static(__dirname + '/sites'));
+//---------------------------------------------------
 server.post('/', function (req, res) {
 	var r_data='';
 	req.on('data',function(data){
@@ -61,4 +68,16 @@ fs.readFile("port.txt", 'utf8', function(err, port){
 		() => console.log("The server is listening on port "+port+"!") 
 	);
 })
+//---------------------------------------------------
+const https=require('https');
+https.createServer(
+	{
+    	key: fs.readFileSync( '../../ssl/server.key'),
+    	cert: fs.readFileSync( '../../ssl/server.cert')
+	}, 	
+	server
+).listen(
+	8433,
+	() => console.log("The server is listening on port 8433!") 
+);
 //---------------------------------------------------

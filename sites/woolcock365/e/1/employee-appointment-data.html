@@ -1,0 +1,185 @@
+<div id=D__ID>
+    <div>
+        VmInclude:__COMPONENT__/g/grid.01.html
+    </div>
+    <script>
+        function F__ID(){
+            //-------------------------------------
+            VmInclude:__COMPONENT__/g/grid.365adal.01.js
+            //-------------------------------------
+            var fields="Contract_Type|Contract_x0020_Type,Employee Code|Employee_x0020_Code,Salutation,First Name|First_x0020_Name,Surname";
+            fields+=",Address,Gender,Date_of_Birth|Date_x0020_of_x0020_Birth,Email Address|Email_x0020_Address";
+            fields+=",Phone Home|Phone_x0020_Home,Mobile";
+            fields+=",Primary Department|Primary_x0020_Department";
+
+            fields+=",Funding Grantor/Institute|Funding_x0020_Grantor_x002f_Inst";
+
+            fields+=",Project Code/Institute|Project_x0020_Code";
+            fields+=",Employee Position Title|Employee_x0020_Position_x0020_Ti";
+            fields+=",Reporting To|Reporting_x0020_To";
+            fields+=",Manager Name|Manager_x0020_Name_x0020_";
+            fields+=",Contract Start Date|Contract_x0020_Start_x0020_Date";
+            fields+=",Contract End Date|Contract_x0020_End_x0020_Date";
+            fields+=",Employment Status|Employment_x0020_Status";
+            
+            fields+=",Usual Days|Usual_x0020_Days";
+            fields+=",Award Type|Award_x0020_Type";
+            fields+=",Award Classification|Award_x0020_Classification";
+            
+            fields+=",Salary";
+            fields+=",Child Check|Child_x0020_Check";
+            fields+=",Children Check Numbe|Children_x0020_Check_x0020_Numbe";
+            fields+=",Police Check|Police_x0020_Check";
+            fields+=",Police Ref Number|Police_x0020_Ref_x0020_Number";
+            
+            fields+=",Uniform Required|Uniform_x0020_Required";
+            fields+=",Swipe Card|Swipe_x0020_Card,Desk,Computer,Lab Access|Lab_x0020_Access,Patient Contact|Patient_x0020_Contact,Assigned_Unikey|Assigned_x0020_Unikey,Unikey";
+            fields+=",Laundry Allowance Date|Laundry_x0020_Allowance_x0020_Da";
+            fields+=",HR Admin|HR_x0020_Admin,Status,Notes";
+            fields+=",Sign off status|Sign_x002d_off_x0020_status";
+        
+            
+
+            
+            m.fields="_Form,"+fields+",Submit_date,Submitted_by,_Delete";
+            //-------------------------------------
+            m.data_process=function(res){
+                m.records=[];
+                for(var i=0;i<res.value.length;i++){
+                    var fs=res.value[i].fields;
+                    var Data={}
+                    var f_ids=fields.split(',')
+                    for(k in f_ids){
+                        var id=f_ids[k].split('|').pop();
+                        Data[id]=fs[id];
+                    }
+                    m.records.push({
+                        "_id":res.value[i].fields['id'],
+                        "Submit_date":res.value[i].fields['Created'],
+                        "Submitted_by":res.value[i].createdBy.user.displayName,
+                        Data:Data
+                    })
+                    
+                    //var d=m.records[i].Data['Date_x0020_of_x0020_Birth'];
+                    //if(d!="") m.records[i].Data['Date_x0020_of_x0020_Birth']=$vm.date_to_string_yyyymmdd(new Date( m.records[i].Data['Date_x0020_of_x0020_Birth']));
+                    m.date_field(m.records[i].Data,'Date_x0020_of_x0020_Birth');
+                    m.date_field(m.records[i].Data,'Contract_x0020_Start_x0020_Date');
+                    m.date_field(m.records[i].Data,'Contract_x0020_End_x0020_Date');
+                    m.date_field(m.records[i].Data,'Laundry_x0020_Allowance_x0020_Da');
+                    
+                    m.string_array_field(m.records[i].Data,'Primary_x0020_Department');
+                    m.string_array_field(m.records[i].Data,'Usual_x0020_Days');
+                    m.string_array_field(m.records[i].Data,'Award_x0020_Type');
+                    
+                    /*
+                    d=m.records[i].Data['Primary_x0020_Department'];
+                    for(k in d){
+                        var a=d[k];
+                        m.records[i].Data[a.replace(/ /g,'_')]='on';
+                    }
+                    */
+                    console.log(m.records[i].Data)
+                }
+            }
+            //-------------------------------------
+            m.set_req=function(){
+                m.endpoint  =m.Table+"/?expand=fields";
+                m.endpoint_d=m.Table;
+            }
+            //-------------------------------------
+
+
+            m.endpointA="https://woolcockmed.sharepoint.com/site/_api/lists/getbytitle('listname')"
+            
+            
+            m.select="";
+            m.set_req=function(){
+                m.req="/api/data/v9.1/"+m.Table+"?$top=30&$expand=createdby($select=firstname,lastname)"; 
+                var k=$('#keyword__ID').val();
+                if(k!=""){
+                    var n=k.split(':')[0];
+                    var v=k.split(':').pop();
+                    if(k!="") m.req+="&$filter=contains("+n+",'"+v+"')";
+                }
+                if(m.select!="") m.req+="&"+m.select;
+            };
+            //-------------------------------------
+            
+            
+            m.request_data=function(){
+                /*
+                function retrieveData(error, token){
+                    var req = new XMLHttpRequest()  
+                    req.open("GET", encodeURI(m.endpoint + m.req), true);  
+                    //Set Bearer token  
+                    req.setRequestHeader("Authorization", "Bearer " + token);  
+                    req.setRequestHeader("Accept", "application/json");  
+                    req.setRequestHeader("Content-Type", "application/json; charset=utf-8");  
+                    req.setRequestHeader("OData-MaxVersion", "4.0");  
+                    req.setRequestHeader("OData-Version", "4.0");  
+                    req.onreadystatechange = function () {  
+                        if (this.readyState == 4 ) {  
+                            req.onreadystatechange = null;  
+                            if (this.status == 200) {  
+                                var data = JSON.parse(this.response).value;  
+                                
+                                var mt2=new Date().getTime();
+                                var tt_all=mt2-mt1;
+                                $("#elapsed__ID").html( (this.response.length/1000).toFixed(1)+"kb/"+tt_all.toString()+"ms");
+                                
+                                if(m.data_process!=undefined) m.data_process(data);
+                                m.render();
+                            }  
+                            else {  
+                                var error = JSON.parse(this.response).error;  
+                                console.log(error.message);  
+                            }  
+                        }  
+                    };  
+                    var mt1=new Date().getTime();
+                    req.send(); 
+                }
+                $vm.m365.authContext.acquireToken(m.endpoint, retrieveData);  
+                */
+            //$vm.m365_msal.acquireTokenSilent($vm.m365_scope).then(function (tokenResponse) {
+                m.endpointA="https://woolcockmed.sharepoint.com/";
+                m.endpointB="https://woolcockmed.sharepoint.com/_api/web/lists?$top=30"
+
+
+                $vm.m365.authContext.acquireToken(m.endpointA, function(error, token){
+                    alert(token)
+                    /* 
+                    var mt1=new Date().getTime();
+                    var xmlHttp = new XMLHttpRequest();
+                    xmlHttp.onreadystatechange = function () {
+                        if (this.readyState == 4 && this.status == 200){
+                            //callback(JSON.parse(this.responseText));
+                            var data=JSON.parse(this.responseText);  
+                            var mt2=new Date().getTime();
+                            var tt_all=mt2-mt1;
+                            $("#elapsed__ID").html( (this.response.length/1000).toFixed(1)+"kb/"+tt_all.toString()+"ms");
+                            if(m.data_process!=undefined) m.data_process(data.value);
+                            m.render();
+                        }
+                    }
+                    xmlHttp.open("GET", m.endpoint, true); // true for asynchronous
+                    xmlHttp.setRequestHeader('Authorization', 'Bearer ' + token);
+                    xmlHttp.setRequestHeader("Accept", "application/json");  
+                    xmlHttp.setRequestHeader("Content-Type", "application/json; charset=utf-8");  
+                    xmlHttp.setRequestHeader("OData-MaxVersion", "4.0");  
+                    xmlHttp.setRequestHeader("OData-Version", "4.0");  
+                    xmlHttp.send();
+                    */
+                })
+            }
+            //-------------------------------------
+
+
+
+
+        }
+    </script>
+    <style>
+        VmInclude:__COMPONENT__/g/grid.01.css
+    </style>
+</div>
