@@ -1,0 +1,168 @@
+<div id=D__ID>
+	<section id=form_container__ID>
+		<div id=header__ID>
+			LSEQ
+		</div>
+		<form id=F__ID>
+			<div class="container">
+                <!-- participant part for all tsak forms -------------------->
+                <div class="row row__ID" id=row_participant__ID>
+                    <div class="col-sm-9 col-lg-9 input__ID">
+                        <span class=label__ID>Participant</span><br>
+                        <input type=text name="Participant" class=form-control id=Participant__ID data-id="Participant" />
+                    </div>
+                    <div class="col-sm-3 col-lg-3 input__ID">
+                        <span class=label__ID>Participant ID</span><br>
+                        <input type=text name="Participant_uid" class=form-control readonly />
+                    </div>
+                    <hr style="border-top: 1px solid #888;width: 100%;margin:10px 0">
+                </div>
+                <!---------------------------------------------------->
+				<div class="row row__ID">
+					<div class=col>
+						<b>
+						Each question is answered by placing a vertical mark on the answer line. If no change was experienced then place your mark in the middle of the line. If a change was experienced then the position of your mark will indicate the nature and extent of the change, i.e. large changes near the ends of the line, small changes near the middle.
+						</b>
+					</div>
+				</div>
+				<div class="row row__ID">
+					<div class=col>
+						<b>How would you describe the way you currently fall asleep in comparison to usual? </b>
+					</div>
+				</div>
+				<div class="row row__ID">
+					<div class="col-lg-2 text-left">More difficult than usual</div>
+					<div class="col-lg-8"><input type="range" min="0" max="100" class='slider__ID' name=LEEDS1></div>
+					<div class="col-lg-2 text-right">Easier than usual</div>
+				</div>
+				<div class="row row__ID">
+					<div class="col-lg-2 text-left">Slower than usual</div>
+					<div class="col-lg-8"><input type="range" min="0" max="100" class='slider__ID' name=LEEDS2></div>
+					<div class="col-lg-2 text-right">More quickly than usual</div>
+				</div>
+				<div class="row row__ID">
+					<div class="col-lg-2 text-left">I feel less sleepy than usual</div>
+					<div class="col-lg-8"><input type="range" min="0" max="100" class='slider__ID' name=LEEDS3></div>
+					<div class="col-lg-2 text-right">More sleepy than usual</div>
+				</div>
+				<div class="row">
+					<div class=col>
+						<b>How would you describe the quality of your sleep compared to normal sleep? </b>
+					</div>
+				</div>
+				<div class="row row__ID">
+					<div class="col-lg-2 text-left">More restless than usual </div>
+					<div class="col-lg-8"><input type="range" min="0" max="100" class='slider__ID slider_noclick__ID' name=LEEDS4></div>
+					<div class="col-lg-2 text-right">Calmer than usual</div>
+				</div>
+				<div class="row row__ID">
+					<div class="col-lg-2 text-left">With more wakeful periods than usual</div>
+					<div class="col-lg-8"><input type="range" min="0" max="100" class='slider__ID slider_noclick__ID' name=LEEDS5></div>
+					<div class="col-lg-2 text-right">With less wakeful periods than usual</div>
+				</div>
+				<div class="row">
+					<div class=col>
+						<b>How would you describe your awakening in comparison to usual? </b>
+					</div>
+				</div>
+				<div class="row row__ID">
+					<div class="col-lg-2 text-left">More difficult than usual </div>
+					<div class="col-lg-8"><input type="range" min="0" max="100" class='slider__ID slider_noclick__ID' name=LEEDS6></div>
+					<div class="col-lg-2 text-right">Easier than usual</div>
+				</div>
+				<div class="row row__ID">
+					<div class="col-lg-2 text-left">Requires a period of time longer than usual </div>
+					<div class="col-lg-8"><input type="range" min="0" max="100" class='slider__ID slider_noclick__ID' name=LEEDS7></div>
+					<div class="col-lg-2 text-right">Shorter than usual </div>
+				</div>
+				<div class="row">
+					<div class='label__ID'>
+						<b>How do you feel when you wake up? </b>
+					</div>
+				</div>
+				<div class="row row__ID">
+					<div class="col-lg-2 text-left">Tired </div>
+					<div class="col-lg-8"><input type="range" min="0" max="100" class='slider__ID slider_noclick__ID' name=LEEDS8></div>
+					<div class="col-lg-2 text-right">Alert </div>
+				</div>
+				<div class="row row__ID">
+					<div class='label__ID'>
+						<b>How do you feel now? </b>
+					</div>
+					<div class="col-lg-2 text-left">Tired </div>
+					<div class="col-lg-8"><input type="range" min="0" max="100" class='slider__ID slider_noclick__ID' name=LEEDS9></div>
+					<div class="col-lg-2 text-right">Alert </div>
+				</div>
+				<div class="row">
+					<div class='label__ID'>
+						<b>How would you describe your balance and co-ordination upon awakening? </b>
+					</div>
+				</div>
+				<div class="row row__ID">
+					<div class="col-lg-2 text-left">More disrupted than usual </div>
+					<div class="col-lg-8"><input type="range" min="0" max="100" class='slider__ID slider_noclick__ID' name=LEEDS10></div>
+					<div class="col-lg-2 text-right">Less disrupted than usual</div>
+				</div>
+                
+                <br>
+				<div class="row">
+					<div class=col>
+						<button id=submit__ID type="submit" class="btn btn-secondary">Submit</button>
+					</div>
+				</div>
+			</div>
+		</form>
+	</section>
+    VmInclude:__COMPONENT__/m/model.01.html
+	<script>
+		function F__ID(){
+			//-------------------------------------
+            VmInclude:__COMPONENT__/f/form.01.js
+            VmInclude:__CURRENT_PATH__/task-form.js
+			//-------------------------------------
+            var load5=m.load;
+            m.load=function(){
+				load5();
+                if(m.input.record==undefined || m.input.record!=undefined && m.input.record.ID==undefined){
+					$('.slider__ID').addClass('slider_noclick__ID');
+				}
+				else $('.slider__ID').removeClass('slider_noclick__ID');
+            }
+            //-------------------------------------
+			$('.slider__ID').on('click',function(){
+				$(this).removeClass('slider_noclick__ID');
+			})
+            //-------------------------------------
+		}
+	</script>
+	<style>
+		VmInclude:__COMPONENT__/f/form.01.css
+		#form_container__ID{
+			max-width:1000px;
+		}
+		.label__ID{
+			width:100%;
+		}
+		.slider__ID{
+			width:100%;
+		}
+		#form_container__ID .row__ID:hover{
+			background-color: #f0f0f0;
+		}		
+		.slider_noclick__ID{
+			-webkit-appearance: none;
+			-moz-appearance: none;
+            outline: none;
+			height: 4px;
+			width: 100%;
+			background-color: rgb(227, 221, 216);;
+		}
+		.slider_noclick__ID::-webkit-slider-thumb {
+			-webkit-appearance: none;
+			-moz-appearance: none;
+			width: 0;
+			height: 0;
+		}
+
+	</style>
+</div>

@@ -1,0 +1,84 @@
+<div id=D__ID>
+	<section id=form_container__ID>
+		<div id=header__ID>
+				Brain MRI Report Upload
+		</div>
+		<form id=F__ID>
+			<div class="container">
+                <!-- participant part for all tsak forms -------------------->
+                <div class="row row__ID" id=row_participant__ID>
+                    <div class="col-sm-9 col-lg-9 input__ID">
+                        <span class=label__ID>Participant</span><br>
+                        <input type=text name="Participant" class=form-control id=Participant__ID data-id="Participant" />
+                    </div>
+                    <div class="col-sm-3 col-lg-3 input__ID">
+                        <span class=label__ID>Participant ID</span><br>
+                        <input type=text name="Participant_uid" class=form-control readonly />
+                    </div>
+                    <hr style="border-top: 1px solid #888;width: 100%;margin:10px 0">
+                </div>
+                <!---------------------------------------------------->
+				<div class='row row__ID'>
+					<div class="col">
+						<span>Date of Brain MRI</span>
+						<input type=date class=form-control name=Date_of_Brain_MRI>
+					</div>
+				</div>
+                <div class='row row__ID'>
+    				<div class="col">
+    					<span>Brain MRI Report Upload</span>
+                        <div class="form-control">
+                            <u style='cursor:pointer' id=link_File_Name__ID></u>
+                            <br>
+                            <input type="file" name=File_Name style="margin-top:6px" /> &nbsp&nbsp&nbsp <button type="button" id=x_File_Name__ID>Remove</button>
+                        </div>
+					</div>
+                </div>            
+				<div class='row row__ID'>
+					<div class="col-4">
+						<span>Size</span>
+						<input type=text class=form-control name=Size readonly>
+					</div>
+				</div>
+                
+                
+                <br>
+				<div class="row">
+					<div class=col>
+						<button id=submit__ID type="submit" class="btn btn-secondary">Submit</button>
+					</div>
+				</div>
+			</div>
+		</form>
+	</section>
+    VmInclude:__COMPONENT__/m/model.01.html
+	<script>
+		function F__ID(){
+			//-------------------------------------
+            VmInclude:__COMPONENT__/f/form.01.js
+            VmInclude:__CURRENT_PATH__/task-form.js
+			//-------------------------------------
+            var load5=m.load;
+            m.load=function(){
+                load5();
+                m.set_file_link("File_Name");
+            }
+            //-------------------------------------
+            $('#F__ID input[name=File_Name]').on('change',function(evt){
+                if(this.files.length==1){
+                    $('#F__ID input[name=Size]').val(this.files[0].size);
+                }
+            });
+            //-------------------------------------
+		}
+	</script>
+	<style>
+		VmInclude:__COMPONENT__/f/form.01.css
+		#form_container__ID{
+			max-width:700px;
+		}
+		.row__ID span{
+			font-weight: bold;
+		}
+	</style>
+</div>

@@ -1,19 +1,18 @@
 <div id=D__ID>
     <div>
         <div class=vm-mobile>
-            <span id=vm-mobile_title class=vm-mobile-title>Business Portal</span>
+            <span id=vm-mobile_title class=vm-mobile-title>Woolcock</span>
             <a id="vm-hamburger_button" class=vm-hamburger-button onclick="$vm.toggle()"><i class="fa fa-bars"></i></a>
         </div>
         <div class=vm-desk-logo>
-            <span id=vm-logo-label-A>Business Portal</span><br>
-            <span id=vm-logo-label-B>Modular distributed web application</span>
+            <div id=vm-logo-image></div>
         </div>
         <div menu id="vm-menu">
             <a href="?/home"><i class="fa fa-home"></i> Home</a>
-            <a href="?/short-page">Short</a>
-            <a href="?/long-page">Long</a>
-            <a href="?/about-vmiis"><i class="fa fa-info-circle"></i> About</a>
-            <a id=vm_signin onclick="$vm.signin();"><i class="fa fa-user"></i> Sign In</a>
+            <a p=1 href="?/job-tracking-data"><i class="fa fa-th"></i> Job Tracking</a>
+            <a p=1 href="?/panel-main"><i class="fa fa-th"></i> CANSLEEP</a>
+            <a p=1 href="?/panel-permission"><i class="fa fa-lock"></i> Permissions</a>
+        <a id=vm_signin onclick="$vm.signin();"><i class="fa fa-user"></i> Sign In</a>
             <a class=vm-hide id=vm_signout onclick=$vm.signout()><i class="fa fa-user"></i> Sign Out</a>
         </div>
     </div>
@@ -56,13 +55,21 @@
     </script>
     <style>
         /*----------------------*/
+        #vm-logo-image{
+            margin-top: -22px;
+            width:360px;
+            height:69px;
+            background: url('https://image.vmiis.com/logo.woolcock.gif') no-repeat top center;
+            background-size: cover;
+            float:left;
+        }
         #header{
             height:100px;
             position:fixed;
             top:0;
             left:0;
             width:100%;
-            background:rgba(0,0,0,0.6);
+            background:rgba(100,100,100,0.2);
             z-index:10;
         }
         .vm-desk-logo{float:left;padding:36px 30px 0 30px;cursor:pointer;}
@@ -73,7 +80,7 @@
             #vm-menu{padding:0;}
         }
         :root {
-            --menu-color: #fff;
+            --menu-color: #000;
             --menu-hover-color: #29eca6;
             --menu-hover-background-color: #555;
 

@@ -1,0 +1,65 @@
+<div id=D__ID>
+    <section id=form_container__ID>
+        <div id=header__ID>
+            Karolinska Sleepiness Scale
+        </div>
+        <form id=F__ID>
+            <div class='container'>
+                <!-- participant part for all tsak forms -------------------->
+                <div class='row row__ID' id=row_participant__ID>
+                    <div class='col-sm-12 col-lg-9 input__ID'>
+                        <span class='label__ID'>Participant</span><br>
+                        <input type='text' name='Participant' class='form-control' id='Participant__ID' data-id='Participant' required />
+                    </div>
+                    <div class='col-sm-12 col-lg-3 input__ID'>
+                        <span class='label__ID'>Participant ID</span><br>
+                        <input type='text' name='Participant_uid' class='form-control' readonly />
+                    </div>
+                    <hr style='border-top: 1px solid #888;width: 100%;margin:10px 0'>
+                </div>
+                <!---------------------------------------------------->
+
+                <!-- FORM INPUTS -->
+                <div class='row row__ID'>
+                  <div class='col'>
+                      <b>Indicate which level best reflects the state experienced in the last 30 minutes.</b><br>
+                      <label><input type='radio' name='KSS' value='1' required> Extremely alert</label><br />
+                      <label><input type='radio' name='KSS' value='2'> Very alert</label><br />
+                      <label><input type='radio' name='KSS' value='3'> Alert</label><br />
+                      <label><input type='radio' name='KSS' value='4'> Rather alert</label><br />
+                      <label><input type='radio' name='KSS' value='5'> Neither alert nor sleepy</label><br />
+                      <label><input type='radio' name='KSS' value='6'> Some signs of sleepiness</label><br />
+                      <label><input type='radio' name='KSS' value='7'> Sleepy, but no effort to keep awake</label><br />
+                      <label><input type='radio' name='KSS' value='8'> Sleepy, but some effort to keep awake</label><br />
+                      <label><input type='radio' name='KSS' value='9'> Very sleepy, great effort to keep awake, fighting sleep</label><br />
+                      <label><input type='radio' name='KSS' value='10'> Extremely sleepy, can't keep awake</label><br />
+                  </div>
+              </div>
+
+                <!-- submit button part for all tsak forms------------>
+                <br>
+                <div class='row'>
+                    <div class='col'>
+                        <button id='submit__ID' type='submit' class='btn btn-secondary'>Submit</button>
+                    </div>
+                </div>
+                <!---------------------------------------------------->
+            </div>
+        </form>
+    </section>
+    <script>
+        function F__ID(){
+            //-------------------------------------
+            VmInclude:'__COMPONENT__/f/form.01.js'
+            VmInclude:'__CURRENT_PATH__/task-form.js'
+            //-------------------------------------
+        }
+    </script>
+    <style>
+        VmInclude:__COMPONENT__/f/form.01.css
+        VmInclude:__CURRENT_PATH__/task-form.css
+        #form_container__ID{
+            max-width: 800px;
+        }
+    </style>
+</div>

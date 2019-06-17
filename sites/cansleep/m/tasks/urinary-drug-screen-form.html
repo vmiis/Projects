@@ -1,0 +1,133 @@
+<div id=D__ID>
+	<section id=form_container__ID>
+		<div id=header__ID>
+			Urinary Drug Screen
+		</div>
+		<form id=F__ID>
+			<div class="container">
+                <!-- participant part for all tsak forms -------------------->
+                <div class="row row__ID" id=row_participant__ID>
+                    <div class="col-sm-9 col-lg-9 input__ID">
+                        <span class=label__ID>Participant</span><br>
+                        <input type=text name="Participant" class=form-control id=Participant__ID data-id="Participant" />
+                    </div>
+                    <div class="col-sm-3 col-lg-3 input__ID">
+                        <span class=label__ID>Participant ID</span><br>
+                        <input type=text name="Participant_uid" class=form-control readonly />
+                    </div>
+                    <hr style="border-top: 1px solid #888;width: 100%;margin:10px 0">
+                </div>
+                <!---------------------------------------------------->
+				<div class='row row__ID'>
+					<div class="col">
+						<span>Date</span>
+						<input type=date class=form-control name=Date>
+					</div>
+				</div>
+				<div class='row row__ID'>
+					<div class="col-lg-4">
+						
+					</div>
+					<div class="col-lg-4">
+						<span>Positive +ve (THC)</span>
+					</div>
+					<div class="col-lg-4">
+						<span>Negative -ve (THC)</span>
+					</div>
+				</div>
+				<div class='row row__ID'>
+					<div class="col-lg-4">
+						<span>Cannabis (THC)</span>
+					</div>
+					<div class="col-lg-3">
+						<input type=radio group=THC class=form-control value='P' name=THC>
+					</div>
+					<div class="col-lg-3">
+						<input type=radio group=THC class=form-control value='N' name=THC>
+					</div>
+				</div>
+				<div class='row row__ID'>
+					<div class="col-lg-4">
+						<span>Cocaine (COC)</span>
+					</div>
+					<div class="col-lg-3">
+						<input type=radio group=COC class=form-control value='P' name=COC>
+					</div>
+					<div class="col-lg-3">
+						<input type=radio group=COC class=form-control value='N' name=COC>
+					</div>
+				</div>
+				<div class='row row__ID'>
+					<div class="col-lg-4">
+						<span>Amphetamine (AMP)</span>
+					</div>
+					<div class="col-lg-3">
+						<input type=radio group=AMP class=form-control value='P' name=AMP>
+					</div>
+					<div class="col-lg-3">
+						<input type=radio group=AMP class=form-control value='N' name=AMP>
+					</div>
+				</div>
+				<div class='row row__ID'>
+					<div class="col-lg-4">
+						<span>Methamphetamine (MET)</span>
+					</div>
+					<div class="col-lg-3">
+						<input type=radio group=MET class=form-control value='P' name=MET>
+					</div>
+					<div class="col-lg-3">
+						<input type=radio group=MET class=form-control value='N' name=MET>
+					</div>
+				</div>
+				<div class='row row__ID'>
+					<div class="col-lg-4">
+						<span>Benzodiazepines (BZO)</span>
+					</div>
+					<div class="col-lg-3">
+						<input type=radio group=BZO class=form-control value='P' name=BZO>
+					</div>
+					<div class="col-lg-3">
+						<input type=radio group=BZO class=form-control value='N' name=BZO>
+					</div>
+				</div>
+				<div class='row row__ID'>
+					<div class="col-lg-4">
+						<span>Opiates (OPI)</span>
+					</div>
+					<div class="col-lg-3">
+						<input type=radio group=OPI class=form-control value='P' name=OPI>
+					</div>
+					<div class="col-lg-3">
+						<input type=radio group=OPI class=form-control value='N' name=OPI>
+					</div>
+				</div>
+					
+                
+                <br>
+				<div class="row">
+					<div class=col>
+						<button id=submit__ID type="submit" class="btn btn-secondary">Submit</button>
+					</div>
+				</div>
+			</div>
+		</form>
+	</section>
+    VmInclude:__COMPONENT__/m/model.01.html
+	<script>
+		function F__ID(){
+			//-------------------------------------
+            VmInclude:__COMPONENT__/f/form.01.js
+            VmInclude:__CURRENT_PATH__/task-form.js
+			//-------------------------------------
+		}
+	</script>
+	<style>
+		VmInclude:__COMPONENT__/f/form.01.css
+		#form_container__ID{
+			max-width:800px;
+		}
+		#F__ID input[type=radio]{
+			margin-top: 8px;
+		}
+	</style>
+</div>

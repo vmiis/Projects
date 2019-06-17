@@ -1,0 +1,20 @@
+<div id=D__ID>
+    <section>
+        VmInclude:__COMPONENT__/g/grid.01.html
+    </section>
+    <script>
+        function F__ID(){
+            //-------------------------------------
+            VmInclude:__COMPONENT__/g/grid.01.js
+            VmInclude:__CURRENT_PATH__/task-data.js
+            //-------------------------------------
+            var fields="ae_num,AE,last_dose,date_onset,time_onset,date_resol,time_resol,sae,intensity,Relationship to study treatment|relation,Treatment Required|treatment,other_text,Outcome";
+            m.fields="_Form,Status|S3,Notes|NT,Participant_ID|Participant_uid,Participant,"+fields+",Submit_date,Submitted_by,_Delete";
+            m.fields_e="Participant_ID|Participant_uid,"+fields
+            //-------------------------------------
+        }
+    </script>
+    <style>
+        VmInclude:__COMPONENT__/g/grid.01.css
+    </style>
+</div>
