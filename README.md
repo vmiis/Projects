@@ -1,4 +1,4 @@
-# Projects
+# Website Templates
 
 Download and run on a local computer
 1. <a href=/https://github/vmiis/projects/archive/master.zip>download and unzip</a>
