@@ -18,14 +18,11 @@
     </body>
     <script boot-up>
         //------------------------------------
-        $vm={};$vm.ver=[0.19,0.19]; //increase ver[0] if any module changed, increase ver[1] if vm.js changed
+        $vm={};$vm.ver=[0.02,0.02]; //increase ver[0] if any module changed, increase ver[1] if vm.js changed
         $vm.debug=1;
         //------------------------------------
-        //setup modules location
         $vm.hosting_path=window.location.href.substring(0, window.location.href.split('?')[0].lastIndexOf('/'));
-        if(window.location.href.substring(0,5)=="file:") $vm.hosting_path="https://app-templates.vmiis.com/e/enquiry";
         if(window.location.hostname=='127.0.0.1' || window.location.hostname=='localhost') $vm.localhost=true;
-        $vm.m_path='https://modules.vmiis.com'; if($vm.localhost==true) $vm.m_path='http://'+window.location.hostname+':8000/vmiis/modules'; 
         //------------------------------------
         //where are your start modules
         $vm.start_modules=[
@@ -37,27 +34,26 @@
         $vm.module_list={
             //you can add modules here directly
             "home":	        {url:"$H/0/home.html",router:1},
-            "frame":	    {url:"$H/0/frame.html",sys:1},
+            "news":         {url:"$H/m/news.html",router:1},
+            "frame":	    {url:"$H/0/frame.html"},
             "app":	        {url:"$H/0/app.html"},
             "header":	    {url:"$H/0/header.html"},
             "footer":	    {url:"$H/0/footer.html"},
-            "news":         {url:"$M/n/news.html"}
         };
         for(p in $vm.module_list) $vm.module_list[p].url=$vm.module_list[p].url.replace('$H',$vm.hosting_path);
-        for(p in $vm.module_list) $vm.module_list[p].url=$vm.module_list[p].url.replace('$M',$vm.m_path);
         //------------------------------------
         //all other modules, used on demand 
         $vm.app_modules=[
             //you can add a js file that will add mmodules to the $vm.module_list
-            "$M/module-list.js",
+            "$H/module-list.js",
         ]
-        for(i in $vm.app_modules) $vm.app_modules[i]=$vm.app_modules[i].replace('$M',$vm.m_path);
+        for(i in $vm.app_modules) $vm.app_modules[i]=$vm.app_modules[i].replace('$H',$vm.hosting_path);
         //------------------------------------
         //called by framework
         $vm.start=function(){
-            $vm.load_component('header','header',{});
-            $vm.load_component('footer','footer',{});
-            $vm.load_component('app','system',{});
+            $vm.load_component('header',$vm.root_layout_header,{});
+            $vm.load_component('footer',$vm.root_layout_footer,{});
+            $vm.load_component('app',$vm.root_layout_system,{});
         }
         //------------------------------------
         
@@ -68,7 +64,10 @@
         //------------------------------------
         $VmAPI={};$vm.start_time=new Date().getTime();
         //------------------------------------
+        $vm.root_layout_header='header';
         $vm.root_layout_content_slot='content'
+        $vm.root_layout_footer='footer';
+        $vm.root_layout_system='system';
         //---------------------------------------------
         $vm._I=0; $vm._N=$vm.start_modules.length;
         $vm._boot=function(){

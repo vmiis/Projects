@@ -1,0 +1,32 @@
+<div id=D__ID>
+        <div>
+            VmInclude:__COMPONENT__/g/grid.01.html
+        </div>
+        <script>
+            function F__ID(){
+                //-------------------------------------
+                VmInclude:__COMPONENT__/g/grid.01.js
+                //$('#new__ID').hide();
+                //-------------------------------------
+                var fields="Room_number,Room_name,Date,Time,Duration,Color,Description,Contact_name,Contact_phone,Contact_email";
+                
+                var fields="Car,Date,Time,Duration,Color,Description";
+                fields+=",Contact_Name,Contact_Phone,Contact_Email,Addtional_Information,Odometer (Start)|Odometer_Start,Odometer (End)|Odometer_End";
+                m.fields="_Form,"+fields+",Submit_date,Submitted_by,_Delete";
+                //-------------------------------------
+                m.cell_render=function(records,I,field,td){
+                    switch(field){
+                        case 'Color':
+                            var html='<div style="height:18px;width:18px;background-color:'+records[I].Data[field]+'"></div>';
+                            td.html(html);
+                            break;
+                    }
+                }
+                //-------------------------------------
+            }
+        </script>
+        <style>
+            VmInclude:__COMPONENT__/g/grid.01.css
+        </style>
+    </div>
+    

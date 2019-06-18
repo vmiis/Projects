@@ -1,0 +1,105 @@
+<div id=D__ID>
+    <div style='overflow-x: hidden'>
+        <div id=toolbar__ID class="navbar navbar-default">
+            <form class="form-inline">
+                <button id=query__ID type=button class="btn btn-secondary" title='Refresh'>Refresh</button>
+                <button id=export__ID type=button class="btn btn-secondary" title='Export'>Export Data</button>
+                <span style='margin-left:30px;font-size:150%' id=title__ID></span>
+            </form>
+            <u id=sourcecode__ID style='float:right;cursor:pointer'>Source code of this module</u>
+        </div>
+        <div style='float:left'>
+            <table id=grid__ID></table>
+        </div>
+        <div style='float:left;min-width:80%;'>
+            <div id=chart_div__ID style='min-height:800px'></div>
+        </div>
+    </div>
+    <script>
+        function F__ID(){
+            //-------------------------------------
+            VmInclude:__COMPONENT__/g/grid.01.js
+            //-------------------------------------
+            m.fields="Year,Value";
+            m.title_name=m.country+" unemployment, total (% of total labor force)"
+            $('#title__ID').text(m.title_name);
+            //-------------------------------------
+            $('#D__ID').on('load',function(){
+                m.set_req(); m.request_data(); 
+            })
+            //-------------------------------------
+            m.request_data=function(){
+                $.getJSON("https://api.worldbank.org/v2/country/"+m.country_code+"/indicator/SL.UEM.TOTL.NE.ZS?format=json", function( data ) {
+                    //console.log(data);
+                    m.records=[];
+                    for(i in data[1]){
+                        m.records.push({'Year':data[1][i].date,'Value':data[1][i].value})
+                    }
+                    m.render();
+                    google.charts.load('current', {packages: ['corechart', 'bar']});
+                    google.charts.setOnLoadCallback(draw_chart);
+                });
+            }
+            //-------------------------------------
+            m.export_records=function(){
+                $vm.download_csv("data.csv",m.records);
+            }
+            //-------------------------------------
+            var draw_chart=function(){
+                //----------------------------------
+                var ds=[]
+                ds.push(['Year', 'Value'])
+                var fd=m.fields.split(',')
+                for(var i=m.records.length-1;i>=0;i--){
+                    var row=[];
+                    for(var j=0;j<fd.length;j++){
+                        if(j==0) row.push(m.records[i][fd[j]]);
+                        else row.push(parseFloat(m.records[i][fd[j]]));
+                    }
+                    ds.push(row)
+                }
+                //----------------------------------
+                var data = google.visualization.arrayToDataTable(ds);
+                var options = {
+                    title: m.title_name,
+                    vAxis: {minValue: 0},
+                    legend: {position: 'none'}
+                }; 
+                var chart = new google.visualization.LineChart(document.getElementById('chart_div__ID'));
+                chart.draw(data, options);				
+            }
+            //-------------------------------------
+            $('#sourcecode__ID').on('click',function(){
+                window.open($vm.module_list['__MODULE__'].url.replace('__HOST__/','https://github.com/vmiis/online-profile/blob/master/'));
+            })
+            //---------------------------------------
+            m.show=function(){
+                $("meta[name='description']").attr("content", m.title_name);
+            }
+            //---------------------------------------
+        }
+    </script>
+    <style>
+        VmInclude:__COMPONENT__/g/grid.01.css
+        #D__ID{
+            overflow: hidden;
+        }
+        #toolbar__ID{
+            background-color:#ccc;
+            padding:5px 10px;
+            margin-bottom:0px;
+            overflow:hidden
+        }
+        #toolbar__ID button{
+            margin-right:8px; 
+        }
+        #chart_div__ID{
+            /*height:80%;*/
+            /*width:100%;*/
+        }
+        .ad__ID{
+            width:100%;
+            padding:6px;
+        }
+    </style>
+</div>
