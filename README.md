@@ -12,4 +12,4 @@ Once you get everything running on your computer, you can add, modify and delete
 <br/>
 
 
-If you want to setup your own website to open yourself up to world, you may have many options, such as Wordpress, Squarespace, Wix, Weebly, and many more. But if your want to have full control of your website, unlimited features and free hosting, the GitHub Pages and cloudflare combination is a good choice. I am happy to help people to setup a personal website using GitHub Pages and cloudflare free services.
+If you want to setup your own website to open yourself up to world, you may have many options, such as Wordpress, Squarespace, Wix, Weebly, and many more. But if your want to have full control of your website, unlimited features and free hosting, the GitHub Pages and Cloudflare combination is a good choice. I am happy to help people to setup a personal website using GitHub Pages and Cloudflare free services.
