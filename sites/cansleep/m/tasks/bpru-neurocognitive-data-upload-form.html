@@ -1,7 +1,7 @@
 <div id=D__ID>
 	<section id=form_container__ID>
 		<div id=header__ID>
-			Form
+            BPRU Neurocognitive Data Upload
 		</div>
 		<form id=F__ID>
 			<div class="container">
@@ -18,30 +18,26 @@
                     <hr style="border-top: 1px solid #888;width: 100%;margin:10px 0">
                 </div>
                 <!---------------------------------------------------->
+                <div class='row row__ID'>
+    				<div class="col">
+    					<span>Upload File</span>
+                        <div class="form-control">
+                            <u style='cursor:pointer' id=link_Document__ID></u>
+                            <br>
+                            <input type="file" name=Document style="margin-top:6px" /> &nbsp&nbsp&nbsp <button type="button" id=x_Document__ID>Remove</button>
+                        </div>
+					</div>
+                </div>            
 				<div class='row row__ID'>
 					<div class="col">
-						<span>A</span>
-						<input type=text class=form-control name=A>
+						<span>Size</span>
+						<input type=text class=form-control name=Size readonly>
 					</div>
 				</div>
 				<div class='row row__ID'>
 					<div class="col">
-						<span>B</span>
-						<input type=text class=form-control name=B>
-					</div>
-				</div>
-				<div class='row row__ID'>
-					<div class="col">
-						<span>C</span>
-						<input type=text class=form-control name=C>
-					</div>
-				</div>
-					
-                
-                <br>
-				<div class="row">
-					<div class=col>
-						<button id=submit__ID type="submit" class="btn btn-secondary">Submit</button>
+						<span>Description</span>
+						<textarea class=form-control name=Description ></textarea>
 					</div>
 				</div>
 			</div>
@@ -54,12 +50,27 @@
             VmInclude:__COMPONENT__/f/form.01.js
             VmInclude:__CURRENT_PATH__/task-form.js
 			//-------------------------------------
+            var load5=m.load;
+            m.load=function(){
+                load5();
+                m.set_file_link("Document");
+            }
+            //-------------------------------------
+            $('#F__ID input[name=Document]').on('change',function(evt){
+                if(this.files.length==1){
+                    $('#F__ID input[name=Size]').val(this.files[0].size);
+                }
+            });
+            //-------------------------------------
 		}
 	</script>
 	<style>
 		VmInclude:__COMPONENT__/f/form.01.css
 		#form_container__ID{
-			max-width:600px;
+			max-width:700px;
+		}
+		.row__ID span{
+			font-weight: bold;
 		}
 	</style>
 </div>

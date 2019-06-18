@@ -107,9 +107,10 @@ $('#F__ID .select-area').each(function() {
         }
     });
 });
-
+/*
 $('#F__ID input[type=checkbox]').each(function() {
     $(this).on('click',function() {
         this.checked = !this.checked;
     });
 });
+*/

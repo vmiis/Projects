@@ -65,7 +65,6 @@ $vm.m365_init=function(){
     };
     //------------------------------------
     if($vm.m365_msal.getAccount()!=undefined){
-        console.log(localStorage.getItem('msal.idtoken'))
         $vm.m365_msal.acquireTokenSilent($vm.m365_scope_sharepoint).then(function (tokenResponse) {
             $vm.user_name_3rd=$vm.m365_msal.getAccount().userName;
             $vm.issuer_3rd="microsoft";

@@ -1,0 +1,118 @@
+<div id=D__ID>
+	<section id=form_container__ID>
+		<div id=header__ID>
+            Word Pair Task Paperwork
+		</div>
+		<form id=F__ID>
+			<div class="container">
+                <!-- participant part for all tsak forms -------------------->
+                <div class="row row__ID" id=row_participant__ID>
+                    <div class="col-sm-9 col-lg-9 input__ID">
+                        <span class=label__ID>Participant</span><br>
+                        <input type=text name="Participant" class=form-control id=Participant__ID data-id="Participant" />
+                    </div>
+                    <div class="col-sm-3 col-lg-3 input__ID">
+                        <span class=label__ID>Participant ID</span><br>
+                        <input type=text name="Participant_uid" class=form-control readonly />
+                    </div>
+                    <hr style="border-top: 1px solid #888;width: 100%;margin:10px 0">
+                </div>
+                <!---------------------------------------------------->
+                <div class='row row__ID'>
+    				<div class="col">
+    					<span>Upload File</span>
+                        <div class="form-control">
+                            <u style='cursor:pointer' id=link_Document__ID></u>
+                            <br>
+                            <input type="file" name=Document style="margin-top:6px" /> &nbsp&nbsp&nbsp <button type="button" id=x_Document__ID>Remove</button>
+                        </div>
+					</div>
+                </div>            
+				<div class='row row__ID'>
+					<div class="col">
+						<span>Size</span>
+						<input type=text class=form-control name=Size readonly>
+					</div>
+				</div>
+				<div class='row row__ID'>
+					<div class="col">
+						<span>Description</span>
+						<textarea class=form-control name=Description ></textarea>
+					</div>
+				</div>
+				<div class='row row__ID'>
+					<div class="col">
+						<span>Trial_1_Score</span>
+						<input type=text class=form-control name=Trial_1_Score >
+					</div>
+				</div>
+				<div class='row row__ID'>
+					<div class="col">
+						<span>Trial 2 Score</span>
+						<input type=text class=form-control name=Trial_2_Score >
+					</div>
+				</div>
+				<div class='row row__ID'>
+					<div class="col">
+						<span>Trial 3 Score</span>
+						<input type=text class=form-control name=Trial_3_Score >
+					</div>
+				</div>
+				<div class='row row__ID'>
+					<div class="col">
+						<span>Trial 3 Score</span>
+						<input type=text class=form-control name=Trial_3_Score >
+					</div>
+				</div>
+				<div class='row row__ID'>
+					<div class="col">
+						<span>Morning Recall</span>
+						<input type=text class=form-control name=Morning_Recall >
+					</div>
+				</div>
+				<div class='row row__ID'>
+					<div class="col">
+						<span>Morning Recognition</span>
+						<input type=text class=form-control name=Morning_Recognition >
+					</div>
+				</div>
+                <br>
+				<div class="row">
+					<div class=col>
+						<button id=submit__ID type="submit" class="btn btn-secondary">Submit</button>
+					</div>
+				</div>
+			</div>
+		</form>
+	</section>
+    VmInclude:__COMPONENT__/m/model.01.html
+	<script>
+		function F__ID(){
+			//-------------------------------------
+            VmInclude:__COMPONENT__/f/form.01.js
+            VmInclude:__CURRENT_PATH__/task-form.js
+			//-------------------------------------
+            var load5=m.load;
+            m.load=function(){
+                load5();
+                m.set_file_link("Document");
+            }
+            //-------------------------------------
+            $('#F__ID input[name=Document]').on('change',function(evt){
+                if(this.files.length==1){
+                    $('#F__ID input[name=Size]').val(this.files[0].size);
+                }
+            });
+            //-------------------------------------
+		}
+	</script>
+	<style>
+		VmInclude:__COMPONENT__/f/form.01.css
+		#form_container__ID{
+			max-width:700px;
+		}
+		.row__ID span{
+			font-weight: bold;
+		}
+	</style>
+</div>

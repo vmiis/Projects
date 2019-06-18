@@ -27,14 +27,10 @@
             return;
         }
         //------------------------------------
-        $vm.ver=[0.30,0.27]; //increase ver[0] if any module changed, increase ver[1] if vm.js changed
+        $vm.ver=[0.32,0.32]; //increase ver[0] if any module changed, increase ver[1] if vm.js changed
         //$vm.debug=1;
         //------------------------------------
-        //setup modules location
-        $vm.hosting_path0=window.location.href.split('#')[0];
-        $vm.hosting_path=$vm.hosting_path0.substring(0, $vm.hosting_path0.split('?')[0].lastIndexOf('/'));
-        
-        //$vm.hosting_path=window.location.href.substring(0, window.location.href.split('?')[0].lastIndexOf('/'));
+        $vm.hosting_path=window.location.href.substring(0, window.location.href.split('?')[0].lastIndexOf('/'));
         if(window.location.hostname=='127.0.0.1' || window.location.hostname=='localhost') $vm.localhost=true;
         //------------------------------------
         //where are your start modules
@@ -51,79 +47,15 @@
             "app":	                            {url:"$H/0/app.html"},
             "header":	                        {url:"$H/0/header.html"},
             "footer":	                        {url:"$H/0/footer.html"},
-            "control-panel-main":               {url:"$H/c/control-panel-main.html",router:1},
-            "control-panel-administrator":      {url:"$H/c/control-panel-administrator.html",router:1},
-            "control-panel-site":               {url:"$H/c/control-panel-site.html",router:1},
-            
-            "me":   	                        {url:"$H/m/me.html"},
-            "users":   	                        {url:"$H/u/users.html"},
-            "groups":   	                    {url:"$H/g/groups.html"},
-            "sharepoint-site":                  {url:"$H/s/sharepoint-site.html"},
-            "sharepoint-list":   	            {url:"$H/s/sharepoint-list.html"},
-            "sharepoint-list-column":           {url:"$H/s/sharepoint-list-column.html"},
-            "sharepoint-list-item":             {url:"$H/s/sharepoint-list-item.html"},
-            
-            
-            
-            "clinician-appointment-data":      {url:"$H/e/clinician-appointment-data.html",
-                                                 Table:"https://woolcockmed.sharepoint.com/sites/HRandEmployment/_api/web/lists/GetByTitle('Clinician Appointment')",
-                                                 form_module:"clinician-appointment-form"
-                                                },
-            "clinician-appointment-form":	    {url:"$H/e/clinician-appointment-form.html",
-                                                 Table: "https://woolcockmed.sharepoint.com/sites/HRandEmployment/_api/web/lists/GetByTitle('Clinician Appointment')",
-                                                },
-            
-            "employee-appointment-c-data":      {url:"$H/e/employee-appointment-c-data.html",
-                                                 Table:"https://woolcockmed.sharepoint.com/sites/HRandEmployment/_api/web/lists/GetByTitle('Employee Appointment')",
-                                                 form_module:"employee-appointment-c-form"
-                                                },
-            "employee-appointment-c-form":	    {url:"$H/e/employee-appointment-c-form.html",
-                                                 Table: "https://woolcockmed.sharepoint.com/sites/HRandEmployment/_api/web/lists/GetByTitle('Employee Appointment')",
-                                                },
-            "employee-appointment-b-data":      {url:"$H/e/employee-appointment-b-data.html",
-                                                    Table:"Employee Appointment",
-                                                    form_module:"employee-appointment-b-form"
-                                                },
-            "employee-appointment-b-form":	    {url:"$H/e/employee-appointment-b-form.html",
-                                                    Table:"Employee Appointment",
-                                                },
-            
-            
-            "employee-appointment-a-data":      {url:"$H/e/employee-appointment-a-data.html",
-                                                 Table:"https://woolcockmed.sharepoint.com/sites/HRandEmployment/_api/web/lists/GetByTitle('Employee Appointment Form')",
-                                                 form_module:"employee-appointment-a-form"
-                                                },
-            "employee-appointment-a-form":	    {url:"$H/e/employee-appointment-a-form.html",
-                                                 Table: "https://woolcockmed.sharepoint.com/sites/HRandEmployment/_api/web/lists/GetByTitle('Employee Appointment Form')",
-                                                },
-            
-            "employee-appointment-data":   	    {url:"$H/e/employee-appointment-data.html",
-                                                 Table:"https://woolcockmed.sharepoint.com/sites/HRandEmployment/_api/web/lists/GetByTitle('Employee Appointment Form')",
-                                                 Table1:"https://woolcockmed.sharepoint.com/sites/HRandEmployment/_api/web/lists/GetByTitle('Employee Appointment Form P1')",
-                                                 Table2:"https://woolcockmed.sharepoint.com/sites/HRandEmployment/_api/web/lists/GetByTitle('Employee Appointment Form P2')",
-                                                 form_module:"employee-appointment-form"
-                                                },
-            "employee-appointment-form":   	    {url:"$H/e/employee-appointment-form.html",
-                                                 Table: "https://woolcockmed.sharepoint.com/sites/HRandEmployment/_api/web/lists/GetByTitle('Employee Appointment Form')",
-                                                 Table1:"https://woolcockmed.sharepoint.com/sites/HRandEmployment/_api/web/lists/GetByTitle('Employee Appointment Form P1')",
-                                                 Table2:"https://woolcockmed.sharepoint.com/sites/HRandEmployment/_api/web/lists/GetByTitle('Employee Appointment Form P2')",
-                                                },
-            
-            "employee-appointment-r1-data":     {url:"$H/e/employee-appointment-r1-data.html",Table:"https://woolcockmed.sharepoint.com/sites/HRandEmployment/_api/web/lists/GetByTitle('Employee Appointment')", form_module:"employee-appointment2-form"},
-            "employee-appointment2-data":       {url:"$H/e/employee-appointment2-data.html",Table:"https://graph.microsoft.com/v1.0/sites/woolcockmed.sharepoint.com,904f3621-bfdc-4154-a36e-e73f3d46c7c0,2367a8ed-18d1-4fea-afe2-c5784ffccfa9/lists/0e9e1d2f-2898-44c1-b3a7-645882b05459/items", form_module:"employee-appointment2-form"},
-            "employee-appointment2-form":       {url:"$H/e/employee-appointment2-form.html",
-                                                    Table:"https://graph.microsoft.com/v1.0/sites/woolcockmed.sharepoint.com,904f3621-bfdc-4154-a36e-e73f3d46c7c0,2367a8ed-18d1-4fea-afe2-c5784ffccfa9/lists/0e9e1d2f-2898-44c1-b3a7-645882b05459/items",
-                                                    v1_endpoint:"https://woolcockmed.sharepoint.com/sites/HRandEmployment/_api/web/lists/GetByTitle('Employee Appointment')"
-                                                },
         };
         for(p in $vm.module_list) $vm.module_list[p].url=$vm.module_list[p].url.replace('$H',$vm.hosting_path);
         //------------------------------------
         //all other modules, used on demand 
         $vm.app_modules=[
             //you can add a js file that will add mmodules to the $vm.module_list
-            //"$M/module-list.js",
+            "$H/module-list.js",
         ]
-        //for(i in $vm.app_modules) $vm.app_modules[i]=$vm.app_modules[i].replace('$M',$vm.m_path);
+        for(i in $vm.app_modules) $vm.app_modules[i]=$vm.app_modules[i].replace('$H',$vm.hosting_path);
         //------------------------------------
         //called by framework
         $vm.start=function(){
@@ -133,6 +65,7 @@
         }
         //------------------------------------
 
+        
         //------------------------------------
         //Do not need to chang the following code in most cases
         //The following code will load a framework module and on demand module list

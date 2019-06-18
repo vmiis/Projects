@@ -130,12 +130,22 @@
         
         "t1-ft6-data":	                {url:"$H/m/tasks/finger-tapping-6-data.html",Table:"91000660",form_module:"t1-ft6-form",quest_module:"t1-ft6-quest"},
         "t1-ft6-form":	                {url:"$H/m/tasks/finger-tapping-6-form.html",Table:"91000660"},
-        "t1-ft6-quest":	                {url:"$H/m/tasks/finger-tapping-6-quest.html",Table:"91000660",task_name:"ft"},
+        "t1-ft6-quest":	                {url:"$H/m/tasks/finger-tapping-6-quest.html",Table:"91000660",task_name:"ft6"},
         
         "t2-ft6-data":	                {url:"$H/m/tasks/finger-tapping-6-data.html",Table:"91000661",form_module:"t2-ft6-form",quest_module:"t1-ft6-quest"},
         "t2-ft6-form":	                {url:"$H/m/tasks/finger-tapping-6-form.html",Table:"91000661"},
-        "t2-ft6-quest":	                {url:"$H/m/tasks/finger-tapping-6-quest.html",Table:"91000661",task_name:"ft"},
+        "t2-ft6-quest":	                {url:"$H/m/tasks/finger-tapping-6-quest.html",Table:"91000661",task_name:"ft6"},
         
+
+        "t1-ft12-data":	                {url:"$H/m/tasks/finger-tapping-12-data.html",Table:"91000747",form_module:"t1-ft12-form",quest_module:"t1-ft12-quest"},
+        "t1-ft12-form":	                {url:"$H/m/tasks/finger-tapping-12-form.html",Table:"91000747"},
+        "t1-ft12-quest":	            {url:"$H/m/tasks/finger-tapping-12-quest.html",Table:"91000747",task_name:"ft12"},
+        
+        "t2-ft12-data":	                {url:"$H/m/tasks/finger-tapping-12-data.html",Table:"91000748",form_module:"t2-ft12-form",quest_module:"t1-ft12-quest"},
+        "t2-ft12-form":	                {url:"$H/m/tasks/finger-tapping-12-form.html",Table:"91000748"},
+        "t2-ft12-quest":	            {url:"$H/m/tasks/finger-tapping-12-quest.html",Table:"91000748",task_name:"ft12"},
+
+
         "t1-stroop-text-data":	        {url:"$H/m/tasks/stroop-text-data.html",Table:"91000662",form_module:"t1-stroop-text-form",quest_module:"t1-stroop-text-quest"},
         "t1-stroop-text-form":	        {url:"$H/m/tasks/stroop-text-form.html",Table:"91000662"},
         "t1-stroop-text-quest":	        {url:"$H/m/tasks/stroop-text-quest.html",Table:"91000662",task_name:"Stroop text"},
@@ -192,6 +202,29 @@
         "t1-kss-form":		        {url:"$H/m/tasks/karolinska-sleepiness-scale-form.html",Table:"91000680",task_name:"Karolinska Sleepiness Scale"},
         "t2-kss-data":		        {url:"$H/m/tasks/karolinska-sleepiness-scale-data.html",Table:"91000681",form_module:"t2-kss-form"},
         "t2-kss-form":		        {url:"$H/m/tasks/karolinska-sleepiness-scale-form.html",Table:"91000681",task_name:"Karolinska Sleepiness Scale"},
+
+        "t1-wptp-data":		        {url:"$H/m/tasks/word-pair-task-paperwork-data.html",Table:"91000749",form_module:"t1-wptp-form"},
+        "t1-wptp-form":		        {url:"$H/m/tasks/word-pair-task-paperwork-form.html",Table:"91000749",task_name:"T1 Word Pair Task Paperwork"},
+        "t2-wptp-data":		        {url:"$H/m/tasks/word-pair-task-paperwork-data.html",Table:"91000750",form_module:"t2-wptp-form"},
+        "t2-wptp-form":		        {url:"$H/m/tasks/word-pair-task-paperwork-form.html",Table:"91000750",task_name:"T2 Word Pair Task Paperwork"},
+        
+        "t1-bpru-data":		        {url:"$H/m/tasks/bpru-neurocognitive-data-upload-data.html",Table:"91000751",form_module:"t1-bpru-form"},
+        "t1-bpru-form":		        {url:"$H/m/tasks/bpru-neurocognitive-data-upload-form.html",Table:"91000751",task_name:"T1 bpru"},
+        "t2-bpru-data":		        {url:"$H/m/tasks/bpru-neurocognitive-data-upload-data.html",Table:"91000752",form_module:"t2-bpru-form"},
+        "t2-bpru-form":		        {url:"$H/m/tasks/bpru-neurocognitive-data-upload-form.html",Table:"91000752",task_name:"T2 bpru"},
+
+        "p-nback1-data":	            {url:"$H/m/tasks/nback1-data.html",Table:"91000753",form_module:"p-nback1-form",quest_module:"p-nback1-quest"},
+        "p-nback1-form":	            {url:"$H/m/tasks/nback1-form.html",Table:"91000753"},
+        "p-nback1-quest":	            {url:"$H/m/tasks/nback1-quest.html",Table:"91000753",task_name:"1-back"},
+        "p-stroop-text-data":	        {url:"$H/m/tasks/stroop-text-data.html",Table:"91000755",form_module:"p-stroop-text-form",quest_module:"p-stroop-text-quest"},
+        "p-stroop-text-form":	        {url:"$H/m/tasks/stroop-text-form.html",Table:"91000755"},
+        "p-stroop-text-quest":	        {url:"$H/m/tasks/stroop-text-quest.html",Table:"91000755",task_name:"Stroop text"},
+        
+        "p-stroop-color-data":	        {url:"$H/m/tasks/stroop-color-data.html",Table:"91000754",form_module:"p-stroop-color-form",quest_module:"p-stroop-color-quest"},
+        "p-stroop-color-form":	        {url:"$H/m/tasks/stroop-color-form.html",Table:"91000754"},
+        "p-stroop-color-quest":	        {url:"$H/m/tasks/stroop-color-quest.html",Table:"91000754",task_name:"Stroop color"},
+        "word-pairs-set1-practice":	    {url:"$H/m/word-pairs/set1-evening.html"},
+        "word-pairs-set2-practice":	    {url:"$H/m/word-pairs/set2-evening.html"},
     }
     //-------------------------------------------------------------------------------------
     for(p in modules){
