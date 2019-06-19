@@ -1,0 +1,44 @@
+<div id=D__ID class=bg-light>
+	<div style='max-width:1200px;margin:auto;padding:30px 0'>
+        <div class=row>
+            <div class="col-md-5 my-auto px-5">
+                <h1 class=text-center><b>Welcome!</b></h1>
+                <p  style='color:#aaa'>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent dignissim feugiat tellus, vitae vehicula nunc fermentum at. Nulla ut leo tincidunt turpis tincidunt facilisis vel sit amet nisl. Duis odio mauris, ornare vitae est eget, molestie aliquet quam. Quisque sed lacus sodales nulla dignissim semper. Mauris finibus erat ut molestie augue id, lobortis neque    
+                </p>
+                <p class=text-center>
+                    <a href="?/long-page" class="btn btn-success px-4" style='border-radius: 50px;' >Learn More</a>
+                </p>
+            </div>
+            <div class="col-md-7 px-5">
+                <img class="img-fluid" src='https://images.unsplash.com/photo-1553611860-8afd02d7af56?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=700&q=60' />
+                <figure class='d-none d-xl-block' style='position: absolute; bottom: -100px; right: -100px; '>
+                    <img style='border-radius: 50%; border: 10px solid #f2f4fb;' src="https://images.unsplash.com/photo-1472926373053-51b220987527?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&h=300&q=60" alt="Image" class="img-fluid">
+                </figure>
+            </div>
+        </div>	    
+	</div>
+	<script>
+		function F__ID(){
+            //--------------------------------------------------------
+            $('#D__ID a').on('click',function(e){
+                e.preventDefault();
+                var href=$(this).attr('href');
+                if(href!=undefined){
+                    href=href.replace('?\/','').replace(/\//g,'_');
+                    var prefix="";
+                    $vm.load_module(prefix+href,'',{});
+                }
+            })
+            //--------------------------------------------------------
+ 		}
+	</script>
+	<style>
+        #D__ID{
+            background-color:#fff;
+            height:100%;
+            animation: vm_module_fadein 1.0s;
+            /*overflow: hidden;*/
+        }	    
+	</style>
+</div>

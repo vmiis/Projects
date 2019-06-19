@@ -54,11 +54,18 @@
             //------------------------------------
             window.onresize=function(){set_layout();}
             //------------------------------------
-            $vm.init(function(){
-                $vm.init_status=1;
-                if($vm.firebase_user_name!=undefined) $vm.user_name=$vm.firebase_user_name;
+            $vm.init();
+            $vm.init_status=1;
+            //------------------------------------
+            $vm.app_after_3rd_signin=function(){
+                $vm.user_name=$vm.user_name_3rd;
                 $vm.show_user();
-            })
+            }
+            //------------------------------------
+            if($vm.user_name!=$vm.user_name_3rd && $vm.user_name_3rd!=undefined){
+                $vm.app_after_3rd_signin();
+            }
+            //------------------------------------
             //------------------------------------
             if($vm.first_module!=undefined) $vm.show($vm.first_module);
             //------------------------------------

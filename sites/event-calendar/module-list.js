@@ -1,12 +1,25 @@
 (function(){
     //-------------------------------------------------------------------------------------
-    //generic
     var modules={
-        "short-page":  		{url:"$M/s/short-page.html",router:1},
-        "long-page":  		{url:"$M/l/long-page.html",router:1},
-        "about-vmiis":  	{url:"$M/a/about-vmiis.html",router:1},
+        "event-data":      	  		    {url:"$H/m/event-data.html",Table:"event-vm",form_module:"event-form"},
+        "event-form":      	  		    {url:"$H/m/event-form.html",Table:"event-vm"},         
+        "event-daily":      	 	    {url:"$H/m/event-daily.html",Table:"event-vm",router:1,
+                                            event_form:"event-form"
+                                        },         
+        "event-monthly":      	 	    {url:"$H/m/event-monthly.html",Table:"event-vm",router:1,
+                                            event_daily:"event-daily",
+                                            event_form:"event-form"
+                                        },         
+        "event-panel":      	 	    {url:"$H/m/event-panel.html",Table:"event-vm",router:1,
+                                            event_daily:"event-daily",
+                                            form_module:"event-form"
+                                        },         
+        "about-vmiis":  {url:"$H/m/about-vmiis.html",router:1},
+        "module-editor":{url:"https://vm.vmiis.com/component/m/module-editor.html",router:1,sys:1},
     }
-    $vm.m_path='https://modules.vmiis.com'; if($vm.localhost==true) $vm.m_path='http://'+window.location.hostname+':8000/vmiis/modules'; 
-    for(m in modules){   modules[m].url=modules[m].url.replace('$M',$vm.m_path); $vm.module_list[m]=modules[m];}
+    for(p in modules){
+        $vm.module_list[p]=modules[p]; 
+        $vm.module_list[p].url=$vm.module_list[p].url.replace('$H',$vm.hosting_path);
+    }
     //-------------------------------------------------------------------------------------
 })();

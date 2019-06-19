@@ -1,0 +1,96 @@
+<div id=D__ID>
+    <section id=form_container__ID>
+    	<div id=header__ID>
+    		First Aid Officer
+    	</div>
+    	<form id=F__ID>
+    		<div class="container">
+                <div class='row row__ID'>
+    				<div class="col">
+    					<span>Photo</span>
+						<div class="form-control">
+							<img style='cursor:pointer' id=Photo__ID></img>
+							<br>
+							<input class=rd__ID type="file" name=Photo style="margin-top:6px" /> <button class=rd__ID type="button" id=x_Photo__ID>Remove</button>
+						</div>
+					</div>
+    			</div>
+    			<div class="row row__ID">
+                    <div class="col-lg-6">
+                        <span>Firstname</span>
+                        <input type=text class="form-control" name="Firstname" required>
+                    </div>
+                    <div class="col-lg-6">
+                        <span>Lastname</span>
+                        <input type=text class="form-control" name="Lastname" required>
+                    </div>
+                </div>
+    			<div class="row row__ID">
+                    <div class="col">
+                        <span>Department</span>
+                        <input type=text class="form-control" name="Department">
+                    </div>
+                </div>
+    			<div class="row row__ID">
+                    <div class="col">
+                        <span>Location</span>
+                        <input type=text class="form-control" name="Location">
+                    </div>
+                </div>
+    			<div class="row row__ID">
+                    <div class="col-lg-4">
+                        <span>Phone</span>
+                        <input type=text class="form-control" name="Phone">
+                    </div>
+                    <div class="col-lg-8">
+                        <span>Email</span>
+                        <input type=text class="form-control" name="Email">
+                    </div>
+                </div>
+    			<div class="row row__ID rd__ID">
+                    <div class="col">
+                        <span>Order</span>
+                        <input type=text class="form-control" name="Order">
+                    </div>
+                </div>
+                <br>
+    			<div class="row">
+    				<div class=col>
+    					<button id=submit__ID type="submit" class="btn btn-secondary rd__ID">Submit</button>
+    				</div>
+    			</div>
+    		</div>
+    	</form>
+    </section>
+    VmInclude:__COMPONENT__/m/model.01.html
+    <script>
+    	function F__ID(){
+    		//-------------------------------------
+            VmInclude:__COMPONENT__/f/form.01.js
+			//-------------------------------------
+			var load2=m.load;
+			m.load=function(){
+				load2();
+				m.set_image_url("Photo");
+				
+				$('#D__ID .rd__ID').show();
+				if(m.input.readonly!=undefined){
+					$('#D__ID .rd__ID').hide();
+				}
+			}
+			//-------------------------------------
+			m.before_submit=function(data,index){
+				index.I1=data.Order;
+				$vm.g_portal_first_aid_officer_section_refresh=1;
+				return true;
+			}
+			//-------------------------------------
+    	}
+    </script>
+    <style>
+		#form_container__ID{
+			max-width:700px;
+		}
+		VmInclude:__COMPONENT__/f/form.01.css
+    </style>
+</div>

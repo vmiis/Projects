@@ -14,26 +14,21 @@
         <div id=content></div>
         <div id=footer></div>
         <div id=system></div>
+        <script>$vm={};</script>
         <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-3.3.1.min.js"></script>
-
         <script src="https://www.gstatic.com/firebasejs/6.0.4/firebase-app.js"></script>
         <script src="https://www.gstatic.com/firebasejs/6.0.4/firebase-auth.js"></script>
         <script src="https://www.gstatic.com/firebasejs/6.0.4/firebase-firestore.js"></script>
+        <script src="google-firebase.js"></script>
 
     </body>
     <script boot-up>
         //------------------------------------
-        $vm={};$vm.ver=[0.19,0.19]; //increase ver[0] if any module changed, increase ver[1] if vm.js changed
+        $vm.ver=[0.02,0.02]; //increase ver[0] if any module changed, increase ver[1] if vm.js changed
         $vm.debug=1;
         //------------------------------------
-        //setup modules location
-        $vm.hosting_path0=window.location.href.split('#')[0];
-        $vm.hosting_path=$vm.hosting_path0.substring(0, $vm.hosting_path0.split('?')[0].lastIndexOf('/'));
-        
-        //$vm.hosting_path=window.location.href.substring(0, window.location.href.split('?')[0].lastIndexOf('/'));
-        if(window.location.href.substring(0,5)=="file:") $vm.hosting_path="https://app-templates.vmiis.com/e/enquiry";
-        if(window.location.hostname=='127.0.0.1' || window.location.hostname=='localhost' || window.location.hostname=='vmiis-local.com') $vm.localhost=true;
-        $vm.m_path='https://modules.vmiis.com'; if($vm.localhost==true) $vm.m_path='http://'+window.location.hostname+':8000/vmiis/modules'; 
+        $vm.hosting_path=window.location.href.substring(0, window.location.href.split('?')[0].lastIndexOf('/'));
+        if(window.location.hostname=='127.0.0.1' || window.location.hostname=='localhost') $vm.localhost=true;
         //------------------------------------
         //where are your start modules
         $vm.start_modules=[
@@ -45,26 +40,19 @@
         $vm.module_list={
             //you can add modules here directly
             "home":	        {url:"$H/0/home.html",router:1},
-            "frame":	    {url:"$H/0/frame.html",sys:1},
+            "frame":	    {url:"$H/0/frame.html"},
             "app":	        {url:"$H/0/app.html"},
             "header":	    {url:"$H/0/header.html"},
             "footer":	    {url:"$H/0/footer.html"},
-            "control-panel-main":   {url:"$H/c/control-panel-main.html",router:1},
-            "me":   	            {url:"$H/m/me.html"},
-            "client-data":   	    {url:"$H/c/client-data.html",Table:"Clients", form_module:"client-form"},
-            "client-form":   	    {url:"$H/c/client-form.html",Table:"Clients"},
-            "about-vmiis":    		{url:"$M/a/about-vmiis.html",router:1},
-
         };
         for(p in $vm.module_list) $vm.module_list[p].url=$vm.module_list[p].url.replace('$H',$vm.hosting_path);
-        for(p in $vm.module_list) $vm.module_list[p].url=$vm.module_list[p].url.replace('$M',$vm.m_path);
         //------------------------------------
         //all other modules, used on demand 
         $vm.app_modules=[
             //you can add a js file that will add mmodules to the $vm.module_list
-            //"$M/module-list.js",
+            "$H/module-list.js",
         ]
-        for(i in $vm.app_modules) $vm.app_modules[i]=$vm.app_modules[i].replace('$M',$vm.m_path);
+        for(i in $vm.app_modules) $vm.app_modules[i]=$vm.app_modules[i].replace('$H',$vm.hosting_path);
         //------------------------------------
         //called by framework
         $vm.start=function(){
@@ -73,59 +61,8 @@
             $vm.load_component('app',$vm.root_layout_system,{});
         }
         //------------------------------------
-        $vm.firebase_init=function(){
-            var firebaseConfig = {
-                apiKey: "AIzaSyAf8cO6hljobePOH3yOlD910cIhsIpVPgQ",
-                authDomain: "flirbase.firebaseapp.com",
-                databaseURL: "https://flirbase.firebaseio.com",
-                projectId: "flirbase",
-                storageBucket: "flirbase.appspot.com",
-                //messagingSenderId: "sender-id",
-                //appID: "app-id",
-            };            
-            // Initialize Firebase
-            firebase.initializeApp(firebaseConfig);
-            
-            firebase.auth().onAuthStateChanged(function(user) {
-                if(user){
-                    console.log(user);
-                    $vm.firebase_user_name=$vm.user_name=user.displayName;
-                    $vm.show_user();
-                } 
-                else {
-                }
-            });
-            $vm.firebase_db=firebase.firestore();
-            $vm.firebase_signin=function (){
-                var provider = new firebase.auth.GoogleAuthProvider();            
-                firebase.auth().signInWithPopup(provider).then(function(result) {
-                    // This gives you a Google Access Token. You can use it to access the Google API.
-                    var token = result.credential.accessToken;
-                    // The signed-in user info.
-                    var user = result.user;
-                    $vm.user_name=user.displayName;
-                    $vm.show_user();
-                    // ...
-                }).catch(function(error) {
-                    // Handle Errors here.
-                    var errorCode = error.code;
-                    var errorMessage = error.message;
-                    // The email of the user's account used.
-                    var email = error.email;
-                    // The firebase.auth.AuthCredential type that was used.
-                    var credential = error.credential;
-                    // ...
-                    console.log(error)                    
-                });
-            }
-            $vm.firebase_signout=function (){
-                firebase.auth().signOut();
-                location.reload(true);
-            }
-        }
-        $vm.firebase_init();
-        //-------------------------------------
-
+        
+        
         //------------------------------------
         //Do not need to chang the following code in most cases
         //The following code will load a framework module and on demand module list
