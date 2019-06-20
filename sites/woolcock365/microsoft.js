@@ -22,8 +22,9 @@ $vm.m365_init=function(){
     $vm.m365_msal=new Msal.UserAgentApplication($vm.msalConfig);
     $vm.m365_signin=function (){
         $vm.m365_msal.handleRedirectCallback((error, response) => {
+            console.log('handleRedirectCallback');
         });
-        $vm.m365_msal.loginPopup($vm.m365_scope).then(function (loginResponse){
+        $vm.m365_msal.loginPopup($vm.m365_scope_sharepoint).then(function (loginResponse){
             if($vm.m365_msal.getAccount()!=undefined){
                 $vm.user_name_3rd=$vm.m365_msal.getAccount().userName;
                 $vm.issuer_3rd   ="microsoft";
@@ -37,7 +38,7 @@ $vm.m365_init=function(){
         $vm.m365_msal.logout();
     }
     $vm.m365_graph=function(url,callback){
-        $vm.m365_msal.acquireTokenSilent($vm.m365_scope).then(function (tokenResponse) {
+        $vm.m365_msal.acquireTokenSilent($vm.m365_scope_sharepoint).then(function (tokenResponse) {
             var xmlHttp = new XMLHttpRequest();
             var mt1=new Date().getTime();
             xmlHttp.onreadystatechange = function () {

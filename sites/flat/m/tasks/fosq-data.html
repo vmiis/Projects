@@ -1,0 +1,22 @@
+<div id=D__ID>
+    <section>
+        VmInclude:__COMPONENT__/g/grid.01.html
+    </section>
+    <script>
+        function F__ID(){
+            //-------------------------------------
+            VmInclude:__COMPONENT__/g/grid.01.js
+            VmInclude:__CURRENT_PATH__/task-data.js
+            //-------------------------------------
+            //var fields="fosq1,fosq2,fosq3,fosq4,fosq5,fosq6,fosq7,fosq8,fosq9,fosq10,fosq11,fosq12,fosq13,fosq14,fosq15,fosq16,fosq17,fosq18,fosq19,fosq20,fosq21,fosq22,fosq23,fosq24,fosq25,fosq26,fosq27,fosq28,fosq29,fosq30,FOSQ_Total,FOSQ_Activity,FOSQ_Vigilance,FOSQ_Intimacy,FOSQ_GeneralPro,FOSQ_Social";
+            var fields="FOSQ_1,FOSQ_2,FOSQ_3,FOSQ_4,FOSQ_5,FOSQ_6,FOSQ_7,FOSQ_8,FOSQ_9,FOSQ_10,FOSQ_11,FOSQ_12,FOSQ_13,FOSQ_14,FOSQ_15,FOSQ_16,FOSQ_17,FOSQ_18,FOSQ_19,FOSQ_20,FOSQ_21,FOSQ_22,FOSQ_23,FOSQ_24,FOSQ_25,FOSQ_26,FOSQ_27,FOSQ_28,FOSQ_29,FOSQ_30";
+            fields+=",FOSQ_Activity,FOSQ_Vigilance,FOSQ_Intimacy,FOSQ_Productivity,FOSQ_Social";
+            m.fields="_Form,Status|S3,Notes|NT,Participant_ID|Participant_uid,"+fields+",Submit_date,Submitted_by,_Delete";
+            m.fields_e="Participant_ID|Participant_uid,"+fields
+            //-------------------------------------
+        }
+    </script>
+    <style>
+        VmInclude:__COMPONENT__/g/grid.01.css
+    </style>
+</div>

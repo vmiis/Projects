@@ -1,0 +1,21 @@
+<div id=D__ID>
+        <section>
+            VmInclude:__COMPONENT__/g/grid.01.html
+        </section>
+        <script>
+            function F__ID(){
+                //-------------------------------------
+                VmInclude:__COMPONENT__/g/grid.01.js
+                VmInclude:__CURRENT_PATH__/task-data.js
+                //-------------------------------------
+                var fields="Height_cm,Weight_kg,BMI,SysBP_RA_mmhg,SysBP_LA_mmHg,DiaBP_RA_mmhg,DiaBP_LA_mmHg,SysBP_3_mmHg,DiaBP_3_mmHg,HR,Neck_cm,Neck_cm_2,Neck_cm_3,Waist_cm,Waist_2,Waist_3";
+                //, BP_sys,BP_dia";
+                m.fields="_Form,Status|S3,Notes|NT,Participant_ID|Participant_uid,Participant,"+fields+",Submit_date,Submitted_by,_Delete";
+                m.fields_e="Participant_ID|Participant_uid,"+fields
+                //-------------------------------------
+            }
+        </script>
+        <style>
+            VmInclude:__COMPONENT__/g/grid.01.css
+        </style>
+    </div>

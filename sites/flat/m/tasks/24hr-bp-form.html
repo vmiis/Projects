@@ -1,0 +1,108 @@
+
+<div id=D__ID>
+    <section id=form_container__ID>
+        <div id=header__ID>
+            24Hr BP
+        </div>
+        <form id=F__ID>
+            <div class="container">
+                <!-- participant part for all tsak forms -------------------->
+                <div class="row row__ID" id=row_participant__ID>
+                    <div class="col-sm-12 col-lg-9 input__ID">
+                        <span class=label__ID>Participant</span><br>
+                        <input type=text name="Participant" class=form-control id=Participant__ID data-id="Participant" required />
+                    </div>
+                    <div class="col-sm-12 col-lg-3 input__ID">
+                        <span class=label__ID>Participant ID</span><br>
+                        <input type=text name="Participant_uid" class=form-control readonly />
+                    </div>
+                    <hr style="border-top: 1px solid #888;width: 100%;margin:10px 0">
+                </div>
+                <!---------------------------------------------------->
+                <!-- Form Inputs-------------------------------------->
+                <div class='row row__ID'>
+    				<div class="col">
+    					<span>asc File Upload</span>
+                        <div class="form-control">
+                            <u style='cursor:pointer' id=link_asc_file__ID></u>
+                            <br>
+                            <input type="file" name=asc_file style="margin-top:6px" /> &nbsp&nbsp&nbsp <button type="button" id=x_asc_file__ID>Remove</button>
+                        </div>
+					</div>
+                </div>            
+                <div class='row row__ID'>
+    				<div class="col">
+    					<span>gdt File Upload</span>
+                        <div class="form-control">
+                            <u style='cursor:pointer' id=link_gdt_file__ID></u>
+                            <br>
+                            <input type="file" name=gdt_file style="margin-top:6px" /> &nbsp&nbsp&nbsp <button type="button" id=x_gdt_file__ID>Remove</button>
+                        </div>
+					</div>
+                </div>            
+                <div class='row row__ID'>
+    				<div class="col">
+    					<span>CSV File Upload</span>
+                        <div class="form-control">
+                            <u style='cursor:pointer' id=link_CSV_file__ID></u>
+                            <br>
+                            <input type="file" name=CSV_file style="margin-top:6px" /> &nbsp&nbsp&nbsp <button type="button" id=x_CSV_file__ID>Remove</button>
+                        </div>
+					</div>
+                </div>            
+                <div class='row row__ID'><div class='col'>
+                    <span>Patient time to sleep</span>
+                    <input type=time class=form-control name=Patient_time_to_sleep >
+                </div></div>
+                <div class='row row__ID'><div class='col'>
+                    <span>patient time to wake</span>
+                    <input type=time class=form-control name=patient_time_to_wake >
+                </div></div>
+                <!---------------------------------------------------->
+                
+                <!-- submit button part for all tsak forms------------>
+                <br>
+                <div class="row">
+                    <div class=col>
+                        <button id=submit__ID type="submit" class="btn btn-secondary">Submit</button>
+                    </div>
+                </div>
+                <!---------------------------------------------------->
+            </div>
+        </form>
+    </section>
+    VmInclude:__COMPONENT__/m/model.01.html
+    <script>
+        function F__ID(){
+            //-------------------------------------
+            //build text input fields
+            var fields="EI_kJ,CHO_g,CHO_percent,Fat_g,Fat_percent,Protein_g,Protein_percent,Alcohol_g,Alcohol_percent";
+            var fs=fields.split(',');
+            var txt="";
+            for(var i=0;i<fs.length;i++){
+                txt+="<div class='row row__ID'><div class='col'>\r\n";
+                txt+="<span>"+fs[i].replace(/_/g," ")+"</span><input type=number class=form-control name="+fs[i]+">\r\n";
+                txt+="</div></div>\r\n";
+            }
+            $('#dynamic_part__ID').html(txt);
+            //-------------------------------------
+            VmInclude:__COMPONENT__/f/form.01.js
+            VmInclude:'__CURRENT_PATH__/task-form.js'
+            //-------------------------------------
+            var load5=m.load;
+            m.load=function(){
+                load5();
+                m.set_file_link("asc_file");
+                m.set_file_link("gdt_file");
+                m.set_file_link("CSV_file");
+            }
+            //-------------------------------------
+        }
+    </script>
+    <style>
+        VmInclude:__COMPONENT__/f/form.01.css
+        #form_container__ID{
+            max-width:700px;
+        }
+    </style>
+</div>

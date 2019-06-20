@@ -1,0 +1,108 @@
+
+<div id=D__ID>
+    <section id=form_container__ID>
+        <div id=header__ID>
+            DXA
+        </div>
+        <form id=F__ID>
+            <div class="container">
+                <!-- participant part for all tsak forms -------------------->
+                <div class="row row__ID" id=row_participant__ID>
+                    <div class="col-sm-12 col-lg-9 input__ID">
+                        <span class=label__ID>Participant</span><br>
+                        <input type=text name="Participant" class=form-control id=Participant__ID data-id="Participant" required />
+                    </div>
+                    <div class="col-sm-12 col-lg-3 input__ID">
+                        <span class=label__ID>Participant ID</span><br>
+                        <input type=text name="Participant_uid" class=form-control readonly />
+                    </div>
+                    <hr style="border-top: 1px solid #888;width: 100%;margin:10px 0">
+                </div>
+                <!---------------------------------------------------->
+                <!-- Form Inputs-------------------------------------->
+                <div class='row row__ID'>
+    				<div class="col">
+    					<span>File Upload</span>
+                        <div class="form-control">
+                            <u style='cursor:pointer' id=link_File__ID></u>
+                            <br>
+                            <input type="file" name=File style="margin-top:6px" /> &nbsp&nbsp&nbsp <button type="button" id=x_File__ID>Remove</button>
+                        </div>
+					</div>
+                </div>            
+                <!---------------------------------------------------->
+                <div class='row row__ID'><div class='col'>
+                    <span>Android Gynoid Ratio</span>
+                    <input type=number class=form-control name=Android_Gynoid_Ratio step=0.1 >
+                </div></div>
+                <div class='row row__ID'><div class='col'>
+                    <span>Est VAT Mass g</span>
+                    <input type=number class=form-control name=Est_VAT_Mass_g step=1 >
+                </div></div>
+                <div class='row row__ID'><div class='col'>
+                    <span>Est VAT Volume cm3</span>
+                    <input type=number class=form-control name=Est_VAT_Volume_cm3 step=1 >
+                </div></div>
+                <div class='row row__ID'><div class='col'>
+                    <span>Est VAT Area cm2</span>
+                    <input type=number class=form-control name=Est_VAT_Area_cm2 step=1 >
+                </div></div>
+                <div class='row row__ID'><div class='col'>
+                    <span>Total BMC g</span>
+                    <input type=number class=form-control name=Total_BMC_g step=1 >
+                </div></div>
+                <div class='row row__ID'><div class='col'>
+                    <span>Total Fat Mass g</span>
+                    <input type=number class=form-control name=Total_Fat_Mass_g step=0.1 >
+                </div></div>
+                <div class='row row__ID'><div class='col'>
+                    <span>Total Lean Mass g</span>
+                    <input type=number class=form-control name=Total_Lean_Mass_g step=0.1 >
+                </div></div>
+                <div class='row row__ID'><div class='col'>
+                    <span>Total Lean BMC g</span>
+                    <input type=number class=form-control name=Total_Lean_BMC_g step=0.1 >
+                </div></div>
+                <div class='row row__ID'><div class='col'>
+                    <span>Total Mass g</span>
+                    <input type=number class=form-control name=Total_Mass_g step=0.1 >
+                </div></div>
+                <div class='row row__ID'><div class='col'>
+                    <span>Fat percent</span>
+                    <input type=number class=form-control name=Fat_percent step=0.1 >
+                </div></div>
+                <!---------------------------------------------------->
+                
+                <!-- submit button part for all tsak forms------------>
+                <br>
+                <div class="row">
+                    <div class=col>
+                        <button id=submit__ID type="submit" class="btn btn-secondary">Submit</button>
+                    </div>
+                </div>
+                <!---------------------------------------------------->
+            </div>
+        </form>
+    </section>
+    VmInclude:__COMPONENT__/m/model.01.html
+    <script>
+        function F__ID(){
+            //-------------------------------------
+            VmInclude:__COMPONENT__/f/form.01.js
+            VmInclude:'__CURRENT_PATH__/task-form.js'
+            //-------------------------------------
+            var load5=m.load;
+            m.load=function(){
+                load5();
+                m.set_file_link("File");
+            }
+            //-------------------------------------
+        }
+    </script>
+    <style>
+        VmInclude:__COMPONENT__/f/form.01.css
+        #form_container__ID{
+            max-width:700px;
+        }
+    </style>
+</div>
