@@ -21,16 +21,17 @@ $vm.m365_init=function(){
     };
     $vm.m365_msal=new Msal.UserAgentApplication($vm.msalConfig);
     $vm.m365_signin=function (){
+        /*        
         $vm.m365_msal.handleRedirectCallback((error, response) => {
             console.log('handleRedirectCallback');
+            alert(11111111111)
         });
-        $vm.m365_msal.loginPopup($vm.m365_scope_sharepoint).then(function (loginResponse){
-            if($vm.m365_msal.getAccount()!=undefined){
-                $vm.user_name_3rd=$vm.m365_msal.getAccount().userName;
-                $vm.issuer_3rd   ="microsoft";
-                if($vm.app_after_3rd_signin!=undefined) $vm.app_after_3rd_signin();
-            }
-        }).catch(function (error) {
+        */
+        $vm.m365_msal.loginPopup($vm.m365_scope_sharepoint).then(function (loginResponse) {               
+            return $vm.m365_msal.acquireTokenSilent($vm.m365_scope_sharepoint);
+        }).then(function (accessTokenResponse) {
+            $vm.m365_init();
+        }).catch(function (error) {  
             console.log(error);
         });
     }
@@ -67,11 +68,11 @@ $vm.m365_init=function(){
     //------------------------------------
     if($vm.m365_msal.getAccount()!=undefined){
         $vm.m365_msal.acquireTokenSilent($vm.m365_scope_sharepoint).then(function (tokenResponse) {
+            console.log(tokenResponse);
             $vm.user_name_3rd=$vm.m365_msal.getAccount().userName;
             $vm.issuer_3rd="microsoft";
             if($vm.app_after_3rd_signin!=undefined) $vm.app_after_3rd_signin();
         }).catch(function (error){
-            //console.log(error);
             console.log("more than 1 hour. need login again.");
         });
     }
