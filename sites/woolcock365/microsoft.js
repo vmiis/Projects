@@ -39,7 +39,7 @@ $vm.m365_init=function(){
         $vm.m365_msal.logout();
     }
     $vm.m365_graph=function(url,callback){
-        $vm.m365_msal.acquireTokenSilent($vm.m365_scope_sharepoint).then(function (tokenResponse) {
+        $vm.m365_msal.acquireTokenSilent($vm.m365_scope).then(function (tokenResponse) {
             var xmlHttp = new XMLHttpRequest();
             var mt1=new Date().getTime();
             xmlHttp.onreadystatechange = function () {
