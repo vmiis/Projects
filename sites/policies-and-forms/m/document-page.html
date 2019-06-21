@@ -1,0 +1,91 @@
+<div id=D__ID>
+    <div id="section__ID">
+        <h2>Policies and Forms</h2>
+        <br>
+        <div id=table__ID ></div>
+    </div>
+    <script>
+        function F__ID(){
+            //-------------------------------------
+            VmInclude:__COMPONENT__/g/grid.01.js
+            m.sort={I1:1}
+            //-------------------------------------
+            m.render=function(){
+                var txt="<table class='table'>"
+                    txt+="<thead>";
+                        txt+="<tr>";
+                            txt+="<th><i class='fas fa-file'></i> File</th>";
+                            txt+="<th>Size</th>";
+                            txt+="<th>Submit Date</th>";
+                            txt+="<th><i class='fas fa-user'></i> Submitted By</th>";
+                        txt+="</tr>";
+                    txt+="</thead>";
+                    txt+="<tbody>";
+                        for(var i=0;i<m.records.length;i++){
+                            txt+="<tr>";
+                            txt+="<td><u uid="+$vm.text(m.records[i].UID)+" _id="+$vm.text(m.records[i]._id)+" f="+$vm.text(m.records[i].Data.File)+">"+$vm.text(m.records[i].Data.Display_name)+"</u></td>"
+                            txt+="<td>"+$vm.text(m.records[i].Data.Size)+"</td>"
+                            txt+="<td>"+$vm.text(m.records[i].Submit_date).split('T')[0]+"</td>"
+                            txt+="<td>"+$vm.text(m.records[i].Submitted_by)+"</td>"
+                            txt+="</tr>";
+                        }
+                    txt+="</tbody>";
+                txt+="</table>";
+                $('#table__ID').html(txt);
+                $('#table__ID u').on('click',function(){
+                    var uid=$(this).attr('uid');
+                    var _id=$(this).attr('_id');
+                    var f=$(this).attr('f');
+                    if(_id!==undefined){
+                        var url=m.Table+"/"+uid+"-File-"+f;
+                        if(f!="") $vm.open_s3_url(_id,m.Table,f,url);
+                    }
+                })
+            }
+            //-------------------------------------
+			$('#admin__ID').on('click',function(){
+				$vm.load_module('document-data','',{});
+			})
+            $('#code__ID').on('click',function(){
+                window.open($vm.module_list['__MODULE__'].url.replace('__HOST__/','https://github.com/vmiis/online-profile/blob/master/'));
+            })
+            //-------------------------------------
+        }
+    </script>
+    <style>
+        #D__ID{
+            font-size:13px;
+            font-family: Helvetica, Arial, sans-serif;
+            height:100%;
+            overflow: auto;
+            animation: vm_module_fadein 1.0s;
+        }
+
+	    #section__ID{
+            color:#000;
+            max-width:1200px;
+            margin-top:90px;
+            margin-left:auto;
+            margin-right:auto;
+            padding:20px;
+    		background:rgba(10,50,74,0.69);
+            border-radius:5px;
+	    }
+	    #section__ID h2{
+            color:#fff;
+        }
+        #table__ID u{
+            cursor:pointer;
+        }
+        #table__ID thead{
+            color:#fff;
+            background-color: #0e123e;
+        }
+        #table__ID tbody tr:nth-of-type(even){
+            background-color:#e7eff3;
+        }
+        #table__ID tbody tr:nth-of-type(odd){
+            background-color:#fafafa;
+        }
+    </style>
+</div>

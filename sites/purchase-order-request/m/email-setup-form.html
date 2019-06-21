@@ -1,0 +1,61 @@
+<div id=D__ID>
+    <section id=form_container__ID>
+    	<div id=header__ID>
+    		Email setup
+    	</div>
+    	<form id=F__ID>
+    		<div class="container">
+				<div class='row row__ID'><div class='col'>
+					<span>Subject</span>
+					<input type=text class=form-control name=Subject>
+				</div></div>
+				<div class='row row__ID'><div class='col'>
+					<span>Email Address</span>
+					<input type=text class=form-control name=Email_Address>
+				</div></div>
+				<div class='row row__ID'><div class='col'>
+					<span>Display Name</span>
+					<input type=text class=form-control name=Display_Name>
+				</div></div>
+				<div class='row row__ID'><div class='col'>
+					<span>SMTP</span>
+					<input type=text class=form-control name=SMTP>
+				</div></div>
+				<div class='row row__ID'><div class='col'>
+					<span>Port</span>
+					<input type=text class=form-control name=Port>
+				</div></div>
+				<div class='row row__ID'><div class='col'>
+					<span>Username</span>
+					<input type=text class=form-control name=Username>
+				</div></div>
+				<div class='row row__ID'><div class='col'>
+					<span>Password</span>
+					<input type=password class=form-control name=Password>
+				</div></div>
+				<br>
+    			<div class="row c_print">
+    				<div class=col>
+    					<button id=submit__ID type="submit" class="btn btn-secondary">Submit</button>
+    				</div>
+    			</div>
+    		</div>
+    	</form>
+    </section>
+    <script>
+    	function F__ID(){
+    		//-------------------------------------
+            VmInclude:__COMPONENT__/f/form.01.js
+			//-------------------------------------
+			m.before_submit=function(data,index){
+				index.I1=data.Subject;
+			}
+    	}
+    </script>
+    <style>
+        #form_container__ID{
+            max-width:700px;
+        }
+        VmInclude:__COMPONENT__/f/form.01.css
+    </style>
+</div>

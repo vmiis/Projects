@@ -1,14 +1,11 @@
 (function(){
     //-------------------------------------------------------------------------------------
     var modules={
-        "room-booking-record-data":    	{url:"$H/m/room-booking-record-data.html",Table:"room-booking-record",form_module:"room-booking-record-form",router:1},
-        "room-booking-record-form":    	{url:"$H/m/room-booking-record-form.html",Table:"room-booking-record"},
-        "room-data":      	  			{url:"$H/m/room-data.html",Table:"room",form_module:"room-form",router:1},
-        "room-form":      	  			{url:"$H/m/room-form.html",Table:"room"},
-        "room-booking":   			    {url:"$H/m/room-booking.html",Table:"room","booking_form":"room-booking-record-form",router:1},
-        "room-booking-calendar": 	    {url:"$H/m/room-booking-calendar.html",Table:"room-booking-record",
-                                            "booking":"room-booking","booking_form":"room-booking-record-form",router:1},
-        "room-booking-workflow": 		{url:"$H/m/room-booking-workflow.html",router:1},
+        "contact-us-data":  			{url:"$H/m/contact-us-data.html",Table:"ccontact-us-vm",form_module:"contact-us-form",tags:"marketing"},
+        "contact-us-form":  			{url:"$H/m/contact-us-form.html",Table:"ccontact-us-vm",tags:'marketing'},
+        "contact-us-form-02":  			{url:"$H/m/contact-us-form-02.html",Table:"ccontact-us-vm",tags:'marketing'},
+        "food-data":    			    {url:"$H/m/food-data.html",Table:"food-demo",form_module:"food-form"},
+        "food-form":    			    {url:"$H/m/food-form.html",Table:"food-demo"},
 
 
                                             

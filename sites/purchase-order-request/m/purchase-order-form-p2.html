@@ -1,0 +1,212 @@
+<div id=D__ID>
+    <section id=form_container__ID>
+    	<div id=header__ID>
+    		Purchase order request
+    	</div>
+    	<form id=F__ID>
+    		<div class="container">
+                <div class='row row__ID' id=order__ID>
+                    <div class="col-sm col-lg-6">
+                		<span>Purchase Order ID</span>
+                		<input type="text" class="form-control" id="uid__ID" readonly>
+                	</div>
+                </div>
+                <div class='row row__ID'>
+                    <div class="col-sm col-lg-6">
+                		<span>Manager for Approval</span>
+                		<select class=form-control name=Manager_for_Approval id=manager__ID></select>
+                	</div>
+                    <div class="col-sm col-lg-6">
+                		<span>Accountant for Processing</span>
+                		<select class=form-control name=Accountant_for_Processing id=accountant__ID></select>
+                	</div>
+                </div>
+                <div class='row row__ID'>
+                	<div class=col>
+                		<span>Short Description</span>
+                		<input type="text" class="form-control" name="Short_Description" >
+                	</div>
+                </div>
+                <div class='row row__ID'>
+                    <div class="col-sm col-lg-6">
+                		<span>Supplier Name</span>
+                		<input type=text class=form-control name=Supplier_Name>
+                	</div>
+                    <div class="col-sm col-lg-6">
+                		<span>Supplier Account No (if applicable)</span>
+                		<input type=text class=form-control name=Supplier_Account_No>
+                	</div>
+                </div>
+                <div class='row row__ID'>
+                	<div class=col>
+                		<span>Supplier Address</span>
+                		<textarea class="form-control" name="Supplier_Address"></textarea>
+                	</div>
+                </div>
+                <div class='row row__ID'>
+                    <div class="col-sm col-lg-6">
+                		<span>Supplier Phone</span>
+                		<input type=text class=form-control name=Supplier_Phone>
+                	</div>
+                    <div class="col-sm col-lg-6">
+                		<span>Supplier Fax</span>
+                		<input type=text class=form-control name=Supplier_Fax>
+                	</div>
+                </div>
+                <div class='row row__ID'>
+                	<div class=col-lg-6>
+                		<span>Your contact email</span>
+                		<input type=text class=form-control name=Contact_Email>
+                	</div>
+                	<div class=col-lg-6>
+                		<span>Your contact phone</span>
+                		<input type=text class=form-control name=Contact_Phone>
+                	</div>
+                </div>
+                <hr style="border-top: 1px solid #888;width: 100%;margin:10px 0">
+                <br>
+                <div class="row">
+                    <div class=col>
+                        <!--<u style='cursor:pointer;margin-bottom:3px;display:inline-block' id=item_a_add__ID><i class="fa fa-plus"></i> Add an item</u>-->
+    				    <table id=grid_item_a__ID></table>
+    				    <div id=total__ID style='text-align: right'>
+                                GST Amount: <input type=text name=GST_Amount style="width:120px;margin-bottom:1px" readonly><br>
+                                Total Amount: <input type=text name=Total_Amount style="width:120px" readonly>
+                        </div>
+                    </div>
+                </div>
+                <hr style="border-top: 1px solid #888;width: 100%;margin:10px 0">
+    			<div class="row c_print" id=row_submit__ID>
+    				<div class=col>
+                        <button id=submit0__ID type="submit" style='display:none'></button>
+            			<button id=submit1__ID type="button" class="btn btn-secondary">Processing</button>
+            			<button id=submit2__ID type="button" class="btn btn-secondary">Withdraw</button>
+    				</div>
+    			</div>
+    		</div>
+    	</form>
+    </section>
+    <script>
+        function F__ID(){
+            //-------------------------------------
+            VmInclude:__COMPONENT__/f/form.01.js
+            VmInclude:__COMPONENT__/f/form-item-a.01.js
+            m.cmd_type='p2';
+            //-------------------------------------
+            //get manager list;
+            jQuery.ajaxSetup({async:false});
+            
+			var list_m_req={cmd:"find",table:m.manager_list_table,skip:0,limit:30}
+            $vm.request(list_m_req,function(res){
+                if(res.sys.permission==false){
+                    //$vm.alert("No permission. Private database table, ask the table's owner for permissions.");
+                    return;
+                }
+                if(res.result.length>0){
+                    var list_managers=';';
+                    for(var i=0;i<res.result.length;i++){
+                        if(list_managers!='') list_managers+=','
+                        list_managers+=res.result[i].Data.Name+";"+res.result[i].Data.Name+"/"+res.result[i].Data.Email+"/"+res.result[i].Data.Login_Name;
+                    }
+                    $vm.set_dropdown_list_from_text($('#manager__ID'),list_managers);
+                }
+            })
+			var list_a_req={cmd:"find",table:m.accountant_list_table,skip:0,limit:30}
+            $vm.request(list_a_req,function(res){
+                if(res.sys.permission==false){
+                    //$vm.alert("No permission. Private database table, ask the table's owner for permissions.");
+                    return;
+                }
+                if(res.result.length>0){
+                    var list_managers=';';
+                    for(var i=0;i<res.result.length;i++){
+                        if(list_managers!='') list_managers+=','
+                        list_managers+=res.result[i].Data.Name+";"+res.result[i].Data.Name+"/"+res.result[i].Data.Email+"/"+res.result[i].Data.Login_Name;
+                    }
+                    $vm.set_dropdown_list_from_text($('#accountant__ID'),list_managers);
+                }
+            })
+            jQuery.ajaxSetup({async:true});
+            //-------------------------------------
+            $('#submit1__ID').on('click',function(event){	m.processing=1;	$('#submit0__ID').trigger('click'); 	});
+    		$('#submit2__ID').on('click',function(event){   m.processing=0;	$('#submit0__ID').trigger('click');		});
+    		//--------------------------------------------------------
+            m.before_submit=function(data,index){
+                if(m.processing==1)  index.L2="Approved by "+$vm.user_name+" on "+new Date().toLocaleString();
+                else                 index.L2="";
+                return true;
+            }
+            //--------------------------------------------------------
+            var load=m.load;
+            m.load=function(){
+                load();
+                $('#order__ID').hide(); 
+                if(m.input.record!=undefined){
+                    $('#uid__ID').val(m.input.record.UID);
+                    $('#order__ID').show();
+                }
+
+                //-------item a part
+                m.item_a_records=[]; if(m.input.record!=undefined) m.item_a_records=m.input.record.Data.items;
+                m.item_a_render();
+                //-------
+                
+                if(m.input.record.L2!=undefined && m.input.record.L2!=""){
+                    $('#submit1__ID').attr("disabled", "disabled");
+                    $('#submit2__ID').removeAttr("disabled");
+                }
+                else{
+                    $('#submit2__ID').attr("disabled", "disabled");
+                    $('#submit1__ID').removeAttr("disabled");
+                }
+                
+            }
+            //--------------------------------------------------------
+            m.after_insert=function(data,res){  after_submit(data); }
+            m.after_update=function(data,res){  after_submit(data); }
+            //--------------------------------------------------------
+            var after_submit=function(data){
+                $vm.refresh=1;
+                if(m.processing==0) $vm.load_module(m.email_to_manager,'',{record:{Data:data}})
+                else{
+                    var rid=undefined; if(m.input.record!=undefined) rid=m.input.record._id;
+                    if(rid!=undefined) window.history.go(-1);                       //modify
+                    else if(m.input.goback!=undefined) window.history.go(-1);       //from grid
+                    else $vm.alert('Your data has been successfully submitted');    //standalone
+                }
+            }
+            //--------------------------------------------------------
+
+
+
+            //----------------------------------
+            //item a part
+            m.item_a_fields="Description,Unit_Price,Quantity,GST,Amount";
+            //----------------------------------
+            //$('#item_a_add__ID').on('click',function(){ m.item_a_add(); })
+            //----------------------------------
+            m.item_a_cell_render=function(records,I,field,td,set_value,source){
+                switch(field){
+    				case "GST":
+                        var html='<input type=checkbox />';
+                        $vm.render_checkbox_field(records[I],'__ID',td,html)
+                        td.find('input').on('change',function(){
+    						cal();
+    					})
+                        break;
+                    default:
+                    td.find('div:first').removeAttr('contenteditable');
+                        break;
+                }
+            }
+            //----------------------------------
+        }
+    </script>
+    <style>
+        #form_container__ID{
+            max-width:800px;
+        }
+        VmInclude:__COMPONENT__/f/form.01.css
+        VmInclude:__COMPONENT__/f/form-item-a.01.css
+    </style>
+</div>
