@@ -1,0 +1,39 @@
+<div id=D__ID>
+    <div>
+        VmInclude:__COMPONENT__/g/grid.01.html
+    </div>
+    <script>
+        function F__ID(){
+            //-------------------------------------
+            VmInclude:__COMPONENT__/g/grid.01.js
+            //-------------------------------------
+            var fields="_Print,_Invoice_Number,Client,Issue_Date,Due_Date,GST_Amount,Total_Amount,Total_Paid,Balance";
+            m.fields='_Form,'+fields+',Submit_date,Submitted_by,_Delete';
+            //-------------------------------------
+            m.cell_render=function(records,I,field,td){
+                switch(field){
+                    case '_Invoice_Number':
+                        td.html(records[I].UID);
+                        break;
+                    case 'GST_Amount':
+                    case 'Total_Amount':
+                    case 'Total_Paid':
+                    case 'Balance':
+                        if(records[I][field]!="") td.html('$'+records[I].Data[field]);
+                        td.css('text-align','right')
+                        break;
+                    case '_Print':
+                        td.html('<u style="cursor:pointer">Print</u>');
+                        td.find('u').on('click',function(){
+                            $vm.load_module('invoice-print','',{record:records[I]})
+                        })
+                        break;
+                }
+            }
+            //-------------------------------------
+        }
+    </script>
+    <style>
+        VmInclude:__COMPONENT__/g/grid.01.css
+    </style>
+</div>

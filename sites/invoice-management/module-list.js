@@ -1,12 +1,18 @@
 (function(){
     //-------------------------------------------------------------------------------------
-    //generic
     var modules={
-        "short-page":  		{url:"$M/s/short-page.html",router:1},
-        "long-page":  		{url:"$M/l/long-page.html",router:1},
-        "about-vmiis":  	{url:"$M/a/about-vmiis.html",router:1},
+        "workflow":                 {url:"$H/m/invoice-management-workflow.html",router:1,name:"Invoice management",tags:"invoice,finance"},
+        "invoice-data": 	        {url:"$H/m/invoice-data.html",Table:"invoice-vm",form_module:"invoice-form",router:1},
+        "invoice-form": 	        {url:"$H/m/invoice-form.html",Table:"invoice-vm",client_table:"client-wapp"},
+        "invoice-print": 	        {url:"$H/m/invoice-print.html",Table:"invoice-vm", client_table:"client-wapp"},
+        "client-data": 	            {url:"$H/m/client-data-wapp.html",Table:"client-wapp",form_module:"client-form",router:1},
+        "client-form": 	            {url:"$H/m/client-form-wapp.html",Table:"client-wapp"},
+        "about-vmiis":  {url:"$H/m/about-vmiis.html",router:1},
+        "module-editor":{url:"https://vm.vmiis.com/component/m/module-editor.html",router:1,sys:1},
     }
-    $vm.m_path='https://modules.vmiis.com'; if($vm.localhost==true) $vm.m_path='http://'+window.location.hostname+':8000/vmiis/modules'; 
-    for(m in modules){   modules[m].url=modules[m].url.replace('$M',$vm.m_path); $vm.module_list[m]=modules[m];}
+    for(p in modules){
+        $vm.module_list[p]=modules[p]; 
+        $vm.module_list[p].url=$vm.module_list[p].url.replace('$H',$vm.hosting_path);
+    }
     //-------------------------------------------------------------------------------------
 })();

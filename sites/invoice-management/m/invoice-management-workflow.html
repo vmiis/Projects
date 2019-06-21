@@ -1,0 +1,90 @@
+<div id=D__ID>
+    <div id=container__ID>
+        <h1>Invoice management workflow</h1>
+        <br>
+        <button type=button id=btn1__ID class="btn btn-secondary">Manage client information</button> ①
+        <br>
+        <br>
+        <i class="fas fa-arrow-down"></i> 
+        <br>
+        <br>
+        <button type=button id=btn2__ID class="btn btn-secondary">Create and print invoice</button> ②
+        <br>
+        <br>
+        <div id=comments__ID>
+            <br>
+            <ul style='list-style-type:decimal;font-size:80%'>
+                <li>
+                    Create, modify, view client information.
+                    <br>The client infomation will be used in an invoice.
+                </li>
+                <li>
+                    Ceate, maintain and print invoices.
+                </li>
+            </ul>
+        </div>
+
+    </div>
+    <script>
+        function F__ID(){
+            var m=$vm.module_list['__MODULE__'];
+            if(m.prefix==undefined) m.prefix="";
+            $('#btn1__ID').on('click',function(){
+                $vm.load_module(m.prefix+'client-data','',{})
+            })
+            $('#btn2__ID').on('click',function(){
+                $vm.load_module(m.prefix+'invoice-data','',{})
+            })
+            /*
+            $('#btn3__ID').on('click',function(){
+                $vm.load_module('purchase-order-data-p2','',{})
+            })
+            */
+        }
+    </script>
+    <style>
+        #D__ID{
+            height:100%;
+            overflow:auto;
+            animation: vm_module_fadein 1.0s;
+            background-color:#fff;
+        }
+        #container__ID{
+            text-align: center;
+            background-color:#fff;
+            padding:60px 10px 50px 10px;
+            margin-left: auto;
+            margin-right: auto;
+            font-family: Verdana,sans-serif;
+            font-size: 15px;
+            line-height: 1.5;
+            max-width:1200px;
+        }
+        #D__ID i{
+            font-size:200%;
+        }
+        #comments__ID{
+            padding-top:30px;
+            text-align: left;
+            margin-left: auto;
+            margin-right: auto;
+            max-width:390px;
+        }
+        #app__ID{
+            cursor:pointer;
+        }
+        #app__ID:hover{
+            color:red;
+        }
+        #btn__ID *{
+            margin:3px;
+        }
+        @media screen and (max-width:768px){
+            #container__ID{
+                margin-left: 0;
+                margin-right: 0;
+                padding:20px 10px 50px 10px;
+            }
+        }
+    </style>
+</div>

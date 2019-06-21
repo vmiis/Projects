@@ -1,0 +1,54 @@
+<div id=page__ID>
+	<div class="container-fluid" style='max-width:880px;padding-top:0px'>
+		<div _class="text-center">
+            <br><br>
+            <h3>This website is built with the following key features:</h3>
+			<hr style='border-top:1px solid #f05f40; margin:12px 0'></hr>
+            <ul style='color:#000'>
+                <li>Modular distributed –– scalable, flexible, reusable and easy replaceable</li>
+                <li>Microservices –– service oriented architecture (SOA)</li>
+                <li>Single page application (SPA) –– fast response, better user experience</li>
+                <li>Static web hosting from anywhere –– fast, secure and low cost or free (using GitHub+CloudFlare free services) </li>
+                <li>No server side coding –– simple development and easy maintenance</li>
+                <li>Data access with APIs –– read/write data from/to a cloud database with APIs</li>
+                <li>File access with APIs –– download/upload files from/to Amazon S3 storage with APIs</li>
+            </ul>
+            <img src='https://vmiis.github.io/images/structure.png' />
+            <hr style='border-top:1px solid #f05f40; margin:12px 0'></hr>
+	        Contact email: <a href="mailto:zzm.vmiis@gmail.com">zzm.vmiis@gmail.com</a>
+			<br>Source code of this website: <a target=_blank href=https://github.com/vmiis>https://github.com/vmiis</a>
+		</div>
+	</div>
+</div>
+<script>
+    function F__ID(){
+		//--------------------------------------------------------
+		$vm.module_list["__MODULE__"].show=function(){
+			document.title="About | "+$vm.default_title;
+            $("meta[name='description']").attr("content","Control Panel");
+		}
+        //--------------------------------------------------------
+	}
+</script>
+<style>
+    #D__ID{
+        height:100%;
+        overflow:auto;
+        animation: vm_module_fadein 1.0s;
+        /*background: linear-gradient(rgba(255,255,255,1), rgba(255,255,255,0.3));*/
+		background: rgba(255,255,255,1);
+    }
+    #page__ID{
+        color:#000;
+        height: 100%;
+    }
+    #page__ID ul{
+        color:#121840;
+    }
+    #page__ID b{
+        color:#121840;
+    }
+    #page__ID h3{
+        color:#191935;
+    }
+</style>

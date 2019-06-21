@@ -5,9 +5,10 @@ $vm.firebase_init=function(){
         databaseURL: "https://flirbase.firebaseio.com",
         projectId: "flirbase",
         storageBucket: "flirbase.appspot.com",
-        //messagingSenderId: "sender-id",
-        //appID: "app-id",
-    };            
+        messagingSenderId: "1003518397368",
+        appId: "1:1003518397368:web:2ed1848ce3f86020"
+    };
+
     // Initialize Firebase
     firebase.initializeApp(firebaseConfig);
     
@@ -16,7 +17,7 @@ $vm.firebase_init=function(){
             console.log(user);
             //$vm.firebase_user_name=$vm.user_name=user.displayName;
             //$vm.show_user();
-            $vm.user_name_3rd=response.name;
+            $vm.user_name_3rd=user.displayName;
             if($vm.app_after_3rd_signin!=undefined) $vm.app_after_3rd_signin();
         } 
         else {

@@ -1,0 +1,125 @@
+<div id=D__ID></d>
+	<div id=form_container__ID>
+		<div id=header__ID>
+			Client
+		</div>
+		<form id=F__ID>
+			<div class="container">
+				<div class='row row__ID row_hs__ID'>
+					<div class="col">
+						<span>Client ID</span>
+						<input type=text class=form-control id=record__ID readonly >
+					</div>
+				</div>
+				<div class='row row__ID'>
+					<div class="col-sm col-lg-8">
+						<span>Busines name</span>
+						<input type=text class=form-control name=Business_name>
+					</div>
+					<div class="col-sm col-lg-4">
+						<span>ABN number</span>
+						<input type=text class=form-control name=ABN_number>
+					</div>
+				</div>
+				<div class='row row__ID'>
+					<div class="col-sm col-lg-6">
+						<span>First name</span>
+						<input type=text class=form-control name=First_name>
+					</div>
+					<div class="col-sm col-lg-6">
+						<span>Last name</span>
+						<input type=text class=form-control name=Last_name>
+					</div>
+				</div>
+				<div class='row row__ID'>
+					<div class="col">
+						<span>Email</span>
+						<input type=email class=form-control name=Email>
+					</div>
+				</div>
+				<div class='row row__ID'>
+					<div class="col-sm col-lg-4">
+						<span>Phone</span>
+						<input type=text class=form-control name=Phone>
+					</div>
+					<div class="col-sm col-lg-4">
+						<span>Fax</span>
+						<input type=text class=form-control name=Fax>
+					</div>
+					<div class="col-sm col-lg-4">
+						<span>Mobile phone</span>
+						<input type=text class=form-control name=Mobile_phone>
+					</div>
+				</div>
+				<div class='row row__ID'>
+					<div class="col">
+						<span>Address</span>
+						<textarea class=form-control name=Address></textarea>
+					</div>
+				</div>
+				<div class='row row__ID'>
+					<div class="col-sm col-lg-4">
+						<span>Suburb</span>
+						<input type=text class=form-control name=Suburb>
+					</div>
+					<div class="col-sm col-lg-4">
+						<span>State</span>
+						<select name="State" class="form-control">
+                            <option></option>
+                            <option>NSW</option>
+                            <option>NT</option>
+                            <option>SA</option>
+                            <option>QLD</option>
+                            <option>TAS</option>
+                            <option>VIC</option>
+                            <option>WA</option>
+                      	</select>
+					</div>
+					<div class="col-sm col-lg-4">
+						<span>Postcode</span>
+						<input type=text class=form-control name=Postcode>
+					</div>
+				</div>
+	
+
+				<br>
+				<div class="row">
+					<div class=col>
+						<button id=submit__ID type="submit" class="btn btn-secondary">Submit</button>
+					</div>
+				</div>
+			</div>
+		</form>
+	</div>
+	<script>
+		function F__ID(){
+			//-------------------------------------
+			VmInclude:__COMPONENT__/f/form.01.js
+			//-------------------------------------
+			var load=m.load;
+			m.load=function(){
+				load();
+				if(m.input.record==undefined){
+					$('.row_hs__ID').hide()
+				}
+				else{
+					$('.row_hs__ID').show()
+					$('#record__ID').val(m.input.record.UID)
+				}
+			}
+			//-------------------------------------
+			m.before_submit=function(data,index){
+				index.I1=data.Business_name;
+				index.I2=data.First_name;
+				index.I3=data.Last_name;
+			}
+			//-------------------------------------
+		}
+	</script>
+	<style>
+        #form_container__ID{
+            max-width:700px;
+        }
+		VmInclude:__COMPONENT__/f/form.01.css
+	</style>
+</div>
