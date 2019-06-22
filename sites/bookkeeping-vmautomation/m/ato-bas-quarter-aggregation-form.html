@@ -7,9 +7,13 @@
     		<div class="container">
     			<div class="row row__ID">
     				<div class=col-lg-6>
-    					<b>Financial_Year</b>
-    					<input type="text" class="form-control" name=Financial_Year />
+    					<b>Year</b>
+    					<input type="text" class="form-control" name=Year />
 					</div>
+    				<div class=col-lg-6>
+    					<b>Quarter</b>
+    					<input type="text" class="form-control" name=Quarter />
+    				</div>
 				</div>
 				<!--
 				<br>
@@ -20,55 +24,36 @@
     				</div>
 				</div>
 				-->
-
 				<br>
 				<div id=items__ID>
 					<div class="row row__ID">
 						<div class=col>
-							<b>Other_sales</b>
-							<input type="text" readonly class="form-control" name=Other_sales />
+							<b>G1 sales</b>
+							<input type="text" readonly class="form-control" name=G1_sales />
 						</div>
 					</div>
 					<div class="row row__ID">
 						<div class=col>
-							<b>Gross_interest</b>
-							<input type="text" readonly class="form-control" name=Gross_interest />
+							<b>1A GST</b>
+							<input type="text" readonly class="form-control" name=1A_GST />
 						</div>
 					</div>
 					<div class="row row__ID">
 						<div class=col>
-							<b>Salary_expenses</b>
-							<input type="text" readonly class="form-control" name=Salary_expenses />
+							<b>1B GST</b>
+							<input type="text" readonly class="form-control" name=1B_GST />
 						</div>
 					</div>
 					<div class="row row__ID">
 						<div class=col>
-							<b>Super_expenses</b>
-							<input type="text" readonly class="form-control" name=Super_expenses />
+							<b>W1 salary</b>
+							<input type="text" readonly class="form-control" name=W1_salary />
 						</div>
 					</div>
 					<div class="row row__ID">
 						<div class=col>
-							<b>All_other_expenses</b>
-							<input type="text" readonly class="form-control" name=All_other_expenses />
-						</div>
-					</div>
-					<div class="row row__ID">
-						<div class=col>
-							<b>Total Income</b>
-							<input type="text" readonly class="form-control" name=Total_income />
-						</div>
-					</div>
-					<div class="row row__ID">
-						<div class=col>
-							<b>Total Expenses</b>
-							<input type="text" readonly class="form-control" name=Total_expenses />
-						</div>
-					</div>
-					<div class="row row__ID">
-						<div class=col>
-							<b>Profit/Lost</b>
-							<input type="text" readonly class="form-control" name=PL />
+							<b>W2 withheld</b>
+							<input type="text" readonly class="form-control" name=W2_withheld />
 						</div>
 					</div>
 				</div>
@@ -150,7 +135,8 @@
 			*/
 			//-------------------------------------
 			m.before_submit=function(data,index){
-				index.I1=data.Financial_Year;
+				index.I1=data.Year;
+				index.I2=data.Quarter;
 				return true;
 			}
 			//-------------------------------------

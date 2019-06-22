@@ -2,46 +2,37 @@
     <div>
         VmInclude:__COMPONENT__/g/grid.01.html
     </div>
+	VmInclude:__COMPONENT__/m/model.01.html
     <script>
         function F__ID(){
             //-------------------------------------
             VmInclude:__COMPONENT__/g/grid.01.js
             //-------------------------------------
-            var fields="Financial_Year,_Aggregate,Last_performed,Other_sales,Gross_interest,Salary_expenses,Super_expenses,All_other_expenses,Total_income,Total_expenses,Profit/Lost|PL";
-            m.fields="_Form,"+fields+",Submit_date,Submitted_by,_Delete";
-            m.form_fields=fields;
+            //var fields="Year,Month,_Aggregate,Last_performed";
+            //m.fields="_Form,"+fields+",Submit_date,Submitted_by,_Delete";
             //-------------------------------------
             m.sort={I1:-1,I2:-1}
             //-------------------------------------
             m.cell_render=function(records,I,field,td){
+                if(records[I].Data[field]!=undefined && records[I].Data[field][0]=='$'){
+                    td.html(records[I].Data[field]);
+                    td.css('text-align','right')
+                }
                 switch(field){
                     case '_Aggregate':
                         td.html("<u style='cursor:pointer'>Perform</u>");
                         td.find('u').on('click',function(){perform(I);});
                         break;
-                    case 'Other_sales':
-                    case 'Gross_interest':
-                    case 'Salary_expenses':
-                    case 'Super_expenses':
-                    case 'All_other_expenses':
-                    case 'Total_income':
-                    case 'Total_expenses':
-                    case 'PL':
-                        td.html("$"+parseFloat(records[I].Data[field]).toFixed(2));
-                        td.css('text-align','right')
-                        break;
                 }
             }
             //-------------------------------------
             var perform=function(I){
-				var y=parseInt(m.records[I].Data.Financial_Year);
-                
-                //var t1=new Date(Date.UTC(y-1,6,1,0,0,0,0)).toJSON();
-				//var t2=new Date(Date.UTC(y,6,1,0,0,0,0)).toJSON();
-                var t1=new Date(y-1,6,1,0,0,0,0).toJSON();
-				var t2=new Date(y,6,1,0,0,0,0).toJSON();
+				var y=m.records[I].Data.Year;
+				var mm=m.records[I].Data.Month;
+				var t1=new Date(y,mm-1,1,0,0,0,0).toJSON();
+				var t2=new Date(y,mm,  1,0,0,0,0).toJSON();
 				var query={I1:{"$gte":t1,"$lt":t2}}
-				var req={cmd:"export",table:m.transaction_table,query:query,projection:{"Data.1B_GST":1,"Data.1A_GST":1,"Data.Other_sales":1,"Data.Gross_interest":1,"Data.Salary_expenses":1,"Data.Super_expenses":1,"Data.All_other_expenses":1}}
+				var req={cmd:"export",table:m.transaction_table,query:query,projection:{"Data.Amount":1,"Data.Name":1}}
 				open_model__ID();
 				$vm.request(req,function(N,i,txt){
 					if(N==0){
@@ -64,32 +55,25 @@
             //-------------------------------------
             var data_aggregate=function(I,d){
                 var data={};
-                var index={I1:parseInt(m.records[I].Data.Financial_Year)};
+                var index={I1:parseInt(m.records[I].Data.Year),I2:parseInt(m.records[I].Data.Month)};
                 data.Last_performed=$vm.date_to_string_yyyymmdd(new Date());
-
-				var vOther_sales=0; 
-				var vGross_interest=0; 
-				var vSalary_expenses=0;
-				var vSuper_expenses=0;
-				var vAll_other_expenses=0;
+                
+				var R={};
+				var A=[];
+				var RR={};
 				for(i=0;i<d.length;i++){
-					vOther_sales+=parseFloat(d[i].Other_sales)-parseFloat(d[i]["1A_GST"]);
-					vGross_interest+=parseFloat(d[i]["Gross_interest"]);
-					vSalary_expenses+=parseFloat(d[i]["Salary_expenses"]);
-					vSuper_expenses+=parseFloat(d[i].Super_expenses);
-					vAll_other_expenses+=parseFloat(d[i].All_other_expenses)-parseFloat(d[i]["1B_GST"]);
+					var nm=d[i].Name;
+					var am=d[i].Amount;
+					if(R[nm]==undefined){ R[nm]=am; A.push(nm); }
+					else R[nm]+=am;
 				}
-                
-                data.Financial_Year=m.records[I].Data.Financial_Year;
-                data.Other_sales=vOther_sales;
-                data["Gross_interest"]=vGross_interest;
-                data["Salary_expenses"]=vSalary_expenses;
-                data.Super_expenses=vSuper_expenses;
-                data.All_other_expenses=vAll_other_expenses;
-                
-                data.Total_income=vOther_sales+vGross_interest;
-                data.Total_expenses=vSalary_expenses+vSuper_expenses+vAll_other_expenses;
-                data.PL=data.Total_income-data.Total_expenses;
+				A.sort();
+				for(var i=0;i<A.length;i++){
+					RR[A[i]]=R[A[i]];
+				}
+                data.Year=m.records[I].Data.Year;
+                data.Month=m.records[I].Data.Month;
+                data.Result=RR;
 
                 console.log(data)
                 console.log(index)
@@ -112,6 +96,26 @@
                         m.request_data();
                     });
                 }
+            }
+            //-------------------------------------
+            //create dynamic fields
+            m.data_process=function(){
+                var fs="Year,Month,_Aggregate,Last_performed";
+                var R={}
+                for(var i=0;i<m.records.length;i++){
+                    var r=null;
+                    for(a in m.records[i].Data.Result){
+                        if(a=='Result') r=m.records[i].Data.Result[a];
+                        if(R[a]==undefined){
+                            R[a]=1;
+                            fs=fs+","+a.replace(/ /g,'_');
+                        }
+                        m.records[i].Data[a.replace(/ /g,'_')]="$"+parseFloat(m.records[i].Data.Result[a]).toFixed(2);
+                    }
+                    if(r!=null) m.records[i].Data.Result="$"+r;
+                }
+                fields=fs;
+                m.fields="_Form,"+fields+",Submit_date,Submitted_by,_Delete";
             }
             //-------------------------------------
         }

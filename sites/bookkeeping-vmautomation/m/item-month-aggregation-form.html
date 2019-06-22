@@ -1,0 +1,140 @@
+<div id=D__ID>
+    <section id=form_container__ID>
+    	<div id=header__ID>
+    		Income and expense monthly aggregation
+    	</div>
+    	<form id=F__ID>
+    		<div class="container">
+    			<div class="row row__ID">
+    				<div class=col-lg-6>
+    					<b>Year</b>
+    					<input type="Number" class="form-control" name=Year step=1 />
+					</div>
+    				<div class=col-lg-6>
+    					<b>Month</b>
+    					<input type="Number" class="form-control" name=Month step=1 />
+    				</div>
+				</div>
+				<!--
+				<br>
+				<div class="row">
+					<div class=col>
+						<button style='margin-left:6px' id=agregate__ID type="button" class="btn btn-secondary">Aggregate</button>
+						<span style='padding-left:30px'></span>Last performed: <input type="text" name=Last_performed class=no_border__ID />
+    				</div>
+				</div>
+				<br>
+				<div id=items__ID>
+				</div>
+			-->
+    			<br>
+    			<div class="row c_print">
+    				<div class=col>
+    					<button id=submit__ID type="submit" class="btn btn-secondary">Submit</button>
+    				</div>
+    			</div>
+    		</div>
+    	</form>
+    </section>
+	VmInclude:__COMPONENT__/m/model.01.html
+    <script>
+    	function F__ID(){
+    		//-------------------------------------
+			VmInclude:__COMPONENT__/f/form.01.js
+    		//-------------------------------------
+			var load=m.load;
+			m.load=function(){
+				load();
+				if(m.input.record!=undefined){
+					m.onload_display(m.input.record.Data.Result)
+				}
+			}
+			//-------------------------------------
+			/*
+			$('#agregate__ID').on('click',function(){
+				var y=$('#F__ID input[name=Year]').val();
+				var mm=$('#F__ID input[name=Month]').val();
+				var t1=new Date(y,mm-1,1,0,0,0,0).toJSON();
+				var t2=new Date(y,mm,  1,0,0,0,0).toJSON();
+				var query={I1:{"$gte":t1,"$lt":t2}}
+				var req={cmd:"export",table:m.transaction_table,query:query,projection:{"Data.Amount":1,"Data.Name":1}}
+				open_model__ID();
+				$vm.request(req,function(N,i,txt){
+					if(N==0){
+						console.log(i+"/"+N);
+						close_model__ID();
+						m.cal_and_set([]);
+						return;
+					}
+					console.log(i+"/"+N);
+					$('#msg__ID').text((100*i/N).toFixed(0)+"%");
+					if(i==-1){
+						var len=txt.length;
+						var n_txt="["+txt.substring(5,len-9)+"]";
+						var d=JSON.parse(n_txt);
+						$('#F__ID input[name=Last_performed]').val($vm.date_to_string_yyyymmdd(new Date()))
+						m.cal_and_set(d);
+						close_model__ID();
+					}
+				});
+			})
+			//-------------------------------------
+			var R={};
+			var A=[];
+			var RR={};
+			m.cal_and_set=function(d){
+				R={};
+				A=[];
+				RR={};
+				for(i=0;i<d.length;i++){
+					var nm=d[i].Name;
+					var am=d[i].Amount;
+					if(R[nm]==undefined){ R[nm]=am; A.push(nm); }
+					else R[nm]+=am;
+				}
+				A.sort();
+				for(var i=0;i<A.length;i++){
+					RR[A[i]]=R[A[i]];
+				}
+				var txt="";
+				for(a in RR){
+					txt+=a+": $"+RR[a].toFixed(2)+"<br>";
+				}
+				$('#items__ID').html(txt);
+			}
+			//-------------------------------------
+			m.onload_display=function(Rt){
+				var txt="";
+				for(a in Rt){
+					txt+=a+": $"+Rt[a].toFixed(2)+"<br>";
+				}
+				$('#items__ID').html(txt);
+			}
+			*/
+			m.before_submit=function(data,index){
+				index.I1=parseInt(data.Year);
+				index.I2=parseInt(data.Month);
+				//data.Result=RR;
+				return true;
+			}
+			//-------------------------------------
+    	}
+    </script>
+    <style>
+        #form_container__ID{
+            max-width:700px;
+        }
+        VmInclude:__COMPONENT__/f/form.01.css
+        #F__ID b{
+            display:inline-block;
+            margin-bottom:10px;
+        }
+		.no_border__ID{
+			border:0px solid black;
+		}
+		input.no_border__ID:focus { 
+		  	border:0 solid black !important;
+			outline: none !important;
+		}
+    </style>
+</div>
