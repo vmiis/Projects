@@ -1,0 +1,105 @@
+<div id=D__ID>
+    <section id=form_container__ID>
+    	<div id=header__ID>
+    		Enquiry
+    	</div>
+    	<form id=F__ID>
+    		<div class="container">
+    			<div class="row row__ID">
+    				<div class=col-sm-6>
+    					<span>First name</span>
+    					<input type="text" class="form-control" name=First_name />
+    				</div>
+    				<div class=col-sm-6>
+    					<span>Last name</span>
+    					<input type="text" class="form-control" name=Last_name />
+    				</div>
+    			</div>
+    			<div class="row row__ID">
+    				<div class=col-sm-4>
+    					<span>Title</span>
+                        <select class="form-control" name="Title" >
+                            <option></option>
+                            <option value="Miss">Miss</option>
+                            <option value="Ms">Ms</option>
+                            <option value="Mrs">Mrs</option>
+                            <option value="Mr">Mr</option>
+                            <option value="Dr">Dr</option>
+                        </select>
+    				</div>
+    				<div class=col-sm-8>
+    					<span>Occupation</span>
+    					<input type="text" class="form-control" name=Occupation />
+    				</div>
+    			</div>
+    			<div class="row row__ID">
+    				<div class=col>
+    					<span>Email</span>
+    					<input type="email" class="form-control" name=Email />
+    				</div>
+                </div>
+    			<div class="row row__ID">
+    				<div class=col>
+    					<span>Enquire type</span>
+                        <select class="form-control" name="Enquire_type" >
+                            <option></option>
+                            <option value="Pricing levels">Pricing levels</option>
+                            <option value="Maintenance">Maintenance</option>
+                            <option value="Testing">Testing</option>
+                            <option value="Complaints">Complaints</option>
+                        </select>
+                    </div>
+    			</div>
+    			<div class="row row__ID">
+    				<div class=col>
+    					<span>Details</span>
+    					<textarea class="form-control" style="height:150px" name=Details ></textarea>
+    				</div>
+                </div>
+    			<div class="row row__ID">
+    				<div class=col-lg-6>
+                        <span>Contact by phone</span>
+                        <br>
+                        <div class="col-sm">
+                            <div class="form-check form-check-inline">
+                                <label class="form-check-label">
+                                    <input class="form-check-input" type="radio" name="Contact_by_phone" value="Yes"> Yes
+                                </label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <label class="form-check-label">
+                                    <input class="form-check-input" type="radio" name="Contact_by_phone" value="No"> No
+                                </label>
+                            </div>
+                        </div>                
+                    </div>
+                    <div class=col-lg-6>
+                        <span>Phone</span>
+                        <input type="phone" class="form-control" name=Phone />
+                    </div>
+                </div>
+    			<br>
+    			<div class="row">
+    				<div class=col>
+    					<button id=submit__ID type="submit" class="btn btn-secondary">Submit</button>
+    					<button id=pdf__ID type="button" class="btn btn-secondary">PDF</button>
+    				</div>
+    			</div>
+    		</div>
+    	</form>
+    </section>
+    VmInclude:__COMPONENT__/m/model.01.html
+    <script>
+    	function F__ID(){
+    		//-------------------------------------
+            VmInclude:__COMPONENT__/f/form.01.js
+    		//-------------------------------------
+    	}
+    </script>
+    <style>
+		#form_container__ID{
+			max-width:700px;
+		}
+        VmInclude:__COMPONENT__/f/form.01.css
+    </style>
+</div>

@@ -1,0 +1,40 @@
+<div id=D__ID>
+    <div id=page_container__ID>
+        <h3>Module code generator</h3>
+        <b>Input</b>
+        <textarea id=input__ID placeholder="Comma separated field names" style='width:100%'></textarea>
+        <button id=build__ID type=button class="btn btn-secondary">Build</button>
+        <br><br><b>Output</b>
+        <textarea id=output__ID placeholder="Comma separated field names" style='width:100%;height:600px'></textarea>
+    </div>
+    <script>
+    	function F__ID(){
+    		//-------------------------------------
+            $vm.module_list["__MODULE__"].show=function(){
+                //for search engin
+                document.title="My page | "+$vm.default_title;
+                $("meta[name='description']").attr("content","This is my page");
+            }
+            //--------------------------------------------------------
+            $('#D__ID').on('load',function(){
+            })
+            //-------------------------------------
+    	}
+    </script>
+    <style>
+    	#D__ID{
+    		height:100%;
+    		overflow:auto;
+    		animation: vm_module_fadein 1.0s;
+    		background-color:#fff;
+    	}
+        #page_container__ID{
+            padding:30px 20px;
+    	}
+    	@media screen and (max-width:768px){
+    		#page_container__ID{
+    			padding:20px 10px 50px 10px;
+    		}
+    	}
+    </style>
+</div>

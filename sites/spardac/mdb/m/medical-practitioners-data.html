@@ -1,0 +1,26 @@
+<div id=D__ID>
+    <div>
+        VmInclude:__COMPONENT__/g/grid.01.html
+    </div>
+    <script>
+        function F__ID(){
+            //-------------------------------------
+            VmInclude:__COMPONENT__/g/grid.01.js
+            //-------------------------------------
+            var fields='Type_of_practitioner,2015_Male,2015_Female,2016_Male,2016_Female';
+            m.fields='_Form,'+fields+',Submit_date,Submitted_by,_Delete';
+            //-------------------------------------
+            m.cell_render=function(records,I,field,td){
+                switch(field){
+                    case 'Field_1':
+                        //...;
+                        break;
+                }
+            }
+            //-------------------------------------
+        }
+    </script>
+    <style>
+        VmInclude:__COMPONENT__/g/grid.01.css
+    </style>
+</div>

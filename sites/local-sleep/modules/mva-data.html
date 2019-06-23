@@ -1,0 +1,19 @@
+<section>
+  VmInclude:__CURRENT_PATH__/grid.v1h.html
+</section>
+<script>
+  function F__ID(){
+      //-------------------------------------
+      VmInclude:__COMPONENT__/g/grid.01.js
+      VmInclude:__CURRENT_PATH__/shared-data.js
+      //-------------------------------------
+      $('#title__ID').text('Motor Vehicle Accidents')
+      //-------------------------------------
+      var fields="MVA_drive,MVA_accident,accident_vehicle_work,accident_vehicle_nonwork,accident_novehicle_work,accident_nonvehicle_nowork,MVAacc_sleep,MVA_nearmiss,nearmiss_vehicle_work,nearmiss_vehicle_nonwork,nearmiss_novehicle_work,nearmiss_nonvehicle_nowork,MVAnmiss_sleep,fear_drivesleep,drive_nod,alert_caffeine,alert_radio,alert_air,alert_break,dirve_km,drive_yrs,drive_wkhrs,drive_professional";
+      m.fields="_Form,_Status,_Notes,_Participant_ID,Participant,"+fields+",Submit_date,Submitted_by,_Delete";
+      //-------------------------------------
+  }
+</script>
+<style>
+  VmInclude:__COMPONENT__/g/grid.01.css
+</style>

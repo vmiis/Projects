@@ -1,0 +1,19 @@
+<div id=D__ID>
+    <section>
+        VmInclude:__COMPONENT__/g/grid.01.html
+    </section>
+    <script>
+        function F__ID(){
+            //-------------------------------------
+            VmInclude:__COMPONENT__/g/grid.01.js
+            VmInclude:__CURRENT_PATH__/../../s/shared-task-data-apap.js
+            //-------------------------------------
+            var fields="ae_num,AE,last_dose,date_onset,time_onset,date_resol,time_resol,sae,intensity,Relationship to study treatment|relation,Treatment Required|treatment,other_text,Outcome";
+            m.fields="_Form,_Status,_Notes,_Participant_ID,Participant,"+fields+",Submit_date,Submitted_by,_Delete";
+            //-------------------------------------
+        }
+    </script>
+    <style>
+        VmInclude:__COMPONENT__/g/grid.01.css
+    </style>
+</div>

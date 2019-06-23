@@ -1,0 +1,75 @@
+<div id=D__ID>
+    <section id=form_container__ID>
+        <div id=header__ID>
+    		Current Medication
+    	</div>
+    	<form id=F__ID>
+            <div class="container">
+                <!-- participant part for all tsak forms -------------------->
+                <div class="row row__ID" id=row_participant__ID>
+                    <div class="col-sm-12 col-lg-9 input__ID">
+                        <span class=label__ID>Participant</span><br>
+                        <input type=text name="Participant" class=form-control id=Participant__ID data-id="Participant" />
+                    </div>
+                    <div class="col-sm-12 col-lg-3 input__ID">
+                        <span class=label__ID>Participant ID</span><br>
+                        <input type=text name="Participant_uid" class=form-control readonly />
+                    </div>
+                    <hr style="border-top: 1px solid #888;width: 100%;margin:10px 0">
+                </div>
+                <!---------------------------------------------------->
+
+                <!-- Form Inputs-------------------------------------->
+                <div class='row row__ID'>
+                    <div class="col">
+                        <span>Medication</span>
+                        <input type=text class=form-control name=med>
+                    </div>
+                </div>
+                <div class='row row__ID'>
+                    <div class="col">
+                        <span>Dose</span>
+                        <input type=text class=form-control name=dose>
+                    </div>
+                </div>
+                <div class='row row__ID'>
+                    <div class="col">
+                        <span>Route</span>
+                        <input type=text class=form-control  name=route>
+                    </div>
+                </div>
+                <div class='row row__ID'>
+                    <div class="col">
+                        <span>Start Year</span>
+                        <input type=date class=form-control  name=startyear>
+                    </div>
+                </div>
+                <!---------------------------------------------------->
+
+
+                <!-- submit button part for all tsak forms------------>
+                <br>
+    			<div class="row">
+    				<div class=col>
+    					<button id=submit__ID type="submit" class="btn btn-secondary">Submit</button>
+    				</div>
+    			</div>
+                <!---------------------------------------------------->
+        	</div>
+        </form>
+    </section>
+    <script>
+        function F__ID(){
+            //-------------------------------------
+            VmInclude:'__COMPONENT__/f/form.01.js'
+            VmInclude:'__CURRENT_PATH__/../../s/shared-task-form-apap.js'
+            //-------------------------------------
+        }
+    </script>
+    <style>
+        #form_container__ID{
+            max-width:700px;
+        }
+        VmInclude:__COMPONENT__/f/form.01.css
+    </style>
+</div>

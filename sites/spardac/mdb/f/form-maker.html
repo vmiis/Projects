@@ -1,0 +1,93 @@
+<div id=D__ID>
+    <div id=form_container__ID>
+        <div id=header__ID>
+    		A simple form maker (all fields are text input)
+        </div>
+        <form id=F__ID>
+            <div class="container">
+                <div class="row row__ID">
+                    <div class=col>
+                        <span>Data html file name</span>
+                        <input type="text" class="form-control" id=data__ID />
+                    </div>
+                </div>
+                <div class="row row__ID">
+                    <div class=col>
+                        <span>Form html file name</span>
+                        <input type="text" class="form-control" id=form__ID />
+                    </div>
+                </div>
+                <div class="row row__ID">
+                    <div class=col>
+                        <span>Fields</span>
+                        <textarea id=fields__ID class="form-control" style='height:150px' placeholder='comma separated names'></textarea>
+                    </div>
+                </div>
+                <br>
+                <button id=btn1__ID type="button" class="btn btn-secondary">Data grid view module</button>
+                <button id=btn2__ID type="button" class="btn btn-secondary">Data collection form module</button>
+                </form>
+            </div>
+        </form>
+    </div>
+    <script>
+        function F__ID(){
+            //----------------------------------------------
+            $('#D__ID').on('load',function(){
+                $('#data__ID').val("m-data.html")
+                $('#form__ID').val("m-form.html")
+            })
+            //----------------------------------------------
+            function download1(filename, text) {
+                var element = document.createElement('a');
+                element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
+                element.setAttribute('download', filename);
+                element.style.display = 'none';
+                document.body.appendChild(element);
+                element.click();
+                document.body.removeChild(element);
+            }
+            //----------------------------------------------
+            function download2(filename, text) {
+                var blob = new Blob([text],{ type: 'text/plain' });
+                window.navigator.msSaveBlob(blob,filename);
+            }
+            //----------------------------------------------
+            $('#btn1__ID').on('click',function(){
+                $.get('__CURRENT_PATH__/form-maker-data.html',function(txt){ 
+                    txt=txt.replace('@@@',$('#fields__ID').val().replace(/\n/g,'').replace(/ /g,''));
+                    if (navigator.appVersion.toString().indexOf('Edge') > 0){
+                        download2($('#data__ID').val(),txt);
+                    }
+                    else{                
+                        download1($('#data__ID').val(),txt);
+                    }
+                },'text')
+            })
+            //----------------------------------------------
+            $('#btn2__ID').on('click',function(){
+                $.get('__CURRENT_PATH__/form-maker-form.html',function(txt){ 
+                    txt=txt.replace('@@@',$('#fields__ID').val().replace(/\n/g,'').replace(/ /g,''));
+                    txt=txt.replace('###',$('#form__ID').val().replace(/-form.html/g,'').replace(/_/g,' '));
+                    if (navigator.appVersion.toString().indexOf('Edge') > 0){
+                        download2($('#form__ID').val(),txt);
+                    }
+                    else{                
+                        download1($('#form__ID').val(),txt);
+                    }
+                },'text')
+            })
+            //----------------------------------------------
+        }
+    </script>
+    <style>
+        #form_container__ID{
+            max-width:700px;
+        }
+        VmInclude:__COMPONENT__/f/form.01.css
+        #F__ID div span{
+            font-weight:700;
+        }
+
+    </style>
+</div>

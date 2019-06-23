@@ -1,0 +1,100 @@
+<div id=D__ID>
+    <div>
+        VmInclude:__COMPONENT__/d/day.01.html
+    </div>
+    <script>
+    function F__ID(){
+        //--------------------------------------------------------
+        VmInclude:__COMPONENT__/d/day.01.js
+        //--------------------------------------------------------
+        m.request_and_render=function(){
+            var txt="<tr>";
+        	for(var j=0;j<12;j++){
+    			txt+="<th colspan=12 style='width:8%;cursor:pointer'>"+$vm.pad((8+j),2)+":00</th>";
+    		}
+    		txt+="</tr>";
+            $('#thead__ID').html(txt);
+    		txt="<tr><td colspan=144></td></tr>";
+    		$('#tbody__ID').html(txt);
+            
+            m.put_on_click_for_create_event();
+            m.put_on_events();
+        }
+        //--------------------------------------------------------
+    	m.put_on_click_for_create_event=function(){
+            $('#thead__ID th').each(function(){
+    		    $(this).on('click',function(){
+                    var record={
+                        Data:{
+                            Date:$('#date__ID').val(),
+                            Time:$(this).html()
+                        }
+                    }
+                    $vm.load_module(m.event_form,"",{record:record,goback:1});
+    		    });
+    		});
+    	};
+    	//-----------------------------------
+		m.put_on_events=function(){
+            var mt1=new Date().getTime();
+            var date=$('#date__ID').val();
+            $vm.request({cmd:"find",table:m.Table,query:{I1:date},options:{}},function(res){
+                //-----------------------
+                var mt2=new Date().getTime();
+                var tt_all=mt2-mt1;
+                var tt_server=parseInt(res.sys.elapsed_time);
+                if(tt_all<tt_server) tt_all=tt_server;
+                $("#elapsed__ID").text((JSON.stringify(res.result).length/1000).toFixed(1)+"kb/"+tt_all.toString()+"ms/"+tt_server+'ms');
+                //-----------------------
+                if(res.sys.permission==false){
+                    alert("No permission to get event records.");
+                    return;
+                }
+                //-----------------------
+                res.result.sort(function(a, b){return (a.I2).localeCompare(b.I2)});
+                for(var i=0;i<res.result.length;i++){
+                    var cc="#EEEEEE"; if(i%2===0) cc="#ffffff";
+                    var rid         =res.result[i]._id;
+                    var time    	=res.result[i].Data.Time;
+                    var description =res.result[i].Data.Description;
+                    var color       =res.result[i].Data.Color;
+                    var aa          =time.split(':');
+                    var startmargin =100*(parseInt(aa[0])+(parseInt(aa[1])/60)-8)/12;
+                    var txt="<div style='background-color:"+cc+";position: relative;'>";
+                    txt+="<div style='position:relative;z-index:10;margin-left:"+startmargin+"%'><u id=B"+rid+" style='cursor:pointer;color:"+color+"'>"+$vm.time12(time)+"&nbsp;&nbsp;&nbsp;"+description+"</u></div>";
+                    txt+="</div>";
+                    var $td=$('#table__ID').find('tbody tr:last').find('td').eq(0);
+                    $td.append(txt);
+                    $('#B'+rid).data('rid',rid);
+                    $('#B'+rid).data('record',res.result[i]);
+                    $('#B'+rid).on('click',m.on_click_edit_fun);
+                }
+            })
+        };
+    	//-----------------------------------
+    	m.on_click_edit_fun=function(){
+			var record=$(this).data('record');
+			$vm.load_module_v2(m.event_form,'',{record:record,goback:1});
+    	};
+    	//--------------------------------------------------------
+        $('#D__ID').on('load',function(){
+            var d=m.input.day;
+            if(d==undefined) d=$vm.date_to_yyyymmdd($vm.date_today());
+            $('#date__ID').val(d);
+            $('#date__ID').triggerHandler('change');
+        });
+        //--------------------------------------------------------
+        $('#D__ID').on('show',function(){  if($vm.refresh==1){$vm.refresh=0; m.request_and_render();}    });
+        //--------------------------------------------------------
+    }
+    </script>
+    <style>
+        #D__ID{
+            background-color:#fff;
+            font-size:13px;
+            font-family: Helvetica, Arial, sans-serif;
+            height:100%;
+            overflow: auto;
+        }
+    </style>
+</div>

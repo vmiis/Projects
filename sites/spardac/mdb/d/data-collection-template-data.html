@@ -1,0 +1,27 @@
+<div id=D__ID>
+    <div>
+        VmInclude:__COMPONENT__/g/grid.01.html
+    </div>
+    <script>
+        function F__ID(){
+            //-------------------------------------
+            VmInclude:__COMPONENT__/g/grid.01.js
+            //-------------------------------------
+            var fields="Field_1,Field_2,Field_3";
+            m.fields="_Form,"+fields+",Submit_date,Submitted_by,_Delete";
+            m.form_fields=fields;
+            //-------------------------------------
+            m.cell_render=function(records,I,field,td){
+                switch(field){
+                    case 'Field_1':
+                        //...;
+                        break;
+                }
+            }
+            //-------------------------------------
+        }
+    </script>
+    <style>
+        VmInclude:__COMPONENT__/g/grid.01.css
+    </style>
+</div>

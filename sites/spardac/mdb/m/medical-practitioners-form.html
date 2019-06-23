@@ -1,0 +1,66 @@
+<div id=D__ID>
+    <section id=form_container__ID>
+        <div id=header__ID>
+            Medical practitioners
+        </div>
+        <form id=F__ID>
+            <div class="container">
+                <!-- Form Inputs-------------------------------------->
+                <div class='row row__ID'><div class='col'>
+                    <span>Type of practitioner</span>
+                    <input type=text class=form-control name=Type_of_practitioner>
+                </div></div>
+                <div class='row row__ID'><div class='col'>
+                    <span>2015 Male</span>
+                    <input type=text class=form-control name=2015_Male>
+                </div></div>
+                <div class='row row__ID'><div class='col'>
+                    <span>2015 Female</span>
+                    <input type=text class=form-control name=2015_Female>
+                </div></div>
+                <div class='row row__ID'><div class='col'>
+                    <span>2016 Male</span>
+                    <input type=text class=form-control name=2016_Male>
+                </div></div>
+                <div class='row row__ID'><div class='col'>
+                    <span>2016 Female</span>
+                    <input type=text class=form-control name=2016_Female>
+                </div></div>
+                <!---------------------------------------------------->
+                
+                <!-- submit button part for all tsak forms------------>
+                <br>
+                <div class="row">
+                    <div class=col>
+                        <button id=submit__ID type="submit" class="btn btn-secondary">Submit</button>
+                    </div>
+                </div>
+                <!---------------------------------------------------->
+            </div>
+        </form>
+    </section>
+    <script>
+        function F__ID(){
+            //-------------------------------------
+            //build text input fields
+            var fields='Type_of_practitioner,2015_Male,2015_Female,2016_Male,2016_Female';
+            var fs=fields.split(',');
+            var txt="";
+            for(var i=0;i<fs.length;i++){
+                txt+="<div class='row row__ID'><div class='col'>\r\n";
+                txt+="<span>"+fs[i].replace(/_/g," ")+"</span><input type=text class=form-control name="+fs[i]+">\r\n";
+                txt+="</div></div>\r\n";
+            }
+            $('#dynamic_part__ID').html(txt);
+            //-------------------------------------
+            VmInclude:__COMPONENT__/f/form.01.js
+            //-------------------------------------
+        }
+    </script>
+    <style>
+        #form_container__ID{
+            max-width:700px;
+        }
+        VmInclude:__COMPONENT__/f/form.01.css
+    </style>
+</div>

@@ -1,0 +1,122 @@
+<div id=D__ID>
+    <section id=form_container__ID>
+        <div id=header__ID>
+    		Blood Gas (Arterialised Earlobe)
+    	</div>
+    	<form id=F__ID>
+            <div class="container">
+                <!-- participant part for all tsak forms -------------------->
+                <div class="row row__ID" id=row_participant__ID>
+                    <div class="col-sm-12 col-lg-9 input__ID">
+                        <span class=label__ID>Participant</span><br>
+                        <input type=text name="Participant" class=form-control id=Participant__ID data-id="Participant" />
+                    </div>
+                    <div class="col-sm-12 col-lg-3 input__ID">
+                        <span class=label__ID>Participant ID</span><br>
+                        <input type=text name="Participant_uid" class=form-control readonly />
+                    </div>
+                    <hr style="border-top: 1px solid #888;width: 100%;margin:10px 0">
+                </div>
+                <!---------------------------------------------------->
+
+                <!-- Form Inputs-------------------------------------->
+                <div class='row row__ID'>
+                    <div class="col">
+                        <span>File Upload</span>
+						<div class="form-control">
+                                <u style='cursor:pointer' id=link_file__ID></u>
+                                <br>
+                                <input type="file" name=file style="margin-top:6px" /> <button type="button" id=x_file__ID>Remove</button>
+                            </div>
+                        </div>
+                </div>
+                <div class='row row__ID'>
+                    <div class="col">
+                        <span>Date</span>
+                        <input type=date class=form-control name=date>
+                    </div>
+                </div>
+                <div class='row row__ID'>
+                    <div class="col">
+                        <span>Time</span>
+                        <input type=Time class=form-control name=time>
+                    </div>
+                </div>
+                <div class='row row__ID'>
+                    <div class="col">
+                        <span>FiO2</span>
+                        <input type=text class=form-control name=FiO2>
+                    </div>
+                </div>
+                <div class='row row__ID'>
+                    <div class="col">
+                        <span>O2 (L/min)</span>
+                        <input type=text class=form-control name=O2>
+                    </div>
+                </div>
+                <div class='row row__ID'>
+                    <div class="col">
+                        <span>pH</span>
+                        <input type=text class=form-control name=pH>
+                    </div>
+                </div>
+                <div class='row row__ID'>
+                    <div class="col">
+                        <span>pCO2</span>
+                        <input type=text class=form-control name=pCO2>
+                    </div>
+                </div>
+                <div class='row row__ID'>
+                    <div class="col">
+                        <span>HCO3</span>
+                        <input type=text class=form-control name=HCO3>
+                    </div>
+                </div>
+                <div class='row row__ID'>
+                    <div class="col">
+                        <span>BE</span>
+                        <input type=text class=form-control name=BE>
+                    </div>
+                </div>
+                <div class='row row__ID'>
+                    <div class="col">
+                        <span>SaO2</span>
+                        <input type=text class=form-control name=SaO2>
+                    </div>
+                </div>
+                <!---------------------------------------------------->
+
+
+                <!-- submit button part for all tsak forms------------>
+                <br>
+    			<div class="row">
+    				<div class=col>
+    					<button id=submit__ID type="submit" class="btn btn-secondary">Submit</button>
+    				</div>
+    			</div>
+                <!---------------------------------------------------->
+        	</div>
+        </form>
+    </section>
+    VmInclude:__COMPONENT__/m/model.01.html
+	<script>
+		function F__ID(){
+			//-------------------------------------
+			VmInclude:'__COMPONENT__/f/form.01.js'
+            VmInclude:'__CURRENT_PATH__/../../s/shared-task-form-apap.js'
+			//-------------------------------------
+			var load2=m.load;
+			m.load=function(){
+				load2();
+                m.set_file_link("file");
+			}
+			//-------------------------------------
+		}
+	</script>
+	<style>
+        #form_container__ID{
+            max-width:700px;
+        }
+		VmInclude:__COMPONENT__/f/form.01.css
+	</style>
+</div>

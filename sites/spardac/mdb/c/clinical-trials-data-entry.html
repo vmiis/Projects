@@ -1,0 +1,218 @@
+<div id=D__ID>
+    <div>
+        <div id=toolbar__ID class="navbar navbar-default">
+        	<form class="form-inline">
+        		<button type=button id=count__ID class='btn btn-secondary'>Count</button>
+        		<span id=info__ID style='margin-left:20px'></span>
+        	</form>
+        	<span id=elapsed__ID style='float:right'></span>
+        </div>
+        <div id=panel__ID>
+            <div class='nav__ID'>
+                <span>Screening</span>
+                <ul>
+                    <li m=consent-data>Consent</li>
+                    <li m=screening-data>Screening</li>
+                    <li m=ess-data>Epworth sleepiness scale</li>
+                    <li m=psqi-data>Pittsburgh sleep quality index</li>
+                    <li m=dass-data>Depression anxiety stress scales</li>
+                    <li m=ffs-data>Flinders fatigue scale</li>
+                    <li m=fss-data>Fatigue severity scale</li>
+            		<li m=isi-data>Insomnia severity index</li>
+                </ul>
+                <span>Visit 1</span>
+                <ul>
+                    <li m=visit-date-data>Visit date</li>
+                    <li m=consent-form-upload-data>Consent form upload</li>
+                    <li m=anthropometry-data>Anthropometry</li>
+                    <li m=medical-history-data>Medical history</li>
+                    <li m=medical-history-wf-data>Medical history 2</li>
+                    <li m=social-history-data>Social history</li>
+                    <li m=fosq-data>Functional Outcome of Sleep Questionnaire (FOSQ)</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <script>
+    	function F__ID(){
+    		//--------------------------------------------------------
+    		var old_info='';
+    		var participant_record;
+    		var count={}
+    		var participant_info=function(record){ return record.Data.Subject_Initials+' '+record.Data.DOB; }
+    		//--------------------------------------------------------
+    		var set_li_text=function(){
+    		    $('.nav__ID li').each(function(){
+    		        $(this).attr('data-li_text',$(this).text());
+    		    })
+    		}
+    		set_li_text();
+    		//---------------------------------------------
+    		$('#D__ID').on('load',function(){
+    			participant_record=$vm.vm['__ID'].input.record;
+    			if(participant_record==undefined){
+    				$('#info__ID').text("No individual participant info was found.");
+    				return;
+    			}
+    			var info=participant_info(participant_record);
+    			if(old_info!=info){
+    				old_info=info;
+    				set_counting();
+    			}
+    			$('#info__ID').text(info);
+    		})
+    		//--------------------------------------------------------
+    		var clear_counting=function(){
+    			$('.nav__ID li').each(function(){
+    				var txt=$(this).attr('data-li_text');
+    				if(txt!=undefined){
+    					$(this).text(txt);
+    				}
+    		    })
+    		}
+    		//---------------------------------------------
+    		var set_counting=function(){
+    			$('.nav__ID li').each(function(){
+    				var $li=$(this);
+    				var m=$li.attr('m');
+    				if(count[participant_record.UID.toString()]!==undefined){
+    					var num=$('<div/>').html(count[participant_record.UID.toString()][m]).text();
+    					if(num!=undefined){
+    			            var txt=$('<div/>').html($li.attr('data-li_text')).text();
+    			            $li.html(txt+" <mark style='font-size:9px'>["+num+"]</mark>")
+    					}
+    				}
+    				else clear_counting();
+    		    })
+    		}
+    		//---------------------------------------------
+    		$('#panel__ID li').on('click',function(){
+    			if( $(this).hasClass( 'not_allowed__ID' )===true){
+    				  alert("No permission!");
+    				  return;
+    			}
+    			var m=$(this).attr('m');
+    			if(m!=undefined){
+    				if($vm.module_list[m]==undefined){
+    					alert(m +" is not in the module list.");
+    					return;
+    				}
+    				$vm.load_module(m,"",{record:participant_record});
+    			}
+    		})
+    		//--------------------------------------------------------
+    		$('#count__ID').on('click',function(){
+    			clear_counting();
+    			var N=0;
+    			$('#panel__ID li').each(function(){
+    				var $li=$(this);
+    				N++;
+    				var m=$li.attr('m');
+    				if(m!=undefined){
+    					check_count($li,N);
+    				}
+    			});
+    		})
+    		//--------------------------------------------------------
+    		var check_count=function($li,N){
+    			//do not send too many requests to the server in a short period
+    			setTimeout(function(){check_count_d($li)}, N*200);
+    		}
+    		//--------------------------------------------------------
+    		var check_count_d=function($li){
+    			var m=$li.attr('m');
+    			if($vm.module_list[m]!=undefined){
+                    var query={App:$vm.module_list[m].App,Table:$vm.module_list[m].Table,'Data.Participant_uid':participant_record.UID.toString()}
+                    $vm.request({cmd:"count",query:query,options:{}},function(res){
+                        if(res.permission==false){
+                            return;
+                        }
+                        if(count[participant_record.UID.toString()]==undefined) count[participant_record.UID.toString()]={}
+                        count[participant_record.UID.toString()][m]=res.records[0].count;
+                        var txt=$li.attr('data-li_text');
+                        txt=$('<div/>').html(txt).text();
+                        var num=$('<div/>').html(count[participant_record.UID.toString()][m]).text();
+                        $li.html(txt+" <mark style='font-size:9px'>["+num+"]</mark>")
+                    });
+    			}
+    		}
+    		//--------------------------------------------------------
+            $('#panel__ID li').each(function(){
+                var href=$(this).attr('m');
+                if(href!=undefined){
+                    href=href.replace('?\/','');
+                    href=href.replace(/\//g,'_');
+                    var url=$vm.module_list[href].url;
+                    $(this).attr('title',url);
+                }
+            })
+            //--------------------------------------------------------
+    	}
+    </script>
+    <style>
+        #D__ID{
+    		background-color:#fff;
+    		height:100%;
+    		overflow: auto;
+    		animation: vm_module_fadein 1.0s;
+    	}
+        #toolbar__ID{
+    		background-color:#ccc;
+    		padding-left:10px;
+    		margin-bottom:0px;
+    		overflow:hidden'
+    	}
+        #toolbar__ID .form-inline > * {
+            margin-right:5px;
+        }
+        #panel__ID{
+    		padding:20px 0 0 20px;
+            font-size:14px;
+    	}
+    	#panel__ID li {
+    		color:#666;
+            cursor:pointer;
+    	}
+    	li::before{
+    		font-size: 20px!Important;
+    	}
+    	#panel__ID li:hover {
+    		color:red;
+    	}
+    	#panel__ID a {
+    		text-decoration: none;
+    	}
+    	#panel__ID a:link {
+    		color:#666;
+    	}
+    	#panel__ID a:visited {
+    		color:#666;
+    	}
+    	#panel__ID a:hover {
+    		color:#fff;
+    	}
+    	#panel__ID a:active {
+    		color:#666;
+    	}
+        .nav__ID{
+	        padding:6px 26px 6px 6px;
+	        float:left;
+	    }
+	    .nav__ID span{
+			color:#283f55;
+			font-weight: bold;
+			margin:3px 10px;
+	    }
+        @media screen and (max-width:768px){
+    		#toolbar__ID{
+    			padding: 3px 10px;
+    		}
+    		#toolbar__ID div{
+    			padding-left:3px;
+    		}
+            #panel__ID{
+    			padding:10px 0 0 10px;
+    		}
+    	}
+    </style>
+</div>

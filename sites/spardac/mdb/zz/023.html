@@ -1,0 +1,59 @@
+<div id=D__ID>
+    <div id=page_container__ID>
+        <span id=r__ID></span>
+        <button id=t__ID type=button>Test</button>
+    </div>
+    VmInclude:__COMPONENT__/m/model.01.html
+    <script>
+    	function F__ID(){
+    		//-------------------------------------
+            $vm.module_list["__MODULE__"].show=function(){
+                //for search engin
+                document.title="My page | "+$vm.default_title;
+                $("meta[name='description']").attr("content","This is my page");
+            }
+            //--------------------------------------------------------
+            $('#D__ID').on('load',function(){
+            })
+            //-------------------------------------
+            var query={App:"module",Table:"room-booking-record"}
+            var req={cmd:"export",query:query}
+            //-------------------------------------
+            $('#t__ID').on('click',function(){
+                open_model__ID();
+                $vm.request(req,function(N,i,txt){
+                    console.log(i+"/"+N);
+                    $('#msg__ID').text((100*i/N).toFixed(0)+"%");
+                    if(i==-1){
+                        var len=txt.length;
+                        var n_txt="["+txt.substring(5,len-10)+"]";
+                        console.log(n_txt);
+                        var o=JSON.parse(n_txt);
+                        console.log(o);
+
+                        $vm.download_csv("nm.csv",o);
+                        close_model__ID();
+                    }
+                });
+                return;
+            })
+
+    	}
+    </script>
+    <style>
+    	#D__ID{
+    		height:100%;
+    		overflow:auto;
+    		animation: vm_module_fadein 1.0s;
+    		background-color:#fff;
+    	}
+        #page_container__ID{
+            padding:6px 5px;
+    	}
+    	@media screen and (max-width:768px){
+    		#page_container__ID{
+    			padding:20px 10px 50px 10px;
+    		}
+    	}
+    </style>
+</div>

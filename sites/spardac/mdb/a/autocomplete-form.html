@@ -1,0 +1,75 @@
+<section id=form_container__ID>
+	<div id=header__ID>
+		Auto complete
+	</div>
+	<form id=F__ID>
+		<div class="container">
+			<div class="row row__ID">
+				<div class="col-sm col-lg-8">
+					<span>Client</span>
+					<input type="text" class="form-control" name=Client id=Client__ID data-id=Client />
+				</div>
+				<div class="col-sm col-lg-4">
+					<span>Client ID</span>
+					<input type="text" class="form-control" name=Client_uid readonly />
+				</div>
+			</div>
+			<div class="row row__ID">
+				<div class=col>
+					<span>Notes</span>
+					<textarea class="form-control" name=Notes></textarea>
+				</div>
+			</div>
+			<input type="text" name="Client_uid" style='display:none' />
+			<br>
+			<div class="row">
+				<div class=col>
+					<button id=submit__ID type="submit" class="btn btn-secondary">Submit</button>
+				</div>
+			</div>
+		</div>
+	</form>
+</section>
+<script>
+	function F__ID(){
+		//-------------------------------------
+        VmInclude:__COMPONENT__/f/form.01.js
+		//-------------------------------------
+		var autocomplete_req_1={cmd:"find",field:"First_name",table:"text-input",skip:0,limit:10}
+		var autocomplete_list_1=function(records){
+		    var items=[];
+		    for(var i=0;i<records.length;i++){
+		        var obj={};
+		        obj.label=records[i].Data.First_name+' '+records[i].Data.Last_name;
+				obj['UID']=records[i].UID;
+		        items.push(obj);
+		    }
+		    return items;
+		}
+		//-------------------------------------
+		var autocomplete_callback_1=function(items){
+			$("#F__ID input[name=Client_uid]").val(items["UID"]);
+		}
+		//-------------------------------------
+		var start=function(){
+    		$vm.autocomplete($('#Client__ID'),autocomplete_req_1,autocomplete_list_1,autocomplete_callback_1);
+        }
+		//-------------------------------------
+        var I=0;
+        var loop__ID=setInterval(function (){
+            if($vm['jquery-ui-min-js']!=undefined){
+                clearInterval(loop__ID); start();
+            }
+            I++; if(I>50){
+                clearInterval(loop__ID); alert("jquery-ui.min.js is not installed.");
+            }
+        },100);
+        //-------------------------------------
+	}
+</script>
+<style>
+	#form_container__ID{
+		max-width:700px;
+	}
+	VmInclude:__COMPONENT__/f/form.01.css
+</style>

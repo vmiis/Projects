@@ -1,0 +1,199 @@
+<div id=D__ID>
+    <section id=form_container__ID>
+    	<div id=header__ID>
+    		Predefined transaction item
+    	</div>
+    	<form id=F__ID>
+    		<div class="container">
+    			<div class="row row__ID">
+    				<div class=col>
+    					<b>Date</b>
+    					<input type="date" class="form-control" name=Date />
+    				</div>
+                </div>
+    			<div class="row row__ID">
+    				<div class=col>
+    					<b>Amount</b>
+    					<input type="number" step=0.01 class="form-control" name=Amount id=Amount__ID />
+    				</div>
+                </div>
+    			<div class="row row__ID">
+    				<div class=col>
+    					<b>Name</b>
+    					<input type="text" class="form-control" name=Name id=Name__ID />
+    				</div>
+                </div>
+    			<div class="row row__ID">
+    				<div class=col>
+    					<b>Description</b>
+    					<input type="text" class="form-control" name=Description />
+    				</div>
+                </div>
+    			<div class="row row__ID">
+    				<div class=col-lg-6>
+    					<b>Group</b>
+    					<input type="text" class="form-control" name=Group />
+    				</div>
+    				<div class=col-lg-6>
+    					<b>Category</b>
+    					<input type="text" class="form-control" name=Category />
+    				</div>
+                </div>
+                <div class="row row__ID">
+    				<div class=col>
+    					<b>Document</b>
+                        <div class="form-control">
+                            <u style='cursor:pointer' id=link_Document_form__ID></u>
+                            <br>
+                            <input type="file" name=Document_form style="margin-top:6px" /> <button type="button" id=x_Document_form__ID>Remove</button>
+                        </div>
+    				</div>
+    			</div>
+    			<br>
+    			<div class="row c_print">
+    				<div class=col>
+    					<button id=submit__ID type="submit" class="btn btn-secondary">Submit</button>
+						<button id=delete__ID type="button" class="btn btn-secondary">Delete</button>
+						<!--
+						<button id=copy__ID type="button" class="btn btn-secondary">Copy</button>
+						<button id=paste__ID type="button" class="btn btn-secondary">Paste</button>
+						-->
+    				</div>
+    			</div>
+				<br>
+				<div id=items__ID style='font-size:9px;color:#555'>
+					<b>BAT Items</b>
+					<div class="row">
+						<div class=col>
+							G1 sales: $<input type="text" name=G1_sales readonly class=no_border__ID /><br>
+							1A GST on sales: $<input type="text" name=1A_GST readonly class=no_border__ID /><br>
+							1B GST on purchase: $<input type="text" name=1B_GST readonly class=no_border__ID /><br>
+							W1 salary: $<input type="text" name=W1_salary readonly class=no_border__ID /><br>
+							W2 withheld: $<input type="text" name=W2_withheld readonly class=no_border__ID /><br>
+							W4 withheld no ABN: $<input type="text" name=W4_withheld_no_ABN readonly class=no_border__ID /><br>
+							W3 withheld other: $<input type="text" name=W3_withheld_other readonly class=no_border__ID /><br>
+						</div>
+					</div>
+					<br>
+					<b>TAX Return Items</b>
+					<div class="row">
+						<div class=col>
+							Other sales: $<input type="text" name=Other_sales readonly class=no_border__ID /><br>
+							Gross interest: $<input type="text" name=Gross_interest readonly class=no_border__ID /><br>
+							Salary_expenses: $<input type="text" name=Salary_expenses readonly class=no_border__ID /><br>
+							Super expenses: $<input type="text" name=Super_expenses readonly class=no_border__ID /><br>
+							All other expenses: $<input type="text" name=All_other_expenses readonly class=no_border__ID /><br>
+						</div>
+					</div>
+				</div>
+    		</div>
+    	</form>
+    </section>
+    <script>
+    	function F__ID(){
+    		//-------------------------------------
+			VmInclude:__COMPONENT__/f/form.01.js
+    		//-------------------------------------
+			var tax={};
+			var load=m.load;
+			m.load=function(){
+				load();
+                m.set_file_link("Document");
+				tax={};
+				var record=m.input.record;
+				if(record!=undefined) tax=record.Data.tax;
+				$('#items__ID input').each(function(){
+					var v=$(this).val();
+					if(v=='') $(this).val('0.00');
+					else $(this).val(parseFloat(v).toFixed(2));
+				})
+			}
+			//-------------------------------------
+			m.before_submit=function(data,index){
+				data.Amount=parseFloat(data.Amount);
+				data.G1_sales=parseFloat(data.G1_sales);
+				data['1A_GST']=parseFloat(data['1A_GST']);
+				data['1B_GST']=parseFloat(data['1B_GST']);	
+				data.W1_salary=parseFloat(data.W1_salary);
+				data.W2_withheld=parseFloat(data.W2_withheld);
+				data.W4_withheld_no_ABN=parseFloat(data.W4_withheld_no_ABN);
+				data.W3_withheld_other=parseFloat(data.W3_withheld_other);
+				data.Other_sales=parseFloat(data.Other_sales);
+				data.Gross_interest=parseFloat(data.Gross_interest);
+				data.Salary_expenses=parseFloat(data.Salary_expenses);
+				data.Super_expenses=parseFloat(data.Super_expenses);
+				data.All_other_expenses=parseFloat(data.All_other_expenses);		
+				index.I1=data.Date;
+				index.I2=data.Amount;
+				index.I3=data.Group;
+				index.I4=data.Category;
+				data.tax=tax;
+			}
+			//-------------------------------------
+			$('#Amount__ID').on('change',function(){
+				m.cal();
+			})
+			//-------------------------------------
+			m.cal=function(){
+				$('#items__ID input').each(function(){
+					var v=$(this).val();
+					$(this).val('0.00');
+				})
+				var Amount=$('#F__ID input[name=Amount]').val();
+				Amount=parseFloat(Amount);
+				if(tax.G1_sales=='on') $('#F__ID input[name=G1_sales]').val(Amount.toFixed(2));
+				if(tax['1A_GST']=='on') $('#F__ID input[name=1A_GST]').val((Amount/11).toFixed(2));
+				if(tax['1B_GST']=='on') $('#F__ID input[name=1B_GST]').val((Amount/11).toFixed(2));
+				if(tax.W1_salary=='on') $('#F__ID input[name=W1_salary]').val((Amount).toFixed(2));
+				if(tax.W2_withheld=='on') $('#F__ID input[name=W2_withheld]').val((Amount).toFixed(2));
+				if(tax.Other_sales=='on') $('#F__ID input[name=Other_sales]').val((Amount).toFixed(2));
+				if(tax.Gross_interest=='on') $('#F__ID input[name=Gross_interest]').val((Amount).toFixed(2));
+				if(tax.Salary_expenses=='on') $('#F__ID input[name=Salary_expenses]').val((Amount).toFixed(2));
+				if(tax.Super_expenses=='on') $('#F__ID input[name=Super_expenses]').val((Amount).toFixed(2));
+				if(tax.All_other_expenses=='on') $('#F__ID input[name=All_other_expenses]').val((Amount).toFixed(2));
+			}
+			//-------------------------------------
+			//auto select predefined item
+			var autocomplete_req={cmd:"find",field:'.I1',table:m.item_table,options:{},skip:0,limit:10}
+			var autocomplete_callback=function(items){ 
+				tax=items.tax;
+				m.cal();
+			}
+			var autocomplete_list=function(records){
+				var items=[];
+				for(var i=0;i<records.length;i++){
+					var obj={};
+					obj.label=records[i].Data.Name;
+					obj.tax=records[i].Data;
+					items.push(obj);
+				}
+				return items;
+			}
+			var wait1=function(){
+				$vm.autocomplete($('#Name__ID'),autocomplete_req,autocomplete_list,autocomplete_callback);
+			}
+			var I=0; var loop_1=setInterval(function (){
+				if($vm['jquery-ui-min-js']!=undefined){  clearInterval(loop_1); wait1(); }
+				I++; if(I>50){ clearInterval(loop_1); alert("jquery-ui.min.js is not installed."); }
+			},100);
+			//-------------------------------------
+    	}
+    </script>
+    <style>
+        #form_container__ID{
+            max-width:700px;
+        }
+        VmInclude:__COMPONENT__/f/form.01.css
+        #F__ID b{
+            display:inline-block;
+            margin-bottom:10px;
+        }
+		.no_border__ID{
+			border:0px solid black;
+		}
+		#items__ID input:focus { 
+		  	border:0 solid black !important;
+			outline: none !important;
+		}
+    </style>
+</div>

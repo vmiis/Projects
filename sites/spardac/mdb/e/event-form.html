@@ -1,0 +1,62 @@
+<section id=form_container__ID>
+	<div id=header__ID>
+		Event
+	</div>
+	<form id=F__ID>
+		<div class="container">
+            <div class="row row__ID">
+                <div class="col-sm col-lg-6">
+                    <span>Date</span>
+                    <input type=date class="form-control" name="Date" required>
+                </div>
+                <div class="col-sm col-lg-6">
+                    <span>Time</span>
+                    <input type=time class="form-control" name="Time" required>
+                </div>
+            </div>
+			<div class="row row__ID">
+				<div class="col">
+                    <span>Short Description</span><br>
+                    <input type=text class="form-control" name="Description" >
+                </div>
+            </div>
+			<div class="row row__ID">
+                <div class="col">
+                    <span>Details</span>
+                    <textarea class="form-control" name="Details" style='min-height:50px'></textarea>
+                </div>
+            </div>
+			<div class="row row__ID">
+				<div class="col">
+                    <span>Color</span><br>
+                    <input type=color name="Color" style='width:100px;height:38px;border:none' value=#008800>
+                </div>
+            </div>
+            <br>
+			<div class="row">
+				<div class=col>
+					<button id=submit__ID type="submit" class="btn btn-secondary">Submit</button>
+				</div>
+			</div>
+		</div>
+	</form>
+</section>
+<script>
+    function F__ID(){
+        //-------------------------------------
+        VmInclude:__COMPONENT__/f/form.01.js
+        //-------------------------------------
+        m.before_submit=function(data,index){
+			index.I1=data.Date;
+            index.I2=data.Time;
+            return true;
+        };
+        //-------------------------------------
+    }
+</script>
+<style>
+		#form_container__ID{
+			max-width:700px;
+		}
+        VmInclude:__COMPONENT__/f/form.01.css
+</style>

@@ -1,0 +1,169 @@
+<div id=D__ID>
+    <div id=form_container__ID>
+		<div id=header__ID>
+			Room booking
+		</div>
+		<form id=F__ID>
+			<div id=aaa class="container">
+				<div class="row row__ID">
+					<div class="col-sm col-lg-4">
+						<span>Room number</span>
+						<input type=text class="form-control" name="Room_number" readonly required>
+					</div>
+					<div class="col-sm col-lg-8">
+						<span>Room name</span>
+						<input type=text class="form-control" name="Room_name" readonly required>
+					</div>
+				</div>
+				<div class="row row__ID">
+					<div class="col-sm col-lg-6">
+						<span>Date</span>
+						<input type=date class="form-control" name="Date" readonly required>
+					</div>
+					<div class="col-sm col-lg-6">
+						<span>Time</span>
+						<input type=time class="form-control" name="Time" readonly required>
+					</div>
+				</div>
+				<div class="row row__ID">
+					<div class="col-sm col-lg-6">
+						<span>Duration (hours)</span>
+						<select class="form-control" name="Duration" required>
+							<option>0.5</option>
+							<option>1.0</option>
+							<option>1.5</option>
+							<option>2.0</option>
+							<option>2.5</option>
+							<option>3.0</option>
+							<option>3.5</option>
+							<option>4.0</option>
+							<option>4.5</option>
+							<option>5.0</option>
+							<option>5.5</option>
+							<option>6.0</option>
+							<option>6.5</option>
+							<option>7.0</option>
+							<option>7.5</option>
+							<option>8.0</option>
+							<option>8.5</option>
+							<option>9.0</option>
+							<option>9.5</option>
+							<option>10.0</option>
+						</select>
+					</div>
+					<div class="col-sm col-lg-6">
+						<span>Color</span><br>
+						<input type=color name="Color" style='width:100px;height:38px;border:none' value='#669966' required>
+					</div>
+				</div>
+				<div class="row row__ID">
+					<div class="col">
+						<span>Description</span>
+						<textarea class="form-control" name="Description" style='min-height:100px'></textarea>
+					</div>
+				</div>
+				<div class="row row__ID">
+					<div class="col">
+						<span>Contact name</span>
+						<input type=text class="form-control" name="Contact_name">
+					</div>
+				</div>
+				<div class="row row__ID">
+					<div class="col">
+						<span>Contact phone</span>
+						<input type=text class="form-control" name="Contact_phone">
+					</div>
+				</div>
+				<div class="row row__ID">
+					<div class="col">
+						<span>Contact email</span>
+						<input type=text class="form-control" name="Contact_email">
+					</div>
+				</div>
+				<br>
+				<div class="row">
+					<div class=col>
+						<button id=submit__ID type="submit" class="btn btn-secondary">Submit</button>
+						<button id=pdf__ID type="button" class="btn btn-secondary">PDF</button>
+					</div>
+				</div>
+			</div>
+		</form>
+	</div>
+    <script>
+    	function F__ID(){
+    		//-------------------------------------
+            VmInclude:__COMPONENT__/f/form.01.js
+    		//-------------------------------------
+            var load=m.load;
+            m.load=function(){
+                load();
+                //...
+            }
+            //-------------------------------------
+            m.before_submit=function(data,index){
+				index.I1=data.Date;
+            	index.I2=data.Time;
+            	index.I3=data.Room_number;
+                return true;
+            }
+			//-------------------------------------
+    	}
+    </script>
+    <style>
+    	#F__ID div span{
+    		display:inline-block;
+    		padding-bottom:5px;
+    	}
+    	#F__ID div label{
+    		display:inline-block;
+    	}
+    	#D__ID{
+    		height:100%;
+    		overflow:auto;
+    		animation: vm_module_fadein 1.0s;
+    		background-color:#fff;
+    	}
+        #form_container__ID{
+    		background-color:#fff;
+            margin-top:20px;
+    		max-width: 700px;
+    		margin-left: auto;
+    		margin-right: auto;
+
+    		font-family: Verdana,sans-serif;
+        	font-size: 15px;
+        	line-height: 1.5;
+    	}
+    	#form_container__ID .row__ID{
+    		padding:6px 5px;
+    	}
+    	#form_container__ID .row__ID:hover{
+    		background-color: #ddd;
+    	}
+    	#header__ID{
+    		background-color:#727b84;
+    		color:#fff;
+    		padding:10px 15px 10px 15px;
+    		font-size:120%;
+            border:1px solid #bbb;
+            border-bottom-width: 0;
+    	}
+    	#F__ID{
+    		border:1px solid #bbb;
+            border-top-width: 0;
+    		padding:6px 15px 20px 15px;
+    		margin-bottom:200px;
+    	}
+    	#F__ID fieldset {
+    	    border: 0px solid #c0c0c0;
+    	    margin: 0;
+    	    padding: 0;
+    	}
+    	@media screen and (max-width:768px){
+    		#form_container__ID{
+    			padding:20px 10px 50px 10px;
+    		}
+    	}
+    </style>
+</div>

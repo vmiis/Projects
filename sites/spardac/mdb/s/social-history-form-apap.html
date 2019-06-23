@@ -1,0 +1,138 @@
+<div id=D__ID>
+    <div id=form_container__ID>
+        <div id=header__ID>
+            Social History
+        </div>
+        <form id=F__ID>
+            <div class="container">
+                <!-- participant part for all tsak forms -------------------->
+                <div class="row row__ID" id=row_participant__ID>
+                    <div class="col-sm-12 col-lg-9 input__ID">
+                        <span class=label__ID>Participant</span><br>
+                        <input type=text name="Participant" class=form-control id=Participant__ID data-id="Participant" />
+                    </div>
+                    <div class="col-sm-12 col-lg-3 input__ID">
+                        <span class=label__ID>Participant ID</span><br>
+                        <input type=text name="Participant_uid" class=form-control readonly />
+                    </div>
+                    <hr style="border-top: 1px solid #888;width: 100%;margin:10px 0">
+                </div>
+                <!---------------------------------------------------->
+
+                <!-- Form Inputs-------------------------------------->
+                <div class='row row__ID'>
+    				<div class="col">
+    					<span>Narcotics/Sedative use</span>
+    					<input type=text class=form-control name=narcotics>
+    				</div>
+    			</div>
+                <div class='row row__ID'>
+                    <div class="col">
+                        <span>Smoking history</span>
+                        <br>
+                        <div class="form-check form-check-inline">
+                            <label class="form-check-label">
+                            <input class="form-check-input" type="radio" name="smoking" value="never"> Never Smoked
+                            </label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <label class="form-check-label">
+                            <input class="form-check-input" type="radio" name="smoking" value="current"> Current Smoker
+                            </label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <label class="form-check-label">
+                            <input class="form-check-input" type="radio" name="smoking" value="past"> Past Smoker
+                            </label>
+                        </div>
+                        <br>
+                        <span>Cigarettes a day:</span>
+    					<input type=text class=form-control name=smoking_day>
+                        <span>Years Smoked</span>
+    					<input type=text class=form-control name=smoking_year>
+                        <span>Stopped</span>
+    					<input type=text class=form-control name=smoking_stop>
+                    </div>
+                </div>
+                <div class='row row__ID'>
+    				<div class="col">
+    					<span>Alcohol</span>
+                        <br>
+                        <div class="form-check form-check-inline">
+                            <label class="form-check-label">
+                                <input class="form-check-input" type="radio" name="alcohol" value="Nil"> Nil
+                            </label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <label class="form-check-label">
+                                <input class="form-check-input" type="radio" name="alcohol" value="Social"> Social
+                            </label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <label class="form-check-label">
+                                <input class="form-check-input" type="radio" name="alcohol" value="Daily"> Daily
+                            </label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <label class="form-check-label">
+                                <input class="form-check-input" type="radio" name="alcohol" value="Reformed"> Reformed Alcoholic
+                            </label>
+                        </div>
+    					<input type=Number class=form-control  placeholder="Number of drinks per week" name=alcohol_week>
+    				</div>
+    			</div>
+                <!---------------------------------------------------->
+
+                <!-- submit button part for all tsak forms------------>
+                <br>
+    			<div class="row">
+    				<div class=col>
+    					<button id=submit__ID type="submit" class="btn btn-secondary">Submit</button>
+    				</div>
+    			</div>
+                <!---------------------------------------------------->
+            </div>
+        </form>
+    </div>
+    <script>
+        function F__ID(){
+            //-------------------------------------
+            VmInclude:__COMPONENT__/f/form.01.js
+            VmInclude:__CURRENT_PATH__/../../s/shared-task-form-apap.js
+            //-------------------------------------
+            var old_load=m.load;
+            m.load=function(){
+                old_load();
+                $('#D__ID input[name=smoking_day]').attr("readonly","true");
+                $('#D__ID input[name=smoking_year]').attr("readonly","true");
+                $('#D__ID input[name=smoking_stop]').attr("readonly","true");
+            }
+            $('#D__ID input[name=smoking]').on('click',function(){
+                switch(this.value){
+                    case "never":
+                        $('#D__ID input[name=smoking_day]').attr("readonly","true");
+                        $('#D__ID input[name=smoking_year]').attr("readonly","true");
+                        $('#D__ID input[name=smoking_stop]').attr("readonly","true");
+                    break;
+                    case "current":
+                        $('#D__ID input[name=smoking_day]').removeAttr("readonly");
+                        $('#D__ID input[name=smoking_year]').removeAttr("readonly");
+                        $('#D__ID input[name=smoking_stop]').attr("readonly","true");
+                    break;
+                    case "past":
+                        $('#D__ID input[name=smoking_day]').removeAttr("readonly");
+                        $('#D__ID input[name=smoking_year]').removeAttr("readonly");
+                        $('#D__ID input[name=smoking_stop]').removeAttr("readonly");
+                    break;
+                }
+            })
+            //-------------------------------------
+        }
+    </script>
+    <style>
+        #form_container__ID{
+            max-width:700px;
+        }
+		VmInclude:__COMPONENT__/f/form.01.css
+    </style>
+</div>

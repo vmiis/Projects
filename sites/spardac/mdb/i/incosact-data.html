@@ -1,0 +1,36 @@
+<div id=D__ID>
+    <div>
+        VmInclude:__COMPONENT__/g/grid.01.html
+    </div>
+    <script>
+        function F__ID(){
+            //-------------------------------------
+            VmInclude:__COMPONENT__/g/grid.01.js
+            //-------------------------------------
+            var fields="language,cardiology_discipline,AFiB_fail_drug,AFiB_fail_cardioversion,AFiB_fail_first_ablation,AFiB_fail_second_ablation";
+                fields+=",risk_factor_age,risk_factor_diabetes,risk_factor_hypertension,risk_factor_obesity,risk_factor_alcohol,risk_factor_osa";
+                fields+=",risk_factor_thyroid,risk_factor_cld,risk_factor_cad,risk_factor_valvular,risk_factor_chf,risk_factor_diastolic_dysfunction";
+                fields+=",sleep_lab_access,sleep_referral,full_sleep_study,limited_sleep_study,dx_osa_proportion,rec_tx_osa_proportion,tx_osa_proportion";
+                fields+=",accept_cpap_inluence_referral,prior_sleep_referral,after_sleep_referral,research_preventing_afib,research_managing_first_afib";
+                fields+=",research_managing_paroxysmal_afib,research_managing_persistent_afib,research_managing_permanent_afib,outcome_reduce_risk_stroke";
+                fields+=",outcome_reduce_risk_afib_recurrence,outcome_reduce_risk_afib_hospitalisation,outcome_reduce_afib_burden,outcome_improve_qol";
+                fields+=",outcome_improve_sleep,afib_tx_stroke,rct_stroke,afib_tx_cardioversion,rct_cardioversion,afib_tx_ablation,rct_ablation,afib_tx_hf";
+                fields+=",rct_hf,afib_tx_hospitalisation,rct_hospitalisation,afib_tx_sx,rct_sx,afib_tx_qol,rct_qol,comments";
+            m.fields='_Form,'+fields+',Submit_date,Submitted_by,_Delete';
+            //-------------------------------------
+            /*
+            m.cell_render=function(records,I,field,td){
+                switch(field){
+                    case 'Field_1':
+                        //...;
+                        break;
+                }
+            }
+            */
+            //-------------------------------------
+        }
+    </script>
+    <style>
+        VmInclude:__COMPONENT__/g/grid.01.css
+    </style>
+</div>

@@ -1,0 +1,613 @@
+<div id=D__ID>
+    <!--third html start -->
+    <div class="container mt-95 mb-3">
+      <div class="row" >
+        <!-- form container start -->
+        <div class="col-12 col-lg-7 col-md-11 col-sm-12 mx-auto formbox">
+          <div class="row">
+            <div class="col-12">
+              <!-- form start -->
+              <form id="F__ID">
+                  <h3>Screening Questions</h3>
+                  <!-- participant name and study id -->
+                  <div class="form-group" style='_display:none!Important'>
+                    <div class="row" style="padding-bottom:10px">
+                      <div class="col-lg-9 col-sm-12">
+                        <label for="participant-name">Participant</label>
+                        <input type="text" class="form-control" name="Participant" placeholder="" id=Participant__ID data-id="Participant">
+                      </div>
+                      <div class="col-lg-3 col-sm-12">
+                        <label for="participant-id">Participant ID</label>
+                        <input type="text" class="form-control" name="Participant_uid" placeholder="" readonly>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                      <fieldset class="subquestions">
+                          <h4>We invite you to complete the below questions to determine if you are eligible for the study. These questions should take approximately 2 minutes to complete. Once you complete all the questions, click the ‘Next’ button at the bottom of the page.</h4>
+                      </fieldset>
+                  </div>
+                  <!-- form group -->
+                  <div class="form-group">
+                      <fieldset class="subquestions">
+                          <h4>1. Do you live in Australia?</h4>
+                          <label class="radiobuttons">
+                            <input type="radio" name="australia" value="Yes" required >
+                            <span class="checkmark"></span> Yes</label>
+                          <label class="radiobuttons">
+                            <input type="radio" name="australia" value="No">
+                            <span class="checkmark"></span> No</label>
+                      </fieldset>
+                  </div>
+                  <div class="form-group">
+                      <fieldset class="subquestions">
+                          <h4>2. Are you aged between 18-65?</h4>
+                          <label class="radiobuttons">
+                            <input type="radio" name="between_18_65" value="Yes" required >
+                            <span class="checkmark"></span> Yes</label>
+                          <label class="radiobuttons">
+                            <input type="radio" name="between_18_65" value="No">
+                            <span class="checkmark"></span> No</label>
+                      </fieldset>
+                  </div>
+                  <div class="form-group">
+                      <fieldset class="subquestions">
+                          <h4>3. Are you fluent in English?</h4>
+                          <label class="radiobuttons">
+                            <input type="radio" name="english" value="Yes" required >
+                            <span class="checkmark"></span> Yes</label>
+                          <label class="radiobuttons">
+                            <input type="radio" name="english" value="No">
+                            <span class="checkmark"></span> No</label>
+                      </fieldset>
+                  </div>
+                  <div class="form-group">
+                      <fieldset class="subquestions">
+                          <h4>4. Do you have a smartphone?</h4>
+                          <label class="radiobuttons">
+                            <input type="radio" name="smartphone" value="Yes" required >
+                            <span class="checkmark"></span> Yes</label>
+                          <label class="radiobuttons">
+                            <input type="radio" name="smartphone" value="No">
+                            <span class="checkmark"></span> No</label>
+                      </fieldset>
+                  </div>
+                  <div class="form-group">
+                      <fieldset class="subquestions">
+                          <h4>5. Are you planning to have a baby or currently pregnant?</h4>
+                          <label class="radiobuttons">
+                            <input type="radio" name="baby" value="Yes" required >
+                            <span class="checkmark"></span> Yes</label>
+                          <label class="radiobuttons">
+                            <input type="radio" name="baby" value="No">
+                            <span class="checkmark"></span> No</label>
+                      </fieldset>
+                  </div>
+                  <div class="form-group">
+                      <fieldset class="subquestions">
+                          <h4>6. Are you a shift worker (i.e. work commencing before 6am or later than 8pm)?</h4>
+                          <label class="radiobuttons">
+                            <input type="radio" name="shift" value="Yes" required >
+                            <span class="checkmark"></span> Yes</label>
+                          <label class="radiobuttons">
+                            <input type="radio" name="shift" value="No">
+                            <span class="checkmark"></span> No</label>
+                      </fieldset>
+                  </div>
+                <div class="form-group">
+                    <fieldset class="subquestions">
+                        <h4>7. Have you been diagnosed with any of the following physical health
+                        conditions: cardiovascular disease (stroke, heart
+                        failure), neurological disorders (epilepsy, motor neuron disease,
+                        Parkinson’s disease)*</h4>
+                        <label class="radiobuttons">
+                          <input type="radio" name="disease" value="Yes" required >
+                          <span class="checkmark"></span> Yes</label>
+                        <label class="radiobuttons">
+                          <input type="radio" name="disease" value="No">
+                          <span class="checkmark"></span> No</label>
+                    </fieldset>
+                </div>
+                  <div class="form-group">
+                      <fieldset class="subquestions">
+                          <h4>8. Have you been diagnosed with any of the following mental health
+                          conditions: schizophrenia, psychosis, mania*</h4>
+                          <label class="radiobuttons">
+                            <input type="radio" name="mental_health" value="Yes" required >
+                            <span class="checkmark"></span> Yes</label>
+                          <label class="radiobuttons">
+                            <input type="radio" name="mental_health" value="No">
+                            <span class="checkmark"></span> No</label>
+                      </fieldset>
+                  </div>
+                  <div class="form-group">
+                      <fieldset class="subquestions">
+                          <h4>9. Have you travelled to a destination with a time difference of more than 2 hours in the past month?</h4>
+                          <label class="radiobuttons">
+                            <input type="radio" name="time_difference_2h" value="Yes" required >
+                            <span class="checkmark"></span> Yes</label>
+                          <label class="radiobuttons">
+                            <input type="radio" name="time_difference_2h" value="No">
+                            <span class="checkmark"></span> No</label>
+                      </fieldset>
+                  </div>
+                  <div class="form-group">
+                      <fieldset class="subquestions">
+                          <h4>10. Do you anticipate on traveling to a destination more than an hour time difference in the next 12 weeks?</h4>
+                          <label class="radiobuttons">
+                            <input type="radio" name="time_difference_1h" value="Yes" required >
+                            <span class="checkmark"></span> Yes</label>
+                          <label class="radiobuttons">
+                            <input type="radio" name="time_difference_1h" value="No">
+                            <span class="checkmark"></span> No</label>
+                      </fieldset>
+                  </div>
+                  <div class="form-group">
+                      <h4>11. Over the last 2 weeks, how often have you been bothered by thoughts that you would be better off dead, or of hurting yourself</h4>
+      				  <div class="questiongroup">
+                          <fieldset>
+                              <label class="radiobuttons">
+                                <input type="radio" name="phq_9" value="0" required>
+                                <span class="checkmark"></span> Not at all</label><br>
+                              <label class="radiobuttons">
+                                <input type="radio" name="phq_9" value="1">
+                                <span class="checkmark"></span> Several days</label><br>
+                              <label class="radiobuttons">
+                                <input type="radio" name="phq_9" value="2">
+                                <span class="checkmark"></span> More than half the days</label><br>
+                              <label class="radiobuttons">
+                                <input type="radio" name="phq_9" value="3">
+                                <span class="checkmark"></span> Nearly every day</label><br>
+                          </fieldset>
+                     </div>
+      		      </div>
+                  <div class="form-group">
+                    <p class="note">*If unsure, please contact the research team. <br>
+                        SleepFix Research Team<br>
+                        <strong>Phone:</strong> (02) 9114 0481<br>
+                        <strong>Email:</strong> woolcock.sleepfix@sydney.edu.au</p>
+                 </div>
+
+                 <h3>Insomnia Severity Index</h3>
+                 <div class="form-group">
+                     <h4>1. Please rate the CURRENT (i.e. PAST WEEK) SEVERITY of your insomnia problem(s).</h4>
+     				<div class="questiongroup ">
+                         <fieldset class="subquestions">
+                             <legend>A. Difficulty falling asleep</legend>
+                             <label class="radiobuttons">
+                               <input type="radio" name="ISI_1a" value="0" required>
+                               <span class="checkmark"></span> None</label><br>
+                             <label class="radiobuttons">
+                               <input type="radio" name="ISI_1a" value="1">
+                               <span class="checkmark"></span> Mild</label><br>
+                             <label class="radiobuttons">
+                               <input type="radio" name="ISI_1a" value="2">
+                               <span class="checkmark"></span> Moderate</label><br>
+                             <label class="radiobuttons">
+                               <input type="radio" name="ISI_1a" value="3">
+                               <span class="checkmark"></span> Severe</label><br>
+                             <label class="radiobuttons">
+                               <input type="radio" name="ISI_1a" value="4">
+                               <span class="checkmark"></span> Very severe</label>
+                         </fieldset>
+                         <fieldset class="subquestions">
+                             <legend>B. Difficulty staying asleep</legend>
+                             <label class="radiobuttons">
+                               <input type="radio" name="ISI_1b" value="0" required>
+                               <span class="checkmark"></span> None</label><br>
+                             <label class="radiobuttons">
+                               <input type="radio" name="ISI_1b" value="1">
+                               <span class="checkmark"></span> Mild</label><br>
+                             <label class="radiobuttons">
+                               <input type="radio" name="ISI_1b" value="2">
+                               <span class="checkmark"></span> Moderate</label><br>
+                             <label class="radiobuttons">
+                               <input type="radio" name="ISI_1b" value="3">
+                               <span class="checkmark"></span> Severe</label><br>
+                             <label class="radiobuttons">
+                               <input type="radio" name="ISI_1b" value="4">
+                               <span class="checkmark"></span> Very severe</label>
+                         </fieldset>
+                         <fieldset class="subquestions">
+                             <legend>C. Problem waking up too early</legend>
+                             <label class="radiobuttons">
+                               <input type="radio" name="ISI_1c" value="0" required>
+                               <span class="checkmark"></span> None</label><br>
+                             <label class="radiobuttons">
+                               <input type="radio" name="ISI_1c" value="1">
+                               <span class="checkmark"></span> Mild</label><br>
+                             <label class="radiobuttons">
+                               <input type="radio" name="ISI_1c" value="2">
+                               <span class="checkmark"></span> Moderate</label><br>
+                             <label class="radiobuttons">
+                               <input type="radio" name="ISI_1c" value="3">
+                               <span class="checkmark"></span> Severe</label><br>
+                             <label class="radiobuttons">
+                               <input type="radio" name="ISI_1c" value="4">
+                               <span class="checkmark"></span> Very severe</label>
+                         </fieldset>
+                    </div>
+                </div>
+                 <div class="form-group">
+                     <h4>2. How SATISFIED/DISSATISFIED are you with your CURRENT sleep pattern?</h4>
+     				<div class="questiongroup">
+                         <fieldset>
+                             <label class="radiobuttons">
+                               <input type="radio" name="ISI_2" value="0" required>
+                               <span class="checkmark"></span> Very satisfied</label><br>
+                             <label class="radiobuttons">
+                               <input type="radio" name="ISI_2" value="1">
+                               <span class="checkmark"></span> Satisfied</label><br>
+                             <label class="radiobuttons">
+                               <input type="radio" name="ISI_2" value="2">
+                               <span class="checkmark"></span> Neutral</label><br>
+                             <label class="radiobuttons">
+                               <input type="radio" name="ISI_2" value="3">
+                               <span class="checkmark"></span> Dissatisfied</label><br>
+                             <label class="radiobuttons">
+                               <input type="radio" name="ISI_2" value="4">
+                               <span class="checkmark"></span> Very dissatisfied</label><br>
+                         </fieldset>
+                    </div>
+     		     </div>
+                 <div class="form-group">
+                     <h4>3. To what extent do you consider your sleep problem to INTERFERE with your daily functioning (e.g. daytime fatigue, mood, ability to function at work/daily chores, concentration, memory, mood, etc.) CURRENTLY?</h4>
+     				<div class="questiongroup">
+                         <fieldset>
+                             <label class="radiobuttons">
+                               <input type="radio" name="ISI_3" value="0" required>
+                               <span class="checkmark"></span> Not at all interfering</label><br>
+                             <label class="radiobuttons">
+                               <input type="radio" name="ISI_3" value="1">
+                               <span class="checkmark"></span> A little</label><br>
+                             <label class="radiobuttons">
+                               <input type="radio" name="ISI_3" value="2">
+                               <span class="checkmark"></span> Somewhat</label><br>
+                             <label class="radiobuttons">
+                               <input type="radio" name="ISI_3" value="3">
+                               <span class="checkmark"></span> Much</label><br>
+                             <label class="radiobuttons">
+                               <input type="radio" name="ISI_3" value="4">
+                               <span class="checkmark"></span> Very much interfering</label><br>
+                         </fieldset>
+                    </div>
+     		     </div>
+                 <div class="form-group">
+                     <h4>4. How NOTICEABLE to others do you think your sleep problem is in terms of impairing the quality of your life?</h4>
+     				<div class="questiongroup">
+                         <fieldset>
+                             <label class="radiobuttons">
+                               <input type="radio" name="ISI_4" value="0" required>
+                               <span class="checkmark"></span> Not at all noticeable</label><br>
+                             <label class="radiobuttons">
+                               <input type="radio" name="ISI_4" value="1">
+                               <span class="checkmark"></span> A little</label><br>
+                             <label class="radiobuttons">
+                               <input type="radio" name="ISI_4" value="2">
+                               <span class="checkmark"></span> Somewhat</label><br>
+                             <label class="radiobuttons">
+                               <input type="radio" name="ISI_4" value="3">
+                               <span class="checkmark"></span> Much</label><br>
+                             <label class="radiobuttons">
+                               <input type="radio" name="ISI_4" value="4">
+                               <span class="checkmark"></span> Very much noticeable</label><br>
+                         </fieldset>
+                    </div>
+     		     </div>
+                 <div class="form-group">
+                     <h4>5. How WORRIED/DISTRESSED are you about your current sleep problem?</h4>
+     				<div class="questiongroup">
+                         <fieldset>
+                             <label class="radiobuttons">
+                               <input type="radio" name="ISI_5" value="0" required>
+                               <span class="checkmark"></span> Not at all worried</label><br>
+                             <label class="radiobuttons">
+                               <input type="radio" name="ISI_5" value="1">
+                               <span class="checkmark"></span> A little</label><br>
+                             <label class="radiobuttons">
+                               <input type="radio" name="ISI_5" value="2">
+                               <span class="checkmark"></span> Somewhat</label><br>
+                             <label class="radiobuttons">
+                               <input type="radio" name="ISI_5" value="3">
+                               <span class="checkmark"></span> Much</label><br>
+                             <label class="radiobuttons">
+                               <input type="radio" name="ISI_5" value="4">
+                               <span class="checkmark"></span> Very much worried</label><br>
+                         </fieldset>
+                    </div>
+     		     </div>
+                 <button type="submit" id="submit__ID" class="btn btn-primary btn-lg">Submit</button>
+                 <input type="text" style="display:none" name="Eligible" />
+              </form>
+            </div>
+         </div>
+        </div>
+      </div>
+    </div>
+    <script>
+        function F__ID(){
+            //-------------------------------------
+            VmInclude:__COMPONENT__/f/form.01.js
+            VmInclude:__CURRENT_PATH__/../../s/shared-task-form-wapp.js
+            //-------------------------------------
+            var load2=m.load;
+            m.load=function(){
+                load2();
+                $('#D__ID').scrollTop(0);
+                $(window).scrollTop(0);
+            }
+            //-------------------------------------
+            var before_submit=m.before_submit;
+            m.before_submit=function(data){
+                if((data.australia!='Yes' || data.between_18_65!='Yes' || data.english!='Yes' || data.smartphone!='Yes' || data.baby!='No' || data.shift!='No' || data.disease!='No' || data.mental_health!='No' || data.time_difference_2h!='No' || data.time_difference_1h!='No')
+                    ||
+                    (parseInt(data.ISI_2)+parseInt(data.ISI_3)+parseInt(data.ISI_4)+parseInt(data.ISI_5)+parseInt(data.ISI_1a)+parseInt(data.ISI_1b)+parseInt(data.ISI_1c) <= 15)
+                    ||
+                    (parseInt(data.phq_9) >0))
+                    {data.Eligible="No"}
+                else{data.Eligible="Yes"};
+			    //-------------------
+                return before_submit(data);
+			}
+			//-------------------------------------
+            //$('#D__ID').css('min-height',$vm.min_height);
+            //--------------------------------------------------------
+    }
+    </script>
+    <style>
+        #D__ID{
+              height:100%;
+              animation: vm_module_fadein 1.0s;
+              overflow: auto;
+        }
+    </style>
+    <style third-party>
+        #D__ID .formbox h3 {
+            font-family: 'Roboto Slab';
+            font-size: 24px;
+            color: #FCFBF5;
+            letter-spacing: 0;
+            display: block;
+            background-color: #45496A;
+            padding: 15px;
+            border-radius: 3px 3px 0 0;
+            margin-top: -5px
+        }
+        /* TOP OF FORM MARGIN */
+        #D__ID .mt-95 {
+            margin-top: 15px !important
+        }
+        #D__ID .form-group {
+            display: block !important;
+            border-bottom: 1px solid #E5EEF0 !important
+        }
+        #D__ID .form-group h4 {
+            font-family: 'Roboto Slab';
+            font-size: 18px;
+            color: #45496A;
+            letter-spacing: 0;
+            line-height: 28px;
+        }
+        #D__ID .form-group h6 {
+            font-family: 'Roboto Slab';
+            font-size: 14px;
+            color: #45496A;
+            letter-spacing: 0;
+            line-height: 28px;
+        }
+        #D__ID label {
+            font-family: 'Nunito Sans';
+            font-weight:600;
+            font-size: 14px;
+            color: #444645;
+            line-height: 21px;
+        }
+        #D__ID input[type="radio"] {
+            margin-right: 5px !important
+        }
+        #D__ID .formbox {
+            background-color: white;
+            padding: 0px !important;
+            border-radius: 3px 3px 3px 3px !important
+        }
+        #D__ID .form-group {
+            padding: 5px 15px !important;
+            margin-bottom: 0px !important
+        }
+        #D__ID .form-group:hover {
+            background-color: #FCFBF5
+        }
+        /* SUBMIT BUTTON */
+        #D__ID .btn-primary, #D__ID .btn-primary:active, #D__ID .btn-primary:visited, #D__ID .btn-primary:focus {
+            background-color: #45496A;
+            border-color: #45496A;
+            font-family: 'Nunito Sans';
+            font-weight: lighter;
+            font-size: 12px;
+            letter-spacing: 1px;
+            color: #FFFFFF;
+            text-align: center;
+            line-height: 18px;
+            text-transform: uppercase;
+            border-radius: 5px;
+            padding: 16px 35px;
+            margin: 15px;
+        }
+        #D__ID .btn-primary:hover {
+            background-color: #35395D;
+            border-color: #35395D;
+            font-family: 'Nunito Sans';
+            font-weight: lighter;
+            font-size: 12px;
+            letter-spacing: 1px;
+            color: #FFFFFF;
+            text-align: center;
+            line-height: 18px;
+            text-transform: uppercase;
+            border-radius: 5px;
+            padding: 16px 35px;
+            margin: 15px;
+        }
+        #D__ID .btn-outline-light {
+            font-family: 'Nunito Sans';
+            font-weight: lighter;
+            font-size: 12px;
+            letter-spacing: 1px;
+            color: #FFFFFF;
+            text-align: center;
+            line-height: 18px;
+            text-transform: uppercase;
+            border-radius: 15px;
+            border-width: 2px;
+            padding-left: 25px;
+            padding-right: 25px
+        }
+        #D__ID .btn-outline-light:hover {
+            color: #23807F;
+        }
+        #D__ID p.note {
+            font-family: 'Nunito Sans';
+            font-weight: lighter;
+            font-size: 16px;
+            color: #939597;
+            margin-left: 15px;
+        }
+        /* RADIO BUTTONS */
+        #D__ID .radiobuttons {
+            display: inline-block;
+            position: relative;
+            cursor: pointer;
+            padding-left: 30px;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+        #D__ID .radiobuttons input {
+            position: absolute !important;
+            opacity: 0 !important;
+            cursor: pointer;
+        }
+        #D__ID .checkmark {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 22px;
+            width: 22px;
+            background-color: #A2D5CB;
+            border-radius: 50%;
+        }
+        #D__ID .radiobuttons:hover input ~ .checkmark {
+            background-color: #23807F;
+        }
+        #D__ID .radiobuttons input:checked ~ .checkmark {
+            background-color: #23807F;
+        }
+        #D__ID .checkmark:after {
+            content: "";
+            position: absolute !important;
+            display: none;
+        }
+        /* Show the indicator (dot/circle) when checked */
+        #D__ID .radiobuttons input:checked ~ .checkmark:after {
+            display: block !important;
+        }
+        /* Style the indicator (dot/circle) */
+        #D__ID .container .checkmark:after {
+            top: 7px;
+            left: 7px;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: white !important;
+        }
+        /* CHECK BOX */
+        #D__ID .checkboxes {
+          display: inline-block;
+          position: relative;
+          cursor: pointer;
+          padding-left: 30px;
+          -webkit-user-select: none;
+          -moz-user-select: none;
+          -ms-user-select: none;
+          user-select: none;
+        }
+        #D__ID .checkboxes input {
+          position: absolute !important;
+          opacity: 0 !important;
+          cursor: pointer;
+        }
+        #D__ID .check_checkmark {
+          position: absolute;
+          top: 0;
+          left: 0;
+          height: 22px;
+          width: 22px;
+          background-color: #A2D5CB;
+          border-radius: 0%;
+        }
+        #D__ID .checkboxes:hover input ~ .check_checkmark {
+          background-color: #23807F;
+        }
+        #D__ID .checkboxes input:checked ~ .check_checkmark {
+          background-color: #23807F;
+        }
+        #D__ID .check_checkmark:after {
+          content: "";
+          position: absolute !important;
+          display: none;
+        }
+        /* Show the indicator (dot/circle) when checked */
+        #D__ID .checkboxes input:checked ~ .check_checkmark:after {
+          display: block !important;
+        }
+        /* Style the indicator (dot/circle) */
+        #D__ID .container .check_checkmark:after {
+          top: 0px;
+          left: 6px;
+          color:white;
+          content:"✔";
+        }
+        #D__ID .form-group input[type=text] {
+            font-family: 'Nunito Sans';
+            font-size: 16px;
+            color: #6D6F72;
+        }
+        #D__ID .form-group input[type=tel] {
+          font-family: 'Nunito Sans';
+          font-size: 16px;
+          color: #6D6F72;
+        }
+        #D__ID .form-group input[type=email] {
+          font-family: 'Nunito Sans';
+          font-size: 16px;
+          color: #6D6F72;
+        }
+        #D__ID .form-group input[type=number] {
+          font-family: 'Nunito Sans';
+          font-size: 16px;
+          color: #6D6F72;
+        }
+        #D__ID .form-group select {
+          font-family: 'Nunito Sans';
+          font-size: 16px;
+          color: #6D6F72;
+        }
+        #D__ID fieldset.subquestions legend {
+            font-family: 'Nunito Sans';
+            font-size: 16px;
+            color: #45496A;
+            line-height: 21px;
+            padding-top: 20px;
+        }
+        #D__ID .form-group .questiongroup {
+            margin-left: 15px;
+        }
+        #D__ID .form-group .questiongroup label.radiobuttons {
+            margin-right: 10px;
+        }
+        @media (min-width: 600px) {
+        #D__ID  fieldset.subquestions br { display: none; }
+        }
+    </style>
+</div>

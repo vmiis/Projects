@@ -1,0 +1,59 @@
+<div id=D__ID>
+    <section id=form_container__ID>
+    	<div id=header__ID>
+    		File
+    	</div>
+    	<form id=F__ID>
+    		<div class="container">
+    			<div class="row row__ID">
+    				<div class=col>
+    					<span>First name</span>
+    					<input type="text" class="form-control" name=First_name />
+    				</div>
+    			</div>
+    			<div class="row row__ID">
+    				<div class=col>
+    					<span>Last name</span>
+    					<input type="text" class="form-control" name=Last_name />
+    				</div>
+    			</div>
+    			<div class="row row__ID">
+    				<div class=col>
+    					<span>File</span>
+                        <div class="form-control">
+                            <u style='cursor:pointer' id=link_Document__ID></u>
+                            <br>
+                            <input type="file" name=Document style="margin-top:6px" /> &nbsp&nbsp&nbsp <button type="button" id=x_Document__ID>Remove</button>
+                        </div>
+    				</div>
+    			</div>
+    			<br>
+    			<div class="row">
+    				<div class=col>
+    					<button id=submit__ID type="submit" class="btn btn-secondary">Submit</button>
+    				</div>
+    			</div>
+    		</div>
+    	</form>
+    </section>
+    VmInclude:__COMPONENT__/m/model.01.html
+    <script>
+    	function F__ID(){
+    		//-------------------------------------
+            VmInclude:__COMPONENT__/f/form.01.js
+    		//-------------------------------------
+            m.old_load=m.load;
+            m.load=function(){
+                m.old_load();
+                m.set_file_link("Document");
+            }
+            //-------------------------------------
+    	}
+    </script>
+    <style>
+		#form_container__ID{
+			max-width:700px;
+		}
+		VmInclude:__COMPONENT__/f/form.01.css
+    </style>
+</div>

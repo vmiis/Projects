@@ -1,0 +1,161 @@
+<div id=D__ID>
+    <div style='font-size:11px;cplor:#555;padding:10px 0 0 20px'>
+        Hover the mouse over the link to see where the app is hosted.
+        <br>The app can be hosted on any static web servers around the world
+    </div>
+    <div id=panel__ID>
+    	<div class='nav__ID'>
+            <span>A</span>
+            <ul>
+                <li><a app href=?/a-basic-application-framework-index>A basic application framework</a></li>
+                <li><a app href=?/clinical-trials-app-apap>APAP - clinical trials</a></li>
+                <li><a app href=?/online-questionnaire-app-apap>APAP - online questionnaire</a></li>
+            </ul>
+            
+            <span>B</span>
+            <ul>
+                <li><a app href=?/bubble-background-app>Bubble background</a></li>
+                <li><a app href=?/bookkeeping-app>Bookkeeping</a></li>
+                <li><a app href=?/bookkeeping-app-wappsystem>Bookkeeping (Wappsystem)</a></li>
+            </ul>
+            <span>C</span>
+            <ul>
+                <li><a app href=?/car-booking-app>Car booking</a></li>
+                <li><a app href=?/contact-us-app>Contact us</a></li>
+            </ul>
+        </div>
+        <div class='nav__ID'>
+            <span>E</span>
+            <ul>
+                <li><a app href=?/equipment-booking-app>Equipment booking</a></li>
+                <li><a app href=?/enquiry-app>Enquiry</a></li>
+                <li><a app href=?/event-calendar-app>Event calendar</a></li>
+            </ul>
+            <span>F</span>
+            <ul>
+                <li><a app href=?/fountains-illumination-app>Fountains illumination background</a></li>
+                <li><a app href=?/fitness-app>Fitness</a></li>
+            </ul>
+            <span>L</span>
+            <ul>
+                <li><a app href=?/layout-with-fixed-header-and-footer-index>Layout with fixed header and footer</a></li>
+                <li><a app href=?/layout-with-fixed-header-and-scrollable-footer-index>Layout with fixed header scrollable footer</a></li>
+                <li><a app href=?/layout-with-scrollable-header-and-footer-index>Layout with scrollable header and footer</a></li>
+                <li><a app href=?/layout-with-side-nav-and-fixed-footer-index>Layout with nav and fixed footer</a></li>
+            </ul>
+
+            <span>M</span>
+            <ul>
+                <li><a app href=?/medical-practitioner-app>Medical practitioner</a></li>
+            </ul>
+            <span>N</span>
+            <ul>
+                <li><a app href=?/nasa-background-app>Nasa background</a></li>
+                <li><a app href=?/nyan-background-app>Nyan background</a></li>
+            </ul>
+        </div>
+        <div class='nav__ID'>
+            <span>P</span>
+            <ul>
+                <li><a app href=?/particle-background-app>Particle background</a></li>
+                <li><a app href=?/purchase-order-request-app>Purchase order request</a></li>
+            </ul>
+            <span>R</span>
+            <ul>
+                <li><a app href=?/room-booking-app>Room booking</a></li>
+            </ul>
+            <span>S</span>
+            <ul>
+                <li><a app href=?/snow-background-app>Snow background</a></li>
+                <li><a app href=?/survey-app>Survey</a></li>
+                <li><a app href=?/success-app>Success</a></li>
+                <li><a app href=?/simple-app>Simple layout</a></li>
+            </ul>
+            <span>W</span>
+            <ul>
+                <li><a app href=?/clinical-trials-app-wapp>WAPP - clinical trials</a></li>
+                <li><a app href=?/online-questionnaire-app-wapp>WAPP - online questionnaire</a></li>
+                <li><a app href=?/woolcock-template-app>Woolcock template</a></li>
+            </ul>
+        </div>
+    </div>
+    <script>
+        function F__ID(){
+            //--------------------------------------------------------
+            $vm.module_list["__MODULE__"].show=function(){
+                document.title="Panel | "+$vm.default_title;
+                $("meta[name='description']").attr("content","Control Panel");
+            }
+            //--------------------------------------------------------
+            var this_module=$vm.module_list[$vm.vm['__ID'].name];
+            //--------------------------------------------------------
+            $('#panel__ID a').on('click',function(e){
+                e.preventDefault();
+                var href=$(this).attr('href');
+                var app=$(this).attr('app');
+                if(href!=undefined){
+                    href=href.replace('?\/','');
+                    href=href.replace(/\//g,'_');
+                    if(app==undefined) $vm.load_module(href,'',{});
+                    else if($vm.module_list[href]!=undefined) window.open($vm.module_list[href].url);
+                    else alert("The '"+ href +"' is not defined in the module list");
+                }
+            })
+            //--------------------------------------------------------
+            $('#panel__ID a').each(function(){
+                var href=$(this).attr('href');
+                if(href!=undefined){
+                    href=href.replace('?\/','');
+                    href=href.replace(/\//g,'_');
+                    if($vm.module_list[href]!=undefined){
+                        var url=$vm.module_list[href].url;
+                        $(this).attr('title',url);
+                    }
+                }
+            })
+            //--------------------------------------------------------
+            if($vm.localhost==true) $('#builder__ID').show();
+        }
+    </script>
+    <style>
+        #D__ID{
+    		background-color:#fff;
+    		height:100%;
+    		overflow: auto;
+    		animation: vm_module_fadein 1.0s;
+    	}
+        #panel__ID{
+    		padding:10px 0 0 20px;
+            font-size:14px;
+    	}
+    	#panel__ID a {
+    		text-decoration: none;
+    	}
+    	#panel__ID a:link {
+    		color:#555;
+    	}
+    	#panel__ID a:visited {
+    		color:#555;
+    	}
+    	#panel__ID a:hover {
+    		color:red;
+    	}
+    	#panel__ID a:active {
+    		color:#555;
+    	}
+        .nav__ID{
+	        padding:6px 26px 6px 6px;
+	        float:left;
+	    }
+	    .nav__ID span{
+			color:#283f55;
+			font-weight: bold;
+			margin:3px 10px;
+	    }
+    	@media screen and (max-width:768px){
+    		#panel__ID{
+    			padding:10px 0 0 10px;
+    		}
+    	}
+    </style>
+</div>

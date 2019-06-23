@@ -1,0 +1,92 @@
+<div id=D__ID>
+    <section id=form_container__ID>
+        <div id=header__ID>
+    	    Pulse Wave Analysis
+    	</div>
+    	<form id=F__ID>
+            <div class="container">
+                <!-- participant part for all tsak forms -------------------->
+                <div class="row row__ID" id=row_participant__ID>
+                    <div class="col-sm-12 col-lg-9 input__ID">
+                        <span class=label__ID>Participant</span><br>
+                        <input type=text name="Participant" class=form-control id=Participant__ID data-id="Participant" />
+                    </div>
+                    <div class="col-sm-12 col-lg-3 input__ID">
+                        <span class=label__ID>Participant ID</span><br>
+                        <input type=text name="Participant_uid" class=form-control readonly />
+                    </div>
+                    <hr style="border-top: 1px solid #888;width: 100%;margin:10px 0">
+                </div>
+                <!---------------------------------------------------->
+
+                <!-- Form Inputs-------------------------------------->
+                <div class='row row__ID'>
+                    <div class="col">
+                        <span>FILE UPLOAD (PDF)</span>
+						<div class="form-control">
+                            <u style='cursor:pointer' id=link_file__ID></u>
+                            <br>
+                            <input type="file" name=file style="margin-top:6px" /> <button type="button" id=x_file__ID>Remove</button>
+                        </div>
+                    </div>
+                </div>
+                <div class='row row__ID'>
+                    <div class="col">
+                        <span>Brachial Blood Pressure</span>
+                        <input type=text class=form-control name=brachial>
+                    </div>
+                </div>
+                <div class='row row__ID'>
+                    <div class="col">
+                        <span>Pulse Pressure</span>
+                        <input type=text class=form-control name=pulse>
+                    </div>
+                </div>
+                <div class='row row__ID'>
+                    <div class="col">
+                        <span>Augmentation Pressure</span>
+                        <input type=text class=form-control name=aug_pressure>
+                    </div>
+                </div>
+                <div class='row row__ID'>
+                    <div class="col">
+                        <span>Augmentation Index</span>
+                        <input type=text class=form-control name=aug_index>
+                    </div>
+                </div>
+                <!---------------------------------------------------->
+
+
+                <!-- submit button part for all tsak forms------------>
+                <br>
+    			<div class="row">
+    				<div class=col>
+    					<button id=submit__ID type="submit" class="btn btn-secondary">Submit</button>
+    				</div>
+    			</div>
+                <!---------------------------------------------------->
+        	</div>
+        </form>
+    </section>
+    VmInclude:__COMPONENT__/m/model.01.html
+    <script>
+        function F__ID(){
+            //-------------------------------------
+            VmInclude:'__COMPONENT__/f/form.01.js'
+            VmInclude:__CURRENT_PATH__/../../s/shared-task-form-apap.js
+            //-------------------------------------
+            var load2=m.load;
+            m.load=function(){
+                load2();
+                m.set_file_link("file");
+            }
+            //-------------------------------------
+        }
+    </script>
+    <style>
+        #form_container__ID{
+            max-width:700px;
+        }
+		VmInclude:__COMPONENT__/f/form.01.css
+    </style>
+</div>

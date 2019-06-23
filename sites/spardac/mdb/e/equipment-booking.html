@@ -1,0 +1,147 @@
+<div id=D__ID>
+    <div>
+        VmInclude:__COMPONENT__/d/day.01.html
+    </div>
+    <script>
+    function F__ID(){
+        //--------------------------------------------------------
+        VmInclude:__COMPONENT__/d/day.01.js
+        //--------------------------------------------------------
+        m.request_and_render=function(){
+            var mt1=new Date().getTime();
+            $vm.request({cmd:"find",table:m.Table,options:{}},function(res){
+                //-----------------------
+                var mt2=new Date().getTime();
+                var tt_all=mt2-mt1;
+                var tt_server=parseInt(res.sys.elapsed_time);
+                if(tt_all<tt_server) tt_all=tt_server;
+                $("#elapsed__ID").text((JSON.stringify(res.result).length/1000).toFixed(1)+"kb/"+tt_all.toString()+"ms/"+tt_server+'ms');
+                //-----------------------
+                if(res.sys.permission==false){
+                    alert("No permission to get equipment information.");
+                    return;
+                }
+                //-----------------------
+                m.records=res.result;
+                var txt="<tr><th style='width:200px;text-align:left'>Equipment</th>";
+                for(var j=0;j<12;j++){
+                    txt+="<th colspan=2 style='width:8%;text-align:left'>"+$vm.pad((8+j),2)+":00</th>";
+                }
+                txt+="<th></th></tr>";
+                $('#thead__ID').html('').append(txt);
+                $('#tbody__ID').html('');
+                txt="";
+                for(var i=0;i<m.records.length;i++){
+                    var id=m.records[i]._id;
+                    var uid=m.records[i].UID;
+                    var equipment_name=m.records[i].Data.Name;
+                    //id uid equipment_name equipment_name
+                    txt+="<tr><td style='display:none'>"+id+"</td><td style='display:none'>"+uid+"</td>";
+                    txt+="<td style='display:none'>"+equipment_name+"</td>";
+                    txt+="<td style='width:100px'>"+equipment_name+"</td>";
+                    for(j=0;j<24;j++){
+                        txt+="<td></td>";
+                    }
+                    txt+="<td></td></tr>";
+                }
+                $('#tbody__ID').append(txt);
+                m.put_on_click_for_booking();
+                m.put_on_bookings();
+            });
+        }
+        //--------------------------------------------------------
+        m.put_on_click_for_booking=function(){
+            $('#tbody__ID tr').each(function(){
+                var id              =$(this).children().eq(0).text();
+                var uid             =$(this).children().eq(1).text();
+                var equipment_name  =$(this).children().eq(2).text();
+                var name            =$(this).children().eq(3).text();
+                for(var j=0;j<24;j++){
+                    var $cell=$(this).children().eq(5+j);
+                    $cell.data('j',j);
+                    $cell.on('click',function(){
+                        var j=$(this).data('j');
+                        var date=$('#date__ID').val();
+                        var time=$vm.pad((8+Math.floor(j/2)),2)+":"+$vm.pad(30*(j%2),2);
+                        var record={}
+                        record.Data={
+                            Equipment:equipment_name,
+                            Date:date,
+                            Time:time,
+                            Equipment_uid:uid,
+                        }
+                        $vm.load_module(m.booking_form,'',{record:record,goback:1});
+                    })
+                    $cell.css('cursor','pointer');
+                }
+            });
+        };
+        //--------------------------------------------------------
+        m.put_on_bookings=function(){
+            var m1=m.booking_form;
+            var table=$vm.module_list[m1].Table;
+            var date=$('#date__ID').val();
+            $vm.request({cmd:"find",table:table,query:{I1:date},options:{}},function(res){
+                if(res.sys.permission==false){
+                    alert("No permission to read room booking records.");
+                    return;
+                }
+                //-----------------------
+                for(var i=0;i<res.result.length;i++){
+                    var uid			=res.result[i].I3;
+                    var contact		=res.result[i].Data.Contact_Name; if(contact==='') contact='No Contact';
+                    var date		=res.result[i].Data.Date; date=$vm.date_parse(date);
+                    var time		=res.result[i].Data.Time;
+                    var duration_0	=res.result[i].Data.Duration;
+                    var color		=res.result[i].Data.Color;
+                    //----------------------
+                    var duration	=parseFloat(duration_0);
+                    var num=duration/0.5;
+                    var pos=((parseInt(time.split(':')[0])-8)*60+parseInt(time.split(':')[1]))/30;
+                    var $tr=$("#tbody__ID td:nth-child(2)").filter(function() {
+                        return $(this).text()==uid;
+                    }).closest("tr");
+                    for(var j=0;j<num;j++){
+                        var $cell=$tr.find('td').eq(pos+5+j);
+                        $cell.off('click');
+                        $cell.css('cursor','default');
+                        $cell.css('background-color',color);
+                        if(j!==0 && j!==num-1){		$cell.css('border-left','0px solid red');	$cell.css('border-right','0px solid red');	}
+                        else if(j===0 && num>1){	$cell.css('border-right','0px solid red');	}
+                        else if(j==num-1 && num>1){	$cell.css('border-left','0px solid red');	}
+                        if(j===0){
+                            $cell.html('<u style="cursor:pointer;color:'+$vm.whire_or_black_color(color)+'">'+contact+'</u>');
+                            put_cell_booking_click($cell,res.result[i])
+                        }
+                    }
+                }
+            })
+        };
+        //-----------------------------------
+        var put_cell_booking_click=function($cell,record){
+            $cell.find('u').on('click',function(){
+                $vm.load_module(m.booking_form,'',{record:record,goback:1});
+            });
+        }
+        //--------------------------------------------------------
+        $('#D__ID').on('load',function(){
+            var d=m.input.day;
+            if(d==undefined) d=$vm.date_to_yyyymmdd($vm.date_today());
+            $('#date__ID').val(d);
+            $('#date__ID').triggerHandler('change');
+        });
+        //--------------------------------------------------------
+        $('#D__ID').on('show',function(){  if($vm.refresh==1){$vm.refresh=0; m.request_and_render();}    });
+        //--------------------------------------------------------
+    }
+    </script>
+    <style>
+        #D__ID{
+            background-color:#fff;
+            font-size:13px;
+            font-family: Helvetica, Arial, sans-serif;
+            height:100%;
+            overflow: auto;
+        }
+    </style>
+</div>

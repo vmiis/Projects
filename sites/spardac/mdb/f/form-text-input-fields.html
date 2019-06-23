@@ -1,0 +1,52 @@
+<div id=D__ID>
+    <div id=form_container__ID>
+        <div id=header__ID>
+    		Form text input fields
+        </div>
+        <form id=F__ID>
+            <div class="container">
+                <div class="row row__ID">
+                    <div class=col>
+                        <span>Fields</span>
+                        <textarea id=fields__ID class="form-control" style='height:150px' placeholder='comma separated names'></textarea>
+                    </div>
+                </div>
+                <br>
+                <button id=btn1__ID type="button" class="btn btn-secondary">Get html code</button>
+                </form>
+            </div>
+        </form>
+    </div>
+    <script>
+        function F__ID(){
+            //----------------------------------------------
+            $('#btn1__ID').on('click',function(){
+                $vm.module_list["sys_code_viewer"]={url:'__COMPONENT__/c/code-viewer.01.html'}
+                
+
+                var fields=$('#fields__ID').val().replace(/\n/g,'');
+                var fs=fields.split(',');
+                var txt="";
+                for(var i=0;i<fs.length;i++){
+                    txt+="    <div class='row row__I"+"D'><div class='col'>\r\n";
+                    txt+="        <span>"+fs[i].replace(/_/g," ")+"</span>\r\n";
+                    txt+="        <input type=text class=form-control name="+fs[i]+">\r\n";
+                    txt+="    </div></div>\r\n";
+                }
+
+				$vm.load_module("sys_code_viewer",'',{code:txt,msg:""});
+            })
+            //----------------------------------------------
+        }
+    </script>
+    <style>
+        #form_container__ID{
+            max-width:700px;
+        }
+        VmInclude:__COMPONENT__/f/form.01.css
+        #F__ID div span{
+            font-weight:700;
+        }
+
+    </style>
+</div>

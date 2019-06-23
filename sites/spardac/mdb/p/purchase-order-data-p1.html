@@ -1,0 +1,42 @@
+<div id=D__ID>
+    <div>
+        VmInclude:__COMPONENT__/g/grid.01.html
+    </div>
+    <script>
+        function F__ID(){
+            //-------------------------------------
+            VmInclude:__COMPONENT__/g/grid.01.js
+            $('#new__ID').hide();
+            //-------------------------------------
+            var fields="Purchase_Order_ID|UID,_Notes,Short_Description,GST_Amount,Total_Amount,_Approved_by,_Processed_by";
+            m.fields="_Form,"+fields+",Submit_date,Submitted_by";
+            m.cmd_type='p1';
+            //-------------------------------------
+            m.cell_render=function(records,I,field,td){
+                switch(field){
+                    case '_Notes':
+                        var notes='Notes';
+                        if(records[I].Notes!=undefined){
+                            var n1=records[I].Notes.split('\n')[0];
+                            if(n1.length>0){
+                                notes=n1;
+                                if(notes.length>10) notes=notes.substring(0,10)+"...";
+                            }
+                        }
+                        td.html("<u style='cursor:pointer'>"+notes+"</u>");
+                        td.find('u').on('click',function(){
+                            $vm.load_module('notes','',{record:records[I]});
+                        });
+                        break;
+                    case '_Approved_by':
+                        if(records[I].L1!=undefined) td.html(records[I].L1.split(',')[0]);
+                        break;
+                }
+            }
+            //-------------------------------------
+        }
+    </script>
+    <style>
+        VmInclude:__COMPONENT__/g/grid.01.css
+    </style>
+</div>

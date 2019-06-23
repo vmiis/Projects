@@ -1,0 +1,108 @@
+<div id=D__ID>
+    <section id=form_container__ID>
+    	<div id=header__ID>
+    		Predefined transaction item
+    	</div>
+    	<form id=F__ID>
+    		<div class="container">
+    			<div class="row row__ID">
+    				<div class=col>
+    					<b>Name</b>
+    					<input type="text" class="form-control" name=Name />
+    				</div>
+                </div>
+                <br>
+                <b>BAT Items</b>
+    			<div class="row row__ID">
+    				<div class=col>
+                        <label><input type="checkbox" name=G1_sales /> G1 sales</label><br>
+                    </div>
+    			</div>
+    			<div class="row row__ID">
+    				<div class=col>
+                        <label><input type="checkbox" name=1A_GST /> 1A GST on sales</label><br>
+                    </div>
+    			</div>
+    			<div class="row row__ID">
+    				<div class=col>
+                        <label><input type="checkbox" name=1B_GST /> 1B GST on purchase</label><br>
+                    </div>
+    			</div>
+    			<div class="row row__ID">
+    				<div class=col>
+                        <label><input type="checkbox" name=W1_salary /> W1 salary</label><br>
+                    </div>
+    			</div>
+    			<div class="row row__ID">
+    				<div class=col>
+                        <label><input type="checkbox" name=W2_withheld /> W2 withheld</label><br>
+                    </div>
+                </div>
+    			<div class="row row__ID">
+    				<div class=col>
+                        <label><input type="checkbox" name=W4_withheld_no_ABN /> W4 withheld no ABN</label><br>
+                    </div>
+                </div>
+    			<div class="row row__ID">
+    				<div class=col>
+                        <label><input type="checkbox" name=W3_withheld_other /> W3 withheld other</label><br>
+                    </div>
+                </div>
+                <br>
+                <b>TAX Return Items</b>
+    			<div class="row row__ID">
+    				<div class=col>
+                        <label><input type="checkbox" name=Other_sales /> Other sales</label><br>
+                    </div>
+    			</div>
+    			<div class="row row__ID">
+    				<div class=col>
+                        <label><input type="checkbox" name=Gross_interest /> Gross interest</label><br>
+                    </div>
+    			</div>
+    			<div class="row row__ID">
+    				<div class=col>
+                        <label><input type="checkbox" name=Salary_expenses /> Salary_expenses</label><br>
+                    </div>
+    			</div>
+    			<div class="row row__ID">
+    				<div class=col>
+                        <label><input type="checkbox" name=Super_expenses /> Super expenses</label><br>
+                    </div>
+    			</div>
+    			<div class="row row__ID">
+    				<div class=col>
+                        <label><input type="checkbox" name=All_other_expenses /> All other expenses</label><br>
+                    </div>
+    			</div>
+    			<br>
+    			<div class="row c_print">
+    				<div class=col>
+    					<button id=submit__ID type="submit" class="btn btn-secondary">Submit</button>
+    				</div>
+    			</div>
+    		</div>
+    	</form>
+    </section>
+    <script>
+    	function F__ID(){
+    		//-------------------------------------
+            VmInclude:__COMPONENT__/f/form.01.js
+			//-------------------------------------
+			m.before_submit=function(data,index){
+				index.I1=data.Name;
+			}
+			//-------------------------------------
+    	}
+    </script>
+    <style>
+        #form_container__ID{
+            max-width:700px;
+        }
+        VmInclude:__COMPONENT__/f/form.01.css
+        #F__ID b{
+            display:inline-block;
+            margin-bottom:10px;
+        }
+    </style>
+</div>

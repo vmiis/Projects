@@ -1,0 +1,75 @@
+<div id=D__ID>
+    <!--third html start -->
+    <div class="container mt-95 mb-3">
+      <div class="row" >
+        <!-- form container start -->
+        <div class="col-12 col-lg-12 col-md-12 col-sm-12 mx-auto formbox">
+          <div class="row">
+            <div class="col-12">
+              <!-- form start -->
+              <form id="F__ID">
+                 <h3 id='header__ID' ></h3>
+                 <!-- participant part for all tsak forms -------------------->
+                 <div id="participant_div__ID">
+                     <div class="form-group">
+                        <fieldset class="subquestions">
+                            <label ><span class="">Participant</span>
+                                <input type=text name="Participant" class=form-control id=Participant__ID data-id="Participant"/>
+                            </label><br>
+                            <label ><span class="">Participant ID</span>
+                                <input type=text name="Participant_uid" class=form-control readonly />
+                            </label>
+                         </fieldset>
+                     </div>
+                 </div>
+                 <!---------------------------------------------------->
+                 <div class="form-group">
+                     <fieldset class="subquestions">
+                         <h4>Easy way to get a input form for text contructed. You give us just the labels (First Entry, Second Entry, Third Entry) and the form is ready to us.</h4>
+                     </fieldset>
+                 </div>
+                 <!-- Form Inputs-------------------------------------->
+                 <div id=dynamic_part__ID></div>
+                 <!---------------------------------------------------->
+                 <!-- submit button part for all task forms------------>
+                 <button type="submit" id="submit__ID" class="btn btn-primary btn-lg">Submit</button>
+             </form>
+             <!---------------------------------------------------->
+    	    </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script>
+        function F__ID(){            
+            //-------------------------------------
+            var fields="First_Entry,Second_Entry,Third_Entry";
+            $('#header__ID').text("Dynamically generated form from label names ");
+            //-------------------------------------
+            var fs=fields.split(',');
+            var txt="";
+            for(var i=0;i<fs.length;i++){
+                txt+='<div class="form-group">\r\n';
+                    txt+='<div class="questiongroup">\r\n';
+                       txt+='<fieldset class="">\r\n';
+                           txt+='<label ><span class="">'+fs[i].replace(/_/g,' ')+'</span>\r\n';
+                               txt+='<input class="form-control form-control-sm" type="text" name="'+fs[i]+'" >\r\n';
+                          txt+='</label>\r\n';
+                        txt+='</fieldset>\r\n';
+                    txt+='</div>\r\n';
+                txt+='</div>\r\n';
+            }
+            $('#dynamic_part__ID').html(txt);
+            //-------------------------------------
+            VmInclude:'__COMPONENT__/f/form.01.js'
+            VmInclude:__CURRENT_PATH__/../../s/shared-clinical-trials-task-form.js
+            //-------------------------------------
+        }
+    </script>
+    <style>
+      #D__ID .mt-95 {
+          max-width:600px;
+      }
+      VmInclude:__CURRENT_PATH__/../../w/wappsystem-form.css
+    </style>
+</div>

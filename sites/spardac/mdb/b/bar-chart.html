@@ -1,0 +1,59 @@
+<div id=D__ID>
+	VmInclude:__COMPONENT__/c/chart.01.html
+	<section id=chart_container__ID>
+		<div id=chart_div__ID></div>
+    </section>
+    <script>
+    	function F__ID(){
+    		//-------------------------------------
+            VmInclude:__COMPONENT__/c/chart.01.js
+    		//-------------------------------------
+			m.fields="City,2010_Population,2000_Population";
+			m.sort={'I1':-1};
+			m.data_process=function(){
+				if(m.google==0) return;
+				google.charts.load('current', {packages: ['corechart', 'bar']});
+				google.charts.setOnLoadCallback(draw_chart);
+			}
+			//-------------------------------------
+			var draw_chart=function(){
+				//----------------------------------
+				var ds=[]
+				ds.push(['City', '2010 Population', '2000 Population'])
+				var fd=m.fields.split(',')
+				for(var i=0;i<m.records.length;i++){
+					var row=[];
+					for(var j=0;j<fd.length;j++){
+						if(j==0) row.push(m.records[i].Data[fd[j]]);
+						else row.push(parseFloat(m.records[i].Data[fd[j]]));
+					}
+					ds.push(row)
+				}
+				//----------------------------------
+				var data = google.visualization.arrayToDataTable(ds);
+				var options = {
+					title: 'Population of Largest U.S. Cities',
+					chartArea: {width: '50%'},
+					colors: ['#b0120a', '#ffab91'],
+					hAxis: {
+						title: 'Total Population',
+						minValue: 0
+					},
+					vAxis: {
+						title: 'City'
+					}
+				};
+				var chart = new google.visualization.BarChart(document.getElementById('chart_div__ID'));
+				chart.draw(data, options);				
+			}
+			//-------------------------------------
+    	}
+		//-------------------------------------
+    </script>
+    <style>
+		VmInclude:__COMPONENT__/c/chart.01.css
+		#chart_div__ID{
+			height:500px;
+		}
+    </style>
+</div>

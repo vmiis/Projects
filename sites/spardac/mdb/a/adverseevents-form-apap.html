@@ -1,0 +1,146 @@
+<div id=D__ID>
+    <section id=form_container__ID>
+        <div id=header__ID>
+                Advers events
+    	</div>
+    	<form id=F__ID>
+            <div class="container">
+                <!-- participant part for all tsak forms -------------------->
+                <div class="row row__ID" id=row_participant__ID>
+                    <div class="col-sm-12 col-lg-9 input__ID">
+                        <span class=label__ID>Participant</span><br>
+                        <input type=text name="Participant" class=form-control id=Participant__ID data-id="Participant" />
+                    </div>
+                    <div class="col-sm-12 col-lg-3 input__ID">
+                        <span class=label__ID>Participant ID</span><br>
+                        <input type=text name="Participant_uid" class=form-control readonly />
+                    </div>
+                    <hr style="border-top: 1px solid #888;width: 100%;margin:10px 0">
+                </div>
+                <!---------------------------------------------------->
+
+                <!-- Form Inputs-------------------------------------->
+                <div class='row row__ID'>
+    				<div class="col">
+    					<span>Adverse Event #</span>
+    					<input type=text class=form-control name=ae_num>
+    				</div>
+    			</div>
+                <div class='row row__ID'>
+    				<div class="col">
+    					<span>Adverse Event</span>
+    					<input type=date class=form-control name=AE>
+    				</div>
+    			</div>
+                <div class='row row__ID'>
+    				<div class="col">
+    					<span>Last dose(??) of treatment</span>
+    					<input type=date class=form-control  name=last_dose>
+    				</div>
+    			</div>
+                <div class='row row__ID'>
+                    <div class="col">
+                        <span>Onset Date and Time</span>
+                        <input type=date class=form-control  name=date_onset>
+                        <input type=time class=form-control  name=time_onset>
+                    </div>
+                </div>
+                <div class='row row__ID'>
+                    <div class="col">
+                        <span>Resolution Date and Time</span>
+                        <input type=date class=form-control  name=date_resol>
+                        <input type=time class=form-control  name=time_resol>
+                    </div>
+                </div>
+                <div class='row row__ID'>
+                    <div class="col">
+                        <span>Was this a Serious Adverse Event? </span>
+	                    <div class=radio__ID>
+                            <label><input type="radio" name="sae" value="Yes" required > Yes</label><br>
+                            <label><input type="radio" name="sae" value="No"> No</label><br>
+                        </div>
+                    </div>
+                </div>
+                <div class='row row__ID'>
+                    <div class="col">
+                        <span>Intensity</span>
+	                    <div class=radio__ID>
+                            <label><input type="radio" name="intensity" value="Mild" required > Mild</label><br>
+                            <label><input type="radio" name="intensity" value="Moderate"> Moderate</label><br>
+                            <label><input type="radio" name="intensity" value="High"> High</label><br>
+                        </div>
+                    </div>
+                </div>
+
+                <div class='row row__ID'>
+                    <div class="col">
+                        <span>Relationship To Study Treatment</span>
+	                    <div class=radio__ID>
+                            <label><input type="radio" name="relation" value="Mild" required > Mild</label><br>
+                            <label><input type="radio" name="relation" value="Moderate"> Moderate</label><br>
+                            <label><input type="radio" name="relation" value="High"> High</label><br>
+                        </div>
+                    </div>
+                </div>
+
+                <div class='row row__ID'>
+                    <div class="col">
+                        <span>Treatment Required</span>
+	                    <div class=radio__ID>
+                            <label><input type="radio" name="treatment" value="None" required > None</label><br>
+                            <label><input type="radio" name="treatment" value="Concomitant Medication"> Concomitant Medication</label><br>
+                            <label><input type="radio" name="treatment" value="Non-Drug Tx"> Non-Drug Tx</label><br>
+                            <label><input type="radio" name="treatment" value="Hospitalisation"> Hospitalisation</label><br>
+                            <label><input type="radio" name="treatment" value="Other"> Other</label><br>
+                            <input type=text class=form-control placeholder="please describe" name=other_text>
+                        </div>
+                    </div>
+                </div>
+                <div class='row row__ID'>
+                    <div class="col">
+                        <span>Outcome</span>
+                        <input type=text class=form-control  name=Outcome>
+                    </div>
+                </div>
+                <!---------------------------------------------------->
+
+
+                <!-- submit button part for all tsak forms------------>
+                <br>
+    			<div class="row c_print">
+    				<div class=col>
+    					<button id=submit__ID type="submit" class="btn btn-secondary">Submit</button>
+    				</div>
+    			</div>
+                <!---------------------------------------------------->
+        	</div>
+        </form>
+    </section>
+    <script>
+        function F__ID(){
+            //-------------------------------------
+			VmInclude:'__COMPONENT__/f/form.01.js'
+            VmInclude:'__CURRENT_PATH__/../../s/shared-task-form-apap.js'
+            //-------------------------------------
+        }
+    </script>
+    <style>
+        #form_container__ID{
+            max-width:700px;
+        }
+        VmInclude:__COMPONENT__/f/form.01.css
+		.label__ID{
+			font-weight: bold;
+		}
+		.radio__ID{
+			padding-left:40px;
+		}
+		.radio__ID label{
+			cursor:pointer;
+			margin: 0;
+		}
+		.radio__ID label:hover{
+			background-color: #999;
+		}
+    </style>
+</div>

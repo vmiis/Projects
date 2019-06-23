@@ -1,0 +1,63 @@
+<div id=D__ID>
+    <section id=form_container__ID>
+    	<div id=header__ID>
+    		Car
+    	</div>
+    	<form id=F__ID>
+    		<div class="container">
+                <div class='row row__ID'>
+    				<div class="col">
+    					<span>Image</span>
+						<div class="form-control">
+							<img style='width:220px;cursor:pointer' id=Image__ID></img>
+							<br>
+							<input type="file" name=Image style="margin-top:6px" /> <button type="button" id=x_Image__ID>Remove</button>
+						</div>
+					</div>
+    			</div>
+				<div class="row row__ID">
+					<div class="col-sm col-lg-6">
+						<span>Plate Number</span>
+						<input type=text class="form-control" name="Number" required>
+					</div>
+					<div class="col-sm col-lg-6">
+						<span>Model</span>
+						<input type=text class="form-control" name="Model" required>
+					</div>
+				</div>
+				<div class="row row__ID">
+					<div class="col">
+						<span>Description</span>
+						<textarea class="form-control" name="Description" style='min-height:200px'></textarea>
+					</div>
+				</div>
+                <br>
+    			<div class="row">
+    				<div class=col>
+    					<button id=submit__ID type="submit" class="btn btn-secondary">Submit</button>
+    				</div>
+    			</div>
+    		</div>
+    	</form>
+    </section>
+    VmInclude:__COMPONENT__/m/model.01.html
+    <script>
+    	function F__ID(){
+    		//-------------------------------------
+            VmInclude:__COMPONENT__/f/form.01.js
+    		//-------------------------------------
+			var load2=m.load;
+			m.load=function(){
+				load2();
+                m.set_image_url("Image");
+			}
+			//-------------------------------------
+    	}
+    </script>
+    <style>
+		#form_container__ID{
+			max-width:700px;
+		}
+        VmInclude:__COMPONENT__/f/form.01.css
+    </style>
+</div>

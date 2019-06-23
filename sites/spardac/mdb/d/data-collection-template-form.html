@@ -1,0 +1,60 @@
+<div id=D__ID>
+    <section id=form_container__ID>
+    	<div id=header__ID>
+    		Data collection template
+    	</div>
+    	<form id=F__ID>
+    		<div class="container">
+    			<div class="row row__ID">
+    				<div class=col>
+    					<span>Field 1</span>
+    					<input type="text" class="form-control" name=Field_1 />
+    				</div>
+    			</div>
+                <div class="row row__ID">
+    				<div class=col>
+    					<span>Field 2</span>
+    					<input type="text" class="form-control" name=Field_2 />
+    				</div>
+    			</div>
+                <div class="row row__ID">
+    				<div class=col>
+    					<span>Field 3</span>
+    					<input type="text" class="form-control" name=Field_3 />
+    				</div>
+    			</div>
+    			<br>
+    			<div class="row">
+    				<div class=col>
+    					<button id=submit__ID type="submit" class="btn btn-secondary">Submit</button>
+    				</div>
+    			</div>
+    		</div>
+    	</form>
+    </section>
+    <script>
+    	function F__ID(){
+    		//-------------------------------------
+            VmInclude:__COMPONENT__/f/form.01.js
+    		//-------------------------------------
+            var load=m.load;
+            m.load=function(){
+                load();
+                //...
+            }
+            //-------------------------------------
+            m.before_submit=function(data,index){
+                //data['Field_1']...
+                //index[I1]=...
+                return true;
+            }
+            //-------------------------------------
+    	}
+    </script>
+    <style>
+		#form_container__ID{
+			max-width:700px;
+		}
+        VmInclude:__COMPONENT__/f/form.01.css
+    </style>
+</div>

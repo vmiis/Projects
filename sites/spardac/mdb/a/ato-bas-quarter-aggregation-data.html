@@ -1,0 +1,34 @@
+<div id=D__ID>
+    <div>
+        VmInclude:__COMPONENT__/g/grid.01.html
+    </div>
+    <script>
+        function F__ID(){
+            //-------------------------------------
+            VmInclude:__COMPONENT__/g/grid.01.js
+            //-------------------------------------
+            var fields="Year,Quarter,Last_performed,G1_sales,1A_GST,1B_GST,W1_salary,W2_withheld";
+            m.fields="_Form,"+fields+",Submit_date,Submitted_by,_Delete";
+            m.form_fields=fields;
+            //-------------------------------------
+            m.sort={I1:-1,I2:-1}
+            //-------------------------------------
+            m.cell_render=function(records,I,field,td){
+                switch(field){
+                    case 'G1_sales':
+                    case '1A_GST':
+                    case '1B_GST':
+                    case 'W1_salary':
+                    case 'W2_withheld':
+                        td.html("$"+parseFloat(records[I].Data[field]).toFixed(2));
+                        td.css('text-align','right')
+                        break;
+                }
+            }
+            //-------------------------------------
+        }
+    </script>
+    <style>
+        VmInclude:__COMPONENT__/g/grid.01.css
+    </style>
+</div>

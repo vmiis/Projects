@@ -1,0 +1,19 @@
+<div id=D__ID>
+    <div>
+        VmInclude:__COMPONENT__/g/grid.01.html
+    </div>
+    <script>
+        function F__ID(){
+            //-------------------------------------
+            VmInclude:__COMPONENT__/g/grid.01.js
+            VmInclude:__CURRENT_PATH__/../../s/shared-task-data-apap.js
+            //-------------------------------------
+            var fields="BP_sys,BP_dia,spo2,HR,RR,general,general_ab,,heent_ab,heent,neck_ab,neck,skin_ab,skin,lymph_ab,lymph,chest_ab,chest,heart_ab,heart,abdomen_ab,abdomen,extremities_ab,extremities,cns_abcns,other_ab,other,,genitourinary_ab,genitourinary";
+            m.fields="_Form,_Status,_Participant_ID,"+fields+",Submit_date,Submitted_by,_Delete";
+            //-------------------------------------
+        }
+    </script>
+    <style>
+        VmInclude:__COMPONENT__/g/grid.01.css
+    </style>
+</div>
