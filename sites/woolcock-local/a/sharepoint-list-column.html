@@ -1,0 +1,52 @@
+<div id=D__ID>
+    <button id=json__ID type=button class="btn btn-secondary" style='margin:15px 0 0 15px'>JSON data</button>
+	<h3 style='margin:15px 0 0 30px'>Sharepoint list columns</h3>
+    <div id=info__ID>
+	</div>
+	<script>
+		function F__ID(){
+            var D="";
+            var m=$vm.module_list["__MODULE__"];
+			$('#D__ID').on('load',function(){
+                $('#info__ID').html('');
+                var g_id=""; if(m.input.group_id!=undefined) g_id=m.input.group_id;
+                var rid=m.input.rid;
+				$vm.m365_graph("https://graph.microsoft.com/v1.0/"+g_id+"sites/"+m.input.site_id+"/lists/"+rid+"/columns",function(data){
+                    D=data;
+					var txt="<table>";
+					txt+="<tr><th>Name</th></tr>";
+					for(i in data.value){
+                        txt+="<tr><td>"+data.value[i].name+"</td>";
+                        txt+="</tr>";
+					}
+					txt+="</table>"
+					$('#info__ID').html(txt);
+                    $('#D__ID u').on('click',function(){
+                        alert($(this).attr('rid'))
+                    })
+                })
+            })
+            //------------------------------------
+            $('#json__ID').on('click',function(){
+                $vm.show_json_data(D);
+            })
+            //------------------------------------
+		}
+	</script>
+	<style>
+		#D__ID{
+			height:100%;
+			animation: vm_module_fadein 1.0s;
+			background-color: #fff;
+		}
+        #info__ID{
+            padding:10px 0 0 30px;
+        }
+        #info__ID span{
+            font-weight: bold;
+        }
+		#D__ID td{
+			padding-right:20px;
+		}
+	</style>
+</div>

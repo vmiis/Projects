@@ -1,0 +1,63 @@
+<div id=D__ID>
+	<button id=json__ID type=button class="btn btn-secondary" style='margin:15px 0 0 15px'>JSON data</button> 
+	<h3 style='margin:15px 0 0 30px'>Sharepoint sites (<span id=group__ID></span>)</h3>
+    <div id=info__ID>
+	</div>
+	<script>
+		function F__ID(){
+            var m=$vm.module_list["__MODULE__"];
+			var D="";
+			$('#D__ID').on('load',function(){
+				$('#info__ID').html('');
+				var name="Organization";
+				var g_id="";
+				if(m.input.group_name!=undefined){ name=m.input.group_name; g_id=m.input.group_id;}
+				$('#group__ID').text(name);
+				$vm.m365_graph("https://graph.microsoft.com/v1.0/"+g_id+"sites/root/sites?search=*",function(data){
+					D=data;
+					var txt="<table>";
+					txt+="<tr><th>displayName</th><th>createdDateTime</th><th>Content List</th><th>webUrl</th>";
+					for(i in data.value){
+						txt+="<tr><td>"+data.value[i].displayName+"</td><td> "+data.value[i].createdDateTime+"</td>";
+						txt+="<td><u style='cursor:pointer' i="+i+">Content List</td>";
+						txt+="<td><a target=_blamk href="+data.value[i].webUrl+">"+data.value[i].webUrl+"</a></td>";
+                        txt+="</tr>";
+					}
+					txt+="</table>"
+					$('#info__ID').html(txt);
+					//------------------------------------
+					$('#D__ID u').on('click',function(){
+						var i=parseInt($(this).attr('i'));
+						var site_id=D.value[i].id;
+						var site_name=D.value[i].name;
+						if(site_name.indexOf('.sharepoint.com')!=-1) site_name='root';
+						//alert(site_id)
+						$vm.load_module('sharepoint-list','',{site_id:site_id,site_name:site_name,group_id:g_id});
+					})
+					//------------------------------------
+				})
+			})
+            //------------------------------------
+            $('#json__ID').on('click',function(){
+                $vm.show_json_data(D);
+            })
+            //------------------------------------
+		}
+	</script>
+	<style>
+		#D__ID{
+			height:100%;
+			animation: vm_module_fadein 1.0s;
+			background-color: #fff;
+		}
+        #info__ID{
+            padding:10px 0 0 30px;
+        }
+        #info__ID span{
+            font-weight: bold;
+        }
+		#D__ID td{
+			padding-right:20px;
+		}
+	</style>
+</div>
