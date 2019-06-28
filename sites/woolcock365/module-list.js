@@ -12,6 +12,20 @@
         "sharepoint-list":   	            {url:"$H/a/sharepoint-list.html"},
         "sharepoint-list-column":           {url:"$H/a/sharepoint-list-column.html"},
         "sharepoint-list-item":             {url:"$H/a/sharepoint-list-item.html"},
+        "create-list-fields":               {url:"$H/a/create-list-fields.html",Table:"https://woolcockmed.sharepoint.com/sites/HRandEmployment/_api/"},
+
+
+
+        "new-hire-data":                    {url:"$H/h/new-hire-data.html",
+                                                Table: "https://woolcockmed.sharepoint.com/sites/HRandEmployment/_api/web/lists/GetByTitle('New Hire')",
+                                                form_module:"new-hire-form",router:1
+                                            },
+        "new-hire-form":	                {url:"$H/h/new-hire-form.html",
+                                                Table: "https://woolcockmed.sharepoint.com/sites/HRandEmployment/_api/web/lists/GetByTitle('New Hire')",
+                                            },
+
+
+
 
 
         "clinician-appointment-data":      {url:"$H/m/clinician-appointment-data.html",

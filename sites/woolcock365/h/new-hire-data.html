@@ -1,0 +1,227 @@
+<div id=D__ID>
+    <div>
+        <section>
+            <div id=toolbar__ID class="navbar navbar-default">
+                    <div id=row_1__ID>
+                            <button id=info__ID type=button class='btn btn-secondary' title='Add new' style='display:none'><i class="fa fa-info"></i></button>
+                            <button id=new__ID  type=button class='btn btn-secondary' title='Add new'><i class="fa fa-plus"></i></button>
+                            <button id=query__ID type=button class="btn btn-secondary" title='Refresh'><i class="fas fa-redo-alt"></i></button>
+                    </div>
+            </div>
+            <div id=table__ID>
+                <table id=grid__ID></table>
+            </div>
+        </section>
+        <style>
+            #toolbar__ID{
+                background-color:#ccc;
+                padding:5px 10px;
+                margin-bottom:0px;
+                overflow:hidden
+            }
+            #toolbar__ID *{
+                margin-right:3px;
+            }
+            #keyword__ID{
+                width: 150px; 
+                display:inline-block;
+            }
+            @media screen and (max-width:768px){
+                #toolbar__ID{
+                    padding: 3px 0;
+                }
+                #toolbar__ID div{
+                    padding-left:3px;
+                }
+                #row_1__ID{
+                    padding-bottom: 3px;
+                    width:100%;
+                }
+                #keyword__ID{
+                    width:auto;
+                }
+            }
+        </style>
+    </div>
+    <script>
+        function F__ID(){
+            //-------------------------------------
+            VmInclude:__COMPONENT__/g/grid.365r.01.js
+            //-------------------------------------
+            var create_fields=function(s){
+                var f="";
+                ss=s.split(',');
+                for(var i=0;i<ss.length;i++){
+                    if(f!="") f+=","
+                    var a=ss[i].trim();
+                    var b=ss[i].trim().replace(/ /g,'').replace(/\//g,'_x002f_').replace(/–/g,'_x2013_').replace(/\(/g,'_x2028_').replace(/\)/g,'_x2029_');
+                    if(b.length>32) b=b.substring(0,32);
+                    f+=a+"|"+b;
+                }
+                return f;
+            }
+            //-------------------------------------
+            var fields="\
+					Manager Approval|_x0046_0010,\
+					Position Approved by|_x0046_0020,\
+					Funding Approved By|_x0046_0030,\
+					Date funding approved|_x0046_0040,\
+					Funding Grantor/Institute|_x0046_0050,\
+					Project Code/Default Cost Account|_x0046_0060,\
+					Percentage Split – Cost Code|_x0046_0070,\
+					Employee Code|_x0046_0080,\
+					Title/Salutation|_x0046_0090,\
+					First Name|_x0046_0100,\
+					Surname|_x0046_0110,\
+					Gender|_x0046_0120,\
+					Address|_x0046_0130,\
+					Date Of Birth|_x0046_0140,\
+					Email address|_x0046_0150,\
+					Phone Number (Home)|_x0046_0160,\
+					Phone Number (Mobile)|_x0046_0170,\
+					Sleep Technicians|_x0046_0180,\
+					Neurobiology|_x0046_0190,\
+					Sleep and Circadian|_x0046_0200,\
+					Sleep Group|_x0046_0210,\
+					Cardio-metabolic|_x0046_0220,\
+					Epidemiology/Clinical Trials|_x0046_0230,\
+					Operations|_x0046_0240,\
+					Commercial|_x0046_0250,\
+					Woolcock Therapy Centre|_x0046_0260,\
+					Woolcock Reception|_x0046_0270,\
+					Clinical Management|_x0046_0280,\
+					Respiratory Technology|_x0046_0290,\
+					Airway Physiology and Imaging|_x0046_0300,\
+					Emphysema Group|_x0046_0310,\
+					Employee Position Title|_x0046_0320,\
+					Reporting To|_x0046_0330,\
+					Manager Name|_x0046_0340,\
+					Contract/Variation Start Date|_x0046_0350,\
+					Contract/Variation End  Date|_x0046_0360,\
+					Employment Status|_x0046_0370,\
+					Monday|_x0046_0380,\
+					Monday Start time|_x0046_0390,\
+					Monday Finish time|_x0046_0400,\
+					Monday Unpaid break|_x0046_0410,\
+					Tuesday|_x0046_0420,\
+					Tuesday Start time|_x0046_0430,\
+					Tuesday Finish time|_x0046_0440,\
+					Tuesday Unpaid break|_x0046_0450,\
+					Wednesday|_x0046_0460,\
+					Wednesday Start time|_x0046_0470,\
+					Wednesday Finish time|_x0046_0480,\
+					Wednesday Unpaid break|_x0046_0490,\
+					Thursday|_x0046_0500,\
+					Thursday Start time|_x0046_0510,\
+					Thursday Finish time|_x0046_0520,\
+					Thursday Unpaid break|_x0046_0530,\
+					Friday|_x0046_0540,\
+					Friday Start time|_x0046_0550,\
+					Friday Finish time|_x0046_0560,\
+					Friday Unpaid break|_x0046_0570,\
+					Saturday|_x0046_0580,\
+					Saturday Start time|_x0046_0590,\
+					Saturday Finish time|_x0046_0600,\
+					Saturday Unpaid break|_x0046_0610,\
+					Sunday|_x0046_0620,\
+					Sunday Start time|_x0046_0630,\
+					Sunday Finish time|_x0046_0640,\
+					Sunday Unpaid break|_x0046_0650,\
+					Award Free|_x0046_0660,\
+					Health Professionals and Support Services Award 2010|_x0046_0670,\
+					Professional Employees Award 2010|_x0046_0680,\
+					Clerks Private Sector Award 2010|_x0046_0690,\
+					Hospitality Industry General Award 2010|_x0046_0700,\
+					Manufacturing and Associated Industries and Occupations Award 2010|_x0046_0710,\
+					Wage (per hour) or Salary (per annum)|_x0046_0720,\
+					Is a Working with Children Check required for this position|_x0046_0730,\
+                    The Working with Children Check Number|_x0046_0740,\
+					Is a Police Check required for this position|_x0046_0750,\
+					Police Check reference number|_x0046_0760,\
+					Is the employee required to wear a uniform|_x0046_0770,\
+					the laundry allowance to  be paid effective from|_x0046_0780,\
+					The position requires a building access/swipe card|_x0046_0790,\
+					The position requires a desk|_x0046_0800,\
+					The position requires computer access|_x0046_0810,\
+					The position requires Level 3 Lab access|_x0046_0820,\
+                    Will this position come into contact with patients/research participants|_x0046_0830,\
+                    Have they ever been with Sydney University|_x0046_0840,\
+                    If yes please advise their Unikey details|_x0046_0850,\
+					What Folders access too|_x0046_0860,\
+					Group email addresses|_x0046_0870,\
+					What databases|_x0046_0880\
+				";
+            var fields_hide="\
+                ";
+            m.fields="_Form,"+fields+",Submit_date,Submitted_by,_Delete";
+            //-------------------------------------
+            m.set_req=function(){
+                m.endpoint=m.Table+"/items?$expand=Author&$select=*,Author/FirstName,Author/LastName";
+                m.endpoint_d=m.Table+"/items";
+            }
+            //-------------------------------------
+            m.data_process=function(res){
+                $('#vm_data_loader').hide();
+                m.records=[];
+                for(var i=0;i<res.value.length;i++){
+                    var fs=res.value[i];
+                    var Data={}
+                    var f_ids=(fields+","+fields_hide).split(',')
+                    for(k in f_ids){
+                        var id=f_ids[k].split('|').pop();
+                        Data[id]=fs[id];
+                    }
+                    m.records.push({
+                        "_id":res.value[i]['ID'],
+                        "Submit_date":res.value[i]['Created'],
+                        "Submitted_by":res.value[i].Author.FirstName+" "+res.value[i].Author.LastName,
+                        Data:Data
+                    })
+                    console.log(m.records[i].Data)
+                }
+                m.render();
+            }
+            //-------------------------------------
+            m.request_data=function(){
+                $('#vm_data_loader').show();
+                $vm.m365_msal.acquireTokenSilent($vm.m365_scope_sharepoint).then(function (tokenResponse) {
+                    m.ajax(m.endpoint,tokenResponse,function(data){
+                        m.data_process(data);
+                    })
+                }).catch(function (error) {
+                    $('#vm_data_loader').hide();
+                    console.log(error);
+                    $vm.alert("You haven't signed in, or your previous session has expired.")
+                });
+            }
+            //-------------------------------------
+            m.delete=function(rid){
+                $vm.m365_msal.acquireTokenSilent($vm.m365_scope_sharepoint).then(function (tokenResponse) {
+                    var mt1=new Date().getTime();
+                    var xmlHttp = new XMLHttpRequest();
+                    xmlHttp.onreadystatechange = function () {
+                        if (this.readyState == 4 && (this.status == 204 || this.status == 200)){
+                            var mt2=new Date().getTime();
+                            var tt_all=mt2-mt1;
+                            m.request_data();
+                        }
+                    }
+                    xmlHttp.open("DELETE", m.endpoint_d+"("+rid+")", true); // true for asynchronous
+                    xmlHttp.setRequestHeader('Authorization', 'Bearer ' + tokenResponse.accessToken);
+                    xmlHttp.setRequestHeader("Accept", "application/json");  
+                    xmlHttp.setRequestHeader("Content-Type", "application/json; charset=utf-8");  
+                    xmlHttp.setRequestHeader("IF-MATCH", "*");  
+                    xmlHttp.send();
+                }).catch(function (error) {
+                    console.log(error);
+                });
+            };
+            //-------------------------------
+
+
+        }
+    </script>
+    <style>
+        VmInclude:__COMPONENT__/g/grid.01.css
+    </style>
+</div>
