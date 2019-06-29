@@ -1,0 +1,51 @@
+<div id=D__ID>
+    <section id=form_container__ID>
+    	<div id=header__ID>
+    		Survey
+    	</div>
+    	<form id=F__ID>
+    		<div class="container">
+				<div class="row row__ID">
+					<div class="col">
+						<span class=label__ID>What is your employment status?</span>
+						<div class="radio__ID">
+							<label class="form-check-label"><input type="radio" name="Employment_status" value="Employed full time"> Employed full time</label><br>
+							<label class="form-check-label"><input type="radio" name="Employment_status" value="Trade or Vocational degree"> Trade or Vocational degree</label><br>
+							<label class="form-check-label"><input type="radio" name="Employment_status" value="Not employed, but looking for work"> Not employed, but looking for work</label><br>
+						</div>
+					</div>
+				</div>
+				<div class="row row__ID">
+					<div class="col">
+						<span class=label__ID>What is the highest level of education you have completed?</span>
+						<div class="radio__ID">
+							<label class="form-check-label"><input type="radio" name="Highest_education" value="Some high school"> Some high school</label><br>
+							<label class="form-check-label"><input type="radio" name="Highest_education" value="High school graduate or equivalent"> High school graduate or equivalent</label><br>
+							<label class="form-check-label"><input type="radio" name="Highest_education" value="Trade or Vocational degree"> Trade or Vocational degree</label><br>
+						</div>
+					</div>
+				</div>
+    			<br>
+    			<div class="row">
+    				<div class=col>
+    					<button id=submit__ID type="submit" class="btn btn-secondary">Submit</button>
+    				</div>
+    			</div>
+    		</div>
+    	</form>
+    </section>
+    VmInclude:__COMPONENT__/m/model.01.html
+    <script>
+    	function F__ID(){
+    		//-------------------------------------
+            VmInclude:__COMPONENT__/f/form.01.js
+    		//-------------------------------------
+    	}
+    </script>
+    <style>
+        #form_container__ID{
+            max-width:700px;
+        }
+		VmInclude:__COMPONENT__/f/form.01.css
+    </style>
+</div>
