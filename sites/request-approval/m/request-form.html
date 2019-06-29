@@ -4,15 +4,15 @@
 			<button id=Request__ID type="button" class="btn btn-secondary">Request</button>
 			<button id=Approval__ID type="button" class="btn btn-secondary">Approval</button>
     	</div>
-    	<form id=F__ID>
+    	<form id=F__ID class=fm__ID>
     		<div class="container">
 				<div class="row row__ID">
 					<div class=col-md-3>Manager for approval</div>
 					<div class=col-md-9>
-						<select class=form-control name=Manager >
+						<select class=form-control name=Manager_for_Approval >
 							<option></option>
-							<option value='guest|zzm.vmiis@gmail.com'>Manager 1</option>
-							<option value='manager1|zzm.vmiis@gmail.com'>Manager 2</option>
+							<option value='Manager 1|zzm.vmiis@gmail.com|guest'>Manager 1</option>
+							<option value='manager 2|zzm.vmiis@gmail.com|jimmy'>Manager 2</option>
 						</select>
 					</div>
 				</div>
@@ -28,13 +28,15 @@
 				</div>
     			<br>
     			<div class="row">
-    				<div class=col>
-    					<button id=submit__ID type="submit" class="btn btn-secondary">Submit</button>
+    				<div class="col c_print">
+                        <button id=submit0__ID type="submit" style='display:none'></button>
+            			<button id=submit1__ID type="button" class="btn btn-secondary">Submit (draft)</button>
+            			<button id=submit2__ID type="button" class="btn btn-secondary">Submit (completed, send alert email to the manager for approval</button>
     				</div>
     			</div>
     		</div>
     	</form>
-    	<form id=F2__ID>
+    	<form id=F2__ID class=fm__ID>
     		<div class="container">
 				<div class="row row__ID">
 					<div class=col-md-3>Approval</div>
@@ -54,12 +56,6 @@
 					<div class=col-md-3>Approval Field 2</div>
 					<div class=col-md-9><input type=text class=form-control name=Field_2 /></div>
 				</div>
-    			<br>
-    			<div class="row">
-    				<div class=col>
-    					<button id=submit2__ID type="submit" class="btn btn-secondary">Submit</button>
-    				</div>
-    			</div>
     		</div>
     	</form>
     </section>
@@ -71,17 +67,42 @@
 			//-------------------------------------
 			var old_load=m.load;
 			m.load=function(){
+				old_load();
 				$('#F__ID').show(); $('#F2__ID').hide();
 			}
-			//-------------------------------------
 			$('#Request__ID').on('click',function(){  $('#F__ID').show(); $('#F2__ID').hide();  })
 			$('#Approval__ID').on('click',function(){  $('#F__ID').hide(); $('#F2__ID').show();  })
+			//-------------------------------------
+            $('#submit1__ID').on('click',function(event){	m.draft=1;	$('#submit0__ID').trigger('click'); 	});
+    		$('#submit2__ID').on('click',function(event){   m.draft=0;	$('#submit0__ID').trigger('click');		});
+    		//--------------------------------------------------------
+            m.after_insert=function(data,res){  after_submit(data); }
+            m.after_update=function(data,res){  after_submit(data); }
+            //--------------------------------------------------------
+            m.before_submit=function(data,index){
+                index.P1=data.Manager_for_Approval.split('|')[2];
+                return true;
+            }
+            //--------------------------------------------------------
+            var after_submit=function(data){
+                $vm.refresh=1;
+                if(m.draft==0) $vm.load_module(m.email_to_manager,'',{record:{Data:data}})
+                else{
+                    var rid=undefined; if(m.input.record!=undefined) rid=m.input.record._id;
+                    if(rid!=undefined) window.history.go(-1);                       //modify
+                    else if(m.input.goback!=undefined) window.history.go(-1);       //from grid
+                    else $vm.alert('Your data has been successfully submitted');    //standalone
+                }
+            }
+            //--------------------------------------------------------
+			/*
 			$('#F2__ID input[name=Approved]').on('click',function(){ 
 				var txt="";
 				if( $('#F2__ID input[name=Approved]').prop('checked')==true ) txt="Approved by "+$vm.user_name+" on "+new Date().toLocaleDateString();
 				$('#msg__ID').text(txt);
 				$('#F2__ID input[name=Approved_by]').val(txt);
 			})
+			*/
 			//-------------------------------------
     	}
     </script>

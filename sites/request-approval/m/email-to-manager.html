@@ -1,0 +1,61 @@
+<div id=D__ID>
+    <div id=subject__ID>
+    </div>
+    <div id=email__ID>
+        Dear <span id=manager__ID>[MANAGER]</span>,
+        <br><br>
+        <div style='max-width:500px'>
+            There is a new request need to be approved.
+            <br>
+            <br>
+        </div>
+        Kind regards,<br><br>
+        Administrator<br><br>
+    </div>
+    <button type=button id=send__ID class="btn btn-secondary">Send</button>
+    <script>
+        function F__ID(){
+            //-----------------------------------------------
+            var m=$vm.module_list['__MODULE__'];
+            //-----------------------------------------------
+            var email_to;
+            var email_html;
+            var email_text;
+            //-----------------------------------------------
+            $('#D__ID').on('load',function(){
+                $('#send__ID').show();
+                var record=m.input.record;
+                $('#manager__ID').text(record.Data.Manager_for_Approval.split('|')[0]);
+                email_to=record.Data.Manager_for_Approval.split('|')[1];
+                email_html=$('#email__ID').html();
+                email_text=$('#email__ID').text();
+            })
+            //-----------------------------------------------
+            $('#send__ID').on('click',function(){
+                if($vm.user_name!='guest'){
+                    var req={cmd:'ses-send-email',to:email_to,email_title_uid:2,email_html:email_html,email_text:email_text}
+                    $vm.request(req,function(res){
+                        if(res.status=='ok'){
+                            $vm.alert("The email has been sent out to "+email_to);
+                            $('#send__ID').hide();
+                        }
+                        else{
+                            $vm.alert("Error");
+                        }
+                    });
+                }
+                else{ $vm.alert("The email has been sent out to "+email_to); $('#send__ID').hide();}
+            })
+            //-----------------------------------------------
+        }
+    </script>
+    <style>
+      #D__ID{
+          height:100%;
+          animation: vm_module_fadein 1.0s;
+          overflow:auto;
+          background-color:#fff;
+          padding:30px;
+      }
+    </style>
+</div>

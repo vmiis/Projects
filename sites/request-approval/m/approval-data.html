@@ -1,0 +1,54 @@
+<div id=D__ID>
+    <div>
+        VmInclude:__COMPONENT__/g/grid.01.html
+    </div>
+    <script>
+        function F__ID(){
+            //-------------------------------------
+            VmInclude:__COMPONENT__/g/grid.01.js
+            //-------------------------------------
+            var fields="Field_1,Field_2,Manager_for_Approval,_Approved_by";
+            m.fields="_Form,"+fields+",Submit_date,Submitted_by,_Delete";
+            m.cmd_type='p1';
+            //-------------------------------------
+            m.cell_render=function(records,I,field,td){
+                switch(field){
+                    case 'Manager_for_Approval':
+                        td.html(records[I].Data[field].split('|')[0]);
+                        break;
+                    case '_Approved_by':
+                        if(records[I].x!=undefined){
+                            td.html(records[I].x.Data.Approved);
+                        }
+                        break;
+                }
+            }
+            //-------------------------------------
+            m.data_process=function(){
+                var uid_array=[];
+                for(var i=0;i<m.records.length;i++){
+                    uid_array.push(m.records[i].UID)
+                }
+                var query={ PUID: { $in: uid_array } }
+				var req={cmd:"find-p1",table:m.Table2,query:query}
+                $vm.request({cmd:"find-p1",table:m.Table2,query:m.query},function(res){
+                    if(res.result.length!=undefined){
+                        for(var k=0;k<res.result.length;k++){
+                            for(var j=0;j<m.records.length;j++){
+                                if(m.records[j].UID==res.result[k].I1){
+                                    m.records[j].x=res.result[k];
+                                    break;
+                                }
+                            }
+                        }
+                    }
+                    m.render();
+                });
+            }
+            //-------------------------------------
+        }
+    </script>
+    <style>
+        VmInclude:__COMPONENT__/g/grid.01.css
+    </style>
+</div>
