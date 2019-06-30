@@ -9,7 +9,7 @@
             //-------------------------------------
             var fields="Field_1,Field_2,Manager_for_Approval,_Approved_by";
             m.fields="_Form,"+fields+",Submit_date,Submitted_by,_Delete";
-            m.cmd_type='s';
+            if(m.all==undefined) m.cmd_type='s';
             //-------------------------------------
             m.cell_render=function(records,I,field,td){
                 switch(field){
@@ -17,33 +17,37 @@
                         if(records[I].Data[field]!=undefined)
                         td.html(records[I].Data[field].split('|')[0]);
                         break;
-                    case '_Approved_by':
-                        if(records[I].x!=undefined){
-                            td.html(records[I].x.Data.Approved);
-                        }
-                        break;
                 }
             }
             //-------------------------------------
             m.data_process=function(){
+                //load joined approval records request.UID=approval.I2
                 var uid_array=[];
                 for(var i=0;i<m.records.length;i++){
                     uid_array.push(m.records[i].UID)
                 }
-                var query={ PUID: { $in: uid_array } }
-				var req={cmd:"find-p1",table:m.Table2,query:query}
-                $vm.request({cmd:"find-p1",table:m.Table2,query:m.query},function(res){
+                var query={ I2: { $in: uid_array } }
+                var cmd="find";
+                if(m.all==undefined) cmd="find-p1";
+                var req={cmd:cmd,table:m.Table2,query:query}
+                $vm.request(req,function(res){
                     if(res.result.length!=undefined){
                         for(var k=0;k<res.result.length;k++){
                             for(var j=0;j<m.records.length;j++){
-                                if(m.records[j].UID==res.result[k].I1){
-                                    m.records[j].x=res.result[k];
+                                if(m.all!=undefined) m.records[j].sys_not_requester=1; //tell record form, current login is not requester
+                                if(m.records[j].UID==res.result[k].I2){
+                                    m.records[j].sys_x=res.result[k];
                                     break;
                                 }
                             }
                         }
                     }
-                    m.render();
+                    //rendering the Approved_by column
+                    $("#grid__ID td[data-id=_Approved_by]").each(function(index){
+                        if(m.records[index].sys_x!=undefined && m.records[index].sys_x.Data!=undefined){
+                            $(this).html(m.records[index].sys_x.Data.Approved_by);
+                        }
+                    });
                 });
             }
             //-------------------------------------

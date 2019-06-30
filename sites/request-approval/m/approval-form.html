@@ -11,7 +11,7 @@
 					<div class=col-md-9>
 						<label><input type=checkbox name=Approved /> I approve this request.</label>
 						<br><span id=msg__ID></span>
-						<input type=text name=Approved_by style='_display:none' />
+						<input type=text name=Approved_by style='display:none' />
 					</div>
 				</div>
                 <hr class=hr__ID>
@@ -37,10 +37,7 @@
 				<div class="row row__ID">
 					<div class=col-md-3>Manager for approval</div>
 					<div class=col-md-9>
-						<select class=form-control name=Manager_for_Approval >
-							<option></option>
-							<option value='Manager 1|zzm.vmiis@gmail.com|guest'>Manager 1</option>
-							<option value='manager 2|zzm.vmiis@gmail.com|jimmy'>Manager 2</option>
+						<select class=form-control name=Manager_for_Approval id=manager__ID>
 						</select>
 					</div>
 				</div>
@@ -60,38 +57,70 @@
     VmInclude:__COMPONENT__/m/model.01.html
     <script>
     	function F__ID(){
-    		//-------------------------------------
+			//F: approval
+			//F2:request
+			//-------------------------------------
             VmInclude:__COMPONENT__/f/form.01.js
 			//-------------------------------------
-			/*
-			var old_load=m.load;
+            //get manager list;
+            jQuery.ajaxSetup({async:false});
+			var list_m_req={cmd:"find",table:m.manager_list_table,skip:0,limit:30}
+            $vm.request(list_m_req,function(res){
+                if(res.result.length>0){
+                    var list_managers=';';
+                    for(var i=0;i<res.result.length;i++){
+                        if(list_managers!='') list_managers+=','
+                        list_managers+=res.result[i].Data.Name+";"+res.result[i].Data.Name+"|"+res.result[i].Data.Email+"|"+res.result[i].Data.Login_Name;
+                    }
+                    $vm.set_dropdown_list_from_text($('#manager__ID'),list_managers);
+                }
+            })
+            jQuery.ajaxSetup({async:true});
+            //-------------------------------------
 			m.load=function(){
-				old_load();
-			}
-			*/
-			m.load=function(){
+				//request -> F2 
 				$('#F2__ID')[0].reset();
-				//$('#submit__ID').show();
 				if(m.input!=undefined) $vm.deserialize(m.input.record,'#F2__ID');
-				$('#F__ID').hide(); $('#F2__ID').show();
-
-				if(m.input!=undefined && m.input.record!=undefined && m.input.record.x!=undefined){
-					$vm.deserialize(m.input.record.x,'#F__ID');
+				//approval -> F
+				if(m.input!=undefined && m.input.record!=undefined && m.input.record.sys_x!=undefined){
+					$vm.deserialize(m.input.record.sys_x,'#F__ID');
 				}
 				m.P1=m.input.record.Submitted_by;
 				m.UID=m.input.record.UID;
-				m.input.record=m.input.record.x;
-				alert(m.P1)
+				m.request_data=m.input.record.Data;
+				m.input.record=m.input.record.sys_x;
+				if(m.input.record!=undefined && m.input.record.Data!=undefined){
+					var msg=m.input.record.Data.Approved_by;
+					if(msg!=undefined) $('#msg__ID').text(msg);
+				}
+				//show request
+				$('#F__ID').hide(); $('#F2__ID').show();
+				$('#submit__ID').show();
 			}
 			//-------------------------------------
 			$('#Request__ID').on('click',function(){  $('#F2__ID').show(); $('#F__ID').hide();  })
 			$('#Approval__ID').on('click',function(){  $('#F2__ID').hide(); $('#F__ID').show();  })
 			//-------------------------------------
+			//approval click
+			$('#F__ID input[name=Approved]').on('click',function(){ 
+				var txt="";
+				if( $('#F__ID input[name=Approved]').prop('checked')==true ) txt="Approved by "+$vm.user_name+" on "+new Date().toLocaleDateString();
+				$('#msg__ID').text(txt);
+				$('#F__ID input[name=Approved_by]').val(txt);
+			})
+			//-------------------------------------
             m.before_submit=function(data,index){
-				index.I1=m.UID;
-				index.P1=m.P1;
+				data.request_data=m.request_data;
+				index.I2=m.UID; //relation: reuest.UID
+				index.P1=m.P1;	//request login name
                 return true;
             }
+            //--------------------------------------------------------
+            m.after_insert=function(){
+                $vm.refresh=1;
+				m.change_status++;
+				window.history.go(-1);
+			}
             //--------------------------------------------------------
     	}
     </script>

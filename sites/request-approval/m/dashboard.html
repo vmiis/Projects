@@ -1,10 +1,29 @@
 <div id=D__ID>
     <div id=panel__ID>
     	<div class='nav__ID'>
-            <span>Under development</span>
+            <span>Request/Approval</span>
             <ul>
-                <li><a href=?/request-data>Request</a>, <a href=?/approval-data>Approval</a></li>
+                <li><a href=?/request-data>My requests (for current login: <span class=current_login__ID></span>) </a></li>
+                <li><a href=?/approval-data>My approvals (for current login: <span class=current_login__ID></span>)</a></li>
             </ul>
+            <span>Administrator</span>
+            <ul>
+                <li><a href=?/request-all-data>All requests</a></li>
+                <li><a href=?/manager-list-data>Manager list</a></li>
+                
+            </ul>
+            <div style='max-width:600px; font-size:12px;padding-top:50px'>
+                <hr>
+                <span>Description:</span>
+                <ul style='list-style-type: decimal'>
+                    <li>My Requests: list a user's (current login) all requests. In the request form the user fills request information and specify a manager for approving</li>
+                    <li>My Approvals: list all requests for a manager approval (current login)</li>
+                    <li>All requests: list all request in the system for view only or delete</li>
+                    <li>Manager list: a manager list for requester to select for approval</li>
+                    <li>A user can save a request as a draft or complete and sending alert email to a manager</li>
+                    <li>Once the request is approved, the requester cannot edit the request again</li>
+                </ul>
+            </div>
         </div>
     </div>
     <script>
@@ -17,6 +36,10 @@
             }
             //--------------------------------------------------------
             var this_module=$vm.module_list[$vm.vm['__ID'].name];
+            //--------------------------------------------------------
+            $('#D__ID').on('load',function(){
+                $('span.current_login__ID').text($vm.user_name);
+            })
             //--------------------------------------------------------
             $('#panel__ID a').on('click',function(e){
                 e.preventDefault();
