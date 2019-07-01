@@ -24,6 +24,13 @@
                                                 Table: "https://woolcockmed.sharepoint.com/sites/HRandEmployment/_api/web/lists/GetByTitle('New Hire')",
                                             },
 
+        "contract-variation-data":          {url:"$H/h/contract-variation-data.html",
+                                                Table: "https://woolcockmed.sharepoint.com/sites/HRandEmployment/_api/web/lists/GetByTitle('Contract Variation')",
+                                                form_module:"contract-variation-form",router:1
+                                            },
+        "contract-variation-form":	        {url:"$H/h/contract-variation-form.html",
+                                                Table: "https://woolcockmed.sharepoint.com/sites/HRandEmployment/_api/web/lists/GetByTitle('Contract Variation')",
+                                            },
 
 
 

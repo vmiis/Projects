@@ -62,99 +62,99 @@
             }
             //-------------------------------------
             var fields="\
-					Manager Approval|Manager_x0020_Approval,\
-					Position Approved by|Position_x0020_Approved_x0020_by,\
-					Funding Approved By|Funding_x0020_Approved_x0020_By,\
-					Date funding approved|Date_x0020_funding_x0020_approve,\
-					Funding Grantor/Institute|Funding_x0020_Grantor_x002f_Inst,\
-					Project Code/Default Cost Account|Project_x0020_Code_x002f_Default,\
-					Percentage Split – Cost Code|Percentage_x0020_Split_x0020__x2,\
-					Employee Code|Employee_x0020_Code,\
+					Manager Approval|ManagerApproval,\
+					Position Approved by|PositionApprovedby,\
+					Funding Approved By|FundingApprovedBy,\
+					Date funding approved|Datefundingapproved,\
+					Funding Grantor/Institute|FundingGrantor_x002f_Institute,\
+					Project Code/Default Cost Account|ProjectCode,\
+					Percentage Split – Cost Code|PercentageSplit_x2013_CostCode,\
+					Employee Code|EmployeeCode,\
 					Title/Salutation|Title_x002f_Salutation,\
-					First Name|First_x0020_Name,\
+					First Name|FirstName,\
 					Surname|Surname,\
 					Gender|Gender,\
 					Address|Address,\
-					Date Of Birth|Date_x0020_Of_x0020_Birth,\
-					Email address|Email_x0020_address,\
-					Phone Number (Home)|Phone_x0020_Number_x0020__x0028_,\
-					Phone Number (Mobile)|Phone_x0020_Number_x0020__x0028_0,\
+					Date Of Birth|DateOfBirth,\
+					Email address|Emailaddress,\
+					Phone Number (Home)|PhoneNumber_x0028_Home_x0029_,\
+					Phone Number (Mobile)|PhoneNumber_x0028_Mobile_x0029_,\
 				";
             var fields_hide="\
-                    Sleep Technicians|Sleep_x0020_Technicians,\
+                    Sleep Technicians|SleepTechnicians,\
 					Neurobiology|Neurobiology,\
-					Sleep and Circadian|Sleep_x0020_and_x0020_Circadian,\
-					Sleep Group|Sleep_x0020_Group,\
+					Sleep and Circadian|SleepandCircadian,\
+					Sleep Group|SleepGroup,\
 					Cardio-metabolic|Cardio_x002d_metabolic,\
-					Epidemiology/Clinical Trials|Epidemiology_x002f_Clinical_x002,\
+					Epidemiology/Clinical Trials|Epidemiology_x002f_Clinical,\
 					Operations|Operations,\
 					Commercial|Commercial,\
-					Woolcock Therapy Centre|Woolcock_x0020_Therapy_x0020_Cen,\
-					Woolcock Reception|Woolcock_x0020_Reception,\
-					Clinical Management|Clinical_x0020_Management,\
-					Respiratory Technology|Respiratory_x0020_Technology,\
-					Airway Physiology and Imaging|Airway_x0020_Physiology_x0020_an,\
-					Emphysema Group|Emphysema_x0020_Group,\
-					Employee Position Title|Employee_x0020_Position_x0020_Ti,\
-					Reporting To|Reporting_x0020_To,\
-					Manager Name|Manager_x0020_Name,\
-					Contract/Variation Start Date|Contract_x002f_Variation_x0020_S,\
-					Contract/Variation End Date|Contract_x002f_Variation_x0020_E,\
-                    Employment Status|Employment_x0020_Status,\
-                    Employment Status Othe|Employment_x0020_Status_x0020_Ot,\
+					Woolcock Therapy Centre|WoolcockTherapyCentre,\
+					Woolcock Reception|WoolcockReception,\
+					Clinical Management|ClinicalManagement,\
+					Respiratory Technology|RespiratoryTechnology,\
+					Airway Physiology and Imaging|AirwayPhysiologyandImaging,\
+					Emphysema Group|EmphysemaGroup,\
+					Employee Position Title|EmployeePositionTitle,\
+					Reporting To|ReportingTo,\
+					Manager Name|ManagerName,\
+					Contract/Variation Start Date|Contract_x002f_VariationStartDat,\
+					Contract/Variation End Date|Contract_x002f_VariationEndDate,\
+                    Employment Status|EmploymentStatus,\
+                    Employment Status Othe|EmploymentStatusOther,\
 					Monday|Monday,\
-					Monday Start time|Monday_x0020_Start_x0020_time,\
-					Monday Finish time|Monday_x0020_Finish_x0020_time,\
-					Monday Unpaid break|Monday_x0020_Unpaid_x0020_break,\
+					Monday Start time|MondayStarttime,\
+					Monday Finish time|MondayFinishtime,\
+					Monday Unpaid break|MondayUnpaidbreak,\
 					Tuesday|Tuesday,\
-					Tuesday Start time|Tuesday_x0020_Start_x0020_time,\
-					Tuesday Finish time|Tuesday_x0020_Finish_x0020_time,\
-					Tuesday Unpaid break|Tuesday_x0020_Unpaid_x0020_break,\
+					Tuesday Start time|TuesdayStarttime,\
+					Tuesday Finish time|TuesdayFinishtime,\
+					Tuesday Unpaid break|TuesdayUnpaidbreak,\
 					Wednesday|Wednesday,\
-					Wednesday Start time|Wednesday_x0020_Start_x0020_time,\
-					Wednesday Finish time|Wednesday_x0020_Finish_x0020_tim,\
-					Wednesday Unpaid break|Wednesday_x0020_Unpaid_x0020_bre,\
+					Wednesday Start time|WednesdayStarttime,\
+					Wednesday Finish time|WednesdayFinishtime,\
+					Wednesday Unpaid break|WednesdayUnpaidbreak,\
 					Thursday|Thursday,\
-					Thursday Start time|Thursday_x0020_Start_x0020_time,\
-					Thursday Finish time|Thursday_x0020_Finish_x0020_time,\
-					Thursday Unpaid break|Thursday_x0020_Unpaid_x0020_brea,\
+					Thursday Start time|ThursdayStarttime,\
+					Thursday Finish time|ThursdayFinishtime,\
+					Thursday Unpaid break|ThursdayUnpaidbreak,\
 					Friday|Friday,\
-					Friday Start time|Friday_x0020_Start_x0020_time,\
-					Friday Finish time|Friday_x0020_Finish_x0020_time,\
-					Friday Unpaid break|Friday_x0020_Unpaid_x0020_break,\
+					Friday Start time|FridayStarttime,\
+					Friday Finish time|FridayFinishtime,\
+					Friday Unpaid break|FridayUnpaidbreak,\
 					Saturday|Saturday,\
-					Saturday Start time|Saturday_x0020_Start_x0020_time,\
-					Saturday Finish time|Saturday_x0020_Finish_x0020_time,\
-					Saturday Unpaid break|Saturday_x0020_Unpaid_x0020_brea,\
+					Saturday Start time|SaturdayStarttime,\
+					Saturday Finish time|SaturdayFinishtime,\
+					Saturday Unpaid break|SaturdayUnpaidbreak,\
 					Sunday|Sunday,\
-					Sunday Start time|Sunday_x0020_Start_x0020_time,\
-					Sunday Finish time|Sunday_x0020_Finish_x0020_time,\
-					Sunday Unpaid break|Sunday_x0020_Unpaid_x0020_break,\
-					Award Free|Award_x0020_Free,\
-					Health Professionals and Support Services Award 2010|Health_x0020_Professionals_x0020,\
-					Professional Employees Award 2010|Professional_x0020_Employees_x00,\
-					Clerks Private Sector Award 2010|Clerks_x0020_Private_x0020_Secto,\
-					Hospitality Industry General Award 2010|Hospitality_x0020_Industry_x0020,\
-					Manufacturing and Associated Industries and Occupations Award 2010|Manufacturing_x0020_and_x0020_As,\
-                    Award Classification|Award_x0020_Classification,\
-                    Wage (per hour) or Salary (per annum)|Wage_x0020__x0028_per_x0020_hour,\
-					Is a Working with Children Check required for this position|Is_x0020_a_x0020_Working_x0020_w,\
-                    The Working with Children Check Number|The_x0020_Working_x0020_with_x00,\
-					Is a Police Check required for this position|Is_x0020_a_x0020_Police_x0020_Ch,\
-					Police Check reference number|Police_x0020_Check_x0020_referen,\
-					Is the employee required to wear a uniform|Is_x0020_the_x0020_employee_x002,\
-					the laundry allowance to be paid effective from|the_x0020_laundry_x0020_allowanc,\
-                    The Manager to advise payroll and HR once the uniform has been issued and the date the laundry allowance is to apply from|The_x0020_Manager_x0020_to_x0020,\
-                    The position requires a building access/swipe card|The_x0020_position_x0020_require,\
-					The position requires a desk|The_x0020_position_x0020_require0,\
-					The position requires computer access|The_x0020_position_x0020_require1,\
-					The position requires Level 3 Lab access|The_x0020_position_x0020_require2,\
-                    Will this position come into contact with patients/research participants|Will_x0020_this_x0020_position_x,\
-                    Have they ever been with Sydney University|Have_x0020_they_x0020_ever_x0020,\
-                    If yes please advise their Unikey details|If_x0020_yes_x0020_please_x0020_,\
-					What Folders access too|What_x0020_Folders_x0020_access_,\
-					Group email addresses|Group_x0020_email_x0020_addresse,\
-					What databases|What_x0020_databases\
+					Sunday Start time|SundayStarttime,\
+					Sunday Finish time|SundayFinishtime,\
+					Sunday Unpaid break|SundayUnpaidbreak,\
+					Award Free|AwardFree,\
+					Health Professionals and Support Services Award 2010|HealthProfessionalsandSupportSer,\
+					Professional Employees Award 2010|ProfessionalEmployeesAward2010,\
+					Clerks Private Sector Award 2010|ClerksPrivateSectorAward2010,\
+					Hospitality Industry General Award 2010|HospitalityIndustryGeneralAward2,\
+					Manufacturing and Associated Industries and Occupations Award 2010|ManufacturingandAssociatedIndust,\
+                    Award Classification|AwardClassification,\
+                    Wage (per hour) or Salary (per annum)|Wage_x0028_perhour_x0029_orSalar,\
+					Is a Working with Children Check required for this position|IsaWorkingwithChildrenCheckrequi,\
+                    The Working with Children Check Number|TheWorkingwithChildrenCheckNumbe,\
+					Is a Police Check required for this position|IsaPoliceCheckrequiredforthispos,\
+					Police Check reference number|PoliceCheckreferencenumber,\
+					Is the employee required to wear a uniform|Istheemployeerequiredtowearaunif,\
+					the laundry allowance to be paid effective from|thelaundryallowancetobepaideffec,\
+                    The Manager to advise payroll and HR once the uniform has been issued and the date the laundry allowance is to apply from|TheManagertoadvisepayrollandHRon,\
+                    The position requires a building access/swipe card|Thepositionrequiresabuildingacce,\
+					The position requires a desk|Thepositionrequiresadesk,\
+					The position requires computer access|Thepositionrequirescomputeracces,\
+					The position requires Level 3 Lab access|ThepositionrequiresLevel3Labacce,\
+                    Will this position come into contact with patients/research participants|Willthispositioncomeintocontactw,\
+                    Have they ever been with Sydney University|HavetheyeverbeenwithSydneyUniver,\
+                    If yes please advise their Unikey details|IfyespleaseadvisetheirUnikeydeta,\
+					What Folders access too|WhatFoldersaccesstoo,\
+					Group email addresses|Groupemailaddresses,\
+					What databases|Whatdatabases\
                 ";
             m.fields="_Form,"+fields+",Submit_date,Submitted_by,_Delete";
             //-------------------------------------

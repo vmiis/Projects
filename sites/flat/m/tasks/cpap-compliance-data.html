@@ -1,14 +1,23 @@
 <div id=D__ID>
-    <section>
+    <div>
         VmInclude:__COMPONENT__/g/grid.01.html
-    </section>
+    </div>
     <script>
         function F__ID(){
             //-------------------------------------
             VmInclude:__COMPONENT__/g/grid.01.js
             VmInclude:__CURRENT_PATH__/task-data.js
             //-------------------------------------
-            var fields="ae_num,AE,last_dose,date_onset,time_onset,date_resol,time_resol,sae,intensity,Relationship to study treatment|relation,Treatment Required|treatment,other_text,Outcome";
+            var fields="Days_with_Device_Usage,\
+                        Days_without_Device_Usage,\
+                        Percent_Days_with_Device_Usage,\
+                        Cumulative_Usage,\
+                        Average_Usage_All_Days,\
+                        Average_Usage_Days_Used,\
+                        Percent_of_Days_with_Usage_4_Hours,\
+                        Percent_of_Days_with_Usage_4_Hours\
+            ";
+            fields=fields.replace(/\t/g,'').replace(/ /g,'');
             m.fields="_Form,Status|S3,Notes|NT,Participant_ID|Participant_uid,Participant,"+fields+",Submit_date,Submitted_by,_Delete";
             m.fields_e="Participant_ID|Participant_uid,"+fields
             //-------------------------------------
@@ -18,3 +27,4 @@
         VmInclude:__COMPONENT__/g/grid.01.css
     </style>
 </div>
+

@@ -1,0 +1,208 @@
+<div id=D__ID>
+	<div id=form_container__ID>
+		<div id=header__ID>
+			Create List Fields
+		</div>
+		<form id=F__ID>
+			<div class="container">
+				<div class="row row__ID">
+					<div class="col">
+						<span>List Name</span>
+						<input type=text class="form-control" name="List_Name" required>
+					</div>
+				</div>
+				<div class="row row__ID">
+					<div class="col">
+						<span>Fields</span>
+						<textarea class="form-control" name="Fields" style='height:300px' required></textarea>
+					</div>
+				</div>
+				<br>
+				<div class="row c_print">
+					<div class=col>
+						<button id=btn__ID type="button" class="btn btn-secondary" >Create</button>
+					</div>
+				</div>
+			</div>
+		</form>
+	</div>
+	<script>
+		function F__ID(){
+			//-------------------------------------
+			VmInclude:__COMPONENT__/f/form.01.js
+			//-------------------------------------
+			var endpoint=m.Table+"web/lists/GetByTitle('New Hire')/Fields";
+            var s1="\
+					Manager Approval|F0010,\
+					Position Approved by|F0020,\
+					Funding Approved By|F0030,\
+					Date funding approved|F0040,\
+					Funding Grantor/Institute|F0050,\
+					Project Code/Default Cost Account|F0060,\
+					Percentage Split – Cost Code|F0070,\
+					Employee Code|F0080,\
+					Title/Salutation|F0090,\
+					First Name|F0100,\
+					Surname|F0110,\
+					Gender|F0120,\
+					Address|F0130,\
+					Date Of Birth|F0140,\
+					Email address|F0150,\
+					Phone Number (Home)|F0160,\
+					Phone Number (Mobile)|F0170,\
+					Sleep Technicians|F0180,\
+					Neurobiology|F0190,\
+					Sleep and Circadian|F0200,\
+					Sleep Group|F0210,\
+					Cardio-metabolic|F0220,\
+					Epidemiology/Clinical Trials|F0230,\
+					Operations|F0240,\
+					Commercial|F0250,\
+					Woolcock Therapy Centre|F0260,\
+					Woolcock Reception|F0270,\
+					Clinical Management|F0280,\
+					Respiratory Technology|F0290,\
+					Airway Physiology and Imaging|F0300,\
+					Emphysema Group|F0310,\
+					Employee Position Title|F0320,\
+					Reporting To|F0330,\
+					Manager Name|F0340,\
+					Contract/Variation Start Date|F0350,\
+					Contract/Variation End  Date|F0360,\
+					Employment Status|F0370,\
+					Monday|F0380,\
+					Monday Start time|F0390,\
+					Monday Finish time|F0400,\
+					Monday Unpaid break|F0410,\
+					Tuesday|F0420,\
+					Tuesday Start time|F0430,\
+					Tuesday Finish time|F0440,\
+					Tuesday Unpaid break|F0450,\
+					Wednesday|F0460,\
+					Wednesday Start time|F0470,\
+					Wednesday Finish time|F0480,\
+					Wednesday Unpaid break|F0490,\
+					Thursday|F0500,\
+					Thursday Start time|F0510,\
+					Thursday Finish time|F0520,\
+					Thursday Unpaid break|F0530,\
+					Friday|F0540,\
+					Friday Start time|F0550,\
+					Friday Finish time|F0560,\
+					Friday Unpaid break|F0570,\
+					Saturday|F0580,\
+					Saturday Start time|F0590,\
+					Saturday Finish time|F0600,\
+					Saturday Unpaid break|F0610,\
+					Sunday|F0620,\
+					Sunday Start time|F0630,\
+					Sunday Finish time|F0640,\
+					Sunday Unpaid break|F0650,\
+					Award Free|F0660,\
+					Health Professionals and Support Services Award 2010|F0670,\
+					Professional Employees Award 2010|F0680,\
+					Clerks Private Sector Award 2010|F0690,\
+					Hospitality Industry General Award 2010|F0700,\
+					Manufacturing and Associated Industries and Occupations Award 2010|F0710,\
+					Wage (per hour) or Salary (per annum)|F0720,\
+					Is a Working with Children Check required for this position|F0730,\
+                    The Working with Children Check Number|F0740,\
+					Is a Police Check required for this position|F0750,\
+					Police Check reference number|F0760,\
+					Is the employee required to wear a uniform|F0770,\
+					the laundry allowance to  be paid effective from|F0780,\
+					The position requires a building access/swipe card|F0790,\
+					The position requires a desk|F0800,\
+					The position requires computer access|F0810,\
+					The position requires Level 3 Lab access|F0820,\
+                    Will this position come into contact with patients/research participants|F0830,\
+                    Have they ever been with Sydney University|F0840,\
+                    If yes please advise their Unikey details|F0850,\
+					What Folders access too|F0860,\
+					Group email addresses|F0870,\
+					What databases|F0880\
+				";
+				/*
+				var s1="\
+					Manager Approval|aid0010\
+				";
+				*/
+				
+			var Flag=1;	
+			$('#btn__ID').on('click',function(){
+				var items=s1.split(',');
+				var I=0; 
+				var loop_1=setInterval(function (){
+					if(Flag==1 && I<items.length){
+						Flag=0;
+						var a=items[I].replace(/\t/g,'').trim();
+						I++;
+						var b=a.split('|');
+						var displayName=b[0];
+						var id=b[1];
+						api_request(endpoint,id,displayName);
+					}
+					if(I>=items.length){ clearInterval(loop_1); }
+					console.log(I);
+				},1000);
+
+				/*
+				for(var i=0;i<items.length;i++){
+					var a=items[i].replace(/\t/g,'').trim();
+					var b=a.split('|');
+					var displayName=b[0];
+					var id=b[1];
+					api_request(endpoint,id,displayName);
+				}
+				*/
+				//api_request(endpoint,"idTest3","displayTest3");
+			})
+			//-------------------------------------
+			var api_request=function(endpoint,id,displayName){
+				$vm.m365_msal.acquireTokenSilent($vm.m365_scope_sharepoint).then(function (tokenResponse) {
+console.log(id+" "+displayName);
+					var data="{ '__metadata': { 'type': 'SP.ListItem' }, 'Title':'"+id.trim()+"', 'FieldTypeKind': 2 }";
+					var xmlHttp = new XMLHttpRequest();
+					xmlHttp.onreadystatechange = function () {
+						if (this.readyState == 4 && (this.status == 200 || this.status == 201)){
+							console.log(this.status)
+							var d=JSON.parse(this.responseText); 
+							var e=m.Table+d["odata.editLink"];
+							api_request2(e,displayName,tokenResponse)
+						}
+					}
+					xmlHttp.open("POST", endpoint, true);
+					xmlHttp.setRequestHeader('Authorization', 'Bearer ' + tokenResponse.accessToken);
+					xmlHttp.setRequestHeader("Accept", "application/json");  
+					xmlHttp.setRequestHeader("Content-Type", "application/json; charset=utf-8");  
+					xmlHttp.send(data);
+				})
+			}
+			//-------------------------------------
+			var api_request2=function(endpoint,displayName,tokenResponse){
+				var data="{ 'Title':'"+displayName+"'}";
+					var xmlHttp = new XMLHttpRequest();
+					xmlHttp.onreadystatechange = function () {
+						if (this.readyState == 4 && (this.status == 200 || this.status == 201 || this.status == 204)){
+							console.log(this.status)
+							Flag=0;
+						}
+					}
+					xmlHttp.open("POST", endpoint, true);
+					xmlHttp.setRequestHeader('Authorization', 'Bearer ' + tokenResponse.accessToken);
+					xmlHttp.setRequestHeader("Accept", "application/json");  
+					xmlHttp.setRequestHeader("Content-Type", "application/json; charset=utf-8");  
+					xmlHttp.setRequestHeader("X-HTTP-Method","MERGE");
+					xmlHttp.setRequestHeader("If-Match","*");
+					xmlHttp.send(data);
+			}
+			//-------------------------------------
+		}
+	</script>
+	<style>
+		#form_container__ID{
+			max-width:700px;
+		}
+		VmInclude:__COMPONENT__/f/form.01.css
+	</style>
+</div>

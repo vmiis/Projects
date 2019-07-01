@@ -51,6 +51,19 @@
         "s-psg-upload-data":		        {url:"$H/m/tasks/psg-300-data.html",Table:"91000711",form_module:"s-psg-upload-form"},
         "s-psg-upload-form":		        {url:"$H/m/tasks/psg-300-form.html",Table:"91000711"},
         
+        "m3-psg-upload-data":		        {url:"$H/m/tasks/psg-300-data.html",Table:"91000783",form_module:"m3-psg-upload-form"},
+        "m3-psg-upload-form":		        {url:"$H/m/tasks/psg-300-form.html",Table:"91000783"},
+        "m12-psg-upload-data":		        {url:"$H/m/tasks/psg-300-data.html",Table:"20010874",form_module:"m12-psg-upload-form"},
+        "m12-psg-upload-form":		        {url:"$H/m/tasks/psg-300-form.html",Table:"20010874"},
+
+
+        "m1-cpap-compliance-data":		    {url:"$H/m/tasks/cpap-compliance-data.html",Table:"91000784",form_module:"m1-cpap-compliance-form"},
+        "m1-cpap-compliance-form":		    {url:"$H/m/tasks/cpap-compliance-form.html",Table:"91000784"},
+        "m2-cpap-compliance-data":		    {url:"$H/m/tasks/cpap-compliance-data.html",Table:"91000785",form_module:"m2-cpap-compliance-form"},
+        "m2-cpap-compliance-form":		    {url:"$H/m/tasks/cpap-compliance-form.html",Table:"91000785"},
+        "m3-cpap-compliance-data":		    {url:"$H/m/tasks/cpap-compliance-data.html",Table:"91000786",form_module:"m3-cpap-compliance-form"},
+        "m3-cpap-compliance-form":		    {url:"$H/m/tasks/cpap-compliance-form.html",Table:"91000786"},
+
         /*
         "s-anthropometry-data":		    {url:"$H/m/tasks/anthropometry-data.html",Table:"20010829",form_module:"s-anthropometry-form"},
         "s-anthropometry-form":		    {url:"$H/m/tasks/anthropometry-form.html",Table:"20010829",task_name:"Anthropometry"},

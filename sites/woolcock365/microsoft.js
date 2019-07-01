@@ -21,12 +21,6 @@ $vm.m365_init=function(){
     };
     $vm.m365_msal=new Msal.UserAgentApplication($vm.msalConfig);
     $vm.m365_signin=function (){
-        /*        
-        $vm.m365_msal.handleRedirectCallback((error, response) => {
-            console.log('handleRedirectCallback');
-            alert(11111111111)
-        });
-        */
         $vm.m365_msal.loginPopup($vm.m365_scope_sharepoint).then(function (loginResponse) {               
             return $vm.m365_msal.acquireTokenSilent($vm.m365_scope_sharepoint);
         }).then(function (accessTokenResponse) {
@@ -79,3 +73,4 @@ $vm.m365_init=function(){
     //------------------------------------
 }
 $vm.m365_init();
+setInterval(function(){ console.log("microsoft refresh"); $vm.m365_init(); }, 1800000);
