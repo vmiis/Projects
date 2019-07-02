@@ -63,7 +63,8 @@ $vm.m365_init=function(){
     if($vm.m365_msal.getAccount()!=undefined){
         $vm.m365_msal.acquireTokenSilent($vm.m365_scope_sharepoint).then(function (tokenResponse) {
             console.log(tokenResponse);
-            $vm.user_name_3rd=$vm.m365_msal.getAccount().userName;
+            //$vm.user_name_3rd=$vm.m365_msal.getAccount().userName;
+            $vm.user_name_3rd=$vm.m365_msal.getAccount().name;
             $vm.issuer_3rd="microsoft";
             if($vm.app_after_3rd_signin!=undefined) $vm.app_after_3rd_signin();
         }).catch(function (error){
