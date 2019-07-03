@@ -8,13 +8,15 @@
 				<hr style='border-top:1px solid #f05f40;'></hr>
 				<p>A web application with shared reusable modules distributed on different static web servers around the world and maintained by different people with different skills.</p>
 				<p>Each module can be connected to the module owner's individual database and file storage.</p>
-				<br><br>
+				<p>
+					<a id=get_in__ID class='btn btn-success' >Dashboard</a>
+				</p>
 			</div>
 		</div>
 	</div>
 	<script>
-		$('#page__ID').on('click',function(){
-			//$vm.load_module('panel-portal','',{})
+		$('#get_in__ID').on('click',function(){
+			$vm.load_module('dashboard','',{})
 		})
 	</script>
 	<style>
@@ -30,8 +32,8 @@
 			align-items: center;
 		}
 		.panel__ID{
-			color:#333;
-			background: rgba(0, 0, 0, 0);
+			color:#fff;
+			background: rgba(0, 0, 0, 0.8);
 			border-radius: 25px;
 			padding:10px;
 		}

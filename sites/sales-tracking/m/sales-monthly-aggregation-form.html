@@ -1,0 +1,89 @@
+<div id=D__ID>
+    <section id=form_container__ID>
+    	<div id=header__ID>
+			Sales monthly aggregation
+    	</div>
+    	<form id=F__ID>
+    		<div class="container">
+				<div class="row row__ID">
+					<div class="cole-sm col-lg-6">
+						<span>Year</span>
+						<select class="form-control" name="Year"></select>
+					</div>
+					<div class="cole-sm col-lg-6">
+						<span>Month</span>
+						<select class="form-control" name="Month">
+							<option></option>
+							<option>January</option>
+							<option>February</option>
+							<option>March</option>
+							<option>April</option>
+							<option>May</option>
+							<option>June</option>
+							<option>July</option>
+							<option>August</option>
+							<option>September</option>
+							<option>October</option>
+							<option>November</option>
+							<option>December</option>
+						</select>
+					</div>
+				</div>
+				<br>
+				<div class="row row__ID">
+					<div class="cole-sm col-lg-6">
+						<span>Total Amount</span>
+						<input type="text" min=1 class="form-control" name="Total" readonly>
+					</div>
+					<div class="cole-sm col-lg-6">
+						<span>Last performed</span>
+						<input type="date" class="form-control" name="Last_performed" readonly>
+					</div>
+				</div>
+				<br>
+    			<div class="row c_print">
+    				<div class=col>
+    					<button id=submit__ID type="submit" class="btn btn-secondary">Submit</button>
+    				</div>
+    			</div>
+    		</div>
+    	</form>
+    </section>
+    <script>
+    	function F__ID(){
+    		//-------------------------------------
+            VmInclude:__COMPONENT__/f/form.01.js
+    		//-------------------------------------
+			//year dropdown
+			var $List=$('#F__ID select[name=Year]');
+			var y=new Date().getFullYear();
+			for(var i=0;i<7;i++){
+				$List.append(  $('<option></option>').val(y-i).html(y-i)  );
+			}
+			$List.val(y);
+			//---------------------------------------------
+			var load=m.load;
+			m.load=function(){
+				load();
+				$('#items__ID input').each(function(){
+					var v=$(this).val();
+					if(v=='') $(this).val('0.00');
+					else $(this).val(parseFloat(v).toFixed(2));
+				})
+			}
+			//-------------------------------------
+			m.before_submit=function(data,index){
+				index.I2=parseInt(data.Year);
+            	index.I3=['January','February','March','April','May','June','July','August','September','October','November','December'].indexOf(data.Month)+1;
+				return true;
+			}
+			//-------------------------------------
+    	}
+    </script>
+    <style>
+        VmInclude:__COMPONENT__/f/form.01.css
+        #form_container__ID{
+            max-width:700px;
+        }
+    </style>
+</div>
