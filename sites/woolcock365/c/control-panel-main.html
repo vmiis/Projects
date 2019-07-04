@@ -1,13 +1,53 @@
 <div id=D__ID>
     <div id=panel__ID>
-    	<div class='nav__ID'>
-            <span>Woolcock Forms</span>
-            <ul>
-                <li><a href=?/new-hire-data>New Hire</a></li>
-                <li><a href=?/contract-variation-data>Contract Variation</a></li>
-                <li><a href=?/employee-appointment-c-data>Employee Appointment</a></li>
-                <li><a href=?/clinician-appointment-data>Clinician Appointment</a></li>
-            </ul>
+        <div class=h_img__ID>
+            <div class=h_txt__ID><h4>HR and Employment Online Forms</h4></div>
+        </div>
+        <div>
+            <div class='nav__ID'>
+                <span>Employee Appointment</span>
+                <hr class=hr__ID>
+                <ul>
+                    <li><i class="fa fa-angle-right"></i><a href=?/new-hire-data>New Hire</a></li>
+                    <li><i class="fa fa-angle-right"></i><a href=?/contract-variation-data>Contract Variation</a></li>
+                    <li><i class="fa fa-angle-right"></i><a href=?/contract-renewal-data>Contract Renewal</a></li>
+                </ul>
+            </div>
+            <div class='nav__ID'>
+                <span>Student Appointment</span>
+                <hr class=hr__ID>
+                <ul>
+                    <li><i class="fa fa-angle-right"></i><a href=?/new-student-agreement-data>New Student Agreement</a></li>
+                    <li><i class="fa fa-angle-right"></i><a dev href=?/new-student-agreement-data>Student Agreement Renewal *</a></li>
+                    <li><i class="fa fa-angle-right"></i><a dev href=?/new-student-agreement-data>Variation to Existing Student Agreement *</a></li>
+                </ul>
+            </div>
+            <div class='nav__ID'>
+                <span>Clinician Appointment</span>
+                <hr class=hr__ID>
+                <ul>
+                    <li><i class="fa fa-angle-right"></i><a dev href=?/new-student-agreement-data>New Clinician Hire *</a></li>
+                    <li><i class="fa fa-angle-right"></i><a dev href=?/new-student-agreement-data>Variation to Existing Clinician *</a></li>
+                </ul>
+            </div>
+        </div>
+        <div style='display:inline-flex;width:100%;padding-top:30px'>
+            <div class='nav__ID'>
+                <span>Affiliate Appointment</span>
+                <hr class=hr__ID>
+                <ul>
+                    <li><i class="fa fa-angle-right"></i><a dev href=?/employee-appointment-c-data>New Affiliate *</a></li>
+                    <li><i class="fa fa-angle-right"></i><a dev href=?/clinician-appointment-data>New Honorary Affiliate *</a></li>
+                </ul>
+            </div>
+            <div class='nav__ID'>
+                <span>Others</span>
+                <hr class=hr__ID>
+                <ul>
+                    <li><i class="fa fa-angle-right"></i><a href=?/employee-appointment-c-data>Employee Appointment (old)</a></li>
+                    <li><i class="fa fa-angle-right"></i><a href=?/clinician-appointment-data>Clinician Appointment (old)</a></li>
+                </ul>
+            </div>
         </div>
     </div>
     <script>
@@ -24,6 +64,11 @@
                 e.preventDefault();
                 var href=$(this).attr('href');
                 var app=$(this).attr('app');
+                var dev=$(this).attr('dev');
+                if(dev!=undefined){
+                    $vm.alert("Under development");
+                    return;
+                }
                 if(href!=undefined){
                     href=href.replace('?\/','');
                     href=href.replace(/\//g,'_');
@@ -33,6 +78,7 @@
                 }
             })
             //--------------------------------------------------------
+            /*
             $('#panel__ID a').each(function(){
                 var href=$(this).attr('href');
                 if(href!=undefined){
@@ -44,25 +90,7 @@
                     }
                 }
             })
-            //--------------------------------------------------------
-            if($vm.localhost==true) $('#builder__ID').show();
-            //--------------------------------------------------------
-            $('#apply__ID').on('click',function(){
-                $('#panel__ID span').hide();
-                var word=$('#filter__ID').val().toUpperCase();
-                $('#panel__ID a').each(function(){
-                    var href=$(this).attr('href');
-                    var name=$(this).html().toUpperCase();
-                    if(name.indexOf(word)!=-1){
-                        $(this).parent().show();
-                        $(this).parent().parent().prev().show();
-                    }
-                    else{
-                        console.log(word)
-                        $(this).parent().hide();
-                    }
-                })
-            })
+            */
             //--------------------------------------------------------
         }
     </script>
@@ -74,36 +102,97 @@
     		animation: vm_module_fadein 1.0s;
     	}
         #panel__ID{
+            margin:0 auto;
+            max-width:1200px;
     		padding:10px 0 0 20px;
-            font-size:14px;
     	}
     	#panel__ID a {
     		text-decoration: none;
     	}
     	#panel__ID li {
-    		color:#555;
+            font-size: 14px;
+            line-height: 24px;
+    		color:#E31837;
+            white-space: nowrap;
+            width:100%;
+            display:inline-block;
     	}
     	#panel__ID a:link {
-    		color:#555;
+    		color:#E31837;
     	}
     	#panel__ID a:visited {
-    		color:#555;
+    		color:#E31837;
     	}
     	#panel__ID a:hover {
-    		color:red;
+            text-decoration: underline;
+    	}
+    	#panel__ID li:hover {
+            background-color: #eee;
     	}
     	#panel__ID a:active {
-    		color:#555;
+    		color:#E31837;
     	}
         .nav__ID{
 	        padding:6px 26px 6px 6px;
 	        float:left;
+            width:33%;
+            min-width:300px;
 	    }
 	    .nav__ID span{
 			color:#283f55;
-			font-weight: bold;
+			/*font-weight: bold;*/
+            font-weight: 600;
 			margin:3px 10px;
+            color:#000;
+            font-size:24px;
+            font-family: "Segoe UI Web (West European)",Segoe UI,-apple-system,BlinkMacSystemFont,Roboto,Helvetica Neue,sans-serif;
+            white-space: nowrap;
 	    }
+        .h_img__ID{
+            height:300px;
+            background-size: cover; background-position: center center; 
+            background-image: url(__CURRENT_PATH__/HRlanding.jpg);
+            padding-top:60px;
+            margin-top:50px;
+            margin-bottom:50px;
+            border-radius: 5px;
+        }
+        .h_txt__ID{
+            color:#fff;
+            background-color: rgba(50,90,90,0.5) !important;
+            width: 35%;
+            margin: 0% 0% 0% 6%!important;
+            padding:20px;
+            border-radius: 10px;
+        }
+        .hr__ID{
+            margin:10px 0;
+            padding:0;
+            border:0 solid #000;
+            border-bottom: 2px solid #eee;
+            margin-left:2px;
+        }
+        .hr__ID::before {
+            width: 100px;
+            height: 2px;
+            background: #E31837;
+            position: absolute;
+            content: ' ';
+            margin-left:2px;
+        }        
+        .nav__ID ul{
+            list-style: none;
+            padding-left:20px;
+        }
+        .nav__ID ul li i{
+            color:#888;
+            margin-right:20px;
+        }
+        /*
+        li:before {
+            content: "<i class='fa fa-angle-right'></i>";
+        } 
+        */       
     	@media screen and (max-width:768px){
     		#panel__ID{
     			padding:10px 0 0 10px;

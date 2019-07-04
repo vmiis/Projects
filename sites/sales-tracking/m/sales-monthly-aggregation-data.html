@@ -15,8 +15,7 @@
             switch(field){
                 case '_Aggregate':
                     td.html("<u style='cursor:pointer'>Perform</u>");
-                    //td.find('u').on('click',function(){alert(m);aperform(I);});
-                    td.find('u').on('click',perform(I)});
+                    td.find('u').on('click',function(){perform(I);});
                     break;
                 case 'Total_Sales':
                     td.html("$"+parseFloat(records[I].Data[field]).toFixed(2));
@@ -26,13 +25,11 @@
         }
         //-------------------------------------
         var perform=function(I){
-            alert(I)
-            alert(m);
             var y=parseInt(m.records[I].I2);
-            var m=parseInt(m.records[I].I3);
-            var t1=new Date(y,m,1,0,0,0,0).toJSON();
-            var t2=new Date(y,m+1,1,0,0,0,0).toJSON();
-            var query={I1:{"$gte":t1,"$lt":t2}}
+            var mm=parseInt(m.records[I].I3);
+            var t1=new Date(y,mm,1,0,0,0,0).toJSON();
+            var t2=new Date(y,mm+1,1,0,0,0,0).toJSON();
+            var query={I2:{"$gte":t1,"$lt":t2}}
             var req={cmd:"export",table:m.transaction_table,query:query,projection:{"Data.Total":1}}
             open_model__ID();
             $vm.request(req,function(N,i,txt){
@@ -56,7 +53,7 @@
         //-------------------------------------
         var data_aggregate=function(I,d){
             var data={};
-            var index={I1:parseInt(m.records[I].Data.Total)};
+            var index={I2:parseInt(m.records[I].Data.Total)};
             data.Last_performed=$vm.date_to_string_yyyymmdd(new Date());
 
             var vTotal=0; 

@@ -32,7 +32,21 @@
                                                 Table: "https://woolcockmed.sharepoint.com/sites/HRandEmployment/_api/web/lists/GetByTitle('Contract Variation')",
                                             },
 
+        "contract-renewal-data":          {url:"$H/h/contract-renewal-data.html",
+                                                Table: "https://woolcockmed.sharepoint.com/sites/HRandEmployment/_api/web/lists/GetByTitle('Contract Renewal')",
+                                                form_module:"contract-renewal-form",router:1
+                                            },
+        "contract-renewal-form":	        {url:"$H/h/contract-renewal-form.html",
+                                                Table: "https://woolcockmed.sharepoint.com/sites/HRandEmployment/_api/web/lists/GetByTitle('Contract Renewal')",
+                                            },
 
+        "new-student-agreement-data":          {url:"$H/h/new-student-agreement-data.html",
+                                                Table: "https://woolcockmed.sharepoint.com/sites/HRandEmployment/_api/web/lists/GetByTitle('New Student Agreement')",
+                                                form_module:"new-student-agreement-form",router:1
+                                            },
+        "new-student-agreement-form":	        {url:"$H/h/new-student-agreement-form.html",
+                                                Table: "https://woolcockmed.sharepoint.com/sites/HRandEmployment/_api/web/lists/GetByTitle('New Student Agreement')",
+                                            },
 
 
         "clinician-appointment-data":      {url:"$H/m/clinician-appointment-data.html",

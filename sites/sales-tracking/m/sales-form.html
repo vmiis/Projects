@@ -117,7 +117,7 @@
 			$('#F__ID input[name=Units]').change(function(){cal();})
 			$('#F__ID input[name=Unit_Cost]').change(function(){cal();})
 			//-------------------------------------
-			var before_submit=function(data,index){
+			m.before_submit=function(data,index){
 				index.I2=data.Order_Date;
 				index.I3=data.Total;
 				return true;

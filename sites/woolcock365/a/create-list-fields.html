@@ -32,7 +32,7 @@
 			VmInclude:__COMPONENT__/f/form.01.js
 			//-------------------------------------
 			var endpoint="https://graph.microsoft.com/v1.0/sites/woolcockmed.sharepoint.com,904f3621-bfdc-4154-a36e-e73f3d46c7c0,2367a8ed-18d1-4fea-afe2-c5784ffccfa9/lists";	
-            var s1="\
+            var s_hire="\
 					Manager Approval|ManagerApproval,\
 					Position Approved by|PositionApprovedby,\
 					Funding Approved By|FundingApprovedBy,\
@@ -125,13 +125,81 @@
 					Group email addresses|Groupemailaddresses,\
 					What databases|Whatdatabases\
 			";
-
-            var __s1="\
-					Manager Approval|ManagerApproval\
+            var s1="\
+					Student Identification Number|ManagerApproval,\
+					Have they ever been affiliated with Sydney University|PositionApprovedby,\
+					If yes please advise their Unikey details|FundingApprovedBy,\
+					Student Title/Salutation|Datefundingapproved,\
+					Student Surname|FundingGrantor_x002f_Institute,\
+					Student First Name|ProjectCode,\
+					Student Gender|PercentageSplit_x2013_CostCode,\
+					Address|Address,\
+					Surburb|Surburb,\
+					State|State,\
+					Postcode|Postcode,\
+					Country|Country,\
+					Student Date of Birth|Title_x002f_Salutation,\
+					Email Address (Personal)|FirstName,\
+					Phone Number (Home)|Surname,\
+					Phone Number (Mobile)|Gender,\
+					Emergency Contact Name|Address,\
+					Emergency Contact Relationship|DateOfBirth,\
+					Emergency Contact Number (include any area/country codes)|Emailaddress,\
+					Emergency Contact Additional details if required|PhoneNumber_x0028_Home_x0029_,\
+					Student Nationality|PhoneNumber_x0028_Mobile_x0029_,\
+                    Student Passport Number|SleepTechnicians,\
+					Visa Type (if applicable)|Neurobiology,\
+					Visa Number (if applicable)|SleepandCircadian,\
+					Visa Start Date (if applicable)|SleepGroup,\
+					Visa Expiry Date (if applicable)|Cardio_x002d_metabolic,\
+					Location|Epidemiology_x002f_Clinical,\
+					Other please detail|WoolcockReception,\
+					Monday (Approx. hours)|ClinicalManagement,\
+					Tuesday (Approx. hours)|RespiratoryTechnology,\
+					Wednesday (Approx. hours)|AirwayPhysiologyandImaging,\
+					Thursday (Approx. hours)|EmphysemaGroup,\
+					Friday (Approx. hours)|EmployeePositionTitle,\
+					Degree Type|ReportingTo,\
+					Student Classification|ManagerName,\
+					Student Status|Contract_x002f_VariationStartDat,\
+					Is this the employee’s first degree|Contract_x002f_VariationEndDate,\
+                    If no please list previous degrees|EmploymentStatus,\
+                    Student Undergraduate Degree Name|EmploymentStatusOther,\
+					Student Undergraduate Degree University|Monday,\
+					Did the Student complete their previous Degree with Woolcock|MondayStarttime,\
+					Woolcock Group|MondayFinishtime,\
+					Woolcock Agreement Student Start Date|MondayUnpaidbreak,\
+					Woolcock Student Agreement End Date|Tuesday,\
+					Primary Supervisor Name and Title|TuesdayStarttime,\
+					Main Woolcock Supervisor Name and Title|TuesdayFinishtime,\
+					Other Woolcock Supervisor Name and Title (if applicable)|TuesdayUnpaidbreak,\
+					Post Graduate Coordinator Name and Title|Wednesday,\
+					Other Supervisors Name and Title (if applicable)|WednesdayStarttime,\
+					Enrolled University|WednesdayFinishtime,\
+					Other please list|WednesdayUnpaidbreak,\
+					Enrollment Type|Thursday,\
+					Degree Name|ThursdayStarttime,\
+					Faculty (if applicable)|ThursdayFinishtime,\
+					School (if applicable)|ThursdayUnpaidbreak,\
+					Discipline (if applicable)|Friday,\
+					University Attendance Status|FridayStarttime,\
+					Year commenced current degree|FridayFinishtime,\
+					Year expect to complete current degree|FridayUnpaidbreak,\
+					Scholarship|Saturday,\
+					If yes please provide the name of the Scholarship|SaturdayStarttime,\
+					Thesis Details|SaturdayFinishtime,\
+					Student Other Information (E.g. Cotutelle)|SaturdayUnpaidbreak,\
+					Main Location|Sunday,\
+					The position requires a building access/swipe card|SundayStarttime,\
+					The position requires a desk|SundayFinishtime,\
+					The position requires computer access|SundayUnpaidbreak,\
+					The position requires Level 3 Lab access|AwardFree,\
+					Will this position come into contact with patients/research participants|HealthProfessionalsandSupportSer,\
+					Additional Student Information|ProfessionalEmployeesAward2010\
 			";
 
 			var data={
-				"displayName": "New Hire",
+				"displayName": "New Student Agreement",
 				"columns": [
 					/*
 					{
@@ -153,7 +221,7 @@
 				var b={"name":a[0],"text":{}};
 				data.columns.push(b)
 			}
-//console.log(data);
+console.log(data);
 				
 			$('#btn__ID').on('click',function(){
 				return;
