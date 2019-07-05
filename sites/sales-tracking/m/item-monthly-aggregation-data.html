@@ -1,0 +1,116 @@
+<section>
+    VmInclude:__COMPONENT__/g/grid.01.html
+</section>
+<script>
+    function F__ID(){
+        //-------------------------------------
+        VmInclude:__COMPONENT__/g/grid.01.js
+        //-------------------------------------
+        m.sort={I2:-1,I3:-1}
+        //-------------------------------------
+        m.cell_render=function(records,I,field,td){
+            if(records[I].Data[field]!=undefined && records[I].Data[field][0]=='$'){
+                td.html(records[I].Data[field]);
+                td.css('text-align','right')
+            }
+            switch(field){
+                case '_Aggregate':
+                    td.html("<u style='cursor:pointer'>Perform</u>");
+                    td.find('u').on('click',function(){perform(I);});
+                    break;
+            }
+        }
+        //-------------------------------------
+        var perform=function(I){
+            var y=parseInt(m.records[I].I2);
+            var mm=parseInt(m.records[I].I3);
+            var t1=new Date(y,mm-1,1,0,0,0,0).toJSON();
+            var t2=new Date(y,mm,1,0,0,0,0).toJSON();
+            var query={I2:{"$gte":t1,"$lt":t2}}
+            var req={cmd:"export",table:m.transaction_table,query:query,projection:{"Data.Item":1,"Data.Total":1}}
+            open_model__ID();
+            $vm.request(req,function(N,i,txt){
+                if(N==0){
+                    console.log(i+"/"+N);
+                    close_model__ID();
+                    data_aggregate(I,[]);
+                    return;
+                }
+                console.log(i+"/"+N);
+                $('#msg__ID').text((100*i/N).toFixed(0)+"%");
+                if(i==-1){
+                    var len=txt.length;
+                    var n_txt="["+txt.substring(5,len-9)+"]";
+                    var d=JSON.parse(n_txt);
+                    close_model__ID();
+                    data_aggregate(I,d);
+                }
+            });
+        }
+        //-------------------------------------
+        var data_aggregate=function(I,d){
+            var data=m.records[I].Data;
+            var index={I2:parseInt(m.records[I].I2),I3:parseInt(m.records[I].I3)};
+            data.Last_performed=$vm.date_to_string_yyyymmdd(new Date());
+            
+            var R={};
+            var A=[];
+            var RR={};
+            for(i=0;i<d.length;i++){
+                var nm=d[i].Item;
+                var am=parseFloat(d[i].Total);
+                if(R[nm]==undefined){ R[nm]=am; A.push(nm); }
+                else R[nm]+=am;
+            }
+            A.sort();
+            for(var i=0;i<A.length;i++){
+                RR[A[i]]=R[A[i]];
+            }
+            data.Result=RR;
+            console.log(data)
+            console.log(index)
+            var rid=m.records[I]._id;
+            if(rid!=undefined && rid!=null){
+                var cmd="update";
+                $vm.request({cmd:cmd,id:rid,table:m.Table,data:data,index:index,file:{}},function(res){
+                    //-----------------------------
+                    if(res.status=="lk"){
+                        $vm.alert("This record is locked.");
+                        return;
+                    }
+                    //-----------------------------
+                    if(res.status=="np"){
+                        alert("No permission to update this record.");
+                        return;
+                    }
+                    //-----------------------------
+                    m.request_data();
+                });
+            }
+        }
+        //-------------------------------------
+        //create dynamic fields
+        m.data_process=function(){
+            var fs="Year,Month,_Aggregate,Last_performed";
+            var R={}
+            for(var i=0;i<m.records.length;i++){
+                var r=null;
+                for(a in m.records[i].Data.Result){
+                    if(a=='Result') r=m.records[i].Data.Result[a];
+                    if(R[a]==undefined){
+                        R[a]=1;
+                        fs=fs+","+a.replace(/ /g,'_');
+                    }
+                    m.records[i].Data[a.replace(/ /g,'_')]="$"+parseFloat(m.records[i].Data.Result[a]).toFixed(2);
+                }
+                if(r!=null) m.records[i].Data.Result="$"+r;
+            }
+            fields=fs;
+            m.fields="_Form,"+fields+",Submit_date,Submitted_by,_Delete";
+        }
+        //-------------------------------------
+    }
+</script>
+<style>
+    VmInclude:__COMPONENT__/g/grid.01.css
+</style>

@@ -1,0 +1,134 @@
+<div id=D__ID>
+    <section id=form_container__ID>
+    	<div id=header__ID>
+    		Sales
+    	</div>
+    	<form id=F__ID>
+    		<div class="container">
+				<div class="row row__ID">
+					<div class="col">
+						<span>Order date</span>
+						<input type=date class="form-control" name="Order_Date">
+					</div>
+				</div>
+				<div class="row row__ID">
+					<div class="cole-sm col-lg-6">
+						<span>Region</span>
+						<input type=text class="form-control" name="Region" id=Region__ID>
+					</div>
+					<div class="cole-sm col-lg-6">
+						<span>Rep</span>
+						<input type=text class="form-control" name="Rep" id=Rep__ID>
+					</div>
+				</div>
+				<div class="row row__ID">
+					<div class="col">
+						<span>Item</span>
+						<input type=text class="form-control" name="Item" id=Item__ID>
+					</div>
+				</div>
+				<div class="row row__ID">
+					<div class="cole-sm col-lg-4">
+						<span>Units</span>
+						<input type="number" min=1 class="form-control" name="Units">
+					</div>
+					<div class="cole-sm col-lg-4">
+						<span>Unit cost</span>
+						<input type="number" min="0.00" step="0.01"  class="form-control" name="Unit_Cost">
+					</div>
+					<div class="cole-sm col-lg-4">
+						<span>Total</span>
+						<input type=text class="form-control" name="Total" readonly>
+					</div>
+				</div>
+
+				<br>
+				<div class="row c_print">
+    				<div class=col>
+    					<button id=submit__ID type="submit" class="btn btn-secondary">Submit</button>
+    				</div>
+    			</div>
+    		</div>
+    	</form>
+    </section>
+    <script>
+    	function F__ID(){
+    		//-------------------------------------
+            VmInclude:__COMPONENT__/f/form.01.js
+			//-------------------------------------
+			
+			//var autocomplete_req={cmd:"find",field:'.I1',table:m.item_table,options:{},skip:0,limit:10}
+			
+			var autocomplete_req_a={cmd:"find",field:'.Data.Item',table:$vm.module_list['item-data'].Table,options:{},skip:0,limit:10}
+			var autocomplete_list_a=function(records){
+				var items=[];
+				for(var i=0;i<records.length;i++){
+					var obj={};
+					obj.label=records[i].Data.Item;
+					items.push(obj);
+				}
+				return items;
+			}
+			var autocomplete_callback_a=function(items){}
+			//-------------------------------------
+			var autocomplete_req_b={cmd:"find",field:'.Data.Region',table:$vm.module_list['region-data'].Table,options:{},skip:0,limit:10}
+			var autocomplete_list_b=function(records){
+				var items=[];
+				for(var i=0;i<records.length;i++){
+					var obj={};
+					obj.label=records[i].Data.Region;
+					items.push(obj);
+				}
+				return items;
+			}
+			var autocomplete_callback_b=function(items){}
+			//-------------------------------------
+			var autocomplete_req_c={cmd:"find",field:'.Data.Rep',table:$vm.module_list['rep-data'].Table,options:{},skip:0,limit:10}
+			var autocomplete_list_c=function(records){
+				var items=[];
+				for(var i=0;i<records.length;i++){
+					var obj={};
+					obj.label=records[i].Data.Rep;
+					items.push(obj);
+				}
+				return items;
+			}
+			var autocomplete_callback_c=function(items){}
+			//-------------------------------------
+			var wait1=function(){
+				$vm.autocomplete($('#Item__ID'),autocomplete_req_a,autocomplete_list_a,autocomplete_callback_a);
+				$vm.autocomplete($('#Region__ID'),autocomplete_req_b,autocomplete_list_b,autocomplete_callback_b);
+				$vm.autocomplete($('#Rep__ID'),autocomplete_req_c,autocomplete_list_c,autocomplete_callback_c);
+			}
+			//-------------------------------------
+			var I=0; var loop_1=setInterval(function (){
+				if($vm['jquery-ui-min-js']!=undefined){  clearInterval(loop_1); wait1(); }
+				I++; if(I>50){ clearInterval(loop_1); alert("jquery-ui.min.js is not installed."); }
+			},100);
+			//-------------------------------------
+			var cal=function(){
+				var units=parseFloat($('#F__ID input[name=Units]').val());
+				var price=parseFloat($('#F__ID input[name=Unit_Cost]').val());
+				var total=price*units;
+				if(isNaN(total)==true) total=0;
+				$('#F__ID input[name=Total]').val(total.toFixed(2));
+			}
+			//-------------------------------------
+			$('#F__ID input[name=Units]').change(function(){cal();})
+			$('#F__ID input[name=Unit_Cost]').change(function(){cal();})
+			//-------------------------------------
+			m.before_submit=function(data,index){
+				index.I2=data.Order_Date;
+				index.I3=data.Total;
+				return true;
+			};
+			//-------------------------------------
+    	}
+    </script>
+    <style>
+        VmInclude:__COMPONENT__/f/form.01.css
+        #form_container__ID{
+            max-width:700px;
+        }
+    </style>
+</div>

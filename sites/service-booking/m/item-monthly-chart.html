@@ -1,0 +1,81 @@
+<div id=D__ID>
+	VmInclude:__COMPONENT__/c/chart.2select.01.html
+	<section id=chart_container__ID style='padding:10px'>
+		<div id=chart_div__ID></div>
+    </section>
+    <script>
+		function F__ID(){
+			//-------------------------------------
+			VmInclude:__COMPONENT__/c/chart.01.js
+			//-------------------------------------
+			//number dropdown
+			var $List=$('#select1__ID');
+			var $List2=$('#select2__ID');
+			var y=new Date().getFullYear();
+			for(var i=0;i<7;i++){
+				$List.append(  $('<option></option>').val(y-i+1).html(y-i+1)  );
+			}
+			//$List.val(y);
+			$List.val(2015); //we have some data in this year
+			//---------------------------------------------
+			m.set_req=function(){
+				m.query={I2:parseInt($('#select1__ID').val())}
+			};
+			//-------------------------------------
+            var items=[];
+			m.sort={I3:1};
+            m.data_process=function(){
+				if(m.records.length==0){
+					$('#chart_div__ID').text('No data in the yer '+$('#select1__ID').val())
+					return;
+				}
+                for(var i=0;i<m.records.length;i++){
+                    var rt=m.records[i].Data.Result;
+                    for(var a in rt){
+                        if(items.indexOf(a)==-1) items.push(a);
+                    }
+                }
+                $List2.html('');
+                for( var a in items){
+                    $List2.append(  $('<option></option>').val(items[a]).html(items[a])  );
+                }
+
+                if(m.google==0) return;
+				google.charts.load('current', {packages: ['corechart', 'bar']});
+				google.charts.setOnLoadCallback(draw_chart);
+			}
+            //-------------------------------------
+            $('#select2__ID').on('change',function(){
+                draw_chart();
+            })
+            //-------------------------------------
+			var draw_chart=function(){
+                var s2=$('#select2__ID').val()
+				var mm=['January','February','March','April','May','June','July','August','September','October','November','December'];
+				//----------------------------------
+				var ds=[]
+				ds.push([s2, 'Total'])
+				for(var i=0;i<m.records.length;i++){
+					var row=[];
+					row.push(mm[m.records[i].I3-1]);
+					row.push(m.records[i].Data.Result[s2]);
+					ds.push(row)
+				}
+				//----------------------------------
+				var data = google.visualization.arrayToDataTable(ds);
+				var options = {title: s2,vAxis: {minValue: 0}}; 
+				var chart = new google.visualization.ColumnChart(document.getElementById('chart_div__ID'));
+				chart.draw(data, options);				
+			}
+			//-------------------------------------
+		}
+		//-------------------------------------
+  </script>
+  <style>
+		VmInclude:__COMPONENT__/c/chart.01.css
+		#chart_div__ID{
+			height:500px;
+			max-width:700px;
+		}
+  </style>
+</div>

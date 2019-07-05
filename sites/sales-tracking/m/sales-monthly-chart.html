@@ -1,0 +1,71 @@
+<div id=D__ID>
+	VmInclude:__COMPONENT__/c/chart.select.01.html
+	<section id=chart_container__ID style='padding:10px'>
+		<div id=chart_div__ID></div>
+  </section>
+  <script>
+		function F__ID(){
+			//-------------------------------------
+			VmInclude:__COMPONENT__/c/chart.01.js
+			//-------------------------------------
+			//number dropdown
+			var $List=$('#select__ID');
+			var y=new Date().getFullYear();
+			for(var i=0;i<7;i++){
+				$List.append(  $('<option></option>').val(y-i+1).html(y-i+1)  );
+			}
+			//$List.val(y);
+			$List.val(2015); //we have some data in this year
+			//---------------------------------------------
+			m.set_req=function(){
+				m.query={I2:parseInt($('#select__ID').val())}
+			};
+			//-------------------------------------
+			m.fields="Month,Total";
+			m.sort={I3:1};
+			m.data_process=function(){
+				if(m.records.length==0){
+					$('#chart_div__ID').text('No data in the yer '+$('#select__ID').val())
+					return;
+				}
+				if(m.google==0) return;
+				google.charts.load('current', {packages: ['corechart', 'bar']});
+				google.charts.setOnLoadCallback(draw_chart);
+			}
+			//-------------------------------------
+			var draw_chart=function(){
+				var mm=['January','February','March','April','May','June','July','August','September','October','November','December'];
+				//----------------------------------
+				var ds=[]
+				ds.push(['Month', 'Total'])
+				var fd=m.fields.split(',')
+				for(var i=0;i<m.records.length;i++){
+					var row=[];
+					row.push(mm[m.records[i].I3-1]);
+					row.push(m.records[i].Data['Total']);
+					/*
+					for(var j=0;j<fd.length;j++){
+							if(j==0) row.push(m.records[i].Data[fd[j]]);
+							else row.push(parseFloat(m.records[i].Data[fd[j]]));
+					}
+					*/
+					ds.push(row)
+				}
+				//----------------------------------
+				var data = google.visualization.arrayToDataTable(ds);
+				var options = {title: 'Total Sales',vAxis: {minValue: 0}}; 
+				var chart = new google.visualization.ColumnChart(document.getElementById('chart_div__ID'));
+				chart.draw(data, options);				
+			}
+			//-------------------------------------
+		}
+		//-------------------------------------
+  </script>
+  <style>
+		VmInclude:__COMPONENT__/c/chart.01.css
+		#chart_div__ID{
+			height:500px;
+			max-width:700px;
+		}
+  </style>
+</div>
