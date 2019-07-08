@@ -12,7 +12,6 @@
 
 
                                             
-        "about-vmiis":  {url:"$H/m/about-vmiis.html",router:1},
         "module-editor":{url:"https://vm.vmiis.com/component/m/module-editor.html",router:1,sys:1},
     }
     for(p in modules){

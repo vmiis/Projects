@@ -8,8 +8,6 @@
         "equipment-booking":   			    {url:"$H/m/equipment-booking.html",Table:"equipment","booking_form":"equipment-booking-record-form",router:1},
         "equipment-booking-calendar": 	    {url:"$H/m/equipment-booking-calendar.html",Table:"equipment-booking-record",
                                             "booking":"equipment-booking","booking_form":"equipment-booking-record-form",router:1},
-        "about-vmiis":  {url:"$H/m/about-vmiis.html",router:1},
-        "module-editor":{url:"https://vm.vmiis.com/component/m/module-editor.html",router:1,sys:1},
     }
     for(p in modules){
         $vm.module_list[p]=modules[p]; 

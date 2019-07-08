@@ -30,7 +30,6 @@
         "region-form":  	        {url:"$H/m/region-form.html",Table:"region-demo-0703"},
 
         "dashboard":  	    {url:"$H/d/dashboard.html",router:1},
-        "about-vmiis":      {url:"$H/d/about-vmiis.html",router:1},
         "module-editor":    {url:"https://vm.vmiis.com/component/m/module-editor.html",router:1,sys:1},
     }
     for(p in modules){

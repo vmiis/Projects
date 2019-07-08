@@ -15,7 +15,6 @@
         "manager-list-form":  	{url:"$H/m/setup-email-list-form.html",Table:"email-list-demo-001",title:'Manager List'},
 
 
-        "about-vmiis":  {url:"$H/m/about-vmiis.html",router:1},
         "module-editor":{url:"https://vm.vmiis.com/component/m/module-editor.html",router:1,sys:1},
     }
     for(p in modules){

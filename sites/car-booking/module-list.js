@@ -8,8 +8,6 @@
         "car-booking":   			    {url:"$H/m/car-booking.html",Table:"car","booking_form":"car-booking-record-form",router:1},
         "car-booking-calendar": 	    {url:"$H/m/car-booking-calendar.html",Table:"car-booking-record",
                                             "booking":"car-booking","booking_form":"car-booking-record-form",router:1},
-        "about-vmiis":  {url:"$H/m/about-vmiis.html",router:1},
-        "module-editor":{url:"https://vm.vmiis.com/component/m/module-editor.html",router:1,sys:1},
     }
     for(p in modules){
         $vm.module_list[p]=modules[p]; 
