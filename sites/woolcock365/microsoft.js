@@ -69,7 +69,11 @@ $vm.m365_init=function(){
             if($vm.app_after_3rd_signin!=undefined) $vm.app_after_3rd_signin();
         }).catch(function (error){
             console.log("more than 1 hour. need login again.");
+            $vm.m365_signin();
         });
+    }
+    else{
+        $vm.m365_signin();
     }
     //------------------------------------
 }

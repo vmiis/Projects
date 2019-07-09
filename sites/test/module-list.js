@@ -1,17 +1,41 @@
 (function(){
     //-------------------------------------------------------------------------------------
     var modules={
-        "task-1-data":  	{url:"$H/m2/task-data.html",Table:"task-1-demo-0702",form_module:"task-1-form",router:1,task_name:'task 1'},
-        "task-1-form":  	{url:"$H/m2/task-form.html",Table:"task-1-demo-0702"},
-        "task-2-data":  	{url:"$H/m2/task-data.html",Table:"task-2-demo-0702",form_module:"task-2-form",router:1,task_name:'task 2'},
-        "task-2-form":  	{url:"$H/m2/task-form.html",Table:"task-2-demo-0702"},
-        "notes-data":  	    {url:"$H/m2/notes-data.html",Table:"notes-demo-0702",form_module:"notes-form",router:1},
-        "notes-form":  	    {url:"$H/m2/notes-form.html",Table:"notes-demo-0702"},
+        "security-access-card-my-request-data":  	{url:"$H/m2/security-access-card-my-request-data.html",
+            Table: "security-access-card-request-demo-0709",
+            Table2:"security-access-card-approval-demo-0709",
+            Table3:"security-access-card-process-demo-0709",
+            form_module:"security-access-card-my-request-form",router:1,title:"My requests"},
+        "security-access-card-my-request-form":  	{url:"$H/m2/security-access-card-my-request-form.html",
+            Table:"security-access-card-request-demo-0709",
+            manager_list_table:"email-list-demo-001",
+            processor_list_table:"email-list-demo-002",
+            email_to_manager:"email-to-manager"},
 
-        "task-3-data":  	{url:"$H/m3/task-data.html",Table:"task-3-demo-0702",form_module:"task-3-form",router:1},
-        "task-3-form":  	{url:"$H/m3/task-form.html",Table:"task-3-demo-0702"},
-        "notes":  	        {url:"$H/m3/notes.html"},
+        "security-access-card-my-approval-data":  	{url:"$H/m2/security-access-card-my-approval-data.html",
+            Table:"security-access-card-request-demo-0709",
+            Table2:"security-access-card-approval-demo-0709",
+            form_module:"security-access-card-my-approval-form",router:1,title:"My approvals"},
+        "security-access-card-my-approval-form":  	{url:"$H/m2/security-access-card-my-approval-form.html",Table:"security-access-card-approval-demo-0709"},
 
+        "security-access-card-my-process-data":  	{url:"$H/m2/security-access-card-my-process-data.html",
+            Table:"security-access-card-request-demo-0709",
+            Table2:"security-access-card-approval-demo-0709",
+            Table3:"security-access-card-process-demo-0709",
+            form_module:"security-access-card-my-process-form",router:1,title:"My processes"},
+        "security-access-card-my-process-form":  	{url:"$H/m2/security-access-card-my-process-form.html",Table:"security-access-card-process-demo-0709"},
+
+        "security-access-card-all-request-data":  	{url:"$H/m2/security-access-card-all-request-data.html",Table:"security-access-card-request-demo-0709",Table2:"security-access-card-approval-demo-0709",form_module:"security-access-card-all-request-form",router:1,title:"All requests"},
+        "security-access-card-all-request-form":  	{url:"$H/m2/security-access-card-all-request-form.html",Table:"security-access-card-request-demo-0709"},
+
+
+        "email-to-manager":     {url:"$H/m2/email-to-manager.html",router:1},
+        
+        "manager-list-data":  	{url:"$H/m2/setup-email-list-data.html",Table:"email-list-demo-001",form_module:"manager-list-form",router:1,title:'Manager List'},
+        "manager-list-form":  	{url:"$H/m2/setup-email-list-form.html",Table:"email-list-demo-001",title:'Manager List'},
+        
+        "processor-list-data":  {url:"$H/m2/setup-email-list-data.html",Table:"email-list-demo-002",form_module:"processor-list-form",router:1,title:'Processor List'},
+        "processor-list-form":  {url:"$H/m2/setup-email-list-form.html",Table:"email-list-demo-002",title:'Processor List'},
 
         "dashboard":  	    {url:"$H/m1/dashboard.html",router:1},
         "module-editor":    {url:"https://vm.vmiis.com/component/m/module-editor.html",router:1,sys:1},
