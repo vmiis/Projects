@@ -1,0 +1,603 @@
+<div id=D__ID>
+  <!--third html start -->
+  <div class="container mt-95 mb-3">
+    <div class="row">
+      <!-- form container start -->
+      <div class="col-12 col-lg-12 col-md-12 col-sm-12 mx-auto formbox">
+        <div class="row">
+          <div class="col-12">
+            <!-- form start -->
+            <form id=F__ID>
+              <!---------------------------------------------------->
+              <h3>Motor Vehicle Accidents</h3>
+              <!-- participant part for all tsak forms -------------------->
+              <div id="participant_div__ID">
+                <div class="form-group">
+                  <fieldset class="subquestions">
+                    <label><span class="">Participant</span>
+                      <input type=text name="Participant" class=form-control id=Participant__ID data-id="Participant" />
+                    </label><br>
+                    <label><span class="">Participant ID</span>
+                      <input type=text name="Participant_uid" class=form-control readonly />
+                    </label>
+                  </fieldset>
+                </div>
+              </div>
+              <!-- form group -->
+              <div class="form-group">
+                <fieldset class="">
+                  <h4>Most drivers have had an accident at some time. We would like to ask you about any accidents in
+                    the last 3 years. <br><br>
+                    Include any accident where someone was injured, the police were called or a vehicle was damaged and
+                    required repair.
+                  </h4>
+                </fieldset>
+              </div>
+              <div class="form-group">
+                <div class="row">
+                  <div class="col-sm control-group">
+                    <h4>23. Do you drive a <u>motor vehicle</u>?</h4>
+                  </div>
+                </div>
+                <div class="questiongroup">
+                  <fieldset class="pl-4">
+                    <label class="radiobuttons ">
+                      <input type="radio" name="MVA_drive" value="1" required>
+                      <span class="checkmark"></span>Yes</label>
+                    <label class="radiobuttons ">
+                      <input type="radio" name="MVA_drive" value="0">
+                      <span class="checkmark"></span>No <i>(please go to next section)</i></label>
+                  </fieldset>
+                </div>
+              </div>
+              <div id=q23__ID>
+                <div class="form-group">
+                  <div class="row">
+                    <div class="col-sm control-group">
+                      <h4>24. Have you had any <u>motor vehicle accidents</u> in the last 3 years?</h4>
+                    </div>
+                  </div>
+                  <div class="questiongroup">
+                    <fieldset class="pl-4">
+                      <label class="radiobuttons ">
+                        <input type="radio" name="MVA_accident" value="1">
+                        <span class="checkmark"></span>Yes</label>
+                      <label class="radiobuttons ">
+                        <input type="radio" name="MVA_accident" value="0">
+                        <span class="checkmark"></span>No <i>(please skip to question 28)</i></label>
+                    </fieldset>
+                  </div>
+                </div>
+                <div id=q24__ID>
+                  <div class="form-group">
+                    <div class="row">
+                      <div class="col-sm control-group">
+                        <h4>25. Please list the number of <u>accidents</u> involving another vehicle:</h4>
+                      </div>
+                    </div>
+                    <div class="questiongroup">
+                      <fieldset class="pl-4">
+                        <label><span class="">At work:</span>
+                          <input class="form-control" type="number" min=0 max=99 name="accident_vehicle_work">
+                        </label>
+                        <label><span class="">Non work related:</span>
+                          <input class="form-control" type="number" min=0 max=99 name="accident_vehicle_nonwork">
+                        </label>
+                      </fieldset>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <div class="row">
+                      <div class="col-sm control-group">
+                        <h4>26. Please list the number of <u>accidents</u> with no other vehicle involved:</h4>
+                      </div>
+                    </div>
+                    <div class="questiongroup">
+                      <fieldset class="pl-4">
+                        <label><span class="">At work:</span>
+                          <input class="form-control" type="number" min=0 max=99 name="accident_novehicle_work">
+                        </label>
+                        <label><span class="">Non work related:</span>
+                          <input class="form-control" type="number" min=0 max=99 name="accident_nonvehicle_nowork">
+                        </label>
+                      </fieldset>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <div class="row">
+                      <div class="col-sm control-group">
+                        <h4>27. Were any of these <u>accidents</u> associated with being sleepy?</h4>
+                      </div>
+                    </div>
+                    <div class="questiongroup">
+                      <fieldset class="pl-4">
+                        <label class="radiobuttons ">
+                          <input type="radio" name="MVAacc_sleep" value="1">
+                          <span class="checkmark"></span>Yes</label>
+                        <label class="radiobuttons ">
+                          <input type="radio" name="MVAacc_sleep" value="0">
+                          <span class="checkmark"></span>No</label>
+                      </fieldset>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="row">
+                    <div class="col-sm control-group">
+                      <h4>28. A near-miss motor vehicle accident is an incident in which property damage or bodily harm
+                        was narrowly avoided. Have you had any <u>near miss vehicle accidents</u> in the last 3 years?
+                      </h4>
+                    </div>
+                  </div>
+                  <div class="questiongroup">
+                    <fieldset class="pl-4">
+                      <label class="radiobuttons ">
+                        <input type="radio" name="MVA_nearmiss" value="1">
+                        <span class="checkmark"></span>Yes</label>
+                      <label class="radiobuttons ">
+                        <input type="radio" name="MVA_nearmiss" value="0">
+                        <span class="checkmark"></span>No <i>(please skip to question 32)</i></label>
+                    </fieldset>
+                  </div>
+                </div>
+                <div id=q28__ID>
+                  <div class="form-group">
+                    <div class="row">
+                      <div class="col-sm control-group">
+                        <h4>29. Please list the number of <u>near miss accidents</u> involving another vehicle:</h4>
+                      </div>
+                    </div>
+                    <div class="questiongroup">
+                      <fieldset class="pl-4">
+                        <label><span class="">At work:</span>
+                          <input class="form-control" type="number" min=0 max=99 name="nearmiss_vehicle_work">
+                        </label>
+                        <label><span class="">Non work related:</span>
+                          <input class="form-control" type="number" min=0 max=99 name="nearmiss_vehicle_nonwork">
+                        </label>
+                      </fieldset>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <div class="row">
+                      <div class="col-sm control-group">
+                        <h4>30. Please list the number of <u>near miss accidents</u> with no other vehicle involved:
+                        </h4>
+                      </div>
+                    </div>
+                    <div class="questiongroup">
+                      <fieldset class="pl-4">
+                        <label><span class="">At work:</span>
+                          <input class="form-control" type="number" min=0 max=99 name="nearmiss_novehicle_work">
+                        </label>
+                        <label><span class="">Non work related:</span>
+                          <input class="form-control" type="number" min=0 max=99 name="nearmiss_nonvehicle_nowork">
+                        </label>
+                      </fieldset>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <div class="row">
+                      <div class="col-sm control-group">
+                        <h4>31. Were any of these <u>near miss accidents</u> associated with being sleepy?</h4>
+                      </div>
+                    </div>
+                    <div class="questiongroup">
+                      <fieldset class="pl-4">
+                        <label class="radiobuttons ">
+                          <input type="radio" name="MVAnmiss_sleep" value="1">
+                          <span class="checkmark"></span>Yes</label>
+                        <label class="radiobuttons ">
+                          <input type="radio" name="MVAnmiss_sleep" value="0">
+                          <span class="checkmark"></span>No</label>
+                      </fieldset>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="row">
+                    <div class="col-md control-group">
+                      <h4>32. Please tell us how often the following events occur.<br>How often do you...</h4>
+                    </div>
+                  </div>
+                  <div class="questiongroup ">
+                    <label>Feel so sleepy whilst driving on highways that you fear falling asleep</label><br>
+                    <fieldset class="pl-4">
+                      <label class="radiobuttons text-left">
+                        <input type="radio" name="fear_drivesleep" value="4">
+                        <span class="checkmark"></span>Every trip</label><br>
+                      <label class="radiobuttons text-left">
+                        <input type="radio" name="fear_drivesleep" value="3">
+                        <span class="checkmark"></span>Every 2-3 trips</label><br>
+                      <label class="radiobuttons text-left">
+                        <input type="radio" name="fear_drivesleep" value="2">
+                        <span class="checkmark"></span>Every 4-10 trips</label><br>
+                      <label class="radiobuttons text-left">
+                        <input type="radio" name="fear_drivesleep" value="1">
+                        <span class="checkmark"></span>Less than every 10 trips</label><br>
+                      <label class="radiobuttons text-left">
+                        <input type="radio" name="fear_drivesleep" value="0">
+                        <span class="checkmark"></span>Never</label><br>
+                    </fieldset>
+                  </div>
+                  <div class="questiongroup ">
+                    <label>Nod off at the wheel whilst driving on highways</label><br>
+                    <fieldset class="pl-4">
+                      <label class="radiobuttons text-left">
+                        <input type="radio" name="drive_nod" value="4">
+                        <span class="checkmark"></span>Every trip</label><br>
+                      <label class="radiobuttons text-left">
+                        <input type="radio" name="drive_nod" value="3">
+                        <span class="checkmark"></span>Every 2-3 trips</label><br>
+                      <label class="radiobuttons text-left">
+                        <input type="radio" name="drive_nod" value="2">
+                        <span class="checkmark"></span>Every 4-10 trips</label><br>
+                      <label class="radiobuttons text-left">
+                        <input type="radio" name="drive_nod" value="1">
+                        <span class="checkmark"></span>Less than every 10 trips</label><br>
+                      <label class="radiobuttons text-left">
+                        <input type="radio" name="drive_nod" value="0">
+                        <span class="checkmark"></span>Never</label><br>
+                    </fieldset>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="row">
+                    <div class="col-md control-group">
+                      <h4>33. Do you use any of the following strategies to stay awake and alert while driving and how
+                        often do you use each strategy?</h4>
+                    </div>
+                  </div>
+                  <div class="questiongroup ">
+                    <label>Drink caffeine</label><br>
+                    <fieldset class="pl-4">
+                      <label class="radiobuttons text-left">
+                        <input type="radio" name="alert_caffeine" value="4">
+                        <span class="checkmark"></span>Every trip</label><br>
+                      <label class="radiobuttons text-left">
+                        <input type="radio" name="alert_caffeine" value="3">
+                        <span class="checkmark"></span>Every 2-3 trips</label><br>
+                      <label class="radiobuttons text-left">
+                        <input type="radio" name="alert_caffeine" value="2">
+                        <span class="checkmark"></span>Every 4-10 trips</label><br>
+                      <label class="radiobuttons text-left">
+                        <input type="radio" name="alert_caffeine" value="1">
+                        <span class="checkmark"></span>Less than every 10 trips</label><br>
+                      <label class="radiobuttons text-left">
+                        <input type="radio" name="alert_caffeine" value="0">
+                        <span class="checkmark"></span>Never</label><br>
+                    </fieldset>
+                  </div>
+                  <div class="questiongroup ">
+                    <label>Listen to radio/music</label><br>
+                    <fieldset class="pl-4">
+                      <label class="radiobuttons text-left">
+                        <input type="radio" name="alert_radio" value="4">
+                        <span class="checkmark"></span>Every trip</label><br>
+                      <label class="radiobuttons text-left">
+                        <input type="radio" name="alert_radio" value="3">
+                        <span class="checkmark"></span>Every 2-3 trips</label><br>
+                      <label class="radiobuttons text-left">
+                        <input type="radio" name="alert_radio" value="2">
+                        <span class="checkmark"></span>Every 4-10 trips</label><br>
+                      <label class="radiobuttons text-left">
+                        <input type="radio" name="alert_radio" value="1">
+                        <span class="checkmark"></span>Less than every 10 trips</label><br>
+                      <label class="radiobuttons text-left">
+                        <input type="radio" name="alert_radio" value="0">
+                        <span class="checkmark"></span>Never</label><br>
+                    </fieldset>
+                  </div>
+                  <div class="questiongroup ">
+                    <label>Adjust window or air conditioning</label><br>
+                    <fieldset class="pl-4">
+                      <label class="radiobuttons text-left">
+                        <input type="radio" name="alert_air" value="4">
+                        <span class="checkmark"></span>Every trip</label><br>
+                      <label class="radiobuttons text-left">
+                        <input type="radio" name="alert_air" value="3">
+                        <span class="checkmark"></span>Every 2-3 trips</label><br>
+                      <label class="radiobuttons text-left">
+                        <input type="radio" name="alert_air" value="2">
+                        <span class="checkmark"></span>Every 4-10 trips</label><br>
+                      <label class="radiobuttons text-left">
+                        <input type="radio" name="alert_air" value="1">
+                        <span class="checkmark"></span>Less than every 10 trips</label><br>
+                      <label class="radiobuttons text-left">
+                        <input type="radio" name="alert_air" value="0">
+                        <span class="checkmark"></span>Never</label><br>
+                    </fieldset>
+                  </div>
+                  <div class="questiongroup ">
+                    <label>Stop for a break or nap</label><br>
+                    <fieldset class="pl-4">
+                      <label class="radiobuttons text-left">
+                        <input type="radio" name="alert_break" value="4">
+                        <span class="checkmark"></span>Every trip</label><br>
+                      <label class="radiobuttons text-left">
+                        <input type="radio" name="alert_break" value="3">
+                        <span class="checkmark"></span>Every 2-3 trips</label><br>
+                      <label class="radiobuttons text-left">
+                        <input type="radio" name="alert_break" value="2">
+                        <span class="checkmark"></span>Every 4-10 trips</label><br>
+                      <label class="radiobuttons text-left">
+                        <input type="radio" name="alert_break" value="1">
+                        <span class="checkmark"></span>Less than every 10 trips</label><br>
+                      <label class="radiobuttons text-left">
+                        <input type="radio" name="alert_break" value="0">
+                        <span class="checkmark"></span>Never</label><br>
+                    </fieldset>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="row">
+                    <div class="col-md control-group">
+                      <h4>34. How many kilometres per year do you drive?</h4>
+                    </div>
+                  </div>
+                  <div class="questiongroup ">
+                    <fieldset class="pl-4">
+                      <label class="">
+                        <select name="dirve_km" class="form-control">
+                          <option value=''>please select ...</option>
+                          <option value=1>Less than 5,000</option>
+                          <option value=2>5,000-10,000</option>
+                          <option value=3>10,000-15,000</option>
+                          <option value=4>15,000-25,000</option>
+                          <option value=5>25,000-40,000</option>
+                          <option value=6>Greater than 40,000</option>
+                        </select>
+                      </label>
+                    </fieldset>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="row">
+                    <div class="col-sm control-group">
+                      <h4>35. How many years have you been driving for?</h4>
+                    </div>
+                  </div>
+                  <div class="questiongroup">
+                    <fieldset class="pl-4">
+                      <label><span class="">Years</span>
+                        <input class="form-control" type="number" min=0 max=99 name="drive_yrs">
+                      </label>
+                    </fieldset>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="row">
+                    <div class="col-sm control-group">
+                      <h4>36. How many hours a week do you drive?</h4>
+                    </div>
+                  </div>
+                  <div class="questiongroup">
+                    <fieldset class="pl-4">
+                      <label><span class="">Hours</span>
+                        <input class="form-control" type="number" min=0 max=99 name="drive_wkhrs">
+                      </label>
+                    </fieldset>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="row">
+                    <div class="col-sm control-group">
+                      <h4>37. Do you drive professionally?</h4>
+                    </div>
+                  </div>
+                  <div class="questiongroup">
+                    <fieldset class="pl-4">
+                      <label class="radiobuttons ">
+                        <input type="radio" name="drive_professional" value="1">
+                        <span class="checkmark"></span>Yes</label>
+                      <label class="radiobuttons ">
+                        <input type="radio" name="drive_professional" value="0">
+                        <span class="checkmark"></span>No</label>
+                    </fieldset>
+                  </div>
+                </div>
+              </div>
+              <button type="submit" id="submit__ID" class="btn btn-primary btn-lg">Submit</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>
+    function F__ID() {
+      //-------------------------------------
+      VmInclude:__COMPONENT__/f/form.01.js
+      VmInclude:__CURRENT_PATH__/shared-form.js
+      //-------------------------------------
+      var load2=m.load;
+      m.load=function(){
+        load2();
+        //-------------------------------------
+        if ($("#D__ID input[name=MVA_drive]:checked").val() == '1') {
+          $("#D__ID input[name=MVA_accident]").prop('required', true);
+          if ($("#D__ID input[name=MVA_accident]:checked").val() == '1') {
+            $("#D__ID input[name=accident_vehicle_work]").prop('required', true);
+            $("#D__ID input[name=accident_vehicle_nonwork]").prop('required', true);
+            $("#D__ID input[name=accident_novehicle_work]").prop('required', true);
+            $("#D__ID input[name=accident_nonvehicle_nowork]").prop('required', true);
+            $("#D__ID input[name=MVAacc_sleep]").prop('required', true);
+            $("#q24__ID").show();
+          }
+          else {
+            $("#D__ID input[name=accident_vehicle_work]").prop('required', false);
+            $("#D__ID input[name=accident_vehicle_nonwork]").prop('required', false);
+            $("#D__ID input[name=accident_novehicle_work]").prop('required', false);
+            $("#D__ID input[name=accident_nonvehicle_nowork]").prop('required', false);
+            $("#D__ID input[name=MVAacc_sleep]").prop('required', false);
+            $("#q24__ID").hide();
+          }
+          $("#D__ID input[name=MVA_nearmiss]").prop('required', true);
+          if ($("#D__ID input[name=MVA_nearmiss]:checked").val() == '1') {
+            $("#D__ID input[name=nearmiss_vehicle_work]").prop('required', true);
+            $("#D__ID input[name=nearmiss_vehicle_nonwork]").prop('required', true);
+            $("#D__ID input[name=nearmiss_novehicle_work]").prop('required', true);
+            $("#D__ID input[name=nearmiss_nonvehicle_nowork]").prop('required', true);
+            $("#D__ID input[name=MVAnmiss_sleep]").prop('required', true);
+            $("#q28__ID").show();
+          }
+          else {
+            $("#D__ID input[name=nearmiss_vehicle_work]").prop('required', false);
+            $("#D__ID input[name=nearmiss_vehicle_nonwork]").prop('required', false);
+            $("#D__ID input[name=nearmiss_novehicle_work]").prop('required', false);
+            $("#D__ID input[name=nearmiss_nonvehicle_nowork]").prop('required', false);
+            $("#D__ID input[name=MVAnmiss_sleep]").prop('required', false);
+            $("#q28__ID").hide();
+          }
+          $("#D__ID input[name=fear_drivesleep]").prop('required', true);
+          $("#D__ID input[name=drive_nod]").prop('required', true);
+          $("#D__ID input[name=alert_caffeine]").prop('required', true);
+          $("#D__ID input[name=alert_radio]").prop('required', true);
+          $("#D__ID input[name=alert_air]").prop('required', true);
+          $("#D__ID input[name=alert_break]").prop('required', true);
+          $("#D__ID select[name=dirve_km]").prop('required', true);
+          $("#D__ID input[name=drive_yrs]").prop('required', true);
+          $("#D__ID input[name=drive_wkhrs]").prop('required', true);
+          $("#D__ID input[name=drive_professional]").prop('required', true);
+          $("#q23__ID").show();
+        }
+        else {
+          $("#D__ID input[name=MVA_accident]").prop('required', false);
+          $("#D__ID input[name=accident_vehicle_work]").prop('required', false);
+          $("#D__ID input[name=accident_vehicle_nonwork]").prop('required', false);
+          $("#D__ID input[name=accident_novehicle_work]").prop('required', false);
+          $("#D__ID input[name=accident_nonvehicle_nowork]").prop('required', false);
+          $("#D__ID input[name=MVAacc_sleep]").prop('required', false);
+          $("#D__ID input[name=MVA_nearmiss]").prop('required', false);
+          $("#D__ID input[name=nearmiss_vehicle_work]").prop('required', false);
+          $("#D__ID input[name=nearmiss_vehicle_nonwork]").prop('required', false);
+          $("#D__ID input[name=nearmiss_novehicle_work]").prop('required', false);
+          $("#D__ID input[name=nearmiss_nonvehicle_nowork]").prop('required', false);
+          $("#D__ID input[name=MVAnmiss_sleep]").prop('required', false);
+          $("#D__ID input[name=fear_drivesleep]").prop('required', false);
+          $("#D__ID input[name=drive_nod]").prop('required', false);
+          $("#D__ID input[name=alert_caffeine]").prop('required', false);
+          $("#D__ID input[name=alert_radio]").prop('required', false);
+          $("#D__ID input[name=alert_air]").prop('required', false);
+          $("#D__ID input[name=alert_break]").prop('required', false);
+          $("#D__ID select[name=dirve_km]").prop('required', false);
+          $("#D__ID input[name=drive_yrs]").prop('required', false);
+          $("#D__ID input[name=drive_wkhrs]").prop('required', false);
+          $("#D__ID input[name=drive_professional]").prop('required', false);
+          $("#q23__ID").hide();
+        }
+        //-------------------------------------
+      }
+      //-------------------------------------
+      $("#D__ID input[name=MVA_drive]").on('click', function () {
+        if ($("#D__ID input[name=MVA_drive]:checked").val() == '1') {
+          $("#D__ID input[name=MVA_accident]").prop('required', true);
+          if ($("#D__ID input[name=MVA_accident]:checked").val() == '1') {
+            $("#D__ID input[name=accident_vehicle_work]").prop('required', true);
+            $("#D__ID input[name=accident_vehicle_nonwork]").prop('required', true);
+            $("#D__ID input[name=accident_novehicle_work]").prop('required', true);
+            $("#D__ID input[name=accident_nonvehicle_nowork]").prop('required', true);
+            $("#D__ID input[name=MVAacc_sleep]").prop('required', true);
+            $("#q24__ID").show();
+          }
+          else {
+            $("#D__ID input[name=accident_vehicle_work]").prop('required', false);
+            $("#D__ID input[name=accident_vehicle_nonwork]").prop('required', false);
+            $("#D__ID input[name=accident_novehicle_work]").prop('required', false);
+            $("#D__ID input[name=accident_nonvehicle_nowork]").prop('required', false);
+            $("#D__ID input[name=MVAacc_sleep]").prop('required', false);
+            $("#q24__ID").hide();
+          }
+          $("#D__ID input[name=MVA_nearmiss]").prop('required', true);
+          $("#D__ID input[name=MVA_nearmiss]").prop('required', true);
+          if ($("#D__ID input[name=MVA_nearmiss]:checked").val() == '1') {
+            $("#D__ID input[name=nearmiss_vehicle_work]").prop('required', true);
+            $("#D__ID input[name=nearmiss_vehicle_nonwork]").prop('required', true);
+            $("#D__ID input[name=nearmiss_novehicle_work]").prop('required', true);
+            $("#D__ID input[name=nearmiss_nonvehicle_nowork]").prop('required', true);
+            $("#D__ID input[name=MVAnmiss_sleep]").prop('required', true);
+            $("#q28__ID").show();
+          }
+          else {
+            $("#D__ID input[name=nearmiss_vehicle_work]").prop('required', false);
+            $("#D__ID input[name=nearmiss_vehicle_nonwork]").prop('required', false);
+            $("#D__ID input[name=nearmiss_novehicle_work]").prop('required', false);
+            $("#D__ID input[name=nearmiss_nonvehicle_nowork]").prop('required', false);
+            $("#D__ID input[name=MVAnmiss_sleep]").prop('required', false);
+            $("#q28__ID").hide();
+          }
+          $("#D__ID input[name=fear_drivesleep]").prop('required', true);
+          $("#D__ID input[name=drive_nod]").prop('required', true);
+          $("#D__ID input[name=alert_caffeine]").prop('required', true);
+          $("#D__ID input[name=alert_radio]").prop('required', true);
+          $("#D__ID input[name=alert_air]").prop('required', true);
+          $("#D__ID input[name=alert_break]").prop('required', true);
+          $("#D__ID select[name=dirve_km]").prop('required', true);
+          $("#D__ID input[name=drive_yrs]").prop('required', true);
+          $("#D__ID input[name=drive_wkhrs]").prop('required', true);
+          $("#D__ID input[name=drive_professional]").prop('required', true);
+          $("#q23__ID").show();
+        }
+        else {
+          $("#D__ID input[name=MVA_accident]").prop('required', false);
+          $("#D__ID input[name=MVA_nearmiss]").prop('required', false);
+          $("#D__ID input[name=fear_drivesleep]").prop('required', false);
+          $("#D__ID input[name=drive_nod]").prop('required', false);
+          $("#D__ID input[name=alert_caffeine]").prop('required', false);
+          $("#D__ID input[name=alert_radio]").prop('required', false);
+          $("#D__ID input[name=alert_air]").prop('required', false);
+          $("#D__ID input[name=alert_break]").prop('required', false);
+          $("#D__ID select[name=dirve_km]").prop('required', false);
+          $("#D__ID input[name=drive_yrs]").prop('required', false);
+          $("#D__ID input[name=drive_wkhrs]").prop('required', false);
+          $("#D__ID input[name=drive_professional]").prop('required', false);
+          $("#q23__ID").hide();
+        }
+      })
+      //-------------------------------------
+      $("#D__ID input[name=MVA_accident]").on('click', function () {
+        if ($("#D__ID input[name=MVA_accident]:checked").val() == '1') {
+          $("#D__ID input[name=accident_vehicle_work]").prop('required', true);
+          $("#D__ID input[name=accident_vehicle_nonwork]").prop('required', true);
+          $("#D__ID input[name=accident_novehicle_work]").prop('required', true);
+          $("#D__ID input[name=accident_nonvehicle_nowork]").prop('required', true);
+          $("#D__ID input[name=MVAacc_sleep]").prop('required', true);
+          $("#q24__ID").show();
+        }
+        else {
+          $("#D__ID input[name=accident_vehicle_work]").prop('required', false);
+          $("#D__ID input[name=accident_vehicle_nonwork]").prop('required', false);
+          $("#D__ID input[name=accident_novehicle_work]").prop('required', false);
+          $("#D__ID input[name=accident_nonvehicle_nowork]").prop('required', false);
+          $("#D__ID input[name=MVAacc_sleep]").prop('required', false);
+          $("#q24__ID").hide();
+        }
+      });
+      //-------------------------------------
+      $("#D__ID input[name=MVA_nearmiss]").on('click', function () {
+        if ($("#D__ID input[name=MVA_nearmiss]:checked").val() == '1') {
+          $("#D__ID input[name=nearmiss_vehicle_work]").prop('required', true);
+          $("#D__ID input[name=nearmiss_vehicle_nonwork]").prop('required', true);
+          $("#D__ID input[name=nearmiss_novehicle_work]").prop('required', true);
+          $("#D__ID input[name=nearmiss_nonvehicle_nowork]").prop('required', true);
+          $("#D__ID input[name=MVAnmiss_sleep]").prop('required', true);
+          $("#q28__ID").show();
+        }
+        else {
+          $("#D__ID input[name=nearmiss_vehicle_work]").prop('required', false);
+          $("#D__ID input[name=nearmiss_vehicle_nonwork]").prop('required', false);
+          $("#D__ID input[name=nearmiss_novehicle_work]").prop('required', false);
+          $("#D__ID input[name=nearmiss_nonvehicle_nowork]").prop('required', false);
+          $("#D__ID input[name=MVAnmiss_sleep]").prop('required', false);
+          $("#q28__ID").hide();
+        }
+      });
+    }
+  </script>
+  <style>
+    #D__ID .mt-95 {
+      max-width:600px;
+    }
+    VmInclude:__CURRENT_PATH__/wappsystem-form.css
+  </style>
+</div>
