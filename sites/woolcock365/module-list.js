@@ -49,6 +49,60 @@
                                             },
 
 
+        "student-agreement-renewal-data":   {url:"$H/h/student-agreement-renewal-data.html",
+                                                Table: "https://woolcockmed.sharepoint.com/sites/HRandEmployment/_api/web/lists/GetByTitle('Student Agreement Renewal')",
+                                                form_module:"student-agreement-renewal-form",router:1
+                                            },
+        "student-agreement-renewal-form":	{url:"$H/h/student-agreement-renewal-form.html",
+                                                Table: "https://woolcockmed.sharepoint.com/sites/HRandEmployment/_api/web/lists/GetByTitle('Student Agreement Renewal')",
+                                            },
+
+        "variation-to-existing-student-agreement-data": {url:"$H/h/variation-to-existing-student-agreement-data.html",
+                                                            Table: "https://woolcockmed.sharepoint.com/sites/HRandEmployment/_api/web/lists/GetByTitle('Variation to Existing Student Agreement')",
+                                                            form_module:"variation-to-existing-student-agreement-form",router:1
+                                                        },
+        "variation-to-existing-student-agreement-form":	{url:"$H/h/variation-to-existing-student-agreement-form.html",
+                                                            Table: "https://woolcockmed.sharepoint.com/sites/HRandEmployment/_api/web/lists/GetByTitle('Variation to Existing Student Agreement')",
+                                                        },
+
+        "new-clinician-hire-data":          {url:"$H/h/new-clinician-hire-data.html",
+                                                Table: "https://woolcockmed.sharepoint.com/sites/HRandEmployment/_api/web/lists/GetByTitle('New Clinician Hire')",
+                                                form_module:"new-clinician-hire-form",router:1
+                                            },
+        "new-clinician-hire-form":	        {url:"$H/h/new-clinician-hire-form.html",
+                                                Table: "https://woolcockmed.sharepoint.com/sites/HRandEmployment/_api/web/lists/GetByTitle('New Clinician Hire')",
+                                            },
+
+        "variation-to-existing-clinician-data": {url:"$H/h/variation-to-existing-clinician-data.html",
+                                                    Table: "https://woolcockmed.sharepoint.com/sites/HRandEmployment/_api/web/lists/GetByTitle('Variation to Existing Clinician')",
+                                                    form_module:"variation-to-existing-clinician-form",router:1
+                                                },
+        "variation-to-existing-clinician-form":	{url:"$H/h/variation-to-existing-clinician-form.html",
+                                                    Table: "https://woolcockmed.sharepoint.com/sites/HRandEmployment/_api/web/lists/GetByTitle('Variation to Existing Clinician')",
+                                                },
+
+
+        "new-affiliate-data":   {url:"$H/h/new-affiliate-data.html",
+                                                    Table: "https://woolcockmed.sharepoint.com/sites/HRandEmployment/_api/web/lists/GetByTitle('New Affiliate')",
+                                                    form_module:"new-affiliate-form",router:1
+                                                },
+        "new-affiliate-form":	{url:"$H/h/new-affiliate-form.html",
+                                                    Table: "https://woolcockmed.sharepoint.com/sites/HRandEmployment/_api/web/lists/GetByTitle('New Affiliate')",
+                                                },
+
+        "new-honorary-affiliate-data": {url:"$H/h/new-honorary-affiliate-data.html",
+                                                    Table: "https://woolcockmed.sharepoint.com/sites/HRandEmployment/_api/web/lists/GetByTitle('New Honorary Affiliate')",
+                                                    form_module:"new-honorary-affiliate-form",router:1
+                                                },
+        "new-honorary-affiliate-form":	{url:"$H/h/new-honorary-affiliate-form.html",
+                                                    Table: "https://woolcockmed.sharepoint.com/sites/HRandEmployment/_api/web/lists/GetByTitle('New Honorary Affiliate')",
+                                                },
+
+
+
+
+
+
         "clinician-appointment-data":      {url:"$H/m/clinician-appointment-data.html",
                                                 Table:"https://woolcockmed.sharepoint.com/sites/HRandEmployment/_api/web/lists/GetByTitle('Clinician Appointment')",
                                                 form_module:"clinician-appointment-form"

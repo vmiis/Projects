@@ -5,7 +5,7 @@
         Dear <span id=manager__ID>[MANAGER]</span>,
         <br><br>
         <div style='max-width:500px'>
-            There is a new request need to be processed.
+            The request has been processed.
             <br>
             <br>
         </div>
@@ -25,8 +25,8 @@
             $('#D__ID').on('load',function(){
                 $('#send__ID').show();
                 var record=m.input.record;
-                $('#manager__ID').text(record.Data.Manager_for_Approval.split('|')[0]);
-                email_to=record.Data.Manager_for_Approval.split('|')[1];
+                $('#manager__ID').text(record.Data.Processor.split('|')[0]);
+                email_to=record.Data.Processor.split('|')[1];
                 email_html=$('#email__ID').html();
                 email_text=$('#email__ID').text();
             })

@@ -159,7 +159,7 @@
             m.fields="_Form,"+fields+",Submit_date,Submitted_by,_Delete";
             //-------------------------------------
             m.set_req=function(){
-                m.endpoint=m.Table+"/items?$expand=Author&$select=*,Author/FirstName,Author/LastName";
+                m.endpoint=m.Table+"/items?$expand=Author&$select=*,Author/UserName,Author/FirstName,Author/LastName&$filter=Author/UserName eq '"+$vm.user_name_365+"' ";
                 m.endpoint_d=m.Table+"/items";
             }
             //-------------------------------------

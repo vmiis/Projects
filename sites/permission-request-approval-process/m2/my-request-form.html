@@ -16,7 +16,7 @@
 				</div>
                 <hr class=hr__ID>
 				<div class="row row__ID">
-					<div class=col-md-3>Processor</div>
+					<div class=col-md-3>Permission Admin</div>
 					<div class=col-md-9>
 						<select class=form-control name=Processor id=processor__ID>
 						</select>
@@ -39,7 +39,49 @@
 					<div class=col-md-3>Department</div>
 					<div class=col-md-9><input type=text class=form-control name=Department /></div>
 				</div>
-    			<br>
+                <hr class=hr__ID>
+				<div class="row row__ID">
+					<div class=col-md-3>Login Name</div>
+					<div class=col-md-9><input type=text class=form-control name=Login_Name /></div>
+				</div>
+                <hr class=hr__ID>
+				<div class="row" style='padding:6px 5px;'>
+					<div class=col-md-3>Requests</div>
+					<div class=col-md-9>
+						<div class="row row__ID">
+							<div class=col-md-4>Group</div>
+							<div class=col-md-4>Read Only</div>
+							<div class=col-md-4>Read/Write</div>
+						</div>
+						<div class="row row__ID">
+							<div class=col-md-4>Marketing</div>
+							<div class=col-md-4><input type=checkbox name=marketing_r /></div>
+							<div class=col-md-4><input type=checkbox name=marketing_rw /></div>
+						</div>
+						<div class="row row__ID">
+							<div class=col-md-4>Operration</div>
+							<div class=col-md-4><input type=checkbox name=operation_r /></div>
+							<div class=col-md-4><input type=checkbox name=operation_rw /></div>
+						</div>
+						<div class="row row__ID">
+							<div class=col-md-4>Finance</div>
+							<div class=col-md-4><input type=checkbox name=finance_r /></div>
+							<div class=col-md-4><input type=checkbox name=finance_rw /></div>
+						</div>
+						<div class="row row__ID">
+							<div class=col-md-4>Research</div>
+							<div class=col-md-4><input type=checkbox name=research_r /></div>
+							<div class=col-md-4><input type=checkbox name=research_rw /></div>
+						</div>
+						<div class="row row__ID">
+							<div class=col-md-4>HR</div>
+							<div class=col-md-4><input type=checkbox name=hr_r /></div>
+							<div class=col-md-4><input type=checkbox name=hr_rw /></div>
+						</div>
+					</div>
+				</div>
+				
+				<br>
     			<div class="row">
     				<div class="col c_print">
                         <button id=submit0__ID type="submit" style='display:none'></button>

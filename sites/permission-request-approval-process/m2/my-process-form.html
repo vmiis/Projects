@@ -35,7 +35,7 @@
 				</div>
     		</div>
     	</form>
-    	<form id=F__ID class=fm__ID>
+    	<form id=F3__ID class=fm__ID>
     		<div class="container">
 				<div class="row row__ID">
 					<div class=col-md-3>Approval</div>
@@ -43,6 +43,22 @@
 						<label><input type=checkbox name=Approved /> I approve this request.</label>
 						<br><span id=msg_approval__ID></span>
 						<input type=text name=Approved_by style='display:none' />
+					</div>
+				</div>
+				<div class="row row__ID">
+					<div class=col-md-3>Notes</div>
+					<div class=col-md-9><textarea class=form-control name=Notes></textarea></div>
+				</div>
+    		</div>
+    	</form>
+    	<form id=F__ID class=fm__ID>
+    		<div class="container">
+				<div class="row row__ID">
+					<div class=col-md-3>Process</div>
+					<div class=col-md-9>
+						<label><input type=checkbox name=Processed /> I have processed this request.</label>
+						<br><span id=msg_process__ID></span>
+						<input type=text name=Processed_by style='display:none' />
 					</div>
 				</div>
 				<div class="row row__ID">
@@ -57,29 +73,13 @@
 				</div>
     		</div>
     	</form>
-    	<form id=F3__ID class=fm__ID>
-    		<div class="container">
-				<div class="row row__ID">
-					<div class=col-md-3>Process</div>
-					<div class=col-md-9>
-						<label><input type=checkbox name=Approved /> I have processed this request.</label>
-						<br><span id=msg_process__ID></span>
-						<input type=text name=Processed_by style='display:none' />
-					</div>
-				</div>
-				<div class="row row__ID">
-					<div class=col-md-3>Notes</div>
-					<div class=col-md-9><textarea class=form-control name=Notes></textarea></div>
-				</div>
-    		</div>
-    	</form>
     </section>
     VmInclude:__COMPONENT__/m/model.01.html
     <script>
     	function F__ID(){
 			//F2: request
-			//F:  approval
-			//F3: process
+			//F3: approval
+			//F:  process
     		//-------------------------------------
             VmInclude:__COMPONENT__/f/form.01.js
 			//-------------------------------------
@@ -99,22 +99,21 @@
 					$('#F2__ID input[name=Processor]').val(v.split('|')[0]);
 					m.request_record=m.input.record;
 
-					//approval -> F
+					//approval -> F3
 					if(m.input.record.sys_approval!=undefined){
-						$vm.deserialize(m.input.record.sys_approval,'#F__ID');
+						$vm.deserialize(m.input.record.sys_approval,'#F3__ID');
 						var msg=m.input.record.sys_approval.Data.Approved_by;
 						if(msg!=undefined && msg.length>5){
 							$('#msg_approval__ID').text(msg);
 						}
 					}
 					
-					//process -> F3
+					//process -> F
 					if(m.input.record.sys_process!=undefined){
-						$vm.deserialize(m.input.record.sys_process,'#F3__ID');
+						$vm.deserialize(m.input.record.sys_process,'#F__ID');
 						var msg=m.input.record.sys_process.Data.Processed_by;
 						if(msg!=undefined && msg.length>5){
 							$('#msg_process__ID').text(msg);
-							$('#submit__ID').hide(); //no update after processed
 						}
 					}
 				}
@@ -122,20 +121,20 @@
 				$('#F__ID').hide(); $('#F2__ID').show(); $('#F3__ID').hide();
 				
 				//replace the input request record with sys_approval, for update approval with correct rid
-				m.input.record=m.input.record.sys_approval
+				m.input.record=m.input.record.sys_process
 				
 			}
 			//-------------------------------------
 			$('#Request__ID').on('click',function(){   $('#F__ID').hide(); $('#F2__ID').show(); $('#F3__ID').hide();  })
-			$('#Approval__ID').on('click',function(){  $('#F__ID').show(); $('#F2__ID').hide(); $('#F3__ID').hide();  })
-			$('#Process__ID').on('click',function(){   $('#F__ID').hide(); $('#F2__ID').hide(); $('#F3__ID').show();  })
+			$('#Approval__ID').on('click',function(){  $('#F__ID').hide(); $('#F2__ID').hide(); $('#F3__ID').show();  })
+			$('#Process__ID').on('click',function(){   $('#F__ID').show(); $('#F2__ID').hide(); $('#F3__ID').hide();  })
 			//-------------------------------------
-			//approval click
-			$('#F__ID input[name=Approved]').on('click',function(){ 
+			//process click
+			$('#F__ID input[name=Processed]').on('click',function(){ 
 				var txt="";
-				if( $('#F__ID input[name=Approved]').prop('checked')==true ) txt="Approved by "+$vm.user_name+" on "+new Date().toLocaleDateString();
-				$('#msg_approval__ID').text(txt);
-				$('#F__ID input[name=Approved_by]').val(txt);
+				if( $('#F__ID input[name=Processed]').prop('checked')==true ) txt="Processed by "+$vm.user_name+" on "+new Date().toLocaleDateString();
+				$('#msg_process__ID').text(txt);
+				$('#F__ID input[name=Processed_by]').val(txt);
 			})
 			//-------------------------------------
             m.before_submit=function(data,index){
@@ -145,11 +144,20 @@
                 return true;
             }
             //--------------------------------------------------------
-            m.after_insert=function(){
-                $vm.refresh=1;
+            m.after_insert=function(data,res){  after_submit(data); }
+            m.after_update=function(data,res){  after_submit(data); }
+            //--------------------------------------------------------
+            var after_submit=function(data){
+				//draft or going to send email
+				$vm.refresh=1;
 				m.change_status++;
-				window.history.go(-1);
-			}
+                if(data.Processed=='on') $vm.load_module(m.email_to_requester,'',{record:{Data:m.request_record.Data}})
+                else{
+					$vm.refresh=1;
+					m.change_status++;
+					window.history.go(-1);
+                }
+            }
             //--------------------------------------------------------
     	}
     </script>
