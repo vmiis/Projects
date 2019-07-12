@@ -17,14 +17,8 @@
         <div id=system></div>
         <script>$vm={};</script>
         <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-3.3.1.min.js"></script>
-        <script src="https://secure.aadcdn.microsoftonline-p.com/lib/1.0.1/js/msal.js"></script>
-        <script src="microsoft.js"></script>
         <script boot-up>
         (function () {
-            if($vm.m365_msal!=undefined && $vm.m365_msal.isInIframe()){
-                console.log("MSAL call back.");
-                return;
-            }
             //------------------------------------
             $vm.ver=[0.38,0.35]; //increase ver[0] if any module changed, increase ver[1] if vm.js changed
             //$vm.debug=1;

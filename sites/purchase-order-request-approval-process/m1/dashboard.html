@@ -1,15 +1,26 @@
 <div id=D__ID>
     <div id=panel__ID>
+        <div class=h_img__ID>
+            <div class=h_txt__ID><h4>Purchase order request/approval/process</h4></div>
+        </div>
     	<div class='nav__ID'>
-            <span>Under development</span>
+            <span>Request</span>
             <ul>
-                <li><a href=?/security-access-card-my-request-data>My security access card requests (as a requester)</a></li>
-                <li><a href=?/security-access-card-my-approval-data>My security access card approvals (as a manager)</a></li>
-                <li><a href=?/security-access-card-my-process-data>My security access card processes (as a processor)</a></li>
-                <li><a href=?/security-access-card-all-request-data>All security access card approvals (as administrator)</a></li>
+                <li><a href=?/my-request-data>My requests (as a staff)</a></li>
+            </ul>
+            <span>Approval</span>
+            <ul>
+                <li><a href=?/my-approval-data>My approvals (as a manager)</a></li>
+            </ul>
+            <span>Process</span>
+            <ul>
+                <li><a href=?/my-process-data>My processes (as an accountant)</a></li>
+            </ul>
+            <span>System Administrator</span>
+            <ul>
+                <li><a href=?/all-request-data>All requests (as an IT administrator)</a></li>
                 <li><a href=?/manager-list-data>Manager list</a></li>
                 <li><a href=?/processor-list-data>Processor list</a></li>
-                <li><a href=?/purchase-order-my-request-data>My purchase-order requests (as a requester)</a></li>
             </ul>
         </div>
     </div>
@@ -63,6 +74,8 @@
     		animation: vm_module_fadein 1.0s;
     	}
         #panel__ID{
+            margin:0 auto;
+            max-width:1200px;
     		padding:10px 0 0 20px;
             font-size:14px;
     	}
@@ -93,9 +106,25 @@
 			font-weight: bold;
 			margin:3px 10px;
 	    }
+        .h_img__ID{
+            height:300px;
+            background-size: cover; background-position: center center; 
+            background-image: url(https://images.unsplash.com/photo-1517921076612-169b401c825e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80&h=300);
+            padding-top:60px;
+            margin:50px 0 50px 0;
+            border-radius: 5px;
+        }
+        .h_txt__ID{
+            color:#fff;
+            background-color: rgba(49,53,53,0.5) !important;
+            display:inline-block;
+            margin: 0% 0% 0% 6%!important;
+            padding:20px;
+            border-radius: 10px;
+        }
     	@media screen and (max-width:768px){
     		#panel__ID{
-    			padding:10px 0 0 10px;
+    			padding:10px 10px 0 10px;
     		}
     	}
     </style>

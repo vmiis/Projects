@@ -1,6 +1,21 @@
 (function(){
     //-------------------------------------------------------------------------------------
     var modules={
+
+        "purchase-order-my-request-data":  	{url:"$H/m5/my-request-data.html",
+            Table: "purchase-order-request-demo190712",
+            Table2:"purchase-order-approval-demo190712",
+            Table3:"purchase-order-process-demo190712",
+            form_module:"purchase-order-my-request-form",router:1,title:"My requests"},
+
+        "purchase-order-my-request-form":  	{url:"$H/m5/my-request-form.html",
+            Table:"purchase-order-request-demo190712",
+            manager_list_table:"email-list-demo-001",
+            processor_list_table:"email-list-demo-002",
+            email_to_manager:"email-to-manager"},
+
+
+
         "security-access-card-my-request-data":  	{url:"$H/m2/security-access-card-my-request-data.html",
             Table: "security-access-card-request-demo-0709",
             Table2:"security-access-card-approval-demo-0709",

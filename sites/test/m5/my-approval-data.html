@@ -1,0 +1,80 @@
+<div id=D__ID>
+    <div>
+        VmInclude:__COMPONENT__/g/grid.01.html
+    </div>
+    <script>
+        function F__ID(){
+            //-------------------------------------
+            VmInclude:__COMPONENT__/g/grid.01.js
+            //-------------------------------------
+            var fields="First_name,Last_name,Department,Manager_for_Approval,_Approved_by,_Processed_by";
+            m.fields="_Form,"+fields+",Submit_date,Submitted_by,_Delete";
+            m.cmd_type='p1'; m.query={I2:0}
+            //-------------------------------------
+            m.cell_render=function(records,I,field,td){
+                switch(field){
+                    case 'Manager_for_Approval': //name|email|login
+                        if(records[I].Data[field]!=undefined)
+                        td.html(records[I].Data[field].split('|')[0]);
+                        break;
+                }
+            }
+            //-------------------------------------
+            m.data_process=function(){
+                //load joined approval records request.UID=approval.I2
+                var uid_array=[];
+                for(var i=0;i<m.records.length;i++){
+                    uid_array.push(m.records[i].UID)
+                }
+                var query={ I2: { $in: uid_array } }
+                
+                var cmd="find-s";
+                var req={cmd:cmd,table:m.Table2,query:query}
+                $vm.request(req,function(res){
+                    if(res.result.length!=undefined){
+                        for(var k=0;k<res.result.length;k++){
+                            for(var j=0;j<m.records.length;j++){
+                                if(m.records[j].UID==res.result[k].I2){
+                                    m.records[j].sys_approval=res.result[k];
+                                    break;
+                                }
+                            }
+                        }
+                    }
+                    //rendering the Approved_by column
+                    $("#grid__ID td[data-id=_Approved_by]").each(function(index){
+                        if(m.records[index].sys_approval!=undefined && m.records[index].sys_approval.Data!=undefined){
+                            $(this).html(m.records[index].sys_approval.Data.Approved_by);
+                        }
+                    });
+                });
+                
+                var cmd="find-p1";
+                var req={cmd:cmd,table:m.Table3,query:query}
+                $vm.request(req,function(res){
+                    if(res.result.length!=undefined){
+                        for(var k=0;k<res.result.length;k++){
+                            for(var j=0;j<m.records.length;j++){
+                                if(m.records[j].UID==res.result[k].I2){
+                                    m.records[j].sys_process=res.result[k];
+                                    break;
+                                }
+                            }
+                        }
+                    }
+                    //rendering the Processed_by column
+                    $("#grid__ID td[data-id=_Processed_by]").each(function(index){
+                        if(m.records[index].sys_process!=undefined && m.records[index].sys_process.Data!=undefined){
+                            $(this).html(m.records[index].sys_process.Data.Processed_by);
+                        }
+                    });
+                });
+                
+            }
+            //-------------------------------------
+        }
+    </script>
+    <style>
+        VmInclude:__COMPONENT__/g/grid.01.css
+    </style>
+</div>
