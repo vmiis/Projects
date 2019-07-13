@@ -1,0 +1,88 @@
+<div id=D__ID>
+	<div id=page_1__ID class=home_page_1>
+		<div class="panel__ID text-center" >
+			<!--<p class=>Welcome to Woolcock 365</p>-->
+			<p class=text_1__ID>Mr. Producer</p>
+			<p class=text_2__ID>High Quality Production</p>
+			<p class=text_3__ID>Best Prices And The Best Results</p>
+			<br>
+		</div>
+	</div>
+	<div id=page2__ID>
+		<div id=components__ID></div>
+	</div>
+
+	<script>
+		$('#D__ID').on('load',function(){
+		})
+		$('#get_in__ID').on('click',function(){
+			/*$vm.load_module("panel-main",'',{})*/
+		})
+		$vm.load_component('about','components__ID',{})
+		$vm.load_component('services','components__ID',{})
+	</script>
+	<style>
+		html{
+			scroll-behavior: smooth;
+		}
+		#D__ID{
+			height:100%;
+			/*animation: vm_module_fadein 1.0s, D__ID 3s;*/
+		}
+		#page_1__ID{
+			display: flex;
+			align-items: center;
+			color: #fff;
+		    line-height: 1.1;
+		}
+		.text_1__ID{
+			text-shadow: 3px 3px 3px #000;
+
+			border: 0;
+			padding: 10px 30px;
+			background-color: rgba(1,152,117,0.7);
+			color: white !important;
+			font-size: 70px;
+		}
+		.text_2__ID{
+			font-size: 33px;
+			border-top: 1px solid;
+    		border-bottom: 1px solid;
+			text-shadow: 1px 1px 3px #000;
+    		margin: 2px 50px;
+			padding:10px 0;
+		}
+		.text_3__ID{
+			font-size: 33px;
+			text-shadow: 3px 3px 3px #000;
+			padding:10px 0;
+		}
+		
+
+		#demo__ID{
+			padding:0 50px;
+			background-color: #fff;
+		}
+        .panel__ID{
+            color:#fff;
+            /*background: rgba(0, 0, 0, 0.3);*/
+            border-radius: 25px;
+            padding:30px 50px 20px 50px;
+			margin:0 auto 130px auto;
+        }
+		@keyframes D__ID {
+			from {padding-top: 300px;}
+			to {padding-top: 0px;}
+		}
+	    @media screen and (max-width: 992px) {
+	        #D__ID{
+	            animation: vm_module_fadein 1.0s;
+	        }
+	    }
+	</style>
+	<script>
+		function F__ID(){
+			$vm['home_ready']=1;
+		}
+	</script>
+</div>

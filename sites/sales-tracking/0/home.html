@@ -13,13 +13,16 @@
 					• Loosely coupled<br>  
 					• Independently deployable<br>
 				</p>
-				<br><br>
+				<p>
+					<a id=get_in__ID class='btn btn-success' >Dashboard</a>
+				</p>
+				<br>
 			</div>
 		</div>
 	</div>
 	<script>
 		$('#page__ID').on('click',function(){
-			//$vm.load_module('panel-portal','',{})
+			$vm.load_module('dashboard','',{})
 		})
 	</script>
 	<style>
@@ -36,7 +39,7 @@
 		}
 		.panel__ID{
 			color:#fff;
-			background: rgba(0, 100, 100, 0.5);
+			background: rgba(0, 0, 0, 0.35);
 			border-radius: 25px;
 			padding:10px;
 		}

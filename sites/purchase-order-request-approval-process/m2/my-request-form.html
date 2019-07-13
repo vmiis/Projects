@@ -7,89 +7,7 @@
     	</div>
     	<form id=F__ID class=fm__ID>
     		<div class="container">
-				<div class="row row__ID">
-					<div class=col-md-3>Manager for approval</div>
-					<div class=col-md-9>
-						<select class=form-control name=Manager_for_Approval id=manager__ID>
-						</select>
-					</div>
-				</div>
-                <hr class=hr__ID>
-				<div class="row row__ID">
-					<div class=col-md-3>Accountant</div>
-					<div class=col-md-9>
-						<select class=form-control name=Processor id=processor__ID>
-						</select>
-					</div>
-				</div>
-                <hr class=hr__ID>
-                <div class=row><div class='col bk__ID'><b>Request Info:</b></div></div>
-
-
-
-                <div class='row row__ID'>
-					<div class=col>
-						<span>Short Description</span>
-						<input type="text" class="form-control" name="Short_Description" >
-					</div>
-				</div>
-				<div class='row row__ID'>
-					<div class="col-sm col-lg-6">
-						<span>Supplier Name</span>
-						<input type=text class=form-control name=Supplier_Name>
-					</div>
-					<div class="col-sm col-lg-6">
-						<span>Supplier Account No (if applicable)</span>
-						<input type=text class=form-control name=Supplier_Account_No>
-					</div>
-				</div>
-				<div class='row row__ID'>
-					<div class=col>
-						<span>Supplier Address</span>
-						<textarea class="form-control" name="Supplier_Address"></textarea>
-					</div>
-				</div>
-				<div class='row row__ID'>
-					<div class="col-sm col-lg-6">
-						<span>Supplier Phone</span>
-						<input type=text class=form-control name=Supplier_Phone>
-					</div>
-					<div class="col-sm col-lg-6">
-						<span>Supplier Fax</span>
-						<input type=text class=form-control name=Supplier_Fax>
-					</div>
-				</div>
-				<div class='row row__ID'>
-					<div class=col-lg-6>
-						<span>Your contact name</span>
-						<input type=text class=form-control name=Contact_Name>
-					</div>
-					<div class=col-lg-6>
-						<span>Your contact phone</span>
-						<input type=text class=form-control name=Contact_Phone>
-					</div>
-				</div>
-				<div class='row row__ID'>
-					<div class=col>
-						<span>Your contact email</span>
-						<input type=text class=form-control name=Contact_Email>
-					</div>
-				</div>
-				<hr style="border-top: 1px solid #888;width: 100%;margin:10px 0">
-				<br>
-				<div class="row">
-					<div class=col>
-						<u style='cursor:pointer;margin-bottom:3px;display:inline-block' id=item_a_add__ID><i class="fa fa-plus"></i> Add an item</u>
-						<table id=grid_item_a__ID></table>
-						<div id=total__ID style='text-align: right'>
-								GST Amount: <input type=text name=GST_Amount style="width:120px;margin-bottom:1px" readonly><br>
-								Total Amount: <input type=text name=Total_Amount style="width:120px" readonly>
-						</div>
-					</div>
-				</div>
-	
-
-				
+				VmInclude:__CURRENT_PATH__/components/request-form.html
 				<br>
     			<div class="row">
     				<div class="col c_print">
@@ -102,34 +20,12 @@
     	</form>
     	<form id=F2__ID class=fm__ID>
     		<div class="container">
-				<div class="row row__ID">
-					<div class=col-md-3>Approval</div>
-					<div class=col-md-9>
-						<label><input type=checkbox name=Approved /> I approve this request.</label>
-						<br><span id=msg_approval__ID></span>
-						<input type=text name=Approved_by style='display:none' />
-					</div>
-				</div>
-				<div class="row row__ID">
-					<div class=col-md-3>Notes</div>
-					<div class=col-md-9><textarea class=form-control name=Notes></textarea></div>
-				</div>
-    		</div>
+				VmInclude:__CURRENT_PATH__/components/approval-form.html
+			</div>
     	</form>
     	<form id=F3__ID class=fm__ID>
     		<div class="container">
-				<div class="row row__ID">
-					<div class=col-md-3>Process</div>
-					<div class=col-md-9>
-						<label><input type=checkbox name=Processed /> I have processed this request.</label>
-						<br><span id=msg_process__ID></span>
-						<input type=text name=Processed_by style='display:none' />
-					</div>
-				</div>
-				<div class="row row__ID">
-					<div class=col-md-3>Notes</div>
-					<div class=col-md-9><textarea class=form-control name=Notes></textarea></div>
-				</div>
+				VmInclude:__CURRENT_PATH__/components/process-form.html
     		</div>
     	</form>
     </section>
@@ -139,66 +35,32 @@
 			//F: request
 			//F2:approval
 			//F3:process
-			$('#msg_approval__ID').text('');
-			$('#msg_process__ID').text('');
     		//-------------------------------------
             VmInclude:__COMPONENT__/f/form.01.js
             VmInclude:__COMPONENT__/f/form-item-a.01.js
 			//-------------------------------------
-            //get manager list;
-            jQuery.ajaxSetup({async:false});
-			var list_m_req={cmd:"find",table:m.manager_list_table,skip:0,limit:30}
-            $vm.request(list_m_req,function(res){
-                if(res.result.length>0){
-                    var list=';';
-                    for(var i=0;i<res.result.length;i++){
-                        if(list!='') list+=','
-                        list+=res.result[i].Data.Name+";"+res.result[i].Data.Name+"|"+res.result[i].Data.Email+"|"+res.result[i].Data.Login_Name;
-                    }
-                    $vm.set_dropdown_list_from_text($('#manager__ID'),list);
-                }
-            })
-			var list_m_req={cmd:"find",table:m.processor_list_table,skip:0,limit:30}
-            $vm.request(list_m_req,function(res){
-                if(res.result.length>0){
-                    var list=';';
-                    for(var i=0;i<res.result.length;i++){
-                        if(list!='') list+=','
-                        list+=res.result[i].Data.Name+";"+res.result[i].Data.Name+"|"+res.result[i].Data.Email+"|"+res.result[i].Data.Login_Name;
-                    }
-                    $vm.set_dropdown_list_from_text($('#processor__ID'),list);
-                }
-            })
-            jQuery.ajaxSetup({async:true});
+			$vm.set_list__ID(m);
             //-------------------------------------
 			m.load=function(){
 				$('#submit1__ID').show(); $('#submit2__ID').show();
 				$('#F__ID')[0].reset();
 				$('#F2__ID')[0].reset();
 				$('#F3__ID')[0].reset();
+				$('#msg_approval__ID').text('');
+				$('#msg_process__ID').text('');
 				
 				if(m.input!=undefined && m.input.record!=undefined){
 					//request -> F 
 					$vm.deserialize(m.input.record,'#F__ID');
-
 					//approval -> F2
 					if(m.input.record.sys_approval!=undefined){
-						$vm.deserialize(m.input.record.sys_approval,'#F2__ID');
-						var msg=m.input.record.sys_approval.Data.Approved_by;
-						if(msg!=undefined && msg.length>5){
-							$('#msg_approval__ID').text(msg);
-							$('#submit1__ID').hide(); $('#submit2__ID').hide(); //no modify
-						}
+						var a=$vm.deserialize_approval__ID(m.input.record.sys_approval,'#F2__ID');
+						if(a==1){ $('#submit1__ID').hide(); $('#submit2__ID').hide(); }
 					}
-					
 					//process -> F3
 					if(m.input.record.sys_process!=undefined){
-						$vm.deserialize(m.input.record.sys_process,'#F3__ID');
-						var msg=m.input.record.sys_process.Data.Processed_by;
-						if(msg!=undefined && msg.length>5){
-							$('#msg_process__ID').text(msg);
-							$('#submit1__ID').hide(); $('#submit2__ID').hide(); //no modify
-						}
+						var a=$vm.deserialize_process__ID(m.input.record.sys_process,'#F3__ID');
+						if(a==1){ $('#submit1__ID').hide(); $('#submit2__ID').hide(); }
 					}
 				}
 				//default show request
@@ -208,7 +70,6 @@
                 m.item_a_records=[]; if(m.input.record!=undefined && m.input.record.Data.items!=undefined) m.item_a_records=m.input.record.Data.items;
                 m.item_a_render();
                 //-------
-
 			}
 			//-------------------------------------
 			$('#Request__ID').on( 'click',function(){  $('#F__ID').show(); $('#F2__ID').hide(); $('#F3__ID').hide();  })
@@ -233,77 +94,11 @@
 				$vm.refresh=1;
 				m.change_status++;
                 if(m.draft==0) $vm.load_module(m.email_to_manager,'',{record:{Data:data}})
-                else{
-                    var rid=undefined; if(m.input.record!=undefined) rid=m.input.record._id;
-                    if(rid!=undefined) window.history.go(-1);                       //modify
-                    else if(m.input.goback!=undefined) window.history.go(-1);       //from grid
-                    else $vm.alert('Your data has been successfully submitted');    //standalone
-                }
+                else window.history.go(-1);
             }
 			//--------------------------------------------------------
-			
-
-
-
-            //----------------------------------
-            //item a part
-            m.item_a_fields="Description,Unit_Price,Quantity,GST,Amount,_Remove";
-            //----------------------------------
-            $('#item_a_add__ID').on('click',function(){ m.item_a_add(); })
-            //----------------------------------
-            m.item_a_cell_render=function(records,I,field,td,set_value,source){
-                switch(field){
-                    case "Amount":
-                        td.find('div:first').removeAttr('contenteditable');
-                        break;
-    				case "GST":
-                        var html='<input type=checkbox />';
-                        $vm.render_checkbox_field(records[I],'__ID',td,html)
-                        td.find('input').on('change',function(){
-    						cal();
-    					})
-                        break;
-                }
-            }
-            //----------------------------------
-            m.item_a_after_change=function(records,I,field,td,set_value,source){
-                switch(field){
-    				case "Unit_Price":
-                    case "Quantity":
-    				case "GST":
-                        cal();
-                        break;
-                }
-            }
-            //----------------------------------
-            m.item_a_after_remove=function(){
-                cal();
-            }
-            //----------------------------------
-            var cal=function(){
-                var total=0,gst=0;
-                for(var i=0;i<m.item_a_records.length;i++){
-                    var p=parseFloat(m.item_a_records[i].Unit_Price);
-                    var q=parseFloat(m.item_a_records[i].Quantity);
-                    if(m.item_a_records[i].Unit_Price=='') p=0;
-                    if(m.item_a_records[i].Quantity=='') q=0;
-                    var a=p*q;
-    				if(m.item_a_records[i].GST=='1'){
-    					gst+=a*0.1;
-    					a=a*1.1;
-    				}
-                    m.item_a_records[i].Amount=a.toFixed(2);
-                    total+=a;
-                }
-                $('#F__ID input[name=GST_Amount]').val(gst.toFixed(2));
-                $('#F__ID input[name=Total_Amount]').val(total.toFixed(2));
-                m.item_a_render();
-            }
-            //----------------------------------
-
-
-
-
+			$vm.list_a__ID(m);
+			//--------------------------------------------------------
     	}
     </script>
     <style>

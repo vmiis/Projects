@@ -1,0 +1,24 @@
+<div class="row row__ID">
+    <div class=col-md-3>Process</div>
+    <div class=col-md-9>
+        <label><input type=checkbox name=Processed /> I have processed this request.</label>
+        <br><span id=msg_process__ID></span>
+        <input type=text name=Processed_by style='display:none' />
+    </div>
+</div>
+<div class="row row__ID">
+    <div class=col-md-3>Notes</div>
+    <div class=col-md-9><textarea class=form-control name=Notes></textarea></div>
+</div>
+
+<script>
+    $vm.deserialize_process__ID=function(record,form){
+        $vm.deserialize(record,form);
+        var msg=record.Data.Processed_by;
+        if(msg!=undefined && msg.length>5){
+            $('#msg_process__ID').text(msg);
+            return 1;
+        }
+        return 0;
+    }
+</script>

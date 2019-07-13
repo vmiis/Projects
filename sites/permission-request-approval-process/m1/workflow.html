@@ -1,0 +1,122 @@
+<div id=D__ID>
+    <div id=container__ID>
+        <h1>Permission request/approval/process workflow</h1>
+        <br>
+        <button type=button id=request__ID class="btn btn-secondary">Request submit</button> <span style=font-size:120%>&#9312;</span>
+        <br>
+        <br>
+        <i class="fas fa-arrow-down"></i> <span style=font-size:120%>&#9313;</span>
+        <br>
+        <br>
+        <button type=button id=approving__ID class="btn btn-secondary">Request approval</button> <span style=font-size:120%>&#9314;</span>
+        <br>
+        <br>
+        <i class="fas fa-arrow-down"></i> <span style=font-size:120%>&#9315;</span>
+        <br>
+        <br>
+        <button type=button id=processing__ID class="btn btn-secondary">Request process</button> <span style=font-size:120%>&#9316;</span>
+        <br> <span style=font-size:120%>&#9317;</span>
+        <div id=comments__ID>
+            <br>
+            <ul style='list-style-type:decimal;font-size:80%'>
+                <li>
+                    Create, modify, view and submit requests.
+                    <br>Users can only see the records created by themself.
+                    <br>Need to select a manager for approving and an processor for processing.
+                    <br>The requests can only be viewed once approved.
+                </li>
+                <li>
+                    A notification email will be send to the manager.
+                </li>
+                <li>
+                    Approving request.
+                    <br>A manager can only see the records that need to be approved by him/her.
+                    <br>The requests can only be viewed once processed.
+                </li>
+                <li>
+                    A notification  email will be send to the processor.
+                </li>
+                <li>
+                    Processing requests.
+                    <br>A processor can only see the records that need to be processed by him/her.
+                </li>
+                <li>
+                    A notification  email will be send to the requester once the request has been processed.
+                </li>
+            </ul>
+        </div>
+        <h1>Setup</h1>
+        <br>
+        <div id=btn__ID>
+            <button type=button id=manager__ID class="btn btn-secondary">Manager list setup</button> <button type=button id=processor__ID class="btn btn-secondary">Processor list setup</button>
+        </div>
+        <br>
+        <br>
+        <br>
+
+    </div>
+    <script>
+        function F__ID(){
+            $('#request__ID').on('click',function(){
+                $vm.load_module('my-request-data','',{})
+            })
+            $('#approving__ID').on('click',function(){
+                $vm.load_module('my-approval-data','',{})
+            })
+            $('#processing__ID').on('click',function(){
+                $vm.load_module('my-process-data','',{})
+            })
+            $('#manager__ID').on('click',function(){
+                $vm.load_module('manager-list-data','',{})
+            })
+            $('#processor__ID').on('click',function(){
+                $vm.load_module('processor-list-data','',{})
+            })
+        }
+    </script>
+    <style>
+        #D__ID{
+            height:100%;
+            overflow:auto;
+            animation: vm_module_fadein 1.0s;
+            background-color:#fff;
+        }
+        #container__ID{
+            text-align: center;
+            background-color:#fff;
+            padding:60px 10px 50px 10px;
+            margin-left: auto;
+            margin-right: auto;
+            font-family: Verdana,sans-serif;
+            font-size: 15px;
+            line-height: 1.5;
+            max-width:1200px;
+        }
+        #D__ID i{
+            font-size:200%;
+        }
+        #comments__ID{
+            padding-top:30px;
+            text-align: left;
+            margin-left: auto;
+            margin-right: auto;
+            max-width:600px;
+        }
+        #app__ID{
+            cursor:pointer;
+        }
+        #app__ID:hover{
+            color:red;
+        }
+        #btn__ID *{
+            margin:3px;
+        }
+        @media screen and (max-width:768px){
+            #container__ID{
+                margin-left: 0;
+                margin-right: 0;
+                padding:20px 10px 50px 10px;
+            }
+        }
+    </style>
+</div>

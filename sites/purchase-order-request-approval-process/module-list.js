@@ -19,6 +19,8 @@
             form_module:"my-approval-form",router:1,title:"My approvals"},
         "my-approval-form":  	{url:"$H/m2/my-approval-form.html",
             Table:"purchase-order-approval-demo190712",
+            manager_list_table:"email-list-demo-001",
+            processor_list_table:"email-list-demo-002",
             email_to_processor:"email-to-processor"},
 
         "my-process-data":  	{url:"$H/m2/my-process-data.html",
@@ -28,6 +30,8 @@
             form_module:"my-process-form",router:1,title:"My processes"},
         "my-process-form":  	{url:"$H/m2/my-process-form.html",
             Table:"purchase-order-process-demo190712",
+            manager_list_table:"email-list-demo-001",
+            processor_list_table:"email-list-demo-002",
             email_to_requester:"email-to-requester"},
 
         "all-request-data":  	{url:"$H/m2/all-request-data.html",
@@ -36,7 +40,9 @@
             Table3:"purchase-order-process-demo190712",
             form_module:"all-request-form",router:1,title:"All requests"},
         "all-request-form":  	{url:"$H/m2/all-request-form.html",
-            Table:"purchase-order-request-demo190712"},
+            Table:"purchase-order-request-demo190712",
+            manager_list_table:"email-list-demo-001",
+            processor_list_table:"email-list-demo-002"},
 
 
         "email-to-manager":     {url:"$H/m3/email-to-manager.html"},
@@ -50,6 +56,7 @@
         "processor-list-form":  {url:"$H/m3/setup-email-list-form.html",Table:"email-list-demo-002",title:'Processor List'},
 
         "dashboard":  	    {url:"$H/m1/dashboard.html",router:1},
+        "workflow":         {url:"$H/m1/workflow.html",router:1},
         "module-editor":    {url:"https://vm.vmiis.com/component/m/module-editor.html",router:1,sys:1},
     }
     for(p in modules){

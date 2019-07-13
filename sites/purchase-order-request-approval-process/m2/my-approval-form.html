@@ -7,92 +7,12 @@
     	</div>
     	<form id=F2__ID class=fm__ID>
     		<div class="container">
-				<div class="row row__ID">
-					<div class=col-md-3>Manager for approval</div>
-					<div class=col-md-9><input type=text class=form-control name=Manager_for_Approval /></div>
-				</div>
-                <hr class=hr__ID>
-				<div class="row row__ID">
-					<div class=col-md-3>Processor</div>
-					<div class=col-md-9><input type=text class=form-control name=Processor /></div>
-				</div>
-                <hr class=hr__ID>
-                <div class=row><div class='col bk__ID'><b>Request Info:</b></div></div>
-                <div class='row row__ID'>
-					<div class=col>
-						<span>Short Description</span>
-						<input type="text" class="form-control" name="Short_Description" >
-					</div>
-				</div>
-				<div class='row row__ID'>
-					<div class="col-sm col-lg-6">
-						<span>Supplier Name</span>
-						<input type=text class=form-control name=Supplier_Name>
-					</div>
-					<div class="col-sm col-lg-6">
-						<span>Supplier Account No (if applicable)</span>
-						<input type=text class=form-control name=Supplier_Account_No>
-					</div>
-				</div>
-				<div class='row row__ID'>
-					<div class=col>
-						<span>Supplier Address</span>
-						<textarea class="form-control" name="Supplier_Address"></textarea>
-					</div>
-				</div>
-				<div class='row row__ID'>
-					<div class="col-sm col-lg-6">
-						<span>Supplier Phone</span>
-						<input type=text class=form-control name=Supplier_Phone>
-					</div>
-					<div class="col-sm col-lg-6">
-						<span>Supplier Fax</span>
-						<input type=text class=form-control name=Supplier_Fax>
-					</div>
-				</div>
-				<div class='row row__ID'>
-					<div class=col-lg-6>
-						<span>Your contact name</span>
-						<input type=text class=form-control name=Contact_Name>
-					</div>
-					<div class=col-lg-6>
-						<span>Your contact phone</span>
-						<input type=text class=form-control name=Contact_Phone>
-					</div>
-				</div>
-				<div class='row row__ID'>
-					<div class=col>
-						<span>Your contact email</span>
-						<input type=text class=form-control name=Contact_Email>
-					</div>
-				</div>
-				<hr style="border-top: 1px solid #888;width: 100%;margin:10px 0">
-				<br>
-				<div class="row">
-					<div class=col>
-						<table id=grid_item_a__ID></table>
-						<div id=total__ID style='text-align: right'>
-								GST Amount: <input type=text name=GST_Amount style="width:120px;margin-bottom:1px" readonly><br>
-								Total Amount: <input type=text name=Total_Amount style="width:120px" readonly>
-						</div>
-					</div>
-				</div>
+				VmInclude:__CURRENT_PATH__/components/request-form.html
     		</div>
     	</form>
     	<form id=F__ID class=fm__ID>
     		<div class="container">
-				<div class="row row__ID">
-					<div class=col-md-3>Approval</div>
-					<div class=col-md-9>
-						<label><input type=checkbox name=Approved /> I approve this request.</label>
-						<br><span id=msg_approval__ID></span>
-						<input type=text name=Approved_by style='display:none' />
-					</div>
-				</div>
-				<div class="row row__ID">
-					<div class=col-md-3>Notes</div>
-					<div class=col-md-9><textarea class=form-control name=Notes></textarea></div>
-				</div>
+				VmInclude:__CURRENT_PATH__/components/approval-form.html
 				<br>
 				<div class="row">
 					<div class="col c_print">
@@ -103,18 +23,7 @@
     	</form>
     	<form id=F3__ID class=fm__ID>
     		<div class="container">
-				<div class="row row__ID">
-					<div class=col-md-3>Process</div>
-					<div class=col-md-9>
-						<label><input type=checkbox name=Approved /> I have processed this request.</label>
-						<br><span id=msg_process__ID></span>
-						<input type=text name=Processed_by style='display:none' />
-					</div>
-				</div>
-				<div class="row row__ID">
-					<div class=col-md-3>Notes</div>
-					<div class=col-md-9><textarea class=form-control name=Notes></textarea></div>
-				</div>
+				VmInclude:__CURRENT_PATH__/components/process-form.html
     		</div>
     	</form>
     </section>
@@ -128,6 +37,8 @@
             VmInclude:__COMPONENT__/f/form.01.js
             VmInclude:__COMPONENT__/f/form-item-a.01.js
 			//-------------------------------------
+			$vm.set_list__ID(m);
+            //-------------------------------------
 			m.load=function(){
 				$('#submit__ID').show();
 				$('#F__ID')[0].reset();
@@ -138,29 +49,15 @@
 				if(m.input!=undefined && m.input.record!=undefined){
 					//request -> F2 
 					$vm.deserialize(m.input.record,'#F2__ID');
-					var v=$('#F2__ID input[name=Manager_for_Approval]').val();
-					$('#F2__ID input[name=Manager_for_Approval]').val(v.split('|')[0]);	
-					var v=$('#F2__ID input[name=Processor]').val();
-					$('#F2__ID input[name=Processor]').val(v.split('|')[0]);
 					m.request_record=m.input.record;
-
 					//approval -> F
 					if(m.input.record.sys_approval!=undefined){
-						$vm.deserialize(m.input.record.sys_approval,'#F__ID');
-						var msg=m.input.record.sys_approval.Data.Approved_by;
-						if(msg!=undefined && msg.length>5){
-							$('#msg_approval__ID').text(msg);
-						}
+						$vm.deserialize_approval__ID(m.input.record.sys_approval,'#F__ID');
 					}
-					
 					//process -> F3
 					if(m.input.record.sys_process!=undefined){
-						$vm.deserialize(m.input.record.sys_process,'#F3__ID');
-						var msg=m.input.record.sys_process.Data.Processed_by;
-						if(msg!=undefined && msg.length>5){
-							$('#msg_process__ID').text(msg);
-							$('#submit__ID').hide(); //no update after processed
-						}
+						var a=$vm.deserialize_process__ID(m.input.record.sys_process,'#F3__ID');
+						if(a==1) $('#submit__ID').hide();
 					}
 				}
 				//default show request
@@ -209,65 +106,9 @@
                 }
             }
 			//--------------------------------------------------------
-			
-
-            //----------------------------------
-            //item a part
-            m.item_a_fields="Description,Unit_Price,Quantity,GST,Amount,_Remove";
-            //----------------------------------
-            $('#item_a_add__ID').on('click',function(){ m.item_a_add(); })
-            //----------------------------------
-            m.item_a_cell_render=function(records,I,field,td,set_value,source){
-                switch(field){
-                    case "Amount":
-                        td.find('div:first').removeAttr('contenteditable');
-                        break;
-    				case "GST":
-                        var html='<input type=checkbox />';
-                        $vm.render_checkbox_field(records[I],'__ID',td,html)
-                        td.find('input').on('change',function(){
-    						cal();
-    					})
-                        break;
-                }
-            }
-            //----------------------------------
-            m.item_a_after_change=function(records,I,field,td,set_value,source){
-                switch(field){
-    				case "Unit_Price":
-                    case "Quantity":
-    				case "GST":
-                        cal();
-                        break;
-                }
-            }
-            //----------------------------------
-            m.item_a_after_remove=function(){
-                cal();
-            }
-            //----------------------------------
-            var cal=function(){
-                var total=0,gst=0;
-                for(var i=0;i<m.item_a_records.length;i++){
-                    var p=parseFloat(m.item_a_records[i].Unit_Price);
-                    var q=parseFloat(m.item_a_records[i].Quantity);
-                    if(m.item_a_records[i].Unit_Price=='') p=0;
-                    if(m.item_a_records[i].Quantity=='') q=0;
-                    var a=p*q;
-    				if(m.item_a_records[i].GST=='1'){
-    					gst+=a*0.1;
-    					a=a*1.1;
-    				}
-                    m.item_a_records[i].Amount=a.toFixed(2);
-                    total+=a;
-                }
-                $('#F__ID input[name=GST_Amount]').val(gst.toFixed(2));
-                $('#F__ID input[name=Total_Amount]').val(total.toFixed(2));
-                m.item_a_render();
-            }
-            //----------------------------------
-
-
+			$vm.list_a__ID(m);
+			$('#item_a_add__ID').hide();
+			//--------------------------------------------------------
     	}
     </script>
     <style>

@@ -1,0 +1,104 @@
+<div class="row row__ID">
+    <div class=col-md-3>Manager for approval</div>
+    <div class=col-md-9>
+        <select class=form-control name=Manager_for_Approval id=manager__ID>
+        </select>
+    </div>
+</div>
+<hr class=hr__ID>
+<div class="row row__ID">
+    <div class=col-md-3>Accountant</div>
+    <div class=col-md-9>
+        <select class=form-control name=Processor id=processor__ID>
+        </select>
+    </div>
+</div>
+<hr class=hr__ID>
+<div class=row><div class='col bk__ID'><b>Request Info:</b></div></div>
+
+<hr class=hr__ID>
+<div class="row row__ID">
+    <div class=col-md-3>First name</div>
+    <div class=col-md-9><input type=text class=form-control name=First_name /></div>
+</div>
+<hr class=hr__ID>
+<div class="row row__ID">
+    <div class=col-md-3>Last name</div>
+    <div class=col-md-9><input type=text class=form-control name=Last_name /></div>
+</div>
+<hr class=hr__ID>
+<div class="row row__ID">
+    <div class=col-md-3>Department</div>
+    <div class=col-md-9><input type=text class=form-control name=Department /></div>
+</div>
+<hr class=hr__ID>
+<div class="row row__ID">
+    <div class=col-md-3>Login Name</div>
+    <div class=col-md-9><input type=text class=form-control name=Login_Name /></div>
+</div>
+<hr class=hr__ID>
+<div class="row" style='padding:6px 5px;'>
+    <div class=col-md-3>Requests</div>
+    <div class=col-md-9>
+        <div class="row row__ID">
+            <div class=col-md-4>Group</div>
+            <div class=col-md-4>Read Only</div>
+            <div class=col-md-4>Read/Write</div>
+        </div>
+        <div class="row row__ID">
+            <div class=col-md-4>Marketing</div>
+            <div class=col-md-4><input type=checkbox name=marketing_r /></div>
+            <div class=col-md-4><input type=checkbox name=marketing_rw /></div>
+        </div>
+        <div class="row row__ID">
+            <div class=col-md-4>Operration</div>
+            <div class=col-md-4><input type=checkbox name=operation_r /></div>
+            <div class=col-md-4><input type=checkbox name=operation_rw /></div>
+        </div>
+        <div class="row row__ID">
+            <div class=col-md-4>Finance</div>
+            <div class=col-md-4><input type=checkbox name=finance_r /></div>
+            <div class=col-md-4><input type=checkbox name=finance_rw /></div>
+        </div>
+        <div class="row row__ID">
+            <div class=col-md-4>Research</div>
+            <div class=col-md-4><input type=checkbox name=research_r /></div>
+            <div class=col-md-4><input type=checkbox name=research_rw /></div>
+        </div>
+        <div class="row row__ID">
+            <div class=col-md-4>HR</div>
+            <div class=col-md-4><input type=checkbox name=hr_r /></div>
+            <div class=col-md-4><input type=checkbox name=hr_rw /></div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $vm.set_list__ID=function(m){
+        //get manager list;
+        jQuery.ajaxSetup({async:false});
+        var list_m_req={cmd:"find",table:m.manager_list_table,skip:0,limit:30}
+        $vm.request(list_m_req,function(res){
+            if(res.result.length>0){
+                var list=';';
+                for(var i=0;i<res.result.length;i++){
+                    if(list!='') list+=','
+                    list+=res.result[i].Data.Name+";"+res.result[i].Data.Name+"|"+res.result[i].Data.Email+"|"+res.result[i].Data.Login_Name;
+                }
+                $vm.set_dropdown_list_from_text($('#manager__ID'),list);
+            }
+        })
+        var list_m_req={cmd:"find",table:m.processor_list_table,skip:0,limit:30}
+        $vm.request(list_m_req,function(res){
+            if(res.result.length>0){
+                var list=';';
+                for(var i=0;i<res.result.length;i++){
+                    if(list!='') list+=','
+                    list+=res.result[i].Data.Name+";"+res.result[i].Data.Name+"|"+res.result[i].Data.Email+"|"+res.result[i].Data.Login_Name;
+                }
+                $vm.set_dropdown_list_from_text($('#processor__ID'),list);
+            }
+        })
+        jQuery.ajaxSetup({async:true});
+    }
+</script>

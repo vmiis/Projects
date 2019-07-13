@@ -1,10 +1,15 @@
 <div id=D__ID>
     <div id=panel__ID>
+        <div class=h_img__ID>
+            <div class=h_txt__ID><h4>Sales tracking</h4></div>
+        </div>
     	<div class='nav__ID'>
             <span>Transactions</span>
             <ul>
                 <li><a href=?/sales-data>Sales</a></li>
             </ul>
+        </div>
+    	<div class='nav__ID'>
             <span>Aggregations</span>
             <ul>
                 <li><a href=?/sales-monthly-aggregation-data>Sales monthly aggregation</a></li>
@@ -12,6 +17,8 @@
                 <li><a href=?/region-monthly-aggregation-data>Region monthly aggregation</a></li>
                 <li><a href=?/rep-monthly-aggregation-data>Rep monthly aggregation</a></li>
             </ul>
+        </div>
+    	<div class='nav__ID'>
             <span>Charts</span>
             <ul>
                 <li><a href=?/sales-monthly-chart>Sales total monthly chart</a></li>
@@ -19,25 +26,28 @@
                 <li><a href=?/region-monthly-chart>Sales region monthly chart</a></li>
                 <li><a href=?/rep-monthly-chart>Sales rep monthly chart</a></li>
             </ul>
+        </div>
+    	<div class='nav__ID'>
             <span>Setup</span>
             <ul>
                 <li><a href=?/item-data>Item</a></li>
                 <li><a href=?/region-data>Region</a></li>
                 <li><a href=?/rep-data>Rep</a></li>
             </ul>
-            
-            <div style='max-width:600px; font-size:12px;padding-top:50px'>
-                <hr>
-                <span>Description:</span>
-                <ul style='list-style-type: decimal'>
-                    <li>Sales: transaction record</li>
-                    <li>Aggregations: manually sum a month total sales</li>
-                    <li>Charts: display aggregations with google chart</li>
-                    <li>Item, Region, Rep: pre setup lists used for auto selection.</li>
-                </ul>
-            </div>
-        
         </div>
+
+
+        <div style='max-width:600px; font-size:12px;padding-top:150px;padding-left:20px'>
+            <hr>
+            <span>Description:</span>
+            <ul style='list-style-type: decimal'>
+                <li>Sales: transaction record</li>
+                <li>Aggregations: manually sum a month total sales</li>
+                <li>Charts: display aggregations with google chart</li>
+                <li>Item, Region, Rep: pre setup lists used for auto selection.</li>
+            </ul>
+        </div>
+
     </div>
     <script>
         function F__ID(){
@@ -89,6 +99,8 @@
     		animation: vm_module_fadein 1.0s;
     	}
         #panel__ID{
+            margin:0 auto;
+            max-width:1200px;
     		padding:10px 0 0 20px;
             font-size:14px;
     	}
@@ -118,7 +130,29 @@
 			color:#283f55;
 			font-weight: bold;
 			margin:3px 10px;
+            font-size: 18px;
+            
+            display: inline-block;
+            border-bottom: 1px solid #f9e09b;
+            padding-bottom: 2px;
+            white-space: nowrap;
 	    }
+        .h_img__ID{
+            height:300px;
+            background-size: cover; background-position: center center; 
+            background-image: url(https://images.unsplash.com/photo-1418065460487-3e41a6c84dc5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80&h=300);
+            padding-top:60px;
+            margin:50px 0 50px 0;
+            border-radius: 5px;
+        }
+        .h_txt__ID{
+            color:#fff;
+            background-color: rgba(49,53,53,0.5) !important;
+            display:inline-block;
+            margin: 0% 0% 0% 6%!important;
+            padding:20px;
+            border-radius: 10px;
+        }
     	@media screen and (max-width:768px){
     		#panel__ID{
     			padding:10px 0 0 10px;

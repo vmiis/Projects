@@ -7,64 +7,17 @@
     	</div>
     	<form id=F2__ID class=fm__ID>
     		<div class="container">
-				<div class="row row__ID">
-					<div class=col-md-3>Manager for approval</div>
-					<div class=col-md-9><input type=text class=form-control name=Manager_for_Approval /></div>
-				</div>
-                <hr class=hr__ID>
-				<div class="row row__ID">
-					<div class=col-md-3>Processor</div>
-					<div class=col-md-9><input type=text class=form-control name=Processor /></div>
-				</div>
-                <hr class=hr__ID>
-                <div class=row><div class='col bk__ID'><b>Request Info:</b></div></div>
-                <hr class=hr__ID>
-				<div class="row row__ID">
-					<div class=col-md-3>First name</div>
-					<div class=col-md-9><input type=text class=form-control name=First_name /></div>
-				</div>
-                <hr class=hr__ID>
-				<div class="row row__ID">
-					<div class=col-md-3>Last name</div>
-					<div class=col-md-9><input type=text class=form-control name=Last_name /></div>
-				</div>
-                <hr class=hr__ID>
-				<div class="row row__ID">
-					<div class=col-md-3>Department</div>
-					<div class=col-md-9><input type=text class=form-control name=Department /></div>
-				</div>
+				VmInclude:__CURRENT_PATH__/components/request-form.html
     		</div>
     	</form>
     	<form id=F3__ID class=fm__ID>
     		<div class="container">
-				<div class="row row__ID">
-					<div class=col-md-3>Approval</div>
-					<div class=col-md-9>
-						<label><input type=checkbox name=Approved /> I approve this request.</label>
-						<br><span id=msg_approval__ID></span>
-						<input type=text name=Approved_by style='display:none' />
-					</div>
-				</div>
-				<div class="row row__ID">
-					<div class=col-md-3>Notes</div>
-					<div class=col-md-9><textarea class=form-control name=Notes></textarea></div>
-				</div>
+				VmInclude:__CURRENT_PATH__/components/approval-form.html
     		</div>
     	</form>
     	<form id=F__ID class=fm__ID>
     		<div class="container">
-				<div class="row row__ID">
-					<div class=col-md-3>Process</div>
-					<div class=col-md-9>
-						<label><input type=checkbox name=Processed /> I have processed this request.</label>
-						<br><span id=msg_process__ID></span>
-						<input type=text name=Processed_by style='display:none' />
-					</div>
-				</div>
-				<div class="row row__ID">
-					<div class=col-md-3>Notes</div>
-					<div class=col-md-9><textarea class=form-control name=Notes></textarea></div>
-				</div>
+				VmInclude:__CURRENT_PATH__/components/process-form.html
 				<br>
 				<div class="row">
 					<div class="col c_print">
@@ -83,6 +36,8 @@
     		//-------------------------------------
             VmInclude:__COMPONENT__/f/form.01.js
 			//-------------------------------------
+			$vm.set_list__ID(m);
+            //-------------------------------------
 			m.load=function(){
 				$('#submit__ID').show();
 				$('#F__ID')[0].reset();
@@ -93,28 +48,16 @@
 				if(m.input!=undefined && m.input.record!=undefined){
 					//request -> F2 
 					$vm.deserialize(m.input.record,'#F2__ID');
-					var v=$('#F2__ID input[name=Manager_for_Approval]').val();
-					$('#F2__ID input[name=Manager_for_Approval]').val(v.split('|')[0]);	
-					var v=$('#F2__ID input[name=Processor]').val();
-					$('#F2__ID input[name=Processor]').val(v.split('|')[0]);
 					m.request_record=m.input.record;
 
 					//approval -> F3
 					if(m.input.record.sys_approval!=undefined){
-						$vm.deserialize(m.input.record.sys_approval,'#F3__ID');
-						var msg=m.input.record.sys_approval.Data.Approved_by;
-						if(msg!=undefined && msg.length>5){
-							$('#msg_approval__ID').text(msg);
-						}
+						$vm.deserialize_approval__ID(m.input.record.sys_approval,'#F3__ID');
 					}
 					
 					//process -> F
 					if(m.input.record.sys_process!=undefined){
-						$vm.deserialize(m.input.record.sys_process,'#F__ID');
-						var msg=m.input.record.sys_process.Data.Processed_by;
-						if(msg!=undefined && msg.length>5){
-							$('#msg_process__ID').text(msg);
-						}
+						$vm.deserialize_process__ID(m.input.record.sys_process,'#F__ID');
 					}
 				}
 				//default show request
@@ -123,6 +66,10 @@
 				//replace the input request record with sys_approval, for update approval with correct rid
 				m.input.record=m.input.record.sys_process
 				
+				//-------item a part
+				m.item_a_records=[]; if(m.request_record!=undefined && m.request_record.Data.items!=undefined) m.item_a_records=m.request_record.Data.items;
+				m.item_a_render();
+                //-------
 			}
 			//-------------------------------------
 			$('#Request__ID').on('click',function(){   $('#F__ID').hide(); $('#F2__ID').show(); $('#F3__ID').hide();  })
@@ -158,11 +105,12 @@
 					window.history.go(-1);
                 }
             }
-            //--------------------------------------------------------
+			//--------------------------------------------------------
     	}
     </script>
     <style>
 		VmInclude:__COMPONENT__/f/form.01.css
+        VmInclude:__COMPONENT__/f/form-item-a.01.css
         .form_container__ID{
             max-width:820px;
 		}
