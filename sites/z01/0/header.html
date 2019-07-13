@@ -11,6 +11,7 @@
             <a href="?/home"><i class="fa fa-home"></i> HOME</a>
             <a section href="#section_about">ABOUT US</a>
             <a section href="#section_services">OUR SERVICES</a>
+            <a href="?/blog">BLOG</a>
             <!--
             <a id=vm_signin ><i class="fa fa-user"></i> Sign In</a>
             <a class=vm-hide id=vm_signout ><i class="fa fa-user"></i> Sign Out</a>
@@ -63,6 +64,9 @@
                     if($vm.menu_click!=undefined) $vm.menu_click(href);
                 }
                 $vm.toggle();
+            }
+            else{
+                $vm.load_module('home',$vm.root_layout_content_slot,{});    
             }
         })
         //------------------------------------

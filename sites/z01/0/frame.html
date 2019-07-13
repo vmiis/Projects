@@ -233,7 +233,7 @@
                 $vm.load_module("home",'',{});
             }
             else{
-                var a=window.location.href.split('?/');
+                var a=window.location.href.split('#')[0].split('?/');
                 if(a.length==1){
                     $vm.load_module("home",'',{});
                     //console.log("home module(1)  "+(new Date().getTime()-$vm.start_time)+'ms');
