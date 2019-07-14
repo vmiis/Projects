@@ -7,6 +7,7 @@
         <meta name='viewport' content='width=device-width, initial-scale=1'>
         <link rel="icon" href="data:,">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.2/css/bootstrap.css" />
+        <script src="https://maps.googleapis.com/maps/api/js?key="></script>
     </head>
     <body>
         <!-- Typical website layout, the contents are dynamiclly updated by modules-->
@@ -21,7 +22,7 @@
         (function () {
             //------------------------------------
             $vm.ver=[0.38,0.35]; //increase ver[0] if any module changed, increase ver[1] if vm.js changed
-            //$vm.debug=1;
+            $vm.debug=1;
             //------------------------------------
             $vm.hosting_path=window.location.href.substring(0, window.location.href.split('?')[0].lastIndexOf('/'));
             if(window.location.hostname=='127.0.0.1' || window.location.hostname=='localhost') $vm.localhost=true;
@@ -40,8 +41,11 @@
                 "app":	                            {url:"$H/0/app.html"},
                 "header":	                        {url:"$H/0/header.html"},
                 "footer":	                        {url:"$H/0/footer.html"},
-                "about":                            {url:"$H/m/about.html"},
-                "services":                         {url:"$H/m/services.html"},
+                "about":                            {url:"$H/m/about.html",router:1},
+                "services":                         {url:"$H/m/services.html",router:1},
+                "follow-us":                        {url:"$H/m/follow-us.html",router:1},
+                "contact-us":                       {url:"$H/m/contact-us.html",router:1},
+                "send-message":                     {url:"$H/m/send-message.html",Table:"send-message-demo190715", router:1},
             };
             for(p in $vm.module_list) $vm.module_list[p].url=$vm.module_list[p].url.replace('$H',$vm.hosting_path);
             //------------------------------------

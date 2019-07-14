@@ -5,11 +5,12 @@
                 <span id=vm_username></span>
             </div>
         </div>
-        <div bottom-right-corner style='display:none' id=_sys_dev_info_0>
-            <span style='color:#888'>Dev Info:</span> <span id=_sys_dev_info_elapsed></span>
-            , <u id=_sys_dev_info_code style='cursor:pointer'>source code of current module</u>
-            , <u id=_sys_dev_info_list style='cursor:pointer'>module list</u>
-            , <u id=_sys_dev_info_system style='cursor:pointer'>system info</u>
+        <div class='d-none d-md-block' bottom-right-corner style='display:none' id=_sys_dev_toolbar_0>
+            <span id=_sys_dev_toolbar_debug_info></span>
+            , <u id=_sys_dev_toolbar_editor style='cursor:pointer'>edit current module</u>
+            , <u id=_sys_dev_toolbar_code style='cursor:pointer'>source code of current module</u>
+            , <u id=_sys_dev_toolbar_list style='cursor:pointer'>module list</u>
+            , <u id=_sys_dev_toolbar_system style='cursor:pointer'>system structure</u>
         </div>
         <div alert class="modal fade" id="vm_alert_information" tabindex="-1" role="dialog" aria-labelledby="vm_dialog" aria-hidden="true" data-backdrop="static">
             <div class="modal-dialog" role="document">
@@ -33,9 +34,18 @@
     <script>
         $vm._start_frame=function(){
             //------------------------------------
-            if($vm.debug!=undefined) $('#_sys_dev_info_0').show();
+            if($vm.debug!=undefined) $('#_sys_dev_toolbar_0').show();
             //------------------------------------
-            $('#_sys_dev_info_system').on('click',function(){
+            $('#_sys_dev_toolbar_editor').on('click',function(){
+                if($vm.active_name!=undefined){
+                    var url=$vm.module_list[$vm.active_name].url;
+                    $.get(url,function(txt){
+                        $vm.load_module('module-editor','',{code:txt,url:url,module_name:$vm.active_name})
+                    },'text');
+                }
+            })
+            //------------------------------------
+            $('#_sys_dev_toolbar_system').on('click',function(){
                 var txt="<body>\r\n";
                     txt+="\t<header>\r\n";
                     $('#header >div').each(function(){
@@ -86,7 +96,7 @@
                 win.document.body.innerHTML="<pre>"+txt+"</pre><title>System Infomation</title><style> .c{color:red;} .c1{color:blue;} .c2{color:green;} body{ font-family:Courier New;font-size:12px; white-space: nowrap; } </style>";
             })
             //------------------------------------
-            $('#_sys_dev_info_code').on('click',function(){
+            $('#_sys_dev_toolbar_code').on('click',function(){
                 if($vm.active_name!=undefined){
                     var url=$vm.module_list[$vm.active_name].url;
                     $.get(url,function(txt){
@@ -98,14 +108,16 @@
                 }
             })
             //------------------------------------
-            $('#_sys_dev_info_list').on('click',function(){
+            $('#_sys_dev_toolbar_list').on('click',function(){
                 var txt="";
                 var s=[];
                 for(a in $vm.module_list){
-                    var L=a.length;
-                    var tt="";
-                    for(k=0;k<50-L;k++) tt+="&nbsp;"; 
-                    s.push(a+tt+JSON.stringify($vm.module_list[a]));
+                    if(a!='module-editor'){
+                        var L=a.length;
+                        var tt="";
+                        for(k=0;k<50-L;k++) tt+="&nbsp;"; 
+                        s.push(a+tt+JSON.stringify($vm.module_list[a]));
+                    }
                 }
                 s.sort();
                 for(i in s){
@@ -116,7 +128,7 @@
             })
             //------------------------------------
 
-            //console.log("start_frame  "+(new Date().getTime()-$vm.start_time)+'ms');
+            console.log("start_frame  "+(new Date().getTime()-$vm.start_time)+'ms');
             //------------------------------------------
             var data=''; for(var key in window.localStorage){ if(window.localStorage.hasOwnProperty(key)){ data+=window.localStorage[key]; }}
             if(data.length>3000000) localStorage.clear();
@@ -135,7 +147,7 @@
             		$('#vm_signout').addClass('vm-hide');
             	}
             	else{
-            		$('#vm_username').text('Welcome '+ $vm.user_name+third);
+            		$('#vm_username').text('Signed in as '+ $vm.user_name+third);
                     $('#vm_signin').addClass('vm-hide');
             		$('#vm_signout').removeClass('vm-hide');
             	}
@@ -178,29 +190,30 @@
                     "https://ajax.aspnetcdn.com/ajax/jquery.ui/1.12.1/themes/redmond/jquery-ui.css",
                     "https://ajax.aspnetcdn.com/ajax/jquery.ui/1.12.1/jquery-ui.min.js",
                     "https://maxcdn.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js",
-                    //"https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.bundle.min.js",
-                    //"https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.0/jspdf.min.js",
+                    "https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.bundle.min.js",
+                    "https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.0/jspdf.min.js",
                     //"https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.js",
                     /*?
                     //"https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css",
                     */
-                    //"https://cdnjs.cloudflare.com/ajax/libs/react/16.4.1/umd/react.production.min.js",
-                    //"https://cdnjs.cloudflare.com/ajax/libs/react-dom/16.4.1/umd/react-dom.production.min.js",
-                    //"https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.5/angular.min.js",
+                    "https://cdnjs.cloudflare.com/ajax/libs/react/16.4.1/umd/react.production.min.js",
+                    "https://cdnjs.cloudflare.com/ajax/libs/react-dom/16.4.1/umd/react-dom.production.min.js",
+                    "https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.5/angular.min.js",
                     "https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.js",
                     
-                    //"https://surveyjs.azureedge.net/1.0.73/survey.jquery.min.js",
-                    //"https://unpkg.com/formiojs@latest/dist/formio.full.min.css",
-                    //"https://unpkg.com/formiojs@latest/dist/formio.full.min.js",
+                    "https://surveyjs.azureedge.net/1.0.73/survey.jquery.min.js",
+                    "https://unpkg.com/formiojs@latest/dist/formio.full.min.css",
+                    "https://unpkg.com/formiojs@latest/dist/formio.full.min.js",
+                    "https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.4/ace.js",
                     /*
                     "https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js",
                     "https://apis.google.com/js/plusone.js",
                     "https://ajax.aspnetcdn.com/ajax/jquery.validate/1.14.0/jquery.validate.min.js",
                     "https://sdk.amazonaws.com/js/aws-sdk-2.1.34.min.js",
                     */
-                    //"https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.9.0/css/lightbox.min.css",
-                    //"https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.9.0/js/lightbox.min.js",
-                    //"https://www.gstatic.com/charts/loader.js"
+                    "https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.9.0/css/lightbox.min.css",
+                    "https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.9.0/js/lightbox.min.js",
+                    "https://www.gstatic.com/charts/loader.js"
                 ];
             }
             //---------------------------------------------
@@ -233,21 +246,19 @@
                 $vm.load_module("home",'',{});
             }
             else{
-                var a=window.location.href.split('#')[0].split('?/');
+                var a=window.location.href.split('?/');
                 if(a.length==1){
                     $vm.load_module("home",'',{});
-                    //console.log("home module(1)  "+(new Date().getTime()-$vm.start_time)+'ms');
-                    //$('#vm_system_info').text((new Date().getTime()-$vm.start_time).toString()+"ms")
-                    $('#_sys_dev_info_elapsed').text((new Date().getTime()-$vm.start_time).toString()+"ms")
+                    console.log("home module(1)  "+(new Date().getTime()-$vm.start_time)+'ms');
+                    $('#_sys_dev_toolbar_debug_info').text("loading home page time:"+(new Date().getTime()-$vm.start_time).toString()+"ms")
                 }
                 else if(a.length==2){
                     $vm.search_module=a[1].split('&')[0].replace(/\//g,'_');
                     $vm.search_module=a[1].split('&')[0].replace(/\//g,'_');
                     if($vm.search_module=='home'){
                         $vm.load_module("home",'',{});
-                        //console.log("home module(2) "+(new Date().getTime()-$vm.start_time)+'ms');
-                        //$('#vm_system_info').text((new Date().getTime()-$vm.start_time).toString()+"ms")
-                        $('#_sys_dev_info_elapsed').text((new Date().getTime()-$vm.start_time).toString()+"ms")
+                        console.log("home module(2) "+(new Date().getTime()-$vm.start_time)+'ms');
+                        $('#_sys_dev_toolbar_debug_info').text("loading home page time:"+(new Date().getTime()-$vm.start_time).toString()+"ms")
                     }
                     else{
                         //-------------------------------------
@@ -259,9 +270,8 @@
                                 if($vm.module_list[$vm.search_module].app==undefined)  $vm.load_module($vm.search_module,'',{});
                                 else location.replace($vm.module_list[$vm.search_module].url);
                                 
-                                //console.log($vm.search_module+"  "+(new Date().getTime()-$vm.start_time)+'ms');
-                                //$('#vm_system_info').text((new Date().getTime()-$vm.start_time).toString()+"ms")
-                                $('#_sys_dev_info_elapsed').text((new Date().getTime()-$vm.start_time).toString()+"ms")
+                                console.log($vm.search_module+"  "+(new Date().getTime()-$vm.start_time)+'ms');
+                                $('#_sys_dev_toolbar_debug_info').text("loading the start page time:"+(new Date().getTime()-$vm.start_time).toString()+"ms")
                             }
                             I++; if(I>50){
                                 clearInterval(loop); alert($vm.search_module+" is not installed.");
@@ -298,7 +308,7 @@
                     localStorage.setItem(apppath+url+"ver",$vm.ver[1]);
                     console.log('loading from url. '+url+' '+ver+'/'+$vm.ver[1]);
                     $('head').append('<scr'+'ipt>'+new_txt+'</scr'+'ipt>');
-                    //console.log('vm is ready');
+                    console.log('vm is ready');
                     $vm._start_frame();
                     $vm.start();
                 },'text');
@@ -306,7 +316,7 @@
             else{
                 console.log('loading from storage. '+url+' '+ver+'/'+$vm.ver[1]);
                 $('head').append('<scr'+'ipt>'+txt+'</scr'+'ipt>');
-                //console.log('vm is ready');
+                console.log('vm is ready');
                 $vm._start_frame();
                 $vm.start();
             }
@@ -325,7 +335,7 @@
             color:#fff;
             z-index: 99999;
         }
-        #_sys_dev_info_0{
+        #_sys_dev_toolbar_0{
             display:block;
             position:fixed;
             bottom:3px;

@@ -1,0 +1,67 @@
+<div id=D__ID>
+    <div id=page__ID>
+        <div style='text-align: center;padding-bottom:20px'>
+            <p class=title__ID>
+                CONTACT US
+            </p>
+            <hr class=hr__ID>
+        </div>
+        <div class=row>
+            <div class=col-md-4>
+                <p class=p1__ID>
+                    <i class="fas fa-map-marker-alt"></i> Sydney, NSW 2000, Australia
+                    <br><i class="fas fa-phone"></i> 02 90001234
+                    <br><i class="far fa-envelope"></i> email@company.com
+                    <br><i class="far fa-clock"></i> Mon-Fri 09:00 - 17:00
+                </p>
+            </div>
+            <div class="col-md-8">
+                <div id="googleMap__ID" style="height:300px;width:100%;"></div>
+                <script>
+                    function myMap__ID() {
+                        var myCenter = new google.maps.LatLng(-33.865727, 151.195284);
+                        var mapProp = {center:myCenter, zoom:15, scrollwheel:false, draggable:false, mapTypeId:google.maps.MapTypeId.ROADMAP};
+                        var map = new google.maps.Map(document.getElementById("googleMap__ID"),mapProp);
+                        var marker = new google.maps.Marker({position:myCenter});
+                        marker.setMap(map);
+                    }
+                    myMap__ID();
+                </script>
+            </div>
+        </div>
+    </div>
+    <script>
+    </script>
+    <style>
+   		#D__ID{
+			height:100%;
+			animation: vm_module_fadein 1.0s;
+            background-color: #fff;
+		}
+        #page__ID{
+            padding:90px 10px;
+            margin:0 auto;
+            max-width:1200px;
+        }
+        .title__ID{
+            font-size:32px;
+        }
+        .hr__ID{
+            max-width: 50px;
+            border-color: #019875;
+            border-width: 3px;
+        }
+        .p1__ID{
+            font-size:18px;
+            color: #019875;
+        }       
+        .p1__ID i{
+            margin-right:20px;
+        }
+        @media screen and (max-width: 900px){
+            #page__ID{
+                padding:10px 10px;
+            }       
+        }
+    </style>
+</div>

@@ -15,22 +15,17 @@
 	<script>
 		$('#D__ID').on('load',function(){
 			$('body').css({ 'background-position-y': '0px'});
-			/*
-			alert(1)
-			$('#D__ID').scrollTop(0);
-			$(window).scrollTop(0);
-			*/
 		})
 		$('#get_in__ID').on('click',function(){
 			/*$vm.load_module("panel-main",'',{})*/
 		})
 		$vm.load_component('about','components__ID',{})
 		$vm.load_component('services','components__ID',{})
+		$vm.load_component('follow-us','components__ID',{})
+		$vm.load_component('contact-us','components__ID',{})
+		$vm.load_component('send-message','components__ID',{})
 	</script>
 	<style>
-		html{
-			scroll-behavior: smooth;
-		}
 		#D__ID{
 			height:100%;
 			/*animation: vm_module_fadein 1.0s, D__ID 3s;*/
@@ -84,6 +79,12 @@
 	        #D__ID{
 	            animation: vm_module_fadein 1.0s;
 	        }
+			.text_1__ID{
+				font-size: 36px;
+			}
+			.panel__ID{
+				padding:30px 20px 20px 20px;
+			}
 	    }
 	</style>
 	<script>

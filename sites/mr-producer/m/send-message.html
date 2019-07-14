@@ -1,0 +1,66 @@
+<div id=D__ID>
+    <div id=page__ID>
+        <form id=F__ID>
+            <div style='text-align: center;padding-bottom:20px'>
+                <p class=title__ID>
+                    SEND A MESSAGE
+                </p>
+                <hr class=hr__ID>
+            </div>
+            <div class=row>
+                <div class=col-md-6>
+                    <input name="Name" type="text" class="form-control" placeholder="Name" required>
+                </div>
+                <div class=col-md-6>
+                    <input name="Email" type="email" class="form-control" placeholder="Email" required>
+                </div>
+            </div>
+            <div class=row>
+                <div class=col-md-12>
+                    <textarea name="Message" rows="6" class="form-control" placeholder="Message" required></textarea>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12" style='text-align: center;'>
+                    <br>
+                    <input id=submit__ID type="submit" value="SEND MESSAGE" class="btn btn-secondary" />
+                </div>
+            </div>
+        </form>
+    </div>
+    <script>
+	    function F__ID(){
+	        //-------------------------------------
+            VmInclude:__COMPONENT__/f/form.01.js
+	        //-------------------------------------
+	    }
+	</script>    
+    <style>
+   		#D__ID{
+			height:100%;
+			animation: vm_module_fadein 1.0s;
+            background-color: #fff;
+		}
+        #page__ID{
+            padding:90px 10px;
+            margin:0 auto;
+            max-width:1200px;
+        }
+        .title__ID{
+            font-size:32px;
+        }
+        .hr__ID{
+            max-width: 50px;
+            border-color: #019875;
+            border-width: 3px;
+        }
+        #F__ID .row{
+            margin-bottom:6px;
+        }
+        @media screen and (max-width: 900px){
+            #page__ID{
+                padding:10px 10px;
+            }       
+        }
+    </style>
+</div>
