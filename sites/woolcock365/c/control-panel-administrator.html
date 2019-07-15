@@ -1,5 +1,8 @@
 <div id=D__ID>
     <div id=panel__ID>
+        <div class=h_img__ID>
+            <div class=h_txt__ID><h4>Sharepoint resources</h4></div>
+        </div>
     	<div class='nav__ID'>
             <span>Woolcock sharepoint resources</span>
             <ul>
@@ -84,8 +87,9 @@
     		animation: vm_module_fadein 1.0s;
     	}
         #panel__ID{
+            margin:0 auto;
+            max-width:1200px;
     		padding:10px 0 0 20px;
-            font-size:14px;
     	}
     	#panel__ID a {
     		text-decoration: none;
@@ -118,6 +122,38 @@
             font-size: 90%;
             color:#888;
         }
+	    .nav__ID span{
+			color:#283f55;
+			font-weight: bold;
+			margin:3px 10px;
+            font-size: 18px;
+            
+            display: inline-block;
+            border-bottom: 1px solid #f9e09b;
+            padding-bottom: 2px;
+            white-space: nowrap;
+	    }
+        .h_img__ID{
+            height:300px;
+            background-size: cover; background-position: center center; 
+            background-image: url(https://images.unsplash.com/photo-1561112077-7b6f1d8cc0e9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1300&q=80&h=300);
+            padding-top:60px;
+            margin-top:50px;
+            margin-bottom:50px;
+            border-radius: 5px;
+        }
+        .h_txt__ID{
+            color:#fff;
+            background-color: rgba(50,90,90,0.5) !important;
+            /*width: 35%;*/
+            display:inline-block;
+            margin: 0% 0% 0% 6%!important;
+            padding:20px;
+            border-radius: 10px;
+        }
+		#panel__ID h4{
+			text-shadow: 2px 2px 2px #000;
+		}
     	@media screen and (max-width:768px){
     		#panel__ID{
     			padding:10px 0 0 10px;

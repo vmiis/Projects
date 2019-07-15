@@ -23,6 +23,11 @@
             $vm.ver=[0.38,0.35]; //increase ver[0] if any module changed, increase ver[1] if vm.js changed
             //$vm.debug=1;
             //------------------------------------
+            $vm.api_type="sqlserver"; 
+            $vm.qid='91000787'; //permission control table
+            $VmAPI={}; $VmAPI.api_base="https://rt.woolcock.org.au/pro/";
+            //------------------------------------
+            //setup modules location
             $vm.hosting_path=window.location.href.substring(0, window.location.href.split('?')[0].lastIndexOf('/'));
             if(window.location.hostname=='127.0.0.1' || window.location.hostname=='localhost') $vm.localhost=true;
             //------------------------------------
@@ -63,7 +68,7 @@
             //Do not need to chang the following code in most cases
             //The following code will load a framework module and on demand module list
             //------------------------------------
-            $VmAPI={};$vm.start_time=new Date().getTime();
+            $vm.start_time=new Date().getTime();
             //------------------------------------
             $vm.root_layout_header='header';
             $vm.root_layout_content_slot='content'

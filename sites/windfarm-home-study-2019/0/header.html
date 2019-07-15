@@ -11,28 +11,11 @@
             <a href="?/home"><i class="fa fa-home"></i> Home</a>
             <a href="?/panel-main">Dashboard</a>
             <a p=1 href="?/panel-permission"><i class="fa fa-lock"></i> Permissions</a>
-            <a id=vm_signin ><i class="fa fa-user"></i> Sign In</a>
-            <a class=vm-hide id=vm_signout ><i class="fa fa-user"></i> Sign Out</a>
+            <a id=vm_signin onclick="$vm.signin();"><i class="fa fa-user"></i> Sign In</a>
+            <a class=vm-hide id=vm_signout onclick=$vm.signout()><i class="fa fa-user"></i> Sign Out</a>
         </div>
     </div>
     <script>
-        $('#vm_signin').on('click',function(){
-            //$vm.m365.authContext.login();
-            $vm.m365_signin();  
-        })
-        //------------------------------------
-        $('#vm_signout').on('click',function(){
-            //$vm.m365.authContext.logOut();  
-            $vm.m365_signout();  
-            $vm.user_name="";
-            $vm.show_user();
-        })
-        //------------------------------------
-
-
-
-        
-
         //------------------------------------
         $('#vm-mobile_title').on('click',function(){ $vm.load_module('home',$vm.root_layout_content_slot,{}) })
         $('.vm-desk-logo').on('click',function(){ $vm.load_module('home',$vm.root_layout_content_slot,{}) })
