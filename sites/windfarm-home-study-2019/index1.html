@@ -17,18 +17,18 @@
         <div id=system></div>
         <script>$vm={};</script>
         <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-3.3.1.min.js"></script>
-        <script src="https://secure.aadcdn.microsoftonline-p.com/lib/1.0.1/js/msal.js"></script>
-        <script src="microsoft.js"></script>
         <script boot-up>
         (function () {
-            if($vm.m365_msal!=undefined && $vm.m365_msal.isInIframe()){
-                console.log("MSAL call back.");
-                return;
-            }
             //------------------------------------
-            $vm.ver=[0.49,0.35]; //increase ver[0] if any module changed, increase ver[1] if vm.js changed
+            $vm.ver=[0.49,0.36]; //increase ver[0] if any module changed, increase ver[1] if vm.js changed
             //$vm.debug=1;
             //------------------------------------
+            $vm.online_questionnaire=1;
+            $vm.api_type="sqlserver"; 
+            $vm.qid='91000787'; //permission control table
+            $VmAPI={}; $VmAPI.api_base="https://rt.woolcock.org.au/pro/";
+            //------------------------------------
+            //setup modules location
             $vm.hosting_path=window.location.href.substring(0, window.location.href.split('?')[0].lastIndexOf('/'));
             if(window.location.hostname=='127.0.0.1' || window.location.hostname=='localhost') $vm.localhost=true;
             //------------------------------------
@@ -41,11 +41,11 @@
             //modules used immediately
             $vm.module_list={
                 //you can add modules here directly
-                "home":	                            {url:"$H/0/home.html",router:1},
-                "frame":	                        {url:"$H/0/frame.html",sys:1},
-                "app":	                            {url:"$H/0/app.html"},
-                "header":	                        {url:"$H/0/header.html"},
-                "footer":	                        {url:"$H/0/footer.html"},
+                "home":	                            {url:"$H/1/home.html",router:1},
+                "frame":	                        {url:"$H/1/frame.html",sys:1},
+                "app":	                            {url:"$H/1/app.html"},
+                "header":	                        {url:"$H/1/header.html"},
+                "footer":	                        {url:"$H/1/footer.html"},
             };
             for(p in $vm.module_list) $vm.module_list[p].url=$vm.module_list[p].url.replace('$H',$vm.hosting_path);
             //------------------------------------
@@ -69,7 +69,7 @@
             //Do not need to chang the following code in most cases
             //The following code will load a framework module and on demand module list
             //------------------------------------
-            $VmAPI={};$vm.start_time=new Date().getTime();
+            $vm.start_time=new Date().getTime();
             //------------------------------------
             $vm.root_layout_header='header';
             $vm.root_layout_content_slot='content'

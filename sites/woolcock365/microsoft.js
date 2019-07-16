@@ -63,14 +63,15 @@ $vm.m365_init=function(){
     if($vm.m365_msal.getAccount()!=undefined){
         console.log($vm.m365_msal.getAccount().userName);
         $vm.m365_msal.acquireTokenSilent($vm.m365_scope_sharepoint).then(function (tokenResponse) {
-                $vm.user_name_3rd=$vm.m365_msal.getAccount().name;
+            console.log("acquireTokenSilent succesfull.");
+            $vm.user_name_3rd=$vm.m365_msal.getAccount().name;
             $vm.issuer_3rd="microsoft";
             $vm.user_name_365=$vm.m365_msal.getAccount().userName;
-            console.log($vm.user_name_365)
             if($vm.app_after_3rd_signin!=undefined) $vm.app_after_3rd_signin();
         }).catch(function (error){
             console.log("S:"+error);
             console.log("more than 1 hour. need login again.");
+            //$vm.m365_msal.logout();
             $vm.m365_signin();
         });
     }
