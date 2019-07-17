@@ -42,16 +42,18 @@
                     $('#D'+$vm.active_id).css('overflow-x','auto');
                 }
                 if(m_name=='home') $('#D'+$vm.active_id+">div.home_page_1").css('height',$vm.min_height+"px");
-                /*
                 if(m_name=='home'){ 
-                    $("#header").css("background","rgba(0,0,0,0)"); $('#top_right_corner_0').css('color','#fff');
-                    document.documentElement.style.setProperty('--menu-color', '#fff');
+                    $("#header").css("background","rgba(0,0,0,0)"); 
+                    $("#g_header").css("color","#000"); 
+                    //$('#top_right_corner_0').css('color','#fff');
+                    //document.documentElement.style.setProperty('--menu-color', '#fff');
                 }
                 else{ 
-                    $("#header").css("background","rgba(0,0,0,0.5)"); $('#top_right_corner_0').css('color','#fff');
-                    document.documentElement.style.setProperty('--menu-color', '#fff');
+                    $("#header").css("background","rgba(255,255,255,0.85)"); 
+                    $("#g_header").css("color","#666"); 
+                    //$('#top_right_corner_0').css('color','#fff');
+                    //document.documentElement.style.setProperty('--menu-color', '#fff');
                 }
-                */
             }
             //------------------------------------
             window.onresize=function(){set_layout();}
