@@ -1,0 +1,96 @@
+<div id=D__ID>
+    <div id=page__ID>
+        <div style='text-align: center;padding-bottom:20px'>
+            <p class=title__ID>
+                Follow Us On Social Media
+            </p>
+            <ul class="list-inline">
+                <li class="list-inline-item"><a target=_blank href="https://www.vmiis.com">
+                    <span class="fa-stack fa-lg icon-facebook">
+                    <i class="fa fa-square fa-stack-2x"></i>
+                    <i class="fa fa-facebook fa-stack-1x"></i>
+                    </span>
+                </a></li>
+                <li class="list-inline-item"><a target=_blank href="https://www.vmiis.com">
+                    <span class="fa-stack fa-lg icon-linkedin">
+                    <i class="fa fa-square fa-stack-2x"></i>
+                    <i class="fa fa-linkedin fa-stack-1x"></i>
+                    </span>
+                </a></li>
+                <li class="list-inline-item"><a target=_blank href="https://www.vmiis.com">
+                    <span class="fa-stack fa-lg icon-twitter">
+                    <i class="fa fa-square fa-stack-2x"></i>
+                    <i class="fa fa-twitter fa-stack-1x"></i>
+                    </span>
+                </a></li>
+                <li class="list-inline-item"><a target=_blank href="https://www.vmiis.com">
+                    <span class="fa-stack fa-lg icon-gplus">
+                    <i class="fa fa-square fa-stack-2x"></i>
+                    <i class="fa fa-plus fa-stack-1x"></i>
+                    </span>
+                </a></li>
+            </ul>
+        </div>
+    </div>
+    <script>
+        function F__ID(){
+            var y0=$('#D__ID').offset().top;
+            $vm.follow_up_scroll=function(){
+                var y=(y0-$(window).scrollTop())/3;
+                $('#D__ID').css({ 'background-position-y': y+'px'});
+            }
+        }
+    </script>
+    <style>
+   		#D__ID{
+			height:100%;
+			animation: vm_module_fadein 1.0s;
+            background-image: url(https://images.unsplash.com/photo-1547394765-185e1e68f34e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80);
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+		}
+        #page__ID{
+            padding:90px 10px;
+            margin:0 auto;
+            max-width:1200px;
+        }
+        .title__ID{
+            font-size:32px;
+            color:#FFF;
+            padding:20px 0 30px 0;
+        }
+        .p1__ID{
+            font-size:18px;
+        }
+
+        #page__ID .fa-stack-1x {
+            color:white;
+        }
+        #page__ID .icon-envelope {
+            color:#d99536;
+        }
+        #page__ID .icon-github {
+            color:#333333;
+        }
+        #page__ID .icon-linkedin {
+            color:#0077B5;
+        }
+        #page__ID .icon-facebook {
+            color:#3b5998;
+        }
+        #page__ID .icon-twitter {
+            color:#00aced;
+        }
+        #page__ID .icon-gplus{
+            color:#dd4b39;
+        }
+
+        @media screen and (max-width: 900px){
+            #page__ID{
+                padding:10px 10px;
+            }       
+        }
+    </style>
+</div>
