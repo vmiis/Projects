@@ -47,6 +47,13 @@
         "b-sleep-disorders-and-patterns-form":	{url:"$H/m/tasks/sleep-disorders-and-patterns-form.html",Table:"91000810",task_name:"sleep-disorders-and-patterns"},
         "b-warwick-edinburgh-mental-well-being-scale-data":	{url:"$H/m/tasks/warwick-edinburgh-mental-well-being-scale-data.html",Table:"91000811",form_module:"b-warwick-edinburgh-mental-well-being-scale-form"},
         "b-warwick-edinburgh-mental-well-being-scale-form":	{url:"$H/m/tasks/warwick-edinburgh-mental-well-being-scale-form.html",Table:"91000811",task_name:"warwick-edinburgh-mental-well-being-scale"},
+        "b-kessler-10-data":	            {url:"$H/m/tasks/kessler-10-data.html",Table:"91000812",form_module:"b-kessler-10-form"},
+        "b-kessler-10-form":	            {url:"$H/m/tasks/kessler-10-form.html",Table:"91000812",task_name:"kessler-10"},
+        "b-insomnia-severity-index-data":	{url:"$H/m/tasks/insomnia-severity-index-data.html",Table:"91000814",form_module:"b-insomnia-severity-index-form"},
+        "b-insomnia-severity-index-form":	{url:"$H/m/tasks/insomnia-severity-index-form.html",Table:"91000814",task_name:"insomnia-severity-index"},
+        
+        "b-eysenck-data":	{url:"$H/m/tasks/eysenck-data.html",Table:"91000813",form_module:"b-eysenck-form"},
+        "b-eysenck-form":	{url:"$H/m/tasks/eysenck-form.html",Table:"91000813",task_name:"eysenck"},
         //-------------------------------------------------------------------------------------
         //app
         "panel-main":                       {url:"$H/m/panel-main.html",router:1},

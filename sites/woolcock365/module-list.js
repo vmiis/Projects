@@ -9,11 +9,22 @@
         "users":   	                        {url:"$H/a/users.html"},
         "groups":   	                    {url:"$H/a/groups.html"},
         "sharepoint-site":                  {url:"$H/a/sharepoint-site.html"},
+        "sharepoint-drive":   	            {url:"$H/a/sharepoint-drive.html"},
+        "sharepoint-drive-document":        {url:"$H/a/sharepoint-drive-document.html"},
         "sharepoint-list":   	            {url:"$H/a/sharepoint-list.html"},
         "sharepoint-list-column":           {url:"$H/a/sharepoint-list-column.html"},
         "sharepoint-list-item":             {url:"$H/a/sharepoint-list-item.html"},
         "create-list-fields":               {url:"$H/a/create-list-fields.html",Table:"https://woolcockmed.sharepoint.com/sites/HRandEmployment/_api/"},
 
+        "documents":   	                    {url:"$H/a/documents.html"},
+
+        "incident-report-data":             {url:"$H/h/incident-report-data.html",
+                                                Table: "https://woolcockmed.sharepoint.com/sites/HRandEmployment/_api/web/lists/GetByTitle('Incident Report')",
+                                                form_module:"incident-report-form",router:1
+                                            },
+        "incident-report-form":	                {url:"$H/h/incident-report-form.html",
+                                                Table: "https://woolcockmed.sharepoint.com/sites/HRandEmployment/_api/web/lists/GetByTitle('Incident Report')",
+                                            },
 
 
         "new-hire-data":                    {url:"$H/h/new-hire-data.html",
