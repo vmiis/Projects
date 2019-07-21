@@ -9,7 +9,7 @@
 //      var notes="notes-data";
   //    var note_table=$vm.module_list[notes].Table;
       //-------------------------------------
-      $('#title__ID').text('Inclusion/Exclusion Criteria')
+      $('#title__ID').text($vm.module_list[$vm.vm['__ID'].name].task_name); //$('#title__ID').text('Inclusion/Exclusion Criteria')
       //-------------------------------------
       var fields="dwelling,age,osa,consent,english,device_naive,neurobehavioural,simulator,license,aused_impairment,MVA,ESS,impairment,cpap,comorbidity,neurological_problems,mental_disorder,medication_use,shiftworker,overseas,professional,eligible";
       m.fields="_Form,_Status,_Notes,_Participant_ID,Participant,"+fields+",Submit_date,Submitted_by,_Delete";

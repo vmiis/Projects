@@ -6,12 +6,12 @@
         //-------------------------------------
         VmInclude:__COMPONENT__/g/grid.01.js
         //-------------------------------------
-        var fields="Task_name,_Record_ID,Title,Details";
+        var fields="Task_name,_Record_ID,Participant_ID,Title,Details";
         m.fields="_Form,"+fields+",Submit_date,Submitted_by,_Delete";
         //-------------------------------------
         $('#new__ID').off('click').on('click',function(){
             //transfer the parameters from task to note from
-            $vm.load_module(m.form_module,'',{task_name:m.input.task_name,task_uid:m.input.task_uid,goback:1});
+            $vm.load_module(m.form_module,'',{task_name:m.input.task_name,task_uid:m.input.task_uid,participant_uid:m.input.participant_uid,goback:1});
         })
         //-------------------------------------
         var old_load=m.load;
@@ -28,6 +28,9 @@
                     break;
                 case '_Record_ID':
                     td.html(records[I].I3);
+                    break;
+                case 'Participant_ID':
+                    td.html(records[I].I4);
                     break;
             }
         }

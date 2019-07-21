@@ -7,7 +7,7 @@
             VmInclude:__COMPONENT__/g/grid.01.js
             VmInclude:__CURRENT_PATH__/shared-data.js
             //-------------------------------------
-            $('#title__ID').text('The Buschke Selective Reminding Test (SRT)')
+            $('#title__ID').text($vm.module_list[$vm.vm['__ID'].name].task_name); //$('#title__ID').text('The Buschke Selective Reminding Test (SRT)')
             //-------------------------------------
             var fields="w1-1,w1-2,w1-3,w1-4,w1-5,w1-6,w1-7,w1-8,w1-9,w1-10,w1-11,w1-12,w1-cr,w1-mc,w1-30m";
             fields+="w2-1,w2-2,w2-3,w2-4,w2-5,w2-6,w2-7,w2-8,w2-9,w2-10,w2-11,w2-12,w2-cr,w2-mc,w2-30m";

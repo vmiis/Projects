@@ -8,7 +8,7 @@
         VmInclude:__COMPONENT__/g/grid.01.js
         VmInclude:__CURRENT_PATH__/shared-data.js
         //-------------------------------------
-        $('#title__ID').text('NIRS')
+        $('#title__ID').text($vm.module_list[$vm.vm['__ID'].name].task_name); //$('#title__ID').text('NIRS')
         //-------------------------------------
         var fields="Wake_ScO2,Mean_ScO2,Nadir_ScO2";
         m.fields="_Form,_Status,_Notes,_Participant_ID,Participant,"+fields+",Submit_date,Submitted_by,_Delete";

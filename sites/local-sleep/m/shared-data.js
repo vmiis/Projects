@@ -32,7 +32,7 @@ m.cell_render=function(records,I,field,td){
             //if there is a note for this record, the td will be overwritten lately
             td.html("<u style='cursor:pointer'>Notes</u>");
             td.find('u').on('click',function(){
-                $vm.load_module(notes,'',{task_name:m.task_name,task_uid:records[I].UID})
+                $vm.load_module(notes,'',{task_name:m.task_name,task_uid:records[I].UID,participant_uid:records[I].Data.Participant_uid})
             })
             break;
     }
@@ -49,18 +49,20 @@ m.data_process=function(){
     var req={cmd:"find",table:note_table,query:query}
     $vm.request(req,function(res){
         //--------------------------
+        var part=[];
         //find the notes and attach to the record
         if(res.result.length!=undefined){
             for(var j=0;j<m.records.length;j++){
                 for(var k=0;k<res.result.length;k++){
                     if(m.records[j].UID==res.result[k].I3){
                         m.records[j].sys_x=res.result[k].Data;
+                        m.records[j].I4=res.result[k].I4;
                         break;
                     }
                 }
             }
         }
-        //--------------------------
+        //-------------------------- ,participant_uid:records[index].Data.Participant_uid
         //rendering the notes;
         $("#grid__ID td[data-id=_Notes]").each(function(index){
             if(m.records[index].sys_x!=undefined){
@@ -68,7 +70,7 @@ m.data_process=function(){
                 var c=m.records[index].sys_x.Color
                 $(this).html("<u style='cursor:pointer;color:"+c+"'>"+t+"</u>");
                 $(this).find('u').on('click',function(){
-                    $vm.load_module(notes,'',{task_name:m.task_name,task_uid:m.records[index].UID})
+                    $vm.load_module(notes,'',{task_name:m.task_name,task_uid:m.records[index].UID,participant_uid:m.records[index].Data.Participant_uid})
                 })
             }
         });

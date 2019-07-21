@@ -1,0 +1,52 @@
+<div id=D__ID>
+    <section id=form_container__ID>
+    	<div id=header__ID>
+    		Form
+    	</div>
+    	<form id=F__ID>
+    		<div class="container">
+    			<div class="row row__ID">
+    				<div class=col>
+    					<span>City</span>
+    					<input type="text" class="form-control" name=City />
+    				</div>
+    			</div>
+    			<div class="row row__ID">
+    				<div class=col>
+    					<span>2010 Population</span>
+    					<input type="number" class="form-control" name=2010_Population />
+    				</div>
+    			</div>
+    			<div class="row row__ID">
+    				<div class=col>
+    					<span>2000 Population</span>
+    					<input type="number" class="form-control" name=2000_Population />
+    				</div>
+    			</div>
+    			<br>
+    			<div class="row">
+    				<div class=col>
+    					<button id=submit__ID type="submit" class="btn btn-secondary">Submit</button>
+    				</div>
+    			</div>
+    		</div>
+    	</form>
+    </section>
+    <script>
+    	function F__ID(){
+    		//-------------------------------------
+            VmInclude:__COMPONENT__/f/form.01.js
+    		//-------------------------------------
+            m.before_submit=function(data,index){
+                index.I1=parseFloat(data['2010_Population']);
+            }
+            //-------------------------------------
+    	}
+    </script>
+    <style>
+        #form_container__ID{
+            max-width:600px;
+        }
+        VmInclude:__COMPONENT__/f/form.01.css
+    </style>
+</div>
