@@ -22,6 +22,12 @@
 			<br><br>
 			<br><br>
 		</div>
+		<div style='text-align: center;color:#fff;position:absolute;bottom:10px;font-size:150%;width:100%;'>
+			<div id=scroll_down__ID style='display:inline-block;padding:10px 20px;cursor:pointer'>
+				<i class="fas fa-angle-double-down"></i>
+				<br>Scroll
+			</div>
+		</div>
 	</div>
 	<div id=page2__ID class=home_page_1 style='background-color: #fff;'>
 		<div id=component1__ID></div>
@@ -30,6 +36,10 @@
 		$vm.load_component('about','component1__ID',{})
 		$('#get_in__ID').on('click',function(){
 			$vm.load_module('panel','',{})
+		})
+		$('#scroll_down__ID').on('click',function(e){
+			e.preventDefault();
+    		$('html, body').animate({ scrollTop: $('#page2__ID').offset().top-100}, 800, 'linear');
 		})
 	</script>
 	<style>
@@ -62,6 +72,18 @@
 	            animation: vm_module_fadein 1.0s;
 	        }
 	    }
+		#scroll_down__ID {
+			color:#fff;
+			animation:scroll__ID 8s;
+			-moz-animation:scroll__ID 8s infinite; /* Firefox */
+			-webkit-animation:scroll__ID 8s infinite; /* Safari and Chrome */
+		}
+    	@keyframes scroll__ID 
+		{
+			0%   {color:#fff;}
+			50%  {color:#333;}
+			100%   {color:#fff;}
+		}
 	</style>
 	<script>
 		function F__ID(){
