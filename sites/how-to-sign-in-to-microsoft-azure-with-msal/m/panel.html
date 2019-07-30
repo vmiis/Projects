@@ -46,6 +46,26 @@
             //--------------------------------------------------------
             $('#D__ID').on('load',function(){
                 $('span.current_login__ID').text($vm.user_name);
+
+
+				$vm.m365_graph("https://graph.microsoft.com/v1.0/me/drive/root/children",function(data){
+                    /*
+                    D=data;
+					$('#info__ID').html('');
+					var txt="<table>";
+						txt+="<tr><td>Display Name</td><td><b>"+data.displayName+"</b></td></tr>";
+						txt+="<tr><td>Given Name</td><td><b>"+data.givenName+"</b></td></tr>";
+						txt+="<tr><td>Surname</td><td><b>"+data.surname+"</b></td></tr>";
+						txt+="<tr><td>Email</td><td><b>"+data.mail+"</b></td></tr>";
+					txt+="</table>"
+                    $('#info__ID').html(txt);
+                    */
+                   console.log(data)
+				})
+
+
+
+                
             })
             //--------------------------------------------------------
             $('#panel__ID a').on('click',function(e){
