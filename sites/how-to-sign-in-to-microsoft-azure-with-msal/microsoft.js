@@ -3,17 +3,17 @@ $vm.m365_init=function(){
     var hosting_path=hosting_path0.substring(0, hosting_path0.split('?')[0].lastIndexOf('/'));
 
     $vm.m365_scope={
-        scopes: ["user.read","User.Read.All","Files.Read.All","Sites.ReadWrite.All"]
+        scopes: ["user.read"/*,"User.Read.All","Files.Read.All","Sites.ReadWrite.All"*/]
     };
     $vm.msalConfig={
         auth: {
             clientId: 'f39f8959-8cd7-4570-8c0f-548306bf899a', 
-            redirectUri:hosting_path+"/microsoft-authentication.html"
+            redirectUri:hosting_path+"/microsoft-authentication.html",
         },
         cache: {
             cacheLocation: "localStorage",
             storeAuthStateInCookie: true
-        }
+        },
     };
     $vm.m365_msal=new Msal.UserAgentApplication($vm.msalConfig);
     $vm.m365_signin=function (){
@@ -29,8 +29,8 @@ $vm.m365_init=function(){
     $vm.m365_signout=function() {
         $vm.m365_msal.logout();
     }
-    $vm.m365_graph=function(url,callback){
-        $vm.m365_msal.acquireTokenSilent($vm.m365_scope).then(function (tokenResponse) {
+    $vm.m365_graph=function(url,scope,callback){
+        $vm.m365_msal.acquireTokenSilent(scope).then(function (tokenResponse) {
             var xmlHttp = new XMLHttpRequest();
             var mt1=new Date().getTime();
             xmlHttp.onreadystatechange = function () {
@@ -59,26 +59,18 @@ $vm.m365_init=function(){
     //------------------------------------
     if($vm.m365_msal.getAccount()!=undefined){
         console.log($vm.m365_msal.getAccount().userName);
-
-
-        //setInterval(function(){ 
-
-            $vm.m365_msal.acquireTokenSilent($vm.m365_scope).then(function (tokenResponse){
-                console.log("acquireTokenSilent succesfull.");
-                $vm.user_name_3rd=$vm.m365_msal.getAccount().name;
-                $vm.issuer_3rd="microsoft";
-                $vm.user_name_365=$vm.m365_msal.getAccount().userName;
-                if($vm.app_after_3rd_signin!=undefined) $vm.app_after_3rd_signin();
-            }).catch(function (error){
-                console.log("S:"+error);
-                console.log("more than 1 hour. need login again.");
-                //$vm.m365_msal.logout();
-                $vm.m365_signin();
-            });
-    
-        
-        
-        //}, 20000);
+        $vm.m365_msal.acquireTokenSilent({scopes: ["user.read"]}).then(function (tokenResponse){
+            console.log("acquireTokenSilent succesfull.");
+            $vm.user_name_3rd=$vm.m365_msal.getAccount().name;
+            $vm.issuer_3rd="microsoft";
+            $vm.user_name_365=$vm.m365_msal.getAccount().userName;
+            if($vm.app_after_3rd_signin!=undefined) $vm.app_after_3rd_signin();
+        }).catch(function (error){
+            console.log("S:"+error);
+            console.log("more than 1 hour. need login again.");
+            //$vm.m365_msal.logout();
+            $vm.m365_signin();
+        });
     }
     else{
         console.log("No account was found, redirect to signin.");
@@ -88,42 +80,4 @@ $vm.m365_init=function(){
 }
 $vm.m365_init();
 //setInterval(function(){ console.log("microsoft refresh"); $vm.m365_init(); }, 1800000);
-
-/*
-
-var hosting_path0=window.location.href.split('#')[0];
-var hosting_path=hosting_path0.substring(0, hosting_path0.split('?')[0].lastIndexOf('/'));
-
-$vm.m365_scope={
-    scopes: ["user.read","User.Read.All","Files.Read.All","Sites.ReadWrite.All"]
-};
-$vm.msalConfig={
-    auth: {
-        clientId: 'f39f8959-8cd7-4570-8c0f-548306bf899a', 
-        redirectUri:hosting_path+"/microsoft-authentication.html"
-    },
-    cache: {
-        cacheLocation: "localStorage",
-        storeAuthStateInCookie: true
-    },
-};
-
-$vm.m365_msal=new Msal.UserAgentApplication($vm.msalConfig);
-
-
-$vm.m365_msal.loginPopup($vm.m365_scope).then(function (loginResponse) {               
-    alert(1)
-    return $vm.m365_msal.acquireTokenSilent($vm.m365_scope);
-}).then(function (accessTokenResponse) {
-    //$vm.m365_init();
-}).catch(function (error) {  
-    console.log(error);
-    alert(error)
-});
-*/
-/*
-$vm.m365_msal.acquireTokenSilent($vm.m365_scope).then(function (tokenResponse){
-    alert(1)
-})
-*/
 

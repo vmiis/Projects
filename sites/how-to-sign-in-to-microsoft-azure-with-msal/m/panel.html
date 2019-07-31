@@ -5,32 +5,41 @@
             <div class=h_txt__ID><h4>Tutorial</h4></div>
         </div>
     	<div class='nav__ID'>
-            <span>How to submit form data into a cloud database table</span>
+            <span>How to sign in to microsoft azure with MSAL.js</span>
             <br><br>
             <ol>
                 <li>
-                    <b>Create a html data collection form module with the following form part</b>
-<pre style='background-color: #333;color:#fff'>
-</pre>
+                    <b>Register this app with your Azure Active Directory tenant</b>
+                    <br>For the Redirect URI, enter the URL for this app, https://localhost:8000/how-to-sign-in-to-microsoft-azure-with-msal/microsoft-authentication.html
+                    <br><br>
                 </li>
                 <li>
-                    <b>Full code of the module</b>
-                    <br>
-                    <u style='cursor:pointer' id=c__ID>Try the source code of the module</u>
-                    <br><br>
-
-                </li>
-                <li><b>Link the form to a database table</b>
+                    <b>Set your Application (client) ID in microsoft.js and microsoft-authentication.html</b>
 <pre style='background-color: #333;color:#fff'>
+    $vm.msalConfig={
+        auth: {
+            clientId: '*** your application id ***', 
+            redirectUri:hosting_path+"/microsoft-authentication.html"
+        },
+        cache: {
+            cacheLocation: "localStorage",
+            storeAuthStateInCookie: true
+        }
+    };
 </pre>
-                </li>
-                <li>
-                    <b>Function of the module</b>
-                    <br>
-                    <u style='cursor:pointer' id=f__ID>Try the function of the module</u>
-                    <br><br>
                 </li>
             </ol>
+            Once you have signed in successfully you can start to use api to exchange data with azure endpoint
+            <br>The following is an example to get information of yourself
+<pre style='background-color: #333;color:#fff'>
+    $vm.m365_graph("https://graph.microsoft.com/v1.0/me/",{scopes: ["user.read"]},function(data){
+        console.log(data);
+        $vm.show_json_data(data);
+    })
+</pre>
+<br>
+
+            <u id=test__ID style='cursor:pointer'> click here to test</u>
         </div>
     </div>
     <script>
@@ -44,28 +53,11 @@
             //--------------------------------------------------------
             var this_module=$vm.module_list[$vm.vm['__ID'].name];
             //--------------------------------------------------------
-            $('#D__ID').on('load',function(){
-                $('span.current_login__ID').text($vm.user_name);
-
-
-				$vm.m365_graph("https://graph.microsoft.com/v1.0/me/drive/root/children",function(data){
-                    /*
-                    D=data;
-					$('#info__ID').html('');
-					var txt="<table>";
-						txt+="<tr><td>Display Name</td><td><b>"+data.displayName+"</b></td></tr>";
-						txt+="<tr><td>Given Name</td><td><b>"+data.givenName+"</b></td></tr>";
-						txt+="<tr><td>Surname</td><td><b>"+data.surname+"</b></td></tr>";
-						txt+="<tr><td>Email</td><td><b>"+data.mail+"</b></td></tr>";
-					txt+="</table>"
-                    $('#info__ID').html(txt);
-                    */
-                   console.log(data)
+            $('#test__ID').on('click',function(){
+				$vm.m365_graph("https://graph.microsoft.com/v1.0/me/",{scopes: ["user.read"]},function(data){
+                   console.log(data);
+                   $vm.show_json_data(data);
 				})
-
-
-
-                
             })
             //--------------------------------------------------------
             $('#panel__ID a').on('click',function(e){
