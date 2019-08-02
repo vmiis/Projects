@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<!-- comments -------------------------------------------------------------------------->
+<div style='position:fixed;z-index:-1;top:200px;left:30px;max-width:600px;font-family: Verdana; line-height:20px;font-size:15px;color:#666'>
+Menu    
+<pre style='background-color: #333;color:#fff'>
+    &lt;div id=menu>
+        &lt;a href="item1">First Module</a>
+        &lt;a href="item2">Second Module</a>
+    &lt;/div>
+</pre>
+Click event process    
+<pre style='background-color: #333;color:#fff'>
+    $('#menu a').on('click',function(e){
+        e.preventDefault();
+        var h=$(this).html();
+        alert(h+" is called");
+    })
+</pre>
+</div>
+<!-------------------------------------------------------------------------------------->
+<html>
+    <head>
+        <!-- we use jquery library -->
+        <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-3.2.1.min.js"></script>
+    </head>
+    <body>
+        <!----------------------------------------------->
+        <!-- this part will be visible in web browser -->
+        <!-- contents will be dynamically loaded into this area -->
+        <div id=layout>
+            <div id=header></div>
+            <div id=content></div>
+            <div id=footer></div>
+        </div>
+        <!----------------------------------------------->
+        <!-- this part will be hidden in web browser -->
+        <!-- we prepare our components in this area -->
+        <div id=components>
+            <div id=c_header>
+                <div id=menu>
+                    <a href="item1">First Module</a>
+                    <a href="item2">Second Module</a>
+                </div>
+            <div id=c_content>
+                Contents
+            </div>
+            <div id=c_footer>
+                footer
+            </div>
+        </div>
+        <!----------------------------------------------->
+        <script>
+            /*We push our components to the visible area*/
+            $('#c_header').contents().appendTo('#header');
+            $('#c_content').contents().appendTo('#content');
+            $('#c_footer').contents().appendTo('#footer');
+            /*menu item process*/
+            $('#menu a').on('click',function(e){
+                e.preventDefault();
+                var h=$(this).html();
+                alert(h+" is called");
+            })
+        </script>
+        <!----------------------------------------------->
+        <style>
+            html,body{
+                margin:0;
+                padding:0;
+                height:100%;
+            }
+            /*setup the layout*/
+            #layout {
+                height: 100%;
+                display: grid;
+                grid-template-rows: auto 1fr auto;
+                overflow:hidden;
+            }
+            /*create a border line so we can see the sections*/
+            #header,#content{
+                border-bottom:1px solid black;
+            }
+            /*make the components area to be hidden*/
+            #components{
+                display:none;
+            }
+            #header{
+                height:100px;
+                background: rgba(0,0,0,0.5);
+            }
+            /*
+            #logo{
+                display:inline-block;
+                padding-top:35px;
+                padding-left:20px;
+                cursor:pointer;
+                float:left;
+            }
+            #logo_label_A{
+                font-family: Arial, sans-serif;
+                color:#fff;
+                font-size: 280%;
+                line-height:10px;
+                display:inline-block;
+                padding-top:10px;
+            }
+            */
+            /*--------------------------*/
+            /*footer css*/
+            #footer{
+                height:20px;
+                color: #fff;
+                padding: 3px;
+                background-color: #333;
+                font:80%/18px arial;
+                text-align: center;
+            }
+            /*--------------------------*/
+            /*menu css*/
+            #menu {
+                margin-top:50px;
+                margin-left:160px;
+                overflow: hidden;
+                background: rgba(0,0,0,0.0);
+                display:inline-block;
+                float:left;
+            }
+            #menu > a {
+                float: left;
+                display: block;
+                color: #f2f2f2;
+                text-align: center;
+                padding: 10px 8px;
+                text-decoration: none;
+                font-size: 14px;
+                cursor:pointer;
+            }
+            #menu > a:hover{
+                background-color: #555;
+                color: white;
+                border-radius:4px;
+            }
+            /*--------------------------*/
+        </style>
+        <!----------------------------------------------->
+    </body>
+</html>
