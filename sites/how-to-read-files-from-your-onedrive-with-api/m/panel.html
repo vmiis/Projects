@@ -5,41 +5,34 @@
             <div class=h_txt__ID><h4>Tutorial</h4></div>
         </div>
     	<div class='nav__ID'>
-            <span>How to sign in to microsoft azure with MSAL.js</span>
+            <span>How to read files from your onedrive with api</span>
             <br><br>
             <ol>
                 <li>
-                    <b>Register this app with your Azure Active Directory tenant</b>
-                    <br>For the Redirect URI, enter the URL for this app, https://localhost:8000/microsoft-authentication.html
+                    Sign in to microsoft azure
+                    <br>Follow this link <u><a app href='?/how-signin'>How to sign in to microsoft azure with MSAL.js</a></u>
                     <br><br>
                 </li>
                 <li>
-                    <b>Set your Application (client) ID in microsoft.js and microsoft-authentication.html</b>
+                    Use the following api call to get your onedrive information<br>
 <pre style='background-color: #333;color:#fff'>
-    $vm.msalConfig={
-        auth: {
-            clientId: '*** your application id ***', 
-            redirectUri:hosting_path+"/microsoft-authentication.html"
-        },
-        cache: {
-            cacheLocation: "localStorage",
-            storeAuthStateInCookie: true
-        }
-    };
-</pre>
-                </li>
-            </ol>
-            Once you have signed in successfully you can start to use api to exchange data with azure endpoint
-            <br>The following is an example to get information of yourself
-<pre style='background-color: #333;color:#fff'>
-    $vm.m365_graph("https://graph.microsoft.com/v1.0/me/",{scopes: ["user.read"]},function(data){
+    $vm.m365_graph("https://graph.microsoft.com/v1.0/me/drive/root/children",{scopes: ["Files.Read.All"]},function(data){
         console.log(data);
         $vm.show_json_data(data);
     })
 </pre>
 <br>
-
-            <u id=test__ID style='cursor:pointer'> click here to test</u>
+                </li>
+                <li>
+                    JSON data<br>
+                    <u id=api__ID style='cursor:pointer'> click here to see json response</u>
+                    <br><br>
+                </li>
+                <li>
+                    HTML rendering<br>
+                    <u><a href=?/onedrive>click here to see HTML rendering</a></u>
+                </li>
+            </ol>
         </div>
     </div>
     <script>
@@ -53,8 +46,8 @@
             //--------------------------------------------------------
             var this_module=$vm.module_list[$vm.vm['__ID'].name];
             //--------------------------------------------------------
-            $('#test__ID').on('click',function(){
-				$vm.m365_graph("https://graph.microsoft.com/v1.0/me/",{scopes: ["user.read"]},function(data){
+            $('#api__ID').on('click',function(){
+				$vm.m365_graph("https://graph.microsoft.com/v1.0/me/drive/root/children",{scopes: ["Files.Read.All"]},function(data){
                    console.log(data);
                    $vm.show_json_data(data);
 				})
@@ -147,7 +140,7 @@
         .h_img__ID{
             height:200px;
             background-size: cover; background-position: center center; 
-            background-image: url(https://images.unsplash.com/photo-1432804567890-72a5be5fcbf2?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80&h=200);
+            background-image: url(https://images.unsplash.com/photo-1564516441792-930ff57bf91e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80&h=200);
             padding-top:50px;
             margin:10px 0 10px 0;
             border-radius: 5px;

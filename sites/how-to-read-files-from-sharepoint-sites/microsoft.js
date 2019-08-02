@@ -2,16 +2,17 @@ $vm.m365_init=function(){
     var h=window.location.protocol+"//"+window.location.hostname;
     var p=window.location.port;
     if(p!='80') h=h+":"+p;
+    
     //var hosting_path0=window.location.href.split('#')[0];
     //var hosting_path=hosting_path0.substring(0, hosting_path0.split('?')[0].lastIndexOf('/'));
 
     $vm.m365_scope={
-        scopes: ["user.read"/*,"User.Read.All","Files.Read.All","Sites.ReadWrite.All"*/]
+        scopes: ["user.read","AllSites.Read"] /*,"User.Read.All","Files.Read.All","Sites.ReadWrite.All"*/
     };
     $vm.msalConfig={
         auth: {
-            clientId: 'f39f8959-8cd7-4570-8c0f-548306bf899a', 
-            redirectUri:h+"/microsoft-authentication.html",
+            clientId: '3bcb40c5-fec0-4b3b-ba67-f4d46d577f97', 
+            redirectUri:h+"/microsoft-authentication-w.html",
         },
         cache: {
             cacheLocation: "localStorage",

@@ -1,0 +1,104 @@
+<div id=D__ID>
+    <div id=toolbar__ID>
+		<form class="form-inline">
+			<button type=button id=refresh__ID class='btn btn-secondary'>Refresh</button>
+		</form>
+    </div>
+    <div id=panel__ID>
+    </div>
+    <script>
+    	function F__ID(){
+			//----------------------------------------------------------
+			var m=$vm.module_list['__MODULE__'];
+			var level=m.level;
+			//----------------------------------------------------------
+			$('#D__ID').on('load',function(){
+				get_info();
+			})
+			//----------------------------------------------------------
+			$('#refresh__ID').on('click',function(){
+				get_info();
+			})
+			//----------------------------------------------------------
+			var get_info=function(){
+				var endpoint="https://graph.microsoft.com/v1.0/sites/"+m.input.url+"/"+m.input.did+"/root/children";
+				if(level!=0) endpoint="https://graph.microsoft.com/v1.0/sites/"+m.input.url+"/"+m.input.did+"/items/"+m.input.fid+"/children";
+				$vm.m365_graph(endpoint,{scopes: ["AllSites.Read"]},function(data){
+                    var txt="<table>";
+					txt+="<tr><th>Drive/Folder/File Name</th><th>Created By</th><th>Created Date</th></tr>";
+					for(i in data.value){
+						var name=data.value[i].name;
+						var t="d";
+						var h="";
+						var c="<i class='fas fa-folder fa-fw'></i> ";
+						var n="";
+						if(data.value[i].file!=undefined){
+							h="target=_blank href="+data.value[i].webUrl;
+							c="<i class='fas fa-file fa-fw'></i> ";
+						}
+						else if(data.value[i].folder!=undefined){
+							h="href=onedrive fid="+data.value[i].id;
+							var b=data.value[i].folder.childCount;
+							n=" ("+b+")";
+						}
+						txt+="<tr><td><a "+h+" >"+c+name+n+"</a></td>";
+                        txt+="<td> "+data.value[i].createdBy.user.displayName+"</td><td> "+data.value[i].createdDateTime.split('T')[0]+"</td></tr>";
+					}
+					txt+="</table>"                    
+					$('#panel__ID').html(txt);
+					$('#panel__ID a').on('click',function(e){
+						var fid=$(this).attr('fid');
+						if(fid!=undefined){
+							e.preventDefault();
+							$vm.load_module("level-"+(parseInt(level)+1),'',{url:m.input.url,did:m.input.did,fid:fid});
+						}
+					})
+				})
+			}
+            //--------------------------------------------------------
+    	}
+    </script>
+    <style>
+		#D__ID{
+			background-color: #FFF;
+		}
+        #panel__ID{
+            padding:20px;
+        }
+    	#panel__ID a {
+    		text-decoration: none;
+    	}
+    	#panel__ID a:link {
+    		color:#555;
+    	}
+    	#panel__ID a:visited {
+    		color:#555;
+    	}
+    	#panel__ID a:hover {
+    		color:red;
+    	}
+    	#panel__ID a:active {
+    		color:#555;
+    	}
+        #D__ID td{
+			padding-right:20px;
+		}
+        #toolbar__ID{
+    		background-color:#ccc;
+    		margin-bottom:0px;
+    		overflow:hidden;
+			padding:6px 10px;
+    	}
+        #toolbar__ID .form-inline > * {
+            margin-right:5px;
+        }
+    	@media screen and (max-width:768px){
+    		#toolbar__ID{
+    			padding: 3px 10px;
+    		}
+    		#toolbar__ID div{
+    			padding-left:3px;
+    		}
+    	}
+    </style>
+</div>
