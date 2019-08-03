@@ -2,6 +2,7 @@ $vm.m365_init=function(){
     var h=window.location.protocol+"//"+window.location.hostname;
     var p=window.location.port;
     if(p!='80') h=h+":"+p;
+    console.log(h)
     //var hosting_path0=window.location.href.split('#')[0];
     //var hosting_path=hosting_path0.substring(0, hosting_path0.split('?')[0].lastIndexOf('/'));
 
@@ -18,6 +19,7 @@ $vm.m365_init=function(){
             storeAuthStateInCookie: true
         },
     };
+    console.log($vm.msalConfig)
     $vm.m365_msal=new Msal.UserAgentApplication($vm.msalConfig);
     $vm.m365_signin=function (){
         $vm.m365_msal.loginPopup($vm.m365_scope).then(function (loginResponse) {               
