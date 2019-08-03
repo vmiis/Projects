@@ -54,6 +54,7 @@ $vm.m365_init=function(){
             }
             xmlHttp.open("GET", url, true); // true for asynchronous
             xmlHttp.setRequestHeader('Authorization', 'Bearer ' + tokenResponse.accessToken);
+            xmlHttp.setRequestHeader("Accept", "application/json");
             xmlHttp.send();
         }).catch(function (error){
             console.log(error);
