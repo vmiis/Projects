@@ -1,8 +1,7 @@
 $vm.m365_init=function(){
     var h=window.location.protocol+"//"+window.location.hostname;
     var p=window.location.port;
-    if(p!=undefined) h=h+":"+p;
-    console.log(h)
+    if(p!="") h=h+":"+p;
     //var hosting_path0=window.location.href.split('#')[0];
     //var hosting_path=hosting_path0.substring(0, hosting_path0.split('?')[0].lastIndexOf('/'));
 
