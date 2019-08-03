@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!-- we use jquery library -->
+        <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-3.2.1.min.js"></script>
+    </head>
+    <body>
+        <!----------------------------------------------->
+        <!-- this part will be visible in web browser -->
+        <!-- contents will be dynamically loaded into this area -->
+        <div id=layout>
+            <div id=header></div>
+            <div id=content></div>
+            <div id=footer></div>
+        </div>
+        <!----------------------------------------------->
+        <!-- this part will be hidden in web browser -->
+        <!-- we prepare our components in this area -->
+        <div id=components>
+            <div id=c_header>
+                <div id=logo>
+                    <span id=logo_label_A>Logo</span>
+                </div>
+                <div id=menu>
+                    <a href="first.html">First Module</a>
+                    <a href="second.html">Second Module</a>
+                </div>
+            </div>
+            <div id=c_content>
+                Contents
+            </div>
+            <div id=c_footer>
+                footer
+            </div>
+        </div>
+        <!----------------------------------------------->
+        <script>
+            /*We push our components to the visible area*/
+            $('#c_header').contents().appendTo('#header');
+            $('#c_content').contents().appendTo('#content');
+            $('#c_footer').contents().appendTo('#footer');
+            /*menu item process*/
+            $('#menu a').on('click',function(e){
+                e.preventDefault();
+                var url=$(this).attr('href');
+                $.get(url,function(code){
+                    $('#content').html(code);
+                },'text');
+            })
+        </script>
+        <!----------------------------------------------->
+        <style>
+            html,body{
+                margin:0;
+                padding:0;
+                height:100%;
+            }
+            /*setup the layout*/
+            #layout {
+                height: 100%;
+                display: grid;
+                grid-template-rows: auto 1fr auto;
+                overflow:hidden;
+            }
+            /*create a border line so we can see the sections*/
+            #header,#content{
+                border-bottom:1px solid black;
+            }
+            /*make the components area to be hidden*/
+            #components{
+                display:none;
+            }
+            #header{
+                height:100px;
+                background: rgba(0,0,0,0.5);
+            }
+            #logo{
+                display:inline-block;
+                padding-top:35px;
+                padding-left:20px;
+                cursor:pointer;
+                float:left;
+            }
+            #logo_label_A{
+                font-family: Arial, sans-serif;
+                color:#fff;
+                font-size: 280%;
+                line-height:10px;
+                display:inline-block;
+                padding-top:10px;
+            }
+            /*--------------------------*/
+            /*footer css*/
+            #footer{
+                height:20px;
+                color: #fff;
+                padding: 3px;
+                background-color: #333;
+                font:80%/18px arial;
+                text-align: center;
+            }
+            /*--------------------------*/
+            /*menu css*/
+            #menu {
+                margin-top:50px;
+                margin-left:160px;
+                overflow: hidden;
+                background: rgba(0,0,0,0.0);
+                display:inline-block;
+                float:left;
+            }
+            #menu > a {
+                float: left;
+                display: block;
+                color: #f2f2f2;
+                text-align: center;
+                padding: 10px 8px;
+                text-decoration: none;
+                font-size: 14px;
+                cursor:pointer;
+            }
+            #menu > a:hover{
+                background-color: #555;
+                color: white;
+                border-radius:4px;
+            }
+            /*--------------------------*/
+            body{
+                background-size: cover; background-repeat: repeat-x; background-position: center top; background-attachment: fixed;
+                background-image: url(https://images.unsplash.com/photo-1523428096881-5bd79d043006?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80);
+            }
+        </style>
+        <!----------------------------------------------->
+        <!-- comments -------------------------------------------------------------------------->
+        <div style='position:fixed;z-index:-1;top:200px;left:30px;font-family: Verdana; line-height:20px;font-size:15px;color:#000'>
+            Code for loading external html file and fill the content into a DIV   
+<pre style='background-color: rgba(0,0,0,0.7);;color:#fff'>
+    $('#menu a').on('click',function(e){
+        e.preventDefault();
+        var url=$(this).attr('href');
+        $.get(url,function(code){
+            $('#content').html(code);
+        },'text');
+    })
+</pre>
+            The first HTML file contents  
+<pre style='background-color: rgba(0,0,0,0.7);color:#fff'>
+    &lt;div id=D__ID>
+        &lt;div>
+            First Hello World!&lt;br>
+            I am a module.&lt;br>
+            I can be hosted at any static web server.&lt;br>
+            I can be loaded into your single page application when you need.
+        &lt;/div>
+        &lt;script>
+            function F__ID(){
+            }
+        &lt;/script>
+        &lt;style>
+            #D__ID{
+                height:100%;
+                color:#fff;
+                background-color:#17293e;
+                padding:20px;
+            }
+        &lt;/style>
+    &lt;/div>
+</pre>
+        </div>
+        <!-------------------------------------------------------------------------------------->
+    </body>
+</html>
