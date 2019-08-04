@@ -5,51 +5,38 @@
             <div class=h_txt__ID><h4>Tutorial</h4></div>
         </div>
     	<div class='nav__ID'>
-            <span>How to sign in to microsoft azure with MSAL.js</span>
+            <span>How to sign in to facebook with FB-SDK for javascript</span>
             <br><br>
             <ol>
                 <li>
-                    <b>Register this app with your Azure Active Directory tenant</b>
-                    <br>For the Redirect URI, enter the URL for this app, https://localhost:8000/microsoft-authentication.html
-                    <br><a target=_blank href='https://docs.microsoft.com/en-us/graph/auth-register-app-v2' ><u>Click this link for more information for register an application with the Microsoft identity platform</u></a>
+                    <a target=_blank href=https://developers.facebook.com/apps ><u>Register an app and get your app id</u></a>
+                    <br><a target=_blank href='https://developers.facebook.com/docs/apps/' ><u>Click this link for more information for register an application with Facebook</u></a>
                     <br><br>
                 </li>
                 <li>
-                    <b>Set your Application (client) ID in microsoft.js and microsoft-authentication.html</b>
+                    Set your Application in facebook.js
 <pre style='background-color: #333;color:#fff'>
-    $vm.msalConfig={
-        auth: {
-            clientId: '*** your application id ***', 
-            redirectUri:hosting_path+"/microsoft-authentication.html"
-        },
-        cache: {
-            cacheLocation: "localStorage",
-            storeAuthStateInCookie: true
-        }
-    };
+    FB.init({
+        appId      : 'your-app-id',
+        xfbml      : true,
+        version    : 'v4.0'
+    });
 </pre>
                 </li>
                 <li>
-                    Once you have signed in successfully you can start to use api to exchange data with azure endpoint
+                    Once you have signed in successfully you can start to use api to exchange data with Facebook endpoint
                     <br>The following is an example to get information of yourself
 <pre style='background-color: #333;color:#fff'>
-    $vm.m365_graph("https://graph.microsoft.com/v1.0/me/",{scopes: ["user.read"]},function(data){
-        console.log(data);
-        $vm.show_json_data(data);
-    })
+	$vm.facebook_api("/me",function(data){
+		console.log(data);
+		$vm.show_json_data(data);
+	})
 </pre>
                     <u id=test__ID style='cursor:pointer'> click here to test</u>
                     <br><br>
                 </li>
                 <li>
-                    <a target=_blank href='https://docs.microsoft.com/en-us/graph/api/overview?view=graph-rest-1.0' ><u>Click this link for more information about Microsoft Graph API </u></a>
-                    <br><a target=_blank href='https://docs.microsoft.com/en-us/rest/api/azure/' ><u>Click this link for more information about Microsoft Azure API</u></a>
-                    <br><a target=_blank href='https://docs.microsoft.com/en-us/sharepoint/dev/sp-add-ins/get-to-know-the-sharepoint-rest-service' ><u>Click this link for more information about SharepointREST API</u></a>
-                    <br><a target=_blank href='https://docs.microsoft.com/en-gb/powerapps/developer/common-data-service/webapi/overview?view=dynamics-ce-odata-9' ><u>Click this link for more information about Common Data Service Web API</u></a>
-
-                    
-
-                    
+                    <a target=_blank href='https://developers.facebook.com/docs/graph-api/reference/' ><u>Click this link for more information about Facebook API</u></a>
                 </li>
             </ol>
         </div>
@@ -66,7 +53,7 @@
             var this_module=$vm.module_list[$vm.vm['__ID'].name];
             //--------------------------------------------------------
             $('#test__ID').on('click',function(){
-				$vm.m365_graph("https://graph.microsoft.com/v1.0/me/",{scopes: ["user.read"]},function(data){
+				$vm.facebook_api("/me",function(data){
                    console.log(data);
                    $vm.show_json_data(data);
 				})

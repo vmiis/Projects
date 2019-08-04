@@ -5,7 +5,7 @@ $vm.facebook_init=function(){
         FB.init({
         appId      : '596805194160323',
         xfbml      : true,
-        version    : 'v3.3'
+        version    : 'v4.0'
         });
         FB.AppEvents.logPageView();
         FB.getLoginStatus(function(response) {
