@@ -5,38 +5,44 @@
             <div class=h_txt__ID><h4>Tutorial</h4></div>
         </div>
     	<div class='nav__ID'>
-            <span>How to sign in to facebook with FB-SDK for javascript</span>
+            <span>How to sign in to Google with API</span>
             <br><br>
             <ol>
                 <li>
-                    <a target=_blank href=https://developers.facebook.com/apps ><u>Register an app and get your app id</u></a>
-                    <br><a target=_blank href='https://developers.facebook.com/docs/apps/' ><u>Click this link for more information for register an application with Facebook</u></a>
+                    <a target=_blank href=https://console.developers.google.com ><u>Register an app and get your app id</u></a>
                     <br><br>
                 </li>
                 <li>
-                    Set your Application in facebook.js
+                    Set your Client ID in google.js
 <pre style='background-color: #333;color:#fff'>
-    FB.init({
-        appId      : 'your-app-id',
-        xfbml      : true,
-        version    : 'v4.0'
+    auth2 = gapi.auth2.init({
+        client_id:'***your client id ***',
+        cookiepolicy: 'single_host_origin',
+        scope: '***SCOP***' //example 'https://www.googleapis.com/auth/drive.file'
     });
 </pre>
                 </li>
                 <li>
-                    Once you have signed in successfully you can start to use api to exchange data with Facebook endpoint
-                    <br>The following is an example to get information of yourself
+                    Once you have signed in successfully you can start to use api to exchange data with Google endpoint
+                    <br>The following is an example to get some files on your google drive
 <pre style='background-color: #333;color:#fff'>
-	$vm.facebook_api("/me",function(data){
-		console.log(data);
-		$vm.show_json_data(data);
-	})
+    gapi.load('client', function(){
+        gapi.client.load('drive','v3', function(){
+            gapi.client.drive.files.list({
+                'pageSize': 10,
+                'fields': "nextPageToken, files(id, name)"
+            }).then(function(response) {
+                console.log(response)
+                $vm.show_json_data(response);
+            })
+        })
+    })
 </pre>
                     <u id=test__ID style='cursor:pointer'> click here to test</u>
                     <br><br>
                 </li>
                 <li>
-                    <a target=_blank href='https://developers.facebook.com/docs/graph-api/reference/' ><u>Click this link for more information about Facebook API</u></a>
+                    <a target=_blank href='https://console.developers.google.com/apis/library' ><u>Click this link for more information about Google API Library</u></a>
                 </li>
             </ol>
         </div>
@@ -53,23 +59,19 @@
             var this_module=$vm.module_list[$vm.vm['__ID'].name];
             //--------------------------------------------------------
             $('#test__ID').on('click',function(){
-				$vm.facebook_api("/me",function(data){
-                   console.log(data);
-                   $vm.show_json_data(data);
-				})
+                gapi.load('client', function(){
+                    gapi.client.load('drive','v3', function(){
+                        gapi.client.drive.files.list({
+                            'pageSize': 10,
+                            'fields': "nextPageToken, files(id, name)"
+                        }).then(function(response) {
+                            console.log(response)
+                            $vm.show_json_data(response);
+                        })
+                    })
+                })
             })
             //--------------------------------------------------------
-            $('#c__ID').on('click',function(){
-                var url=$vm.module_list['data-collection-form'].url;
-                $.get(url,function(txt){
-                    $vm.load_module('module-editor','',{code:txt,url:url,module_name:$vm.active_name})
-                },'text');
-            })
-            //------------------------------------
-            $('#f__ID').on('click',function(){
-                $vm.load_module('data-collection-form');
-            })
-            //------------------------------------
         }
     </script>
     <style>
