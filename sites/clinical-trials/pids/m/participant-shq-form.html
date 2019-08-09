@@ -1,0 +1,102 @@
+<div id=D__ID>
+	<!--third html start -->
+		<div class="container mt-95 mb-3">
+		  	<div class="row" >
+			<!-- form container start -->
+				<div class="col-12 col-lg-12 col-md-12 col-sm-12 mx-auto formbox">
+			  		<div class="row">
+						<div class="col-12">
+				  		<!-- form start -->
+				  		<form id="F__ID">
+					  		<h3>Participant</h3>
+							<div class="form-group">
+								<fieldset class="subquestions">
+									<label><span>ASTN ID</span>
+										<input type=text class=form-control id=record__ID readonly >
+									</label>
+								</fieldset>
+							</div>
+							<div class="form-group">
+								<fieldset class="subquestions">
+									<label >
+										<span>Local ID</span>
+										<input type=text class=form-control name=Local_ID>
+									</label>
+								</fieldset>
+							</div>
+							<div class="form-group">
+								<fieldset class="subquestions">
+									<label >
+										<span>Initials</span>
+										<input type=text class=form-control name=Initials>
+									</label>
+								</fieldset>
+							</div>
+							<div class="form-group">
+								<fieldset class="subquestions">
+									<label >
+										<span>Password</span>
+										<input type=text class=form-control name=_Password>
+									</label>
+								</fieldset>
+							</div>
+							<button type="submit" id="submit__ID" class="btn btn-primary btn-lg">Submit</button>
+						</form>
+				  	</div>
+				</div>
+			</div>
+		</div>
+	</div>	  
+	<script>
+		function F__ID(){
+			//-------------------------------------
+			VmInclude:__COMPONENT__/f/form.01.js
+			//-------------------------------------
+			var load=m.load;
+			m.load=function(){
+				load();
+				if(m.input.record==undefined){
+					$('.row_participant__ID').hide()
+					$('#F__ID input[name=_Password]').val($vm.vm_password(8,false));
+				}
+				else{
+					$('.row_participant__ID').show()
+					$('#record__ID').val(m.input.record.UID)
+				}
+			}
+			//-------------------------------------
+            $('#F__ID input[name=Randomisation_Number]').on('click',function(){   
+				var I2=$('#F__ID input[name=Randomisation_Number]').val();
+				if(I2==''){
+					$vm.request({cmd:"find",table:m.Table,sort:{I2:-1},skip:0,limit:1},function(res){
+						if(res.sys.permission==false){
+							$vm.alert("No permission. Private database table, ask the table's owner for permissions.");
+							return;
+						}
+						var max_I2=0;
+						if(res.result.length>0) {
+							if(res.result[0].I2!==undefined) max_I2=res.result[0].I2
+						}
+						max_I2++;
+						$('#F__ID input[name=Randomisation_Number]').val(max_I2);
+						$('#F__ID input[name=Randomised_by]').val($vm.user_name);
+					})
+				}
+			})
+			//-------------------------------------
+			m.before_submit=function(data,index){
+				index.I1=$vm.astn_current_project_record.UID;
+				data.thank=$vm.astn_current_project_record.Data.thank_you_comments;
+				data.phone=$vm.astn_current_project_record.Data.phone;
+				var I2=$('#F__ID input[name=Randomisation_Number]').val();	if(I2!='' && I2!='-') index.I2=parseInt(I2);
+			}
+			//-------------------------------------
+		}
+	</script>
+   <style>
+		#D__ID .mt-95 {
+			max-width:600px;
+		}
+		VmInclude:__CURRENT_PATH__/wappsystem-form.css
+	</style>
+</div>

@@ -1,0 +1,704 @@
+<div id=D__ID>
+    <!--third html start -->
+    <div class="container mt-95 mb-3">
+        <div class="row">
+            <!-- form container start -->
+            <div class="col-12 col-lg-12 col-md-12 col-sm-12 mx-auto formbox">
+                <div class="row">
+                    <div class="col-12">
+                        <!-- form start -->
+                        <form id="F__ID">
+                            <h3>Family Sleep History</h3>
+                            <!-- participant part for all tsak forms -------------------->
+                            <div id="participant_div__ID">
+                                <div class="form-group">
+                                    <fieldset class="subquestions">
+                                        <label><span class="">Participant</span>
+                                            <input type=text name="Participant" class=form-control id=Participant__ID
+                                                data-id="Participant" />
+                                        </label><br>
+                                        <label><span class="">Participant ID</span>
+                                            <input type=text name="Participant_uid" class=form-control readonly />
+                                        </label>
+                                    </fieldset>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <h4>1. Has your biological father had any of the following sleep conditions diagnosed by
+                                    a doctor? </h4>
+                                <div class="questiongroup ">
+                                    <fieldset class="subquestions">
+                                        <label class="radiobuttons">
+                                            <input type="radio" name="father_diagnosed" value="1" required>
+                                            <span class="checkmark"></span> Yes</label><br>
+                                        <label class="radiobuttons">
+                                            <input type="radio" name="father_diagnosed" value="0">
+                                            <span class="checkmark"></span> No</label><br>
+                                        <label class="radiobuttons">
+                                            <input type="radio" name="father_diagnosed" value="2">
+                                            <span class="checkmark"></span> Unsure</label><br>
+                                    </fieldset>
+                                </div>
+                                <h4> if yes, please tick all that apply.</h4>
+                                <label>
+                                    <span>Condition
+                                    </span>
+                                </label>
+                            </div>
+                            <div class="form-group">
+                                <div class="questiongroup ">
+                                    <label>
+                                        <span>Sleep Apnea
+                                        </span>
+                                    </label><br>
+                                    <fieldset class="subquestions">
+                                        <label id=father_OSA_hide__ID>
+                                            <label class="radiobuttons">
+                                                <input type="radio" name="father_OSA" value="1">
+                                                <span class="checkmark"></span> Yes
+                                            </label><br>
+                                            <label class="radiobuttons">
+                                                <input type="radio" name="father_OSA" value="0">
+                                                <span class="checkmark"></span> No
+                                            </label><br>
+                                            <label class="radiobuttons">
+                                                <input type="radio" name="father_OSA" value="2">
+                                                <span class="checkmark"></span> Unsure
+                                            </label><br>
+                                        </label><br>
+                                    </fieldset>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="questiongroup ">
+                                    <label>
+                                        <span>Insomnia
+                                        </span>
+                                    </label><br>
+                                    <fieldset class="subquestions">
+                                        <label id=father_insomn_hide__ID>
+                                            <label class="radiobuttons">
+                                                <input type="radio" name="father_insomn" value="1">
+                                                <span class="checkmark"></span> Yes
+                                            </label><br>
+                                            <label class="radiobuttons">
+                                                <input type="radio" name="father_insomn" value="0">
+                                                <span class="checkmark"></span> No
+                                            </label><br>
+                                            <label class="radiobuttons">
+                                                <input type="radio" name="father_insomn" value="2">
+                                                <span class="checkmark"></span> Unsure
+                                            </label><br>
+                                        </label><br>
+                                    </fieldset>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="questiongroup ">
+                                    <label>
+                                        <span>Narcolepsy
+                                        </span>
+                                    </label><br>
+                                    <fieldset class="subquestions">
+                                        <label id=father_narco_hide__ID>
+                                            <label class="radiobuttons">
+                                                <input type="radio" name="father_narco" value="1">
+                                                <span class="checkmark"></span> Yes
+                                            </label><br>
+                                            <label class="radiobuttons">
+                                                <input type="radio" name="father_narco" value="0">
+                                                <span class="checkmark"></span> No
+                                            </label><br>
+                                            <label class="radiobuttons">
+                                                <input type="radio" name="father_narco" value="2">
+                                                <span class="checkmark"></span> Unsure
+                                            </label><br>
+                                        </label><br>
+                                    </fieldset>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="questiongroup ">
+                                    <label>
+                                        <span>Restless Legs or Periodic Leg Movements during Sleep
+                                        </span>
+                                    </label><br>
+                                    <fieldset class="subquestions">
+                                        <label id=father_RLS_hide__ID>
+                                            <label class="radiobuttons">
+                                                <input type="radio" name="father_RLS" value="1">
+                                                <span class="checkmark"></span> Yes
+                                            </label><br>
+                                            <label class="radiobuttons">
+                                                <input type="radio" name="father_RLS" value="0">
+                                                <span class="checkmark"></span> No
+                                            </label><br>
+                                            <label class="radiobuttons">
+                                                <input type="radio" name="father_RLS" value="2">
+                                                <span class="checkmark"></span> Unsure
+                                            </label><br>
+                                        </label><br>
+                                    </fieldset>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="questiongroup ">
+                                    <label>
+                                        <span>Bruxism (teeth grinding)
+                                        </span>
+                                    </label><br>
+                                    <fieldset class="subquestions">
+                                        <label id=father_brux_hide__ID>
+                                            <label class="radiobuttons">
+                                                <input type="radio" name="father_brux" value="1">
+                                                <span class="checkmark"></span> Yes
+                                            </label><br>
+                                            <label class="radiobuttons">
+                                                <input type="radio" name="father_brux" value="0">
+                                                <span class="checkmark"></span> No
+                                            </label><br>
+                                            <label class="radiobuttons">
+                                                <input type="radio" name="father_brux" value="2">
+                                                <span class="checkmark"></span> Unsure
+                                            </label><br>
+                                        </label><br>
+                                    </fieldset>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="questiongroup ">
+                                    <label>
+                                        <span>REM Behavioural Disorder
+                                        </span>
+                                    </label><br>
+                                    <fieldset class="subquestions">
+                                        <label id=father_RBD_hide__ID>
+                                            <label class="radiobuttons">
+                                                <input type="radio" name="father_RBD" value="1">
+                                                <span class="checkmark"></span> Yes
+                                            </label><br>
+                                            <label class="radiobuttons">
+                                                <input type="radio" name="father_RBD" value="0">
+                                                <span class="checkmark"></span> No
+                                            </label><br>
+                                            <label class="radiobuttons">
+                                                <input type="radio" name="father_RBD" value="2">
+                                                <span class="checkmark"></span> Unsure
+                                            </label><br>
+                                        </label><br>
+                                    </fieldset>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="questiongroup ">
+                                    <label>
+                                        <span>Parasomnias (sleep walking, sleep talking, night terrors)
+                                        </span>
+                                    </label><br>
+                                    <fieldset class="subquestions">
+                                        <label id=father_para_hide__ID>
+                                            <label class="radiobuttons">
+                                                <input type="radio" name="father_para" value="1">
+                                                <span class="checkmark"></span> Yes
+                                            </label><br>
+                                            <label class="radiobuttons">
+                                                <input type="radio" name="father_para" value="0">
+                                                <span class="checkmark"></span> No
+                                            </label><br>
+                                            <label class="radiobuttons">
+                                                <input type="radio" name="father_para" value="2">
+                                                <span class="checkmark"></span> Unsure
+                                            </label><br>
+                                        </label><br>
+                                    </fieldset>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="questiongroup ">
+                                    <label>
+                                        <span>Obesity Hypoventilation Syndrome
+                                        </span>
+                                    </label><br>
+                                    <fieldset class="subquestions">
+                                        <label id=father_hypo_hide__ID>
+                                            <label class="radiobuttons">
+                                                <input type="radio" name="father_hypo" value="1">
+                                                <span class="checkmark"></span> Yes
+                                            </label><br>
+                                            <label class="radiobuttons">
+                                                <input type="radio" name="father_hypo" value="0">
+                                                <span class="checkmark"></span> No
+                                            </label><br>
+                                            <label class="radiobuttons">
+                                                <input type="radio" name="father_hypo" value="2">
+                                                <span class="checkmark"></span> Unsure
+                                            </label><br>
+                                        </label><br>
+                                    </fieldset>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="questiongroup ">
+                                    <label>
+                                        <span>Delayed Sleep Phase Disorder
+                                        </span>
+                                    </label><br>
+                                    <fieldset class="subquestions">
+                                        <label id=father_DSPD_hide__ID>
+                                            <label class="radiobuttons">
+                                                <input type="radio" name="father_DSPD" value="1">
+                                                <span class="checkmark"></span> Yes
+                                            </label><br>
+                                            <label class="radiobuttons">
+                                                <input type="radio" name="father_DSPD" value="0">
+                                                <span class="checkmark"></span> No
+                                            </label><br>
+                                            <label class="radiobuttons">
+                                                <input type="radio" name="father_DSPD" value="2">
+                                                <span class="checkmark"></span> Unsure
+                                            </label><br>
+                                        </label><br>
+                                    </fieldset>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <h4>2. Has your biological mother had any of the following sleep conditions diagnosed by
+                                    a doctor? </h4>
+                                <div class="questiongroup ">
+                                    <fieldset class="subquestions">
+                                        <label class="radiobuttons">
+                                            <input type="radio" name="mother_diagnosed" value="1" required>
+                                            <span class="checkmark"></span> Yes</label><br>
+                                        <label class="radiobuttons">
+                                            <input type="radio" name="mother_diagnosed" value="0">
+                                            <span class="checkmark"></span> No</label><br>
+                                        <label class="radiobuttons">
+                                            <input type="radio" name="mother_diagnosed" value="2">
+                                            <span class="checkmark"></span> Unsure</label><br>
+                                    </fieldset>
+                                </div>
+                                <h4> if yes, please tick all that apply.</h4>
+                                <label>
+                                    <span>Condition
+                                    </span>
+                                </label>
+                            </div>
+                            <div class="form-group">
+                                <div class="questiongroup ">
+                                    <label>
+                                        <span>Sleep Apnea
+                                        </span>
+                                    </label><br>
+                                    <fieldset class="subquestions">
+                                        <label id=mother_OSA_hide__ID>
+                                            <label class="radiobuttons">
+                                                <input type="radio" name="mother_OSA" value="1">
+                                                <span class="checkmark"></span> Yes
+                                            </label><br>
+                                            <label class="radiobuttons">
+                                                <input type="radio" name="mother_OSA" value="0">
+                                                <span class="checkmark"></span> No
+                                            </label><br>
+                                            <label class="radiobuttons">
+                                                <input type="radio" name="mother_OSA" value="2">
+                                                <span class="checkmark"></span> Unsure
+                                            </label><br>
+                                        </label><br>
+                                    </fieldset>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="questiongroup ">
+                                    <label>
+                                        <span>Insomnia
+                                        </span>
+                                    </label><br>
+                                    <fieldset class="subquestions">
+                                        <label id=mother_insomn_hide__ID>
+                                            <label class="radiobuttons">
+                                                <input type="radio" name="mother_insomn" value="1">
+                                                <span class="checkmark"></span> Yes
+                                            </label><br>
+                                            <label class="radiobuttons">
+                                                <input type="radio" name="mother_insomn" value="0">
+                                                <span class="checkmark"></span> No
+                                            </label><br>
+                                            <label class="radiobuttons">
+                                                <input type="radio" name="mother_insomn" value="2">
+                                                <span class="checkmark"></span> Unsure
+                                            </label><br>
+                                        </label><br>
+                                    </fieldset>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="questiongroup ">
+                                    <label>
+                                        <span>Narcolepsy
+                                        </span>
+                                    </label><br>
+                                    <fieldset class="subquestions">
+                                        <label id=mother_narco_hide__ID>
+                                            <label class="radiobuttons">
+                                                <input type="radio" name="mother_narco" value="1">
+                                                <span class="checkmark"></span> Yes
+                                            </label><br>
+                                            <label class="radiobuttons">
+                                                <input type="radio" name="mother_narco" value="0">
+                                                <span class="checkmark"></span> No
+                                            </label><br>
+                                            <label class="radiobuttons">
+                                                <input type="radio" name="mother_narco" value="2">
+                                                <span class="checkmark"></span> Unsure
+                                            </label><br>
+                                        </label><br>
+                                    </fieldset>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="questiongroup ">
+                                    <label>
+                                        <span>Restless Legs or Periodic Leg Movements during Sleep
+                                        </span>
+                                    </label><br>
+                                    <fieldset class="subquestions">
+                                        <label id=mother_RLS_hide__ID>
+                                            <label class="radiobuttons">
+                                                <input type="radio" name="mother_RLS" value="1">
+                                                <span class="checkmark"></span> Yes
+                                            </label><br>
+                                            <label class="radiobuttons">
+                                                <input type="radio" name="mother_RLS" value="0">
+                                                <span class="checkmark"></span> No
+                                            </label><br>
+                                            <label class="radiobuttons">
+                                                <input type="radio" name="mother_RLS" value="2">
+                                                <span class="checkmark"></span> Unsure
+                                            </label><br>
+                                        </label><br>
+                                    </fieldset>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="questiongroup ">
+                                    <label>
+                                        <span>Bruxism (teeth grinding)
+                                        </span>
+                                    </label><br>
+                                    <fieldset class="subquestions">
+                                        <label id=mother_brux_hide__ID>
+                                            <label class="radiobuttons">
+                                                <input type="radio" name="mother_brux" value="1">
+                                                <span class="checkmark"></span> Yes
+                                            </label><br>
+                                            <label class="radiobuttons">
+                                                <input type="radio" name="mother_brux" value="0">
+                                                <span class="checkmark"></span> No
+                                            </label><br>
+                                            <label class="radiobuttons">
+                                                <input type="radio" name="mother_brux" value="2">
+                                                <span class="checkmark"></span> Unsure
+                                            </label><br>
+                                        </label><br>
+                                    </fieldset>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="questiongroup ">
+                                    <label>
+                                        <span>REM Behavioural Disorder
+                                        </span>
+                                    </label><br>
+                                    <fieldset class="subquestions">
+                                        <label id=mother_RBD_hide__ID>
+                                            <label class="radiobuttons">
+                                                <input type="radio" name="mother_RBD" value="1">
+                                                <span class="checkmark"></span> Yes
+                                            </label><br>
+                                            <label class="radiobuttons">
+                                                <input type="radio" name="mother_RBD" value="0">
+                                                <span class="checkmark"></span> No
+                                            </label><br>
+                                            <label class="radiobuttons">
+                                                <input type="radio" name="mother_RBD" value="2">
+                                                <span class="checkmark"></span> Unsure
+                                            </label><br>
+                                        </label><br>
+                                    </fieldset>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="questiongroup ">
+                                    <label>
+                                        <span>Parasomnias (sleep walking, sleep talking, night terrors)
+                                        </span>
+                                    </label><br>
+                                    <fieldset class="subquestions">
+                                        <label id=mother_para_hide__ID>
+                                            <label class="radiobuttons">
+                                                <input type="radio" name="mother_para" value="1">
+                                                <span class="checkmark"></span> Yes
+                                            </label><br>
+                                            <label class="radiobuttons">
+                                                <input type="radio" name="mother_para" value="0">
+                                                <span class="checkmark"></span> No
+                                            </label><br>
+                                            <label class="radiobuttons">
+                                                <input type="radio" name="mother_para" value="2">
+                                                <span class="checkmark"></span> Unsure
+                                            </label><br>
+                                        </label><br>
+                                    </fieldset>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="questiongroup ">
+                                    <label>
+                                        <span>Obesity Hypoventilation Syndrome
+                                        </span>
+                                    </label><br>
+                                    <fieldset class="subquestions">
+                                        <label id=mother_hypo_hide__ID>
+                                            <label class="radiobuttons">
+                                                <input type="radio" name="mother_hypo" value="1">
+                                                <span class="checkmark"></span> Yes
+                                            </label><br>
+                                            <label class="radiobuttons">
+                                                <input type="radio" name="mother_hypo" value="0">
+                                                <span class="checkmark"></span> No
+                                            </label><br>
+                                            <label class="radiobuttons">
+                                                <input type="radio" name="mother_hypo" value="2">
+                                                <span class="checkmark"></span> Unsure
+                                            </label><br>
+                                        </label><br>
+                                    </fieldset>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="questiongroup ">
+                                    <label>
+                                        <span>Delayed Sleep Phase Disorder
+                                        </span>
+                                    </label><br>
+                                    <fieldset class="subquestions">
+                                        <label id=mother_DSPD_hide__ID>
+                                            <label class="radiobuttons">
+                                                <input type="radio" name="mother_DSPD" value="1">
+                                                <span class="checkmark"></span> Yes
+                                            </label><br>
+                                            <label class="radiobuttons">
+                                                <input type="radio" name="mother_DSPD" value="0">
+                                                <span class="checkmark"></span> No
+                                            </label><br>
+                                            <label class="radiobuttons">
+                                                <input type="radio" name="mother_DSPD" value="2">
+                                                <span class="checkmark"></span> Unsure
+                                            </label><br>
+                                        </label><br>
+                                    </fieldset>
+                                </div>
+                            </div>
+                            <button type="submit" id="submit__ID" class="btn btn-primary btn-lg">Submit</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        function F__ID() {
+            //-------------------------------------
+            VmInclude: __COMPONENT__/f/form.01.js
+            VmInclude: __CURRENT_PATH__/shared-form.js
+            //-------------------------------------
+            var load2 = m.load;
+            m.load = function () {
+                load2();
+                if ($("input[name='father_diagnosed']:checked").val() == '1') {
+                    $('#father_OSA_hide__ID').show();
+                    $("input[name='father_OSA']").prop('required', true);
+                    $('#father_insomn_hide__ID').show();
+                    $("input[name='father_insomn']").prop('required', true);
+                    $('#father_narco_hide__ID').show();
+                    $("input[name='father_narco']").prop('required', true);
+                    $('#father_RLS_hide__ID').show();
+                    $("input[name='father_RLS']").prop('required', true);
+                    $('#father_brux_hide__ID').show();
+                    $("input[name='father_brux']").prop('required', true);
+                    $('#father_RBD_hide__ID').show();
+                    $("input[name='father_RBD']").prop('required', true);
+                    $('#father_para_hide__ID').show();
+                    $("input[name='father_para']").prop('required', true);
+                    $('#father_hypo_hide__ID').show();
+                    $("input[name='father_hypo']").prop('required', true);
+                    $('#father_DSPD_hide__ID').show();
+                    $("input[name='father_DSPD']").prop('required', true);
+                }
+                else {
+                    $('#father_OSA_hide__ID').hide();
+                    $("input[name='father_OSA']").prop('required', false);
+                    $('#father_insomn_hide__ID').hide();
+                    $("input[name='father_insomn']").prop('required', false);
+                    $('#father_narco_hide__ID').hide();
+                    $("input[name='father_narco']").prop('required', false);
+                    $('#father_RLS_hide__ID').hide();
+                    $("input[name='father_RLS']").prop('required', false);
+                    $('#father_brux_hide__ID').hide();
+                    $("input[name='father_brux']").prop('required', false);
+                    $('#father_RBD_hide__ID').hide();
+                    $("input[name='father_RBD']").prop('required', false);
+                    $('#father_para_hide__ID').hide();
+                    $("input[name='father_para']").prop('required', false);
+                    $('#father_hypo_hide__ID').hide();
+                    $("input[name='father_hypo']").prop('required', false);
+                    $('#father_DSPD_hide__ID').hide();
+                    $("input[name='father_DSPD']").prop('required', false);
+                }
+                if ($("input[name='mother_diagnosed']:checked").val() == '1') {
+                    $('#mother_OSA_hide__ID').show();
+                    $("input[name='mother_OSA']").prop('required', true);
+                    $('#mother_insomn_hide__ID').show();
+                    $("input[name='mother_insomn']").prop('required', true);
+                    $('#mother_narco_hide__ID').show();
+                    $("input[name='mother_narco']").prop('required', true);
+                    $('#mother_RLS_hide__ID').show();
+                    $("input[name='mother_RLS']").prop('required', true);
+                    $('#mother_brux_hide__ID').show();
+                    $("input[name='mother_brux']").prop('required', true);
+                    $('#mother_RBD_hide__ID').show();
+                    $("input[name='mother_RBD']").prop('required', true);
+                    $('#mother_para_hide__ID').show();
+                    $("input[name='mother_para']").prop('required', true);
+                    $('#mother_hypo_hide__ID').show();
+                    $("input[name='mother_hypo']").prop('required', true);
+                    $('#mother_DSPD_hide__ID').show();
+                    $("input[name='mother_DSPD']").prop('required', true);
+                }
+                else {
+                    $('#mother_OSA_hide__ID').hide();
+                    $("input[name='mother_OSA']").prop('required', false);
+                    $('#mother_insomn_hide__ID').hide();
+                    $("input[name='mother_insomn']").prop('required', false);
+                    $('#mother_narco_hide__ID').hide();
+                    $("input[name='mother_narco']").prop('required', false);
+                    $('#mother_RLS_hide__ID').hide();
+                    $("input[name='mother_RLS']").prop('required', false);
+                    $('#mother_brux_hide__ID').hide();
+                    $("input[name='mother_brux']").prop('required', false);
+                    $('#mother_RBD_hide__ID').hide();
+                    $("input[name='mother_RBD']").prop('required', false);
+                    $('#mother_para_hide__ID').hide();
+                    $("input[name='mother_para']").prop('required', false);
+                    $('#mother_hypo_hide__ID').hide();
+                    $("input[name='mother_hypo']").prop('required', false);
+                    $('#mother_DSPD_hide__ID').hide();
+                    $("input[name='mother_DSPD']").prop('required', false);
+                }
+            }
+            //-------------------------------------
+            $("input[name='father_diagnosed']").on('click', function () {
+                if ($("input[name='father_diagnosed']:checked").val() == '1') {
+                    $('#father_OSA_hide__ID').show();
+                    $("input[name='father_OSA']").prop('required', true);
+                    $('#father_insomn_hide__ID').show();
+                    $("input[name='father_insomn']").prop('required', true);
+                    $('#father_narco_hide__ID').show();
+                    $("input[name='father_narco']").prop('required', true);
+                    $('#father_RLS_hide__ID').show();
+                    $("input[name='father_RLS']").prop('required', true);
+                    $('#father_brux_hide__ID').show();
+                    $("input[name='father_brux']").prop('required', true);
+                    $('#father_RBD_hide__ID').show();
+                    $("input[name='father_RBD']").prop('required', true);
+                    $('#father_para_hide__ID').show();
+                    $("input[name='father_para']").prop('required', true);
+                    $('#father_hypo_hide__ID').show();
+                    $("input[name='father_hypo']").prop('required', true);
+                    $('#father_DSPD_hide__ID').show();
+                    $("input[name='father_DSPD']").prop('required', true);
+                }
+                else {
+                    $('#father_OSA_hide__ID').hide();
+                    $("input[name='father_OSA']").prop('required', false);
+                    $('#father_insomn_hide__ID').hide();
+                    $("input[name='father_insomn']").prop('required', false);
+                    $('#father_narco_hide__ID').hide();
+                    $("input[name='father_narco']").prop('required', false);
+                    $('#father_RLS_hide__ID').hide();
+                    $("input[name='father_RLS']").prop('required', false);
+                    $('#father_brux_hide__ID').hide();
+                    $("input[name='father_brux']").prop('required', false);
+                    $('#father_RBD_hide__ID').hide();
+                    $("input[name='father_RBD']").prop('required', false);
+                    $('#father_para_hide__ID').hide();
+                    $("input[name='father_para']").prop('required', false);
+                    $('#father_hypo_hide__ID').hide();
+                    $("input[name='father_hypo']").prop('required', false);
+                    $('#father_DSPD_hide__ID').hide();
+                    $("input[name='father_DSPD']").prop('required', false);
+                    //-------------------------------------
+                    $("input[name='father_OSA']").prop('checked', false);
+                    $("input[name='father_insomn']").prop('checked', false);
+                    $("input[name='father_narco']").prop('checked', false);
+                    $("input[name='father_RLS']").prop('checked', false);
+                    $("input[name='father_brux']").prop('checked', false);
+                    $("input[name='father_RBD']").prop('checked', false);
+                    $("input[name='father_para']").prop('checked', false);
+                    $("input[name='father_hypo']").prop('checked', false);
+                    $("input[name='father_DSPD']").prop('checked', false);
+                }
+            });
+            //-------------------------------------
+            $("input[name='mother_diagnosed']").on('click', function () {
+                if ($("input[name='mother_diagnosed']:checked").val() == '1') {
+                    $('#mother_OSA_hide__ID').show();
+                    $("input[name='mother_OSA']").prop('required', true);
+                    $('#mother_insomn_hide__ID').show();
+                    $("input[name='mother_insomn']").prop('required', true);
+                    $('#mother_narco_hide__ID').show();
+                    $("input[name='mother_narco']").prop('required', true);
+                    $('#mother_RLS_hide__ID').show();
+                    $("input[name='mother_RLS']").prop('required', true);
+                    $('#mother_brux_hide__ID').show();
+                    $("input[name='mother_brux']").prop('required', true);
+                    $('#mother_RBD_hide__ID').show();
+                    $("input[name='mother_RBD']").prop('required', true);
+                    $('#mother_para_hide__ID').show();
+                    $("input[name='mother_para']").prop('required', true);
+                    $('#mother_hypo_hide__ID').show();
+                    $("input[name='mother_hypo']").prop('required', true);
+                    $('#mother_DSPD_hide__ID').show();
+                    $("input[name='mother_DSPD']").prop('required', true);
+                }
+                else {
+                    $('#mother_OSA_hide__ID').hide();
+                    $("input[name='mother_OSA']").prop('required', false);
+                    $('#mother_insomn_hide__ID').hide();
+                    $("input[name='mother_insomn']").prop('required', false);
+                    $('#mother_narco_hide__ID').hide();
+                    $("input[name='mother_narco']").prop('required', false);
+                    $('#mother_RLS_hide__ID').hide();
+                    $("input[name='mother_RLS']").prop('required', false);
+                    $('#mother_brux_hide__ID').hide();
+                    $("input[name='mother_brux']").prop('required', false);
+                    $('#mother_RBD_hide__ID').hide();
+                    $("input[name='mother_RBD']").prop('required', false);
+                    $('#mother_para_hide__ID').hide();
+                    $("input[name='mother_para']").prop('required', false);
+                    $('#mother_hypo_hide__ID').hide();
+                    $("input[name='mother_hypo']").prop('required', false);
+                    $('#mother_DSPD_hide__ID').hide();
+                    $("input[name='mother_DSPD']").prop('required', false);
+                }
+            });
+        }
+    </script>
+    <style>
+        #D__ID .mt-95 {
+            max-width: 600px;
+        }
+
+        VmInclude:__CURRENT_PATH__/wappsystem-form.css
+    </style>
+</div>

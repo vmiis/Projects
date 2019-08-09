@@ -1,0 +1,144 @@
+<div id=D__ID>
+    <!--third html start -->
+    <div class="container mt-95 mb-3">
+        <div class="row">
+            <!-- form container start -->
+            <div class="col-12 col-lg-12 col-md-12 col-sm-12 mx-auto formbox">
+                <div class="row">
+                    <div class="col-12">
+                        <!-- form start -->
+                        <form id="F__ID">
+                            <h3>General</h3>
+                            <!-- participant part for all tsak forms -------------------->
+                            <div id="participant_div__ID">
+                                <div class="form-group">
+                                    <fieldset class="subquestions">
+                                        <label><span class="">Participant</span>
+                                            <input type=text name="Participant" class=form-control id=Participant__ID data-id="Participant" />
+                                        </label><br>
+                                        <label><span class="">Participant ID</span>
+                                            <input type=text name="Participant_uid" class=form-control readonly />
+                                        </label>
+                                    </fieldset>
+                                </div>
+                            </div>
+                            <!-- form group -->
+                            <div class="form-group">
+                                <div class="questiongroup ">
+                                    <fieldset class="">
+                                        <h4>Language</h4>
+                                    </fieldset>
+                                    <label><span class="">Is English your first language?</span>
+                                    </label><br>
+                                    <label class="radiobuttons">
+                                        <input type="radio" name="first_language" value="1" required>
+                                        <span class="checkmark"></span> Yes</label>
+                                    <label class="radiobuttons">
+                                        <input type="radio" name="first_language" value="0">
+                                        <span class="checkmark"></span> No</label>
+                                </div>
+                            </div>
+                            <div class="form-group" id=english__ID>
+                                <div class="questiongroup ">
+                                    <fieldset class="">
+                                    </fieldset>
+                                    <label><span class="">If you answered ‘No’, are you fluent in English? </span>
+                                    </label><br>
+                                    <label class="radiobuttons">
+                                        <input type="radio" name="English_fluency" value="1" required>
+                                        <span class="checkmark"></span> Yes</label>
+                                    <label class="radiobuttons">
+                                        <input type="radio" name="English_fluency" value="0">
+                                        <span class="checkmark"></span> No</label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="questiongroup ">
+                                    <fieldset class="">
+                                        <h4>Recently travelling overseas</h4>
+                                    </fieldset>
+                                    <label><span class="">Have you travelled outside of the country in the past 3
+                                            months?</span>
+                                    </label><br>
+                                    <label class="radiobuttons">
+                                        <input type="radio" name="recent_travel" value="1" required>
+                                        <span class="checkmark"></span> Yes</label>
+                                    <label class="radiobuttons">
+                                        <input type="radio" name="recent_travel" value="0">
+                                        <span class="checkmark"></span> No</label>
+                                </div>
+                            </div>
+                            <div class="form-group" id="travel_where__ID">
+                                <div class="questiongroup ">
+                                    <fieldset class="">
+                                        <label><span class="">Where</span>
+                                            <input class="form-control" type="text" name="recent_travel_where">
+                                        </label><br>
+                                    </fieldset>
+                                </div>
+                            </div>
+                            <button type="submit" id="submit__ID" class="btn btn-primary btn-lg">Submit</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        //---------------------------------------------
+        function F__ID() {
+            //-------------------------------------
+            VmInclude:'__COMPONENT__/f/form.01.js'
+            VmInclude:__CURRENT_PATH__/shared-form.js
+            //-------------------------------------
+            var load2=m.load;
+            m.load=function(){
+                load2();
+                if($("input[name='first_language']:checked").val()=='0'){
+                    $('#english__ID').show() ;
+                    $("input[name='English_fluency']").prop('required', true);
+                }
+                else {
+                    $('#english__ID').prop('style','display:none!important');
+                    $("input[name='English_fluency']").prop('required', false);
+                }
+                if($("input[name='recent_travel']:checked").val()=='1'){
+                    $('#travel_where__ID').show() ;
+                    $("input[name='recent_travel_where']").prop('required', true);
+                }
+                else {
+                    $('#travel_where__ID').prop('style','display:none!important');
+                    $("input[name='recent_travel_where']").prop('required', false);
+                }
+            }
+            //-------------------------------------
+            $("input[name='first_language']").change(function(){
+                if($("input[name='first_language']:checked").val()=='0'){
+                    $('#english__ID').show();
+                    $("input[name='English_fluency']").prop('required', true);
+                }
+                else {
+                    $('#english__ID').prop('style','display:none!important');
+                    $("input[name='English_fluency']").prop('required', false);
+                }
+            })
+            $("input[name='recent_travel']").change(function(){
+                if($("input[name='recent_travel']:checked").val()=='1'){
+                    $('#travel_where__ID').show() ;
+                    $("input[name='recent_travel_where']").prop('required', true);
+                }
+                else {
+                    $('#travel_where__ID').prop('style','display:none!important');
+                    $("input[name='recent_travel_where']").prop('required', false);
+                }
+            })
+            //-------------------------------------
+        }
+    </script>
+    <style>
+        #D__ID .mt-95 {
+        max-width:600px;
+    }
+        VmInclude:__CURRENT_PATH__/wappsystem-form.css
+    </style>
+</div>

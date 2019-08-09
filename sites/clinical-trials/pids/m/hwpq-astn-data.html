@@ -1,0 +1,19 @@
+<section>
+  VmInclude:__CURRENT_PATH__/grid.v1h.html
+</section>
+<script>
+  function F__ID(){
+      //-------------------------------------
+      VmInclude:__COMPONENT__/g/grid.01.js
+      VmInclude:__CURRENT_PATH__/shared-data.js
+      //-------------------------------------
+      $('#title__ID').text($vm.module_list[$vm.vm['__ID'].name].task_name);
+      //-------------------------------------
+      var fields="HPQ_1a,HPQ_1a_lenght,HPQ_1a_period,HPQ_1b,HPQ_1b_lenght,HPQ_1b_period,HPQ_1c,HPQ_1c_lenght,HPQ_1c_period,HPQ_1d,HPQ_1d_lenght,HPQ_1d_period,HPQ_1e,HPQ_1e_lenght,HPQ_1e_period,HPQ_1f,HPQ_1f_lenght,HPQ_1f_period,HPQ_2a,HPQ_2a_hrs,HPQ_2b,HPQ_2b_hrs,HPQ_2c,HPQ_2c_hrs,HPQ_2d,HPQ_2d_hrs,HPQ_2e,HPQ_2e_hrs,HPQ_2f,HPQ_2f_hrs,HPQ_2g,HPQ_2g_hrs,HPQ_2h,HPQ_2h_hrs,HPQ_3CB,HPQ_3,HPQ_4,HPQ_5,HPQ_6a,HPQ_6b,HPQ_6c,HPQ_6d,HPQ_6e,HPQ_7,HPQ_8a,HPQ_8b,HPQ_8c,HPQ_8d,HPQ_9a,HPQ_9b,HPQ_9c,HPQ_9d,HPQ_9e,HPQ_9f,HPQ_9g,HPQ_10,HPQ_11,HPQ_12,HPQ_13,HPQ_14,HPQ_15,HPQ_16,AbsAbsolute,AbsRelative,PreAbsolute,PreRelative";
+      m.fields="_Form,_Status,_Notes,_Participant_ID,Participant,"+fields+",Submit_date,Submitted_by,_Delete";
+      //-------------------------------------
+  }
+</script>
+<style>
+  VmInclude:__COMPONENT__/g/grid.01.css
+</style>

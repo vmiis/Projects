@@ -1,0 +1,159 @@
+<div id=D__ID>
+    <div>
+        VmInclude:__CURRENT_PATH__/../../../modules/grid.01.hp.html
+        <!--Vm  Include:__COMPONENT__/g/grid.01.html-->
+    </div>
+    <script>
+        function F__ID(){
+            //-------------------------------------
+            VmInclude:__COMPONENT__/g/grid.01.js       
+            //-------------------------------------
+            if(m.prefix==undefined) m.prefix="";
+           //-------------------------------------
+            var fields="_ASTN_ID,Local_ID,Initials,_Data_Entry,_Setup,_Questionnaire,_Login_ID,_Password,|_x,Check Progress|_check";
+            m.fields="_Form,"+fields+",Submit_date,Submitted_by,_Delete";
+            //-------------------------------------
+            var first_table="";
+            var last_table="";
+            m.load=function(){
+                m.I1=$vm.astn_current_project_record.UID;
+                $('#title__ID').text('Project: '+$vm.astn_current_project_name+' | Participants'); 
+                m.query={UID:m.I1}
+                jQuery.ajaxSetup({async:false});
+                //Find Current Project Settings
+                $vm.request({cmd:"find",table:"astn-shq-project-20003481",query:m.query},function(res){
+                    if(res.result.length>0){
+                        if(res.result[0].Data.Workplace_Accidents=='on') first_table='wa-astn-20002422';
+                        if(res.result[0].Data.MVA=='on') first_table='mva-astn-20002421';
+                        if(res.result[0].Data.Shiftwork_Disorders=='on') first_table='shiftworkii-astn-20003584';
+                        if(res.result[0].Data.Shiftwork=='on') first_table='shiftwork-astn-20002420';
+                        if(res.result[0].Data.HPQ=='on') first_table='hwpq-astn-20002419';
+                        if(res.result[0].Data.SDS=='on') first_table='sds-astn-20002418';
+                        if(res.result[0].Data.FSS=='on') first_table='fss-astn-20002417';
+                        if(res.result[0].Data.DASS=='on') first_table='dass-astn-20002416';
+                        if(res.result[0].Data.GAD=='on') first_table='gad7-astn-20002415';
+                        if(res.result[0].Data.PHQ=='on') first_table='phq-astn-20002414';
+                        if(res.result[0].Data.PSQI=='on') first_table='psqi-astn-20003576';
+                        if(res.result[0].Data.FOSQ=='on') first_table='fosq-astn-20002413';
+                        if(res.result[0].Data.ME=='on') first_table='me-astn-20002412';
+                        if(res.result[0].Data.Restless_Legs=='on') first_table='restless-leg-astn-20002411';
+                        if(res.result[0].Data.ISI=='on') first_table='isi-astn-20002410';
+                        if(res.result[0].Data.MAPQ=='on') first_table='map-astn-20002409';
+                        if(res.result[0].Data.ESS=='on') first_table='ess-astn-20002408';
+                        if(res.result[0].Data.Recreational_Drugs=='on') first_table='rec-drug-astn-20003574';
+                        if(res.result[0].Data.Medications=='on') first_table='medications-astn-20002407';
+                        if(res.result[0].Data.Family_Sleep_History=='on') first_table='family-sleep-history-astn-20002406';
+                        if(res.result[0].Data.Sleep_Hygiene_Index=='on') first_table='sleep-hygiene-index-astn-20003571';
+                        if(res.result[0].Data.Sleep_HQDP=='on') first_table='sleep-disorder-patterns-astn-20002405';
+                        if(res.result[0].Data.Medical_History=='on') first_table='medical-history-astn-20002404';
+                        if(res.result[0].Data.Lifestyle=='on') first_table='lifestyle-astn-20002403';
+                        if(res.result[0].Data.Ethnicity=='on') first_table='ethnicity-self-astn-20002402';
+                        if(res.result[0].Data.General=='on') first_table='general-astn-20002401';
+                        if(res.result[0].Data.Background_Information=='on') first_table='background-information-astn-20002400';
+                        if(res.result[0].Data.Consent=='on') first_table='consent-astn-20002423';                                
+                        if(res.result[0].Data.Consent=='on') last_table='consent-astn-20002423';
+                        if(res.result[0].Data.Background_Information=='on') last_table='background-information-astn-20002400';
+                        if(res.result[0].Data.General=='on') last_table='general-astn-20002401';
+                        if(res.result[0].Data.Ethnicity=='on') last_table='ethnicity-self-astn-20002402';
+                        if(res.result[0].Data.Lifestyle=='on') last_table='lifestyle-astn-20002403';
+                        if(res.result[0].Data.Medical_History=='on') last_table='medical-history-astn-20002404';
+                        if(res.result[0].Data.Sleep_HQDP=='on') last_table='sleep-disorder-patterns-astn-20002405';
+                        if(res.result[0].Data.Sleep_Hygiene_Index=='on') last_table='sleep-hygiene-index-astn-20003571';
+                        if(res.result[0].Data.Family_Sleep_History=='on') last_table='family-sleep-history-astn-20002406';
+                        if(res.result[0].Data.Medications=='on') last_table='medications-astn-20002407';
+                        if(res.result[0].Data.Recreational_Drugs=='on') last_table='rec-drug-astn-20003574';
+                        if(res.result[0].Data.ESS=='on') last_table='ess-astn-20002408';
+                        if(res.result[0].Data.MAPQ=='on') last_table='map-astn-20002409';
+                        if(res.result[0].Data.ISI=='on') last_table='isi-astn-20002410';
+                        if(res.result[0].Data.Restless_Legs=='on') last_table='restless-leg-astn-20002411';
+                        if(res.result[0].Data.ME=='on') last_table='me-astn-20002412';
+                        if(res.result[0].Data.FOSQ=='on') last_table='fosq-astn-20002413';
+                        if(res.result[0].Data.PSQI=='on') last_table='psqi-astn-20003576';
+                        if(res.result[0].Data.PHQ=='on') last_table='phq-astn-20002414';
+                        if(res.result[0].Data.GAD=='on') last_table='gad7-astn-20002415';
+                        if(res.result[0].Data.DASS=='on') last_table='dass-astn-20002416';
+                        if(res.result[0].Data.FSS=='on') last_table='fss-astn-20002417';
+                        if(res.result[0].Data.SDS=='on') last_table='sds-astn-20002418';
+                        if(res.result[0].Data.HPQ=='on') last_table='hwpq-astn-20002419';
+                        if(res.result[0].Data.Shiftwork=='on') last_table='shiftwork-astn-20002420';
+                        if(res.result[0].Data.Shiftwork_Disorders=='on') last_table='shiftworkii-astn-20003584';
+                        if(res.result[0].Data.MVA=='on') last_table='mva-astn-20002421';
+                        if(res.result[0].Data.Workplace_Accidents=='on') last_table='wa-astn-20002422';
+                    }
+                })
+                m.query={};
+                jQuery.ajaxSetup({async:true});           
+            }
+            m.cell_render=function(records,I,field,td,set_value,source){
+                switch(field){
+                    case 'DOB':
+                        if(records[I].Data.DOB!=''){
+                            var dob=(records[I].Data.DOB).split('-');
+                            td.html(dob[2]+'/'+dob[1]+'/'+dob[0]);
+                        }
+                        break;
+                    case '_ASTN_ID':
+                        td.html(records[I].UID);
+                        break;
+                    case '_Data_Entry':
+                        td.html("<u style='cursor:pointer'>Data Entry</u>");
+                        td.find('u').on('click',function(){
+    						$vm.load_module(m.prefix+m.child_panel,'',{record:records[I],proj:m.input.proj});
+                        });
+                        break;
+                    case '_Setup':
+                        td.html("<u style='cursor:pointer'>Setup</u>");
+                        td.find('u').on('click',function(){
+    						$vm.load_module(m.prefix+m.questionnaire_setup,'',{record:records[I],proj:m.input.proj });
+                        });
+                        break;
+                    case '_Questionnaire':
+                        //MongoDB
+                        td.html("<u style='cursor:pointer'>Online Questionnaire</u>");
+                        td.find('u').on('click',function(){
+                            var db=""; if(window.location.toString().indexOf('db=dev')!=-1) db="&db=dev";
+                            var d="";  if(window.location.toString().indexOf('_d=1')!=-1) d="&_d=1";
+                            var p="";  if(window.location.toString().indexOf('_p=1')!=-1) p="&_p=1";
+                            var u="?username="+records[I].UID+"-"+records[I].Data.Initials+"&password="+records[I].Data._Password;
+    						var q_url=$vm.module_list[m.prefix+m.online_questionnaire].url+u+db+d+p;
+    						window.open(q_url);
+                        });
+                        break;
+                    case '_Login_ID':
+                        td.html(records[I].UID+"-"+records[I].Data.Initials);
+                        break;
+                    case '_x':
+                        td.html("<u style='cursor:pointer'>View All Data</u>");
+                        td.find('u').on('click',function(){
+                            //$vm.load_module(m.prefix+m.child_panel,'',{record:records[I],proj:m.input.proj});
+                            $vm.load_module(m.prefix+'all-records-astn-data','',{record:records[I]});
+                        });
+                        break;
+                    case '_check':
+                        td.html("<u style='cursor:pointer'>Check Progress</u>");
+                        td.find('u').on('click',function(){
+                            m.query={"Data.Participant_uid":(records[I].UID).toString()};
+                            jQuery.ajaxSetup({async:false});
+                            $vm.request({cmd:"find",table:last_table,I1:m.I1,query:m.query},function(res){
+                                if(res.result.length>0) td.html("<u style='cursor:pointer'>Check Progress</u> <i style='color:green'  class='fa fa-smile'></i>")
+                                else {
+                                    $vm.request({cmd:"find",table:first_table,I1:m.I1,query:m.query},function(res){
+                                        if(res.result.length>0) td.html("<u style='cursor:pointer'>Check Progress</u> <i style='color:orange' class='fa fa-meh'></i>")
+                                        else td.html("<u style='cursor:pointer'>Check Progress</u> <i style='color:red' class='fa fa-frown'></i>")
+                                    });
+                                }
+                            });
+
+                            m.query={};
+                            jQuery.ajaxSetup({async:true});
+                        });
+                        break;
+               }
+            }
+            //-------------------------------------
+        }
+    </script>
+    <style>
+        VmInclude:__COMPONENT__/g/grid.01.css
+    </style>
+</div>

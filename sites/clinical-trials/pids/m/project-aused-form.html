@@ -1,0 +1,80 @@
+<div id=D__ID>
+	<!--third html start -->
+	<div class="container mt-95 mb-3" id="form_container__ID">
+		<div class="row">
+			<!-- form container start -->
+			<div class="col-12 col-lg-12 col-md-12 col-sm-12 mx-auto formbox">
+				<div class="row">
+					<div class="col-12">
+						<!-- form start -->
+						<form id="F__ID">
+							<h3 id=header__ID>Projects</h3>
+							<!-- participant part for all tsak forms -------------------->
+							<div class="form-group">
+								<fieldset class="subquestions">
+									<label class="row_project__ID"><span>Project ID</span>
+										<input type=text class=form-control id=record__ID readonly />
+									</label><br>
+									<label><span class="">Site</span>
+										<input type=text class=form-control name="Site" />
+									</label>
+								</fieldset>
+							</div>
+							<div class="form-group">
+								<fieldset class="subquestions">
+									<label><span class="">Project Name</span>
+										<input type=text class=form-control name=project_name />
+									</label>
+								</fieldset>
+							</div>
+							<div class="form-group">
+								<fieldset class="subquestions">
+									<label><span class="">Exclude first no. of mins</span>
+										<input type=number class=form-control min=0 name=exclude_drive required/>
+									</label><br>
+									<label><span class="">Exclude no. of Reaction Times</span>
+										<input type=number class=form-control min=0 name="exclude_reaction_time" required />
+									</label>
+									<label><span class="">Partitions</span>
+										<input type=number class=form-control min=1 name="partition" required/>
+									</label>
+								</fieldset>
+							</div>
+							<button type="submit" id="submit__ID" class="btn btn-primary btn-lg">Submit</button>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script>
+		function F__ID() {
+			//-------------------------------------
+			VmInclude: __COMPONENT__/f/form.01.js
+			//-------------------------------------
+			var load = m.load;
+			m.load = function () {
+				load();
+				if (m.input.record == undefined) {
+					$('.row_project__ID').hide()
+				}
+				else {
+					$('.row_project__ID').show()
+					$('#record__ID').val(m.input.record.UID)
+				}
+			}
+			//-------------------------------------
+			m.before_submit=function(data,index){
+			}
+			//-------------------------------------
+
+		}
+	</script>
+	<style>
+		#form_container__ID {
+			max-width: 700px;
+		}
+
+		VmInclude:__CURRENT_PATH__/wappsystem-form.css
+	</style>
+</div>

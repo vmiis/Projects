@@ -1,0 +1,545 @@
+<div id=D__ID>
+    <!--third html start -->
+    <div class="container mt-95 mb-3">
+        <div class="row">
+            <!-- form container start -->
+            <div class="col-12 col-lg-12 col-md-12 col-sm-12 mx-auto formbox">
+                <div class="row">
+                    <div class="col-12">
+                        <!-- form start -->
+                        <form id=F__ID>
+                            <!---------------------------------------------------->
+                            <h3>Shiftwork</h3>
+                            <!-- participant part for all tsak forms -------------------->
+                            <div id="participant_div__ID">
+                                <div class="form-group">
+                                  <fieldset class="subquestions">
+                                    <label><span class="">Participant</span>
+                                      <input type=text name="Participant" class=form-control id=Participant__ID data-id="Participant" />
+                                    </label><br>
+                                    <label><span class="">Participant ID</span>
+                                      <input type=text name="Participant_uid" class=form-control readonly />
+                                    </label>
+                                  </fieldset>
+                                </div>
+                            </div>
+                            <!-- form group -->
+                            <div class="form-group">
+                                <fieldset class="">
+                                    <h4>Definition of shiftwork: Shiftwork includes "rotating shifts, irregular shifts,
+                                        evening shifts, afternoon shifts, morning shifts or split shifts"<br><br>
+                                        Definition of night work: at least 6 h on duty between 22:00 and 08:00
+                                    </h4>
+                                </fieldset>
+                            </div>
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-sm control-group">
+                                        <h4>17. Are you currently working?</h4>
+                                    </div>
+                                </div>
+                                <div class="questiongroup">
+                                    <fieldset class="">
+                                        <label class="radiobuttons ">
+                                            <input type="radio" name="current_work" value="1" required>
+                                            <span class="checkmark"></span>Yes</label>
+                                        <label class="radiobuttons ">
+                                            <input type="radio" name="current_work" value="0">
+                                            <span class="checkmark"></span>No</label>
+                                    </fieldset>
+                                </div>
+                            </div>
+                            <div id=q18__ID>
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-sm control-group">
+                                            <h4>18. How many different types of shifts have you worked in the past
+                                                month?</h4>
+                                        </div>
+                                    </div>
+                                    <div class="questiongroup">
+                                        <fieldset class="">
+                                            <label class="radiobuttons">
+                                                <input type="radio" name="shift_no" value="1" required>
+                                                <span class="checkmark no-dot">1</span></label>
+                                            <label class="radiobuttons">
+                                                <input type="radio" name="shift_no" value="2">
+                                                <span class="checkmark no-dot">2</span></label>
+                                            <label class="radiobuttons">
+                                                <input type="radio" name="shift_no" value="3">
+                                                <span class="checkmark no-dot">3</span></label>
+                                            <label class="radiobuttons">
+                                                <input type="radio" name="shift_no" value="4">
+                                                <span class="checkmark no-dot">4</span></label>
+                                            <label class="radiobuttons">
+                                                <input type="radio" name="shift_no" value="5">
+                                                <span class="checkmark no-dot">5</span></label>
+                                            <label class="radiobuttons">
+                                                <input type="radio" name="shift_no" value="6">
+                                                <span class="checkmark no-dot">6</span></label>
+                                            <label class="radiobuttons">
+                                                <input type="radio" name="shift_no" value="7">
+                                                <span class="checkmark no-dot">7</span></label>
+                                        </fieldset><br>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id=q19__ID>
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-sm control-group">
+                                            <h4>19. Please enter the start time and end time for each of the your shifts
+                                                you have worked in the past month.<br>Enter information on one line per
+                                                shift using 24 hour clock</h4>
+                                        </div>
+                                    </div>
+                                    <div id="shift1__ID">
+                                        <div class="questiongroup">
+                                            <fieldset class="">
+                                                <label><span class="">Start Time</span>
+                                                    <input class="form-control" type="time" name="shift_start1">
+                                                </label>
+                                                <label><span class="">End Time</span>
+                                                    <input class="form-control" type="time" name="shift_end1">
+                                                </label>
+                                                <label><span class="">Total number of shifts of this type over the past
+                                                        month</span>
+                                                    <input class="form-control" type="number" min=0 max=99
+                                                        name="shift_month1">
+                                                </label>
+                                            </fieldset>
+                                        </div>
+                                    </div>
+                                    <div id="shift2__ID">
+                                        <div class="questiongroup">
+                                            <fieldset class="">
+                                                <label><span class="">Start Time</span>
+                                                    <input class="form-control" type="time" name="shift_start2">
+                                                </label>
+                                                <label><span class="">End Time</span>
+                                                    <input class="form-control" type="time" name="shift_end2">
+                                                </label>
+                                                <label><span class="">Total number of shifts of this type over the past
+                                                        month</span>
+                                                    <input class="form-control" type="number" min=0 max=99
+                                                        name="shift_month2">
+                                                </label>
+                                            </fieldset>
+                                        </div>
+                                    </div>
+                                    <div id="shift3__ID">
+                                        <div class="questiongroup">
+                                            <fieldset class="">
+                                                <label><span class="">Start Time</span>
+                                                    <input class="form-control" type="time" name="shift_start3">
+                                                </label>
+                                                <label><span class="">End Time</span>
+                                                    <input class="form-control" type="time" name="shift_end3">
+                                                </label>
+                                                <label><span class="">Total number of shifts of this type over the past
+                                                        month</span>
+                                                    <input class="form-control" type="number" min=0 max=99
+                                                        name="shift_month3">
+                                                </label>
+                                            </fieldset>
+                                        </div>
+                                    </div>
+                                    <div id="shift4__ID">
+                                        <div class="questiongroup">
+                                            <fieldset class="">
+                                                <label><span class="">Start Time</span>
+                                                    <input class="form-control" type="time" name="shift_start4">
+                                                </label>
+                                                <label><span class="">End Time</span>
+                                                    <input class="form-control" type="time" name="shift_end4">
+                                                </label>
+                                                <label><span class="">Total number of shifts of this type over the past
+                                                        month</span>
+                                                    <input class="form-control" type="number" min=0 max=99
+                                                        name="shift_month4">
+                                                </label>
+                                            </fieldset>
+                                        </div>
+                                    </div>
+                                    <div id="shift5__ID">
+                                        <div class="questiongroup">
+                                            <fieldset class="">
+                                                <label><span class="">Start Time</span>
+                                                    <input class="form-control" type="time" name="shift_start5">
+                                                </label>
+                                                <label><span class="">End Time</span>
+                                                    <input class="form-control" type="time" name="shift_end5">
+                                                </label>
+                                                <label><span class="">Total number of shifts of this type over the past
+                                                        month</span>
+                                                    <input class="form-control" type="number" min=0 max=99
+                                                        name="shift_month5">
+                                                </label>
+                                            </fieldset>
+                                        </div>
+                                    </div>
+                                    <div id="shift6__ID">
+                                        <div class="questiongroup">
+                                            <fieldset class="">
+                                                <label><span class="">Start Time</span>
+                                                    <input class="form-control" type="time" name="shift_start6">
+                                                </label>
+                                                <label><span class="">End Time</span>
+                                                    <input class="form-control" type="time" name="shift_end6">
+                                                </label>
+                                                <label><span class="">Total number of shifts of this type over the past
+                                                        month</span>
+                                                    <input class="form-control" type="number" min=0 max=99
+                                                        name="shift_month6">
+                                                </label>
+                                            </fieldset>
+                                        </div>
+                                    </div>
+                                    <div id="shift7__ID">
+                                        <div class="questiongroup">
+                                            <fieldset class="">
+                                                <label><span class="">Start Time</span>
+                                                    <input class="form-control" type="time" name="shift_start7">
+                                                </label>
+                                                <label><span class="">End Time</span>
+                                                    <input class="form-control" type="time" name="shift_end7">
+                                                </label>
+                                                <label><span class="">Total number of shifts of this type over the past
+                                                        month</span>
+                                                    <input class="form-control" type="number" min=0 max=99
+                                                        name="shift_month7">
+                                                </label>
+                                            </fieldset>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-sm control-group">
+                                        <h4>20. Over your lifetime, how many years in total have you worked each of the
+                                            following shifts?</h4>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="questiongroup ">
+                                        <div class="row">
+                                            <div class="col-sm-4 control-group">
+                                                <label class="pt-4">Morning<span class="font-italic"> (start before
+                                                        8am)</span></label>
+                                            </div>
+                                            <div class="col-sm-8 control-group">
+                                                <fieldset class="subquestions">
+                                                    <label><span class="">Years</span>
+                                                        <input class="form-control" type="number" min=0 max=99 name="shift_years_morning" required>
+                                                    </label>
+                                                    <label><span class="">Month and year of when I last worked this shift</span>
+                                                        <input class="form-control" type="month" name="shift_last_date_morning">
+                                                    </label>
+                                                </fieldset>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-4 control-group">
+                                                <label class="pt-4">Afternoon/evening<span class="font-italic"> (start after 2pm)</span></label>
+                                            </div>
+                                            <div class="col-sm-8 control-group">
+                                                <fieldset class="subquestions">
+                                                    <label><span class="">Years</span>
+                                                        <input class="form-control" type="number" min=0 max=99 name="shift_years_afternoon" required>
+                                                    </label>
+                                                    <label><span class="">Month and year of when I last worked this shift</span>
+                                                        <input class="form-control" type="month" name="shift_last_date_afternoon">
+                                                    </label>
+                                                </fieldset>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-4 control-group">
+                                                <label class="pt-4">Night<span class="font-italic"> (at least 6 h on duty between 10:00PM and 08:00AM)</span></label>
+                                            </div>
+                                            <div class="col-sm-8 control-group">
+                                                <fieldset class="subquestions">
+                                                    <label><span class="">Years</span>
+                                                        <input class="form-control" type="number" min=0 max=99 name="shift_years_night" required>
+                                                    </label>
+                                                    <label><span class="">Month and year of when I last worked this
+                                                            shift</span>
+                                                        <input class="form-control" type="month" name="shift_last_date_night">
+                                                    </label>
+                                                </fieldset>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-4 control-group">
+                                                <label class="pt-4">Extended duration</label>
+                                            </div>
+                                            <div class="col-sm-8 control-group">
+                                                <fieldset class="subquestions">
+                                                    <label><span class="">Years</span>
+                                                        <input class="form-control" type="number" min=0 max=99 name="shift_years_extended" required>
+                                                    </label>
+                                                    <label><span class="">Month and year of when I last worked this shift</span>
+                                                        <input class="form-control" type="month"
+                                                            name="shift_last_date_extended">
+                                                    </label>
+                                                </fieldset>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <button type="submit" id="submit__ID" class="btn btn-primary btn-lg">Submit</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        function F__ID() {
+            //-------------------------------------
+            VmInclude:__COMPONENT__/f/form.01.js
+            VmInclude:__CURRENT_PATH__/shared-form.js
+            //-------------------------------------
+            var load2=m.load;
+            m.load=function(){
+                load2();
+                //-------------------------------------
+                if ($("#D__ID input[name=current_work]:checked").val() == '1') {
+                    $("#D__ID input[name=shift_no]").prop('required', true);
+                    $("#q18__ID").show();
+                }
+                else {
+                    $("#D__ID input[name=shift_no]").prop('required', false);
+                    $("#q18__ID").hide();
+                }
+                //-------------------------------------
+                $("#q19__ID").hide();
+                $("#shift1__ID").hide(); $("#D__ID input[name=shift_start1]").prop('required', false); $("#D__ID input[name=shift_end1]").prop('required', false); $("#D__ID input[name=shift_month1]").prop('required', false);
+                $("#shift2__ID").hide(); $("#D__ID input[name=shift_start2]").prop('required', false); $("#D__ID input[name=shift_end2]").prop('required', false); $("#D__ID input[name=shift_month2]").prop('required', false);
+                $("#shift3__ID").hide(); $("#D__ID input[name=shift_start3]").prop('required', false); $("#D__ID input[name=shift_end3]").prop('required', false); $("#D__ID input[name=shift_month3]").prop('required', false);
+                $("#shift4__ID").hide(); $("#D__ID input[name=shift_start4]").prop('required', false); $("#D__ID input[name=shift_end4]").prop('required', false); $("#D__ID input[name=shift_month4]").prop('required', false);
+                $("#shift5__ID").hide(); $("#D__ID input[name=shift_start5]").prop('required', false); $("#D__ID input[name=shift_end5]").prop('required', false); $("#D__ID input[name=shift_month5]").prop('required', false);
+                $("#shift6__ID").hide(); $("#D__ID input[name=shift_start6]").prop('required', false); $("#D__ID input[name=shift_end6]").prop('required', false); $("#D__ID input[name=shift_month6]").prop('required', false);
+                $("#shift7__ID").hide(); $("#D__ID input[name=shift_start7]").prop('required', false); $("#D__ID input[name=shift_end7]").prop('required', false); $("#D__ID input[name=shift_month7]").prop('required', false);
+                switch ($("#D__ID input[name=shift_no]:checked").val()) {
+                    case '1':
+                        $("#q19__ID").show();
+                        $("#shift1__ID").show(); $("#D__ID input[name=shift_start1]").prop('required', true); $("#D__ID input[name=shift_end1]").prop('required', true); $("#D__ID input[name=shift_month1]").prop('required', true);
+                        break;
+                    case '2':
+                        $("#q19__ID").show();
+                        $("#shift1__ID").show(); $("#D__ID input[name=shift_start1]").prop('required', true); $("#D__ID input[name=shift_end1]").prop('required', true); $("#D__ID input[name=shift_month1]").prop('required', true);
+                        $("#shift2__ID").show(); $("#D__ID input[name=shift_start2]").prop('required', true); $("#D__ID input[name=shift_end2]").prop('required', true); $("#D__ID input[name=shift_month2]").prop('required', true);
+                        break;
+                    case '3':
+                        $("#q19__ID").show();
+                        $("#shift1__ID").show(); $("#D__ID input[name=shift_start1]").prop('required', true); $("#D__ID input[name=shift_end1]").prop('required', true); $("#D__ID input[name=shift_month1]").prop('required', true);
+                        $("#shift2__ID").show(); $("#D__ID input[name=shift_start2]").prop('required', true); $("#D__ID input[name=shift_end2]").prop('required', true); $("#D__ID input[name=shift_month2]").prop('required', true);
+                        $("#shift3__ID").show(); $("#D__ID input[name=shift_start3]").prop('required', true); $("#D__ID input[name=shift_end3]").prop('required', true); $("#D__ID input[name=shift_month3]").prop('required', true);
+                        break;
+                    case '4':
+                        $("#q19__ID").show();
+                        $("#shift1__ID").show(); $("#D__ID input[name=shift_start1]").prop('required', true); $("#D__ID input[name=shift_end1]").prop('required', true); $("#D__ID input[name=shift_month1]").prop('required', true);
+                        $("#shift2__ID").show(); $("#D__ID input[name=shift_start2]").prop('required', true); $("#D__ID input[name=shift_end2]").prop('required', true); $("#D__ID input[name=shift_month2]").prop('required', true);
+                        $("#shift3__ID").show(); $("#D__ID input[name=shift_start3]").prop('required', true); $("#D__ID input[name=shift_end3]").prop('required', true); $("#D__ID input[name=shift_month3]").prop('required', true);
+                        $("#shift4__ID").show(); $("#D__ID input[name=shift_start4]").prop('required', true); $("#D__ID input[name=shift_end4]").prop('required', true); $("#D__ID input[name=shift_month4]").prop('required', true);
+                        break;
+                    case '5':
+                        $("#q19__ID").show();
+                        $("#shift1__ID").show(); $("#D__ID input[name=shift_start1]").prop('required', true); $("#D__ID input[name=shift_end1]").prop('required', true); $("#D__ID input[name=shift_month1]").prop('required', true);
+                        $("#shift2__ID").show(); $("#D__ID input[name=shift_start2]").prop('required', true); $("#D__ID input[name=shift_end2]").prop('required', true); $("#D__ID input[name=shift_month2]").prop('required', true);
+                        $("#shift3__ID").show(); $("#D__ID input[name=shift_start3]").prop('required', true); $("#D__ID input[name=shift_end3]").prop('required', true); $("#D__ID input[name=shift_month3]").prop('required', true);
+                        $("#shift4__ID").show(); $("#D__ID input[name=shift_start4]").prop('required', true); $("#D__ID input[name=shift_end4]").prop('required', true); $("#D__ID input[name=shift_month4]").prop('required', true);
+                        $("#shift5__ID").show(); $("#D__ID input[name=shift_start5]").prop('required', true); $("#D__ID input[name=shift_end5]").prop('required', true); $("#D__ID input[name=shift_month5]").prop('required', true);
+                        break;
+                    case '6':
+                        $("#q19__ID").show();
+                        $("#shift1__ID").show(); $("#D__ID input[name=shift_start1]").prop('required', true); $("#D__ID input[name=shift_end1]").prop('required', true); $("#D__ID input[name=shift_month1]").prop('required', true);
+                        $("#shift2__ID").show(); $("#D__ID input[name=shift_start2]").prop('required', true); $("#D__ID input[name=shift_end2]").prop('required', true); $("#D__ID input[name=shift_month2]").prop('required', true);
+                        $("#shift3__ID").show(); $("#D__ID input[name=shift_start3]").prop('required', true); $("#D__ID input[name=shift_end3]").prop('required', true); $("#D__ID input[name=shift_month3]").prop('required', true);
+                        $("#shift4__ID").show(); $("#D__ID input[name=shift_start4]").prop('required', true); $("#D__ID input[name=shift_end4]").prop('required', true); $("#D__ID input[name=shift_month4]").prop('required', true);
+                        $("#shift5__ID").show(); $("#D__ID input[name=shift_start5]").prop('required', true); $("#D__ID input[name=shift_end5]").prop('required', true); $("#D__ID input[name=shift_month5]").prop('required', true);
+                        $("#shift6__ID").show(); $("#D__ID input[name=shift_start6]").prop('required', true); $("#D__ID input[name=shift_end6]").prop('required', true); $("#D__ID input[name=shift_month6]").prop('required', true);
+                        break;
+                    case '7':
+                        $("#q19__ID").show();
+                        $("#shift1__ID").show(); $("#D__ID input[name=shift_start1]").prop('required', true); $("#D__ID input[name=shift_end1]").prop('required', true); $("#D__ID input[name=shift_month1]").prop('required', true);
+                        $("#shift2__ID").show(); $("#D__ID input[name=shift_start2]").prop('required', true); $("#D__ID input[name=shift_end2]").prop('required', true); $("#D__ID input[name=shift_month2]").prop('required', true);
+                        $("#shift3__ID").show(); $("#D__ID input[name=shift_start3]").prop('required', true); $("#D__ID input[name=shift_end3]").prop('required', true); $("#D__ID input[name=shift_month3]").prop('required', true);
+                        $("#shift4__ID").show(); $("#D__ID input[name=shift_start4]").prop('required', true); $("#D__ID input[name=shift_end4]").prop('required', true); $("#D__ID input[name=shift_month4]").prop('required', true);
+                        $("#shift5__ID").show(); $("#D__ID input[name=shift_start5]").prop('required', true); $("#D__ID input[name=shift_end5]").prop('required', true); $("#D__ID input[name=shift_month5]").prop('required', true);
+                        $("#shift6__ID").show(); $("#D__ID input[name=shift_start6]").prop('required', true); $("#D__ID input[name=shift_end6]").prop('required', true); $("#D__ID input[name=shift_month6]").prop('required', true);
+                        $("#shift7__ID").show(); $("#D__ID input[name=shift_start7]").prop('required', true); $("#D__ID input[name=shift_end7]").prop('required', true); $("#D__ID input[name=shift_month7]").prop('required', true);
+                        break;
+                }
+                //-------------------------------------
+                if ($("#D__ID input[name=shift_years_morning]").val() != '0') {
+                    $("#D__ID input[name=shift_years_morning]").prop('required', true);
+                }
+                else {
+                    $("#D__ID input[name=shift_years_morning]").prop('required', false);
+                }
+                //-------------------------------------
+                if ($("#D__ID input[name=shift_years_afternoon]").val() != '0') {
+                    $("#D__ID input[name=shift_years_afternoon]").prop('required', true);
+                }
+                else {
+                    $("#D__ID input[name=shift_years_afternoon]").prop('required', false);
+                }
+                //-------------------------------------
+                if ($("#D__ID input[name=shift_years_night]").val() != '0') {
+                    $("#D__ID input[name=shift_years_night]").prop('required', true);
+                }
+                else {
+                    $("#D__ID input[name=shift_years_night]").prop('required', false);
+                }
+                //-------------------------------------
+                if ($("#D__ID input[name=shift_years_extended]").val() != '0') {
+                    $("#D__ID input[name=shift_years_extended]").prop('required', true);
+                }
+                else {
+                    $("#D__ID input[name=shift_years_extended]").prop('required', false);
+                }
+            }
+            //-------------------------------------
+            $("#D__ID input[name=current_work]").on('click', function () {
+                if ($("#D__ID input[name=current_work]:checked").val() == '1') {
+                    $("#D__ID input[name=shift_no]").prop('required', true);
+                    $("#q18__ID").show();
+                }
+                else {
+                    $("#D__ID input[name=shift_no]").prop('required', false);
+                    $("#q18__ID").hide();
+                }
+            })
+            //-------------------------------------
+            $("#D__ID input[name=shift_no]").on('click', function () {
+                $("#q19__ID").hide();
+                $("#shift1__ID").hide(); $("#D__ID input[name=shift_start1]").prop('required', false); $("#D__ID input[name=shift_end1]").prop('required', false); $("#D__ID input[name=shift_month1]").prop('required', false);
+                $("#shift2__ID").hide(); $("#D__ID input[name=shift_start2]").prop('required', false); $("#D__ID input[name=shift_end2]").prop('required', false); $("#D__ID input[name=shift_month2]").prop('required', false);
+                $("#shift3__ID").hide(); $("#D__ID input[name=shift_start3]").prop('required', false); $("#D__ID input[name=shift_end3]").prop('required', false); $("#D__ID input[name=shift_month3]").prop('required', false);
+                $("#shift4__ID").hide(); $("#D__ID input[name=shift_start4]").prop('required', false); $("#D__ID input[name=shift_end4]").prop('required', false); $("#D__ID input[name=shift_month4]").prop('required', false);
+                $("#shift5__ID").hide(); $("#D__ID input[name=shift_start5]").prop('required', false); $("#D__ID input[name=shift_end5]").prop('required', false); $("#D__ID input[name=shift_month5]").prop('required', false);
+                $("#shift6__ID").hide(); $("#D__ID input[name=shift_start6]").prop('required', false); $("#D__ID input[name=shift_end6]").prop('required', false); $("#D__ID input[name=shift_month6]").prop('required', false);
+                $("#shift7__ID").hide(); $("#D__ID input[name=shift_start7]").prop('required', false); $("#D__ID input[name=shift_end7]").prop('required', false); $("#D__ID input[name=shift_month7]").prop('required', false);
+                switch ($("#D__ID input[name=shift_no]:checked").val()) {
+                    case '1':
+                        $("#q19__ID").show();
+                        $("#shift1__ID").show(); $("#D__ID input[name=shift_start1]").prop('required', true); $("#D__ID input[name=shift_end1]").prop('required', true); $("#D__ID input[name=shift_month1]").prop('required', true);
+                        break;
+                    case '2':
+                        $("#q19__ID").show();
+                        $("#shift1__ID").show(); $("#D__ID input[name=shift_start1]").prop('required', true); $("#D__ID input[name=shift_end1]").prop('required', true); $("#D__ID input[name=shift_month1]").prop('required', true);
+                        $("#shift2__ID").show(); $("#D__ID input[name=shift_start2]").prop('required', true); $("#D__ID input[name=shift_end2]").prop('required', true); $("#D__ID input[name=shift_month2]").prop('required', true);
+                        break;
+                    case '3':
+                        $("#q19__ID").show();
+                        $("#shift1__ID").show(); $("#D__ID input[name=shift_start1]").prop('required', true); $("#D__ID input[name=shift_end1]").prop('required', true); $("#D__ID input[name=shift_month1]").prop('required', true);
+                        $("#shift2__ID").show(); $("#D__ID input[name=shift_start2]").prop('required', true); $("#D__ID input[name=shift_end2]").prop('required', true); $("#D__ID input[name=shift_month2]").prop('required', true);
+                        $("#shift3__ID").show(); $("#D__ID input[name=shift_start3]").prop('required', true); $("#D__ID input[name=shift_end3]").prop('required', true); $("#D__ID input[name=shift_month3]").prop('required', true);
+                        break;
+                    case '4':
+                        $("#q19__ID").show();
+                        $("#shift1__ID").show(); $("#D__ID input[name=shift_start1]").prop('required', true); $("#D__ID input[name=shift_end1]").prop('required', true); $("#D__ID input[name=shift_month1]").prop('required', true);
+                        $("#shift2__ID").show(); $("#D__ID input[name=shift_start2]").prop('required', true); $("#D__ID input[name=shift_end2]").prop('required', true); $("#D__ID input[name=shift_month2]").prop('required', true);
+                        $("#shift3__ID").show(); $("#D__ID input[name=shift_start3]").prop('required', true); $("#D__ID input[name=shift_end3]").prop('required', true); $("#D__ID input[name=shift_month3]").prop('required', true);
+                        $("#shift4__ID").show(); $("#D__ID input[name=shift_start4]").prop('required', true); $("#D__ID input[name=shift_end4]").prop('required', true); $("#D__ID input[name=shift_month4]").prop('required', true);
+                        break;
+                    case '5':
+                        $("#q19__ID").show();
+                        $("#shift1__ID").show(); $("#D__ID input[name=shift_start1]").prop('required', true); $("#D__ID input[name=shift_end1]").prop('required', true); $("#D__ID input[name=shift_month1]").prop('required', true);
+                        $("#shift2__ID").show(); $("#D__ID input[name=shift_start2]").prop('required', true); $("#D__ID input[name=shift_end2]").prop('required', true); $("#D__ID input[name=shift_month2]").prop('required', true);
+                        $("#shift3__ID").show(); $("#D__ID input[name=shift_start3]").prop('required', true); $("#D__ID input[name=shift_end3]").prop('required', true); $("#D__ID input[name=shift_month3]").prop('required', true);
+                        $("#shift4__ID").show(); $("#D__ID input[name=shift_start4]").prop('required', true); $("#D__ID input[name=shift_end4]").prop('required', true); $("#D__ID input[name=shift_month4]").prop('required', true);
+                        $("#shift5__ID").show(); $("#D__ID input[name=shift_start5]").prop('required', true); $("#D__ID input[name=shift_end5]").prop('required', true); $("#D__ID input[name=shift_month5]").prop('required', true);
+                        break;
+                    case '6':
+                        $("#q19__ID").show();
+                        $("#shift1__ID").show(); $("#D__ID input[name=shift_start1]").prop('required', true); $("#D__ID input[name=shift_end1]").prop('required', true); $("#D__ID input[name=shift_month1]").prop('required', true);
+                        $("#shift2__ID").show(); $("#D__ID input[name=shift_start2]").prop('required', true); $("#D__ID input[name=shift_end2]").prop('required', true); $("#D__ID input[name=shift_month2]").prop('required', true);
+                        $("#shift3__ID").show(); $("#D__ID input[name=shift_start3]").prop('required', true); $("#D__ID input[name=shift_end3]").prop('required', true); $("#D__ID input[name=shift_month3]").prop('required', true);
+                        $("#shift4__ID").show(); $("#D__ID input[name=shift_start4]").prop('required', true); $("#D__ID input[name=shift_end4]").prop('required', true); $("#D__ID input[name=shift_month4]").prop('required', true);
+                        $("#shift5__ID").show(); $("#D__ID input[name=shift_start5]").prop('required', true); $("#D__ID input[name=shift_end5]").prop('required', true); $("#D__ID input[name=shift_month5]").prop('required', true);
+                        $("#shift6__ID").show(); $("#D__ID input[name=shift_start6]").prop('required', true); $("#D__ID input[name=shift_end6]").prop('required', true); $("#D__ID input[name=shift_month6]").prop('required', true);
+                        break;
+                    case '7':
+                        $("#q19__ID").show();
+                        $("#shift1__ID").show(); $("#D__ID input[name=shift_start1]").prop('required', true); $("#D__ID input[name=shift_end1]").prop('required', true); $("#D__ID input[name=shift_month1]").prop('required', true);
+                        $("#shift2__ID").show(); $("#D__ID input[name=shift_start2]").prop('required', true); $("#D__ID input[name=shift_end2]").prop('required', true); $("#D__ID input[name=shift_month2]").prop('required', true);
+                        $("#shift3__ID").show(); $("#D__ID input[name=shift_start3]").prop('required', true); $("#D__ID input[name=shift_end3]").prop('required', true); $("#D__ID input[name=shift_month3]").prop('required', true);
+                        $("#shift4__ID").show(); $("#D__ID input[name=shift_start4]").prop('required', true); $("#D__ID input[name=shift_end4]").prop('required', true); $("#D__ID input[name=shift_month4]").prop('required', true);
+                        $("#shift5__ID").show(); $("#D__ID input[name=shift_start5]").prop('required', true); $("#D__ID input[name=shift_end5]").prop('required', true); $("#D__ID input[name=shift_month5]").prop('required', true);
+                        $("#shift6__ID").show(); $("#D__ID input[name=shift_start6]").prop('required', true); $("#D__ID input[name=shift_end6]").prop('required', true); $("#D__ID input[name=shift_month6]").prop('required', true);
+                        $("#shift7__ID").show(); $("#D__ID input[name=shift_start7]").prop('required', true); $("#D__ID input[name=shift_end7]").prop('required', true); $("#D__ID input[name=shift_month7]").prop('required', true);
+                        break;
+                }
+            })
+            //-------------------------------------
+            $("#D__ID input[name=shift_years_morning]").on('change', function () {
+                if ($("#D__ID input[name=shift_years_morning]").val() != '0') {
+                    $("#D__ID input[name=shift_last_date_morning]").prop('required', true);
+                }
+                else {
+                    $("#D__ID input[name=shift_last_date_morning]").prop('required', false);
+                }
+            });
+            //-------------------------------------
+            $("#D__ID input[name=shift_years_afternoon]").on('change', function () {
+                if ($("#D__ID input[name=shift_years_afternoon]").val() != '0') {
+                    $("#D__ID input[name=shift_last_date_afternoon]").prop('required', true);
+                }
+                else {
+                    $("#D__ID input[name=shift_last_date_afternoon]").prop('required', false);
+                }
+            });
+            //-------------------------------------
+            $("#D__ID input[name=shift_years_night]").on('change', function () {
+                if ($("#D__ID input[name=shift_years_night]").val() != '0') {
+                    $("#D__ID input[name=shift_last_date_night]").prop('required', true);
+                }
+                else {
+                    $("#D__ID input[name=shift_last_date_night]").prop('required', false);
+                }
+            });
+            //-------------------------------------
+            $("#D__ID input[name=shift_years_extended]").on('change', function () {
+                if ($("#D__ID input[name=shift_years_extended]").val() != '0') {
+                    $("#D__ID input[name=shift_last_date_extended]").prop('required', true);
+                }
+                else {
+                    $("#D__ID input[name=shift_last_date_extended]").prop('required', false);
+                }
+            });
+            //-------------------------------------
+            var before_submit=m.before_submit;
+            m.before_submit=function(data,index){
+                if (data.shift_last_date_morning != '') {
+                    var splitdate = data.shift_last_date_morning.split('-');
+                    data.shift_last_date_morning = splitdate[1] + "," + splitdate[0];
+                }
+                if (data.shift_last_date_afternoon != '') {
+                    var splitdate = data.shift_last_date_afternoon.split('-');
+                    data.shift_last_date_afternoon = splitdate[1] + "," + splitdate[0];
+                }
+                if (data.shift_last_date_night != '') {
+                    var splitdate = data.shift_last_date_night.split('-');
+                    data.shift_last_date_night = splitdate[1] + "," + splitdate[0];
+                }
+                if (data.shift_last_date_extended != '') {
+                    var splitdate = data.shift_last_date_extended.split('-');
+                    data.shift_last_date_extended = splitdate[1] + "," + splitdate[0];
+                }
+                return before_submit(data,index);
+            }
+
+        }
+    </script>
+     <style>
+        #D__ID .mt-95 {
+            max-width:600px;
+        }
+        VmInclude:__CURRENT_PATH__/wappsystem-form.css
+    </style>
+</div>

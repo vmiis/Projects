@@ -1,0 +1,77 @@
+<div id=D__ID>
+    <section id=form_container__ID>
+    	<div id=header__ID>
+    		Form
+    	</div>
+    	<form id=F__ID>
+    		<div class="container">
+                <hr class=hr__ID>
+    			<div class="row row__ID">
+    				<div class=col-md-4>
+    					<span>Name</span>
+    				</div>
+    				<div class=col-md-8>
+    					<input type=text name=Name class=form-control />
+    				</div>
+    			</div>
+                <hr class=hr__ID>
+    			<div class="row row__ID">
+    				<div class=col-md-4>
+    					<span>Gender</span>
+    				</div>
+    				<div class=col-md-8>
+    					<select name=Gender class=form-control >
+							<option></option>
+							<option>Male</option>
+							<option>Female</option>
+							<option>Other</option>
+						</select>
+    				</div>
+    			</div>
+				<hr class=hr__ID>
+    			<br>
+    			<div class="row">
+    				<div class=col>
+    					<button id=submit__ID type="submit" class="btn btn-secondary">Submit</button>
+    				</div>
+    			</div>
+    		</div>
+    	</form>
+    </section>
+    <script>
+    	function F__ID(){
+    		//-------------------------------------
+            VmInclude:__COMPONENT__/f/form.01.js
+			//-------------------------------------
+			var autocomplete_req={cmd:"find",field:'.Data.First_Name',table:m.ListTb,options:{},skip:0,limit:10}
+			var autocomplete_callback=function(items){}
+			var autocomplete_list=function(records){
+				var items=[];
+				for(var i=0;i<records.length;i++){
+					var obj={};
+					obj.label=records[i].Data["First_Name"]+" "+records[i].Data["Last_Name"];
+					items.push(obj);
+				}
+				return items;
+			}
+			var wait1=function(){
+				$vm.autocomplete( $('input[name=Name'),autocomplete_req,autocomplete_list,autocomplete_callback);
+			}
+			var I=0; var loop_1=setInterval(function (){
+				if($vm['jquery-ui-min-js']!=undefined){  clearInterval(loop_1); wait1(); }
+				I++; if(I>50){ clearInterval(loop_1); alert("jquery-ui.min.js is not installed."); }
+			},100);
+			//-------------------------------------
+    	}
+    </script>
+    <style>
+        VmInclude:__COMPONENT__/f/form.01.css
+        #form_container__ID{
+            max-width:600px;
+        }
+        .hr__ID{
+            margin:6px 0;
+            padding:0;
+        }
+    </style>
+</div>

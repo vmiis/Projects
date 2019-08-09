@@ -1,0 +1,111 @@
+<div id=D__ID>
+
+  <!--third html start -->
+  <div class="container mt-95 mb-3">
+    <div class="row">
+
+      <!-- form container start -->
+
+      <div class="col-12 col-lg-12 col-md-12 col-sm-12 mx-auto formbox">
+        <div class="row">
+          <div class="col-12">
+
+            <!-- form start -->
+            <form id=F__ID>
+              <!---------------------------------------------------->
+              <h3>CONSENT FORM</h3>
+              <!-- participant part for all tsak forms -------------------->
+              <div id="participant_div__ID">
+                <div class="form-group">
+                  <fieldset class="subquestions">
+                    <label><span class="">Participant</span>
+                      <input type=text name="Participant" class=form-control id=Participant__ID data-id="Participant" />
+                    </label><br>
+                    <label><span class="">Participant ID</span>
+                      <input type=text name="Participant_uid" class=form-control readonly />
+                    </label>
+                  </fieldset>
+                </div>
+              </div>
+              <!-- form group -->
+              <div class="form-group">
+                <fieldset class="">
+                  <label><span>
+                      Dear Sir/Madam,
+                      <br><br>
+                      This questionnaire was developed by the Australian Sleep Trials Network and the Cooperative
+                      Research Centre (CRC) for Alertness, Safety and Productivity (http://www.alertnesscrc.com/). The
+                      CRC is a collaboration between the Australian Government working closely with industry partners
+                      and Australia’s top Universities and Research Institutes whose primary aim is to conduct cutting
+                      edge, quality research to develop innovative ways to improve sleep health, alertness, safety and
+                      productivity for all Australians. This important research is impossible without the generous
+                      contribution from volunteers, and as such we would like to invite you to contribute to this
+                      research effort designed to better understand and treat sleep disorders. We would be grateful if
+                      you would complete the following questionnaire as soon as possible prior to your scheduled sleep
+                      study. This questionnaire will take approximately 45 minutes to complete, which can be done in
+                      multiple sessions. Please complete all sections unless it states that you are not required to do
+                      so.
+                      <br><br>
+                      Taking part in this research is completely voluntary and all information obtained in this
+                      questionnaire will be kept confidential and de-identified prior to any research use. Any research
+                      information will be de-identified and stored completely anonymously and separate from your
+                      personal information on a CRC database with the same high level of security as your personal
+                      medical record. Your information will not be provided to any third party unless required by law.
+                      <br><br>
+                      If you have any concerns or questions we encourage you to contact our research team on 0x xxxx xxxx
+                       as early as possible prior to your study date.
+                    </span></label>
+                </fieldset>
+              </div>
+              <div class="form-group">
+                <fieldset class="">
+                  <h6>I have read and understood the above information and:<br>Please select</h6>
+                  <label class="radiobuttons text-left">
+                    <input type="radio" name="participation" value="Yes" required>
+                    <span class="checkmark"></span> Yes, I agree to participate in this research study and I understand
+                    that I may be contacted and
+                    invited to participate in future research if I am deemed eligible</label><br>
+                  <label class="radiobuttons">
+                    <input type="radio" name="participation" value="No">
+                    <span class="checkmark"></span> No, I do not wish to take part in this or future research</label>
+                </fieldset>
+              </div>
+              <div class="form-group">
+                <fieldset class="subquestions">
+                  <label><span class="font-italic">By selecting ‘Yes’, you are stating that you understand the
+                      information provided and give consent for your de-identified responses to be used for research
+                      purposes. You understand that your participation in this research study is entirely voluntary, you
+                      are under no obligation to participate and you can withdraw at any time. You also understand that
+                      all data collected under this research study is strictly confidential.
+                  </label></span>
+                </fieldset>
+              </div>
+              <button type="submit" id="submit__ID" class="btn btn-primary btn-lg">Submit</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>
+    function F__ID() {
+      //-------------------------------------
+      VmInclude: '__COMPONENT__/f/form.01.js'
+      VmInclude: __CURRENT_PATH__/shared-form.js
+      //-------------------------------------
+      var load2 = m.load;
+      m.load = function () {
+        load2();
+        //$('#phone__ID').text(m.input.participant_record.Data.phone);
+        //alert(JSON.stringify(m.input.participant_record.Data.phone))
+      }
+    }
+  </script>
+  <style>
+    #D__ID .mt-95 {
+      max-width: 600px;
+    }
+
+    VmInclude:__CURRENT_PATH__/wappsystem-form.css
+  </style>
+</div>

@@ -1,0 +1,62 @@
+<div id=D__ID>
+    <section id=form_container__ID>
+    	<div id=header__ID>
+    		Form
+    	</div>
+    	<form id=F__ID>
+    		<div class="container">
+                <hr class=hr__ID>
+    			<div class="row row__ID">
+    				<div class=col-md-4>
+    					<span>Email</span>
+    				</div>
+    				<div class=col-md-8>
+    					<input type="email" name=Email class=form-control />
+    				</div>
+    			</div>
+                <hr class=hr__ID>
+    			<div class="row row__ID">
+    				<div class=col-md-4>
+    					<span>Home Phone</span>
+    				</div>
+    				<div class=col-md-8>
+    					<input type="tel" name=Home_Phone class=form-control pattern="[0-9]{2}-[0-9]{8}" required oninvalid="setCustomValidity('format:xx-xxxxxxxx x:0~9')" oninput="setCustomValidity('')" />
+    				</div>
+    			</div>
+                <hr class=hr__ID>
+    			<div class="row row__ID">
+    				<div class=col-md-4>
+    					<span>Mobile Phone</span>
+    				</div>
+    				<div class=col-md-8>
+    					<input type="tel" name=Mobile_Phone class=form-control pattern="[0][4][0-9]{2}-[0-9]{6}" required oninvalid="setCustomValidity('format:04xx-xxxxxx x:0~9')" oninput="setCustomValidity('')" />
+    				</div>
+    			</div>
+                <hr class=hr__ID>
+    			<br>
+    			<div class="row">
+    				<div class=col>
+    					<button id=submit__ID type="submit" class="btn btn-secondary">Submit</button>
+    				</div>
+    			</div>
+    		</div>
+    	</form>
+    </section>
+    <script>
+    	function F__ID(){
+    		//-------------------------------------
+            VmInclude:__COMPONENT__/f/form.01.js
+    		//-------------------------------------
+    	}
+    </script>
+    <style>
+        VmInclude:__COMPONENT__/f/form.01.css
+        #form_container__ID{
+            max-width:600px;
+        }
+        .hr__ID{
+            margin:6px 0;
+            padding:0;
+        }
+    </style>
+</div>
