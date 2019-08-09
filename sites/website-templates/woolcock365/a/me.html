@@ -7,7 +7,7 @@
             var D="";
             //------------------------------------
 			$('#D__ID').on('load',function(){
-				$vm.m365_graph("https://graph.microsoft.com/v1.0/me/",function(data){
+				$vm.m365_graph("https://graph.microsoft.com/v1.0/me/",{scopes: ["user.read"]},function(data){
                     D=data;
 					$('#info__ID').html('');
 					var txt="<table>";

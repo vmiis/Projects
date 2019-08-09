@@ -12,7 +12,7 @@
                 var rid=m.input.rid;
                 var g_id=""; if(m.input.group_id!=undefined) g_id=m.input.group_id;
                 var g_sub=""; if(m.input.g_sub!=undefined) g_sub=m.input.g_sub;
-				$vm.m365_graph("https://graph.microsoft.com/v1.0/"+g_id+"sites/"+m.input.site_id+"/drives/"+rid+"/root/children"+g_sub,function(data){
+				$vm.m365_graph("https://graph.microsoft.com/v1.0/"+g_id+"sites/"+m.input.site_id+"/drives/"+rid+"/root/children"+g_sub,{scopes: ["AllSites.Read"]},function(data){
                     D=data;
 					var txt="<table>";
 					txt+="<tr><th>id</th><th>createdDateTime</th><th>createdBy</th><th>Contents</th></tr>";

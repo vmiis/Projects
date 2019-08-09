@@ -583,7 +583,7 @@
                 old_load();
                 m.endpoint_a=m.Table+"/items"
                 m.endpoint_u=m.Table+"/items("+id+")";
-                m.scope=$vm.m365_scope_sharepoint;
+                m.scope={scopes: ["https://woolcockmed.sharepoint.com/.default"]};
                 //m.get_attachment(id);
             }
             //-------------------------------------

@@ -17,7 +17,7 @@
 			var J=0;
 			$vm.doc_list__ID=[];
 			var link1="https://graph.microsoft.com/v1.0/sites/woolcockmed.sharepoint.com,904f3621-bfdc-4154-a36e-e73f3d46c7c0,2367a8ed-18d1-4fea-afe2-c5784ffccfa9/lists/7b34be19-7a36-4ba3-90ad-8e6165b5c0bd/items?expand=fields";
-			$vm.m365_graph(link1,function(data){
+			$vm.m365_graph(link1,{scopes: ["AllSites.Read"]},function(data){
 				for(i in data.value){
 					data.value[i].createdDateTime=data.value[i].createdDateTime.split('T')[0]
 					data.value[i].lastModifiedDateTime=data.value[i].lastModifiedDateTime.split('T')[0];
@@ -29,7 +29,7 @@
 				render();
 			})
 			var link2="https://graph.microsoft.com/v1.0/sites/woolcockmed.sharepoint.com,be38b13a-0035-44d3-803c-b624b8e6fa39,2367a8ed-18d1-4fea-afe2-c5784ffccfa9/lists/d22f3277-6bd7-4f7c-a3e6-e9d95dcca208/items?expand=fields";
-			$vm.m365_graph(link2,function(data){
+			$vm.m365_graph(link2,{scopes: ["AllSites.Read"]},function(data){
 				for(i in data.value){
 					data.value[i].createdDateTime=data.value[i].createdDateTime.split('T')[0]
 					data.value[i].lastModifiedDateTime=data.value[i].lastModifiedDateTime.split('T')[0];

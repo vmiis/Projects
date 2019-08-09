@@ -11,7 +11,7 @@
                 $('#info__ID').html('');
                 var g_id=""; if(m.input.group_id!=undefined) g_id=m.input.group_id;
                 var rid=m.input.rid;
-				$vm.m365_graph("https://graph.microsoft.com/v1.0/"+g_id+"sites/"+m.input.site_id+"/lists/"+rid+"/columns",function(data){
+				$vm.m365_graph("https://graph.microsoft.com/v1.0/"+g_id+"sites/"+m.input.site_id+"/lists/"+rid+"/columns",{scopes: ["AllSites.Read"]},function(data){
                     D=data;
 					var txt="<table>";
 					txt+="<tr><th>Name</th></tr>";

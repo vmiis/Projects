@@ -13,7 +13,7 @@
 				var g_id="";
 				if(m.input.group_name!=undefined){ name=m.input.group_name; g_id=m.input.group_id;}
 				$('#group__ID').text(name);
-				$vm.m365_graph("https://graph.microsoft.com/v1.0/"+g_id+"sites/root/sites?search=*",function(data){
+				$vm.m365_graph("https://graph.microsoft.com/v1.0/"+g_id+"sites/root/sites?search=*",{scopes: ["AllSites.Read"]},function(data){
 					D=data;
 					var txt="<table>";
 					txt+="<tr><th>displayName</th><th>createdDateTime</th><th>Content List</th><th>Drive</th><th>webUrl</th>";

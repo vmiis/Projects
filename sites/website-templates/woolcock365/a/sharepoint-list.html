@@ -12,7 +12,7 @@
 				$('#site_name__ID').text(m.input.site_name)
 				var g_id="";
 				if(m.input.group_id!=undefined) g_id=m.input.group_id;
-				$vm.m365_graph("https://graph.microsoft.com/v1.0/sites/"+m.input.site_id+"/lists",function(data){
+				$vm.m365_graph("https://graph.microsoft.com/v1.0/sites/"+m.input.site_id+"/lists",{scopes: ["AllSites.Read"]},function(data){
 					D=data;
 					var txt="<table>";
 					txt+="<tr><th>Name</th><th>createdBy</th><th>createdDateTime</th><th>Columns</th><th>Items</th></tr>";

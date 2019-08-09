@@ -59,7 +59,7 @@
 			var get_users=function(nl){
 				Mn++;
 				if(nl!=undefined && Mn<10){
-					$vm.m365_graph(nl,function(data){
+					$vm.m365_graph(nl,{scopes: ["user.read"]},function(data){
 						for(i in data.value){
 							$vm.user_list__ID.push(data.value[i])
 						}
