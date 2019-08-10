@@ -26,22 +26,17 @@
         //-------------------------------------    
         var process_lock=function(I){
             var lk=0; if(m.records[I].LK==1) lk=1;
-            var rid=m.records[I]._id;
+            var id=m.records[I]._id;
             
-            //alert(rid+" "+lk);
-            
-            var cmd='lock';
             var to_do_lock=0; if(lk==0) to_do_lock=1;
 
-            /*
-            $vm.request({cmd:"lock",rid:rid,table:m.Table,lock:to_do_lock},function(res){
-                alert(1)
+            $vm.request({cmd:"lock",id:id,table:m.Table,lock:to_do_lock},function(res){
+                console.log(res)
+                var $td=$('#grid__ID tr:nth-child('+(I+2)+')').find('td').eq(2);
+                m.records[I].LK=to_do_lock;
+                m.cell_render(m.records,I,'_Lock',$td);
             });
-            */
 
-            var $td=$('#grid__ID tr:nth-child('+(I+2)+')').find('td').eq(2);
-            m.records[I].LK=to_do_lock;
-            m.cell_render(m.records,I,'_Lock',$td);
         }
         //-------------------------------------    
     }
