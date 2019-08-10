@@ -6,6 +6,8 @@ $vm.m365_init=function(){
     //var hosting_path0=window.location.href.split('#')[0];
     //var hosting_path=hosting_path0.substring(0, hosting_path0.split('?')[0].lastIndexOf('/'));
 
+    $vm.m365_scope_sharepoint={scopes: ["https://woolcockmed.sharepoint.com/.default"]}
+
     $vm.m365_scope={
         scopes: ["user.read","AllSites.Read"] /*,"User.Read.All","Files.Read.All","Sites.ReadWrite.All"*/
     };

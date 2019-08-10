@@ -188,7 +188,7 @@
             //-------------------------------------
             m.request_data=function(){
                 $('#vm_data_loader').show();
-                $vm.m365_msal.acquireTokenSilent({scopes: ["https://woolcockmed.sharepoint.com/.default"]}).then(function (tokenResponse) {
+                $vm.m365_msal.acquireTokenSilent($vm.m365_scope_sharepoint).then(function (tokenResponse) {
                     m.ajax(m.endpoint,tokenResponse,function(data){
                         m.data_process(data);
                     })
@@ -200,7 +200,7 @@
             }
             //-------------------------------------
             m.delete=function(rid){
-                $vm.m365_msal.acquireTokenSilent({scopes: ["https://woolcockmed.sharepoint.com/.default"]}).then(function (tokenResponse) {
+                $vm.m365_msal.acquireTokenSilent($vm.m365_scope_sharepoint).then(function (tokenResponse) {
                     var mt1=new Date().getTime();
                     var xmlHttp = new XMLHttpRequest();
                     xmlHttp.onreadystatechange = function () {

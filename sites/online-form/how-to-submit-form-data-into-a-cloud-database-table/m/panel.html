@@ -6,6 +6,8 @@
         </div>
     	<div class='nav__ID'>
             <span>How to submit form data into a cloud database table</span>
+            <br>There are many cloud data database providers. Here we use Wappsystem Cloud database services.
+            <br>What we need are api address ("https://api.wappsystem.com"), a table dname ("demo-190726") and form data.
             <br><br>
             <ol>
                 <li>
@@ -49,8 +51,29 @@
 
                 </li>
                 <li><b>Link the form to a database table</b>
+                <br>All modules information are stored in the file module_list.js
 <pre style='background-color: #333;color:#fff'>
     "data-collection-form":  {url:"$H/m/data-collection-form.html",Table:"demo-190726"},
+</pre>
+                </li>
+
+                <li><b>Code for sending data to cloud</b>
+                <br>The following code is simplified for showing the logic. The details of the code is in the library (https://github.com/vmiis/vm)
+                <br>In most case just include "__COMPONENT__/f/form.01.js" in the form.
+<pre style='background-color: #333;color:#fff'>
+    $('#F__ID').submit(function(){
+        var req={
+            cmd:"insert",
+            table:table_name,
+            data:$vm.serialize('#F__ID');
+        }
+        $.ajax(
+            {
+                url:api_server_address
+                data: JSON.stringify(req)
+            }
+        )
+    })
 </pre>
                 </li>
                 <li>
@@ -153,7 +176,7 @@
 	    .nav__ID span{
 			color:#283f55;
 			font-weight: bold;
-			margin:3px 10px;
+			margin:3px 0px;
             font-size: 18px;
             
             display: inline-block;

@@ -1,6 +1,8 @@
 (function(){
     //-------------------------------------------------------------------------------------
     var modules={
+        "lock-data":{url:"$H/lock/data.html",Table:"vm-demo-19081001",form_module:"lock-form"},
+        "lock-form":{url:"$H/lock/form.html",Table:"vm-demo-19081001"},
 
         "purchase-order-my-request-data":  	{url:"$H/m5/my-request-data.html",
             Table: "purchase-order-request-demo190712",
