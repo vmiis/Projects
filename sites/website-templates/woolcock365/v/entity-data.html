@@ -69,7 +69,9 @@
             m.fields="_Form,"+fields+",Submit_date,Submitted_by,_Delete";
             //-------------------------------------
             m.set_req=function(){
-                m.endpoint=m.Table+"?$filter=contains(LogicalCollectionName";
+                //var limit=30;parseInt($('#page_size__ID').val()); 
+                m.odata_maxpagesize=30;
+                m.endpoint=m.Table+"";//+"?$filter=contains(LogicalCollectionName)";
                 //&$expand=Author&$select=*,Author/UserName,Author/FirstName,Author/LastName&$filter=Author/UserName eq '"+$vm.user_name_365+"' ";
                 
                 /*
