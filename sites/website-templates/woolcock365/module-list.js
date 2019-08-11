@@ -27,6 +27,22 @@
                                             },
 
 
+        "project-data":                     {url:"$H/v/project-data.html",
+                                                Table: "https://woolcockdev.crm6.dynamics.com/api/data/v9.1/woolcock_projectses",
+                                                form_module:"new-hire-form",router:1
+                                            },
+        "study-data":                       {url:"$H/v/study-data.html",
+                                                Table: "https://woolcockdev.crm6.dynamics.com/api/data/v9.1/woolcock_studies",
+                                                form_module:"new-hire-form",router:1
+                                            },
+        "student-data":                     {url:"$H/v/study-data.html",
+                                                Table: "https://woolcockdev.crm6.dynamics.com/api/data/v9.1/woolcock_studentses",
+                                                form_module:"new-hire-form",router:1
+                                            },
+        "contact-data":                     {url:"$H/v/contact-data.html",
+                                                Table: "https://woolcockdev.crm6.dynamics.com/api/data/v9.1/contacts",
+                                                form_module:"new-hire-form",router:1
+                                            },
         "new-hire-data":                    {url:"$H/h/new-hire-data.html",
                                                 Table: "https://woolcockmed.sharepoint.com/sites/HRandEmployment/_api/web/lists/GetByTitle('New Hire')",
                                                 form_module:"new-hire-form",router:1
