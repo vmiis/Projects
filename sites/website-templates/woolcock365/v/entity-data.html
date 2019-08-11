@@ -62,15 +62,21 @@
             }
             //-------------------------------------
             var fields="\
-					Name|woolcock_name\
+            LogicalCollectionName\
 				";
             var fields_hide="\
                 ";
             m.fields="_Form,"+fields+",Submit_date,Submitted_by,_Delete";
             //-------------------------------------
             m.set_req=function(){
-                m.endpoint=m.Table+"?$expand=createdby($select=fullname)&$orderby=createdon desc";
+                m.endpoint=m.Table+"?$filter=contains(LogicalCollectionName";
                 //&$expand=Author&$select=*,Author/UserName,Author/FirstName,Author/LastName&$filter=Author/UserName eq '"+$vm.user_name_365+"' ";
+                
+                /*
+                if(k!=""){
+                    if(k!="") m.req+="&$filter=contains(LogicalCollectionName,'"+k+"')";
+                }*/
+                
                 m.endpoint_d=m.Table+"/items";
             }
             //-------------------------------------
