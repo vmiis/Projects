@@ -35,6 +35,10 @@
                                                 Table: "https://woolcockdev.crm6.dynamics.com/api/data/v9.1/woolcock_studies",
                                                 form_module:"new-hire-form",router:1
                                             },
+        "child-study-data":                 {url:"$H/v/child-study-data.html",
+                                                Table: "https://woolcockdev.crm6.dynamics.com/api/data/v9.1/woolcock_volunteerauditnews",
+                                                form_module:"new-hire-form",router:1
+                                            },
         "student-data":                     {url:"$H/v/study-data.html",
                                                 Table: "https://woolcockdev.crm6.dynamics.com/api/data/v9.1/woolcock_studentses",
                                                 form_module:"new-hire-form",router:1
