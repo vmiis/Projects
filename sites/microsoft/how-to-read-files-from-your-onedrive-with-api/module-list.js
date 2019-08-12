@@ -9,6 +9,7 @@
         "level-3":                {url:"$H/m/onedrive.html",level:3},
         
         "module-editor":          {url:"https://vm.vmiis.com/component/m/module-editor.html",router:1,sys:1},
+        "json-viewer":            {url:"https://vm.vmiis.com/component/j/json-viewer.html"},
     }
     for(p in modules){
         $vm.module_list[p]=modules[p]; 

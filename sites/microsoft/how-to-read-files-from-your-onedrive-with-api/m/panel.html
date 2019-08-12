@@ -17,8 +17,7 @@
                     Use the following api call to get your onedrive information<br>
 <pre style='background-color: #333;color:#fff'>
     $vm.m365_graph("https://graph.microsoft.com/v1.0/me/drive/root/children",{scopes: ["Files.Read.All"]},function(data){
-        console.log(data);
-        $vm.show_json_data(data);
+        $vm.load_module('json-viewer','',{json:data})
     })
 </pre>
 <br>
@@ -48,8 +47,7 @@
             //--------------------------------------------------------
             $('#api__ID').on('click',function(){
 				$vm.m365_graph("https://graph.microsoft.com/v1.0/me/drive/root/children",{scopes: ["Files.Read.All"]},function(data){
-                   console.log(data);
-                   $vm.show_json_data(data);
+                    $vm.load_module('json-viewer','',{json:data})
 				})
             })
             //--------------------------------------------------------

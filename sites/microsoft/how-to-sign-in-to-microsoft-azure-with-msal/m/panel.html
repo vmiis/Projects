@@ -34,8 +34,7 @@
                     <br>The following is an example to get information of yourself
 <pre style='background-color: #333;color:#fff'>
     $vm.m365_graph("https://graph.microsoft.com/v1.0/me/",{scopes: ["user.read"]},function(data){
-        console.log(data);
-        $vm.show_json_data(data);
+        $vm.load_module('json-viewer','',{json:data})
     })
 </pre>
                     <u id=test__ID style='cursor:pointer'> click here to test</u>
@@ -46,10 +45,6 @@
                     <br><a target=_blank href='https://docs.microsoft.com/en-us/rest/api/azure/' ><u>Click this link for more information about Microsoft Azure API</u></a>
                     <br><a target=_blank href='https://docs.microsoft.com/en-us/sharepoint/dev/sp-add-ins/get-to-know-the-sharepoint-rest-service' ><u>Click this link for more information about SharepointREST API</u></a>
                     <br><a target=_blank href='https://docs.microsoft.com/en-gb/powerapps/developer/common-data-service/webapi/overview?view=dynamics-ce-odata-9' ><u>Click this link for more information about Common Data Service Web API</u></a>
-
-                    
-
-                    
                 </li>
             </ol>
         </div>
@@ -67,8 +62,7 @@
             //--------------------------------------------------------
             $('#test__ID').on('click',function(){
 				$vm.m365_graph("https://graph.microsoft.com/v1.0/me/",{scopes: ["user.read"]},function(data){
-                   console.log(data);
-                   $vm.show_json_data(data);
+                   $vm.load_module('json-viewer','',{json:data})
 				})
             })
             //--------------------------------------------------------
