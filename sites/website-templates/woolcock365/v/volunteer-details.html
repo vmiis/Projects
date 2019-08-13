@@ -9,9 +9,12 @@
                 <b>Volunter Information</b>
                 <div id=volunter0__ID style='padding-left:15px;'></div>
                 <div id=volunter__ID></div>
-                <b>Study Information</b>
+                <b>Study History</b>
                 <div id=study0__ID style='padding-left:15px;'></div>
                 <div id=study__ID></div>
+                <b>Audit</b>
+                <div id=audit0__ID style='padding-left:15px;'></div>
+                <div id=audit__ID></div>
             </div>
         </div>
         <style>
@@ -56,30 +59,112 @@
                 var txt="";
                 txt+="Email: "+"<span>"+m.input.record.emailaddress1+",</span>";
                 txt+="Newsletter:"+"<span>"+m.input.record.woolcock_newsletter+",</span>";
-                txt+="Study:"+"<span>"+m.input.record.woolcock_multiselectcondition+",</span>";
-                txt+="Status:"+"<span>"+m.input.record.woolcock_contactstatus+"</span>";
+                
+                var sele=m.input.record.woolcock_multiselectcondition;
+                if(sele!=undefined){
+                    sele=sele.replace('11','I do not have a respiratory condition or sleep problem');
+                    sele=sele.replace('10','Restless Leg Syndrome');
+                    sele=sele.replace('9','Rhinitis');
+                    sele=sele.replace('8','Obstructive Sleep Apnoea (OSA)');
+                    sele=sele.replace('7','Emphysema');
+                    sele=sele.replace('6','Narcolepsy');
+                    sele=sele.replace('5','Chronic Bronchitis');
+                    sele=sele.replace('4','Insomnia');
+                    sele=sele.replace('3','COPD (Chronic Obstructive Pulmonary Disease)');
+                    sele=sele.replace('2','Asthma');
+                    sele=sele.replace('1','Lung Cancer');
+                }
+                else sele="";
+                txt+="Selection:"+"<span>"+sele+",</span>";
+                var status=m.input.record.woolcock_contactstatus;
+                switch(status){
+                    case 1: status="Available";break;
+                    case 3: status="Screening";break;
+                    case 4: status="Eligible";break;
+                    case 5: status="Not Eligible";break;
+                    case 6: status="Enrolled";break;
+                    case 8: status="Withdrawn";break;
+                    case 7: status="Completed";break;
+                }
+                txt+="Status:"+"<span>"+status+"</span>";
                 $('#volunter0__ID').html(txt);
-
+                
                 var $filter="&$filter=_woolcock_volunteeridid_value eq '"+contactid+"'";
                 var $select="";
-                m.endpoint=m.Table+"woolcock_volunteerauditnews?$count=true"+$select+"&$expand=createdby($select=fullname),woolcock_StudyId($select=woolcock_name)&$orderby=createdon desc"+$filter;
+                var endpoint1=m.Table+"woolcock_volunteerauditnews?$count=true"+$select+"&$expand=createdby($select=fullname),woolcock_StudyId($select=woolcock_name)&$orderby=createdon desc"+$filter;
                 $vm.m365_msal.acquireTokenSilent({scopes: ["https://woolcockdev.crm6.dynamics.com/.default"]}).then(function (tokenResponse) {
-                    m.ajax(m.endpoint,tokenResponse,function(data){
+                    m.ajax(endpoint1,tokenResponse,function(data){
                         renderJson(data,"study__ID");
-                        var txt="";
+                        var txt="<table>";
                         for(i in data.value){
-                            txt+=(parseInt(i)+1)+". Status:"+"<span>"+data.value[i].woolcock_volunteerstatus+",</span>";
+                            txt+="<tr><td>"+(data.value.length-parseInt(i))+"</td>"
+                            txt+="<td>"+data.value[i].createdon.replace('T',' ').replace('Z','')+"</td><td>"+data.value[i].createdby.fullname+"</td>";
+                            //txt+=(parseInt(i)+1)+". Status:"+"<span>"+data.value[i].woolcock_volunteerstatus+",</span>";
                             if(data.value[i].woolcock_StudyId!=undefined){
-                                txt+="Study:"+"<span>"+data.value[i].woolcock_StudyId.woolcock_name+",</span>";
+                                txt+="<td>"+data.value[i].woolcock_StudyId.woolcock_name+"</td>";
                             }
-                            txt+="<br>"
+                            else txt+="<td></td>";
+                            var status=data.value[i].woolcock_volunteerstatus;
+                            switch(status){
+                                case 1: status="Available";break;
+                                case 3: status="Screening";break;
+                                case 4: status="Eligible";break;
+                                case 5: status="Not Eligible";break;
+                                case 6: status="Enrolled";break;
+                                case 8: status="Withdrawn";break;
+                                case 7: status="Completed";break;
+                            }
+                            txt+="<td>"+status+"</td>";
                         }
+                        txt+="</table>"
                         $('#study0__ID').html(txt);
                     })
                 }).catch(function (error) {
                     $vm.alert(error);
                 });
+                
+                
+                var $filter="&$filter=_woolcock_volunteerid_value eq '"+contactid+"'";
+                var $select="";
+                var endpoint2=m.Table+"woolcock_volstudymappings?$count=true"+$select+"&$expand=owninguser($select=fullname),woolcock_StudyId($select=woolcock_name)&$orderby=createdon desc"+$filter;
+                $vm.m365_msal.acquireTokenSilent({scopes: ["https://woolcockdev.crm6.dynamics.com/.default"]}).then(function (tokenResponse) {
+                    m.ajax(endpoint2,tokenResponse,function(data){
+                        renderJson(data,"audit__ID");
+                        var txt="<table>";
+                        for(i in data.value){
+                            txt+="<tr><td>"+(data.value.length-parseInt(i))+"</td>"
+                            txt+="<td>"+data.value[i].createdon.replace('T',' ').replace('Z','')+"</td><td>"+data.value[i].owninguser.fullname+"</td>";
+                            
+                            //txt+=(parseInt(i)+1)+". Status:"+"<span>"+data.value[i].woolcock_volunteerstatus+",</span>";
+                            if(data.value[i].woolcock_StudyId!=undefined){
+                                txt+="<td>"+data.value[i].woolcock_StudyId.woolcock_name+"</td>";
+                            }
+                            else txt+="<td></td>";
+                            
+                            var status=data.value[i].woolcock_status;
+                            switch(status){
+                                case 1: status="Available";break;
+                                case 3: status="Screening";break;
+                                case 4: status="Eligible";break;
+                                case 5: status="Not Eligible";break;
+                                case 6: status="Enrolled";break;
+                                case 8: status="Withdrawn";break;
+                                case 7: status="Completed";break;
+                            }
+                            txt+="<td>"+status+"</td>";
+                            
+                            
+                            txt+="<tr>"
+                        }
+                        txt+="</table>"
+                        $('#audit0__ID').html(txt);
+                    })
+                }).catch(function (error) {
+                    $vm.alert(error);
+                });
+                
 
+                
 
             })
             //-------------------------------------
@@ -133,6 +218,9 @@
     <style>
         #D__ID{
             background-color: #FFF;
+        }
+        #D__ID td{
+            padding:0 10px;
         }
         #D__ID span{
             margin-right:20px;

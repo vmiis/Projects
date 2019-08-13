@@ -49,10 +49,16 @@
                                                 Table: "https://woolcockdev.crm6.dynamics.com/api/data/v9.1/woolcock_volunteerauditnews",
                                                 form_module:"new-hire-form",router:1
                                             },
-        "volunteer-audit-data":             {url:"$H/v/volunteer-audit-data.html",
+        "volunteer-study-history-data":     {url:"$H/v/volunteer-study-history-data.html",
                                                 Table: "https://woolcockdev.crm6.dynamics.com/api/data/v9.1/woolcock_volunteerauditnews",
                                                 form_module:"new-hire-form",router:1
                                             },
+        "volunteer-audit-data":             {url:"$H/v/volunteer-audit-data.html",
+                                                Table: "https://woolcockdev.crm6.dynamics.com/api/data/v9.1/woolcock_volstudymappings",
+                                                form_module:"new-hire-form",router:1
+                                            },
+
+                                            
         "volunteer-details":                {url:"$H/v/volunteer-details.html",
                                                 Table: "https://woolcockdev.crm6.dynamics.com/api/data/v9.1/",
                                                 form_module:"new-hire-form",router:1
