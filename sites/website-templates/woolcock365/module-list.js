@@ -29,6 +29,10 @@
 
 
                                             
+        "entity":                           {url:"$H/v/entity.html",
+                                                Table: "https://woolcockdev.crm6.dynamics.com/api/data/v9.1/EntityDefinitions",
+                                                form_module:"new-hire-form",router:1
+                                            },
         "entity-data":                     {url:"$H/v/entity-data.html",
                                                 Table: "https://woolcockdev.crm6.dynamics.com/api/data/v9.1/EntityDefinitions",
                                                 form_module:"new-hire-form",router:1
@@ -45,6 +49,15 @@
                                                 Table: "https://woolcockdev.crm6.dynamics.com/api/data/v9.1/woolcock_volunteerauditnews",
                                                 form_module:"new-hire-form",router:1
                                             },
+        "volunteer-audit-data":             {url:"$H/v/volunteer-audit-data.html",
+                                                Table: "https://woolcockdev.crm6.dynamics.com/api/data/v9.1/woolcock_volunteerauditnews",
+                                                form_module:"new-hire-form",router:1
+                                            },
+        "volunteer-details":                {url:"$H/v/volunteer-details.html",
+                                                Table: "https://woolcockdev.crm6.dynamics.com/api/data/v9.1/",
+                                                form_module:"new-hire-form",router:1
+                                            },
+
         "student-data":                     {url:"$H/v/study-data.html",
                                                 Table: "https://woolcockdev.crm6.dynamics.com/api/data/v9.1/woolcock_studentses",
                                                 form_module:"new-hire-form",router:1
@@ -194,6 +207,7 @@
 
 
         "module-editor":                    {url:"https://vm.vmiis.com/component/m/module-editor.html",router:1,sys:1},
+        "json-viewer":                      {url:"https://vm.vmiis.com/component/j/json-viewer.html",router:1},
     }
     for(p in modules){
         $vm.module_list[p]=modules[p]; 

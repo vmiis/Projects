@@ -77,7 +77,7 @@
             }
             //-------------------------------------
             var fields="\
-					Name|fullname,Email|emailaddress1,\
+					Name|woolcock_name,\
 					Newsletter|woolcock_newsletter,\
                     Conditions|woolcock_multiselectcondition,\
 					Status|woolcock_contactstatus\
@@ -85,9 +85,10 @@
             var fields_hide="contactid|contactid\
                 ";
             m.ids=(fields+","+fields_hide).split(',');                
-            m.fields="_Form,"+fields+",_Studies,_Details,Submit_date,Submitted_by";
+            m.fields="_Form,"+fields+",_Studies,Submit_date,Submitted_by,Last_modified_date,Last_modified_by";
             //-------------------------------------
             m.cell_render=function(records,I,field,td){
+                /*
                 switch(field){
                     case '_Studies':
                         var txt="<u i="+I+" style='cursor:pointer'>Studies</u>";
@@ -95,14 +96,6 @@
                         td.find('u').on('click',function(){
                             var i=$(this).attr('i');
                             $vm.load_module('child-study-data','',{ record:m.records[i] })
-                        })
-                        break;
-                    case '_Details':
-                        var txt="<u i="+I+" style='cursor:pointer'>Details</u>";
-                        td.html(txt);
-                        td.find('u').on('click',function(){
-                            var i=$(this).attr('i');
-                            $vm.load_module('volunteer-details','',{ record:m.res.value[I]})
                         })
                         break;
                     case 'woolcock_newsletter':
@@ -138,7 +131,7 @@
                             txt=txt.replace('2','Asthma');
                             txt=txt.replace('1','Lung Cancer');
                             t=txt;
-                            if(txt.length>30) txt=txt.substring(0,30)+"...";
+                            if(txt.length>20) txt=txt.substring(0,20)+"...";
                         }
                         else txt="";
                         td.html(txt);
@@ -146,14 +139,13 @@
                         break;
                     default:
                         var txt=records[I].Data[field];
-                        var t=txt;
-                        if(txt!=undefined && txt.toString().length>30){
-                            txt=txt.substring(0,30)+"...";
+                        if(txt!=undefined && txt.toString().length>20){
+                            txt=txt.substring(0,20)+"...";
                             td.html(txt);
                         } 
-                        td.attr('title',t);
                         break;
                 }
+                */
             }
             //-------------------------------------
             m.next_link=undefined;
@@ -170,12 +162,56 @@
                     $select=$select+m.ids[i].split('|').pop();
                 }
                 $select="";
-                m.endpoint=m.Table+"?$count=true"+$select+"&$expand=createdby($select=fullname),woolcock_VolunteerStudyId($select=woolcock_name)&$orderby=createdon desc"+$filter;
+                m.endpoint=m.Table+"?$count=true"+$select+"&$expand=createdby($select=fullname),modifiedby($select=fullname)&$orderby=createdon desc"+$filter;
                 m.links=[m.endpoint];
             }
             //-------------------------------------
+            
             m.data_process=function(res){
-                m.res=res;
+                $('#vm_data_loader').hide();
+                m.records=[];
+                for(var i=0;i<res.value.length;i++){
+                    var fs=res.value[i];
+                    var Data={}
+                    //var f_ids=(fields+fields_hide).split(',')
+                    var f_ids=(fields).split(',')
+                    for(k in f_ids){
+                        var id=f_ids[k].split('|').pop().trim();
+                        //-------------------------------------
+                        if(id=="Study"){
+                            if(fs["woolcock_StudyId"]!=undefined){
+                                Data[id]=fs["woolcock_StudyId"]["woolcock_name"];
+                            }
+                            else Data[id]="";
+                        }
+                        //-------------------------------------
+                        else Data[id]=fs[id];
+                        //if(Data[id].length>20) Data[id]=Data[id].substring(0,20)+"...";
+                    }
+                    var mb="";
+                    var md="";
+                    if(res.value[i].modifiedon!=undefined){
+                            md=res.value[i].modifiedon;
+                            mb=res.value[i].modifiedby.fullname;
+                        }
+                    m.records.push({
+                        "_id":res.value[i]['ID'],
+                        "Submit_date":res.value[i].createdon,
+                        "Submitted_by":res.value[i].createdby.fullname,
+                        "Last_modified_date":md,
+                        "Last_modified_by":mb,
+                        Data:Data
+                    })
+                }
+                m.render();
+            }
+            //-------------------------------------
+            
+            
+            m._data_process=function(res){
+
+
+                
                 $('#vm_data_loader').hide();
                 m.next_link=res['@odata.nextLink'];
                 m.records=[];
@@ -190,13 +226,17 @@
                     }
                     m.records.push({
                         "_id":res.value[i]['ID'],
-                        "Submit_date":res.value[i].createdon,
-                        "Submitted_by":res.value[i].createdby.fullname,
+                        //"Submit_date":res.value[i].createdon,
+                        //"Submitted_by":res.value[i].createdby.fullname,
                         Data:Data
                     })
                     //console.log(m.records[i].Data)
                 }
                 m.render();
+
+
+
+
 
                 var N=parseInt(res['@odata.count']);
                 $("#B__ID").text(N)
@@ -210,7 +250,7 @@
             //-------------------------------------
             m.request_data=function(){
                 console.log(m.links);
-                //$('#vm_data_loader').show();
+                $('#vm_data_loader').show();
                 $vm.m365_msal.acquireTokenSilent({scopes: ["https://woolcockdev.crm6.dynamics.com/.default"]}).then(function (tokenResponse) {
                     m.ajax(m.endpoint,tokenResponse,function(data){
                         m.data_process(data);
