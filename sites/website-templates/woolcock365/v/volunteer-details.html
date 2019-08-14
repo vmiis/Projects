@@ -56,6 +56,56 @@
             $('#D__ID').on('load',function(){
                 var contactid=m.input.record.contactid;
                 renderJson(m.input.record,"volunter__ID");
+                var txt="<table>";
+                txt+="<tr><td>Name</td><td>"+m.input.record.fullname+"</td></tr>"
+                txt+="<tr><td>Email</td><td>"+m.input.record.emailaddress1+"</td></tr>"
+                txt+="<tr><td>Age</td><td>"+m.input.record.woolcock_age+"</td></tr>"
+                
+                var tp=m.input.record.woolcock_registrationtype;
+                switch(tp){
+                    case 0: tp="General Registration";break;
+                    case 1: tp="Study Specific Registration";break;
+                    case 2: tp="Newsletter";break;
+                }
+                txt+="<tr><td>Registration Type</td><td>"+tp+"</td></tr>"
+                
+                
+                txt+="<tr><td>Newsletter</td><td>"+m.input.record.woolcock_newsletter+"</td></tr>"
+                
+                var sele=m.input.record.woolcock_multiselectcondition;
+                if(sele!=undefined){
+                    sele=sele.replace('11','I do not have a respiratory condition or sleep problem');
+                    sele=sele.replace('10','Restless Leg Syndrome');
+                    sele=sele.replace('9','Rhinitis');
+                    sele=sele.replace('8','Obstructive Sleep Apnoea (OSA)');
+                    sele=sele.replace('7','Emphysema');
+                    sele=sele.replace('6','Narcolepsy');
+                    sele=sele.replace('5','Chronic Bronchitis');
+                    sele=sele.replace('4','Insomnia');
+                    sele=sele.replace('3','COPD (Chronic Obstructive Pulmonary Disease)');
+                    sele=sele.replace('2','Asthma');
+                    sele=sele.replace('1','Lung Cancer');
+                }
+                else sele="";
+                txt+="<tr><td>Selection</td><td>"+sele+"</td></tr>"
+                
+                txt+="<tr><td>Study</td><td>"+m.input.record.Study+"</td></tr>"
+                
+                var status=m.input.record.woolcock_contactstatus;
+                switch(status){
+                    case 1: status="Available";break;
+                    case 3: status="Screening";break;
+                    case 4: status="Eligible";break;
+                    case 5: status="Not Eligible";break;
+                    case 6: status="Enrolled";break;
+                    case 8: status="Withdrawn";break;
+                    case 7: status="Completed";break;
+                }
+                txt+="<tr><td>Status</td><td>"+status+"</td></tr>"
+                
+                txt+="</table>";
+                $('#volunter0__ID').html(txt);
+                /*
                 var txt="";
                 txt+="Email: "+"<span>"+m.input.record.emailaddress1+",</span>";
                 txt+="Newsletter:"+"<span>"+m.input.record.woolcock_newsletter+",</span>";
@@ -88,7 +138,7 @@
                 }
                 txt+="Status:"+"<span>"+status+"</span>";
                 $('#volunter0__ID').html(txt);
-                
+                */
                 var $filter="&$filter=_woolcock_volunteeridid_value eq '"+contactid+"'";
                 var $select="";
                 var endpoint1=m.Table+"woolcock_volunteerauditnews?$count=true"+$select+"&$expand=createdby($select=fullname),woolcock_StudyId($select=woolcock_name)&$orderby=createdon desc"+$filter;

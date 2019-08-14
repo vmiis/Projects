@@ -80,12 +80,15 @@
 					Name|fullname,Email|emailaddress1,\
 					Newsletter|woolcock_newsletter,\
                     Conditions|woolcock_multiselectcondition,\
+                    Age|woolcock_age,\
+                    Registration Type|woolcock_registrationtype,\
+					Study|woolcock_VolunteerStudyId,\
 					Status|woolcock_contactstatus\
 				";
             var fields_hide="contactid|contactid\
                 ";
             m.ids=(fields+","+fields_hide).split(',');                
-            m.fields="_Form,"+fields+",_Studies,_Details,Submit_date,Submitted_by";
+            m.fields="_Form,"+fields+",_Details,Submit_date,Submitted_by";
             //-------------------------------------
             m.cell_render=function(records,I,field,td){
                 switch(field){
@@ -119,6 +122,15 @@
                                 case 6: txt="Enrolled";break;
                                 case 8: txt="Withdrawn";break;
                                 case 7: txt="Completed";break;
+                            }
+                        td.html(txt);
+                        break;
+                    case 'woolcock_registrationtype':
+                        var txt="";
+                            switch(records[I].Data[field]){
+                                case 0: txt="General Registration";break;
+                                case 1: txt="Study Specific Registration";break;
+                                case 2: txt="Newsletter";break;
                             }
                         td.html(txt);
                         break;
@@ -186,7 +198,16 @@
                     //var f_ids=(fields).split(',')
                     for(k in f_ids){
                         var id=f_ids[k].split('|').pop().trim();
-                        Data[id]=fs[id];
+                        //-------------------------------------
+                        if(id=="woolcock_VolunteerStudyId"){
+                            if(fs["woolcock_VolunteerStudyId"]!=undefined){
+                                Data[id]=fs["woolcock_VolunteerStudyId"]["woolcock_name"];
+                            }
+                            else Data[id]="";
+                            fs["Study"]=Data[id];
+                        }
+                        //-------------------------------------
+                        else Data[id]=fs[id];
                     }
                     m.records.push({
                         "_id":res.value[i]['ID'],
