@@ -71,11 +71,15 @@
         "ssdci-earlysense-form":		    {url:"$H/m/earlysense-form.html",Table:"ssdci-earlysense"},
         "ssdci-wristox-data":		        {url:"$H/m/wristox-data.html",Table:"ssdci-wristox",form_module:"ssdci-wristox-form",task_name:"WristOx"},
         "ssdci-wristox-form":		        {url:"$H/m/wristox-form.html",Table:"ssdci-wristox"},
-   }
-   for(p in modules){
-    $vm.module_list[p]=modules[p];
-    $vm.hosting_path=$vm.hosting_path.replace('online-questionnaire','')
-    $vm.module_list[p].url=$vm.module_list[p].url.replace('$H',$vm.hosting_path);
-}
-
+    }
+    for(p in modules){
+        $vm.module_list[p]=modules[p];
+        $vm.hosting_path=$vm.hosting_path.replace('online-questionnaire','')
+        $vm.module_list[p].url=$vm.module_list[p].url.replace('$H',$vm.hosting_path);
+    }
+    if(window.location.toString().indexOf('tb=demo')!=-1){
+        for(p in $vm.module_list){
+            $vm.module_list[p].Table="vm_demo_"+$vm.module_list[p].Table;
+        }
+    }
 })();
