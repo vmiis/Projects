@@ -79,7 +79,7 @@
     }
     if(window.location.toString().indexOf('tb=demo')!=-1){
         for(p in $vm.module_list){
-            $vm.module_list[p].Table="vm_demo_"+$vm.module_list[p].Table;
+            $vm.module_list[p].Table="demo_"+$vm.module_list[p].Table;
         }
     }
 })();

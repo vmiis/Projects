@@ -9,7 +9,7 @@
         //-------------------------------------
         $('#title__ID').text('WristOx');
           //-------------------------------------
-          var fields="File_Name,File_Name2,File_Name3";
+          var fields="File_Name,Total Events|total_events,Time in Events (min)|time_in_event,Avg. Event Dur (sec)|avg_dur,ODI (1/hr)|odi,% Artifact|artifact,Adjusted Index (1/hr)|adjusted_index,%SpO2 Data|spo2,Basal SpO2(%)|basal_spo2,Time (min) < 88%|time_below_88,Events < 88%|event_below_88,Max Single Time < 88%|max_single_time_below_88,Minimum SpO2 (%)|min_spo2,Avg. Low SpO2 (%)|avg_low_spo2,Avg. Low SpO2 < 88%|avg_spo2_88";
           m.fields="_Form,_Status,_Notes,_Participant_ID,Participant,"+fields+",Submit_date,Submitted_by,_Delete";
           //-------------------------------------
           var cell_render=m.cell_render;
@@ -17,12 +17,6 @@
                 cell_render(records,I,field,td);
                 switch(field){
                     case 'File_Name':
-                        m.set_file_link(records,I,field,td)
-                        break;
-                    case 'File_Name2':
-                        m.set_file_link(records,I,field,td)
-                        break;
-                    case 'File_Name3':
                         m.set_file_link(records,I,field,td)
                         break;
                 }
