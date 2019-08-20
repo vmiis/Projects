@@ -18,14 +18,14 @@
     </body>
     <script boot-up>
         //------------------------------------
-        $vm={};$vm.ver=[0.37,0.37]; //increase ver[0] if any module changed, increase ver[1] if vm.js changed
+        $vm={};$vm.ver=[0.52,0.51]; //increase ver[0] if any module changed, increase ver[1] if vm.js changed
         $vm.debug=1;
         //------------------------------------
         //setup modules location
         $vm.hosting_path=window.location.href.substring(0, window.location.href.split('?')[0].lastIndexOf('/'));
-        if(window.location.href.substring(0,5)=="file:") $vm.hosting_path="https://wappsystem.github.io/cansleep/";
+        if(window.location.href.substring(0,5)=="file:") $vm.hosting_path="https://www.cansleepstudy.com";
         if(window.location.hostname=='127.0.0.1' || window.location.hostname=='localhost') $vm.localhost=true;
-        $vm.m_path='https://wappsystem.github.io/cansleep/'; if($vm.localhost==true) $vm.m_path='http://127.0.0.1:8000/wappsystem/cansleep'; 
+        //$vm.m_path='https://www.cansleepstudy.com'; if($vm.localhost==true) $vm.m_path='http://127.0.0.1:8000/wappsystem/cansleep'; 
         //------------------------------------
         //where are your start modules
         $vm.start_modules=[

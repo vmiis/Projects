@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!-- The meta data are changed by the active module-->
+        <meta name='viewport' content='width=device-width, initial-scale=1'>
+        <link rel="icon" href="data:,">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.1/css/bootstrap.css" />
+    </head>
+    <body>
+        <!-- Typical website layout, the contents are dynamiclly updated by modules-->
+        <div id=header></div>
+        <div id=content></div>
+        <div id=footer></div>
+    </body>
+    <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-3.2.1.min.js"></script>
+    <script boot-up>
+        //------------------------------------
+        $vm={};$vm.ver=[0.17,0.16]; //increase ver[0] if any module changed, increase ver[1] if vm.js changed
+        //------------------------------------
+        $vm.hosting_path=window.location.href.substring(0, window.location.href.split('?')[0].lastIndexOf('/'));
+        if(window.location.hostname=='127.0.0.1' || window.location.hostname=='localhost') $vm.localhost=true;
+        //------------------------------------
+        //where are your start modules
+        $vm.start_modules=[
+            "$H/app.html",
+            "$H/frame.html",
+        ]
+        for(i in $vm.start_modules) $vm.start_modules[i]=$vm.start_modules[i].replace('$H',$vm.hosting_path);
+        //------------------------------------
+        //modules used in this app
+        $vm.module_list={
+            "home":                         {url:"$H/home.html",router:1},
+        };
+        for(p in $vm.module_list) $vm.module_list[p].url=$vm.module_list[p].url.replace('$H',$vm.hosting_path);
+        //------------------------------------
+        //where are your all other modules
+        $vm.app_modules=[
+            //"$A/components/cleverlights-home.js",
+            "$H/components/cleverlights.js",
+        ]
+        //------------------------------------
+        for(i in $vm.app_modules) $vm.app_modules[i]=$vm.app_modules[i].replace('$H',$vm.hosting_path);
+        
+        
+        
+        
+        //------------------------------------
+        //Do not need to chang the following code in most cases
+        //The following code will load a framework module and your application modules
+        //------------------------------------
+        $VmAPI={};$vm.start_time=new Date().getTime();
+        //------------------------------------
+        $vm._I=0; $vm._N=$vm.start_modules.length+$vm.app_modules.length;
+        $vm._boot=function(){
+            $vm._I++;
+            if($vm._I==$vm._N){
+                //for(p in $vm.module_list) $vm.module_list[p].url=$vm.replace_url($vm.module_list[p].url);
+                $vm._start();
+            }
+        }
+        //------------------------------------------
+        $vm._id=2;
+        //---------------------------------------------
+        var apppath=window.location.href.substring(0, window.location.href.lastIndexOf('/')).split('\/?')[0];
+        $($vm.start_modules).each(function(index,url){
+            var ver=localStorage.getItem(apppath+url+"ver");
+            var txt=localStorage.getItem(apppath+url+"txt");
+            if(ver!=$vm.ver[0] || txt==null || $vm.localhost==true){
+                $.get(url+'?_='+new Date().getTime(),function(new_txt){
+                    localStorage.setItem(apppath+url+"txt",new_txt);
+                    localStorage.setItem(apppath+url+"ver",$vm.ver[0]);
+                    console.log('loading from url. '+url);
+                    $('#content').append(new_txt.replace(/__ID/g,'_'+(index+1)));
+                    $vm._boot();
+                },'text');
+            }
+            else{
+                console.log('loading from storage. '+url+' '+ver+'/'+$vm.ver[0]);
+                $('#content').append(txt.replace(/__ID/g,'_'+(index+1)));
+                $vm._boot();
+            }
+        })
+        //---------------------------------------------
+        $($vm.app_modules).each(function(index,url){
+            var ver=localStorage.getItem(apppath+url+"ver");
+            var txt=localStorage.getItem(apppath+url+"txt");
+            if(ver!=$vm.ver[0] || txt==null || $vm.localhost==true){
+                $.get(url+'?_='+new Date().getTime(),function(new_txt){
+                    localStorage.setItem(apppath+url+"txt",new_txt);
+                    localStorage.setItem(apppath+url+"ver",$vm.ver[0]);
+                    console.log('loading from url. '+url);
+                    eval(new_txt);
+                    $vm._boot();
+                },'text');
+            }
+            else{
+                console.log('loading from storage. '+url+' '+ver+'/'+$vm.ver[0]);
+                eval(txt);
+                $vm._boot();
+            }
+        })
+        //---------------------------------------------
+    </script>
+</html>

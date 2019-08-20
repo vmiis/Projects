@@ -23,9 +23,8 @@
         //------------------------------------
         //setup modules location
         $vm.hosting_path=window.location.href.substring(0, window.location.href.split('?')[0].lastIndexOf('/'));
-        if(window.location.href.substring(0,5)=="file:") $vm.hosting_path="https://wappsystem.github.io/cleverlights/";
         if(window.location.hostname=='127.0.0.1' || window.location.hostname=='localhost') $vm.localhost=true;
-        $vm.m_path='https://wappsystem.github.io/cleverlights/'; if($vm.localhost==true) $vm.m_path='http://localhost:8000/wappsystem/cleverlights'; 
+        $vm.m_path='https://wappsystem.github.io/cleverlights/'; if($vm.localhost==true) $vm.m_path='http://127.0.0.1:8000/wappsystem/cleverlights'; 
         //------------------------------------
         //where are your start modules
         $vm.start_modules=[
