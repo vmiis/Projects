@@ -1,31 +1,23 @@
 <section>
-    VmInclude:__CURRENT_PATH__/../../grid.v1h.html
+    VmInclude:__CURRENT_PATH__/../../library/grid.v1h.html
 </section>
 <script>
     function F__ID(){
         //-------------------------------------
         VmInclude:__COMPONENT__/g/grid.01.js
-        VmInclude:__CURRENT_PATH__/../../shared-data.js
+        VmInclude:__CURRENT_PATH__/../../library/shared-data.js
         //-------------------------------------
         $('#title__ID').text('N-Back 1')
         //-------------------------------------
 		var fields="NBACK,Start_Time,NGTA,NGRT,GMRT,NTCR,NTIC,NMIS,NMRT,MRTCM,MRTCN,SDCR,SDCM,SDCN,MdRTCR,MdRTCM,MnRTCR,MxRTCR,MF10CR,MS10CR,SDF10CR,SDS10CR,NTCM,NTCN,NTFM,NTFN,NTWR,NNO,NRT,NAC";
         m.fields="_Form,_Status,_Notes,_Participant_ID,Participant,"+fields+",Submit_date,Submitted_by,_Delete";
         //-------------------------------------
-        /*
-
-        CM Correct Match
-        CN Correct Non-Match
-        FM False Match (N-key was selected for a Match stimulus)
-        FN False Non-Match (M-key was selected for Non-Match stimulus)
-        O Omission (failure to respond in time allowable; for both Match and Non-Match stimuli)
-        W Wrong key entered, for both Match and Non-Match stimuli
-        NNO Trial number
+/*
+        NBACK NBack number 1-back = 1, 2-back = 2, 3- back = 3
+        Start_time Start time for the test
         NGTA Grand total Accuracy  100*(CM+CN)/(CM+CN+FM+FN)
         NGRT Grand total reaction time (sum of NRT) in msecs
         GMRT Average reaction Time for all responses
-        NRT (1, 2, 3) Reaction Time (per letter presentation i.e. each trial) in msecs
-        NAC (1, 2, 3) Accuracy (per letter presentation i.e. each trial)
         NTCR Total number correct (sum of CM + CN)
         NTIC Total number incorrect (sum of FM + FN)
         NTMR Total number of multiple responses (Not possible! Only one keystroke allowed)
@@ -50,6 +42,15 @@
         NTFM Total number of False Match (FM)
         NTFN Total number of False Non-Match (FN)
         NTWR Total number of Wrong keys (W)
+        NNO Trial number
+        NRT (1, 2, 3) Reaction Time (per letter presentation i.e. each trial) in msecs
+        NAC (1, 2, 3) Accuracy (per letter presentation i.e. each trial)
+            CM Correct Match
+            CN Correct Non-Match
+            FM False Match (N-key was selected for a Match stimulus)
+            FN False Non-Match (M-key was selected for Non-Match stimulus)
+            O Omission (failure to respond in time allowable; for both Match and Non-Match stimuli)
+            W Wrong key entered, for both Match and Non-Match stimuli
 
         */
     }

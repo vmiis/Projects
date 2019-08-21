@@ -13,18 +13,13 @@
         <div id=header></div>
         <div id=content></div>
         <div id=footer></div>
-        <div id=system></div>
+        <div id=app style='display:none'></div>
         <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-3.3.1.min.js"></script>
     </body>
     <script boot-up>
         //------------------------------------
-        $vm={};$vm.ver=[0.07,0.02]; //increase ver[0] if any module changed, increase ver[1] if vm.js changed
-        //$vm.debug=1;
-        //------------------------------------
-        $vm.api_type="sqlserver"; 
-        $vm.qid='91000682'; //permission control table
-        $VmAPI={}; $VmAPI.api_base="https://rt.woolcock.org.au/pro/";
-        if(window.location.toString().indexOf('db=dev')!=-1) $VmAPI.api_base="https://rt.woolcock.org.au/dev/";
+        $vm={};$vm.ver=[0.28,0.28]; //increase ver[0] if any module changed, increase ver[1] if vm.js changed
+        $vm.debug=1;
         //------------------------------------
         //setup modules location
         $vm.hosting_path=window.location.href.substring(0, window.location.href.split('?')[0].lastIndexOf('/'));
@@ -39,8 +34,9 @@
         //modules used immediately
         $vm.module_list={
             //you can add modules here directly
-            "home":	        {url:"$H/0/home.html",router:1},
-            "frame":	    {url:"$H/0/frame.html"},
+            //"home":         {url:"$H/m/oq-login.html","Table":"spardac-participant",questionnaire_panel:"online-questionnaire-panel"},
+            //"online-questionnaire-panel":   {url:"$H/m/oq-panel.html",router:1},
+            //"home":	        {url:"$H/m/login.html",router:1},
             "app":	        {url:"$H/0/app.html"},
             "header":	    {url:"$H/0/header.html"},
             "footer":	    {url:"$H/0/footer.html"},
@@ -48,17 +44,19 @@
         for(p in $vm.module_list) $vm.module_list[p].url=$vm.module_list[p].url.replace('$H',$vm.hosting_path);
         //------------------------------------
         //all other modules, used on demand 
+        //------------------------------------
         $vm.app_modules=[
             //you can add a js file that will add mmodules to the $vm.module_list
+            //"$H/module-login.js",
             "$H/module-list.js",
         ]
-        for(i in $vm.app_modules) $vm.app_modules[i]=$vm.app_modules[i].replace('$H',$vm.hosting_path);
+        for(i in $vm.app_modules) $vm.app_modules[i]=$vm.app_modules[i].replace('$H',$vm.hosting_path).replace('online-questionnaire/module-list','module-list');
         //------------------------------------
         //called by framework
         $vm.start=function(){
             $vm.load_component('header',$vm.root_layout_header,{});
             $vm.load_component('footer',$vm.root_layout_footer,{});
-            $vm.load_component('app',$vm.root_layout_system,{});
+            $vm.load_component('app',$vm.root_layout_app,{});
         }
         //------------------------------------
         
@@ -67,12 +65,12 @@
         //Do not need to chang the following code in most cases
         //The following code will load a framework module and on demand module list
         //------------------------------------
-        $vm.start_time=new Date().getTime();
+        $VmAPI={};$vm.start_time=new Date().getTime();
         //------------------------------------
         $vm.root_layout_header='header';
         $vm.root_layout_content_slot='content'
         $vm.root_layout_footer='footer';
-        $vm.root_layout_system='system';
+        $vm.root_layout_app='app';
         //---------------------------------------------
         $vm._I=0; $vm._N=$vm.start_modules.length;
         $vm._boot=function(){
@@ -103,13 +101,13 @@
                     localStorage.setItem(apppath+url+"txt",new_txt);
                     localStorage.setItem(apppath+url+"ver",$vm.ver[0]);
                     console.log('loading from url, done at '+(new Date().getTime()-$vm.start_time)+'ms. '+url );
-                    $('#system').append(new_txt.replace(/__ID/g,'_'+(index+1)));
+                    $('#content').append(new_txt.replace(/__ID/g,'_'+(index+1)));
                     $vm._boot();
                 },'text');
             }
             else{
                 console.log('loading from storage. done at '+(new Date().getTime()-$vm.start_time)+'ms. '+url+' '+ver+'/'+$vm.ver[0]);
-                $('#system').append(txt.replace(/__ID/g,'_'+(index+1)));
+                $('#content').append(txt.replace(/__ID/g,'_'+(index+1)));
                 $vm._boot();
             }
         })

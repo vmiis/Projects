@@ -229,19 +229,21 @@
     </div>
     <script>
         function F__ID() {
-      //-------------------------------------
-      VmInclude: '__COMPONENT__/f/form.01.js'
-      VmInclude:__CURRENT_PATH__/../../shared-form.js
-      //-------------------------------------
-      m.before_submit_1 = m.before_submit;
-      m.before_submit = function (record, dbv) {
-        m.before_submit_1(record, dbv);
-        m.before_submit_2(record, dbv);
-      }
-      m.before_submit_2 = function (record, dbv) {
-        record.ESS = (parseInt(record.ESS_1) + parseInt(record.ESS_2) + parseInt(record.ESS_3) + parseInt(record.ESS_4) + parseInt(record.ESS_5) + parseInt(record.ESS_6) + parseInt(record.ESS_7) + parseInt(record.ESS_8)).toString();
-        return true;
-      }
+            //-------------------------------------
+            VmInclude: '__COMPONENT__/f/form.01.js'
+            VmInclude:__CURRENT_PATH__/../../library/shared-form.js
+            //-------------------------------------
+            var load2=m.load;
+                m.load=function(){
+                load2();
+                $('#D__ID').css('overflow','visible');
+            }
+            //-------------------------------------
+            var before_submit=m.before_submit;
+            m.before_submit=function(data,index){
+                data.ESS=(parseInt(data.ESS_1)+parseInt(data.ESS_2)+parseInt(data.ESS_3)+parseInt(data.ESS_4)+parseInt(data.ESS_5)+parseInt(data.ESS_6)+parseInt(data.ESS_7)+parseInt(data.ESS_8)).toString();
+                return before_submit(data,index); 
+            }
         }
     </script>
  <style>
@@ -249,6 +251,6 @@
       max-width: 600px;
     }
 
-    VmInclude:__CURRENT_PATH__/../../wappsystem-form.css
+    VmInclude:__CURRENT_PATH__/../../library/wappsystem-form.css
   </style>
 </div>

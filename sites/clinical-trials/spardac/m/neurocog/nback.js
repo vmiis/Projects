@@ -289,6 +289,7 @@ var third_party=function(containerID,callback)
         $(instructions[current]).hide();
         $('#main_canvas__ID').show();
         marks = [];
+        trials=[];
         Clear();
         for (var i=0; i<numpretrials; i++)
         {
@@ -304,17 +305,17 @@ var third_party=function(containerID,callback)
         for (var i=0; i<numtrials; i++)
         {
             var ref = ReferenceTrial(trials.length);
-            if(p1==parseInt(numtrials/2) || p2==parseInt(numtrials/2) ) {
-                if(p2==parseInt(numtrials/2)) {pv=trials[ref].p;}
+            if(p1==parseInt((numtrials-3)/2) || p2==parseInt((numtrials-3)/2) ) {
+                if(p2==parseInt((numtrials-3)/2)) {pv=trials[ref].p;}
                 else pv=RandomExcept(positions.length, trials[ref].p);
             }
             else { if(Math.random() < 0.5 ){
                         pv=trials[ref].p;
-                        p1++;
+                        if(i>2) p1++;
                     }
                     else{
                         pv=RandomExcept(positions.length, trials[ref].p);
-                        p2++
+                        if(i>2) p2++;
                     }
             }
             var t = {

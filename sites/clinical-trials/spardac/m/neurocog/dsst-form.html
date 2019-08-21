@@ -81,7 +81,7 @@ Using the guide above, press the number on your keypad corresponding to the rand
 	function F__ID(){
 		//-------------------------------------
 		VmInclude:__COMPONENT__/f/form.01.js
-		VmInclude:__CURRENT_PATH__/../../shared-form.js
+		VmInclude:__CURRENT_PATH__/../../library/shared-form.js
 		//-------------------------------------
 		$('#header_0').hide();
 		$('body').css('background','white');
@@ -235,7 +235,7 @@ Using the guide above, press the number on your keypad corresponding to the rand
 					return;
 				if (example >= examples)
 				{
-					results.TestCount = results.Count;
+					results.TestCountTotal = results.Count;
 					results.CorrectCount = results.Correct;
 					results.Duration=(results.timelimit)/1000
 					callback(results);

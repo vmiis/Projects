@@ -34,12 +34,12 @@
         //modules used immediately
         $vm.module_list={
             //you can add modules here directly
-            "home":         {url:"$H/m/login.html","Table":"spardac-participant",questionnaire_panel:"online-questionnaire-panel"},
-            "online-questionnaire-panel":   {url:"$H/p/panel.html",router:1},
+            "home":         {url:"$H/m/oq-login.html","Table":"spardac-participant",questionnaire_panel:"online-questionnaire-panel"},
+            "online-questionnaire-panel":   {url:"$H/m/oq-panel.html",router:1},
             //"home":	        {url:"$H/m/login.html",router:1},
-            "app":	        {url:"$H/0/app.html"},
-            "header":	    {url:"$H/0/header.html"},
-            "footer":	    {url:"$H/0/footer.html"},
+            "app":	        {url:"$H/0-oq/app.html"},
+            "header":	    {url:"$H/0-oq/header.html"},
+            "footer":	    {url:"$H/0-oq/footer.html"},
         };
         for(p in $vm.module_list) $vm.module_list[p].url=$vm.module_list[p].url.replace('$H',$vm.hosting_path);
         //------------------------------------

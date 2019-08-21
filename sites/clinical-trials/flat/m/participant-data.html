@@ -11,9 +11,10 @@
             m.fields="_Form,"+fields+",Submit_date,Submitted_by,_Delete";
             m.fields_e="Participant_ID|UID,Subject_ID,Screening_Number,Subject_Initials,Gender,DOB"
             //-------------------------------------
-            $vm.url_$B=$vm.hosting_path.replace('flat','flat-online-questionnaire')
-            if($vm.hosting_path.indexOf("flat-3")!=-1) $vm.url_$B=$vm.hosting_path.replace('flat-3','flat-3-online-questionnaire');
+            //$vm.url_$B=$vm.hosting_path.replace('flat','flat-online-questionnaire')
+            //if($vm.hosting_path.indexOf("flat-3")!=-1) $vm.url_$B=$vm.hosting_path.replace('flat-3','flat-3-online-questionnaire');
             //-------------------------------------
+            var online_questionnaire=$vm.hosting_path+"/online-questionnaire.html";
             m.cell_render=function(records,I,field,td,set_value,source){
                 switch(field){
                     case 'DOB':
@@ -36,7 +37,8 @@
                             var db=""; if(window.location.toString().indexOf('db=dev')!=-1) db="&db=dev";
                             var d="";  if(window.location.toString().indexOf('_d=1')!=-1) d="&_d=1";
                             var p="?username="+records[I].UID+"-"+m.Table+"&password="+records[I]._Password;
-                            var q_url=$vm.url_$B+"/"+p+db+d;
+                            //var q_url=$vm.url_$B+"/"+p+db+d;
+                            var q_url=online_questionnaire+p+db+d;
     						window.open(q_url);
                         });
                         break;

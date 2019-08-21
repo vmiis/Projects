@@ -14,9 +14,11 @@
                         Cumulative_Usage,\
                         Average_Usage_All_Days,\
                         Average_Usage_Days_Used,\
-                        Percent_of_Days_with_Usage_4_Hours,\
-                        Percent_of_Days_with_Usage_4_Hours\
+                        above_4_hours,\
+                        below_4_hours\
             ";
+                        //Percent_of_Days_with_Usage_4_Hours(will be removed)|Percent_of_Days_with_Usage_4_Hours,\
+                        //Percent_of_Days_with_Usage_4_Hours(will be removed)|Percent_of_Days_with_Usage_4_Hours\
             fields=fields.replace(/\t/g,'').replace(/ /g,'');
             m.fields="_Form,Status|S3,Notes|NT,Participant_ID|Participant_uid,Participant,"+fields+",Submit_date,Submitted_by,_Delete";
             m.fields_e="Participant_ID|Participant_uid,"+fields
