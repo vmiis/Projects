@@ -19,9 +19,47 @@
                     <hr style="border-top: 1px solid #888;width: 100%;margin:10px 0">
                 </div>
                 <!---------------------------------------------------->
+                
+                <div class='row row__ID'>
+    				<div class="col">
+    					<span>Date of Event</span>
+    					<input type=date class=form-control name=Date_of_Event>
+    				</div>
+    			</div>
+                
+                <div class='row row__ID'>
+    				<div class="col">
+    					<span>Brief Description</span>
+    					<input type=text class=form-control name=Brief_Description>
+    				</div>
+    			</div>
+                
+                <div class='row row__ID'>
+    				<div class="col">
+    					<span>Full Description</span>
+    					<textarea class=form-control name=Full_Description></textarea>
+    				</div>
+    			</div>
+                
                 <!-- Form Inputs-------------------------------------->
                 <div id=dynamic_part__ID></div>
                 <!---------------------------------------------------->
+                
+                
+                <!-- Form Inputs-------------------------------------->
+                <div class='row row__ID'>
+    				<div class="col">
+    					<span>File Upload</span>
+                        <div class="form-control">
+                            <u style='cursor:pointer' id=link_File__ID></u>
+                            <br>
+                            <input type="file" name=File style="margin-top:6px" /> &nbsp&nbsp&nbsp <button type="button" id=x_File__ID>Remove</button>
+                        </div>
+					</div>
+                </div>            
+                <!---------------------------------------------------->
+                
+                
                 <!-- submit button part for all tsak forms------------>
                 <br>
                 <div class="row">
@@ -33,11 +71,13 @@
             </div>
         </form>
     </section>
+    VmInclude:__COMPONENT__/m/model.01.html
     <script>
         function F__ID(){
             //-------------------------------------
+            /*
             //build text input fields
-            var fields="Date_of_Event,Brief_Description,Full_Description,Attached_File";
+            var fields="Date_of_Event,Brief_Description,Full_Description";//,Attached_File";
             var fs=fields.split(',');
             var txt="";
             for(var i=0;i<fs.length;i++){
@@ -46,9 +86,16 @@
                 txt+="</div></div>\r\n";
             }
             $('#dynamic_part__ID').html(txt);
+            */
             //-------------------------------------
             VmInclude:__COMPONENT__/f/form.01.js
             VmInclude:'__CURRENT_PATH__/task-form.js'
+            //-------------------------------------
+            var load5=m.load;
+            m.load=function(){
+                load5();
+                m.set_file_link("File");
+            }
             //-------------------------------------
         }
     </script>

@@ -57,6 +57,9 @@
         "m12-psg-upload-form":		        {url:"$H/m/tasks/psg-300-form.html",Table:"20010874"},
 
 
+        "b-cpap-compliance-data":		    {url:"$H/m/tasks/cpap-compliance-data.html",Table:"91000830",form_module:"b-cpap-compliance-form"},
+        "b-cpap-compliance-form":		    {url:"$H/m/tasks/cpap-compliance-form.html",Table:"91000830"},
+
         "m1-cpap-compliance-data":		    {url:"$H/m/tasks/cpap-compliance-data.html",Table:"91000784",form_module:"m1-cpap-compliance-form"},
         "m1-cpap-compliance-form":		    {url:"$H/m/tasks/cpap-compliance-form.html",Table:"91000784"},
         "m2-cpap-compliance-data":		    {url:"$H/m/tasks/cpap-compliance-data.html",Table:"91000785",form_module:"m2-cpap-compliance-form"},
