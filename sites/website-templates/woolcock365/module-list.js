@@ -212,6 +212,24 @@
 
 
 
+
+        "template-01-data":                     {url:"$H/template/01-data.html",
+                                                Table: "https://woolcockdev.crm6.dynamics.com/api/data/v9.1/it_demo_01s",
+                                                form_module:"template-01-form",router:1
+                                            },
+        "template-01-form":                     {url:"$H/template/01-form.html",
+                                                Table: "https://woolcockdev.crm6.dynamics.com/api/data/v9.1/it_demo_01s",
+                                            },
+
+        "template-02-data":                     {url:"$H/template/02-data.html",
+                                                Table: "https://woolcockmed.sharepoint.com/sites/IT/_api/web/lists/GetByTitle('demo_01')",
+                                                form_module:"template-02-form",router:1
+                                            },
+        "template-02-form":                     {url:"$H/template/02-form.html",
+                                                Table: "https://woolcockmed.sharepoint.com/sites/IT/_api/web/lists/GetByTitle('demo_01')",
+                                            },
+
+
         "module-editor":                    {url:"https://vm.vmiis.com/component/m/module-editor.html",router:1,sys:1},
         "json-viewer":                      {url:"https://vm.vmiis.com/component/j/json-viewer.html",router:1},
     }

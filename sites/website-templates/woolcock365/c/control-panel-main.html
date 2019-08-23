@@ -1,56 +1,84 @@
 <div id=D__ID>
-    <div id=panel__ID>
-        <div class=h_img__ID>
-            <div class=h_txt__ID><h4>HR and Employment</h4></div>
-        </div>
-        <div>
+    <div class=h_img__ID>
+        <div class=h_txt__ID><h4>Website Contents</h4></div>
+    </div>
+    <div id=panel__ID class=panel__ID>
             <div class='nav__ID'>
                 <span>Employee Appointment</span>
-                <hr class=hr__ID>
+                
                 <ul>
-                    <li><i class="fa fa-angle-right"></i><a href=?/new-hire-data>New Hire</a></li>
-                    <li><i class="fa fa-angle-right"></i><a href=?/contract-variation-data>Contract Variation</a></li>
-                    <li><i class="fa fa-angle-right"></i><a href=?/contract-renewal-data>Contract Renewal</a></li>
+                    <li><a href=?/new-hire-data>New Hire</a></li>
+                    <li><a href=?/contract-variation-data>Contract Variation</a></li>
+                    <li><a href=?/contract-renewal-data>Contract Renewal</a></li>
                 </ul>
             </div>
             <div class='nav__ID'>
                 <span>Student Appointment</span>
-                <hr class=hr__ID>
+                
                 <ul>
-                    <li><i class="fa fa-angle-right"></i><a href=?/new-student-agreement-data>New Student Agreement</a></li>
-                    <li><i class="fa fa-angle-right"></i><a href=?/student-agreement-renewal-data>Student Agreement Renewal</a></li>
-                    <li><i class="fa fa-angle-right"></i><a href=?/variation-to-existing-student-agreement-data>Variation to Existing Student Agreement</a></li>
+                    <li><a href=?/new-student-agreement-data>New Student Agreement</a></li>
+                    <li><a href=?/student-agreement-renewal-data>Student Agreement Renewal</a></li>
+                    <li><a href=?/variation-to-existing-student-agreement-data>Variation to Existing Student Agreement</a></li>
                 </ul>
             </div>
             <div class='nav__ID'>
                 <span>Clinician Appointment</span>
-                <hr class=hr__ID>
+                
                 <ul>
-                    <li><i class="fa fa-angle-right"></i><a href=?/new-clinician-hire-data>New Clinician Hire</a></li>
-                    <li><i class="fa fa-angle-right"></i><a href=?/variation-to-existing-clinician-data>Variation to Existing Clinician</a></li>
+                    <li><a href=?/new-clinician-hire-data>New Clinician Hire</a></li>
+                    <li><a href=?/variation-to-existing-clinician-data>Variation to Existing Clinician</a></li>
                 </ul>
             </div>
-        </div>
-        <div style='display:inline-flex;width:100%;padding-top:30px'>
             <div class='nav__ID'>
                 <span>Affiliate Appointment</span>
-                <hr class=hr__ID>
+                
                 <ul>
-                    <li><i class="fa fa-angle-right"></i><a href=?/new-affiliate-data>New Affiliate</a></li>
-                    <li><i class="fa fa-angle-right"></i><a href=?/new-honorary-affiliate-data>New Honorary Affiliate</a></li>
+                    <li><a href=?/new-affiliate-data>New Affiliate</a></li>
+                    <li><a href=?/new-honorary-affiliate-data>New Honorary Affiliate</a></li>
                 </ul>
             </div>
             <div class='nav__ID'>
                 <span>Staff</span>
-                <hr class=hr__ID>
+                
                 <ul>
-                    <li><i class="fa fa-angle-right"></i><a href=?/users>Contact Information</a></li>
-                    <li><i class="fa fa-angle-right"></i><a href=?/incident-report-data>Incident Report</a></li>
-                    <!--<li><i class="fa fa-angle-right"></i><a href=?/employee-appointment-c-data>Employee Appointment (old)</a></li>-->
-                    <!--<li><i class="fa fa-angle-right"></i><a href=?/clinician-appointment-data>Clinician Appointment (old)</a></li>-->
+                    <li><a href=?/me>Me</a></li>
+                    <li><a href=?/users>Contact Information</a></li>
+                    <li><a href=?/incident-report-data>Incident Report</a></li>
+                    <!--<li><a href=?/employee-appointment-c-data>Employee Appointment (old)</a></li>-->
+                    <!--<li><a href=?/clinician-appointment-data>Clinician Appointment (old)</a></li>-->
                 </ul>
             </div>
-        </div>
+
+            <div _class='nav__ID'>
+                <span>Research</span>
+                <ul>
+                    <li><a href=?/project-data>Projects</a></li>
+                    <li><a href=?/study-data>Studies</a></li>
+                    <li><a href=?/student-data>Students</a></li>
+                    <li><a href=?/contact-data>Contacts</a></li>
+                    <li><a href=?/volunteer-study-history-data>Volunteer Study History</a></li>
+                    <li><a href=?/volunteer-audit-data>Volunteer Audit</a></li>
+                    
+                    <!--<li><a href=?/create-list-fields>Create List Fields</a></li>-->
+                </ul>
+            </div>
+            <div class='nav__ID'>
+                <span>Woolcock 365 resources</span>
+                <ul>
+                    <li><a href=?/groups>Groups</a></li>
+                    <li><a href=?/sharepoint-site>Organization Sites</a></li>
+                    <li><a href=?/documents>Documents</a></li>
+                    <li><a href=?/entity-data>Dynamics Entities</a></li>
+                </ul>
+            </div>
+            <div class='nav__ID'>
+                <span>Woolcock Development Templates</span>
+                <ul>
+                    <li><a href=?/template-01-data>Web Form <i class="fas fa-arrows-alt-h"></i> Dynamics Entity (demo_01) </a></li>
+                    <li><a href=?/template-02-data>Web Form <i class="fas fa-arrows-alt-h"></i> Sharepoint List (demo_01) </a></li>
+                </ul>
+            </div>
+
     </div>
     <script>
         function F__ID(){
@@ -98,6 +126,85 @@
     </script>
     <style>
         #D__ID{
+            background-color:#fff;
+            height:100%;
+            overflow: auto;
+            animation: vm_module_fadein 1.0s;
+        }
+        #panel__ID{
+            margin:0 auto;
+            max-width:1400px;
+    		padding:10px 0 0 20px;
+            font-size:14px;
+    	}
+        .panel__ID{
+            padding:0px 50px 10px 50px;
+            font-size:14px;
+    		max-width: 100%;
+    		column-count: 4;
+    		column-width: 300px;
+    		column-gap: 30px;
+            font-size:14px;
+        }
+	    .panel__ID a{
+		    /*margin:3px 10px;*/
+            /*white-space: nowrap;*/
+	    }
+	    .panel__ID span{
+
+            color:#283f55;
+			font-weight: bold;
+			margin:3px 10px;
+            font-size: 18px;
+            
+            display: inline-block;
+            border-bottom: 1px solid #f9e09b;
+            padding-bottom: 2px;
+            white-space: nowrap;
+
+	    }
+
+        .panel__ID li{
+            /*text-decoration: none;*/
+        }
+        a {
+            text-decoration: none;
+        }
+        a:link {
+            color:#555;
+        }
+        a:visited {
+            color:#555;
+        }
+        a:hover {
+            color:red;
+        }
+        a:active {
+            color:#555;
+        }
+        #keywords__ID::placeholder {
+            color: #ccc;
+            padding-left:6px;
+        }        
+        @media screen and (max-width:768px){
+            .panel__ID{
+                padding:20px;
+            }
+        }
+        .nav__ID{
+            display:inline-block;
+        }
+
+        /*
+    	@media screen and (max-width:768px){
+    		#toolbar__ID{
+    			padding: 3px 10px;
+    		}
+    		#toolbar__ID div{
+    			padding-left:3px;
+    		}
+    	}
+        #D__ID{
     		background-color:#fff;
     		height:100%;
     		overflow: auto;
@@ -105,56 +212,53 @@
     	}
         #panel__ID{
             margin:0 auto;
-            max-width:1200px;
+            max-width:1400px;
     		padding:10px 0 0 20px;
+            font-size:14px;
     	}
     	#panel__ID a {
     		text-decoration: none;
     	}
-		#panel__ID h4{
-			text-shadow: 2px 2px 2px #000;
-		}
-    	#panel__ID li {
-            font-size: 14px;
-            line-height: 24px;
-    		color:#E31837;
-            white-space: nowrap;
-            width:100%;
-            display:inline-block;
-    	}
     	#panel__ID a:link {
-    		color:#E31837;
+    		color:#555;
     	}
     	#panel__ID a:visited {
-    		color:#E31837;
+    		color:#555;
     	}
     	#panel__ID a:hover {
-            text-decoration: underline;
-    	}
-    	#panel__ID li:hover {
-            background-color: #eee;
+    		color:red;
     	}
     	#panel__ID a:active {
-    		color:#E31837;
+    		color:#555;
     	}
         .nav__ID{
 	        padding:6px 26px 6px 6px;
 	        float:left;
-            width:33%;
-            min-width:300px;
 	    }
 	    .nav__ID span{
 			color:#283f55;
-			/*font-weight: bold;*/
-            font-weight: 600;
+			font-weight: bold;
 			margin:3px 10px;
-            color:#000;
-            font-size:24px;
-            font-family: "Segoe UI Web (West European)",Segoe UI,-apple-system,BlinkMacSystemFont,Roboto,Helvetica Neue,sans-serif;
+            font-size: 18px;
+            
+            display: inline-block;
+            border-bottom: 1px solid #f9e09b;
+            padding-bottom: 2px;
             white-space: nowrap;
 	    }
+    	@media screen and (max-width:768px){
+    		#panel__ID{
+    			padding:10px 0 0 10px;
+    		}
+    	}
+        */
+
+
         .h_img__ID{
-            height:300px;
+            margin:0 auto;
+            max-width:1400px;
+            
+            height:200px;
             background-size: cover; background-position: center center; 
             background-image: url(__CURRENT_PATH__/HRlanding.jpg);
             padding-top:60px;
@@ -165,43 +269,12 @@
         .h_txt__ID{
             color:#fff;
             background-color: rgba(50,90,90,0.5) !important;
+            _width: 35%;
+            display:inline-block;
             margin: 0% 0% 0% 6%!important;
             padding:20px;
             border-radius: 10px;
-            display:inline-block;
+			text-shadow: 2px 2px 2px #000;
         }
-        .hr__ID{
-            margin:10px 0;
-            padding:0;
-            border:0 solid #000;
-            border-bottom: 2px solid #eee;
-            margin-left:2px;
-        }
-        .hr__ID::before {
-            width: 100px;
-            height: 2px;
-            background: #E31837;
-            position: absolute;
-            content: ' ';
-            margin-left:2px;
-        }        
-        .nav__ID ul{
-            list-style: none;
-            padding-left:20px;
-        }
-        .nav__ID ul li i{
-            color:#888;
-            margin-right:20px;
-        }
-        /*
-        li:before {
-            content: "<i class='fa fa-angle-right'></i>";
-        } 
-        */       
-    	@media screen and (max-width:768px){
-    		#panel__ID{
-    			padding:10px 0 0 10px;
-    		}
-    	}
     </style>
 </div>
