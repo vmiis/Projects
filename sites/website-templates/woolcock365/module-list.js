@@ -229,6 +229,13 @@
                                                 Table: "https://woolcockmed.sharepoint.com/sites/IT/_api/web/lists/GetByTitle('demo_01')",
                                             },
 
+        "template-03-data":                 {url:"$H/template/03-data.html",
+                                                Table: "https://graph.microsoft.com/v1.0/sites/woolcockmed.sharepoint.com,eadc72df-8198-4320-a11b-6f1bcfbcaf1b,2367a8ed-18d1-4fea-afe2-c5784ffccfa9/drives/b!33Lc6piBIEOhG28bz7yvG-2oZyPRGOpPr-LFeE_8z6kd0nUNzwG9RqeqVggD-7uj/items/013ZBZGZ3WXWJHHEKLE5HYCWXWAGRCHQQK/workbook/worksheets/Sheet1/usedRange",
+                                            },
+
+                                                                
+
+
 
         "module-editor":                    {url:"https://vm.vmiis.com/component/m/module-editor.html",router:1,sys:1},
         "json-viewer":                      {url:"https://vm.vmiis.com/component/j/json-viewer.html",router:1},

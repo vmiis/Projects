@@ -50,7 +50,7 @@
             </div>
 
             <div _class='nav__ID'>
-                <span>Research</span>
+                <span>Research Volunteers</span>
                 <ul>
                     <li><a href=?/project-data>Projects</a></li>
                     <li><a href=?/study-data>Studies</a></li>
@@ -74,8 +74,13 @@
             <div class='nav__ID'>
                 <span>Woolcock Development Templates</span>
                 <ul>
-                    <li><a href=?/template-01-data>Web Form <i class="fas fa-arrows-alt-h"></i> Dynamics Entity (demo_01) </a></li>
-                    <li><a href=?/template-02-data>Web Form <i class="fas fa-arrows-alt-h"></i> Sharepoint List (demo_01) </a></li>
+                    <li><a href=?/template-01-data>Web Form <i class="fas fa-arrows-alt-h"></i> Dynamics Entity </a></li>
+                    <li><a app href=https://forms.office.com/Pages/ResponsePage.aspx?id=fKuOHmxcSEe37jG_-RpjUV5BH-EXAQdPnQUervzMiBNUMFk0NTVTR1Y1U0JFNjlHWDdaUUlNNzJYSS4u>Microsoft Form <i class="fas fa-arrow-right"></i> Dynamics Entity </a></li>
+                    
+                    <li><a href=?/template-02-data>Web Form <i class="fas fa-arrows-alt-h"></i> Sharepoint List </a></li>
+                    <li><a app href=https://forms.office.com/Pages/ResponsePage.aspx?id=fKuOHmxcSEe37jG_-RpjUV5BH-EXAQdPnQUervzMiBNUMk1RU01RSzBIS1VNMDRCMjlYOVc5T1ZGSC4u>Microsoft Form <i class="fas fa-arrow-right"></i> SharePoint List </a></li>
+
+                    <li><a href=?/template-03-data>Web Page <i class="fas fa-arrow-left"></i> Excel Sheet</a></li>
                 </ul>
             </div>
 
@@ -95,6 +100,10 @@
                 var href=$(this).attr('href');
                 var app=$(this).attr('app');
                 var dev=$(this).attr('dev');
+                if(app!=undefined){
+                    window.open(href);
+                    return;
+                }
                 if(dev!=undefined){
                     $vm.alert("Under development");
                     return;
