@@ -1,0 +1,69 @@
+<div id=D__ID>
+    <div id=logo>
+        <span id=logo_label_A>Logo</span>
+    </div>
+    <div id=menu>
+        <a href="b/home.html">Home</a>
+        <a href="c/first.html">First Module</a>
+        <a href="c/second.html">Second Module</a>
+    </div>
+    <script>
+        /*menu item process*/
+        $('#menu a').on('click',function(e){
+            e.preventDefault();
+            var url=$(this).attr('href');
+            $.get(url,function(code){
+                $('#content').html(code);
+            },'text');
+        })
+    </script>
+    <style>
+        #header{
+            height:100px;
+            background: #363f6b;
+        }
+        /*--------------------------*/
+        /*menu css*/
+        #menu {
+            margin-top:50px;
+            margin-left:160px;
+            overflow: hidden;
+            background: rgba(0,0,0,0.0);
+            display:inline-block;
+            float:left;
+        }
+        #menu > a {
+            float: left;
+            display: block;
+            color: #FFF;
+            text-align: center;
+            padding: 10px 8px;
+            text-decoration: none;
+            font-size: 14px;
+            cursor:pointer;
+        }
+        #menu > a:hover{
+            background-color: #555;
+            color: white;
+            border-radius:4px;
+        }
+        /*--------------------------*/
+        /*Logo css*/
+        #logo{
+            display:inline-block;
+            padding-top:35px;
+            padding-left:20px;
+            cursor:pointer;
+            float:left;
+        }
+        #logo_label_A{
+            font-family: Arial, sans-serif;
+            color:#fff;
+            font-size: 280%;
+            line-height:10px;
+            display:inline-block;
+            padding-top:10px;
+        }
+        /*--------------------------*/
+    </style>
+</div>

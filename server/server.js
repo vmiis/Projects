@@ -1,6 +1,7 @@
 const express	=require('express');
 const http		=require('http');
 const fs		=require('fs');
+const dirTree   =require("directory-tree");
 //---------------------------------------------------
 var password={}
 //---------------------------------------------------
@@ -11,7 +12,10 @@ server.get('/*', function(req, res, next){
     next();
 });
 //---------------------------------------------------
-server.use(express.static(__dirname + '/sites'));
+var content_path=__dirname.replace('\\server','\\sites');
+var tools_path=__dirname.replace('\\server','\\tools');
+server.use(express.static(content_path));
+server.use(express.static(tools_path));
 //---------------------------------------------------
 server.post('/', function (req, res) {
 	var r_data='';
@@ -20,25 +24,47 @@ server.post('/', function (req, res) {
     });
     req.on('end',function(){
 		d=JSON.parse(r_data);
+		d.path=d.path.replace(/\\/g,'/');
+		var ip=req.connection.remoteAddress;
+		console.log(ip);
+		
+		var read=function(){
+			fs.readFile(content_path+"/"+d.path, 'utf8', function(err, txt){
+				if (err) {
+					res.send(err);
+				}
+				else res.send(txt);
+			})
+		}
 		var write=function(){
-			fs.writeFile(__dirname+"/sites"+d.path, d.content, function (err) {
+			fs.writeFile(content_path+"/"+d.path, d.content, function (err) {
 				if (err) {
 					res.send(err);
 				}
 				else res.send("The file was saved!");
 			});
 		}
-		var ip=req.connection.remoteAddress;
-		console.log(ip);
-		if(ip=="::ffff:127.0.0.1" || ip=="::1"){
-			write();
+
+		var remove_root_path=function(t){
+			t.path=t.path.replace(content_path,'')
+			for(i in t.children){
+				t.children[i].path=t.children[i].path.replace(content_path+"\\",'')
+				if(t.children[i].type=="directory"){
+					remove_root_path(t.children[i]);
+				}
+			}
 		}
-		else{
-			var site="";
+		
+		if(d.cmd=='load'){
+			read();
+			return;
+		}
+		else if(d.cmd=='save'){
 			var items=d.path.split('/');
+			var last=d.path.split('/').pop();
+			var folder=d.path.replace(last,'');
 			if(items.length>1){
-				site=items[1];
-				if(site.length>0 && password[site]==d.password){
+				if(folder.length>0 && password[folder]==d.password){
 					write();
 				}
 				else{
@@ -46,6 +72,13 @@ server.post('/', function (req, res) {
 				}
 			}
 			else res.send("Bad request!");
+			
+			return;
+		}
+		else if(d.cmd=='tree'){
+			var tree = dirTree(content_path+"/"+d.path);
+			remove_root_path(tree);
+			res.send(tree);
 		}
 	})
 })
@@ -55,7 +88,7 @@ fs.readFile("sites-password.txt", 'utf8', function(err, txt){
 	for(var i=0;i<lines.length;i++){
 		var items=lines[i].split(':');
 		if(items.length==2){
-			password[items[0]]=items[1];
+			password[items[0]]=items[1].replace('\r','');
 		}
 	}
 })

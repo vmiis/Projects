@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+    <header>
+        <title>Labs Index</title>
+        <meta name='viewport' content='width=device-width, initial-scale=1'>
+        <link rel="icon" href="data:,">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.2/css/bootstrap.css" />
+        <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-3.3.1.min.js"></script>
+    </header>
+    <body>
+        <div id=panel__ID class=panel__ID>
+            <div style='display:inline-block'>
+                <span>Labs -- Try it yourself</span>
+                <ul>
+                    <li><a target=_blank href='/directory-tree/index.html?path=labs/001'>Sitmap</a> <a target=_blank href='001/index.html'>001 - Start up with a simple layout, header/content/footer</a></li>
+                    <li><a target=_blank href='/directory-tree/index.html?path=labs/002'>Sitmap</a> <a target=_blank href='002/index.html'>002 - Modular structure, move the section contents into separate files </a></li>
+                    <li><a target=_blank href='/directory-tree/index.html?path=labs/003'>Sitmap</a> <a target=_blank href='003/index.html'>003 - Add menu on header section </a></li>
+                    <li><a target=_blank href='/directory-tree/index.html?path=labs/004'>Sitmap</a> <a target=_blank href='004/index.html'>004 - Load modules into the contents section </a></li>
+                    <li><a target=_blank href='/directory-tree/index.html?path=labs/005'>Sitmap</a> <a target=_blank href='005/index.html'>005 - Apply CSS to the header and footer </a></li>
+                    <li><a target=_blank href='/directory-tree/index.html?path=labs/006'>Sitmap</a> <a target=_blank href='006/index.html'>006 - Add logo and background image </a></li>
+                    <li><a target=_blank href='/directory-tree/index.html?path=labs/007'>Sitmap</a> <a target=_blank href='007/index.html'>007 - Recreate home module</a></li>
+                </ul>
+                <span>Tools</span>
+                <ul>
+                    <li><a target=_blank href='/directory-tree/index.html'>Site Directory Tree</a></li>
+                    <li><a target=_blank href='/editor/index.html'>Contents Editor</a></li>
+                </ul>
+            </div>
+        </div>
+    </body>
+    <script>
+        $('#apply__ID').on('click',function(){
+            filter();
+        })
+        $('#keywords__ID').on('keyup',function(){
+            filter();
+        })
+        var filter=function(){
+            $('#panel__ID li').show();
+            if($('#keywords__ID').val().length==0){
+                $('#panel__ID span').show();
+            }
+            else{
+                $('#panel__ID span').hide();
+            }
+            var words=$('#keywords__ID').val().split(' ');
+            $('#panel__ID li').each(function(){
+                var name=$(this).html().toUpperCase();
+                for(var i=0;i<words.length;i++){
+                    var word=words[i].toUpperCase(); 
+                    if(word!=""){
+                        if(name.indexOf(word)==-1){
+                            $(this).hide();
+                            break;
+                        }
+                    }
+                }
+            })
+        }
+        //--------------------------------------------------------
+    </script>
+    <style>
+        #D__ID{
+            background-color:#fff;
+            height:100%;
+            overflow: auto;
+            animation: vm_module_fadein 1.0s;
+        }
+        .panel__ID{
+            padding:20px 50px 10px 50px;
+            font-size:14px;
+    		max-width: 100%;
+    		/*
+            column-count: 4;
+    		column-width: 300px;
+    		column-gap: 30px;
+            font-size:14px;
+            */
+        }
+	    .panel__ID a{
+		    /*margin:3px 10px;*/
+            /*white-space: nowrap;*/
+	    }
+	    .panel__ID span{
+			color:#283f55;
+			font-weight: bold;
+            font-weight: 600;
+			/*margin:3px 10px;*/
+            /*white-space: nowrap;*/
+	    }
+
+        .panel__ID li{
+            /*text-decoration: none;*/
+        }
+        a {
+            text-decoration: none;
+            margin-right:20px;
+        }
+        a:link {
+            color:#555;
+        }
+        a:visited {
+            color:#555;
+        }
+        a:hover {
+            color:red;
+        }
+        a:active {
+            color:#555;
+        }
+        #keywords__ID::placeholder {
+            color: #ccc;
+            padding-left:6px;
+        }        
+        @media screen and (max-width:768px){
+            .panel__ID{
+                padding:20px;
+            }
+        }
+    </style>
+
+</html>

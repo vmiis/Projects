@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!-- we use bootstrap -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.2/css/bootstrap.css" />
+        <!-- we use jquery library -->
+        <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-3.2.1.min.js"></script>
+    </head>
+    <body>
+        <!----------------------------------------------->
+        <!-- this part will be visible in web browser -->
+        <!-- contents will be dynamically loaded into this area -->
+        <div id=layout>
+            <div id=header></div>
+            <div id=content></div>
+            <div id=footer></div>
+        </div>
+        <!----------------------------------------------->
+        <script>
+            var _id=1;
+            var hosting_path=window.location.href.substring(0, window.location.href.split('?')[0].lastIndexOf('/'));
+            $.get(hosting_path+"/a/header.html",function(code){ $('#header').html(code.replace(/__ID/g, (_id++).toString())); },'text');
+            $.get(hosting_path+"/a/footer.html",function(code){ $('#footer').html(code.replace(/__ID/g, (_id++).toString())); },'text');
+            $.get(hosting_path+"/b/home.html",function(code){ $('#content').html(code.replace(/__ID/g, (_id++).toString())); },'text');
+        </script>
+        <!----------------------------------------------->
+        <style>
+            html,body{
+                margin:0;
+                padding:0;
+                height:100%;
+                font-family:Arial;
+            }
+            body{
+                background-size: cover; background-repeat: repeat-x; background-position: center top; background-attachment: fixed;
+                background-image: url(https://images.unsplash.com/photo-1523428096881-5bd79d043006?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80);
+            }
+            /*setup the layout*/
+            #layout {
+                height: 100%;
+                display: grid;
+                grid-template-rows: auto 1fr auto;
+                overflow:hidden;
+            }
+            /*make the components area to be hidden*/
+            #components{
+                display:none;
+            }
+        </style>
+        <!----------------------------------------------->
+    </body>
+</html>
+

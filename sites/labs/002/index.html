@@ -1,10 +1,4 @@
 <!DOCTYPE html>
-<!-- comments -------------------------------------------------------------------------->
-<div style='position:fixed;z-index:-1;top:200px;left:30px;max-width:600px;font-family: Verdana; line-height:20px;font-size:15px;color:#666'>
-    Layout is a HTML div with child divs for different parts of contents of a website.<br>
-    Let's start upwith a simple layout with header, content and footer.
-</div>
-<!-------------------------------------------------------------------------------------->
 <html>
     <head>
         <!-- we use jquery library -->
@@ -20,24 +14,12 @@
             <div id=footer></div>
         </div>
         <!----------------------------------------------->
-        <!-- this part will be hidden in web browser -->
-        <!-- we prepare our components in this area -->
-        <div id=components>
-            <div id=c_header>
-                header
-            <div id=c_content>
-                contents
-            </div>
-            <div id=c_footer>
-                footer
-            </div>
-        </div>
-        <!----------------------------------------------->
         <script>
-            /*We push our components to the visible area*/
-            $('#c_header').contents().appendTo('#header');
-            $('#c_content').contents().appendTo('#content');
-            $('#c_footer').contents().appendTo('#footer');
+            var _id=1;
+            var hosting_path=window.location.href.substring(0, window.location.href.split('?')[0].lastIndexOf('/'));
+            $.get(hosting_path+"/a/header.html",function(code){ $('#header').html(code.replace(/__ID/g, (_id++).toString())); },'text');
+            $.get(hosting_path+"/a/footer.html",function(code){ $('#footer').html(code.replace(/__ID/g, (_id++).toString())); },'text');
+            $.get(hosting_path+"/b/home.html",function(code){ $('#content').html(code.replace(/__ID/g, (_id++).toString())); },'text');
         </script>
         <!----------------------------------------------->
         <style>
