@@ -29,7 +29,8 @@
                 <script>
                     $('#dev').on('click',function(){ 
                         var endpoint=window.location.protocol+"//"+window.location.hostname+":"+window.location.port;
-                        window.open('/tools/directory-tree/index.html?path='+window.location.href.split('?')[0].replace(endpoint+"/",'').replace('/index.html',''))
+                        var sites=""; if(window.location.href.indexOf("/sites")!=-1) sites=window.location.href.split('/sites')[0]+"/sites";
+                        window.open(sites+'/tools/directory-tree/index.html?path='+window.location.href.split('?')[0].replace(endpoint+"/",'').replace('/index.html',''))
                     })
                 </script>
                 <!---------->
