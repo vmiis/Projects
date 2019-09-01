@@ -67,8 +67,8 @@
                 $vm.module_list[nm]={url:file_url}
                 var code=editor.getValue();
                 $('#module__ID').html('');
-                var flag=code.substring(0,14);
-                if(flag!=('<div id=D__'+'ID>')){
+                var flag=code.substring(0,13);
+                if(flag!=('<div id=D__'+'ID')){
                     $vm.alert("The HTML contents is not a module");
                     return;
                 }

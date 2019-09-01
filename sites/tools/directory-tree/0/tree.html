@@ -9,6 +9,33 @@
         </div>
         <div id=tree__ID>
         </div>
+        <div id=nodejs style='padding:50px;font-size:11px'>
+            This module only works under node.js server.<br>
+            <a target=_blank style='color:#000' href="https://github.com/vmiis/projects/blob/master/README.md">Click here to see how to run the labs on a local computer under node.js server</a><br>
+            <a target=_blank style='color:#000;' href=module_list id=list__ID>Click here to see the module list</a><br>
+            <a target=_blank style='color:#000;' href="../editor/index.html" id=list__ID>Module editor</a>
+            <script>
+                $('#list__ID').on('click',function(e){
+                    e.preventDefault();
+                    var txt="";
+                    var s=[];
+                    for(a in $vm.module_list){
+                        if(a!='module-editor'){
+                            var L=a.length;
+                            var tt="";
+                            for(k=0;k<50-L;k++) tt+="&nbsp;"; 
+                            s.push(a+tt+JSON.stringify($vm.module_list[a]));
+                        }
+                    }
+                    s.sort();
+                    for(i in s){
+                        txt+=s[i]+"<br>";
+                    }
+                    var win=window.open("","Module list");
+                    win.document.body.innerHTML=txt+"<title>Module List</title><style> body{ font-family:Courier New;font-size:12px; white-space: nowrap; } </style>";
+                })
+            </script>
+        </div>
     </div>
     <script>
         function F__ID(){
@@ -20,7 +47,8 @@
                 //$('#path__ID').val("labs\\002");
                 var aa=window.location.href.split('?path=');
                 if(aa.length=2){
-                    var path=aa[1];
+                    var endpoint=window.location.protocol+"//"+window.location.hostname+":"+window.location.port;
+                    var path=aa[1].replace(endpoint,'');
                     $('#path__ID').val(path);
                     $('#load__ID').triggerHandler('click');
                 }
@@ -81,8 +109,9 @@
                 xmlHttp.onreadystatechange = function () {
                     console.log(this.readyState+" "+this.status);
                     if (this.readyState == 4 && this.status == 200){
-                        display_tree(JSON.parse(this.responseText));
+                        if(this.responseText!="") display_tree(JSON.parse(this.responseText));
                     }
+                    $('#nodejs').hide
                 }
                 xmlHttp.open("POST", endpoint, true);
                 xmlHttp.send(da);

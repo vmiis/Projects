@@ -1,4 +1,13 @@
 <div id=D__ID>
+    <!-- EDIT --->
+    <u id=dev style='cursor:pointer; float:left;padding-left:2px;color:#fff'>EDIT</u>
+    <script>
+        $('#dev').on('click',function(){ 
+            var endpoint=window.location.protocol+"//"+window.location.hostname+":"+window.location.port;
+            window.open('/tools/directory-tree/index.html?path='+window.location.href.split('?')[0].replace(endpoint,'').replace('/index.html',''))
+        })
+    </script>
+    <!---------->
     <div id=menu>
         <a href="b/home.html">Home</a>
         <a href="c/first.html">First Module</a>

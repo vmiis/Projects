@@ -46,6 +46,7 @@ server.post('/', function (req, res) {
 		}
 
 		var remove_root_path=function(t){
+			if(t==null) return;
 			t.path=t.path.replace(content_path,'')
 			for(i in t.children){
 				t.children[i].path=t.children[i].path.replace(content_path+"\\",'')
@@ -61,10 +62,11 @@ server.post('/', function (req, res) {
 		}
 		else if(d.cmd=='save'){
 			var items=d.path.split('/');
+			var first=d.path.split('/')[0];
 			var last=d.path.split('/').pop();
 			var folder=d.path.replace(last,'');
 			if(items.length>1){
-				if(folder.length>0 && password[folder]==d.password){
+				if(folder.length>0 && (password[first+'/']==d.password || password[folder]==d.password)){
 					write();
 				}
 				else{
