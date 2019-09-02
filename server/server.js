@@ -12,10 +12,12 @@ server.get('/*', function(req, res, next){
     next();
 });
 //---------------------------------------------------
-var content_path=__dirname.replace('\\server','\\sites');
-var tools_path=__dirname.replace('\\server','\\tools');
-server.use(express.static(content_path));
-server.use(express.static(tools_path));
+var content_path
+//console.log(__dirname)
+//var content_path=__dirname.replace('\\server','\\sites');
+//var tools_path=__dirname.replace('\\server','\\tools');
+//server.use(express.static(content_path));
+//server.use(express.static(tools_path));
 //---------------------------------------------------
 server.post('/', function (req, res) {
 	var r_data='';
@@ -71,7 +73,7 @@ server.post('/', function (req, res) {
 	})
 })
 //---------------------------------------------------
-fs.readFile("sites-password.txt", 'utf8', function(err, txt){
+fs.readFile("server.js.password.txt", 'utf8', function(err, txt){
 	var lines=txt.split('\n');
 	for(var i=0;i<lines.length;i++){
 		var items=lines[i].split(':');
@@ -81,7 +83,13 @@ fs.readFile("sites-password.txt", 'utf8', function(err, txt){
 	}
 })
 //---------------------------------------------------
-fs.readFile("port.txt", 'utf8', function(err, port){
+fs.readFile("server.js.config.txt", 'utf8', function(err, txt){
+	var c=JSON.parse(txt);
+	var port=c.port;
+	content_path=__dirname.replace('\\server',"\\"+c.static);
+	var tools_path=__dirname+"\\tools";
+	server.use(express.static(content_path));
+	server.use(express.static(tools_path));
 	http.createServer(
 		server
 	).listen(
