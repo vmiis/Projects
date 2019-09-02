@@ -24,17 +24,6 @@
             </div>
             <div id=c_footer>
                 footer 
-                <!-- EDIT --->
-                <u id=dev style='cursor:pointer; float:right;padding-right:6px;color:green'>EDIT</u>
-                <script>
-                    $('#dev').on('click',function(){ 
-                        var endpoint=window.location.protocol+"//"+window.location.hostname+":"+window.location.port;
-                        var sites=""; if(window.location.href.indexOf("/sites")!=-1) sites=window.location.href.split('/sites')[0]+"/sites";
-                        //localStorage.setItem("__temp1001_",JSON.stringify($vm.module_list));
-                        window.open(sites+'/tools/sitedev/index.html?path='+window.location.href.split('?')[0].replace(endpoint+"/",'').replace('/index.html',''))
-                    })
-                </script>
-                <!---------->
             </div>
         </div>
         <!----------------------------------------------->
