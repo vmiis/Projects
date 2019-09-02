@@ -5,15 +5,15 @@
     <script>
         $('#dev').on('click',function(){ 
             //--------------------------------
+            var hosting_path=window.location.href.substring(0, window.location.href.split('?')[0].lastIndexOf('/'));
             $vm={}
             $vm.module_list={
-                header:{url:"/a/header.html"},
-                footer:{url:"/a/footer.html"},
-                home:{url:"/b/home.html"},
+                header:{url:hosting_path+"/a/header.html"},
+                footer:{url:hosting_path+"/a/footer.html"},
+                home:{url:hosting_path+"/b/home.html"},
             }
             //--------------------------------
-            var endpoint=window.location.protocol+"//"+window.location.hostname+":"+window.location.port;
-            var path=window.location.href.split('?')[0].replace(endpoint+"/",'').replace('/index.html','')
+            var path=window.location.href.split('?')[0].replace('/index.html','')
             localStorage.setItem("__temp1001_"+path,JSON.stringify($vm.module_list));
             var sites=""; if(window.location.href.indexOf("/sites")!=-1) sites=window.location.href.split('/sites')[0]+"/sites";
             window.open(sites+'/tools/sitedev/index.html?path='+path)

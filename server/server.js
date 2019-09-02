@@ -27,15 +27,6 @@ server.post('/', function (req, res) {
 		d.path=d.path.replace(/\\/g,'/');
 		var ip=req.connection.remoteAddress;
 		console.log(ip);
-		
-		var read=function(){
-			fs.readFile(content_path+"/"+d.path, 'utf8', function(err, txt){
-				if (err) {
-					res.send(err);
-				}
-				else res.send(txt);
-			})
-		}
 		var write=function(){
 			fs.writeFile(content_path+"/"+d.path, d.content, function (err) {
 				if (err) {
@@ -55,12 +46,7 @@ server.post('/', function (req, res) {
 				}
 			}
 		}
-		
-		if(d.cmd=='load'){
-			read();
-			return;
-		}
-		else if(d.cmd=='save'){
+		if(d.cmd=='save'){
 			var items=d.path.split('/');
 			var first=d.path.split('/')[0];
 			var last=d.path.split('/').pop();

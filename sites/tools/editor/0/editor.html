@@ -3,7 +3,7 @@
         <div id=toolbar__ID class="navbar navbar-default">
             <form class="form-inline">
                 <!--<button id=load__ID type=button class="btn btn-secondary" title='Load'>Load Code</button>-->
-                Path:&nbsp <input id=path__ID type=textpassword title='Path' style='width:320px'  />&nbsp
+                Path:&nbsp <input id=path__ID type=textpassword title='Path' style='width:390px'  />&nbsp
                 <button id=load__ID type=button class="btn btn-secondary" title='Load'>Load</button>
                 Password for saving:&nbsp <input id=password__ID type=password title='Password' style='width:90px' />&nbsp
                 <button id=save__ID type=button class="btn btn-secondary" title='Save'>Save</button>
@@ -78,22 +78,16 @@
             //--------------------------------------------------------
             $('#save__ID').on('click',function(){
                 var endpoint=window.location.protocol+"//"+window.location.hostname+":"+window.location.port;
-                var path=$('#path__ID').val();
-                if(path==""){
-                    $vm.alert("No file path.");
-                    return;
-                }
-                var d={cmd:'save',"path":path,"content":editor.getValue(),password:$('#password__ID').val()}
+                var full_path=$('#path__ID').val();
+                var last_path=full_path.replace(endpoint+"/",'').replace(endpoint+"\\",'').replace('sites/','').replace('sites\\','');
+
+                var d={cmd:'save',"path":last_path,"content":editor.getValue(),password:$('#password__ID').val()}
                 var da=JSON.stringify(d);
                 var xmlHttp = new XMLHttpRequest();
                 xmlHttp.onreadystatechange = function () {
                     console.log(this.readyState+" "+this.status);
                     if (this.readyState == 4 && this.status == 200){
                         $vm.alert(this.responseText);
-                        var url=$vm.module_list[module_name].url;
-                        var apppath=window.location.href.substring(0, window.location.href.lastIndexOf('/')).split('\/?')[0];
-		                localStorage.removeItem(apppath+url+"_ver");
-		                localStorage.removeItem(apppath+url+"_txt");
                     }
                 }
                 xmlHttp.open("POST", endpoint, true);
@@ -101,23 +95,11 @@
             })
             //--------------------------------------------------------
             $('#load__ID').on('click',function(){
-                var endpoint=window.location.protocol+"//"+window.location.hostname+":"+window.location.port;
                 var path=$('#path__ID').val();
-                if(path==""){
-                    $vm.alert("No file path.");
-                    return;
-                }
-                var d={cmd:'load',"path":path}
-                var da=JSON.stringify(d);
-                var xmlHttp = new XMLHttpRequest();
-                xmlHttp.onreadystatechange = function () {
-                    console.log(this.readyState+" "+this.status);
-                    if (this.readyState == 4 && this.status == 200){
-                        editor.setValue(this.responseText);
-                    }
-                }
-                xmlHttp.open("POST", endpoint, true);
-                xmlHttp.send(da);
+                $.get(path+'?_='+new Date().getTime(),function(txt){  
+                    editor.setValue(txt);
+                },'text');
+
             })
             //--------------------------------------------------------
             $('#dragbar__ID').mousedown(function(e){

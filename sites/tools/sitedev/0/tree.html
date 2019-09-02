@@ -27,25 +27,19 @@
                 //$('#path__ID').val("labs\\002");
                 var aa=window.location.href.split('?path=');
                 if(aa.length=2){
-                    var endpoint=window.location.protocol+"//"+window.location.hostname+":"+window.location.port;
-                    var path=aa[1].replace(endpoint,'');
-                    $('#path__ID').val(path);
+                    $('#path__ID').val(aa[1]);
                     $('#load__ID').triggerHandler('click');
-                    show_module_list(aa[1],path);
+                    show_module_list(aa[1]);
                 }
             })
-            var show_module_list=function(s_id,path){
-                var mL=localStorage.getItem("__temp1001_"+s_id);
+            var show_module_list=function(path){
+                var mL=localStorage.getItem("__temp1001_"+path);
                 if(mL!=null && mL!=undefined){
                     var jmL=JSON.parse(mL)
                     var txt="Module list<br>";
                     var s=[];
-                    var endpoint=window.location.protocol+"//"+window.location.hostname+":"+window.location.port;
                     for(a in jmL){
-                        pps=jmL[a].url.split(path)
-                        var pp=pps[0];
-                        if(pps.length==2) pp=pps[1];
-                        s.push("<a href="+path+"/"+pp+">"+a+"</a>: "+JSON.stringify(jmL[a]));
+                        s.push("<a href="+jmL[a].url+">"+a+"</a>: "+JSON.stringify(jmL[a]));
                     }
                     s.sort();
                     for(i in s){
@@ -53,22 +47,12 @@
                     }
                     $('#mlist__ID').html(txt)
                     $('#mlist__ID a').on('click',function(e){
-                    e.preventDefault();
-                    var href=$(this).attr("href");
-                    window.open("../editor/index.html?path="+href);
-                });
+                        e.preventDefault();
+                        var href=$(this).attr("href");
+                        window.open("../editor/index.html?path="+href);
+                    });
                 }
             }
-            //--------------------------------------------------------
-            $vm.module_list["__MODULE__"].show=function(){
-                document.title="Directory Tree | "+$vm.default_title;
-                $("meta[name='description']").attr("content","Editor");
-            }
-            //--------------------------------------------------------
-            var ready1=function(){
-            }
-            //--------------------------------------------------------
-            ready1();
             //--------------------------------------------------------
             var get_space=function(N){
                 var txt="";
@@ -79,13 +63,17 @@
             }
             //--------------------------------------------------------
             var get_tree=function(I,tree){
+                var endpoint=window.location.protocol+"//"+window.location.hostname+":"+window.location.port;
+                var full_path=$('#path__ID').val();
+                var last_path=full_path.replace(endpoint,'').replace('/sites','').replace('\\sites','');
+                var first_path=full_path.replace(last_path,'');
                 var txt="";
                 txt+=get_space(I)+tree.name+"<br>";
                 for(i in tree.children){
                     if(tree.children[i].type=="directory"){
                         txt+=get_tree(I+1,tree.children[i])
                     }
-                    else txt+=get_space(I+1)+"<a href="+tree.children[i].path+">"+tree.children[i].name+"</a>"+"<br>";
+                    else txt+=get_space(I+1)+"<a href="+first_path+"/"+tree.children[i].path+">"+tree.children[i].name+"</a>"+"<br>";
                 }
                 return txt;
             }
@@ -109,7 +97,8 @@
                     $vm.alert("No file path.");
                     return;
                 }
-                var d={cmd:'tree',"path":path}
+                var path2=path.replace(endpoint,'').replace('/sites','').replace('\\sites','');
+                var d={cmd:'tree',"path":path2}
                 var da=JSON.stringify(d);
                 var xmlHttp = new XMLHttpRequest();
                 xmlHttp.onreadystatechange = function () {
