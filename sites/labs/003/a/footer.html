@@ -1,11 +1,22 @@
 <div id=D__ID>
     footer
     <!-- EDIT --->
-    <u id=dev style='cursor:pointer; float:right;padding-right:6px;color:green'>EDIT</u>
+    <u id=dev style='cursor:pointer; float:right;padding-left:2px;color:#000'>EDIT</u>
     <script>
         $('#dev').on('click',function(){ 
+            //--------------------------------
+            $vm={}
+            $vm.module_list={
+                header:{url:"/a/header.html"},
+                footer:{url:"/a/footer.html"},
+                home:{url:"/b/home.html"},
+            }
+            //--------------------------------
             var endpoint=window.location.protocol+"//"+window.location.hostname+":"+window.location.port;
-            window.open('/tools/directory-tree/index.html?path='+window.location.href.split('?')[0].replace(endpoint+"/",'').replace('/index.html',''))
+            var path=window.location.href.split('?')[0].replace(endpoint+"/",'').replace('/index.html','')
+            localStorage.setItem("__temp1001_"+path,JSON.stringify($vm.module_list));
+            var sites=""; if(window.location.href.indexOf("/sites")!=-1) sites=window.location.href.split('/sites')[0]+"/sites";
+            window.open('/tools/sitedev/index.html?path='+path)
         })
     </script>
     <!---------->

@@ -3,8 +3,21 @@
     <u id=dev style='cursor:pointer; float:left;padding-left:2px;color:#fff'>EDIT</u>
     <script>
         $('#dev').on('click',function(){ 
+            //--------------------------------
+            $vm={}
+            $vm.module_list={
+                header:{url:"/a/header.html"},
+                footer:{url:"/a/footer.html"},
+                home:{url:"/b/home.html"},
+                first:{url:"/c/first.html"},
+                second:{url:"/c/second.html"},
+            }
+            //--------------------------------
             var endpoint=window.location.protocol+"//"+window.location.hostname+":"+window.location.port;
-            window.open('/tools/directory-tree/index.html?path='+window.location.href.split('?')[0].replace(endpoint,'').replace('/index.html',''))
+            var path=window.location.href.split('?')[0].replace(endpoint+"/",'').replace('/index.html','')
+            localStorage.setItem("__temp1001_"+path,JSON.stringify($vm.module_list));
+            var sites=""; if(window.location.href.indexOf("/sites")!=-1) sites=window.location.href.split('/sites')[0]+"/sites";
+            window.open('/tools/sitedev/index.html?path='+path)
         })
     </script>
     <!---------->

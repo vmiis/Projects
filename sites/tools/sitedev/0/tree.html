@@ -3,37 +3,17 @@
         <div id=toolbar__ID class="navbar navbar-default">
             <form class="form-inline">
                 <!--<button id=load__ID type=button class="btn btn-secondary" title='Load'>Load Code</button>-->
-                Path:&nbsp <input id=path__ID type=textpassword title='Path' style='width:320px'  />&nbsp
+                Site path:&nbsp <input id=path__ID type=textpassword title='Path' style='width:320px'  />&nbsp
                 <button id=load__ID type=button class="btn btn-secondary" title='Load'>Load</button>
             </form>
         </div>
         <div id=tree__ID>
         </div>
+        <div id=mlist__ID>
+        </div>
         <div id=nodejs style='padding:50px;font-size:11px'>
-            This module only works under node.js server.<br>
+            This directory tree only works under node.js server.<br>
             <a target=_blank style='color:#000' href="https://github.com/vmiis/projects/blob/master/README.md">Click here to see how to run the labs on a local computer under node.js server</a><br>
-            <a target=_blank style='color:#000;' href=module_list id=list__ID>Click here to see the module list</a><br>
-            <a target=_blank style='color:#000;' href="../editor/index.html" id=list__ID>Module editor</a>
-            <script>
-                $('#list__ID').on('click',function(e){
-                    e.preventDefault();
-                    var txt="";
-                    var s=[];
-                    for(a in $vm.module_list){
-                        if(a!='module-editor'){
-                            var L=a.length;
-                            var tt="";
-                            for(k=0;k<50-L;k++) tt+="&nbsp;"; 
-                            s.push(a+tt+JSON.stringify($vm.module_list[a]));
-                        }
-                    }
-                    s.sort();
-                    for(i in s){
-                        txt+=s[i]+"<br>";
-                    }
-                    var win=window.open("","Module list");
-                    win.document.body.innerHTML=txt+"<title>Module List</title><style> body{ font-family:Courier New;font-size:12px; white-space: nowrap; } </style>";
-                })
             </script>
         </div>
     </div>
@@ -51,8 +31,34 @@
                     var path=aa[1].replace(endpoint,'');
                     $('#path__ID').val(path);
                     $('#load__ID').triggerHandler('click');
+                    show_module_list(aa[1],path);
                 }
             })
+            var show_module_list=function(s_id,path){
+                var mL=localStorage.getItem("__temp1001_"+s_id);
+                if(mL!=null && mL!=undefined){
+                    var jmL=JSON.parse(mL)
+                    var txt="Module list<br>";
+                    var s=[];
+                    var endpoint=window.location.protocol+"//"+window.location.hostname+":"+window.location.port;
+                    for(a in jmL){
+                        pps=jmL[a].url.split(path)
+                        var pp=pps[0];
+                        if(pps.length==2) pp=pps[1];
+                        s.push("<a href="+path+"/"+pp+">"+a+"</a>: "+JSON.stringify(jmL[a]));
+                    }
+                    s.sort();
+                    for(i in s){
+                        txt+="&nbsp;&nbsp;&nbsp;"+s[i]+"<br>";
+                    }
+                    $('#mlist__ID').html(txt)
+                    $('#mlist__ID a').on('click',function(e){
+                    e.preventDefault();
+                    var href=$(this).attr("href");
+                    window.open("../editor/index.html?path="+href);
+                });
+                }
+            }
             //--------------------------------------------------------
             $vm.module_list["__MODULE__"].show=function(){
                 document.title="Directory Tree | "+$vm.default_title;
@@ -85,8 +91,8 @@
             }
             //--------------------------------------------------------
             var display_tree=function(tree){
-                var txt="";//<pre><code>";
-                txt+=get_tree(0,tree);
+                var txt="Directory tree<br>";//<pre><code>";
+                txt+=get_tree(1,tree);
                 txt+="";//</code></pre>";
                 $('#tree__ID').html(txt);
                 $('#tree__ID a').on('click',function(e){
@@ -146,6 +152,22 @@
             color:red;
         }
         #tree__ID a:active {
+            color:#555;
+        }
+        
+        #mlist__ID{
+            padding:20px;
+        }
+        #mlist__ID a:link {
+            color:#555;
+        }
+        #mlist__ID a:visited {
+            color:#555;
+        }
+        #mlist__ID a:hover {
+            color:red;
+        }
+        #mlist__ID a:active {
             color:#555;
         }
     </style>
