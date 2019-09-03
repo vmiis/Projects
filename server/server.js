@@ -13,11 +13,6 @@ server.get('/*', function(req, res, next){
 });
 //---------------------------------------------------
 var content_path
-//console.log(__dirname)
-//var content_path=__dirname.replace('\\server','\\sites');
-//var tools_path=__dirname.replace('\\server','\\tools');
-//server.use(express.static(content_path));
-//server.use(express.static(tools_path));
 //---------------------------------------------------
 server.post('/', function (req, res) {
 	var r_data='';
@@ -66,8 +61,12 @@ server.post('/', function (req, res) {
 			return;
 		}
 		else if(d.cmd=='tree'){
-			var tree = dirTree(content_path+"/"+d.path);
+			var p1=content_path+"/"+d.path;
+			p1=p1.replace(/\//g,'\\').replace(/\\\\/g,'\\');
+			console.log(p1)
+			var tree = dirTree(p1);
 			remove_root_path(tree);
+			console.log(tree)
 			res.send(tree);
 		}
 	})
@@ -84,12 +83,13 @@ fs.readFile("server.js.password.txt", 'utf8', function(err, txt){
 })
 //---------------------------------------------------
 fs.readFile("server.js.config.txt", 'utf8', function(err, txt){
+	txt=txt.replace(/\\/g,'\\\\');
 	var c=JSON.parse(txt);
 	var port=c.port;
-	content_path=__dirname.replace('\\server',"\\"+c.static);
-	var tools_path=__dirname+"\\tools";
+	content_path=c.static;
+	if(content_path=="") content_path=__dirname.replace("\\server","\\sites");
 	server.use(express.static(content_path));
-	server.use(express.static(tools_path));
+	server.use(express.static(__dirname+"\\tools"));
 	http.createServer(
 		server
 	).listen(
