@@ -15,8 +15,7 @@
             //--------------------------------
             var path=window.location.href.split('?')[0].replace('/index.html','')
             localStorage.setItem("__temp1001_"+path,JSON.stringify($vm.module_list));
-            var sites=""; if(window.location.href.indexOf("/sites")!=-1) sites=window.location.href.split('/sites')[0]+"/sites";
-            window.open(sites+'/tools/sitedev/index.html?path='+path)
+            window.open('/sitedev/index.html?path='+path)
             //--------------------------------
         })
     </script>
