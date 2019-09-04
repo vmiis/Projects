@@ -7,10 +7,13 @@
       VmInclude:__COMPONENT__/g/grid.01.js
       VmInclude:__CURRENT_PATH__/../../library/shared-data.js
       //-------------------------------------
-      $('#title__ID').text($vm.module_list[$vm.vm['__ID'].name].task_name)
-      //-------------------------------------
+      var load2=m.load;
+        m.load=function(){
+            $('#title__ID').text($vm.module_list[$vm.vm['__ID'].name].task_name);
+        }
+        //-------------------------------------
       var fields="File_Name,Serial_No,Epoch,aTRT,aExcl,Bedtime_min,Bedtime_max,Risetime_min,Risetime_max";
-      m.fields="_Form,_Status,_Notes,_Participant_ID,Participant,"+fields+",Submit_date,Submitted_by,_Delete";
+      m.fields="_Form,_Lock,_Status,_Notes,_Participant_ID,Participant,"+fields+",Submit_date,Submitted_by,_Delete";
       //-------------------------------------
       var cell_render=m.cell_render;
             m.cell_render=function(records,I,field,td){

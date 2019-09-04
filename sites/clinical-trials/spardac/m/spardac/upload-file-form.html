@@ -8,7 +8,7 @@
                     <div class="col-12">
                         <!-- form start -->
                         <form id="F__ID">
-                            <h3>File Upload</h3>
+                            <h3 id=title__ID></h3>
                             <!-- participant part for all tsak forms -------------------->
                             <div id="participant_div__ID">
                                 <div class="form-group">
@@ -59,6 +59,7 @@
             m.load=function(){
                 m.old_load();
                 m.set_file_link("File_Name");
+                $('#title__ID').text($vm.module_list[$vm.vm['__ID'].name].task_name);
             }
             //-------------------------------------
         }

@@ -8,7 +8,7 @@
                     <div class="col-12">
                         <!-- form start -->
                         <form id="F__ID">
-                            <h3>Visual Analogue Scale</h3>
+                            <h3 id=title__ID></h3>
                             <!-- participant part for all tsak forms -------------------->
                             <div id="participant_div__ID">
                                 <div class="form-group">
@@ -84,7 +84,9 @@
             VmInclude:'__COMPONENT__/f/form.01.js'
             VmInclude:__CURRENT_PATH__/../../library/shared-form.js
             //-------------------------------------
-            m.load_2 = function () {
+			var load2=m.load;
+			m.load=function(){
+				load2();
                 if(m.input.record != undefined){
                     $('<style>#Question_1_con__ID input[type="range"]::-webkit-slider-thumb { -webkit-appearance: none; appearance: none; width: 5px; height: 25px; background: #EA7859; cursor: pointer; }</style>').appendTo('head');                    
                     $('<style>#Question_2_con__ID input[type="range"]::-webkit-slider-thumb { -webkit-appearance: none; appearance: none; width: 5px; height: 25px; background: #EA7859; cursor: pointer; }</style>').appendTo('head');                    
@@ -93,6 +95,7 @@
                     $('<style>#Question_1_con__ID input[type="range"]::-webkit-slider-thumb { -webkit-appearance: none; appearance: none; width: 0px; height: 0px; background: #EA7859; cursor: pointer; }</style>').appendTo('head');                    
                     $('<style>#Question_2_con__ID input[type="range"]::-webkit-slider-thumb { -webkit-appearance: none; appearance: none; width: 0px; height: 0px; background: #EA7859; cursor: pointer; }</style>').appendTo('head');
                 }
+                $('#title__ID').text($vm.module_list[$vm.vm['__ID'].name].task_name);
             }
             //-------------------------------
             $('#Question_1__ID').on('click', function () {

@@ -8,7 +8,7 @@
           <div class="col-12">
             <!-- form start -->
             <form id="F__ID">
-              <h3>Many of many choises</h3>
+              <h3 id=title__ID></h3>
               <!-- participant part for all tsak forms -------------------->
               <div class="form-group">
                 <fieldset class="subquestions">
@@ -58,6 +58,12 @@
           //-------------------------------------
           VmInclude:'__COMPONENT__/f/form.01.js'
           VmInclude:__CURRENT_PATH__/../../library/shared-form.js
+          //-------------------------------------
+          var load2=m.load;
+			    m.load=function(){
+				    load2();
+            $('#title__ID').text($vm.module_list[$vm.vm['__ID'].name].task_name);
+          }
           //-------------------------------------
       }
   </script>

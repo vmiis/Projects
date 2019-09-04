@@ -9,7 +9,7 @@
           <div class="col-12">
             <!-- form start -->
             <form id=F__ID>
-              <h3>Star Rating</h3>
+              <h3 id=title__ID></h3>
               <!-- participant part for all tsak forms -------------------->
               <div id="participant_div__ID">
                 <div class="form-group">
@@ -56,10 +56,13 @@
       VmInclude:'__COMPONENT__/f/form.01.js'
       VmInclude:__CURRENT_PATH__/../../library/shared-form.js
       //-------------------------------------
-      m.load_2 = function () {
+			var load2=m.load;
+			m.load=function(){
+				load2();
         $star_rating.siblings('input.rating-value__ID').val();
         $star_rating.siblings('input.rating-value__ID').val($('#item_1__ID').val())
         m.SetRatingStar();
+        $('#title__ID').text($vm.module_list[$vm.vm['__ID'].name].task_name);
       }
       //-------------------------------------
       m.SetRatingStar = function () {

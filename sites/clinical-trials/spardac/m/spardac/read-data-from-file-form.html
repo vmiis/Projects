@@ -8,7 +8,7 @@
                     <div class="col-12">
                         <!-- form start -->
                         <form id="F__ID">
-                            <h3>Read data from file</h3>
+                            <h3 id=title__ID></h3>
                             <div class="row px-4">
                                 <div class='col'>
                                     <label><span class="">This is an example of reading in data from a file, including
@@ -117,6 +117,7 @@
             m.load=function(){
                 m.old_load();
                 m.set_file_link("File_Name");
+                $('#title__ID').text($vm.module_list[$vm.vm['__ID'].name].task_name);
             }
             //-------------------------------------
             $('input[name=File_Name]').on('change', function (evt) {

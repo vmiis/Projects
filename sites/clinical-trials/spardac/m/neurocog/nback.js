@@ -244,6 +244,7 @@ var third_party=function(containerID,callback)
         Number : [],
         KeyResponse : [],
     };
+    var responce = {};
     instructions.forEach(function(i) { $(i).hide(); });
     ctx.clearRect(0, 0, width, height);
     ctx.fillStyle = 'white';
@@ -283,7 +284,7 @@ var third_party=function(containerID,callback)
         if(mn<10){mn='0'+mn;}
         if(hh<10){hh='0'+hh;}
         if(ss<10){ss='0'+ss;}
-        results.Start_Time=hh+':'+mn+':'+ss;
+        responce.Start_Time=hh+':'+mn+':'+ss;
         $('.start-button').hide();
         $('#participant_div__ID').css("visibility", "hidden");
         $(instructions[current]).hide();
@@ -417,10 +418,11 @@ var third_party=function(containerID,callback)
         if (!finished)
         {
             finished = true;
-            results.NNO = results.Number.join(",");
-            results.NRT = results.Time.join(",");
-            results.NAC = results.KeyResponse.join(",");
-            callback(results);
+            
+            responce.NNO = results.Number.join(",");
+            responce.NRT = results.Time.join(",");
+            responce.NAC = results.KeyResponse.join(",");
+            callback(responce);
         }
     }
     $(document).keypress(function(e){
