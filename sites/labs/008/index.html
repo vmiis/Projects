@@ -40,14 +40,14 @@
                 $vm.load_component('header',$vm.root_layout_header,{});
                 $vm.load_component('footer',$vm.root_layout_footer,{});
                 $vm.load_component('app',$vm.root_layout_system,{});
+                //------------------------------------
+                /*
+                setTimeout(function (){
+                    if($vm.module_list["dashboard"]!=undefined) $vm.load_module('dashboard','',{});
+                },1);
+                //-------------------------------------
+                */
             }
-            //------------------------------------
-            setTimeout(function (){
-                if($vm.module_list["dashboard"]!=undefined) $vm.load_module('dashboard','',{});
-            },2000);
-            //-------------------------------------
-
-
 
 
             

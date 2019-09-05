@@ -1,0 +1,245 @@
+
+<div id=D__ID>
+	<div id="section__ID">
+		<div id=color__ID>
+			<div class="container">
+				<div class="row section-title">
+					<h2 style="font-family: 'Indie Flower', cursive;color:#fff;">First Aid Officer</h2>
+					<hr>
+					<div class="clearfix"></div>
+				</div>
+				<div class="row href__ID">
+					<figure id=item00__ID class="col-sm col-md-6 col-lg-3 item__ID">
+						<a><img alt="" /></a>
+						<figcaption>
+							<h3></h3>
+							<h4 class=e1__ID></h4>
+							<h4 class=e2__ID></h4>
+						</figcaption>
+					</figure>
+					<figure id=item01__ID class="col-sm col-md-6 col-lg-3 item__ID">
+						<a><img alt="" /></a>
+						<figcaption>
+							<h3></h3>
+							<h4 class=e1__ID></h4>
+							<h4 class=e2__ID></h4>
+						</figcaption>
+					</figure>
+					<figure id=item02__ID class="col-sm col-md-6 col-lg-3 item__ID">
+						<a><img alt="" /></a>
+						<figcaption>
+							<h3></h3>
+							<h4 class=e1__ID></h4>
+							<h4 class=e2__ID></h4>
+						</figcaption>
+					</figure>
+					<figure id=item03__ID class="col-sm col-md-6 col-lg-3 item__ID">
+						<a><img alt="" /></a>
+						<figcaption>
+							<h3></h3>
+							<h4 class=e1__ID></h4>
+							<h4 class=e2__ID></h4>
+						</figcaption>
+					</figure>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script>
+		function F__ID(){
+			var data=[
+                {
+                    Department: "Marketing",
+                    Name: "Joan Smith",
+                    Phone: "02 91234567",    
+                    Image:"__CURRENT_PATH__/p01.jpg"                
+                },
+                {
+                    Department: "Operation",
+                    Name: "David Allen",
+                    Phone: "02 91239876",                    
+                    Image:"__CURRENT_PATH__/p02.jpg"                
+                },
+                {
+                    Department: "Finance",
+                    Name: "Tom Scott",
+                    Phone: "02 91029810",                    
+                    Image:"__CURRENT_PATH__/p03.jpg"                
+                },
+                {
+                    Department: "Research",
+                    Name: "Anna Miller",
+                    Phone: "02 91022020",                    
+                    Image:"__CURRENT_PATH__/p04.jpg"                
+                },
+            ]
+            for(var i=0;i<4;i++){
+                $("#item0"+i+"__ID a").attr('href',i); 
+                $("#item0"+i+"__ID img").attr("src",data[i].Image) 
+                $("#item0"+i+"__ID h3").text(data[i].Name) 
+				$("#item0"+i+"__ID .e1__ID").text(data[i].Department) 
+				$("#item0"+i+"__ID .e2__ID").text(data[i].Phone) 
+            }
+            
+            $('#D__ID .href__ID a').on('click',function(e){
+				e.preventDefault();
+				var i=$(this).attr('href');
+                $vm.load_module('about','',{})
+			})
+			//---------------------------------------
+		}
+	</script>
+	<style>
+		#D__ID{
+			height:100%;
+			animation: vm_module_fadein 1.0s;
+            padding-top:100px;
+	    }
+        @media screen and (max-width: 1200px) {
+            #D__ID{
+                padding-top:10px;
+            }
+        }
+	    #section__ID{
+            max-width:1200px;
+            margin-left:auto;
+            margin-right:auto;
+	    }
+	    #color__ID{
+			padding: 100px 0;
+    		background:rgba(17, 78, 116, 0.94);
+			height: 100%;
+	    }
+		#D__ID hr {
+		    height: 1px;
+		    width: 100%;
+		    background: #71bd46;
+		    /*position: relative;*/
+		    border: 0;
+		    margin: 0 0 10px 0;
+		}
+
+        @import url(https://fonts.googleapis.com/css?family=Montserrat:200);
+        .item__ID {
+            font-family: 'Montserrat', Arial, sans-serif;
+            overflow: hidden;
+            padding: 0px;
+            width: 100%;
+            color: #fff;
+            text-align: left;
+            font-size: 16px;
+            background: #000;
+        }
+        .item__ID *,
+        .item__ID:before,
+        .item__ID:after {
+            -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+            -webkit-transition: all 0.4s ease;
+            transition: all 0.4s ease;
+        }
+
+        .item__ID img {
+            width: 100%;
+            backface-visibility: hidden;
+            vertical-align: top;
+        }
+
+        .item__ID:before,
+        .item__ID:after {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            content: '';
+            background-color: #fff;
+            z-index: 1;
+            opacity: 0;
+        }
+
+        .item__ID:before {
+            width: 0;
+            height: 1px;
+        }
+
+        .item__ID:after {
+            height: 0;
+            width: 1px;
+        }
+
+        .item__ID figcaption {
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            padding: 15px 20px;
+        }
+
+        .item__ID h3,
+        .item__ID h4 {
+            margin: 0;
+            font-size: 1.1em;
+            font-weight: normal;
+            opacity: 0;
+        }
+
+        .item__ID h4 {
+            font-size: .8em;
+            /*text-transform: uppercase;*/
+        }
+		/*
+        .item__ID a {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            z-index: 1;
+        }
+		*/
+        .item__ID:hover img,
+        .item__ID.hover img {
+            zoom: 1;
+            filter: alpha(opacity=20);
+            -webkit-opacity: 0.2;
+            opacity: 0.2;
+        }
+
+        .item__ID:hover:before,
+        .item__ID.hover:before,
+        .item__ID:hover:after,
+        .item__ID.hover:after {
+            opacity: 1;
+            -webkit-transition-delay: 0.25s;
+            transition-delay: 0.25s;
+        }
+
+        .item__ID:hover:before,
+        .item__ID.hover:before {
+            width: 40px;
+        }
+
+        .item__ID:hover:after,
+        .item__ID.hover:after {
+            height: 40px;
+        }
+
+        .item__ID:hover h3,
+        .item__ID.hover h3,
+        .item__ID:hover h4,
+        .item__ID.hover h4 {
+            opacity: 1;
+        }
+
+        .item__ID:hover h3,
+        .item__ID.hover h3 {
+            -webkit-transition-delay: 0.3s;
+            transition-delay: 0.3s;
+        }
+
+        .item__ID:hover h4,
+        .item__ID.hover h4 {
+            -webkit-transition-delay: 0.35s;
+            transition-delay: 0.35s;
+        }
+
+	</style>
+</div>

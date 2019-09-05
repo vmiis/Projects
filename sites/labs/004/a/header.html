@@ -3,15 +3,35 @@
         <a href="b/home.html">Home</a>
         <a href="c/first.html">First Module</a>
         <a href="c/second.html">Second Module</a>
+        <a href="dev">Settings</a>
     </div>
     <script>
         /*menu item process*/
         $('#menu a').on('click',function(e){
             e.preventDefault();
             var url=$(this).attr('href');
-            $.get(url,function(code){
-                $('#content').html(code);
-            },'text');
+            if(url!='dev'){
+                $.get(url,function(code){
+                    $('#content').html(code);
+                },'text');
+            }
+            else{
+                //--------------------------------
+                var hosting_path=window.location.href.substring(0, window.location.href.split('?')[0].lastIndexOf('/'));
+                $vm={}
+                $vm.module_list={
+                    header:{url:hosting_path+"/a/header.html"},
+                    footer:{url:hosting_path+"/a/footer.html"},
+                    home:{url:hosting_path+"/b/home.html"},
+                    first:{url:hosting_path+"/c/first.html"},
+                    second:{url:hosting_path+"/c/second.html"},
+                }
+                //--------------------------------
+                var path=window.location.href.split('?')[0].replace('/index.html','')
+                localStorage.setItem("__temp1001_"+path,JSON.stringify($vm.module_list));
+                window.open('/sitedev/index.html?path='+path)
+                //--------------------------------
+            }
         })
     </script>
     <style>

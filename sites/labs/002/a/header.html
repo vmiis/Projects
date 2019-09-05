@@ -1,3 +1,21 @@
 <div id=D__ID>
-    header
+    header <u id=dev style='cursor:pointer;'>settings</u>
+    <script>
+        //DEV: site structure and online editor
+        $('#dev').on('click',function(){ 
+            //--------------------------------
+            var hosting_path=window.location.href.substring(0, window.location.href.split('?')[0].lastIndexOf('/'));
+            $vm={}
+            $vm.module_list={
+                header:{url:hosting_path+"/a/header.html"},
+                footer:{url:hosting_path+"/a/footer.html"},
+                home:{url:hosting_path+"/b/home.html"},
+            }
+            //--------------------------------
+            var path=window.location.href.split('?')[0].replace('/index.html','')
+            localStorage.setItem("__temp1001_"+path,JSON.stringify($vm.module_list));
+            window.open('/sitedev/index.html?path='+path)
+        })
+        //------------------
+    </script>
 </div>

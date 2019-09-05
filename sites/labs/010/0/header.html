@@ -1,16 +1,4 @@
 <div id=D__ID>
-    <!-- DEV: site structure and online editor --->
-    <u id=dev style='cursor:pointer; float:left;padding-left:2px;color:#fff'><i class="fas fa-cog"></i></u>
-    <script>
-        $('#dev').on('click',function(){ 
-            //--------------------------------
-            var path=window.location.href.split('?')[0].replace('/index.html','')
-            localStorage.setItem("__temp1001_"+path,JSON.stringify($vm.module_list));
-            window.open('/sitedev/index.html?path='+path)
-            //--------------------------------
-        })
-    </script>
-    <!---------->
     <div>
         <div class=vm-mobile>
             <span id=vm-mobile_title class=vm-mobile-title>Business Portal</span>
@@ -24,8 +12,7 @@
             <a href="?/home"><i class="fa fa-home"></i> Home</a>
             <a href="?/menu">Menu</a>
             <a href="?/about"><i class="fa fa-info-circle"></i> About</a>
-            <a id=vm_signin onclick="$vm.signin();"><i class="fa fa-user"></i> Sign In</a>
-            <a class=vm-hide id=vm_signout onclick=$vm.signout()><i class="fa fa-user"></i> Sign Out</a>
+            <a dev id=dev><i class="fas fa-cog"></i></i> Settings</a>
         </div>
     </div>
     <script>
@@ -52,6 +39,11 @@
             if(href!=undefined && href!='' && href.substring(0,8)=="https://"){ window.open(href); return;}
             if(href!=undefined && href!=''){
                 if($vm.menu_click!=undefined) $vm.menu_click(href);
+            }
+            else if(dev!=undefined){
+                var path=window.location.href.split('?')[0].replace('/index.html','')
+                localStorage.setItem("__temp1001_"+path,JSON.stringify($vm.module_list));
+                window.open('/sitedev/index.html?path='+path)
             }
             $vm.toggle();
         })
