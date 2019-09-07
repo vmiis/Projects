@@ -4,8 +4,8 @@ Download and run on a local computer
 1. <a href=https://github.com/vmiis/projects/archive/master.zip>download and unzip</a>
 2. install nodejs (https://nodejs.org)
 3. open the folder "server"
-4. run install-express.bat
-5. run install-directory-tree.bat
+4. run install-express.bat to install express module
+5. run install-directory-tree.bat to install directory-tree module
 6. run server.js.start.bat to start the server
 7. open you web browser, type http://localhost:8000 
 
