@@ -38,6 +38,7 @@
         //------------------------------------
         $('#vm-menu a').on('click',function(e){
             e.preventDefault();
+            var dev=$(this).attr('dev');
             var href=$(this).attr('href');
             if(href!=undefined && href!='' && href.substring(0,8)=="https://"){ window.open(href); return;}
             if(href!=undefined && href!=''){

@@ -1,0 +1,209 @@
+<div id=D__ID>
+    <div>
+        <div class="vm-desk-logo vm-desk-items">
+            <span id=vm-logo-label-A>Business Portal</span><br>
+            <span id=vm-logo-label-B>on-demand business applications</span>
+        </div>
+        <div id="vm-menu">
+            <a href="?/home"><i class="fa fa-home"></i>Home</a>
+            <div>
+                <span class=vm-folder><i class="fa fa-folder-open-o"></i>Articles</span>
+                <div class="vm-folder-content vm-menu-show">
+                    <li><a href="?/p1">Short</a></li>
+                    <li><a href="?/p2">Long</a></li>
+                </div>
+            </div>
+            <a href="?/about"><i class="fa fa-info-circle"></i> About</a><br>
+            <a dev id=dev><i class="fas fa-cog"></i></i> Settings</a>
+            <!--
+            <a id=vm_signin onclick=$vm.signin()><i class="fa fa-user"></i>Sign In</a>
+            <a id=vm_signout class=vm-hide onclick=$vm.signout()><i class="fa fa-user"></i>Sign Out</a>
+            -->
+        </div>
+    </div>
+    <script>
+        //------------------------------------
+        $('#vm-mobile-title').on('click',function(){ $vm.load_module('home',$vm.root_layout_content_slot,{}) })
+        $('.vm-desk-logo').on('click',function(){ $vm.load_module('home',$vm.root_layout_content_slot,{}) })
+        //------------------------------------
+        $vm.header_ready=1;
+        //------------------------------------
+    </script>
+    <style>
+        #nav{
+            width:290px;
+            background:rgba(0,0,0,0.5);
+            white-space: nowrap;
+        }
+        #content{
+            overflow:auto;
+        }
+        #vm-logo-label-A{
+            font-family: Arial, sans-serif;
+            color:#fff;
+            font-size: 200%;
+            line-height:10px;
+            display:inline-block;
+        }
+        #vm-logo-label-B{
+            font-family: Arial, sans-serif;
+            color:#fff;
+            font-size: 93%;
+            line-height:80%;
+            display:inline-block;
+        }
+        /*----------------------*/
+        :root {
+            --menu-color: #fff;
+            --menu-hover-color: #29eca6;
+            --mobile-title-color:#fff;
+            --mobile-hamburger-color:#fff;
+        }
+        /*----------------------*/
+        #header{height:0px;background:rgba(0,0,0,0.8);}
+        .vm-desk-logo{ display:inline-block; padding:36px 0 0 10px;cursor:pointer;}
+        #vm-menu{ float:left;padding:50px 30px 0 20px;}
+        @media screen and (max-width: 900px){
+            #vm-menu{ float:left;padding:20px 30px 0 20px;}
+            #header{height:50px;}
+            #nav{
+                background:rgba(0,0,0,0.7);
+            }
+        }
+    </style>
+    <script menu-code>
+        $vm.toggle=function() {
+            var x = document.getElementById("nav");
+            if(x.className==='') x.className="responsive";
+            else x.className="";
+        }
+        //------------------------------------
+        $('#vm-menu a').on('click',function(e){
+            e.preventDefault();
+            var href=$(this).attr('href');
+            var dev=$(this).attr('dev');
+            if(href!=undefined && href!=''){
+                if($vm.menu_click!=undefined) $vm.menu_click(href);
+            }
+            else if(dev!=undefined){
+                var path=window.location.href.split('?')[0].replace('/index.html','')
+                localStorage.setItem("__temp1001_"+path,JSON.stringify($vm.module_list));
+                window.open('/sitedev/index.html?path='+path)
+            }
+            $vm.toggle();
+        })
+        //------------------------------------
+        $('#vm-menu .vm-folder').on('click',function(){
+            var $folder=$(this).find('i');
+            var $div=$(this).next('div');
+            if($folder.hasClass('fa-folder-open-o')){
+                $folder.removeClass('fa-folder-open-o').addClass('fa-folder-o');
+                $div.removeClass('vm-menu-show').addClass('vm-menu-hide');
+            }
+            else if($folder.hasClass('fa-folder-o')){
+                $folder.removeClass('fa-folder-o').addClass('fa-folder-open-o');
+                $div.removeClass('vm-menu-hide').addClass('vm-menu-show');
+            }
+        })
+        //--------------------------------------------------------
+        $vm.menu_click=function(href){
+            href=href.replace('?\/','');
+            href=href.replace(/\//g,'_');
+            $vm.load_module(href,$vm.root_layout_content_slot,{});
+        }
+    </script>
+    <style menu-style>
+        /*menu*/
+        #vm-menu {
+            overflow: hidden;
+            display:inline-block;
+            float:left;
+        }
+        #vm-menu > a, #vm-menu span {
+            color:var(--menu-color);
+            display: block;
+            text-decoration: none;
+            font-size: 14px;
+            cursor:pointer;
+        }
+        #vm-menu a:hover, #vm-menu span:hover{
+          color:var(--menu-hover-color);
+        }
+        #vm-menu i{
+            width:20px;
+        }
+        .vm-menu-show{
+            display:block;
+            max-height: 1000px;
+            overflow: hidden;
+            animation: vm_menu_show_0 1.8s;
+        }
+        .vm-menu-hide{
+            display:none;
+        }
+        .vm-folder-content{
+            padding-left:20px;
+        }
+        .vm-folder-content li, .vm-folder-content li a{
+            color:var(--menu-color);
+            text-decoration: none;
+            font-size: 14px;
+            cursor:pointer;
+        }
+        .vm-hide{
+            display:none!Important;
+        }
+        .vm-mobile{
+            display:none;
+        }
+        /*----------------------*/
+        @media screen and (max-width: 900px) {
+            .vm-desk-items{display:none;}
+            #nav{
+                display:none;
+            }
+            .responsive .vm-desk-items{
+                display:none;
+            }
+            .responsive{
+                z-index: 100;
+                position:fixed;
+                height:100%;
+                display:block!Important;
+                animation: vm-nav-show 1.0s;
+            }
+            .vm-mobile{
+                display:block;
+            }
+            .vm-mobile-title{
+                color:var(--mobile-title-color);
+                font-size: 28px;
+                display:inline-block;
+                padding: 3px 0 3px 12px;
+                cursor: pointer;
+            }
+            #vm-hamburger-button{
+                float: right;
+                display: block;
+                font-size:28px;
+                padding:5px 16px 3px 16px;
+                position: absolute;
+                right: 0;
+                top: 0;
+                cursor:pointer;
+                color:var(--mobile-hamburger-color);
+            }
+            .vm-mobile{
+                display:block;
+            }
+        }
+        @keyframes vm-menu-show {
+            from {max-height: 0px;}
+            to {max-height: 1000px;}
+        }
+        @keyframes vm-nav-show {
+            from {max-width: 0px;}
+            to {max-width: 290px;}
+        }
+    </style>
+</div>
