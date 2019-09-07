@@ -1,0 +1,81 @@
+<div id=D__ID>
+    <section id=form_container__ID>
+    	<div id=header__ID>
+    		Form
+    	</div>
+    	<form id=F__ID>
+    		<div class="container">
+                <hr class=hr__ID>
+    			<div class="row row__ID">
+    				<div class=col-md-4>
+    					<span>Gender</span>
+    				</div>
+    				<div class=col-md-8>
+    					<label><input type="radio" name=Gender value=Male /> Male</label>
+    					<label><input type="radio" name=Gender value=Female /> Female</label>
+    					<label><input type="radio" name=Gender value=Other /> Other</label>
+    				</div>
+    			</div>
+                <hr class=hr__ID>
+    			<div class="row row__ID">
+    				<div class=col-md-4>
+    					<span>Bick</span>
+    				</div>
+    				<div class=col-md-8>
+    					<label><input type="checkbox" name=Bick />  I have a bike</label>
+    				</div>
+    			</div>
+                <hr class=hr__ID>
+    			<div class="row row__ID">
+    				<div class=col-md-4>
+    					<span>State</span>
+    				</div>
+    				<div class=col-md-8>
+						<select class="form-control" name="State">
+							<option value="nsw"></option>
+							<option value="nsw">New South Wales</option>
+							<option value="vic">Victoria</option>
+							<option value="qld">Queensland</option>
+							<option value="wa">Western Australia</option>
+							<option value="sa">South Australia</option>
+							<option value="tas">Tasmania</option>
+							<option value="act">Australian Capital Territory</option>
+							<option value="nt">Northern Territory</option>
+						</select>
+    				</div>
+    			</div>
+                <hr class=hr__ID>
+    			<br>
+    			<div class="row">
+    				<div class=col>
+    					<button id=submit__ID type="submit" class="btn btn-secondary">Submit</button>
+    				</div>
+    			</div>
+    		</div>
+    	</form>
+    </section>
+    <script>
+    	function F__ID(){
+	        /*-------------------------------------
+            The form data can be submitted to a database, such as 
+            Your own MySQL, SQL Server, MongoDB
+            Microsoft Dynamics 365, SharePoint,
+            Google Firebase
+            etc.
+            Here we use Wappsystem Cloud Database to store this form data. All detail code can be found on https://github.com/vmiis/vm
+            -------------------------------------*/
+            VmInclude:__COMPONENT__/f/form.01.js
+    		//-------------------------------------
+    	}
+    </script>
+    <style>
+        VmInclude:__COMPONENT__/f/form.01.css
+        #form_container__ID{
+            max-width:600px;
+        }
+        .hr__ID{
+            margin:6px 0;
+            padding:0;
+        }
+    </style>
+</div>

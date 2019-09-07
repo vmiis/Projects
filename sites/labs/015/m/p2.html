@@ -1,0 +1,188 @@
+<div id=D__ID>
+    <section id=form_container__ID>
+    	<div id=header__ID>
+    		Form
+    	</div>
+    	<form id=F__ID>
+    		<div class="container">
+                <hr class=hr__ID>
+    			<div class="row row__ID">
+    				<div class=col-md-4>
+    					<span>Gender</span>
+    				</div>
+    				<div class=col-md-8>
+    					<label class="radiobuttons"><input type="radio" name=Gender value=Male /><span class="checkmark"></span> Male</label>
+    					<label class="radiobuttons"><input type="radio" name=Gender value=Female /><span class="checkmark"></span> Female</label>
+    					<label class="radiobuttons"><input type="radio" name=Gender value=Other /><span class="checkmark"></span> Other</label>
+    				</div>
+    			</div>
+                <hr class=hr__ID>
+    			<div class="row row__ID">
+    				<div class=col-md-4>
+    					<span>Bick</span>
+    				</div>
+    				<div class=col-md-8>
+    					<label class="checkboxes" ><input type="checkbox" name=Bick /><span class="check_checkmark"></span>  I have a bike</label>
+    				</div>
+    			</div>
+                <hr class=hr__ID>
+    			<div class="row row__ID">
+    				<div class=col-md-4>
+    					<span>State</span>
+    				</div>
+    				<div class=col-md-8>
+						<select class="form-control" name="State">
+							<option value="nsw"></option>
+							<option value="nsw">New South Wales</option>
+							<option value="vic">Victoria</option>
+							<option value="qld">Queensland</option>
+							<option value="wa">Western Australia</option>
+							<option value="sa">South Australia</option>
+							<option value="tas">Tasmania</option>
+							<option value="act">Australian Capital Territory</option>
+							<option value="nt">Northern Territory</option>
+						</select>
+    				</div>
+    			</div>
+                <hr class=hr__ID>
+    			<br>
+    			<div class="row">
+    				<div class=col>
+    					<button id=submit__ID type="submit" class="btn btn-secondary">Submit</button>
+    				</div>
+    			</div>
+    		</div>
+    	</form>
+    </section>
+    <script>
+    	function F__ID(){
+	        /*-------------------------------------
+            The form data can be submitted to a database, such as 
+            Your own MySQL, SQL Server, MongoDB
+            Microsoft Dynamics 365, SharePoint,
+            Google Firebase
+            etc.
+            Here we use Wappsystem Cloud Database to store this form data. All detail code can be found on https://github.com/vmiis/vm
+            -------------------------------------*/
+            VmInclude:__COMPONENT__/f/form.01.js
+    		//-------------------------------------
+    	}
+    </script>
+    <style>
+        VmInclude:__COMPONENT__/f/form.01.css
+        #form_container__ID{
+            max-width:600px;
+        }
+        .hr__ID{
+            margin:6px 0;
+            padding:0;
+        }
+
+        /* RADIO BUTTONS */
+        #D__ID .radiobuttons {
+            text-align:center;
+            display: inline-block;
+            position: relative;
+            cursor: pointer;
+            padding-left: 30px;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+        #D__ID .radiobuttons input {
+            position: absolute !important;
+            opacity: 0 !important;
+            cursor: pointer;
+        }
+        #D__ID .checkmark {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 22px;
+            width: 22px;
+            background-color: #C9C9C9;
+            border-radius: 50%;
+            color:#fff;
+        }
+        #D__ID .radiobuttons:hover input ~ .checkmark {
+            background-color: #506A88;
+        }
+        #D__ID .radiobuttons input:checked ~ .checkmark {
+            background-color: #EA7859;
+        }
+        #D__ID .checkmark:after {
+            content: "";
+            position: absolute !important;
+            display: none;
+        }
+        /* Show the indicator (dot/circle) when checked */
+        #D__ID .radiobuttons input:checked ~ .checkmark:after {
+            display: block !important;
+        }
+        /* Style the indicator (dot/circle) */
+        #D__ID .checkmark:after {
+            top: 7px;
+            left: 7px;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: white !important;
+        }
+        #D__ID .checkmark.no-dot:after {
+            width: 0;
+            height: 0;
+        }
+
+
+        /* CHECK BOX */
+        #D__ID .checkboxes {
+            display: inline-block;
+            position: relative;
+            cursor: pointer;
+            padding-left: 30px;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+        #D__ID .checkboxes input {
+            position: absolute !important;
+            opacity: 0 !important;
+            cursor: pointer;
+        }
+        #D__ID .check_checkmark {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 22px;
+            width: 22px;
+            background-color: #C9C9C9;
+            border-radius: 0%;
+        }
+        #D__ID .checkboxes:hover input ~ .check_checkmark {
+            background-color: #506A88;
+        }
+        #D__ID .checkboxes input:checked ~ .check_checkmark {
+            background-color: #EA7859;
+        }
+        #D__ID .check_checkmark:after {
+            content: "";
+            position: absolute !important;
+            display: none;
+        }
+        /* Show the indicator (dot/circle) when checked */
+        #D__ID .checkboxes input:checked ~ .check_checkmark:after {
+            display: block !important;
+        }
+        /* Style the indicator (dot/circle) */
+        #D__ID .check_checkmark:after {
+            top: 0px;
+            left: 6px;
+            color:white;
+            content:"✔";
+        }
+
+
+    </style>
+</div>
