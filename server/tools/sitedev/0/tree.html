@@ -24,7 +24,6 @@
             var module_name="";
             //--------------------------------------------------------
             $('#D__ID').on('load',function(){
-                //$('#path__ID').val("labs\\002");
                 var aa=window.location.href.split('?path=');
                 if(aa.length=2){
                     $('#path__ID').val(aa[1]);
@@ -36,6 +35,14 @@
                 var mL=localStorage.getItem("__temp1001_"+path);
                 if(mL!=null && mL!=undefined){
                     var jmL=JSON.parse(mL)
+                    for(item in jmL){
+                            console.log(item)
+
+                        for(a in jmL[item]){
+                            console.log(a)
+                            if(a!="url" && a!="Table") delete jmL[item][a];
+                        }
+                    }
                     var txt="Module list<br>";
                     var s=[];
                     for(a in jmL){
@@ -63,14 +70,19 @@
             }
             //--------------------------------------------------------
             var get_tree=function(I,tree){
-                var endpoint=window.location.protocol+"//"+window.location.hostname+":"+window.location.port;
+                var endpoint=window.location.protocol+"//"+window.location.hostname;
+                if(window.location.port!="") endpoint+=":"+window.location.port;
                 var txt="";
                 txt+=get_space(I)+tree.name+"<br>";
                 for(i in tree.children){
                     if(tree.children[i].type=="directory"){
                         txt+=get_tree(I+1,tree.children[i])
                     }
-                    else txt+=get_space(I+1)+"<a href="+endpoint+"/"+tree.children[i].path.replace(/\\/g,'\/')+">"+tree.children[i].name+"</a>"+"<br>";
+                }
+                for(i in tree.children){
+                    if(tree.children[i].type=="file"){
+                        txt+=get_space(I+1)+"<a href="+endpoint+"/"+tree.children[i].path.replace(/\\/g,'\/')+">"+tree.children[i].name+"</a>"+"<br>";
+                    }
                 }
                 return txt;
             }
@@ -87,7 +99,8 @@
             }
             //--------------------------------------------------------
             $('#load__ID').on('click',function(){
-                var endpoint=window.location.protocol+"//"+window.location.hostname+":"+window.location.port;
+                var endpoint=window.location.protocol+"//"+window.location.hostname;
+                if(window.location.port!="") endpoint+=":"+window.location.port;
                 var path=$('#path__ID').val();
                 if(path==""){
                     $vm.alert("No file path.");

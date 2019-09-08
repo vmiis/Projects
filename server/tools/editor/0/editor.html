@@ -71,7 +71,8 @@
             })
             //--------------------------------------------------------
             $('#save__ID').on('click',function(){
-                var endpoint=window.location.protocol+"//"+window.location.hostname+":"+window.location.port;
+                var endpoint=window.location.protocol+"//"+window.location.hostname;
+                if(window.location.port!="") endpoint+=":"+window.location.port;
                 var full_path=$('#path__ID').val();
                 var last_path=full_path.replace(endpoint+"/",'').replace(endpoint+"\\",'');
 
@@ -82,8 +83,6 @@
                     console.log(this.readyState+" "+this.status);
                     if (this.readyState == 4 && this.status == 200){
                         $vm.alert(this.responseText);
-                        localStorage.removeItem(full_path+"_ver");
-                        localStorage.removeItem(full_path+"_txt");
                     }
                 }
                 xmlHttp.open("POST", endpoint, true);
