@@ -60,20 +60,22 @@
             $vm.init();
             $vm.init_status=1;
             //------------------------------------
-            /*
             $vm.exchange_microsoft_token=function(){
-                $vm.api_address="";
-                var token=localStorage.getItem('msal.idtoken');
-                $vm.request({cmd:'exchange-microsoft-token',token:token},function(res){
-
-                })
+                if($vm.microsoft_token!=undefined){
+                    $vm.request({cmd:'exchange-microsoft-token',token:$vm.microsoft_token},function(res){
+                        console.log(res);
+                        if(res.status=='ok'){
+                            $vm.user_name=res.user_name;
+                            $vm.set_token(res.token,res.username);
+                        }
+                    })
+                }
             }
-            */
             //------------------------------------
             $vm.app_after_3rd_signin=function(){
                 $vm.user_name=$vm.user_name_3rd;
                 $vm.show_user();
-                //$vm.exchange_microsoft_token();
+                $vm.exchange_microsoft_token();
             }
             //------------------------------------
             if($vm.user_name!=$vm.user_name_3rd && $vm.user_name_3rd!=undefined){
