@@ -6,7 +6,7 @@
         //------------------------------------
         $vm.api_address="https://api.wappsystem.com";
         if(window.location.toString().indexOf('_p=1')!=-1) $vm.api_address="https://api.wappsystem.com:3000";
-        $vm.api_address="http://localhost:8001";
+        //$vm.api_address="http://localhost:8001";
         //------------------------------------
         $vm.default_title="Modular distributed web application";
         //------------------------------------
@@ -59,9 +59,9 @@
                     $vm.request({cmd:'exchange-microsoft-token',token:$vm.microsoft_token},function(res){
                         console.log(res);
                         if(res.status=='ok'){
-                            $vm.user_name=res.user_name;
-                            $vm.user_displayname=res.user_displayname;
-                            $vm.set_token(res.token,res.username);
+                            $vm.user_name=res.result.user_name;
+                            $vm.user_displayname=res.result.user_displayname;
+                            $vm.set_token(res.result.token,res.result.username);
                             $vm.show_user();
                         }
                     })
