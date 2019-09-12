@@ -1,0 +1,26 @@
+<div id=D__ID>
+	<div style='padding:30px'>
+		You are authenticated by Microsoft Account login.<br>
+		Your login have been verified on server side.
+	</div>
+	<div style='padding:30px'>
+		Username: <span id=user_name__ID></span>
+	</div>
+	<script>
+		function F__ID(){
+			var nm=$vm.user_name;
+			if($vm.user_displayname!=undefined) nm=$vm.user_displayname;
+			$('#user_name__ID').text(nm);
+		}
+	</script>
+	<style>
+		#D__ID{
+			background-color:#fff;
+			color:#000;
+			font-size:15px;
+			font-family: Helvetica, Arial, sans-serif;
+			height:100%;
+			animation: vm_module_fadein 1.0s;
+		}
+	</style>
+</div>
