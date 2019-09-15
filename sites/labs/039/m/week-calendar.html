@@ -40,8 +40,9 @@
             var date=record.Data.Date;
             var time=record.Data.Time;
             var name=record.Data.Name; if(name===undefined) name="No name";
+            var color=record.Data.Color;
             var $div=m.get_cell_div(date);
-            var item="<div class=item__ID id=item__ID"+id+">"+time+" "+name+"</div>"
+            var item="<div class=item__ID id=item__ID"+id+" style='color:"+color+"' >"+time+" "+name+"</div>"
             $div.append(item);
             $('#item__ID'+id).on('click',function(){
                 $vm.load_module(m.booking,'',{record:record});

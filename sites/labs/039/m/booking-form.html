@@ -14,13 +14,21 @@
     			<div class="row row__ID">
     				<div class=col>
     					<span>Time (between 08:00 and 17:45)</span>
-    					<input type="time" min="08:00" max="17:00" class="form-control" name=Time required step=900 />
+						<!--<input type="time" min="08:00" max="17:00" class="form-control" name=Time required step=900 />-->
+						<select class="form-control" name=Time>
+						</select>
     				</div>
     			</div>
     			<div class="row row__ID">
     				<div class=col>
     					<span>Name</span>
     					<input type="text" class="form-control" name=Name required />
+    				</div>
+    			</div>
+    			<div class="row row__ID">
+    				<div class=col>
+    					<span>Name</span>
+    					<input type="color" style='width:50px' name=Color required value='#0000ff' />
     				</div>
     			</div>
     			<br>
@@ -38,6 +46,16 @@
     		//-------------------------------------
             VmInclude:__COMPONENT__/f/form.01.js
     		//-------------------------------------
+			var $List1=$('#F__ID select[name=Time]');
+			for(var i=8;i<18;i++){
+				for(var j=0;j<4;j++){
+					var t1=i;    if(t1<10) t1="0"+t1
+					var t2=j*15; if(t2==0) t2="00";
+					var t=t1+":"+t2;
+					$List1.append(  $('<option></option>').val(t).html(t)  );
+				}
+			}
+			//-------------------------------------
             old_load=m.load;
 			m.load=function(){
 				old_load();
