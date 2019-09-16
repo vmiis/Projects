@@ -15,7 +15,7 @@
             var mt1=new Date().getTime();
             var dt1=$vm.date_to_yyyymmdd(m.first_day);
             var dt2=$vm.date_to_yyyymmdd($vm.date_add_days(m.last_day,1));
-            $vm.request({cmd:"find",table:m.Table,query:{I1:{"$gt":dt1,"$lt":dt2}},sort:{I1:1},options:{}},function(res){
+            $vm.request({cmd:"find",table:m.Table,query:{I1:{"$gte":dt1,"$lt":dt2}},sort:{I1:1},options:{}},function(res){
                 if(res.permission==false){
                     alert("No permission to get booking information.");
                     return;

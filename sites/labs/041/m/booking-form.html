@@ -13,9 +13,15 @@
     			</div>
     			<div class="row row__ID">
     				<div class=col>
-    					<span>Time (between 08:00 and 17:45)</span>
-						<!--<input type="time" min="08:00" max="17:00" class="form-control" name=Time required step=900 />-->
+    					<span>Time</span>
 						<select class="form-control" name=Time>
+						</select>
+    				</div>
+    			</div>
+    			<div class="row row__ID">
+    				<div class=col>
+    					<span>Duration</span>
+						<select class="form-control" name=Duration>
 						</select>
     				</div>
     			</div>
@@ -28,7 +34,7 @@
     			<div class="row row__ID">
     				<div class=col>
     					<span>Color</span>
-    					<input type="color" style='width:50px' name=Color required value='#0080c0' />
+    					<input type="color" style='width:50px' name=Color required value='#8bdc80' />
     				</div>
 				</div>
 				<hr>
@@ -81,6 +87,17 @@
 				}
 			}
 			//-------------------------------------
+			var $List2=$('#F__ID select[name=Duration]');
+			for(var i=0;i<15;i++){
+				for(var j=0;j<2;j++){
+					var t1=i;    if(t1<10) t1="0"+t1
+					var t2=j*30; if(t2==0) t2="00";
+					var t=t1+":"+t2;
+					if(i==0 && j==0){} 
+					else $List2.append(  $('<option></option>').val(t).html(t)  );
+				}
+			}
+			//-------------------------------------
             old_load=m.load;
 			m.load=function(){
 				old_load();
@@ -90,8 +107,10 @@
 			}
     		//-------------------------------------
 			m.before_submit=function(data,index){
-                index.I1=data.Date;
+				data.Duration=15; //fixed duration, 15 minutes
+				index.I1=data.Date;
                 index.I2=data.Time;
+                index.I3=data.Duration;
             }
             //-------------------------------------
     	}
