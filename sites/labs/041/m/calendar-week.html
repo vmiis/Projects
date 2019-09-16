@@ -7,10 +7,10 @@
         //--------------------------------------------------------
         VmInclude:__COMPONENT__/w/week.01.js
         //--------------------------------------------------------
-        m.start_point=8*60;
-        m.total_width=(18*60-m.start_point);
+        m.start_point=0*60;
+        m.total_width=(24*60-m.start_point);
     	m.on_day_click_fun=function(date){
-			$vm.load_module(m.booking,'',{day:date})
+			$vm.load_module(m.booking,'',{day:date,goback:1})
     	}
     	//--------------------------------------------------------
         m.request_and_render=function(){
@@ -41,13 +41,14 @@
             var id=record._id;
             var date=record.Data.Date;
             var time=record.Data.Time;
+            var aa=time.split(':');
             var name=record.Data.Name; if(name===undefined) name="No name";
             var color=record.Data.Color;
             var duration=record.Data.Duration;
+            var bb=duration.split(':');
 
-            var aa=time.split(':');
             var mm=(100*(parseInt(aa[0])*60+parseInt(aa[1])-m.start_point)/m.total_width).toFixed(2)+"%";
-            var ww=(100*15/m.total_width).toFixed(2)+"%";
+            var ww=(100*(parseInt(bb[0])*60+parseInt(bb[1]))/m.total_width).toFixed(2)+"%";
             
             var $div=m.get_cell_div(date);
             var item="<div style='_position:relative' class=item__ID id=item__ID"+id+" ><div style='white-space:nowrap;position:relative;margin-left:"+mm+";width:"+ww+"; height:18px; background-color:"+color+";z-index:1' >"+time+" "+name+"</div></div>"
@@ -58,6 +59,8 @@
         }
         //--------------------------------------------------------
         $('#D__ID').on('load',function(){
+            var a=$(window).height()-$('#body__ID').offset().top;
+            $('#body__ID').css("min-height",a)
             m.request_and_render();
         });
         //--------------------------------------------------------

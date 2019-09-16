@@ -1,7 +1,7 @@
 <div id=D__ID>
     <section id=form_container__ID>
     	<div id=header__ID>
-    		Booking
+    		Record
     	</div>
     	<form id=F__ID>
     		<div class="container">
@@ -78,10 +78,10 @@
             VmInclude:__COMPONENT__/f/form.01.js
     		//-------------------------------------
 			var $List1=$('#F__ID select[name=Time]');
-			for(var i=8;i<18;i++){
-				for(var j=0;j<4;j++){
+			for(var i=0;i<24;i++){
+				for(var j=0;j<2;j++){
 					var t1=i;    if(t1<10) t1="0"+t1
-					var t2=j*15; if(t2==0) t2="00";
+					var t2=j*30; if(t2==0) t2="00";
 					var t=t1+":"+t2;
 					$List1.append(  $('<option></option>').val(t).html(t)  );
 				}
@@ -107,7 +107,6 @@
 			}
     		//-------------------------------------
 			m.before_submit=function(data,index){
-				data.Duration=15; //fixed duration, 15 minutes
 				index.I1=data.Date;
                 index.I2=data.Time;
                 index.I3=data.Duration;
