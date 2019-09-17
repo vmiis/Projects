@@ -51,7 +51,7 @@
             var ww=(100*(parseInt(bb[0])*60+parseInt(bb[1]))/m.total_width).toFixed(2)+"%";
             
             var $div=m.get_cell_div(date);
-            var item="<div style='_position:relative' class=item__ID id=item__ID"+id+" ><div style='padding-left:3px; margin-left:"+mm+";width:"+ww+"; background-color:"+color+";border-radius:3px;box-shadow: 3px 3px 2px #888888;' >"+time+" "+name+"</div></div>"
+            var item="<div style='color:"+$vm.whire_or_black_color(color)+";margin-left:"+mm+";width:"+ww+";' class=item__ID  ><div id=item__ID"+id+" style='padding-left:3px; background-color:"+color+";border-radius:3px;box-shadow: 3px 3px 2px #888888;' >"+time+" "+name+"</div></div>"
             $div.append(item);
             $('#item__ID'+id).on('click',function(){
                 $vm.load_module(m.booking,'',{record:record});
@@ -84,7 +84,7 @@
             
         }
         .item__ID:hover{
-            color:red;
+            color:red!Important;
         }
         .event_container__ID{
             padding-top:8px;
