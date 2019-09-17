@@ -1,14 +1,15 @@
 <div id=D__ID>
     <div>
-        VmInclude:__COMPONENT__/w/week.01.html
+        VmInclude:__COMPONENT__/m/month.02.html
     </div>
     <script>
     function F__ID(){
         //--------------------------------------------------------
-        VmInclude:__COMPONENT__/w/week.01.js
+        VmInclude:__COMPONENT__/m/month.02.js
         //--------------------------------------------------------
         m.start_point=0*60;
         m.total_width=(24*60-m.start_point);
+        //--------------------------------------------------------
     	m.on_day_click_fun=function(date){
 			$vm.load_module(m.booking,'',{day:date,goback:1})
     	}
@@ -17,7 +18,7 @@
             var mt1=new Date().getTime();
             var dt1=$vm.date_to_yyyymmdd(m.first_day);
             var dt2=$vm.date_to_yyyymmdd($vm.date_add_days(m.last_day,1));
-            $vm.request({cmd:"find",table:m.Table,query:{I1:{"$gte":dt1,"$lt":dt2}},sort:{I1:1,I2:1},options:{}},function(res){
+            $vm.request({cmd:"find",table:m.Table,query:{I1:{"$gte":dt1,"$l":dt2}},sort:{I1:1,I2:1},options:{}},function(res){
                 if(res.permission==false){
                     alert("No permission to get booking information.");
                     return;
@@ -42,7 +43,7 @@
             var date=record.Data.Date;
             var time=record.Data.Time;
             var aa=time.split(':');
-            var name=record.Data.Name; if(name===undefined) name="No name";
+            var name=record.Data.Staff; if(name===undefined) name="No name";
             var color=record.Data.Color;
             var duration=record.Data.Duration;
             var bb=duration.split(':');
@@ -60,7 +61,7 @@
         //--------------------------------------------------------
         $('#D__ID').on('load',function(){
             var a=$(window).height()-$('#body__ID').offset().top;
-            $('#body__ID').css("min-height",a)
+            $('#body__ID').css("min-height",a);
             m.request_and_render();
         });
         //--------------------------------------------------------

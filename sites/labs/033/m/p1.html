@@ -51,7 +51,7 @@
             VmInclude:__COMPONENT__/f/form.01.js
 			//-------------------------------------
 			var autocomplete_req={cmd:"find",field:'.Data.First_Name',table:m.ListTb,options:{},skip:0,limit:10}
-			var autocomplete_callback=function(items){}
+			var autocomplete_callback=function(item){}
 			var autocomplete_list=function(records){
 				var items=[];
 				for(var i=0;i<records.length;i++){
@@ -62,7 +62,7 @@
 				return items;
 			}
 			var wait1=function(){
-				$vm.autocomplete( $('input[name=Name'),autocomplete_req,autocomplete_list,autocomplete_callback);
+				$vm.autocomplete( $('#F__ID input[name=Name'),autocomplete_req,autocomplete_list,autocomplete_callback);
 			}
 			var I=0; var loop_1=setInterval(function (){
 				if($vm['jquery-ui-min-js']!=undefined){  clearInterval(loop_1); wait1(); }

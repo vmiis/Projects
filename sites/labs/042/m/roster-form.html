@@ -1,0 +1,172 @@
+<div id=D__ID>
+    <section id=form_container__ID>
+    	<div id=header__ID>
+    		Record
+    	</div>
+    	<form id=F__ID>
+    		<div class="container">
+    			<div class="row row__ID">
+    				<div class=col>
+    					<span>Date</span>
+    					<input type="date" class="form-control" name=Date required />
+    				</div>
+    			</div>
+    			<div class="row row__ID">
+    				<div class=col>
+    					<span>Time</span>
+						<select class="form-control" name=Time>
+						</select>
+    				</div>
+    			</div>
+    			<div class="row row__ID">
+    				<div class=col>
+    					<span>Duration</span>
+						<select class="form-control" name=Duration>
+						</select>
+    				</div>
+    			</div>
+    			<div class="row row__ID">
+    				<div class="col-sm col-lg-9">
+						<span>Staff</span>
+						<input type="text" class="form-control" name=Staff required placeholder="lookup..." />
+    				</div>
+    				<div class="col-sm col-lg-3">
+    					<span>Staff ID</span>
+    					<input type="text" class="form-control" name=Staff_uid required readonly />
+					</div>
+				</div>
+    			<div class="row" style='font-size:11px;padding-left:10px'>
+    				<div class="col">
+						<span>Links: <u id=staff_link1__ID style='cursor:pointer'>All staff</u>&nbsp;&nbsp;&nbsp; <u id=staff_link2__ID style='cursor:pointer'>The selected staff</u></span>
+					</div>
+				</div>
+				<br>
+    			<div class="row row__ID">
+    				<div class=col>
+    					<span>Color</span>
+    					<input type="color" style='width:50px' name=Color required value='#8bdc80' />
+    				</div>
+				</div>
+				<hr>
+				<br>
+				<br>
+				<br>
+				<hr>
+				Custom items
+				<hr>
+    			<div class="row row__ID">
+    				<div class=col>
+    					<span>Item1</span>
+    					<input type="text" class="form-control" name=Item1 />
+    				</div>
+    			</div>
+    			<div class="row row__ID">
+    				<div class=col>
+    					<span>Item2</span>
+    					<input type="text" class="form-control" name=Item2 />
+    				</div>
+    			</div>
+    			<div class="row row__ID">
+    				<div class=col>
+    					<span>Item3</span>
+    					<input type="text" class="form-control" name=Item3 />
+    				</div>
+    			</div>
+    			<br>
+    			<div class="row">
+    				<div class=col>
+    					<button id=submit__ID type="submit" class="btn btn-secondary">Submit</button>
+    					<button id=delete__ID type="button" class="btn btn-secondary">Delete</button>
+    				</div>
+    			</div>
+    		</div>
+    	</form>
+    </section>
+    <script>
+    	function F__ID(){
+    		//-------------------------------------
+            VmInclude:__COMPONENT__/f/form.01.js
+    		//-------------------------------------
+			var $List1=$('#F__ID select[name=Time]');
+			for(var i=0;i<24;i++){
+				for(var j=0;j<2;j++){
+					var t1=i;    if(t1<10) t1="0"+t1
+					var t2=j*30; if(t2==0) t2="00";
+					var t=t1+":"+t2;
+					$List1.append(  $('<option></option>').val(t).html(t)  );
+				}
+			}
+			//-------------------------------------
+			var $List2=$('#F__ID select[name=Duration]');
+			for(var i=0;i<15;i++){
+				for(var j=0;j<2;j++){
+					var t1=i;    if(t1<10) t1="0"+t1
+					var t2=j*30; if(t2==0) t2="00";
+					var t=t1+":"+t2;
+					if(i==0 && j==0){} 
+					else $List2.append(  $('<option></option>').val(t).html(t)  );
+				}
+			}
+			//-------------------------------------
+            old_load=m.load;
+			m.load=function(){
+				old_load();
+				if(m.input.day!=undefined){
+					$('#F__ID input[name=Date]').val(m.input.day);
+				}
+			}
+    		//-------------------------------------
+			m.before_submit=function(data,index){
+				index.I1=data.Date;
+                index.I2=data.Time;
+                index.I3=data.Duration;
+            }
+            //-------------------------------------
+			var autocomplete_req={cmd:"find",field:'.Data.First_Name',table:m.lookup,options:{},skip:0,limit:10}
+			var autocomplete_callback=function(item){
+				$('input[name=Staff_uid').val(item.UID);
+			}
+			var autocomplete_list=function(records){
+				var items=[];
+				for(var i=0;i<records.length;i++){
+					var obj={};
+					obj.label=records[i].Data["First_Name"]+" "+records[i].Data["Last_Name"];
+					obj.UID=records[i].UID;
+					items.push(obj);
+				}
+				return items;
+			}
+			var wait1=function(){
+				$vm.autocomplete( $('#F__ID input[name=Staff'),autocomplete_req,autocomplete_list,autocomplete_callback);
+			}
+			var I=0; var loop_1=setInterval(function (){
+				if($vm['jquery-ui-min-js']!=undefined){  clearInterval(loop_1); wait1(); }
+				I++; if(I>50){ clearInterval(loop_1); alert("jquery-ui.min.js is not installed."); }
+			},100);
+			//-------------------------------------
+			$('#staff_link1__ID').on('click',function(){
+				$vm.load_module('m4','',{});
+			})
+			//-------------------------------------
+			$('#staff_link2__ID').on('click',function(){
+				var uid=$('input[name=Staff_uid').val();
+				if(uid==""){
+					$vm.alert("No staff was selected.");
+					return;
+				}
+				$vm.request({cmd:"find",table:m.lookup,query:{UID:parseInt(uid)}},function(res){
+					if(res.result.length==1){
+						$vm.load_module('m5','',{record:res.result[0]});
+					}
+				});
+			})
+			//-------------------------------------
+    	}
+    </script>
+    <style>
+        #form_container__ID{
+            max-width:600px;
+        }
+        VmInclude:__COMPONENT__/f/form.01.css
+    </style>
+</div>
