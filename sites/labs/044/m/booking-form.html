@@ -1,7 +1,7 @@
 <div id=D__ID>
     <section id=form_container__ID>
     	<div id=header__ID>
-    		Record
+    		Booking Form
     	</div>
     	<form id=F__ID>
     		<div class="container">
@@ -19,59 +19,27 @@
     				</div>
     			</div>
     			<div class="row row__ID">
-    				<div class=col>
-    					<span>Duration</span>
-						<select class="form-control" name=Duration>
-						</select>
-    				</div>
-    			</div>
-    			<div class="row row__ID">
     				<div class="col-sm col-lg-9">
-						<span>Staff</span>
-						<input type="text" class="form-control" name=Staff required placeholder="lookup..." />
+						<span>Participant</span>
+						<input type="text" class="form-control" name=Participant required placeholder="lookup..." />
     				</div>
     				<div class="col-sm col-lg-3">
-    					<span>Staff ID</span>
-    					<input type="text" class="form-control" name=Staff_uid required readonly />
+    					<span>Participant ID</span>
+    					<input type="text" class="form-control" name=Participant_uid required readonly />
 					</div>
 				</div>
     			<div class="row" style='font-size:11px;padding-left:10px'>
     				<div class="col">
-						<span>Links: <u id=staff_link1__ID style='cursor:pointer'>All staff</u>&nbsp;&nbsp;&nbsp; <u id=staff_link2__ID style='cursor:pointer'>The selected staff</u></span>
+						<span>Links: <u id=participant_link1__ID style='cursor:pointer'>All participants</u>&nbsp;&nbsp;&nbsp; <u id=participant_link2__ID style='cursor:pointer'>The selected participant</u></span>
 					</div>
 				</div>
 				<br>
     			<div class="row row__ID">
     				<div class=col>
     					<span>Color</span>
-    					<input type="color" style='width:50px' name=Color required value='#8bdc80' />
+    					<input type="color" style='width:50px' name=Color required value='#008080' />
     				</div>
 				</div>
-				<hr>
-				<br>
-				<br>
-				<br>
-				<hr>
-				Custom items
-				<hr>
-    			<div class="row row__ID">
-    				<div class=col>
-    					<span>Item1</span>
-    					<input type="text" class="form-control" name=Item1 />
-    				</div>
-    			</div>
-    			<div class="row row__ID">
-    				<div class=col>
-    					<span>Item2</span>
-    					<input type="text" class="form-control" name=Item2 />
-    				</div>
-    			</div>
-    			<div class="row row__ID">
-    				<div class=col>
-    					<span>Item3</span>
-    					<input type="text" class="form-control" name=Item3 />
-    				</div>
-    			</div>
     			<br>
     			<div class="row">
     				<div class=col>
@@ -88,23 +56,12 @@
             VmInclude:__COMPONENT__/f/form.01.js
     		//-------------------------------------
 			var $List1=$('#F__ID select[name=Time]');
-			for(var i=0;i<24;i++){
+			for(var i=8;i<17;i++){
 				for(var j=0;j<2;j++){
 					var t1=i;    if(t1<10) t1="0"+t1
 					var t2=j*30; if(t2==0) t2="00";
 					var t=t1+":"+t2;
 					$List1.append(  $('<option></option>').val(t).html(t)  );
-				}
-			}
-			//-------------------------------------
-			var $List2=$('#F__ID select[name=Duration]');
-			for(var i=0;i<15;i++){
-				for(var j=0;j<2;j++){
-					var t1=i;    if(t1<10) t1="0"+t1
-					var t2=j*30; if(t2==0) t2="00";
-					var t=t1+":"+t2;
-					if(i==0 && j==0){} 
-					else $List2.append(  $('<option></option>').val(t).html(t)  );
 				}
 			}
 			//-------------------------------------
@@ -119,39 +76,38 @@
 			m.before_submit=function(data,index){
 				index.I1=data.Date;
                 index.I2=data.Time;
-                index.I3=data.Duration;
             }
             //-------------------------------------
-			var autocomplete_req={cmd:"find",field:'.Data.First_Name',table:m.lookup,options:{},skip:0,limit:10}
+			var autocomplete_req={cmd:"find",field:'.Data.Initials',table:m.lookup,options:{},skip:0,limit:20}
 			var autocomplete_callback=function(item){
-				$('input[name=Staff_uid').val(item.UID);
+				$('input[name=Participant_uid').val(item.UID);
 			}
 			var autocomplete_list=function(records){
 				var items=[];
 				for(var i=0;i<records.length;i++){
 					var obj={};
-					obj.label=records[i].Data["First_Name"]+" "+records[i].Data["Last_Name"];
+					obj.label=records[i].Data["Initials"]+" "+records[i].Data["Gender"]+" "+records[i].Data["Date_of_Birth"];
 					obj.UID=records[i].UID;
 					items.push(obj);
 				}
 				return items;
 			}
 			var wait1=function(){
-				$vm.autocomplete( $('#F__ID input[name=Staff'),autocomplete_req,autocomplete_list,autocomplete_callback);
+				$vm.autocomplete( $('#F__ID input[name=Participant'),autocomplete_req,autocomplete_list,autocomplete_callback);
 			}
 			var I=0; var loop_1=setInterval(function (){
 				if($vm['jquery-ui-min-js']!=undefined){  clearInterval(loop_1); wait1(); }
 				I++; if(I>50){ clearInterval(loop_1); alert("jquery-ui.min.js is not installed."); }
 			},100);
 			//-------------------------------------
-			$('#staff_link1__ID').on('click',function(){
+			$('#participant_link1__ID').on('click',function(){
 				$vm.load_module('m4','',{});
 			})
 			//-------------------------------------
-			$('#staff_link2__ID').on('click',function(){
-				var uid=$('input[name=Staff_uid').val();
+			$('#participant_link2__ID').on('click',function(){
+				var uid=$('input[name=Participant_uid').val();
 				if(uid==""){
-					$vm.alert("No staff was selected.");
+					$vm.alert("No participant was selected.");
 					return;
 				}
 				$vm.request({cmd:"find",table:m.lookup,query:{UID:parseInt(uid)}},function(res){

@@ -1,30 +1,40 @@
 <div id=D__ID>
     <div>
-        VmInclude:__COMPONENT__/d/day.01.html
+        VmInclude:__COMPONENT__/m/month.02.html
     </div>
     <script>
     function F__ID(){
         //--------------------------------------------------------
-        VmInclude:__COMPONENT__/d/day.01.js
-        $('#new__ID').show();
+        VmInclude:__COMPONENT__/m/month.02.js
+        //--------------------------------------------------------
+        $('#item_list__ID').show();
+        $vm.request({cmd:'find',table:m.lookup},function(res){
+            var txt="";
+            for(i in res.result){
+                var v=res.result[i].Data.Name;
+                txt+="<option>"+v+"</option>";
+            }
+            $('#item_list__ID').html(txt);
+            m.request_and_render();
+        });
+        $('#item_list__ID').on('change',function(){
+            m.request_and_render();
+        })
         //--------------------------------------------------------
         m.start_point=8*60;
         m.total_width=(17*60-m.start_point);
-        $('#new__ID').on('click',function(){ $vm.load_module(m.booking,'',{day:$('#date__ID').val(),goback:1}); })
+        //--------------------------------------------------------
+    	m.on_day_click_fun=function(date){
+			$vm.load_module(m.booking,'',{item:$('#item_list__ID').val(),day:date,goback:1})
+    	}
     	//--------------------------------------------------------
         m.request_and_render=function(){
-            var txt="<tr>";
-            for(var j=8;j<17;j++){
-                txt+="<th style='text-align:left'>"+$vm.pad((j),2)+":00</th>";
-            }
-            txt+="</tr>";
-            $('#thead__ID').html(txt);
-            $("#tbody__ID").html("<tr><td id=cell__ID colspan=9 ></td></tr>");
-            
             var mt1=new Date().getTime();
-            var dt1=$('#date__ID').val();
-            var dt2=$vm.date_to_yyyymmdd($vm.date_add_days($vm.date_today(),m.ref+1));
-            $vm.request({cmd:"find",table:m.Table,query:{I1:{"$gte":dt1,"$lt":dt2}},sort:{I1:1,I2:1},options:{}},function(res){
+            var dt1=m.first_day.getTime();
+            var dt2=$vm.date_add_days(m.last_day,1).getTime();
+            var room=$('#item_list__ID').val();
+            if(room==undefined) return;
+            $vm.request({cmd:"find",table:m.Table,query:{I3:room,I1:{"$gte":dt1,"$lt":dt2}},sort:{I1:1,I2:1},options:{}},function(res){
                 if(res.permission==false){
                     alert("No permission to get booking information.");
                     return;
@@ -36,9 +46,11 @@
                 if(tt_all<tt_server) tt_all=tt_server;
                 $("#elapsed__ID").text((JSON.stringify(res.result).length/1000).toFixed(1)+"kb/"+tt_all.toString()+"ms/"+tt_server+'ms');
                 //-----------------------
+    	        m.calendar_render("");
+                m.records=res.result;
     			for(var i=0;i<res.result.length;i++){
     	            m.cell_render(res.result[i]);
-                }
+    			}
             });
         }
         //--------------------------------------------------------
@@ -46,14 +58,16 @@
             var id=record._id;
             var date=record.Data.Date;
             var time=record.Data.Time;
-            var aa=time.split(':');
-            var name=record.Data.Participant; if(name===undefined) name="No name";
+            var duration=record.Data.Duration;
+            var time2=$vm.pad(new Date(record.I2).getHours(),2)+":"+$vm.pad(new Date(record.I2).getMinutes(),2);
+            var name=record.Data.Contact_Name; if(name===undefined) name="No name";
             var color=record.Data.Color;
 
-            var mm=(100*(parseInt(aa[0])*60+parseInt(aa[1])-m.start_point)/m.total_width).toFixed(2)+"%";
-            
-            var $div=$("#cell__ID");
-            var item="<div style='color:"+color+";margin-left:"+mm+";' class=item__ID  ><div id=item__ID"+id+" style='padding-left:0px;' >"+time+" "+name+"</div></div>"
+            //var aa=time.split(':');
+            //var mm=(100*(parseInt(aa[0])*60+parseInt(aa[1])-m.start_point)/m.total_width).toFixed(2)+"%";
+            var mm="10px";
+            var $div=m.get_cell_div(date);
+            var item="<div style='color:"+color+";margin-left:"+mm+";' class=item__ID  ><div id=item__ID"+id+" style='cursor:pointer;display:inline-block;padding-left:3px;' >"+time+" "+name+"</div></div>"
             $div.append(item);
             $('#item__ID'+id).on('click',function(){
                 $vm.load_module(m.booking,'',{record:record});
@@ -61,6 +75,8 @@
         }
         //--------------------------------------------------------
         $('#D__ID').on('load',function(){
+            var a=$(window).height()-$('#body__ID').offset().top;
+            $('#body__ID').css("min-height",a);
             m.request_and_render();
         });
         //--------------------------------------------------------
@@ -77,10 +93,10 @@
             overflow: auto;
         }
         .item__ID{           
-            cursor:pointer;
             white-space:nowrap;
             position:relative;
             height:18px; 
+            
         }
         .item__ID:hover{
             color:red!Important;

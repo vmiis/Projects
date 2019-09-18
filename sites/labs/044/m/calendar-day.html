@@ -8,21 +8,18 @@
         VmInclude:__COMPONENT__/d/day.01.js
         $('#new__ID').show();
         //--------------------------------------------------------
-        m.start_point=0*60;
-        m.total_width=(36*60-m.start_point);
+        m.start_point=8*60;
+        m.total_width=(17*60-m.start_point);
         $('#new__ID').on('click',function(){ $vm.load_module(m.booking,'',{day:$('#date__ID').val(),goback:1}); })
     	//--------------------------------------------------------
         m.request_and_render=function(){
             var txt="<tr>";
-            for(var j=0;j<12;j++){
-                txt+="<th style='text-align:left'>"+$vm.pad((0+2*j),2)+":00</th>";
-            }
-            for(var j=0;j<6;j++){
-                txt+="<th style='text-align:left'>"+$vm.pad((0+2*j),2)+":00</th>";
+            for(var j=8;j<17;j++){
+                txt+="<th style='text-align:left'>"+$vm.pad((j),2)+":00</th>";
             }
             txt+="</tr>";
             $('#thead__ID').html(txt);
-            $("#tbody__ID").html("<tr><td id=cell__ID colspan=18 ></td></tr>");
+            $("#tbody__ID").html("<tr><td id=cell__ID colspan=9 ></td></tr>");
             
             var mt1=new Date().getTime();
             var dt1=$('#date__ID').val();
@@ -50,16 +47,13 @@
             var date=record.Data.Date;
             var time=record.Data.Time;
             var aa=time.split(':');
-            var name=record.Data.Staff; if(name===undefined) name="No name";
+            var name=record.Data.Participant; if(name===undefined) name="No name";
             var color=record.Data.Color;
-            var duration=record.Data.Duration;
-            var bb=duration.split(':');
 
             var mm=(100*(parseInt(aa[0])*60+parseInt(aa[1])-m.start_point)/m.total_width).toFixed(2)+"%";
-            var ww=(100*(parseInt(bb[0])*60+parseInt(bb[1]))/m.total_width).toFixed(2)+"%";
             
             var $div=$("#cell__ID");
-            var item="<div style='color:"+$vm.whire_or_black_color(color)+";margin-left:"+mm+";width:"+ww+";' class=item__ID  ><div id=item__ID"+id+" style='padding-left:3px; background-color:"+color+";border-radius:3px;box-shadow: 3px 3px 2px #888888;' >"+time+" "+name+"</div></div>"
+            var item="<div style='color:"+color+";margin-left:"+mm+";' class=item__ID  ><div id=item__ID"+id+" style='padding-left:0px;' >"+time+" "+name+"</div></div>"
             $div.append(item);
             $('#item__ID'+id).on('click',function(){
                 $vm.load_module(m.booking,'',{record:record});
@@ -87,7 +81,6 @@
             white-space:nowrap;
             position:relative;
             height:18px; 
-            
         }
         .item__ID:hover{
             color:red!Important;
