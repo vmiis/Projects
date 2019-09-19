@@ -189,7 +189,7 @@
                     if($select!="&$select=") $select=$select+",";
                     $select=$select+m.ids[i].split('|').pop();
                 }
-                //$select="";
+                $select="";
                 m.endpoint=m.Table+"?$count=true"+$select+"&$expand=createdby($select=fullname),woolcock_VolunteerStudyId($select=woolcock_name)&$orderby=createdon desc"+$filter;
                 m.links=[m.endpoint];
             }
