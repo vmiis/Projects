@@ -191,6 +191,7 @@
                 }
                 $select="";
                 m.endpoint=m.Table+"?$count=true"+$select+"&$expand=createdby($select=fullname),woolcock_VolunteerStudyId($select=woolcock_name)&$orderby=createdon desc"+$filter;
+                //m.endpoint=m.Table+"?$filter=contains(subject,'"+txt+"')";//+"?$count=true"+$select+"&$expand=createdby($select=fullname),woolcock_VolunteerStudyId($select=woolcock_name)&$orderby=createdon desc"+$filter;
                 m.links=[m.endpoint];
             }
             //-------------------------------------

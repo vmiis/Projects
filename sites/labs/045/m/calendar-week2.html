@@ -1,0 +1,323 @@
+<div id=D__ID>
+    <div>
+        <div id=toolbar__ID class="navbar navbar-default" style='margin-bottom:0px;padding-left:6px;'>
+            <div class="navbar-form navbar-left">
+                    <select id=item_list__ID class="form-control" style='margin-right:3px;width:auto;float:left;display:none'></select>
+                    <span class="tool__ID">
+                        <button type=button class='btn btn-secondary' id=previous__ID><i class="fa fa-arrow-left"></i></button>
+                        <button type=button class='btn btn-secondary' id=this__ID>This Week</button>
+                        <button type=button class='btn btn-secondary' id=next__ID><i class="fa fa-arrow-right"></i></button>
+                    </span>
+                    <button type=button class='btn btn-secondary' id=refresh__ID>Refresh</button>
+                    <span style='margin-left:20px' id=period__ID></span>
+                    <span id=name__ID></span>
+                </div>
+                <span id=elapsed__ID style='float:right'></span>
+            </div>
+        <div id=calendar__ID></div>
+    </div>
+    <script>
+    function F__ID(){
+
+//---------------------------------------------
+var m=$vm.module_list['__MODULE__'];
+if(m.prefix==undefined) m.prefix="";
+m.change_status=0;
+m.ref=0
+//---------------------------------------------
+$('#previous__ID').on('click',function(){ m.ref--;	m.set_ref();	m.request_and_render();	})
+$('#this__ID').on('click',    function(){	m.ref=0;    m.set_ref();	m.request_and_render();	})
+$('#next__ID').on('click',    function(){	m.ref++;	m.set_ref();	m.request_and_render();	})
+$('#refresh__ID').on('click', function(){	                              m.request_and_render();	})
+//---------------------------------------------
+m.set_ref=function(){
+    var d=$vm.first_day_of_current_week();
+    m.first_day=$vm.date_add_days(d,7*m.ref);
+    m.last_day=$vm.date_add_days(d,7*m.ref+6);
+    var s="From "+$vm.date_to_yyyymmdd(m.first_day)+" to "+$vm.date_to_yyyymmdd(m.last_day);
+    $('#period__ID').text(s);
+
+      /*
+    var d=new Date();
+    var y=d.getFullYear()
+    var mm=d.getMonth()+m.ref;
+    var d0=new Date(y,mm,1,0,0,0,0);
+    var e=d0.getDay(); if(e===0) e=7;
+    e=e-1; //0,1,...6 --- Monday....Sunday
+    var x=$vm.date_add_days(d0,-e-1);	  m.first_day=$vm.date_to_yyyymmdd(x);
+    var y=$vm.date_add_days(d0,-e+41+1);  m.last_day= $vm.date_to_yyyymmdd(y);
+    */
+}
+m.set_ref();
+//---------------------------------------------
+
+
+
+
+
+        //
+        var rc=function(h,q){
+            var a=" h="+h+" q="+q;
+            var cell="<div class=c__ID "+a+" d=1 >&nbsp;</div><div class=c__ID "+a+" d=2 >&nbsp;</div><div class=c__ID "+a+" d=3 >&nbsp;</div><div class=c__ID "+a+" d=4 >&nbsp;</div><div class=c__ID "+a+" d=5 >&nbsp;</div><div class=c__ID "+a+" d=6 >&nbsp;</div><div class=c__ID "+a+" d=7 >&nbsp;</div>";
+            return cell
+        }
+        
+        var txt="";
+        var hd="<div class=c__ID>MON</div><div class=c__ID>Tue</div><div class=c__ID>Wed</div><div class=c__ID>THU</div><div class=c__ID>FRI</div><div class=c__ID>SAT</div><div class=c__ID>SUN</div>";
+        txt+="<div class=c_row__ID><div class=c_cell_t__ID></div><div class=c_cell__ID>"+hd+"</div></div>"
+        
+
+        var drag=0;
+        var drag_start=-1;
+        var drag_end=-1;
+        var drag_d=-1;
+        var $start;
+        var $rect;
+        var cell_height;
+        
+        for(i=6;i<19;i++){
+            var t=$vm.pad(i,2)+":00";
+            //var cell="<div class=c__ID>&nbsp;</div><div class=c__ID>&nbsp;</div><div class=c__ID>&nbsp;</div><div class=c__ID>&nbsp;</div><div class=c__ID>&nbsp;</div><div class=c__ID>&nbsp;</div><div class=c__ID>&nbsp;</div>";
+            txt+="<div class=c_row__ID><div class=c_cell_t__ID>"+t+"</div><div class=c_cell__ID>"+rc(i,1)+"</div></div>"
+            txt+="<div class=c_row__ID><div class=c_cell_t__ID></div><div class=c_cell__ID>"+rc(i,2)+"</div></div>"
+            txt+="<div class=c_row__ID><div class=c_cell_t__ID></div><div class=c_cell__ID>"+rc(i,3)+"</div></div>"
+            txt+="<div class=c_row__ID><div class=c_cell_t__ID sthle='border-bottom:1px solid #eee;'></div><div class=c_cell__ID style='border-bottom:1px solid #eee;'>"+rc(i,4)+"</div> </div>"
+        }
+        $('#calendar__ID').html(txt)
+        
+        
+        
+        var set_rect=function(){
+            if(drag_start==-1){
+                $rect.find('div').text('');
+                return;
+            }
+            var h1=$vm.pad(Math.floor((drag_start)/60),2)+":"+$vm.pad((drag_start)%60,2);
+            var h2=$vm.pad(Math.floor((drag_end+15)/60),2)+":"+$vm.pad((drag_end+15)%60,2);
+            $rect.find('div').text(h1+ " - "+h2);
+            $rect.find('div').css('height',cell_height*(drag_end+15-drag_start)/15+(drag_end+15-drag_start)/60);
+        }
+        $('#calendar__ID .c__ID').on('mousedown',function(){
+            drag=1; 
+            var h=$(this).attr("h");
+            var q=$(this).attr("q");
+            var d=$(this).attr("d");
+            var p=parseInt(h)*60+(parseInt(q)-1)*15;
+            drag_start=p;
+            drag_end=p;
+            drag_d=d;
+            $rect=$(this);
+            $rect.html("&nbsp;<div class=block__ID></div>");
+            $rect.find('div.block__ID').css('width',$(this).width());
+            cell_height=$(this).height();
+            set_rect();
+        })
+        $('#calendar__ID .c__ID').on('mouseup',function(){
+            drag=0;
+            drag_start=-1;
+            drag_end=-1;
+            $rect.html('&nbsp;');
+        })
+        
+        $('#calendar__ID .c__ID').on('mouseover',function(){
+            if(drag==1){
+                var h=$(this).attr("h");
+                var q=$(this).attr("q");
+                var p=parseInt(h)*60+(parseInt(q)-1)*15;
+                drag_end=p;
+                set_rect();
+            }
+        })
+    }
+    </script>
+    <style>
+        #D__ID .block__ID{
+            top:0;
+            left:0;
+            border:1px solid #00f;
+            position:absolute;
+        }
+        #D__ID{
+            background-color:#fff;
+            font-size:13px;
+            font-family: Helvetica, Arial, sans-serif;
+            height:100%;
+            overflow: auto;
+        }
+        .item__ID{           
+            white-space:nowrap;
+            position:relative;
+            height:18px; 
+            
+        }
+        .item__ID>div:hover{
+            color:red!Important;
+        }
+        .event_container__ID{
+            padding-top:8px;
+        }
+
+
+        .c_row__ID{
+            display:grid;
+            grid-template-columns: auto 1fr;
+        }
+        .c_cell_t__ID{
+            min-height:12px;
+            font-size:11px;
+            padding-left:6px;
+            width:60px;
+        }
+        .c_cell__ID{
+            min-height:12px;
+            font-size:11px;
+            padding-left:6px;
+        }
+        .c__ID{
+            display:inline-block;
+            width:14.285%;
+            border-left:1px solid #eee;
+            position:relative;
+
+            -moz-user-select: none;
+   -khtml-user-select: none;
+   -webkit-user-select: none;
+
+        }
+
+
+
+        #calendar__ID{
+        }
+
+
+
+
+
+
+
+
+
+
+	#toolbar__ID{
+		background-color:#ccc;
+		padding-left:2px;
+		margin-bottom:0px;
+		overflow:hidden
+	}
+    #_calendar__ID{
+        font-size:9pt;
+        font-family:Verdana;
+        overflow: auto;
+    }
+    .time__ID{
+    	margin-bottom:2px;
+    	border-radius:3px;
+    	box-shadow: 3px 3px 2px #888;
+    }
+    #calendar__ID u{
+        cursor:pointer;
+        text-decoration: none;
+    }
+    .event__ID{
+	    cursor:pointer;
+	    border:1px solid red;
+	    white-space: pre-wrap;
+	    display:inline-block;
+	    margin:5px 10px 5px 10px;
+
+	    font-size: 13px;
+	    border-radius: 4px;
+	    padding: 5px;
+	    line-height: 18px;
+	    /*background: #e4f2f2;*/
+	    border: 1px solid #b5dbdc;
+	    color: #009aaf;
+	    text-decoration: none;
+
+    }
+    .header__ID{
+	    font-weight:bold;
+	    color:#fff;
+	    background-color:#868e96;
+        display:table;
+        width: 100%;
+        text-align: center;
+        border:0px solid #000;
+    }
+    .row__ID{
+        display:table-row;
+        width: 100%;
+        min-height:80px;
+    }
+    .col_header__ID{
+	    display:table-cell;
+	    width:12.285%;
+        border-right:1px solid #bbb;
+        padding:5px
+    }
+    .col__ID{
+	    display:table-cell;
+	    width:12.285%;
+	    border-right:1px solid #ccc;
+	    border-bottom:1px solid #ccc;
+        vertical-align:top;
+    }
+    .col__ID:hover {
+    	/*background: #f3f3f3;*/
+    }
+    .day__ID{
+	    text-align:center;
+    	background: #ccc;
+    	color: #000;
+    	width: 22px;
+        height: 22px;
+        padding-top:2px;
+    	border-radius:50%;
+    	float: right;
+
+    }
+    .weekday{
+        display:none;
+    }
+
+    #body__ID{
+        display: table;
+        width: 100%;
+        table-layout: fixed;            
+    }
+
+    @media(max-width: 768px){
+        .tool__ID{
+            display: inline-block;
+            padding-bottom: 2px;
+        }
+        .weekday{
+            display:inline-block;
+            padding-left:12px;
+        }
+	    .header__ID{
+		    display:none;
+	    }
+    	.row__ID{
+            min-height:auto;
+    	}
+	    .col__ID{
+		    float: left;
+		    width:100%;
+	    }
+	    .day__ID{
+            float:none;
+            display:inline-block;
+	    }
+	    .not_this_month{
+		    display:none;
+	    }
+	    .event_container{
+	    }
+    }
+
+
+
+    </style>
+</div>
