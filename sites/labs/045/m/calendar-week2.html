@@ -9,8 +9,10 @@
                         <button type=button class='btn btn-secondary' id=next__ID><i class="fa fa-arrow-right"></i></button>
                     </span>
                     <button type=button class='btn btn-secondary' id=refresh__ID>Refresh</button>
+                    <!--
                     <span style='margin-left:20px' id=period__ID></span>
                     <span id=name__ID></span>
+                    -->
                 </div>
                 <span id=elapsed__ID style='float:right'></span>
             </div>
@@ -34,38 +36,56 @@ m.set_ref=function(){
     var d=$vm.first_day_of_current_week();
     m.first_day=$vm.date_add_days(d,7*m.ref);
     m.last_day=$vm.date_add_days(d,7*m.ref+6);
-    var s="From "+$vm.date_to_yyyymmdd(m.first_day)+" to "+$vm.date_to_yyyymmdd(m.last_day);
-    $('#period__ID').text(s);
-
-      /*
-    var d=new Date();
-    var y=d.getFullYear()
-    var mm=d.getMonth()+m.ref;
-    var d0=new Date(y,mm,1,0,0,0,0);
-    var e=d0.getDay(); if(e===0) e=7;
-    e=e-1; //0,1,...6 --- Monday....Sunday
-    var x=$vm.date_add_days(d0,-e-1);	  m.first_day=$vm.date_to_yyyymmdd(x);
-    var y=$vm.date_add_days(d0,-e+41+1);  m.last_day= $vm.date_to_yyyymmdd(y);
-    */
 }
 m.set_ref();
 //---------------------------------------------
 
 
+        //--------------------------------------------------------
+        $('#item_list__ID').show();
+        $vm.request({cmd:'find',table:m.lookup},function(res){
+            var txt="";
+            for(i in res.result){
+                var v=res.result[i].Data.Name;
+                txt+="<option>"+v+"</option>";
+            }
+            $('#item_list__ID').html(txt);
+            m.request_and_render();
+        });
+        $('#item_list__ID').on('change',function(){
+            m.request_and_render();
+        })
+        //--------------------------------------------------------
 
 
-
-        //
+    m.request_and_render=function(){
         var rc=function(h,q){
             var a=" h="+h+" q="+q;
             var cell="<div class=c__ID "+a+" d=1 >&nbsp;</div><div class=c__ID "+a+" d=2 >&nbsp;</div><div class=c__ID "+a+" d=3 >&nbsp;</div><div class=c__ID "+a+" d=4 >&nbsp;</div><div class=c__ID "+a+" d=5 >&nbsp;</div><div class=c__ID "+a+" d=6 >&nbsp;</div><div class=c__ID "+a+" d=7 >&nbsp;</div>";
-            return cell
+            return cell;
         }
-        
+
+        var d=$vm.first_day_of_current_week();
+        var d1= $vm.date_to_yyyymmdd($vm.date_add_days(d,7*m.ref));
+        var d2= $vm.date_to_yyyymmdd($vm.date_add_days(d,7*m.ref+1));
+        var d3= $vm.date_to_yyyymmdd($vm.date_add_days(d,7*m.ref+2));
+        var d4= $vm.date_to_yyyymmdd($vm.date_add_days(d,7*m.ref+3));
+        var d5= $vm.date_to_yyyymmdd($vm.date_add_days(d,7*m.ref+4));
+        var d6= $vm.date_to_yyyymmdd($vm.date_add_days(d,7*m.ref+5));
+        var d7= $vm.date_to_yyyymmdd($vm.date_add_days(d,7*m.ref+6));
+
         var txt="";
-        var hd="<div class=c__ID>MON</div><div class=c__ID>Tue</div><div class=c__ID>Wed</div><div class=c__ID>THU</div><div class=c__ID>FRI</div><div class=c__ID>SAT</div><div class=c__ID>SUN</div>";
-        txt+="<div class=c_row__ID><div class=c_cell_t__ID></div><div class=c_cell__ID>"+hd+"</div></div>"
+        var hd="<div class=c__ID>MON &nbsp;&nbsp;"+d1+"</div>";
+           hd+="<div class=c__ID>Tue &nbsp;&nbsp;"+d2+"</div>";
+           hd+="<div class=c__ID>Wed &nbsp;&nbsp;"+d3+"</div>";
+           hd+="<div class=c__ID>THU &nbsp;&nbsp;"+d4+"</div>";
+           hd+="<div class=c__ID>FRI &nbsp;&nbsp;"+d5+"</div>";
+           hd+="<div class=c__ID>SAT &nbsp;&nbsp;"+d6+"</div>";
+           hd+="<div class=c__ID>SUN &nbsp;&nbsp;"+d7+"</div>";
+        txt+="<div class=c_row__ID style='background-color: #868e96;color:#fff;font-weight:bold;text-align:center' ><div class=c_cell_t__ID></div><div class=c_cell__ID>"+hd+"</div></div>"
         
+        
+
 
         var drag=0;
         var drag_start=-1;
@@ -73,6 +93,7 @@ m.set_ref();
         var drag_d=-1;
         var $start;
         var $rect;
+        var cell_width;
         var cell_height;
         
         for(i=6;i<19;i++){
@@ -113,10 +134,17 @@ m.set_ref();
             set_rect();
         })
         $('#calendar__ID .c__ID').on('mouseup',function(){
+            var item=$('#item_list__ID').val();
+            var day=$vm.date_to_yyyymmdd($vm.date_add_days(d,7*m.ref+parseInt(drag_d)-1));
+            var time=$vm.pad(Math.floor((drag_start)/60),2)+":"+$vm.pad((drag_start)%60,2);
+            var duration=$vm.pad(Math.floor((drag_end+15-drag_start)/60),2)+":"+$vm.pad((drag_end+15-drag_start)%60,2);
+
             drag=0;
             drag_start=-1;
             drag_end=-1;
             $rect.html('&nbsp;');
+
+            $vm.load_module('m8','',{item:item,day:day,time:time,duration:duration});
         })
         
         $('#calendar__ID .c__ID').on('mouseover',function(){
@@ -128,7 +156,106 @@ m.set_ref();
                 set_rect();
             }
         })
+
+        var mt1=new Date().getTime();
+        var dt1=m.first_day.getTime();
+        var dt2=$vm.date_add_days(m.last_day,1).getTime();
+        var room=$('#item_list__ID').val();
+        if(room==undefined) return;
+        $vm.request({cmd:"find",table:m.Table,query:{I3:room,I1:{"$gte":dt1,"$lt":dt2}},sort:{I1:1,I2:1},options:{}},function(res){
+            if(res.permission==false){
+                alert("No permission to get booking information.");
+                return;
+            }
+            //-----------------------
+            var mt2=new Date().getTime();
+            var tt_all=mt2-mt1;
+            var tt_server=parseInt(res.sys.elapsed_time);
+            if(tt_all<tt_server) tt_all=tt_server;
+            $("#elapsed__ID").text((JSON.stringify(res.result).length/1000).toFixed(1)+"kb/"+tt_all.toString()+"ms/"+tt_server+'ms');
+            //-----------------------
+            //m.calendar_render("");
+            m.records=res.result;
+            for(var i=0;i<res.result.length;i++){
+                m.cell_render(res.result[i]);
+            }
+        });
+
+
+
     }
+    //--------------------------------------------------------
+    m.cell_render=function(record){
+        var id=record._id;
+        var date=record.Data.Date;
+        var time=record.Data.Time;
+        var duration=record.Data.Duration;
+        var time2=$vm.pad(new Date(record.I2).getHours(),2)+":"+$vm.pad(new Date(record.I2).getMinutes(),2);
+        var name=record.Data.Contact_Name; if(name===undefined) name="No name";
+        var color=record.Data.Color;
+        
+        //var aa=time.split(':');
+        //var mm=(100*(parseInt(aa[0])*60+parseInt(aa[1])-m.start_point)/m.total_width).toFixed(2)+"%";
+        var mm="10px";
+        
+        var h=new Date(record.I1).getHours(); 
+        var q=new Date(record.I1).getMinutes()/15+1;
+        var d=$vm.date_yyyymmdd_parse(date).getDay()+1;
+        
+        var $div=m.get_cell_div(h,q,d);
+        
+        //var item="<div style='color:"+color+";margin-left:"+mm+";' class=item__ID  ><div id=item__ID"+id+" style='cursor:pointer;display:inline-block;padding-left:3px;' >"+time+" - "+time2+" "+name+"</div></div>"
+        //var item="<div style='color:"+color+";margin-left:"+mm+";' class=item__ID  ><div id=item__ID"+id+" style='cursor:pointer;display:inline-block;padding-left:3px;' >"+time+" - "+time2+" "+name+"</div></div>"
+        //$div.html(item);
+        
+        var t1=$vm.pad(new Date(record.I1).getHours(),2)+":"+$vm.pad(new Date(record.I1).getMinutes(),2);
+        var t2=$vm.pad(new Date(record.I2).getHours(),2)+":"+$vm.pad(new Date(record.I2).getMinutes(),2);
+        
+        $div.html("&nbsp;<div class=block2__ID>"+t1+" - "+t2+"</div>");
+        $div.find('div').css('width',cell_width);
+        var mm=(new Date(record.I2).getTime()-new Date(record.I1).getTime())/1000/60;
+        $div.find('div').css('height',cell_height*(mm)/15+(mm)/60-2);
+        $div.find('div').on('mousedown',function(e){
+            e.stopPropagation();
+        })
+        $div.find('div').on('mouseup',function(e){
+            e.stopPropagation();
+        })
+
+        /*
+        var set_rect=function(){
+            var h1=$vm.pad(Math.floor((drag_start)/60),2)+":"+$vm.pad((drag_start)%60,2);
+            var h2=$vm.pad(Math.floor((drag_end+15)/60),2)+":"+$vm.pad((drag_end+15)%60,2);
+            $rect.find('div').text(h1+ " - "+h2);
+            $rect.find('div').css('height',cell_height*(drag_end+15-drag_start)/15+(drag_end+15-drag_start)/60);
+        }
+        */
+
+
+        $('#item__ID'+id).on('click',function(){
+            $vm.load_module(m.booking,'',{record:record});
+        });
+    }
+    //--------------------------------------------------------
+    m.get_cell_div=function(h,q,d){
+        var R=undefined;
+        $('#calendar__ID div.c__ID').each(function(){
+            var hh=$(this).attr('h');
+            var qq=$(this).attr('q');
+            var dd=$(this).attr('d');
+            if(h==hh && q==qq && d==dd){
+                R=$(this);
+                cell_width=$(this).width();
+                cell_height=$(this).height();
+                return false;
+            }
+        })
+        return R;
+    }
+    //-----------------------------------
+    m.request_and_render();
+}
+
     </script>
     <style>
         #D__ID .block__ID{
@@ -136,6 +263,18 @@ m.set_ref();
             left:0;
             border:1px solid #00f;
             position:absolute;
+            background-color: #ccc;
+        }
+        #D__ID .block2__ID{
+            top:0;
+            left:0;
+            border:1px solid #ddd;
+            position:absolute;
+            z-index:10;
+            background-color: #bfd8d6;
+            border-radius:5px;
+            box-shadow: 1px 1px 1px #888888;
+            padding:3px;
         }
         #D__ID{
             background-color:#fff;
