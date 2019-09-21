@@ -1,7 +1,7 @@
 (function(){
     //-------------------------------------------------------------------------------------
     var modules={
-        "m1":       {url:"$H/m/calendar-week2.html",Table:"demo-vm-19091805","booking":"m2",lookup:"demo-vm-19091806"},
+        "m1":       {url:"$H/m/calendar-week.html",Table:"demo-vm-19091805","booking":"m2",lookup:"demo-vm-19091806"},
         "m6":       {url:"$H/m/calendar-month.html",Table:"demo-vm-19091805","booking":"m2",lookup:"demo-vm-19091806"},
         "m7":       {url:"$H/m/calendar-day.html",Table:"demo-vm-19091805","booking":"m2",lookup:"demo-vm-19091806"},
         "m2":       {url:"$H/m/booking-form.html",Table:"demo-vm-19091805",lookup:"demo-vm-19091806"},
