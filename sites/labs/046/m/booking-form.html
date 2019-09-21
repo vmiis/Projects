@@ -8,7 +8,7 @@
     			<div class="row row__ID">
     				<div class=col>
     					<span>Car</span>
-    					<select class="form-control" name=Car id=Car__ID required ></select>
+    					<select class="form-control" name=Item id=Item__ID required ></select>
     				</div>
     			</div>
     			<div class="row row__ID">
@@ -33,14 +33,8 @@
     			</div>
     			<div class="row row__ID">
     				<div class=col>
-    					<span>Contact Name</span>
-    					<input type="text" class="form-control" name=Contact_Name required />
-    				</div>
-    			</div>
-    			<div class="row row__ID">
-    				<div class=col>
-    					<span>Contact Phone</span>
-    					<input type="text" class="form-control" name=Contact_Phone />
+    					<span>Contact Name / Description</span>
+    					<input type="text" class="form-control" name=Info required />
     				</div>
     			</div>
 				<br>
@@ -64,6 +58,8 @@
     	function F__ID(){
     		//-------------------------------------
             VmInclude:__COMPONENT__/f/form.01.js
+			m.hour_start=7;
+			m.hour_end=18;
     		//-------------------------------------
 			$vm.request({cmd:'find',table:m.lookup},function(res){
 				var txt="";
@@ -71,27 +67,27 @@
 					var v=res.result[i].Data.Name;
 					txt+="<option>"+v+"</option>";
 				}
-				$('#Car__ID').html(txt);
+				$('#Item__ID').html(txt);
 				if(m.input.item!=undefined){
-					$('#F__ID select[name=Car]').val(m.input.item);
+					$('#F__ID select[name=Item]').val(m.input.item);
 				}
 			});
 			//--------------------------------------------------------
 			var $List1=$('#F__ID select[name=Time]');
-			for(var i=8;i<17;i++){
-				for(var j=0;j<2;j++){
+			for(var i=m.hour_start;i<m.hour_end;i++){
+				for(var j=0;j<4;j++){
 					var t1=i;    if(t1<10) t1="0"+t1
-					var t2=j*30; if(t2==0) t2="00";
+					var t2=j*15; if(t2==0) t2="00";
 					var t=t1+":"+t2;
 					$List1.append(  $('<option></option>').val(t).html(t)  );
 				}
 			}
 			//-------------------------------------
 			var $List2=$('#F__ID select[name=Duration]');
-			for(var i=0;i<10;i++){
-				for(var j=0;j<2;j++){
+			for(var i=0;i<(m.hour_end-m.hour_start);i++){
+				for(var j=0;j<4;j++){
 					var t1=i;    if(t1<10) t1="0"+t1
-					var t2=j*30; if(t2==0) t2="00";
+					var t2=j*15; if(t2==0) t2="00";
 					var t=t1+":"+t2;
 					if(i==0 && j==0){} 
 					else $List2.append(  $('<option></option>').val(t).html(t)  );
@@ -105,7 +101,7 @@
 					$('#F__ID input[name=Date]').val(m.input.day);
 				}
 				if(m.input.item!=undefined){
-					$('#F__ID select[name=Car]').val(m.input.item);
+					$('#F__ID select[name=Item]').val(m.input.item);
 				}
 			}
     		//-------------------------------------
@@ -118,7 +114,7 @@
 				//---------------------------
 				index.I1=t1;
 				index.I2=t2;
-				index.I3=data.Car;
+				index.I3=data.Item;
     			//---------------------------
 				//check time slot
 				var rid=undefined; if(m.input!=undefined && m.input.record!=undefined) rid=m.input.record._id;

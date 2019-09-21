@@ -3,221 +3,100 @@
         VmInclude:__COMPONENT__/w/week.02.html
     </div>
     <script>
-    function F__ID(){
-        //--------------------------------------------------------
-        VmInclude:__COMPONENT__/w/week.02.js
-        //--------------------------------------------------------
+        function F__ID(){
+            //--------------------------------------------------------
+            VmInclude:__COMPONENT__/w/week.02.js
+            //--------------------------------------------------------
 
 
 
-        //--------------------------------------------------------
-        $('#item_list__ID').show();
-        $vm.request({cmd:'find',table:m.lookup},function(res){
-            var txt="";
-            for(i in res.result){
-                var v=res.result[i].Data.Name;
-                txt+="<option>"+v+"</option>";
-            }
-            $('#item_list__ID').html(txt);
-            m.request_and_render();
-        });
-        $('#item_list__ID').on('change',function(){
-            m.request_and_render();
-        })
-        //--------------------------------------------------------
-        //m.calendar_render();
-        m.request_and_render=function(){
-            var mt1=new Date().getTime();
-            var dt1=m.first_day.getTime();
-            var dt2=$vm.date_add_days(m.last_day,1).getTime();
-            var room=$('#item_list__ID').val();
-            if(room==undefined) return;
-            $vm.request({cmd:"find",table:m.Table,query:{I3:room,I1:{"$gte":dt1,"$lt":dt2}},sort:{I1:1,I2:1},options:{}},function(res){
-                if(res.permission==false){
-                    alert("No permission to get booking information.");
-                    return;
+            //--------------------------------------------------------
+            //set item list
+            $('#item_list__ID').show();
+            $vm.request({cmd:'find',table:m.lookup},function(res){
+                var txt="";
+                for(i in res.result){
+                    var v=res.result[i].Data.Name;
+                    txt+="<option>"+v+"</option>";
                 }
-                //-----------------------
-                var mt2=new Date().getTime();
-                var tt_all=mt2-mt1;
-                var tt_server=parseInt(res.sys.elapsed_time);
-                if(tt_all<tt_server) tt_all=tt_server;
-                $("#elapsed__ID").text((JSON.stringify(res.result).length/1000).toFixed(1)+"kb/"+tt_all.toString()+"ms/"+tt_server+'ms');
-                //-----------------------
-    	        m.calendar_render();
-                m.records=res.result;
-    			for(var i=0;i<res.result.length;i++){
-    	            m.cell_render(res.result[i]);
-    			}
+                $('#item_list__ID').html(txt);
+                m.request_and_render();
             });
-        }
-        //--------------------------------------------------------
-        m.cell_render=function(record){
-            var id=record._id;
-            var date=record.Data.Date;
-            var time=record.Data.Time;
-            var duration=record.Data.Duration;
-            var time2=$vm.pad(new Date(record.I2).getHours(),2)+":"+$vm.pad(new Date(record.I2).getMinutes(),2);
-            var name=record.Data.Contact_Name; if(name===undefined) name="No name";
-            var color=record.Data.Color;
-            
-            
-            var h=new Date(record.I1).getHours(); 
-            var q=new Date(record.I1).getMinutes()/15+1;
-            var d=$vm.date_yyyymmdd_parse(date).getDay()+1;
-            var $div=m.get_cell_div(h,q,d);
-            var t1=$vm.pad(new Date(record.I1).getHours(),2)+":"+$vm.pad(new Date(record.I1).getMinutes(),2);
-            var t2=$vm.pad(new Date(record.I2).getHours(),2)+":"+$vm.pad(new Date(record.I2).getMinutes(),2);
-            
-            $div.html("&nbsp;<div class=rect_b__ID>"+t1+" - "+t2+"</div>");
-            var $rect=$div.find('div.rect_b__ID');
-            var mm=(new Date(record.I2).getTime()-new Date(record.I1).getTime())/1000/60;
-            $rect.css('width',m.cell_width);
-            $rect.css('height',m.cell_height*(mm)/15+(mm)/60-2);
-            $rect.on('mousedown',function(e){    e.stopPropagation();            })
-            $rect.on('mouseup',function(e){      e.stopPropagation();            })
-
-            $('#item__ID'+id).on('click',function(){
-                $vm.load_module(m.booking,'',{record:record});
-            });
-        }
-        //--------------------------------------------------------
-        m.new_record=function(input){
-            $vm.load_module('m8','',input);
-        }
-        //--------------------------------------------------------
-
-
-
-    m._request_and_render=function(){
-        var rc=function(h,q){
-            var a=" h="+h+" q="+q;
-            var cell="<div class=c__ID "+a+" d=1 >&nbsp;</div><div class=c__ID "+a+" d=2 >&nbsp;</div><div class=c__ID "+a+" d=3 >&nbsp;</div><div class=c__ID "+a+" d=4 >&nbsp;</div><div class=c__ID "+a+" d=5 >&nbsp;</div><div class=c__ID "+a+" d=6 >&nbsp;</div><div class=c__ID "+a+" d=7 >&nbsp;</div>";
-            return cell;
-        }
-
-        var d=$vm.first_day_of_current_week();
-        var d1= $vm.date_to_yyyymmdd($vm.date_add_days(d,7*m.ref));
-        var d2= $vm.date_to_yyyymmdd($vm.date_add_days(d,7*m.ref+1));
-        var d3= $vm.date_to_yyyymmdd($vm.date_add_days(d,7*m.ref+2));
-        var d4= $vm.date_to_yyyymmdd($vm.date_add_days(d,7*m.ref+3));
-        var d5= $vm.date_to_yyyymmdd($vm.date_add_days(d,7*m.ref+4));
-        var d6= $vm.date_to_yyyymmdd($vm.date_add_days(d,7*m.ref+5));
-        var d7= $vm.date_to_yyyymmdd($vm.date_add_days(d,7*m.ref+6));
-
-        var txt="";
-        var hd="<div class=c__ID>MON &nbsp;&nbsp;"+d1+"</div>";
-           hd+="<div class=c__ID>Tue &nbsp;&nbsp;"+d2+"</div>";
-           hd+="<div class=c__ID>Wed &nbsp;&nbsp;"+d3+"</div>";
-           hd+="<div class=c__ID>THU &nbsp;&nbsp;"+d4+"</div>";
-           hd+="<div class=c__ID>FRI &nbsp;&nbsp;"+d5+"</div>";
-           hd+="<div class=c__ID>SAT &nbsp;&nbsp;"+d6+"</div>";
-           hd+="<div class=c__ID>SUN &nbsp;&nbsp;"+d7+"</div>";
-        txt+="<div class=c_row__ID style='background-color: #868e96;color:#fff;font-weight:bold;text-align:center' ><div class=c_cell_t__ID></div><div class=c_cell__ID>"+hd+"</div></div>"
-        
-        
-
-
-        var drag=0;
-        var drag_start=-1;
-        var drag_end=-1;
-        var drag_d=-1;
-        var $start;
-        var $rect;
-        var cell_width;
-        var cell_height;
-        
-        for(i=6;i<19;i++){
-            var t=$vm.pad(i,2)+":00";
-            txt+="<div class=c_row__ID><div class=c_cell_t__ID>"+t+"</div><div class=c_cell__ID>"+rc(i,1)+"</div></div>"
-            txt+="<div class=c_row__ID><div class=c_cell_t__ID></div><div class=c_cell__ID>"+rc(i,2)+"</div></div>"
-            txt+="<div class=c_row__ID><div class=c_cell_t__ID></div><div class=c_cell__ID>"+rc(i,3)+"</div></div>"
-            txt+="<div class=c_row__ID><div class=c_cell_t__ID sthle='border-bottom:1px solid #eee;'></div><div class=c_cell__ID style='border-bottom:1px solid #eee;'>"+rc(i,4)+"</div> </div>"
-        }
-        $('#calendar__ID').html(txt)
-        
-        
-        
-        var set_rect=function(){
-            if(drag_start==-1){
-                $rect.find('div').text('');
-                return;
+            $('#item_list__ID').on('change',function(){
+                m.request_and_render();
+            })
+            //--------------------------------------------------------
+            m.request_and_render=function(){
+                var mt1=new Date().getTime();
+                var dt1=m.first_day.getTime();
+                var dt2=$vm.date_add_days(m.last_day,1).getTime();
+                var item=$('#item_list__ID').val();
+                if(item==undefined) return;
+                $vm.request({cmd:"find",table:m.Table,query:{I3:item,I1:{"$gte":dt1,"$lt":dt2}},sort:{I1:1,I2:1},options:{}},function(res){
+                    if(res.permission==false){
+                        alert("No permission to get booking information.");
+                        return;
+                    }
+                    //-----------------------
+                    var mt2=new Date().getTime();
+                    var tt_all=mt2-mt1;
+                    var tt_server=parseInt(res.sys.elapsed_time);
+                    if(tt_all<tt_server) tt_all=tt_server;
+                    $("#elapsed__ID").text((JSON.stringify(res.result).length/1000).toFixed(1)+"kb/"+tt_all.toString()+"ms/"+tt_server+'ms');
+                    //-----------------------
+                    m.calendar_render();
+                    m.records=res.result;
+                    for(var i=0;i<res.result.length;i++){
+                        m.cell_render(res.result[i]);
+                    }
+                });
             }
-            var h1=$vm.pad(Math.floor((drag_start)/60),2)+":"+$vm.pad((drag_start)%60,2);
-            var h2=$vm.pad(Math.floor((drag_end+15)/60),2)+":"+$vm.pad((drag_end+15)%60,2);
-            $rect.find('div').text(h1+ " - "+h2);
-            $rect.find('div').css('height',cell_height*(drag_end+15-drag_start)/15+(drag_end+15-drag_start)/60);
+            //--------------------------------------------------------
+            m.cell_render=function(record){
+                var id=record._id;
+                var date=record.Data.Date;
+                var time=record.Data.Time;
+                var duration=record.Data.Duration;
+                var time2=$vm.pad(new Date(record.I2).getHours(),2)+":"+$vm.pad(new Date(record.I2).getMinutes(),2);
+                var info=record.Data.Info; if(info===undefined) name="No info";
+                var color=record.Data.Color;
+                
+                
+                var h=new Date(record.I1).getHours(); 
+                var q=new Date(record.I1).getMinutes()/15+1;
+                var d=$vm.date_yyyymmdd_parse(date).getDay();
+                var $div=m.get_cell_div(h,q,d);
+                var t1=$vm.pad(new Date(record.I1).getHours(),2)+":"+$vm.pad(new Date(record.I1).getMinutes(),2);
+                var t2=$vm.pad(new Date(record.I2).getHours(),2)+":"+$vm.pad(new Date(record.I2).getMinutes(),2);
+                
+                $div.html("&nbsp;<div class=rect_b__ID></div>");
+                var $rect=$div.find('div.rect_b__ID');
+                var info_txt=t1+" - "+t2;
+                var mm=(new Date(record.I2).getTime()-new Date(record.I1).getTime())/1000/60;
+                if(mm/15>2) info_txt+="<br>"+info;
+                else info_txt+=" &nbsp;"+info;
+                $rect.html(info_txt);
+                
+                $rect.css('color',$vm.white_or_black_color(color));
+                $rect.css('background-color',color);
+                $rect.css('width',m.cell_width);
+                $rect.css('height',m.cell_height*(mm)/15+(mm)/60-2);
+                $rect.on('mousedown',function(e){    e.stopPropagation();            })
+                $rect.on('mouseup',function(e){      e.stopPropagation();            })
+
+                $rect.on('click',function(){
+                    $vm.load_module(m.booking,'',{record:record});
+                });
+            }
+            //--------------------------------------------------------
+            m.new_record=function(input){
+                $vm.load_module(m.booking2,'',input);
+            }
+            //--------------------------------------------------------
+            $('#D__ID').on('load',function(){  m.request_and_render();  });
+            $('#D__ID').on('show',function(){  if($vm.refresh==1){$vm.refresh=0; m.request_and_render();}    });
+            //--------------------------------------------------------
         }
-        $('#calendar__ID .c__ID').on('mousedown',function(){
-            drag=1; 
-            var h=$(this).attr("h");
-            var q=$(this).attr("q");
-            var d=$(this).attr("d");
-            var p=parseInt(h)*60+(parseInt(q)-1)*15;
-            drag_start=p;
-            drag_end=p;
-            drag_d=d;
-            $rect=$(this);
-            $rect.html("&nbsp;<div class=block__ID></div>");
-            $rect.find('div.block__ID').css('width',$(this).width());
-            cell_height=$(this).height();
-            set_rect();
-        })
-        $('#calendar__ID .c__ID').on('mouseup',function(){
-            var item=$('#item_list__ID').val();
-            var day=$vm.date_to_yyyymmdd($vm.date_add_days(d,7*m.ref+parseInt(drag_d)-1));
-            var time=$vm.pad(Math.floor((drag_start)/60),2)+":"+$vm.pad((drag_start)%60,2);
-            var duration=$vm.pad(Math.floor((drag_end+15-drag_start)/60),2)+":"+$vm.pad((drag_end+15-drag_start)%60,2);
-
-            drag=0;
-            drag_start=-1;
-            drag_end=-1;
-            $rect.html('&nbsp;');
-
-            $vm.load_module('m8','',{item:item,day:day,time:time,duration:duration});
-        })
-        
-        $('#calendar__ID .c__ID').on('mouseover',function(){
-            if(drag==1){
-                var h=$(this).attr("h");
-                var q=$(this).attr("q");
-                var p=parseInt(h)*60+(parseInt(q)-1)*15;
-                drag_end=p;
-                set_rect();
-            }
-        })
-
-        var mt1=new Date().getTime();
-        var dt1=m.first_day.getTime();
-        var dt2=$vm.date_add_days(m.last_day,1).getTime();
-        var room=$('#item_list__ID').val();
-        if(room==undefined) return;
-        $vm.request({cmd:"find",table:m.Table,query:{I3:room,I1:{"$gte":dt1,"$lt":dt2}},sort:{I1:1,I2:1},options:{}},function(res){
-            if(res.permission==false){
-                alert("No permission to get booking information.");
-                return;
-            }
-            //-----------------------
-            var mt2=new Date().getTime();
-            var tt_all=mt2-mt1;
-            var tt_server=parseInt(res.sys.elapsed_time);
-            if(tt_all<tt_server) tt_all=tt_server;
-            $("#elapsed__ID").text((JSON.stringify(res.result).length/1000).toFixed(1)+"kb/"+tt_all.toString()+"ms/"+tt_server+'ms');
-            //-----------------------
-            //m.calendar_render("");
-            m.records=res.result;
-            for(var i=0;i<res.result.length;i++){
-                m.cell_render(res.result[i]);
-            }
-        });
-
-
-
-    }
-    //--------------------------------------------------------
-    m.request_and_render();
-}
-
     </script>
     <style>
         #D__ID{

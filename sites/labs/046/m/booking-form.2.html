@@ -7,28 +7,22 @@
     		<div class="container">
     			<div class="row row__ID">
     				<div class=col>
-    					<span>Room</span>
-    					<select class="form-control" name=Item id=Item__ID required ></select>
+    					<span>Car</span>
+    					<input type="text" class="form-control" name=Item readonly />
     				</div>
     			</div>
     			<div class="row row__ID">
-    				<div class=col>
+    				<div class="col-sm col-lg-4">
     					<span>Date</span>
-    					<input type="date" class="form-control" name=Date required />
+    					<input type="text" class="form-control" name=Date readonly />
     				</div>
-    			</div>
-    			<div class="row row__ID">
-    				<div class=col>
+    				<div class="col-sm col-lg-4">
     					<span>Time</span>
-						<select class="form-control" name=Time>
-						</select>
+    					<input type="text" class="form-control" name=Time readonly />
     				</div>
-    			</div>
-    			<div class="row row__ID">
-    				<div class=col>
+    				<div class="col-sm col-lg-4">
     					<span>Duration</span>
-						<select class="form-control" name=Duration>
-						</select>
+    					<input type="text" class="form-control" name=Duration readonly />
     				</div>
     			</div>
     			<div class="row row__ID">
@@ -58,8 +52,6 @@
     	function F__ID(){
     		//-------------------------------------
             VmInclude:__COMPONENT__/f/form.01.js
-			m.hour_start=7;
-			m.hour_end=18;
     		//-------------------------------------
 			$vm.request({cmd:'find',table:m.lookup},function(res){
 				var txt="";
@@ -73,35 +65,20 @@
 				}
 			});
 			//--------------------------------------------------------
-			var $List1=$('#F__ID select[name=Time]');
-			for(var i=m.hour_start;i<m.hour_end;i++){
-				for(var j=0;j<4;j++){
-					var t1=i;    if(t1<10) t1="0"+t1
-					var t2=j*15; if(t2==0) t2="00";
-					var t=t1+":"+t2;
-					$List1.append(  $('<option></option>').val(t).html(t)  );
-				}
-			}
-			//-------------------------------------
-			var $List2=$('#F__ID select[name=Duration]');
-			for(var i=0;i<(m.hour_end-m.hour_start);i++){
-				for(var j=0;j<4;j++){
-					var t1=i;    if(t1<10) t1="0"+t1
-					var t2=j*15; if(t2==0) t2="00";
-					var t=t1+":"+t2;
-					if(i==0 && j==0){} 
-					else $List2.append(  $('<option></option>').val(t).html(t)  );
-				}
-			}
-			//-------------------------------------
             old_load=m.load;
 			m.load=function(){
 				old_load();
+				if(m.input.item!=undefined){
+					$('#F__ID input[name=Item]').val(m.input.item);
+				}
 				if(m.input.day!=undefined){
 					$('#F__ID input[name=Date]').val(m.input.day);
 				}
-				if(m.input.item!=undefined){
-					$('#F__ID select[name=Item]').val(m.input.item);
+				if(m.input.time!=undefined){
+					$('#F__ID input[name=Time]').val(m.input.time);
+				}
+				if(m.input.duration!=undefined){
+					$('#F__ID input[name=Duration]').val(m.input.duration);
 				}
 			}
     		//-------------------------------------

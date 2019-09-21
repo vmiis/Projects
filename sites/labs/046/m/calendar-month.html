@@ -32,9 +32,9 @@
             var mt1=new Date().getTime();
             var dt1=m.first_day.getTime();
             var dt2=$vm.date_add_days(m.last_day,1).getTime();
-            var car=$('#item_list__ID').val();
-            if(car==undefined) return;
-            $vm.request({cmd:"find",table:m.Table,query:{I3:car,I1:{"$gte":dt1,"$lt":dt2}},sort:{I1:1,I2:1},options:{}},function(res){
+            var room=$('#item_list__ID').val();
+            if(room==undefined) return;
+            $vm.request({cmd:"find",table:m.Table,query:{I3:room,I1:{"$gte":dt1,"$lt":dt2}},sort:{I1:1,I2:1},options:{}},function(res){
                 if(res.permission==false){
                     alert("No permission to get booking information.");
                     return;
@@ -59,15 +59,15 @@
             var date=record.Data.Date;
             var time=record.Data.Time;
             var duration=record.Data.Duration;
-            var time2=$vm.pad(new Date(record.I2).getHours(),2)+":"+$vm.pad(new Date(record.I2).getMinutes(),2);
-            var name=record.Data.Contact_Name; if(name===undefined) name="No name";
+            //var time2=$vm.pad(new Date(record.I2).getHours(),2)+":"+$vm.pad(new Date(record.I2).getMinutes(),2);
+            var info=record.Data.Info; if(info===undefined) info="No info";
             var color=record.Data.Color;
+            var t1=$vm.pad(new Date(record.I1).getHours(),2)+":"+$vm.pad(new Date(record.I1).getMinutes(),2);
+            var t2=$vm.pad(new Date(record.I2).getHours(),2)+":"+$vm.pad(new Date(record.I2).getMinutes(),2);
 
-            //var aa=time.split(':');
-            //var mm=(100*(parseInt(aa[0])*60+parseInt(aa[1])-m.start_point)/m.total_width).toFixed(2)+"%";
             var mm="10px";
             var $div=m.get_cell_div(date);
-            var item="<div style='color:"+color+";margin-left:"+mm+";' class=item__ID  ><div id=item__ID"+id+" style='cursor:pointer;display:inline-block;padding-left:3px;' >"+time+" "+name+"</div></div>"
+            var item="<div style='color:"+color+";margin-left:"+mm+";' class=item__ID  ><div id=item__ID"+id+" style='cursor:pointer;display:inline-block;padding-left:3px;' >"+t1+" - "+t2+" "+info+"</div></div>"
             $div.append(item);
             $('#item__ID'+id).on('click',function(){
                 $vm.load_module(m.booking,'',{record:record});

@@ -8,7 +8,7 @@
     			<div class="row row__ID">
     				<div class=col>
     					<span>Room</span>
-    					<input type="text" class="form-control" name=Room readonly />
+    					<input type="text" class="form-control" name=Item readonly />
     				</div>
     			</div>
     			<div class="row row__ID">
@@ -28,7 +28,7 @@
     			<div class="row row__ID">
     				<div class=col>
     					<span>Contact Name / Description</span>
-    					<input type="text" class="form-control" name=Contact_Name required />
+    					<input type="text" class="form-control" name=Info required />
     				</div>
     			</div>
 				<br>
@@ -59,9 +59,9 @@
 					var v=res.result[i].Data.Name;
 					txt+="<option>"+v+"</option>";
 				}
-				$('#Room__ID').html(txt);
+				$('#Item__ID').html(txt);
 				if(m.input.item!=undefined){
-					$('#F__ID select[name=Room]').val(m.input.item);
+					$('#F__ID select[name=Item]').val(m.input.item);
 				}
 			});
 			//--------------------------------------------------------
@@ -69,7 +69,7 @@
 			m.load=function(){
 				old_load();
 				if(m.input.item!=undefined){
-					$('#F__ID input[name=Room]').val(m.input.item);
+					$('#F__ID input[name=Item]').val(m.input.item);
 				}
 				if(m.input.day!=undefined){
 					$('#F__ID input[name=Date]').val(m.input.day);
@@ -91,7 +91,7 @@
 				//---------------------------
 				index.I1=t1;
 				index.I2=t2;
-				index.I3=data.Room;
+				index.I3=data.Item;
     			//---------------------------
 				//check time slot
 				var rid=undefined; if(m.input!=undefined && m.input.record!=undefined) rid=m.input.record._id;
