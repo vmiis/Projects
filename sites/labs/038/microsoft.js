@@ -62,10 +62,10 @@ $vm.m365_init=function(){
     if($vm.m365_msal.getAccount()!=undefined){
         var t1=(new Date().getTime() + 1) / 1000;
         var t2=parseInt($vm.m365_msal.getAccount().idToken.exp);
-        console.log(t2);
-        console.log(t1);
+        //console.log(t2);
+        //console.log(t1);
         var dt=t2-t1
-        console.log(dt);
+        //console.log(dt);
         if(dt<0){
             alert("The session has expired.");
             $vm.m365_signin();

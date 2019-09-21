@@ -8,6 +8,7 @@
         "me":   	                        {url:"$H/a/me.html"},
         "users":   	                        {url:"$H/a/users.html"},
         "groups":   	                    {url:"$H/a/groups.html"},
+        "my-groups":   	                    {url:"$H/a/my-groups.html"},
         "sharepoint-site":                  {url:"$H/a/sharepoint-site.html"},
         "sharepoint-drive":   	            {url:"$H/a/sharepoint-drive.html"},
         "sharepoint-drive-document":        {url:"$H/a/sharepoint-drive-document.html"},

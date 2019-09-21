@@ -242,6 +242,7 @@
                 console.log(m.links);
                 //$('#vm_data_loader').show();
                 $vm.m365_msal.acquireTokenSilent({scopes: ["https://woolcockdev.crm6.dynamics.com/.default"]}).then(function (tokenResponse) {
+                    //console.log(tokenResponse)
                     m.ajax(m.endpoint,tokenResponse,function(data){
                         m.data_process(data);
                     })
