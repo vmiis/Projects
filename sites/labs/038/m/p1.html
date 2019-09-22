@@ -1,20 +1,22 @@
 <div id=D__ID>
-	<div style='padding:30px'>
-		Username: <span id=user_name__ID></span>
-	</div>
-	<div style='padding:30px'>
+	<div style='padding:30px 0 0 30px'>
 		<ul>
-			<li>You are authenticated by Microsoft Account Login.</li>
-			<li>Your login have been verified on a non-Microsoft-server.</li>
+			<li>You are authenticated by Microsoft Azure Active Directory.</li>
+			<li>
+				Your login have been verified on a non-Microsoft-resources-server with the following information.<br>
+				Username: <span id=user_name__ID></span><br>
+				All groups you belong to:<br>
+				<ul id=groups__ID></ul>
+			</li>
 		</ul>
 	</div>
-	<div style='padding:30px; max-width:500px;'>
+	<div style='padding-left:30px; max-width:500px;'>
 		<ul>
 			<li>You can access microsoft cloud resources dirctly from the web browser by using various kind of Microsoft API 
 		services with a valid Microsoft ID token.</li>
 		<li>You can also access cloud resources 
-		from a non-Microsoft server with a valid Microsoft ID token after the token has 
-		been be verified by the server beacuse the server knows who you are.</li>
+		from a non-Microsoft-resources-server with a valid Microsoft ID token after the token has 
+		been verified by the non-Microsoft-resources-server beacuse the server knows who you are.</li>
 		</ul>
 	</div>
 	<script>
@@ -22,6 +24,24 @@
 			var nm=$vm.user_name;
 			if($vm.user_displayname!=undefined) nm=$vm.user_displayname;
 			$('#user_name__ID').text(nm);
+			
+			var get_group_name=function(id){
+				for(i in $vm.groups_data.value){
+					if(id==$vm.groups_data.value[i].id){
+						return $vm.groups_data.value[i].displayName;
+					}
+				}
+				return "";
+			}
+			
+			var txt="";
+			if($vm.groups!=undefined){
+				for(i in $vm.groups){
+					var id=$vm.groups[i];
+					txt+=get_group_name(id)+"<br>";
+				}
+			}
+			$('#groups__ID').html(txt);
 		}
 	</script>
 	<style>

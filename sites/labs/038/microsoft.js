@@ -4,7 +4,7 @@ $vm.m365_init=function(){
     if(p!="") h=h+":"+p;
 
     $vm.m365_scope={
-        scopes: ["user.read"]
+        scopes: ["user.read","directory.read.all"]
     };
     $vm.msalConfig={
         auth: {
@@ -18,7 +18,7 @@ $vm.m365_init=function(){
     };
     $vm.m365_msal=new Msal.UserAgentApplication($vm.msalConfig);
     $vm.m365_signin=function (){
-        $vm.m365_msal.loginPopup($vm.m365_scope).then(function (loginResponse) {               
+        $vm.m365_msal.loginPopup($vm.m365_scope).then(function (loginResponse) {     
             return $vm.m365_msal.acquireTokenSilent($vm.m365_scope);
         }).then(function (accessTokenResponse) {
             $vm.m365_init();

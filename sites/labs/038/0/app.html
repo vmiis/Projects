@@ -63,7 +63,13 @@
                             $vm.user_displayname=res.result.user_displayname;
                             $vm.set_token(res.result.token,res.result.username);
                             $vm.show_user();
+                            var t=JSON.parse(res.result.token.split('|')[0]);
+                            $vm.groups=t.groups;
                         }
+                    })
+                    $vm.m365_graph("https://graph.microsoft.com/v1.0/me/memberOf",{scopes: ["user.read","directory.read.all"]},function(data){
+                        console.log(data)
+                        $vm.groups_data=data;
                     })
                 }
             }
