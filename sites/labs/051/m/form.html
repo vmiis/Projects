@@ -1,0 +1,84 @@
+<div id=D__ID>
+    <section id=form_container__ID>
+    	<div id=header__ID>
+    		Form -> DB
+    	</div>
+    	<form id=F__ID>
+    		<div class="container">
+    			<div class="row row__ID">
+    				<div class=col>
+    					<span>First Name</span>
+    					<input type="text" class="form-control" name=First_Name />
+    				</div>
+    			</div>
+    			<div class="row row__ID">
+    				<div class=col>
+    					<span>Last Name</span>
+    					<input type="text" class="form-control" name=Last_Name />
+    				</div>
+    			</div>
+    			<br>
+    			<div class="row">
+    				<div class=col>
+    					<button id=submit__ID type="submit" class="btn btn-secondary">Submit</button>
+    				</div>
+    			</div>
+    		</div>
+    	</form>
+    </section>
+    <script>
+    	function F__ID(){
+    		//-------------------------------------
+			$('#F__ID').submit(function(event){
+    			//------------------------------
+				event.preventDefault();
+    			//------------------------------
+				
+				alert('You have clicked the submit button.');
+				
+    			//------------------------------
+				
+    			var data={};
+    			var a=$('#F__ID').serializeArray();
+    			$.each(a, function () { 
+					data[this.name]=this.value || '';
+				});
+				$("#F__ID input:checkbox:not(:checked)").each(function(){
+					data[this.name]="off";
+				})
+				
+				alert('The data has bee collected.\r\n'+JSON.stringify(data));
+    			//------------------------------
+
+				var db_url="http://localhost:8002/";
+				var req={cmd:"cmd01",data:data}
+				$.ajax(
+					{
+						url:db_url,
+						data: JSON.stringify(req),
+						type: "POST",
+        				contentType: "application/json",
+        				charset:"utf-8",
+        				dataType: "json",
+					}
+				)				
+				
+				alert('We have send the data to the database server: '+db_url);
+    			//------------------------------
+				
+				$('#submit__ID').hide();
+				
+				alert('We will hide the submit button so to avoid double or more submit for this form data');
+
+    			//------------------------------
+			})
+			//-------------------------------------
+    	}
+    </script>
+    <style>
+        #form_container__ID{
+            max-width:600px;
+        }
+        VmInclude:__COMPONENT__/f/form.01.css
+    </style>
+</div>

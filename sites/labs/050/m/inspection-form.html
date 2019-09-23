@@ -1,0 +1,135 @@
+<div id=D__ID>
+    <section id=form_container__ID>
+    	<div id=header__ID>
+    		Inspection
+    	</div>
+    	<form id=F__ID>
+    		<div class="container">
+				<div class='row row__ID'>
+					<div class=col>
+						<span>Site</span>
+						<input type=text class=form-control name=Site id=Site__ID>
+					</div>
+				</div>
+				<div class='row row__ID'>
+					<div class=col>
+						<span>Inspection Date</span>
+						<input type=date class=form-control name=Inspection_Date>
+					</div>
+				</div>
+					<div class='row row__ID'>
+					<div class=col>
+						<span>Inspectors</span>
+						<input type=text class=form-control name=Inspectors>
+					</div>
+				</div>
+				<div class='row row__ID'>
+					<div class=col>
+						<span>Item/Question</span>
+						<textarea class=form-control name=Item id=Item__ID></textarea>
+					</div>
+				</div>
+				<div class='row row__ID'>
+					<div class=col>
+						<span>Answer</span>
+						<select class="form-control" name="Answer">
+							<option></option>
+							<option>Yes</option>
+							<option>No</option>
+							<option>N/A</option>
+						</select>
+					</div>
+				</div>
+				<div class='row row__ID'>
+					<div class=col>
+						<span>Action</span>
+						<input type=text class=form-control name=Action>
+					</div>
+				</div>
+				<div class='row row__ID'>
+					<div class=col>
+						<span>Responsible For Action</span>
+						<input type=text class=form-control name=Responsible_For_Action>
+					</div>
+				</div>
+				<div class='row row__ID'>
+					<div class=col>
+						<span>Date Implemented</span>
+						<input type=date class=form-control name=Date_Implemented>
+					</div>
+				</div>
+				<div class='row row__ID'>
+					<div class=col>
+						<span>Hazard Priority</span>
+						<input type=text class=form-control name=Hazard_Priority>
+					</div>
+				</div>
+				<div class='row row__ID'>
+					<div class=col>
+						<span>Completed</span><br>
+						<label><input type=checkbox name=Completed ></input> Yes</label>
+					</div>
+				</div>
+				<br>
+    			<div class="row c_print">
+    				<div class=col>
+    					<button id=submit__ID type="submit" class="btn btn-secondary">Submit</button>
+    				</div>
+    			</div>
+    		</div>
+    	</form>
+    </section>
+    <script>
+    	function F__ID(){
+    		//-------------------------------------
+            VmInclude:__COMPONENT__/f/form.01.js
+			//-------------------------------------
+			var autocomplete_req_a={cmd:"find",table:m.Item,field:'.Data.Item',options:{},skip:0,limit:10}
+			var autocomplete_list_a=function(records){
+				var items=[];
+				for(var i=0;i<records.length;i++){
+					var obj={};
+					obj.label=records[i].Data.Item;
+					items.push(obj);
+				}
+				return items;
+			}
+			var autocomplete_callback_a=function(items){}
+			//-------------------------------------
+			var autocomplete_req_b={cmd:"find",table:m.Site,field:'.Data.Site',options:{},skip:0,limit:10}
+			var autocomplete_list_b=function(records){
+				var items=[];
+				for(var i=0;i<records.length;i++){
+					var obj={};
+					obj.label=records[i].Data.Site;
+					items.push(obj);
+				}
+				return items;
+			}
+			var autocomplete_callback_b=function(items){}
+			//-------------------------------------
+			var wait1=function(){
+				$vm.autocomplete($('#Item__ID'),autocomplete_req_a,autocomplete_list_a,autocomplete_callback_a);
+				$vm.autocomplete($('#Site__ID'),autocomplete_req_b,autocomplete_list_b,autocomplete_callback_b);
+			}
+			//-------------------------------------
+			var I=0; var loop_1=setInterval(function (){
+				if($vm['jquery-ui-min-js']!=undefined){  clearInterval(loop_1); wait1(); }
+				I++; if(I>50){ clearInterval(loop_1); alert("jquery-ui.min.js is not installed."); }
+			},100);
+			//-------------------------------------
+    	}
+    </script>
+    <style>
+        VmInclude:__COMPONENT__/f/form.01.css
+        #form_container__ID{
+            max-width:700px;
+        }
+		.row__ID span{
+			font-weight:bold;
+			display: inline-block;
+			padding: 5px 0;
+		}
+
+    </style>
+</div>
