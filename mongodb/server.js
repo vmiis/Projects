@@ -1,5 +1,6 @@
 const express		=require('express');
 const http			=require('http');
+const fs			=require('fs');
 const server 		=express();
 const MongoClient 	=require('mongodb').MongoClient;
 var db;
@@ -51,10 +52,15 @@ server.use(function(req, res, next){
 	//--------------------------
 })
 //---------------------------------------------------
-http.createServer(
-	server
-).listen(
-	8002,
-	() => console.log("The server is listening on port 8002!") 
-);
+fs.readFile("server.js.config.txt", 'utf8', function(err, txt){
+	txt=txt.replace(/\\/g,'\\\\');
+	var c=JSON.parse(txt);
+	var port=c.port;
+	http.createServer(
+		server
+	).listen(
+		port,
+		() => console.log("The server is listening on port "+port+"!") 
+	);
+})
 //---------------------------------------------------
