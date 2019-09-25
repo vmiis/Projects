@@ -88,9 +88,9 @@ fs.readFile("server.js.config.txt", 'utf8', function(err, txt){
 	var c=JSON.parse(txt);
 	var port=c.port;
 	content_path=c.static;
-	if(content_path=="") content_path=__dirname.replace("\\server","\\sites");
+	if(content_path=="") content_path=__dirname.replace("\\servers\\web","\\sites");
 	server.use(express.static(content_path));
-	server.use(express.static(__dirname+"\\tools"));
+	//server.use(express.static(__dirname+"\\tools"));
 	http.createServer(
 		server
 	).listen(

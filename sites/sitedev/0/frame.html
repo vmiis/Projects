@@ -243,12 +243,12 @@
             //------------------------------------
             if(sessionStorage["signinout"]==1){
                 sessionStorage["signinout"]=0;
-                $vm.load_module("home",'',{});
+                //$vm.load_module("home",'',{});
             }
             else{
                 var a=window.location.href.split('?/');
                 if(a.length==1){
-                    $vm.load_module("home",'',{});
+                    //$vm.load_module("home",'',{});
                     console.log("home module(1)  "+(new Date().getTime()-$vm.start_time)+'ms');
                     $('#_sys_dev_toolbar_debug_info').text("loading home page time:"+(new Date().getTime()-$vm.start_time).toString()+"ms")
                 }
