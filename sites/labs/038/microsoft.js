@@ -9,7 +9,7 @@ $vm.m365_init=function(){
     $vm.msalConfig={
         auth: {
             clientId: 'f39f8959-8cd7-4570-8c0f-548306bf899a', 
-            redirectUri:h+"/microsoft-authentication.html",
+            redirectUri:h+"/microsoft/vmiis.html",
         },
         cache: {
             cacheLocation: "localStorage",
