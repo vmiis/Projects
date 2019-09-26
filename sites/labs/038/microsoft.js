@@ -2,7 +2,6 @@ $vm.m365_init=function(){
     var h=window.location.protocol+"//"+window.location.hostname;
     var p=window.location.port;
     if(p!="") h=h+":"+p;
-
     $vm.m365_scope={
         scopes: ["user.read","directory.read.all"]
     };
@@ -19,7 +18,15 @@ $vm.m365_init=function(){
     $vm.m365_msal=new Msal.UserAgentApplication($vm.msalConfig);
     $vm.m365_signin=function (){
         $vm.m365_msal.loginPopup($vm.m365_scope).then(function (loginResponse) {     
-            return $vm.m365_msal.acquireTokenSilent($vm.m365_scope);
+            $vm.m365_msal.acquireTokenSilent($vm.m365_scope).then(function (tokenResponse){
+                $vm.microsoft_token=tokenResponse.idToken.rawIdToken;
+                $vm.user_name_3rd=$vm.m365_msal.getAccount().name;
+                $vm.issuer_3rd="microsoft";
+                $vm.user_name_365=$vm.m365_msal.getAccount().userName;
+                if($vm.app_after_3rd_signin!=undefined) $vm.app_after_3rd_signin();
+            }).catch(function (error){
+                console.log("S:"+error);
+            });
         }).then(function (accessTokenResponse) {
             $vm.m365_init();
         }).catch(function (error) {  
@@ -58,39 +65,6 @@ $vm.m365_init=function(){
             $vm.alert("You haven't signed in, or your previous session has expired.")
         });
     };
-    //------------------------------------
-    if($vm.m365_msal.getAccount()!=undefined){
-        var t1=(new Date().getTime() + 1) / 1000;
-        var t2=parseInt($vm.m365_msal.getAccount().idToken.exp);
-        //console.log(t2);
-        //console.log(t1);
-        var dt=t2-t1
-        //console.log(dt);
-        if(dt<0){
-            alert("The session has expired.");
-            $vm.m365_signin();
-            return;
-        }
-
-        $vm.m365_msal.acquireTokenSilent({scopes: ["user.read"]}).then(function (tokenResponse){
-            //console.log(tokenResponse);
-            //$vm.microsoft_token=tokenResponse.accessToken;
-            $vm.microsoft_token=tokenResponse.idToken.rawIdToken;
-            $vm.user_name_3rd=$vm.m365_msal.getAccount().name;
-            $vm.issuer_3rd="microsoft";
-            $vm.user_name_365=$vm.m365_msal.getAccount().userName;
-            if($vm.app_after_3rd_signin!=undefined) $vm.app_after_3rd_signin();
-        }).catch(function (error){
-            console.log("S:"+error);
-            console.log("more than 1 hour. need login again.");
-            //$vm.m365_msal.logout();
-            $vm.m365_signin();
-        });
-    }
-    else{
-        console.log("No account was found, redirect to signin.");
-        $vm.m365_signin();
-    }
     //------------------------------------
 }
 $vm.m365_init();

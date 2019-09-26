@@ -5,21 +5,18 @@
     </head>
     <body>
         <script>
-            console.log("microsoft authentication in a hidden iframe for vmiis");
-            $vm={};
-            var hosting_path0=window.location.href.split('#')[0];
-            var hosting_path=hosting_path0.substring(0, hosting_path0.split('?')[0].lastIndexOf('/'));
-            $vm.msalConfig={
-                auth: {
-                    clientId: 'f39f8959-8cd7-4570-8c0f-548306bf899a', 
-                    redirectUri:hosting_path+"/microsoft-authentication.html"
-                },
-                cache: {
-                    cacheLocation: "localStorage",
-                    storeAuthStateInCookie: true
-                },
-            };
-            $vm.m365_msal=new Msal.UserAgentApplication($vm.msalConfig);
+            console.log("microsoft authentication in a hidden iframe for vmiis A");
+            new Msal.UserAgentApplication(
+                {
+                    auth: {
+                        clientId: 'f39f8959-8cd7-4570-8c0f-548306bf899a', 
+                    },
+                    cache: {
+                        cacheLocation: "localStorage",
+                        storeAuthStateInCookie: true
+                    },
+                }
+            );
         </script>
     </body>
 </html>
