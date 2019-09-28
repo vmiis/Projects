@@ -1,0 +1,209 @@
+<div id=D__ID>
+    <a class='d-none d-md-block' style="color:#000;font-size:11px;display:inline-block;padding:10px 0 0 20px" target=_blank href="https://github.com/vmiis/projects/blob/master/README.md">How to run this open source project on a local computer</a>
+    <div id=panel__ID>
+        <div class=h_img__ID>
+            <div class=h_txt__ID><h4>Tutorial</h4></div>
+        </div>
+    	<div class='nav__ID'>
+            <span>How to submit form data into a cloud database table</span>
+            <br>There are many cloud data database providers. Here we use Wappsystem Cloud database services.
+            <br>What we need are api address ("https://api.wappsystem.com"), a table name ("demo-190726") and form data.
+            <br><br>
+            <ol>
+                <li>
+                    <b>Create a html data collection form module with the following form part</b>
+<pre style='background-color: #333;color:#fff'>
+    &lt;form id=F__ID>
+        &lt;div class="container">
+            &lt;div class="row row__ID">
+                &lt;div class=col>
+                    &lt;span>First Name&lt;/span>
+                    &lt;input type="text" class="form-control" name=First_Name />
+                &lt;/div>
+            &lt;/div>
+            &lt;div class="row row__ID">
+                &lt;div class=col>
+                    &lt;span>Last Name&lt;/span>
+                    &lt;input type="text" class="form-control" name=Last_Name />
+                &lt;/div>
+            &lt;/div>
+            &lt;div class="row row__ID">
+                &lt;div class=col>
+                    &lt;span>Department&lt;/span>
+                    &lt;input type="text" class="form-control" name=Department />
+                &lt;/div>
+            &lt;/div>
+            &lt;br>
+            &lt;div class="row">
+                &lt;div class=col>
+                    &lt;button id=submit__ID type="submit" class="btn btn-secondary">Submit&lt;/button>
+                &lt;/div>
+            &lt;/div>
+        &lt;/div>
+    &lt;/form>
+</pre>
+                </li>
+                <li>
+                    <b>Full code of the module</b>
+                    <br>
+                    <u style='cursor:pointer' id=c__ID>Try the source code of the module</u>
+                    <br><br>
+
+                </li>
+                <li><b>Link the form to a database table</b>
+                <br>All modules information are stored in the file module_list.js
+<pre style='background-color: #333;color:#fff'>
+    "data-collection-form":  {url:"$H/m/data-collection-form.html",Table:"demo-190726"},
+</pre>
+                </li>
+
+                <li><b>Code for sending data to cloud</b>
+                <br>The following code is simplified for showing the logic. The details of the code is in the library (https://github.com/vmiis/vm)
+                <br>In most case just include "__COMPONENT__/f/form.01.js" in the form.
+<pre style='background-color: #333;color:#fff'>
+    $('#F__ID').submit(function(){
+        var req={
+            cmd:"insert",
+            table:table_name,
+            data:$vm.serialize('#F__ID');
+        }
+        $.ajax(
+            {
+                url:api_server_address
+                data: JSON.stringify(req)
+            }
+        )
+    })
+</pre>
+                </li>
+                <li>
+                    <b>Function of the module</b>
+                    <br>
+                    <u style='cursor:pointer' id=f__ID>Try the function of the module</u>
+                    <br><br>
+                </li>
+            </ol>
+        </div>
+    </div>
+    <script>
+        function F__ID(){
+            //--------------------------------------------------------
+            $vm.module_list["__MODULE__"].show=function(){
+                document.title="Dashboard | "+$vm.default_title;
+                $("meta[name='description']").attr("content","Dashboard");
+                //you can add more meta data for SEO
+            }
+            //--------------------------------------------------------
+            var this_module=$vm.module_list[$vm.vm['__ID'].name];
+            //--------------------------------------------------------
+            $('#D__ID').on('load',function(){
+                $('span.current_login__ID').text($vm.user_name);
+            })
+            //--------------------------------------------------------
+            $('#panel__ID a').on('click',function(e){
+                e.preventDefault();
+                var href=$(this).attr('href');
+                var app=$(this).attr('app');
+                if(href!=undefined){
+                    href=href.replace('?\/','');
+                    href=href.replace(/\//g,'_');
+                    if(app==undefined) $vm.load_module(href,'',{});
+                    else if($vm.module_list[href]!=undefined) window.open($vm.module_list[href].url);
+                    else alert("The '"+ href +"' is not defined in the module list");
+                }
+            })
+            //--------------------------------------------------------
+            $('#panel__ID a').each(function(){
+                var href=$(this).attr('href');
+                if(href!=undefined){
+                    href=href.replace('?\/','');
+                    href=href.replace(/\//g,'_');
+                    if($vm.module_list[href]!=undefined){
+                        var url=$vm.module_list[href].url;
+                        $(this).attr('title',url);
+                    }
+                }
+            })
+            //--------------------------------------------------------
+            $('#c__ID').on('click',function(){
+                var url=$vm.module_list['data-collection-form'].url;
+                $.get(url,function(txt){
+                    $vm.load_module('module-editor','',{code:txt,url:url,module_name:$vm.active_name})
+                },'text');
+            })
+            //------------------------------------
+            $('#f__ID').on('click',function(){
+                $vm.load_module('data-collection-form');
+            })
+            //------------------------------------
+        }
+    </script>
+    <style>
+        #D__ID{
+    		background-color:#fff;
+    		height:100%;
+    		overflow: auto;
+    		animation: vm_module_fadein 1.0s;
+    	}
+        #panel__ID{
+            margin:0 auto;
+            max-width:1200px;
+    		padding:10px 0 0 20px;
+            font-size:14px;
+    	}
+    	#panel__ID a {
+    		text-decoration: none;
+    	}
+    	#panel__ID li {
+    		color:#555;
+    	}
+    	#panel__ID a:link {
+    		color:#555;
+    	}
+    	#panel__ID a:visited {
+    		color:#555;
+    	}
+    	#panel__ID a:hover {
+    		color:red;
+    	}
+    	#panel__ID a:active {
+    		color:#555;
+    	}
+        .nav__ID{
+	        padding:6px 26px 6px 6px;
+	        float:left;
+	    }
+	    .nav__ID span{
+			color:#283f55;
+			font-weight: bold;
+			margin:3px 0px;
+            font-size: 18px;
+            
+            display: inline-block;
+            border-bottom: 1px solid #f9e09b;
+            padding-bottom: 2px;
+            white-space: nowrap;
+	    }
+        .h_img__ID{
+            height:200px;
+            background-size: cover; background-position: center center; 
+            background-image: url(https://images.unsplash.com/photo-1520376698361-ba5ceb38c35b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80&h=200);
+            padding-top:60px;
+            margin:50px 0 50px 0;
+            border-radius: 5px;
+        }
+        .h_txt__ID{
+            color:#fff;
+            background-color: rgba(49,53,53,0.5) !important;
+            display:inline-block;
+            margin: 0% 0% 0% 6%!important;
+            padding:20px;
+            border-radius: 10px;
+        }
+    	@media screen and (max-width:768px){
+    		#panel__ID{
+    			padding:10px 10px 0 10px;
+    		}
+    	}
+    </style>
+</div>
