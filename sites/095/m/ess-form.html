@@ -287,7 +287,7 @@
          var before_submit=m.before_submit;
             m.before_submit=function(data,index){
               data.ESS=(parseInt(data.ESS_1)+parseInt(data.ESS_2)+parseInt(data.ESS_3)+parseInt(data.ESS_4)+parseInt(data.ESS_5)+parseInt(data.ESS_6)+parseInt(data.ESS_7)+parseInt(data.ESS_8)).toString();
-              before_submit(data,index);
+              return before_submit(data,index);
           }
           //-------------------------------------
       }

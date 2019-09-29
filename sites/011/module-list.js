@@ -1,7 +1,7 @@
 (function(){
     //-------------------------------------------------------------------------------------
     var modules={
-        "calculation":        {url:"$H/m/calculation.html"},
+        "m1":        {url:"$H/m/calculation.html"},
     }
     for(p in modules){
         $vm.module_list[p]=modules[p]; 

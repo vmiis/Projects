@@ -21,27 +21,47 @@
 	</div>
 	<script>
 		function F__ID(){
-			var nm=$vm.user_name;
-			if($vm.user_displayname!=undefined) nm=$vm.user_displayname;
-			$('#user_name__ID').text(nm);
-			
-			var get_group_name=function(id){
-				for(i in $vm.groups_data.value){
-					if(id==$vm.groups_data.value[i].id){
-						return $vm.groups_data.value[i].displayName;
+			$('#D__ID').on('load',function(){
+				var nm=$vm.user_name;
+				if(nm=="guest"){
+					$vm.alert("You haven't signed in, or your previous session has expired.");
+					return;
+				}
+				if($vm.displayname!=undefined) nm=$vm.displayname;
+				$('#user_name__ID').text(nm);
+				
+				var render_group_name=function(){
+					var get_group_name=function(id){
+						if($vm.groups_data!=undefined){
+							for(i in $vm.groups_data.value){
+								if(id==$vm.groups_data.value[i].id){
+									return $vm.groups_data.value[i].displayName;
+								}
+							}
+						}
+						return "";
 					}
+					
+					var txt="";
+					if($vm.groups!=undefined){
+						for(i in $vm.groups){
+							var id=$vm.groups[i];
+							txt+=get_group_name(id)+"<br>";
+						}
+					}
+					$('#groups__ID').html(txt);
 				}
-				return "";
-			}
-			
-			var txt="";
-			if($vm.groups!=undefined){
-				for(i in $vm.groups){
-					var id=$vm.groups[i];
-					txt+=get_group_name(id)+"<br>";
+				
+				
+				
+				if($vm.groups_data==undefined){
+                    $vm.m365_graph("https://graph.microsoft.com/v1.0/me/memberOf",{scopes: ["user.read","directory.read.all"]},function(data){
+                        $vm.groups_data=data;
+						render_group_name();
+                    })
 				}
-			}
-			$('#groups__ID').html(txt);
+
+			})
 		}
 	</script>
 	<style>

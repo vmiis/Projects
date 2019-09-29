@@ -52,8 +52,10 @@
             //------------------------------------
             window.onresize=function(){set_layout();}
             //------------------------------------
-            $vm.init();
-            $vm.init_status=1;
+            $vm.init(function(){
+                $vm.init_status=1;
+                $vm.show_user();
+            })
             //------------------------------------
             $vm.exchange_microsoft_token=function(){
                 if($vm.microsoft_token!=undefined){
@@ -61,16 +63,12 @@
                         //console.log(res);
                         if(res.status=='ok'){
                             $vm.user_name=res.result.user_name;
-                            $vm.user_displayname=res.result.user_displayname;
+                            $vm.displayname=res.result.displayname;
                             $vm.set_token(res.result.token,res.result.username);
                             $vm.show_user();
                             var t=JSON.parse(res.result.token.split('|')[0]);
                             $vm.groups=t.groups;
                         }
-                    })
-                    $vm.m365_graph("https://graph.microsoft.com/v1.0/me/memberOf",{scopes: ["user.read","directory.read.all"]},function(data){
-                        //console.log(data)
-                        $vm.groups_data=data;
                     })
                 }
             }
@@ -104,9 +102,4 @@
         });
         //-------------------------------------
     </script>
-    <style main-style>
-        html,body{ margin:0; padding:0; height:100%; font-family:Arial;}
-        body{background-size: cover; background-repeat: repeat-x; background-position: center top; background-attachment: fixed;}
-        .body_background_default{ background-image: url(https://images.unsplash.com/photo-1515165252480-5f43c73756f7?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80);}
-    </style>
 </div>

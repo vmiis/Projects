@@ -19,15 +19,23 @@
         "notes-form":  	    {url:"$H/m/notes-form.html",Table:"ad036-notes"},
 
 
+        "ad036-w2-1back-data":      {url:"$H/m/neurocog/nback2-data.html",Table:"ad036-w2-1back",form_module:"ad036-w2-1back-form",task_name:"Week 2 - 1 Back"},
+        "ad036-w2-1back-form":		{url:"$H/m/neurocog/nback2-form.html",Table:"ad036-w2-1back",task_name:"1 Back"},
         "ad036-w2-2back-data":      {url:"$H/m/neurocog/nback2-data.html",Table:"ad036-w2-2back",form_module:"ad036-w2-2back-form",task_name:"Week 2 - 2 Back"},
         "ad036-w2-2back-form":		{url:"$H/m/neurocog/nback2-form.html",Table:"ad036-w2-2back",task_name:"2 Back"},
+        "ad036-w2-3back-data":      {url:"$H/m/neurocog/nback2-data.html",Table:"ad036-w2-3back",form_module:"ad036-w2-3back-form",task_name:"Week 2 - 3 Back"},
+        "ad036-w2-3back-form":		{url:"$H/m/neurocog/nback2-form.html",Table:"ad036-w2-3back",task_name:"3 Back"},
         "ad036-w2-dsst-data":		{url:"$H/m/neurocog/dsst-data.html",Table:"ad036-w2-dsst",form_module:"ad036-w2-dsst-form",task_name:"Week 2 - Digital Symbol Substitution Task"},
         "ad036-w2-dsst-form":		{url:"$H/m/neurocog/dsst-form.html",Table:"ad036-w2-dsst",task_name:"Digital Symbol Substitution Task"},
         "ad036-w2-aused90-data":	{url:"$H/m/aused-90-data.html",Table:"ad036-w2-aused90",form_module:"ad036-w2-aused90-form",task_name:"Week 2 - Aused 90 mins"},
         "ad036-w2-aused90-form":	{url:"$H/m/aused-90-form.html",Table:"ad036-w2-aused90"},
 
+        "ad036-w6-1back-data":      {url:"$H/m/neurocog/nback2-data.html",Table:"ad036-w6-1back",form_module:"ad036-w6-1back-form",task_name:"Week 2 - 1 Back"},
+        "ad036-w6-1back-form":		{url:"$H/m/neurocog/nback2-form.html",Table:"ad036-w6-1back",task_name:"1 Back"},
         "ad036-w6-2back-data":      {url:"$H/m/neurocog/nback2-data.html",Table:"ad036-w6-2back",form_module:"ad036-w6-2back-form",task_name:"Week 2 - 2 Back"},
         "ad036-w6-2back-form":		{url:"$H/m/neurocog/nback2-form.html",Table:"ad036-w6-2back",task_name:"2 Back"},
+        "ad036-w6-3back-data":      {url:"$H/m/neurocog/nback2-data.html",Table:"ad036-w6-3back",form_module:"ad036-w6-3back-form",task_name:"Week 2 - 3 Back"},
+        "ad036-w6-3back-form":		{url:"$H/m/neurocog/nback2-form.html",Table:"ad036-w6-3back",task_name:"3 Back"},
         "ad036-w6-dsst-data":		{url:"$H/m/neurocog/dsst-data.html",Table:"ad036-w6-dsst",form_module:"ad036-w6-dsst-form",task_name:"Week 2 - Digital Symbol Substitution Task"},
         "ad036-w6-dsst-form":		{url:"$H/m/neurocog/dsst-form.html",Table:"ad036-w6-dsst",task_name:"Digital Symbol Substitution Task"},
         "ad036-w6-aused90-data":	{url:"$H/m/aused90-data.html",Table:"ad036-w6-aused90",form_module:"ad036-w6-aused90-form",task_name:"Week 2 - Aused 90 mins"},

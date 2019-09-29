@@ -1,5 +1,5 @@
 //-------------------------------------
-var participant_name=function(record){ if(record.Data.Subject_Initials!=undefined) return record.UID+' '+record.Data.Subject_Initials; else return record.UID;}
+var participant_name=function(record){ if(record.Data.Subject_Initials!=undefined) return record.Data.Subject_ID+' '+record.Data.Subject_Initials; else return record.UID;}
 //-------------------------------------
 //auto select particpant
 var part_id1=$vm.module_list['participant-data'].participant_id.field1;
