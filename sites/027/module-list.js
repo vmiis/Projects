@@ -1,8 +1,8 @@
 (function(){
     //-------------------------------------------------------------------------------------
     var modules={
-        "data":      {url:"$H/m/data.html",Table:"demo-vm-19090801",form_module:"p1"},
-        "p1":        {url:"$H/m/p1.html",Table:"demo-vm-19090801"},
+        "data":      {url:"$H/m/data.html",Table:"demo-vm-19090801",form_module:"m1"},
+        "m1":        {url:"$H/m/p1.html",Table:"demo-vm-19090801"},
     }
     for(p in modules){
         $vm.module_list[p]=modules[p]; 

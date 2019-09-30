@@ -1,7 +1,7 @@
 (function(){
     //-------------------------------------------------------------------------------------
     var modules={
-        "dashboard":    {url:"$H/p/panel.html",router:1},
+        "m1":    {url:"$H/p/panel.html",router:1},
         "first":        {url:"$H/m/first.html"},
         "second":       {url:"$H/m/second.html"},
     }
