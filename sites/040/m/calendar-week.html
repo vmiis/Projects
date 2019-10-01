@@ -1,11 +1,11 @@
 <div id=D__ID>
     <div>
-        VmInclude:__COMPONENT__/w/week.03.html
+        VmInclude:__COMPONENT__/w/week.04.html
     </div>
     <script>
         function F__ID(){
             //--------------------------------------------------------
-            VmInclude:__COMPONENT__/w/week.03.js
+            VmInclude:__COMPONENT__/w/week.04.js
             //--------------------------------------------------------
 
 
@@ -48,10 +48,14 @@
                     if(tt_all<tt_server) tt_all=tt_server;
                     $("#elapsed__ID").text((JSON.stringify(res.result).length/1000).toFixed(1)+"kb/"+tt_all.toString()+"ms/"+tt_server+'ms');
                     //-----------------------
-                    m.calendar_render();
+                    m.calendar_render("<ul></ul>");
+                    $('#D__ID div.c_row__ID').css('min-height',$vm.min_height);
                     m.records=res.result;
                     for(var i=0;i<res.result.length;i++){
-                        m.cell_render(res.result[i]);
+                        if(res.result[i].Data.Time!="") m.cell_render(res.result[i]);
+                    }
+                    for(var i=0;i<res.result.length;i++){
+                        if(res.result[i].Data.Time=="") m.cell_render(res.result[i]);
                     }
                 });
             }
@@ -59,22 +63,19 @@
             m.cell_render=function(record){
                 var id=record._id;
                 var date=record.Data.Date;
-                var time=record.Data.Time;
-                var time2=$vm.pad(new Date(record.I2).getHours(),2)+":"+$vm.pad(new Date(record.I2).getMinutes(),2);
-                var info=record.Data.Info; if(info===undefined) name="No info";
-                var color=record.Data.Color;
-                
-                
-                var h=new Date(record.I1).getHours(); 
-                var q=new Date(record.I1).getMinutes()/15+1;
                 var d=$vm.date_yyyymmdd_parse(date).getDay();
-                var $div=m.get_cell_div(h,q,d);
-                var t1=$vm.pad(new Date(record.I1).getHours(),2)+":"+$vm.pad(new Date(record.I1).getMinutes(),2);
-                var info_txt=t1+"  "+info;
-                $div.html("<u>"+info_txt+"</u><br>");
-                $div.find('u').css('color',color);
-                $div.find('u').on('click',function(e){
-                    //e.preventDefault();
+                var time=record.Data.Time;
+                var info=record.Data.Info; if(info===undefined) info="No info";
+                var color=record.Data.Color;
+                if(time!=""){
+                    var t1=$vm.pad(new Date(record.I1).getHours(),2)+":"+$vm.pad(new Date(record.I1).getMinutes(),2);
+                    info=t1+" "+info;
+                }
+                var mm="10px";
+                var $div=m.get_cell_div(d).find('ul');
+                var item="<li style='color:"+color+";' class=item__ID  ><div id=item__ID"+id+" style='cursor:pointer;display:inline-block;' >"+info+"</div></li>"
+                $div.append(item);
+                $('#item__ID'+id).on('click',function(e){
                     e.stopPropagation();
                     $vm.load_module(m.booking,'',{record:record});
                 });
@@ -82,7 +83,7 @@
             //--------------------------------------------------------
             //overwrite default
             m.new_record=function(input){
-                $vm.load_module(m.booking2,'',input);
+                $vm.load_module(m.booking,'',input);
             }
             //--------------------------------------------------------
             $('#D__ID').on('load',function(){  m.request_and_render();  });

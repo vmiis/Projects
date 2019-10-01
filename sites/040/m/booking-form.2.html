@@ -1,7 +1,7 @@
 <div id=D__ID>
     <section id=form_container__ID>
     	<div id=header__ID>
-    		Booking Form
+    		Event/Reminder/Task Form
     	</div>
     	<form id=F__ID>
     		<div class="container">
@@ -18,7 +18,8 @@
     				</div>
     				<div class="col-sm col-lg-6">
     					<span>Time</span>
-    					<input type="text" class="form-control" name=Time readonly />
+						<select class="form-control" name=Time>
+						</select>
     				</div>
     			</div>
     			<div class="row row__ID">
@@ -49,6 +50,8 @@
     		//-------------------------------------
             VmInclude:__COMPONENT__/f/form.01.js
     		//-------------------------------------
+			m.hour_start=7;
+			m.hour_end=18;
 			$vm.request({cmd:'find',table:m.lookup},function(res){
 				var txt="";
 				for(i in res.result){
@@ -61,6 +64,17 @@
 				}
 			});
 			//--------------------------------------------------------
+			var $List1=$('#F__ID select[name=Time]');
+			$List1.append(  $('<option></option>').val('').html('')  );
+			for(var i=m.hour_start;i<m.hour_end;i++){
+				for(var j=0;j<4;j++){
+					var t1=i;    if(t1<10) t1="0"+t1
+					var t2=j*15; if(t2==0) t2="00";
+					var t=t1+":"+t2;
+					$List1.append(  $('<option></option>').val(t).html(t)  );
+				}
+			}
+			//-------------------------------------
             old_load=m.load;
 			m.load=function(){
 				old_load();

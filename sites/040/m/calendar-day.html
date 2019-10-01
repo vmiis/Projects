@@ -54,9 +54,17 @@
                 if(tt_all<tt_server) tt_all=tt_server;
                 $("#elapsed__ID").text((JSON.stringify(res.result).length/1000).toFixed(1)+"kb/"+tt_all.toString()+"ms/"+tt_server+'ms');
                 //-----------------------
-    			for(var i=0;i<res.result.length;i++){
+                for(var i=0;i<res.result.length;i++){
+                    if(res.result[i].Data.Time!="") m.cell_render(res.result[i]);
+                }
+                for(var i=0;i<res.result.length;i++){
+                    if(res.result[i].Data.Time=="") m.cell_render(res.result[i]);
+                }
+                /*                
+                for(var i=0;i<res.result.length;i++){
     	            m.cell_render(res.result[i]);
                 }
+                */
             });
         }
         //--------------------------------------------------------
