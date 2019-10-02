@@ -6,13 +6,48 @@
         </div>
         <div class=vm-desk-logo>
             <span id=vm-logo-label-A>Flat Trial</span><br>
-        </div>    
+        </div>
     </div>
     <script>
         //------------------------------------
         $('#vm-mobile_title').on('click',function(){ $vm.load_module('home',$vm.root_layout_content_slot,{}) })
         $('.vm-desk-logo').on('click',function(){ $vm.load_module('home',$vm.root_layout_content_slot,{}) })
         //------------------------------------
+        $('.vm-dropdown').on('click',function(e){
+            var d=$(this).find('.vm-dropdown-content');
+            if(d.css('display')=='block') d.css('display','none');
+            else d.css('display','block');
+        })
+        $(".vm-dropdown").mouseleave(function (){  $(".vm-dropdown-content").hide();  })
+        $(".vm-dropdown-content").mouseleave(function (){  $(this).hide();  })
+        $vm.toggle=function() {
+            var x = document.getElementById("vm-menu");
+            if(x.className==='') x.className="responsive";
+            else x.className="";
+        }
+        //------------------------------------
+        $('#vm-menu a').on('click',function(e){
+            e.preventDefault();
+            var dev=$(this).attr('dev');
+            var href=$(this).attr('href');
+            if(dev==undefined){
+                if(href!=undefined && href!='' && href.substring(0,8)=="https://"){ window.open(href); return;}
+                if(href!=undefined && href!=''){
+                    if($vm.menu_click!=undefined) $vm.menu_click(href);
+                }
+            }
+            else{
+                if(href=='sys_settings')  $vm.sys_settings();
+                else if(href=='sys_structure') $vm.sys_structure();
+            }
+            $vm.toggle();
+        })
+        //------------------------------------
+        $vm.menu_click=function(href){
+            href=href.replace('?\/','');
+            href=href.replace(/\//g,'_');
+            $vm.load_module(href,$vm.root_layout_content_slot,{});
+        }
         //------------------------------------
         $vm.header_ready=1;
         //------------------------------------
@@ -29,7 +64,7 @@
             z-index:10;
         }
         .vm-desk-logo{float:left;padding:36px 30px 0 30px;cursor:pointer;}
-        #vm-menu{ float:left;padding:50px 30px 0 30px;}
+        #vm-menu{ float:right;padding:50px 30px 0 30px; overflow: hidden; display:inline-block;}
         @media screen and (max-width: 1200px){
             #header{height:50px;}
             .vm-desk-logo{display:none;}
@@ -60,15 +95,9 @@
         #vm-logo-label-B{
             font-family: Arial, sans-serif;
             color:#fff;
-            font-size: 93%;
+            font-size: 105%;
             line-height:80%;
             display:inline-block;
-        }
-        /*menu*/
-        #vm-menu {
-            overflow: hidden;
-            display:inline-block;
-            float:left;
         }
         #vm-menu > a {
             color:var(--menu-color);

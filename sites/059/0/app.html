@@ -6,6 +6,7 @@
         //------------------------------------
         $vm.api_address="https://api.wappsystem.com";
         if(window.location.toString().indexOf('_p=1')!=-1) $vm.api_address="https://api.wappsystem.com:3000";
+        if(window.location.toString().indexOf('_s=1')!=-1) $vm.api_address="http://localhost:8001";
         //------------------------------------
         $vm.default_title="Modular distributed web application";
         //------------------------------------
@@ -19,14 +20,7 @@
             set_layout();
             //-----------------------------------------
             $vm.show=function(m_name){
-                var nm="";
-                var ns=window.location.href.split('?/');
-                if(ns.length>1) nm=ns[1].split('&')[0].replace('-data','').replace(/-/g,' ');
                 document.title=$vm.default_title;
-                if(nm!=""){
-                    var name=nm.charAt(0).toUpperCase() + nm.slice(1)
-                    document.title=name+" | "+$vm.default_title;
-                }
                 $("meta[name='description']").attr("content", "A single page application with shared reusable modules distributed on different static web servers around the world and maintained by different people with different skills!");
                 $("body").removeClass();
                 $("body").addClass('body_background_default');
@@ -40,6 +34,7 @@
                     $('#D'+$vm.active_id).css('overflow','unset');
                     $('#D'+$vm.active_id).css('overflow-x','auto');
                 }
+                //if(m_name=='home') $('#D'+$vm.active_id).css('height',$vm.min_height+"px");
                 if(m_name=='home'){
                     $('#D'+$vm.active_id+">div.home_page_1").css('height',$vm.min_height+"px");
                     $('#D'+$vm.active_id).css('overflow-y','hidden');
@@ -85,9 +80,4 @@
         });
         //-------------------------------------
     </script>
-    <style main-style>
-        html,body{ margin:0; padding:0; height:100%; font-family:Arial;}
-        body{background-size: cover; background-repeat: repeat-x; background-position: center top; background-attachment: fixed;}
-        .body_background_default{ background-image: url(https://images.unsplash.com/photo-1496483648148-47c686dc86a8?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1352&q=80);}
-    </style>
 </div>

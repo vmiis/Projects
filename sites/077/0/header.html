@@ -1,16 +1,18 @@
 <div id=D__ID>
     <div>
         <div class=vm-mobile>
-            <span id=vm-mobile_title class=vm-mobile-title>Giving</span>
+            <span id=vm-mobile_title class=vm-mobile-title>Business Portal</span>
             <a id="vm-hamburger_button" class=vm-hamburger-button onclick="$vm.toggle()"><i class="fa fa-bars"></i></a>
         </div>
         <div class=vm-desk-logo>
-            <span id=vm-logo-label-A>Wapp Hotel</span><br>
+            <span style='font-size: 300%;font-family: "Gaegu", cursive; color:#fff'>Wapp Hotel</span>
         </div>
         <div menu id="vm-menu">
             <a href="?/home"><i class="fa fa-home"></i> Home</a>
-            <a href="?/welcome">Welcome</a>
-            <a href="?/about-vmiis">About</a>
+            <a href="?/m1">Welcome</a>
+            <a href="?/about"><i class="fa fa-info-circle"></i> About</a>
+            <a dev href=sys_settings><i class="fas fa-cog"></i></i> Settings</a>
+            <a dev href=sys_structure><i class="fas fa-stream"></i> Structure</a>
             <a id=vm_signin onclick="$vm.signin();"><i class="fa fa-user"></i> Sign In</a>
             <a class=vm-hide id=vm_signout onclick=$vm.signout()><i class="fa fa-user"></i> Sign Out</a>
         </div>
@@ -35,10 +37,17 @@
         //------------------------------------
         $('#vm-menu a').on('click',function(e){
             e.preventDefault();
+            var dev=$(this).attr('dev');
             var href=$(this).attr('href');
-            if(href!=undefined && href!='' && href.substring(0,8)=="https://"){ window.open(href); return;}
-            if(href!=undefined && href!=''){
-                if($vm.menu_click!=undefined) $vm.menu_click(href);
+            if(dev==undefined){
+                if(href!=undefined && href!='' && href.substring(0,8)=="https://"){ window.open(href); return;}
+                if(href!=undefined && href!=''){
+                    if($vm.menu_click!=undefined) $vm.menu_click(href);
+                }
+            }
+            else{
+                if(href=='sys_settings')  $vm.sys_settings();
+                else if(href=='sys_structure') $vm.sys_structure();
             }
             $vm.toggle();
         })
@@ -60,11 +69,11 @@
             top:0;
             left:0;
             width:100%;
-            background:rgba(0,0,0,0.0);
+            background:rgba(0,0,0,0.6);
             z-index:10;
         }
-        .vm-desk-logo{float:left;padding:36px 30px 0 30px;cursor:pointer;}
-        #vm-menu{float:right; padding:50px 30px 0 30px;}
+        .vm-desk-logo{float:left;padding:16px 30px 0 30px;cursor:pointer;}
+        #vm-menu{ float:right;padding:50px 30px 0 30px; overflow: hidden; display:inline-block;}
         @media screen and (max-width: 1200px){
             #header{height:50px;}
             .vm-desk-logo{display:none;}
@@ -85,32 +94,20 @@
             --mobile-hamburger-color:#fff;
             --mobile-menu-background-color:#1c3144;
         }
-        #vm-logo-image{
-            margin-top: -32px;
-            width:94px;
-            height:94px;
-            border-radius: 47px;
-            background: url('__CURRENT_PATH__/header.html.logo.jpg') no-repeat top center;
-            background-size: cover;
-            float:left;
-            margin-right:1px;
-            cursor:pointer;
-        }
         #vm-logo-label-A{
-            font-family: "Gaegu", cursive;
+            font-family: Arial, sans-serif;
             color:#fff;
-            font-size: 300%;
+            font-size: 200%;
             line-height:10px;
             display:inline-block;
         }
         #vm-logo-label-B{
             font-family: Arial, sans-serif;
             color:#fff;
-            font-size: 93%;
+            font-size: 105%;
             line-height:80%;
             display:inline-block;
         }
-        /*menu*/
         #vm-menu > a {
             color:var(--menu-color);
             float: left;
