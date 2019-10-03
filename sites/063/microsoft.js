@@ -2,18 +2,17 @@ $vm.m365_init=function(){
     var h=window.location.protocol+"//"+window.location.hostname;
     var p=window.location.port;
     if(p!="") h=h+":"+p;
-    //var hosting_path0=window.location.href.split('#')[0];
-    //var hosting_path=hosting_path0.substring(0, hosting_path0.split('?')[0].lastIndexOf('/'));
-
+    if(h.indexOf('projects.vmiis.com')!=-1) h=h+"/sites";
     $vm.m365_scope={
-        scopes: ["user.read"/*,"User.Read.All","Files.Read.All","Sites.ReadWrite.All"*/]
+        //scopes: ["user.read","directory.read.all"]
+        scopes: ["user.read"]
     };
     $vm.msalConfig={
         auth: {
-            //clientId: '3bcb40c5-fec0-4b3b-ba67-f4d46d577f97', 
-            //redirectUri:h+"/microsoft-authentication-w.html",
             clientId: 'f39f8959-8cd7-4570-8c0f-548306bf899a', 
-            redirectUri:h+"/microsoft-authentication.html",
+            redirectUri:h+"/microsoft/vmiis.html",
+            //clientId: '3bcb40c5-fec0-4b3b-ba67-f4d46d577f97', 
+            //redirectUri:h+"/microsoft/woolcock.html",
         },
         cache: {
             cacheLocation: "localStorage",
@@ -22,8 +21,16 @@ $vm.m365_init=function(){
     };
     $vm.m365_msal=new Msal.UserAgentApplication($vm.msalConfig);
     $vm.m365_signin=function (){
-        $vm.m365_msal.loginPopup($vm.m365_scope).then(function (loginResponse) {               
-            return $vm.m365_msal.acquireTokenSilent($vm.m365_scope);
+        $vm.m365_msal.loginPopup($vm.m365_scope).then(function (loginResponse) {     
+            $vm.m365_msal.acquireTokenSilent($vm.m365_scope).then(function (tokenResponse){
+                $vm.microsoft_token=tokenResponse.idToken.rawIdToken;
+                $vm.user_name_3rd=$vm.m365_msal.getAccount().name;
+                $vm.issuer_3rd="microsoft";
+                $vm.user_name_365=$vm.m365_msal.getAccount().userName;
+                if($vm.app_after_3rd_signin!=undefined) $vm.app_after_3rd_signin();
+            }).catch(function (error){
+                console.log("S:"+error);
+            });
         }).then(function (accessTokenResponse) {
             $vm.m365_init();
         }).catch(function (error) {  
@@ -63,40 +70,6 @@ $vm.m365_init=function(){
         });
     };
     //------------------------------------
-    if($vm.m365_msal.getAccount()!=undefined){
-        var t1=(new Date().getTime() + 1) / 1000;
-        var t2=parseInt($vm.m365_msal.getAccount().idToken.exp);
-        console.log(t2);
-        console.log(t1);
-        var dt=t2-t1
-        console.log(dt);
-        if(dt<0){
-            alert("The session has expired.");
-            $vm.m365_signin();
-            return;
-        }
-
-        $vm.m365_msal.acquireTokenSilent({scopes: ["user.read"]}).then(function (tokenResponse){
-            //console.log(tokenResponse);
-            //$vm.microsoft_token=tokenResponse.accessToken;
-            $vm.microsoft_token=tokenResponse.idToken.rawIdToken;
-            $vm.user_name_3rd=$vm.m365_msal.getAccount().name;
-            $vm.issuer_3rd="microsoft";
-            $vm.user_name_365=$vm.m365_msal.getAccount().userName;
-            if($vm.app_after_3rd_signin!=undefined) $vm.app_after_3rd_signin();
-        }).catch(function (error){
-            console.log("S:"+error);
-            console.log("more than 1 hour. need login again.");
-            //$vm.m365_msal.logout();
-            $vm.m365_signin();
-        });
-    }
-    else{
-        console.log("No account was found, redirect to signin.");
-        $vm.m365_signin();
-    }
-    //------------------------------------
 }
 $vm.m365_init();
-//setInterval(function(){ console.log("microsoft refresh"); $vm.m365_init(); }, 1800000);
 

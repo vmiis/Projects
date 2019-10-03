@@ -15,7 +15,10 @@
             <a href="?/p3">Page 3</a>
             <a href="?/p4">Page 4</a>
             <a href="?/about"><i class="fa fa-info-circle"></i> About</a>
-            <a dev id=dev><i class="fas fa-cog"></i></i> Settings</a>
+            <a dev href=sys_settings><i class="fas fa-cog"></i></i> Settings</a>
+            <a dev href=sys_structure><i class="fas fa-stream"></i> Structure</a>
+            <a id=vm_signin onclick="$vm.signin();"><i class="fa fa-user"></i> Sign In</a>
+            <a class=vm-hide id=vm_signout onclick=$vm.signout()><i class="fa fa-user"></i> Sign Out</a>
         </div>
     </div>
     <script>
@@ -40,14 +43,15 @@
             e.preventDefault();
             var dev=$(this).attr('dev');
             var href=$(this).attr('href');
-            if(href!=undefined && href!='' && href.substring(0,8)=="https://"){ window.open(href); return;}
-            if(href!=undefined && href!=''){
-                if($vm.menu_click!=undefined) $vm.menu_click(href);
+            if(dev==undefined){
+                if(href!=undefined && href!='' && href.substring(0,8)=="https://"){ window.open(href); return;}
+                if(href!=undefined && href!=''){
+                    if($vm.menu_click!=undefined) $vm.menu_click(href);
+                }
             }
-            else if(dev!=undefined){
-                var path=window.location.href.split('?')[0].replace('/index.html','')
-                localStorage.setItem("__temp1001_"+path,JSON.stringify($vm.module_list));
-                window.open('/sitedev/index.html?path='+path)
+            else{
+                if(href=='sys_settings')  $vm.sys_settings();
+                else if(href=='sys_structure') $vm.sys_structure();
             }
             $vm.toggle();
         })

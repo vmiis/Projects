@@ -70,6 +70,12 @@
                             $vm.groups=t.groups;
                         }
                     })
+                    var a=$vm.m365_scope.scopes.indexOf("directory.read.all")
+                    if(a!=-1){
+                        $vm.m365_graph("https://graph.microsoft.com/v1.0/me/memberOf",{scopes: ["user.read","directory.read.all"]},function(data){
+                            $vm.groups_data=data;
+                        })
+                    }
                 }
             }
             //------------------------------------

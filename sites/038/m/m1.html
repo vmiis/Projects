@@ -39,7 +39,7 @@
 								}
 							}
 						}
-						return "";
+						return id;
 					}
 					
 					var txt="";
@@ -51,16 +51,7 @@
 					}
 					$('#groups__ID').html(txt);
 				}
-				
-				
-				
-				if($vm.groups_data==undefined){
-                    $vm.m365_graph("https://graph.microsoft.com/v1.0/me/memberOf",{scopes: ["user.read","directory.read.all"]},function(data){
-                        $vm.groups_data=data;
-						render_group_name();
-                    })
-				}
-
+				render_group_name();
 			})
 		}
 	</script>

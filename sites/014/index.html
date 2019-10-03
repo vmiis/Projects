@@ -81,7 +81,13 @@
                 $vm._start();
             }
             //---------------------------------------------
+            $("body").addClass('body_background_default');
         </script>
+        <style main-style>
+            html,body{ margin:0; padding:0; height:100%; font-family:Arial;}
+            body{background-size: cover; background-repeat: repeat-x; background-position: center top; background-attachment: fixed;}
+            .body_background_default{ background-image: url(https://images.unsplash.com/photo-1536599018102-9f803c140fc1?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjExMzk2fQ&auto=format&fit=crop&w=1400&q=80);}
+        </style>
     </body>
 </html>
 

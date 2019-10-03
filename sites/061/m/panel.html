@@ -48,8 +48,9 @@
             //--------------------------------------------------------
             $('#api__ID').on('click',function(){
                 $vm.m365_graph("https://graph.microsoft.com/v1.0/sites?search=*",{scopes: ["AllSites.Read"]},function(data){
-                   console.log(data);
-                   $vm.show_json_data(data);
+                   //console.log(data);
+                   //$vm.show_json_data(data);
+                   $vm.load_module('json-viewer','',{json:data})
 				})
             })
             //--------------------------------------------------------

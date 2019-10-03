@@ -1,0 +1,81 @@
+<div id=D__ID>
+    <div id=toolbar__ID>
+		<form class="form-inline">
+			<button type=button id=refresh__ID class='btn btn-secondary'>Refresh</button>
+		</form>
+    </div>
+    <div id=panel__ID>
+    </div>
+    <script>
+    	function F__ID(){
+			//----------------------------------------------------------
+			var m=$vm.module_list['__MODULE__'];
+			var level=m.level;
+			//----------------------------------------------------------
+			$('#D__ID').on('load',function(){
+				get_info();
+			})
+			//----------------------------------------------------------
+			$('#refresh__ID').on('click',function(){
+				get_info();
+			})
+			//----------------------------------------------------------
+			var get_info=function(){
+				var endpoint="https://graph.microsoft.com/v1.0/sites/"+m.input.sid+"/drives";
+				$vm.m365_graph(endpoint,{scopes: ["AllSites.Read"]},function(data){
+                    var txt="<table>";
+					txt+="<tr><th>Drive</th><th>Created By</th><th>Created Date</th></tr>";
+					for(i in data.value){
+                        txt+="<tr><td><u m=sharepoint-drive-document style='cursor:pointer' did="+data.value[i].id+">"+data.value[i].name+"</u></td>";
+                        txt+="<td> "+data.value[i].createdBy.user.displayName+"</td><td> "+data.value[i].createdDateTime.split('T')[0]+"</td>";
+                        txt+="</tr>";
+					}
+					txt+="</table>"                    
+                    
+                    $('#panel__ID').html(txt);
+					$('#panel__ID u').on('click',function(e){
+                        e.preventDefault();
+                        var did=$(this).attr('did');
+                        var url=m.input.sid+"/drives";
+                        $vm.load_module("drive",'',{url:url,did:did});
+					})
+				})
+			}
+            //--------------------------------------------------------
+    	}
+    </script>
+    <style>
+		#D__ID{
+			background-color: #FFF;
+		}
+        #panel__ID{
+            padding:20px;
+        }
+    	#panel__ID u {
+    		text-decoration: none;
+    	}
+    	#panel__ID u:hover {
+    		color:red;
+    	}
+        #D__ID td{
+			padding-right:20px;
+		}
+        #toolbar__ID{
+    		background-color:#ccc;
+    		margin-bottom:0px;
+    		overflow:hidden;
+			padding:6px 10px;
+    	}
+        #toolbar__ID .form-inline > * {
+            margin-right:5px;
+        }
+    	@media screen and (max-width:768px){
+    		#toolbar__ID{
+    			padding: 3px 10px;
+    		}
+    		#toolbar__ID div{
+    			padding-left:3px;
+    		}
+    	}
+    </style>
+</div>

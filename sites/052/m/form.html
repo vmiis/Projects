@@ -58,6 +58,10 @@
 								$('#F__ID input[name=Last_Name]').val(data[0].Last_Name);
 							}
 						},
+						error: function(xhr, status, error){
+         					var errorMessage = xhr.status + ': ' + xhr.statusText
+         					alert(db_url+" is not available.");
+     					}
 					}
 				)				
     			//------------------------------

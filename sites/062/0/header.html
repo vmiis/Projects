@@ -12,7 +12,8 @@
             <a href="?/home"><i class="fa fa-home"></i> Home</a>
             <a href="?/panel"><i class="fa fa-th"></i> Tutorial</a>
             <a href="?/about"><i class="fa fa-info-circle"></i> About</a>
-            <!--<a href="https://backoffice.wappsystem.com.au">Backoffice</a>-->
+            <a dev href=sys_settings><i class="fas fa-cog"></i></i> Settings</a>
+            <a dev href=sys_structure><i class="fas fa-stream"></i> Structure</a>
             <a id=vm_signin ><i class="fa fa-user"></i> Sign In</a>
             <a class=vm-hide id=vm_signout ><i class="fa fa-user"></i> Sign Out</a>
         </div>
@@ -30,8 +31,6 @@
             $vm.show_user();
         })
         //------------------------------------
-        
-        
         
         //------------------------------------
         $('#vm-mobile_title').on('click',function(){ $vm.load_module('home',$vm.root_layout_content_slot,{}) })
@@ -52,10 +51,17 @@
         //------------------------------------
         $('#vm-menu a').on('click',function(e){
             e.preventDefault();
+            var dev=$(this).attr('dev');
             var href=$(this).attr('href');
-            if(href!=undefined && href!='' && href.substring(0,8)=="https://"){ window.open(href); return;}
-            if(href!=undefined && href!=''){
-                if($vm.menu_click!=undefined) $vm.menu_click(href);
+            if(dev==undefined){
+                if(href!=undefined && href!='' && href.substring(0,8)=="https://"){ window.open(href); return;}
+                if(href!=undefined && href!=''){
+                    if($vm.menu_click!=undefined) $vm.menu_click(href);
+                }
+            }
+            else{
+                if(href=='sys_settings')  $vm.sys_settings();
+                else if(href=='sys_structure') $vm.sys_structure();
             }
             $vm.toggle();
         })

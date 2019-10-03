@@ -10,17 +10,17 @@
             <ol>
                 <li>
                     <b>Register this app with your Azure Active Directory tenant</b>
-                    <br>For the Redirect URI, enter the URL for this app, https://localhost:8000/microsoft-authentication.html
+                    <br>For the Redirect URI, enter the URL for this app, https://localhost:8000/microsoft/vmiis.html
                     <br><a target=_blank href='https://docs.microsoft.com/en-us/graph/auth-register-app-v2' ><u>Click this link for more information for register an application with the Microsoft identity platform</u></a>
                     <br><br>
                 </li>
                 <li>
-                    <b>Set your Application (client) ID in microsoft.js and microsoft-authentication.html</b>
+                    <b>Set your Application (client) ID in microsoft.js and microsoft/vmiis.html</b>
 <pre style='background-color: #333;color:#fff'>
     $vm.msalConfig={
         auth: {
             clientId: '*** your application id ***', 
-            redirectUri:hosting_path+"/microsoft-authentication.html"
+            redirectUri:hosting_path+"/microsoft/vmiis.html"
         },
         cache: {
             cacheLocation: "localStorage",
