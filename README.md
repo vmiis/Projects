@@ -1,6 +1,6 @@
 # Website and microservices web applications templates
 
-[Go to site index](https://projects.vmiis.com/sites/)
+[Project list](https://projects.vmiis.com/sites/)
   
 How to run on a local computer
 1. [download and unzip](https://github.com/vmiis/projects/archive/master.zip)
