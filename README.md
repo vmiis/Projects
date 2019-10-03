@@ -2,7 +2,7 @@
 
 [Project list](https://projects.vmiis.com/sites/)
   
-How to run on a local computer
+How to run the projects on a local computer
 1. [download and unzip](https://github.com/vmiis/projects/archive/master.zip)
 2. install nodejs (https://nodejs.org)
 3. go to the folder "server"
