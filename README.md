@@ -5,7 +5,7 @@
 How to run the projects on a local computer
 1. [download and unzip](https://github.com/vmiis/projects/archive/master.zip)
 2. install nodejs (https://nodejs.org)
-3. go to the folder "server"
+3. go to the folder "serve/webr"
 4. run "npm install" to install nodejs modules
 5. run "server.js.start.bat" to start the server
 6. open you web browser, type http://localhost:8000 
