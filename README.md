@@ -1,6 +1,8 @@
 # Website and microservices web applications templates
 
-Download and run on a local computer
+<a href=https://github.com/vmiis/projects/sites>Go to site index</a>  
+  
+How to run on a local computer
 1. <a href=https://github.com/vmiis/projects/archive/master.zip>download and unzip</a>
 2. install nodejs (https://nodejs.org)
 3. go to the folder "server"
