@@ -9,7 +9,7 @@
             //-------------------------------------
             var fields="First_name,Last_name,Department,Manager_for_Approval,_Approved_by,_Processed_by";
             m.fields="_Form,"+fields+",Submit_date,Submitted_by,_Delete";
-            m.cmd_type='s';
+            m.cmd_type='s'; //find request data submitted by current login
             //-------------------------------------
             m.cell_render=function(records,I,field,td){
                 switch(field){
@@ -28,7 +28,7 @@
                 }
                 var query={ I2: { $in: uid_array } }
                 
-                var cmd="find-p1";
+                var cmd="find-p1"; //find approved data with P1 contain current login, P1 is a user list
                 var req={cmd:cmd,table:m.Table2,query:query}
                 $vm.request(req,function(res){
                     if(res.result.length!=undefined){
@@ -49,7 +49,7 @@
                     });
                 });
                 
-                var cmd="find-p1";
+                var cmd="find-p1"; //find processed data with P1 contain current login, P1 is a user list
                 var req={cmd:cmd,table:m.Table3,query:query}
                 $vm.request(req,function(res){
                     if(res.result.length!=undefined){

@@ -83,8 +83,8 @@
         "local-sleep-s-ess-form":		                {url:"$H/m/ess-form.html",Table:"local-sleep-s-ess",task_name:"ESS"},
         "local-sleep-s-mva-data":		                        {url:"$H/m/mva-data.html",Table:"local-sleep-s-mva",form_module:"local-sleep-s-mva-form",task_name:"Screening - Motor Vehicle Accident Questionnaire"},
         "local-sleep-s-mva-form":		                {url:"$H/m/mva-form.html",Table:"local-sleep-s-mva",task_name:"MVA"},
-        "local-sleep-s-aused-60-data":		                        {url:"$H/m/aused-60-data.html",Table:"local-sleep-s-aused-60",form_module:"local-sleep-s-aused-60-form",task_name:"Screening - Aused 60 mins"},
-        "local-sleep-s-aused-60-form":		                {url:"$H/m/aused-60-form.html",Table:"local-sleep-s-aused-60"},
+        "local-sleep-s-aused-30-data":		                        {url:"$H/m/aused-30-data.html",Table:"local-sleep-s-aused-30",form_module:"local-sleep-s-aused-30-form",task_name:"Screening - Aused 30 mins"},
+        "local-sleep-s-aused-30-form":		                {url:"$H/m/aused-30-form.html",Table:"local-sleep-s-aused-30"},
         "local-sleep-s-anthropometry-data":		                        {url:"$H/m/anthropometry-data.html",Table:"local-sleep-s-anthropometry",form_module:"local-sleep-s-anthropometry-form",task_name:"Screening - Anthropomentry"},
         "local-sleep-s-anthropometry-form":		                {url:"$H/m/anthropometry-form.html",Table:"local-sleep-s-anthropometry"},
         "local-sleep-s-sleep-diary-data":		                {url:"$H/m/upload-file-data.html",Table:"local-sleep-s-sleep-diary",form_module:"local-sleep-s-sleep-diary-form",task_name:"Screening - Sleep Diary file upload"},
@@ -94,8 +94,8 @@
         "local-sleep-s-source-doc-data":		                {url:"$H/m/upload-file-data.html",Table:"local-sleep-s-source-doc",form_module:"local-sleep-s-source-doc-form",task_name:"Screening - Source Docs upload"},
         "local-sleep-s-source-doc-form":		                {url:"$H/m/upload-file-form.html",Table:"local-sleep-s-source-doc"},
 
-        "local-sleep-b-d1-anthropometry-short-data":		                {url:"$H/m/anthropometry-short-data.html",Table:"local-sleep-b-d1-anthropometry-short",form_module:"local-sleep-b-d1-anthropometry-short-form",task_name:"Baseline Day 1 - Anthropometry"},
-        "local-sleep-b-d1-anthropometry-short-form":		                {url:"$H/m/anthropometry-short-form.html",Table:"local-sleep-b-d1-anthropometry-short"},
+        "local-sleep-b-d1-weight-bp-pm-data":		                {url:"$H/m/weight-bp-pm-data.html",Table:"local-sleep-b-d1-weight-bp-pm",form_module:"local-sleep-b-d1-weight-bp-pm-form",task_name:"Baseline Day 1 - Weight - Blood Pressure PM "},
+        "local-sleep-b-d1-weight-bp-pm-form":		                {url:"$H/m/weight-bp-pm-form.html",Table:"local-sleep-b-d1-weight-bp-pm"},
         "local-sleep-b-ethnicity-data":		                        {url:"$H/m/ethnicity-data.html",Table:"local-sleep-b-ethnicity",form_module:"local-sleep-b-ethnicity-form",task_name:"Baseline Day 1 - Ethnicity"},
         "local-sleep-b-ethnicity-form":		                {url:"$H/m/ethnicity-form.html",Table:"local-sleep-b-ethnicity",task_name:"Ethnicity"},
         "local-sleep-b-lifestyle-data":		                        {url:"$H/m/lifestyle-data.html",Table:"local-sleep-b-lifestyle",form_module:"local-sleep-b-lifestyle-form",task_name:"Baseline Day 1 - Lifestyle"},
@@ -111,8 +111,8 @@
         "local-sleep-b-d1-cpap-data":		                {url:"$H/m/cpap-data.html",Table:"local-sleep-b-d1-cpap",form_module:"local-sleep-b-d1-cpap-form",task_name:"Baseline Day 1 - CPAP"},
         "local-sleep-b-d1-cpap-form":		                {url:"$H/m/cpap-form.html",Table:"local-sleep-b-d1-cpap"},
 
-        "local-sleep-b-d2-anthropometry-short-data":		                {url:"$H/m/anthropometry-short-data.html",Table:"local-sleep-b-d2-anthropometry-short",form_module:"local-sleep-b-d2-anthropometry-short-form",task_name:"Baseline Day 2 - Anthropometry"},
-        "local-sleep-b-d2-anthropometry-short-form":		                {url:"$H/m/anthropometry-short-form.html",Table:"local-sleep-b-d2-anthropometry-short"},
+        "local-sleep-b-d2-bp-am-pm-data":		                {url:"$H/m/bp-am-pm-data.html",Table:"local-sleep-b-d2-bp-am-pm",form_module:"local-sleep-b-d2-bp-am-pm-form",task_name:"Baseline Day 2 - Blood Pressure AM and PM "},
+        "local-sleep-b-d2-bp-am-pm-form":		                {url:"$H/m/bp-am-pm-form.html",Table:"local-sleep-b-d2-bp-am-pm"},
         "local-sleep-b-d2-cpap-upload-data":		                {url:"$H/m/upload-file-data.html",Table:"local-sleep-b-d2-cpap-upload",form_module:"local-sleep-b-d2-cpap-upload-form",task_name:"Baseline Day 2 - CPAP upload"},
         "local-sleep-b-d2-cpap-upload-form":		                {url:"$H/m/upload-file-form.html",Table:"local-sleep-b-d2-cpap-upload"},
         "local-sleep-b-d2-cpap-data":		                {url:"$H/m/cpap-data.html",Table:"local-sleep-b-d2-cpap",form_module:"local-sleep-b-d2-cpap-form",task_name:"Baseline Day 2 - CPAP"},
@@ -160,8 +160,8 @@
         "local-sleep-b-d3-t5b-kss-data":		                {url:"$H/m/kss-data.html",Table:"local-sleep-b-d3-t5b-kss",form_module:"local-sleep-b-d3-t5b-kss-form",task_name:"Baseline Day 3 TB5 - KSS After PVT"},
         "local-sleep-b-d3-t5b-kss-form":		                {url:"$H/m/kss-form.html",Table:"local-sleep-b-d3-t5b-kss",task_name:"KSS After PVT"},
 
-        "local-sleep-b-d3-anthropometry-short-data":		                {url:"$H/m/anthropometry-short-data.html",Table:"local-sleep-b-d3-anthropometry-short",form_module:"local-sleep-b-d3-anthropometry-short-form",task_name:"Baseline Day 3 - Anthropometry"},
-        "local-sleep-b-d3-anthropometry-short-form":		                {url:"$H/m/anthropometry-short-form.html",Table:"local-sleep-b-d3-anthropometry-short"},
+        "local-sleep-b-d3-bp-am-data":		                {url:"$H/m/bp-am-data.html",Table:"local-sleep-b-d3-bp-am",form_module:"local-sleep-b-d3-bp-am-form",task_name:"Baseline Day 3 - Blood Pressure AM"},
+        "local-sleep-b-d3-bp-am-form":		                {url:"$H/m/bp-am-form.html",Table:"local-sleep-b-d3-bp-am"},
 
         "local-sleep-b-g1-psg300-data":		                {url:"$H/m/psg300-data.html",Table:"local-sleep-b-g1-psg300",form_module:"local-sleep-b-g1-psg300-form",task_name:"Baseline General Night 1- PSG300"},
         "local-sleep-b-g1-psg300-form":		                {url:"$H/m/psg300-form.html",Table:"local-sleep-b-g1-psg300"},
@@ -184,8 +184,8 @@
         "local-sleep-b-g-geoscan-data":		                {url:"$H/m/upload-file-data.html",Table:"local-sleep-b-g-geoscan",form_module:"local-sleep-b-g-geoscan-form",task_name:"Baseline General - Geoscan"},
         "local-sleep-b-g-geoscan-form":		                {url:"$H/m/upload-file-form.html",Table:"local-sleep-b-g-geoscan"},
 
-        "local-sleep-t1-d1-anthropometry-short-data":		                {url:"$H/m/anthropometry-short-data.html",Table:"local-sleep-t1-d1-anthropometry-short",form_module:"local-sleep-t1-d1-anthropometry-short-form",task_name:"Treatment 1 Day 1 - Anthropometry"},
-        "local-sleep-t1-d1-anthropometry-short-form":		                {url:"$H/m/anthropometry-short-form.html",Table:"local-sleep-t1-d1-anthropometry-short"},
+        "local-sleep-t1-d1-weight-bp-pm-data":		                {url:"$H/m/weight-bp-pm-data.html",Table:"local-sleep-t1-d1-weight-bp-pm",form_module:"local-sleep-t1-d1-weight-bp-pm-form",task_name:"Treatment 1 Day 1 - Weight - Blood Pressure PM "},
+        "local-sleep-t1-d1-weight-bp-pm-form":		                {url:"$H/m/weight-bp-pm-form.html",Table:"local-sleep-t1-d1-weight-bp-pm"},
         "local-sleep-t1-d1-ess-data":		                {url:"$H/m/ess-data.html",Table:"local-sleep-t1-d1-ess",form_module:"local-sleep-t1-d1-ess-form",task_name:"Treatment 1 Day 1 - ESS"},
         "local-sleep-t1-d1-ess-form":		                {url:"$H/m/ess-form.html",Table:"local-sleep-t1-d1-ess",task_name:"ESS"},
         "local-sleep-t1-d1-dass-data":		                {url:"$H/m/dass-data.html",Table:"local-sleep-t1-d1-dass",form_module:"local-sleep-t1-d1-dass-form",task_name:"Treatment 1 Day 1 - DASS"},
@@ -195,22 +195,22 @@
         "local-sleep-t1-d1-cpap-data":		                {url:"$H/m/cpap-data.html",Table:"local-sleep-t1-d1-cpap",form_module:"local-sleep-t1-d1-cpap-form",task_name:"Treatment 1 Day 1 - CPAP"},
         "local-sleep-t1-d1-cpap-form":		                {url:"$H/m/cpap-form.html",Table:"local-sleep-t1-d1-cpap"},
 
-        "local-sleep-t1-d2-anthropometry-short-data":		                {url:"$H/m/anthropometry-short-data.html",Table:"local-sleep-t1-d2-anthropometry-short",form_module:"local-sleep-t1-d2-anthropometry-short-form",task_name:"Treatment 1 Day 2 - Anthropometry"},
-        "local-sleep-t1-d2-anthropometry-short-form":		                {url:"$H/m/anthropometry-short-form.html",Table:"local-sleep-t1-d2-anthropometry-short"},
+        "local-sleep-t1-d2-bp-am-pm-data":		                {url:"$H/m/bp-am-pm-data.html",Table:"local-sleep-t1-d2-bp-am-pm",form_module:"local-sleep-t1-d2-bp-am-pm-form",task_name:"Treatment 1 Day 2 - Blood Pressure AM and PM "},
+        "local-sleep-t1-d2-bp-am-pm-form":		                {url:"$H/m/bp-am-pm-form.html",Table:"local-sleep-t1-d2-bp-am-pm"},
         "local-sleep-t1-d2-cpap-upload-data":		                {url:"$H/m/upload-file-data.html",Table:"local-sleep-t1-d2-cpap-upload",form_module:"local-sleep-t1-d2-cpap-upload-form",task_name:"Treatment 1 Day 2 - CPAP upload"},
         "local-sleep-t1-d2-cpap-upload-form":		                {url:"$H/m/upload-file-form.html",Table:"local-sleep-t1-d2-cpap-upload"},
         "local-sleep-t1-d2-cpap-data":		                {url:"$H/m/cpap-data.html",Table:"local-sleep-t1-d2-cpap",form_module:"local-sleep-t1-d2-cpap-form",task_name:"Treatment 1 Day 2 - CPAP"},
         "local-sleep-t1-d2-cpap-form":		                {url:"$H/m/cpap-form.html",Table:"local-sleep-t1-d2-cpap"},
 
-        "local-sleep-t1-d3-anthropometry-short-data":		                {url:"$H/m/anthropometry-short-data.html",Table:"local-sleep-t1-d3-anthropometry-short",form_module:"local-sleep-t1-d3-anthropometry-short-form",task_name:"Treatment 1 Day 3 - Anthropometry"},
-        "local-sleep-t1-d3-anthropometry-short-form":		                {url:"$H/m/anthropometry-short-form.html",Table:"local-sleep-t1-d3-anthropometry-short"},
+        "local-sleep-t1-d3-bp-am-pm-data":		                {url:"$H/m/bp-am-pm-data.html",Table:"local-sleep-t1-d3-bp-am-pm",form_module:"local-sleep-t1-d3-bp-am-pm-form",task_name:"Treatment 1 Day 3 - Blood Pressure AM and PM "},
+        "local-sleep-t1-d3-bp-am-pm-form":		                {url:"$H/m/bp-am-pm-form.html",Table:"local-sleep-t1-d3-bp-am-pm"},
         "local-sleep-t1-d3-cpap-upload-data":		                {url:"$H/m/upload-file-data.html",Table:"local-sleep-t1-d3-cpap-upload",form_module:"local-sleep-t1-d3-cpap-upload-form",task_name:"Treatment 1 Day 3 - CPAP upload"},
         "local-sleep-t1-d3-cpap-upload-form":		                {url:"$H/m/upload-file-form.html",Table:"local-sleep-t1-d3-cpap-upload"},
         "local-sleep-t1-d3-cpap-data":		                {url:"$H/m/cpap-data.html",Table:"local-sleep-t1-d3-cpap",form_module:"local-sleep-t1-d3-cpap-form",task_name:"Treatment 1 Day 3 - CPAP"},
         "local-sleep-t1-d3-cpap-form":		                {url:"$H/m/cpap-form.html",Table:"local-sleep-t1-d3-cpap"},
 
-        "local-sleep-t1-d4-anthropometry-short-data":		                {url:"$H/m/anthropometry-short-data.html",Table:"local-sleep-t1-d4-anthropometry-short",form_module:"local-sleep-t1-d4-anthropometry-short-form",task_name:"Treatment 1 Day 4 - Anthropometry"},
-        "local-sleep-t1-d4-anthropometry-short-form":		                {url:"$H/m/anthropometry-short-form.html",Table:"local-sleep-t1-d4-anthropometry-short"},
+        "local-sleep-t1-d4-bp-am-pm-data":		                {url:"$H/m/bp-am-pm-data.html",Table:"local-sleep-t1-d4-bp-am-pm",form_module:"local-sleep-t1-d4-bp-am-pm-form",task_name:"Treatment 1 Day 4 - Blood Pressure AM and PM "},
+        "local-sleep-t1-d4-bp-am-pm-form":		                {url:"$H/m/bp-am-pm-form.html",Table:"local-sleep-t1-d4-bp-am-pm"},
         "local-sleep-t1-d4-cpap-upload-data":		                {url:"$H/m/upload-file-data.html",Table:"local-sleep-t1-d4-cpap-upload",form_module:"local-sleep-t1-d4-cpap-upload-form",task_name:"Treatment 1 Day 4 - CPAP upload"},
         "local-sleep-t1-d4-cpap-upload-form":		                {url:"$H/m/upload-file-form.html",Table:"local-sleep-t1-d4-cpap-upload"},
         "local-sleep-t1-d4-cpap-data":		                {url:"$H/m/cpap-data.html",Table:"local-sleep-t1-d4-cpap",form_module:"local-sleep-t1-d4-cpap-form",task_name:"Treatment 1 Day 4 - CPAP"},
@@ -258,8 +258,8 @@
         "local-sleep-t1-d5-t5b-kss-data":		                {url:"$H/m/kss-data.html",Table:"local-sleep-t1-d5-t5b-kss",form_module:"local-sleep-t1-d5-t5b-kss-form",task_name:"Treatment 1 Day 5 TB5 - KSS After PVT"},
         "local-sleep-t1-d5-t5b-kss-form":		                {url:"$H/m/kss-form.html",Table:"local-sleep-t1-d5-t5b-kss",task_name:"KSS After PVT"},
 
-        "local-sleep-t1-d5-anthropometry-short-data":		    {url:"$H/m/anthropometry-short-data.html",Table:"local-sleep-t1-d5-anthropometry-short",form_module:"local-sleep-t1-d5-anthropometry-short-form",task_name:"Treatment 1 Day 5 - Anthropometry"},
-        "local-sleep-t1-d5-anthropometry-short-form":		    {url:"$H/m/anthropometry-short-form.html",Table:"local-sleep-t1-d5-anthropometry-short"},
+        "local-sleep-t1-d5-bp-am-data":		    {url:"$H/m/bp-am-data.html",Table:"local-sleep-t1-d5-bp-am",form_module:"local-sleep-t1-d5-bp-am-form",task_name:"Treatment 1 Day 5 - Blood Pressure AM"},
+        "local-sleep-t1-d5-bp-am-form":		    {url:"$H/m/bp-am-form.html",Table:"local-sleep-t1-d5-bp-am"},
  
         "local-sleep-t1-g1-psg300-data":		                {url:"$H/m/psg300-data.html",Table:"local-sleep-t1-g1-psg300",form_module:"local-sleep-t1-g1-psg300-form",task_name:"Treatment 1 General Night 1 - PSG300"},
         "local-sleep-t1-g1-psg300-form":		                {url:"$H/m/psg300-form.html",Table:"local-sleep-t1-g1-psg300"},
@@ -282,8 +282,8 @@
         "local-sleep-t1-g-geoscan-data":		                {url:"$H/m/upload-file-data.html",Table:"local-sleep-t1-g-geoscan",form_module:"local-sleep-t1-g-geoscan-form",task_name:"Treatment 1 General - Geoscan"},
         "local-sleep-t1-g-geoscan-form":		                {url:"$H/m/upload-file-form.html",Table:"local-sleep-t1-g-geoscan"},
 
-        "local-sleep-t2-d1-anthropometry-short-data":		                {url:"$H/m/anthropometry-short-data.html",Table:"local-sleep-t2-d1-anthropometry-short",form_module:"local-sleep-t2-d1-anthropometry-short-form",task_name:"Treatment 2 Day 1 - Anthropometry"},
-        "local-sleep-t2-d1-anthropometry-short-form":		                {url:"$H/m/anthropometry-short-form.html",Table:"local-sleep-t2-d1-anthropometry-short"},
+        "local-sleep-t2-d1-weight-bp-pm-data":		                {url:"$H/m/weight-bp-pm-data.html",Table:"local-sleep-t2-d1-weight-bp-pm",form_module:"local-sleep-t2-d1-weight-bp-pm-form",task_name:"Treatment 2 Day 1 - Weight - Blood Pressure PM "},
+        "local-sleep-t2-d1-weight-bp-pm-form":		                {url:"$H/m/weight-bp-pm-form.html",Table:"local-sleep-t2-d1-weight-bp-pm"},
         "local-sleep-t2-d1-ess-data":		                {url:"$H/m/ess-data.html",Table:"local-sleep-t2-d1-ess",form_module:"local-sleep-t2-d1-ess-form",task_name:"Treatment 2 Day 1 - ESS"},
         "local-sleep-t2-d1-ess-form":		                {url:"$H/m/ess-form.html",Table:"local-sleep-t2-d1-ess",task_name:"ESS"},
         "local-sleep-t2-d1-dass-data":		                {url:"$H/m/dass-data.html",Table:"local-sleep-t2-d1-dass",form_module:"local-sleep-t2-d1-dass-form",task_name:"Treatment 2 Day 1 - DASS"},
@@ -293,22 +293,22 @@
         "local-sleep-t2-d1-cpap-data":		                {url:"$H/m/cpap-data.html",Table:"local-sleep-t2-d1-cpap",form_module:"local-sleep-t2-d1-cpap-form",task_name:"Treatment 2 Day 1 - CPAP"},
         "local-sleep-t2-d1-cpap-form":		                {url:"$H/m/cpap-form.html",Table:"local-sleep-t2-d1-cpap"},
 
-        "local-sleep-t2-d2-anthropometry-short-data":		                {url:"$H/m/anthropometry-short-data.html",Table:"local-sleep-t2-d2-anthropometry-short",form_module:"local-sleep-t2-d2-anthropometry-short-form",task_name:"Treatment 2 Day 2 - Anthropometry"},
-        "local-sleep-t2-d2-anthropometry-short-form":		                {url:"$H/m/anthropometry-short-form.html",Table:"local-sleep-t2-d2-anthropometry-short"},
+        "local-sleep-t2-d2-bp-am-pm-data":		                {url:"$H/m/bp-am-pm-data.html",Table:"local-sleep-t2-d2-bp-am-pm",form_module:"local-sleep-t2-d2-bp-am-pm-form",task_name:"Treatment 2 Day 2 - Blood Pressure AM and PM "},
+        "local-sleep-t2-d2-bp-am-pm-form":		                {url:"$H/m/bp-am-pm-form.html",Table:"local-sleep-t2-d2-bp-am-pm"},
         "local-sleep-t2-d2-cpap-upload-data":		                {url:"$H/m/upload-file-data.html",Table:"local-sleep-t2-d2-cpap-upload",form_module:"local-sleep-t2-d2-cpap-upload-form",task_name:"Treatment 2 Day 2 - CPAP upload"},
         "local-sleep-t2-d2-cpap-upload-form":		                {url:"$H/m/upload-file-form.html",Table:"local-sleep-t2-d2-cpap-upload"},
         "local-sleep-t2-d2-cpap-data":		                {url:"$H/m/cpap-data.html",Table:"local-sleep-t2-d2-cpap",form_module:"local-sleep-t2-d2-cpap-form",task_name:"Treatment 2 Day 2 - CPAP"},
         "local-sleep-t2-d2-cpap-form":		                {url:"$H/m/cpap-form.html",Table:"local-sleep-t2-d2-cpap"},
 
-        "local-sleep-t2-d3-anthropometry-short-data":		                {url:"$H/m/anthropometry-short-data.html",Table:"local-sleep-t2-d3-anthropometry-short",form_module:"local-sleep-t2-d3-anthropometry-short-form",task_name:"Treatment 2 Day 3 - Anthropometry"},
-        "local-sleep-t2-d3-anthropometry-short-form":		                {url:"$H/m/anthropometry-short-form.html",Table:"local-sleep-t2-d3-anthropometry-short"},
+        "local-sleep-t2-d3-bp-am-pm-data":		                {url:"$H/m/bp-am-pm-data.html",Table:"local-sleep-t2-d3-bp-am-pm",form_module:"local-sleep-t2-d3-bp-am-pm-form",task_name:"Treatment 2 Day 3 - Blood Pressure AM and PM "},
+        "local-sleep-t2-d3-bp-am-pm-form":		                {url:"$H/m/bp-am-pm-form.html",Table:"local-sleep-t2-d3-bp-am-pm"},
         "local-sleep-t2-d3-cpap-upload-data":		                {url:"$H/m/upload-file-data.html",Table:"local-sleep-t2-d3-cpap-upload",form_module:"local-sleep-t2-d3-cpap-upload-form",task_name:"Treatment 2 Day 3 - CPAP upload"},
         "local-sleep-t2-d3-cpap-upload-form":		                {url:"$H/m/upload-file-form.html",Table:"local-sleep-t2-d3-cpap-upload"},
         "local-sleep-t2-d3-cpap-data":		                {url:"$H/m/cpap-data.html",Table:"local-sleep-t2-d3-cpap",form_module:"local-sleep-t2-d3-cpap-form",task_name:"Treatment 2 Day 3 - CPAP"},
         "local-sleep-t2-d3-cpap-form":		                {url:"$H/m/cpap-form.html",Table:"local-sleep-t2-d3-cpap"},
 
-        "local-sleep-t2-d4-anthropometry-short-data":		                {url:"$H/m/anthropometry-short-data.html",Table:"local-sleep-t2-d4-anthropometry-short",form_module:"local-sleep-t2-d4-anthropometry-short-form",task_name:"Treatment 2 Day 4 - Anthropometry"},
-        "local-sleep-t2-d4-anthropometry-short-form":		                {url:"$H/m/anthropometry-short-form.html",Table:"local-sleep-t2-d4-anthropometry-short"},
+        "local-sleep-t2-d4-bp-am-pm-data":		                {url:"$H/m/bp-am-pm-data.html",Table:"local-sleep-t2-d4-bp-am-pm",form_module:"local-sleep-t2-d4-bp-am-pm-form",task_name:"Treatment 2 Day 4 - Blood Pressure AM and PM "},
+        "local-sleep-t2-d4-bp-am-pm-form":		                {url:"$H/m/bp-am-pm-form.html",Table:"local-sleep-t2-d4-bp-am-pm"},
         "local-sleep-t2-d4-cpap-upload-data":		                {url:"$H/m/upload-file-data.html",Table:"local-sleep-t2-d4-cpap-upload",form_module:"local-sleep-t2-d4-cpap-upload-form",task_name:"Treatment 2 Day 4 - CPAP upload"},
         "local-sleep-t2-d4-cpap-upload-form":		                {url:"$H/m/upload-file-form.html",Table:"local-sleep-t2-d4-cpap-upload"},
         "local-sleep-t2-d4-cpap-data":		                {url:"$H/m/cpap-data.html",Table:"local-sleep-t2-d4-cpap",form_module:"local-sleep-t2-d4-cpap-form",task_name:"Treatment 2 Day 4 - CPAP"},
@@ -356,8 +356,8 @@
         "local-sleep-t2-d5-t5b-kss-data":		                {url:"$H/m/kss-data.html",Table:"local-sleep-t2-d5-t5b-kss",form_module:"local-sleep-t2-d5-t5b-kss-form",task_name:"Treatment 2 Day 5 TB5 - KSS After PVT"},
         "local-sleep-t2-d5-t5b-kss-form":		                {url:"$H/m/kss-form.html",Table:"local-sleep-t2-d5-t5b-kss",task_name:"KSS After PVT"},
 
-        "local-sleep-t2-d1-anthropometry-short-data":		                {url:"$H/m/anthropometry-short-data.html",Table:"local-sleep-t2-d1-anthropometry-short",form_module:"local-sleep-t2-d1-anthropometry-short-form",task_name:"Treatment 2 Day 1 - Anthropometry"},
-        "local-sleep-t2-d1-anthropometry-short-form":		                {url:"$H/m/anthropometry-short-form.html",Table:"local-sleep-t2-d1-anthropometry-short"},
+        "local-sleep-t2-d1-weight-bp-pm-data":		                {url:"$H/m/weight-bp-pm-data.html",Table:"local-sleep-t2-d1-weight-bp-pm",form_module:"local-sleep-t2-d1-weight-bp-pm-form",task_name:"Treatment 2 Day 1 - Weight - Blood Pressure PM "},
+        "local-sleep-t2-d1-weight-bp-pm-form":		                {url:"$H/m/weight-bp-pm-form.html",Table:"local-sleep-t2-d1-weight-bp-pm"},
         "local-sleep-t2-d1-ess-data":		                {url:"$H/m/ess-data.html",Table:"local-sleep-t2-d1-ess",form_module:"local-sleep-t2-d1-ess-form",task_name:"Treatment 2 Day 1 - ESS"},
         "local-sleep-t2-d1-ess-form":		                {url:"$H/m/ess-form.html",Table:"local-sleep-t2-d1-ess",task_name:"ESS"},
         "local-sleep-t2-d1-dass-data":		                {url:"$H/m/dass-data.html",Table:"local-sleep-t2-d1-dass",form_module:"local-sleep-t2-d1-dass-form",task_name:"Treatment 2 Day 1 - DASS"},
@@ -367,8 +367,8 @@
         "local-sleep-t2-d1-cpap-data":		                {url:"$H/m/cpap-data.html",Table:"local-sleep-t2-d1-cpap",form_module:"local-sleep-t2-d1-cpap-form",task_name:"Treatment 2 Day 1 - CPAP"},
         "local-sleep-t2-d1-cpap-form":		                {url:"$H/m/cpap-form.html",Table:"local-sleep-t2-d1-cpap"},
 
-        "local-sleep-t2-d5-anthropometry-short-data":		                {url:"$H/m/anthropometry-short-data.html",Table:"local-sleep-t2-d5-anthropometry-short",form_module:"local-sleep-t2-d5-anthropometry-short-form",task_name:"Treatment 2 Day 5 - Anthropometry"},
-        "local-sleep-t2-d5-anthropometry-short-form":		                {url:"$H/m/anthropometry-short-form.html",Table:"local-sleep-t2-d5-anthropometry-short"},
+        "local-sleep-t2-d5-bp-am-data":		                {url:"$H/m/bp-am-data.html",Table:"local-sleep-t2-d5-bp-am",form_module:"local-sleep-t2-d5-bp-am-form",task_name:"Treatment 2 Day 5 - Blood Pressure AM"},
+        "local-sleep-t2-d5-bp-am-form":		                {url:"$H/m/bp-am-form.html",Table:"local-sleep-t2-d5-bp-am"},
 
         "local-sleep-t2-g1-psg300-data":		                {url:"$H/m/psg300-data.html",Table:"local-sleep-t2-g1-psg300",form_module:"local-sleep-t2-g1-psg300-form",task_name:"Treatment 2 General Night 1 - PSG300"},
         "local-sleep-t2-g1-psg300-form":		                {url:"$H/m/psg300-form.html",Table:"local-sleep-t2-g1-psg300"},
@@ -391,8 +391,8 @@
         "local-sleep-t2-g-geoscan-data":		                {url:"$H/m/upload-file-data.html",Table:"local-sleep-t2-g-geoscan",form_module:"local-sleep-t2-g-geoscan-form",task_name:"Treatment 2 General - Geoscan"},
         "local-sleep-t2-g-geoscan-form":		                {url:"$H/m/upload-file-form.html",Table:"local-sleep-t2-g-geoscan"},
 
-        "local-sleep-fu-d1-anthropometry-short-data":		                {url:"$H/m/anthropometry-short-data.html",Table:"local-sleep-fu-d1-anthropometry-short",form_module:"local-sleep-fu-d1-anthropometry-short-form",task_name:"Follow up Day 1 - Anthropometry"},
-        "local-sleep-fu-d1-anthropometry-short-form":		                {url:"$H/m/anthropometry-short-form.html",Table:"local-sleep-fu-d1-anthropometry-short"},
+        "local-sleep-fu-d1-weight-bp-pm-data":		                {url:"$H/m/weight-bp-pm-data.html",Table:"local-sleep-fu-d1-weight-bp-pm",form_module:"local-sleep-fu-d1-weight-bp-pm-form",task_name:"Follow up Day 1 - Weight - Blood Pressure PM "},
+        "local-sleep-fu-d1-weight-bp-pm-form":		                {url:"$H/m/weight-bp-pm-form.html",Table:"local-sleep-fu-d1-weight-bp-pm"},
         "local-sleep-fu-d1-ess-data":		                {url:"$H/m/ess-data.html",Table:"local-sleep-fu-d1-ess",form_module:"local-sleep-fu-d1-ess-form",task_name:"Follow up Day 1 - ESS"},
         "local-sleep-fu-d1-ess-form":		                {url:"$H/m/ess-form.html",Table:"local-sleep-fu-d1-ess",task_name:"ESS"},
         "local-sleep-fu-d1-dass-data":		                {url:"$H/m/dass-data.html",Table:"local-sleep-fu-d1-dass",form_module:"local-sleep-fu-d1-dass-form",task_name:"Follow up Day 1 - DASS"},
@@ -402,8 +402,8 @@
         "local-sleep-fu-d1-cpap-data":		                {url:"$H/m/cpap-data.html",Table:"local-sleep-fu-d1-cpap",form_module:"local-sleep-fu-d1-cpap-form",task_name:"Follow up Day 1 - CPAP"},
         "local-sleep-fu-d1-cpap-form":		                {url:"$H/m/cpap-form.html",Table:"local-sleep-fu-d1-cpap"},
 
-        "local-sleep-fu-d2-anthropometry-short-data":		                {url:"$H/m/anthropometry-short-data.html",Table:"local-sleep-fu-d2-anthropometry-short",form_module:"local-sleep-fu-d2-anthropometry-short-form",task_name:"Follow up Day 2 - Anthropometry"},
-        "local-sleep-fu-d2-anthropometry-short-form":		                {url:"$H/m/anthropometry-short-form.html",Table:"local-sleep-fu-d2-anthropometry-short"},
+        "local-sleep-fu-d2-bp-am-pm-data":		                {url:"$H/m/bp-am-pm-data.html",Table:"local-sleep-fu-d2-bp-am-pm",form_module:"local-sleep-fu-d2-bp-am-pm-form",task_name:"Follow up Day 2 - Blood Pressure AM and PM "},
+        "local-sleep-fu-d2-bp-am-pm-form":		                {url:"$H/m/bp-am-pm-form.html",Table:"local-sleep-fu-d2-bp-am-pm"},
         "local-sleep-fu-d2-cpap-upload-data":		                {url:"$H/m/upload-file-data.html",Table:"local-sleep-fu-d2-cpap-upload",form_module:"local-sleep-fu-d2-cpap-upload-form",task_name:"Follow up Day 2 - CPAP upload"},
         "local-sleep-fu-d2-cpap-upload-form":		                {url:"$H/m/upload-file-form.html",Table:"local-sleep-fu-d2-cpap-upload"},
         "local-sleep-fu-d2-cpap-data":		                {url:"$H/m/cpap-data.html",Table:"local-sleep-fu-d2-cpap",form_module:"local-sleep-fu-d2-cpap-form",task_name:"Follow up Day 2 - CPAP"},
@@ -451,8 +451,8 @@
         "local-sleep-fu-d3-t5b-kss-data":		                {url:"$H/m/kss-data.html",Table:"local-sleep-fu-d3-t5b-kss",form_module:"local-sleep-fu-d3-t5b-kss-form",task_name:"Follow up Day 3 TP5 - KSS After PVT"},
         "local-sleep-fu-d3-t5b-kss-form":		                {url:"$H/m/kss-form.html",Table:"local-sleep-fu-d2-t45-kss",task_name:"KSS After PVT"},
 
-        "local-sleep-fu-d3-anthropometry-short-data":		                {url:"$H/m/anthropometry-short-data.html",Table:"local-sleep-fu-d3-anthropometry-short",form_module:"local-sleep-fu-d3-anthropometry-short-form",task_name:"Follow up Day 3 - Anthropometry"},
-        "local-sleep-fu-d3-anthropometry-short-form":		                {url:"$H/m/anthropometry-short-form.html",Table:"local-sleep-fu-d3-anthropometry-short"},
+        "local-sleep-fu-d3-bp-am-data":		                {url:"$H/m/bp-am-data.html",Table:"local-sleep-fu-d3-bp-am",form_module:"local-sleep-fu-d3-bp-am-form",task_name:"Follow up Day 3 - Blood Pressure AM"},
+        "local-sleep-fu-d3-bp-am-form":		                {url:"$H/m/bp-am-form.html",Table:"local-sleep-fu-d3-bp-am"},
  
         "local-sleep-fu-g1-psg300-data":		                {url:"$H/m/psg300-data.html",Table:"local-sleep-fu-g1-psg300",form_module:"local-sleep-fu-g1-psg300-form",task_name:"Follow up General Night 1 - PSG300"},
         "local-sleep-fu-g1-psg300-form":		                {url:"$H/m/psg300-form.html",Table:"local-sleep-fu-g1-psg300"},
@@ -506,4 +506,10 @@
         $vm.hosting_path=$vm.hosting_path.replace('online-questionnaire','')
         $vm.module_list[p].url=$vm.module_list[p].url.replace('$H',$vm.hosting_path);
     }
+    if(window.location.toString().indexOf('tb=demo')!=-1){
+        for(p in $vm.module_list){
+            $vm.module_list[p].Table="demo-"+$vm.module_list[p].Table;
+        }
+    }
+
 })();

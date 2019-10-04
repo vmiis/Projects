@@ -1,10 +1,16 @@
 <div id=D__ID>
     <section id=form_container__ID>
     	<div id=header__ID>
-    		Record
+    		Booking Form
     	</div>
     	<form id=F__ID>
     		<div class="container">
+    			<div class="row row__ID">
+    				<div class=col>
+    					<span>Participant</span>
+    					<input type="text" class="form-control" name=Info required />
+    				</div>
+    			</div>
     			<div class="row row__ID">
     				<div class=col>
     					<span>Date</span>
@@ -18,12 +24,7 @@
 						</select>
     				</div>
     			</div>
-    			<div class="row row__ID">
-    				<div class=col>
-    					<span>Participant</span>
-    					<input type="text" class="form-control" name=Participant required />
-    				</div>
-    			</div>
+				<br>
     			<div class="row row__ID">
     				<div class=col>
     					<span>Color</span>
@@ -44,25 +45,16 @@
     	function F__ID(){
     		//-------------------------------------
             VmInclude:__COMPONENT__/f/form.01.js
+			m.hour_start=7;
+			m.hour_end=18;
     		//-------------------------------------
 			var $List1=$('#F__ID select[name=Time]');
-			for(var i=8;i<17;i++){
-				for(var j=0;j<2;j++){
+			for(var i=m.hour_start;i<m.hour_end;i++){
+				for(var j=0;j<4;j++){
 					var t1=i;    if(t1<10) t1="0"+t1
-					var t2=j*30; if(t2==0) t2="00";
+					var t2=j*15; if(t2==0) t2="00";
 					var t=t1+":"+t2;
 					$List1.append(  $('<option></option>').val(t).html(t)  );
-				}
-			}
-			//-------------------------------------
-			var $List2=$('#F__ID select[name=Duration]');
-			for(var i=0;i<15;i++){
-				for(var j=0;j<2;j++){
-					var t1=i;    if(t1<10) t1="0"+t1
-					var t2=j*30; if(t2==0) t2="00";
-					var t=t1+":"+t2;
-					if(i==0 && j==0){} 
-					else $List2.append(  $('<option></option>').val(t).html(t)  );
 				}
 			}
 			//-------------------------------------
@@ -75,8 +67,31 @@
 			}
     		//-------------------------------------
 			m.before_submit=function(data,index){
-				index.I1=data.Date;
-                index.I2=data.Time;
+				//---------------------------
+				var aa=data.Time.split(':'); 
+				var t1=$vm.date_yyyymmdd_parse(data.Date).getTime()+(parseInt(aa[0])*60+parseInt(aa[1]))*60000;
+				//---------------------------
+				index.I1=t1;
+    			//---------------------------
+				//check time slot
+				var rid=undefined; if(m.input!=undefined && m.input.record!=undefined) rid=m.input.record._id;
+				var ok=0;
+				jQuery.ajaxSetup({async:false});				
+            	$vm.request({cmd:"find",table:m.Table,query:{I1:t1},options:{}},function(res){
+					console.log(res);
+					if(res.result.length==0) ok=1;
+					else if(res.result.length==1){
+						if(rid==res.result[0]._id) ok=1;
+					}
+				})
+				jQuery.ajaxSetup({async:true});
+				if(ok==0){
+					alert("The time slot is not available.");
+					$('#submit__ID').show();
+					return false
+				}
+				else return true;
+    			//---------------------------
             }
             //-------------------------------------
     	}

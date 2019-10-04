@@ -1,0 +1,62 @@
+<div id=D__ID>
+        <form id="F__ID">
+            <div id=quest1__ID style='max-width:800px;margin-left:auto;margin-right:auto;margin-top:50px;padding-top: 10px;background-color: white'>
+                <div class="form-group text-center">
+                    <h5>Unfortunately, you are not eligible for this research study. <br></h5>
+                </div>
+            <div id=quest1__ID style='max-width:800px;margin-left:auto;margin-right:auto;padding-bottom: 10px;'>
+                    <div class="form-group text-left bg-white"><br>
+                            <h4>If you are interested in participating in other research programs at the Woolcock Institute, please email info@woolcock.org.au<br><br>
+                        <br>
+                        <h4>If you need help with any sleep difficulties or medical issue, you might consider the following:<br><br>
+                            <ul><li> Visit your GP or other health professional. If you don’t have a GP, there are some online service locators to help you find a GP or other services such as 
+                            <a href="https://www.healthdirect.gov.au/australian-health-services" target=_blank >HealthDirect</a></li>
+                            <li>See one of our sleep specialists at the<a href="https://woolcock.org.au/our-clinics" target=_blank > Woolcock Clinic:</a><br><br>
+                            Email: info@woolcock.org.au<br>
+                            Phone: 02 9114 0000
+                            </li>
+                            </ul>
+                            <br>
+                            For further information about sleep in general, visit the Sleep Health Foundation <a href="https://www.sleephealthfoundation.org.au/" target=_blank>website</a>. 
+                            <br><br>
+                            Thank you for your time and effort,<br>
+                            <b>The Local Sleep Research Team</b>
+                            
+                        </h4>
+                    </div>
+                </div>
+            </div>
+            </form>
+        </form>
+    <script>
+    function F__ID(){
+      //-------------------------------------
+      VmInclude:__COMPONENT__/f/form.01.js
+      //-------------------------------------
+      m.default_load=m.load;
+      m.load=function(){
+          m.default_load();
+          $('#D__ID').scrollTop(0);
+          $(window).scrollTop(0);
+      }
+
+    }
+    </script>
+    <style>
+        #D__ID{
+            font-family: 'Roboto Slab';
+			animation: vm_module_fadein 1.0s;
+            min-height:800px;
+            border-radius: 0;
+            background-color: rgb(0, 124, 144, 0.7);
+        }
+        VmInclude:__CURRENT_PATH__/wappsystem-form.css
+        #quest1__ID{
+            border-radius: 10px;
+        }
+        #D__ID .form-group:hover {
+/*            background-color: white;*/
+        }
+
+    </style>
+</div>

@@ -1,20 +1,13 @@
 <div id=D__ID>
 	<div id=page__ID class=home_page_1>
 		<div class="container-fluid" style='max-width:960px'>
-			<div class="text-center panel__ID">
+			<div class="text-center panel__ID" style='color:#000'>
 				<br>
-				<h1>Modular Distributed and Microservice Structure</h1>
+				<h2>Read data from a database server (127.0.0.1:8003, Sql Server)</h2>
                 <h6>Simple, powerful and elegant</h6>
-				<hr style='border-top:1px solid #f05f40;'></hr>
 				<p>
-					• Fast from ideas to online<br>
-					• Reusable distributed modules<br>
-					• Highly scalable, flexible, reusable, replaceable, maintainable and testable<br>  
-					• Loosely coupled<br>  
-					• Independently deployable<br>
-				</p>
-				<p>
-					<a id=get_in__ID class='btn btn-success' >Enter</a>
+					<br><br>
+					<a id=get_in__ID class='btn btn-success' style='color:#fff' >Enter</a>
 				</p>
 				<br>
 			</div>
@@ -35,7 +28,7 @@
 	<script>
 		$vm.load_component('about','component1__ID',{})
 		$('#get_in__ID').on('click',function(){
-			$vm.load_module('p1','',{})
+			$vm.load_module('m1','',{})
 		})
 		$('#scroll_down__ID').on('click',function(e){
 			e.preventDefault();
@@ -47,7 +40,6 @@
 			height:100%;
 	        overflow:auto;
 			animation: vm_module_fadein 1.0s, D__ID 3s;
-	        padding-bottom:10%;
 		}
 		#page__ID{
 			height:100%;
@@ -56,12 +48,12 @@
 		}
 		.panel__ID{
 			color:#fff;
-			background: rgba(0, 0, 0, 0.5);
+			background: rgba(0, 0, 0, 0.0);
 			border-radius: 25px;
 			padding:10px 30px;
 		}
-		#page__ID h1{
-			text-shadow: 2px 2px 2px #000;
+		#page__ID h2{
+			text-shadow: 2px 2px 2px #fff;
 		}
 		@keyframes D__ID {
 			from {padding-top: 300px;}

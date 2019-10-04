@@ -1,0 +1,85 @@
+<div id=D__ID>
+	<div class='text-center pl-2 pr-2' style='max-width:800px;margin-left:auto;margin-right:auto;background-color: rgb(100,100,100,0.98);margin-top:50px'>
+		<br><br>
+		<span style="font-size: 5rem;font-family:Arial, Helvetica, sans-serif">Is your brain asleep while you're awake?</span><br>
+		<h5>We invite you to participate in an exciting new research study that involves ...</h5>
+		<br><br>
+		<div class='text-left  pl-2 pr-2'>
+		<h5><u>Eligibility</u></h5>
+		You may be eligible to participate in this study if you:
+		<ul><li>Live in NSW</li><li>Are aged 35 to 60 years</li><li>Have ...</li></ul>
+		This study will use novel ..
+		<br><br>
+		If eligible, you will need to come to the Woolcock Institute of Medical Research in Glebe,
+		Sydney and stay in one of our sleep suites overnight on two occasions. We will measure
+		various aspects of your sleep and cognition over a 24-hour period. You will receive
+		reimbursement for your time and, at no expense to you, study medication and study-
+		related medical evaluations from a doctor.<br><br>
+		Your participation in this study is voluntary.<br><br>
+		I agree to complete a screening questionnaire to determine if I am suitable for the study:
+		</div>
+		<br><div class=row>
+		<div class='col-6 p-2'><button id="yes__ID"  class="btn btn-default">I Agree</button></div><div class='col-6 p-2'><button id="no__ID"  class="btn btn-outline-secondary">No thanks</button></div>
+		<br><br></div>
+		<div class='text-left pl-2 pr-2'>This study has received ethical approval from...
+			<br><br>
+		If you have any questions, please contact us on local-sleep@woolcock.org.au or 9114 0000<br><br>
+	</div>
+	</div>
+	<script>
+		function F__ID(){
+			var m=$vm.module_list['__MODULE__'];
+			if(m.prefix==undefined) m.prefix="";
+			$('#yes__ID').on('click',function(){	$vm.load_module(m.prefix+'recruitment-form','',{});	})
+			$('#no__ID').on('click',function(){		$vm.alert("Completing questionnaires is necessary to be part of the study.") })
+
+		}
+		$vm.home_ready=1;
+	</script>
+	<style>
+		#D__ID{
+			font-family: 'Roboto Slab';
+			height:100%;
+			animation: vm_module_fadein 1.0s;
+	        padding-bottom:5%;
+			margin-top:-100px;
+			padding-top:80px;
+			color:#fff;
+		}
+		#yes__ID{
+			border-radius:0.5rem;
+			color:#000;
+			background-color: rgb(255, 255, 255);
+			font-size:1.2rem;
+			width:180px;height:60px;
+			font-family: 'Roboto Slab';
+			font-weight:900;
+		}
+		#no__ID{
+			border-radius:0.5rem;
+			width:180px;
+			height:60px;
+			font-size:1.2rem;
+			font-family: 'Roboto Slab';
+			border-width: 2px;
+			border-color: #fff;
+			color:#fff;
+		}
+		#no__ID:hover{
+			background-color: rgb(0,0,0,0);
+		}
+	    @media screen and (max-width: 992px) {
+	        #D__ID{
+	            animation: vm_module_fadein 1.0s;
+	        }
+	    }
+	    @media screen and (max-width: 720px) {
+			#yes__ID{
+				width:120px;height:60px;
+			}
+			#no__ID{
+				width:120px;height:60px;
+			}
+	    }
+	</style>
+</div>

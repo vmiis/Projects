@@ -53,13 +53,13 @@
 					$vm.deserialize(m.input.record,'#F__ID');
 					//approval -> F2
 					if(m.input.record.sys_approval!=undefined){
-						var a=$vm.deserialize_approval__ID(m.input.record.sys_approval,'#F2__ID');
-						if(a==1){ $('#submit1__ID').hide(); $('#submit2__ID').hide(); }
+						var a=$vm.deserialize_approval__ID(m.input.record.sys_approval,'#F2__ID');  //1-approved, o-unapproved
+						if(a==1){ $('#submit1__ID').hide(); $('#submit2__ID').hide(); } 			//hide button draft and completed
 					}
 					//process -> F3
 					if(m.input.record.sys_process!=undefined){
-						var a=$vm.deserialize_process__ID(m.input.record.sys_process,'#F3__ID');
-						if(a==1){ $('#submit1__ID').hide(); $('#submit2__ID').hide(); }
+						var a=$vm.deserialize_process__ID(m.input.record.sys_process,'#F3__ID');	//1-processed, o-unprocessed
+						if(a==1){ $('#submit1__ID').hide(); $('#submit2__ID').hide(); }				//hide button draft and completed
 					}
 				}
 				//default show request
@@ -82,7 +82,7 @@
             m.after_update=function(data,res){  after_submit(data); }
             //--------------------------------------------------------
             m.before_submit=function(data,index){
-                index.P1=","+data.Manager_for_Approval.split('|')[2]+","+data.Processor.split('|')[2]+",";
+                index.P1=","+data.Manager_for_Approval.split('|')[2]+","+data.Processor.split('|')[2]+","; //put users in the P1 list
 				index.I2=m.draft;
                 data.items=m.item_a_get_data();
                 return true;

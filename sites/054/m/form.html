@@ -20,7 +20,7 @@
     			<br>
     			<div class="row">
     				<div class=col>
-    					<button id=submit__ID type="submit" class="btn btn-secondary">Get</button>
+    					<button id=submit__ID type="submit" class="btn btn-secondary">Get data from Mongodb</button>
     				</div>
     			</div>
     		</div>
@@ -58,6 +58,11 @@
 								$('#F__ID input[name=Last_Name]').val(data[0].Last_Name);
 							}
 						},
+						
+						error: function(xhr, status, error){
+         					var errorMessage = xhr.status + ': ' + xhr.statusText
+         					alert(db_url+" is not available.");
+     					}
 					}
 				)				
     			//------------------------------

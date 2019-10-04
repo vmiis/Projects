@@ -1,42 +1,45 @@
 <div id=D__ID>
-	<div class='text-center pl-2 pr-2' style='max-width:800px;margin-left:auto;margin-right:auto;background-color: rgb(100,100,100,0.7);margin-top:50px'>
-		<br><br>
-		<span style="font-size: 5rem;font-family:Arial, Helvetica, sans-serif">Is your brain asleep while you're awake?</span><br>
-		<h5>We invite you to participate in an exciting new research study that involves ...</h5>
-		<br><br>
-		<div class='text-left  pl-2 pr-2'>
-		<h5><u>Eligibility</u></h5>
-		You may be eligible to participate in this study if you:
-		<ul><li>Live in NSW</li><li>Are aged 35 to 60 years</li><li>Have ...</li></ul>
-		This study will use novel ..
-		<br><br>
-		If eligible, you will need to come to the Woolcock Institute of Medical Research in Glebe,
-		Sydney and stay in one of our sleep suites overnight on two occasions. We will measure
-		various aspects of your sleep and cognition over a 24-hour period. You will receive
-		reimbursement for your time and, at no expense to you, study medication and study-
-		related medical evaluations from a doctor.<br><br>
-		Your participation in this study is voluntary.<br><br>
-		I agree to complete a screening questionnaire to determine if I am suitable for the study:
+    <div id=page__ID>
+        <div style='text-align: center;padding:20px'>
+            <!--<h1>Is your brain asleep while you’re awake?</h1>-->
+        </div>
+        <div class=columnbox__ID>
+            <h4>Local Sleep in Obstructive Sleep Apnea - Online Registration Questionnaire.</h4>
+            <h5><img src='images/local-sleep1.png' />Study information</h5>
+            <p>Help us to better understand if boosting overnight sleep by reducing obstructive sleep apnea (OSA) enhances brain function and performance.
+            </p>
+            <p>OSA is a common sleep disorder and is linked with excessive and inappropriate daytime sleepiness, impaired thinking, and an increased risk for motor vehicle crashes and workplace accidents. However, not all patients report the same level of daytime impairment and it is still not completely known how OSA affects the brain            
+			</p>
+            <p>A key to understanding this is by investigating the brain activity of patients with OSA, and how this may change following continuous positive airway pressure (CPAP) therapy, the gold standard clinical treatment for OSA. This can be easily done through non-invasive EEG recordings from electrodes placed on the scalp that are a routine part of sleep studies. This study uses advanced high-density electroencephalography to investigate whether areas of ‘tired’ neurons that fall asleep in the awake brain underlie daytime impairments in OSA. 
+            </p>
+            <p>The purpose of this study is to examine the effect of using CPAP therapy, at two different settings, on daytime function and brain wave activity recorded in patients diagnosed with moderate to severe OSA. We will investigate brain activity during sleep and during awake daytime performance testing and compare the effect of using CPAP devices that deliver pressure in different ways.
+			</p>
+			<p>This research is being carried out by researchers and doctors from the Woolcock Institute of Medical Research and the University of Sydney. The project is being funded by the Australian National Health and Medical Research Council Project Grant.
+			</p>
+			<p>This study has been approved by Sydney Local Health District Ethics Review committee (RPAH Zone).  Protocol Number X18-122.
+			</p>
+			<h5>I agree to complete a screening questionnaire to determine if I am suitable for the study </h5>
+			<div class=row>
+				<div class='col-6 p-2'><button id="yes__ID"  class="btn btn-defalut">I Agree</button></div>
+				<div class='col-6 p-2'><button id="no__ID"  class="btn btn-outline-secondary">No thanks</button></div>
+			</div>
+			<h5>Your participation in this study is voluntary.</h5>
+			<h5>If you have any questions, please contact us on 02 9114 0236 or sleep-research@woolcock.org.au</h5>
 		</div>
-		<br><div class=row>
-		<div class='col-6 p-2'><button id="yes__ID"  class="btn btn-default">I Agree</button></div><div class='col-6 p-2'><button id="no__ID"  class="btn btn-outline-secondary">No thanks</button></div>
-		<br><br></div>
-		<div class='text-left pl-2 pr-2'>This study has received ethical approval from...
-			<br><br>
-		If you have any questions, please contact us on local-sleep@woolcock.org.au or 9114 0000<br><br>
-	</div>
-	</div>
+
+
+    </div>
 	<script>
 		function F__ID(){
 			var m=$vm.module_list['__MODULE__'];
 			if(m.prefix==undefined) m.prefix="";
 			$('#yes__ID').on('click',function(){	$vm.load_module(m.prefix+'recruitment-form','',{});	})
-			$('#no__ID').on('click',function(){		$vm.alert("Completing questionnaires is necessary to be part of the study.") })
+			$('#no__ID').on('click',function(){		$vm.load_module(m.prefix + 'no-thanks', '', {}) });//$vm.alert("Completing questionnaires is necessary to be part of the study.") })
 
 		}
 		$vm.home_ready=1;
 	</script>
-	<style>
+    <style>
 		#D__ID{
 			font-family: 'Roboto Slab';
 			height:100%;
@@ -44,12 +47,13 @@
 	        padding-bottom:5%;
 			margin-top:-100px;
 			padding-top:80px;
-			color:#fff;
+			color:#000;
 		}
 		#yes__ID{
 			border-radius:0.5rem;
 			color:#000;
-			background-color: rgb(255, 255, 255);
+			background-color: rgb(0,124,144);
+			border-color: rgb(0,24,44);
 			font-size:1.2rem;
 			width:180px;height:60px;
 			font-family: 'Roboto Slab';
@@ -62,8 +66,8 @@
 			font-size:1.2rem;
 			font-family: 'Roboto Slab';
 			border-width: 2px;
-			border-color: #fff;
-			color:#fff;
+			border-color: #000;
+			color:#000;
 		}
 		#no__ID:hover{
 			background-color: rgb(0,0,0,0);
@@ -81,5 +85,33 @@
 				width:120px;height:60px;
 			}
 	    }
-	</style>
+		#D__ID{
+			height:100%;
+			animation: vm_module_fadein 1.0s;
+            background-color: #fff;
+		}
+        #page__ID{
+            max-width:1000px;
+            margin-left:auto;
+            margin-right:auto;
+            overflow-x: hidden;
+            padding-top:50px;'
+        }
+    	.columnbox__ID{
+    		column-count: 2;
+    		column-gap: 30px;
+            padding:0px;
+    	}
+        @media screen and (max-width: 1200px){
+            .columnbox__ID{
+                padding:15px;
+                column-count: 1;
+            }
+        }
+        .columnbox__ID img {
+            margin:10px 0;
+            width: 100%;
+            height: auto;
+        }
+    </style>
 </div>

@@ -57,7 +57,6 @@
 
         "dashboard":  	    {url:"$H/m1/dashboard.html",router:1},
         "workflow":         {url:"$H/m1/workflow.html",router:1},
-        "module-editor":    {url:"https://vm.vmiis.com/component/m/module-editor.html",router:1,sys:1},
     }
     for(p in modules){
         $vm.module_list[p]=modules[p]; 

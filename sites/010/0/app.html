@@ -20,14 +20,7 @@
             set_layout();
             //-----------------------------------------
             $vm.show=function(m_name){
-                var nm="";
-                var ns=window.location.href.split('?/');
-                if(ns.length>1) nm=ns[1].split('&')[0].replace('-data','').replace(/-/g,' ');
                 document.title=$vm.default_title;
-                if(nm!=""){
-                    var name=nm.charAt(0).toUpperCase() + nm.slice(1)
-                    document.title=name+" | "+$vm.default_title;
-                }
                 $("meta[name='description']").attr("content", "A single page application with shared reusable modules distributed on different static web servers around the world and maintained by different people with different skills!");
                 $("body").removeClass();
                 $("body").addClass('body_background_default');
@@ -87,9 +80,4 @@
         });
         //-------------------------------------
     </script>
-    <style main-style>
-        html,body{ margin:0; padding:0; height:100%; font-family:Arial;}
-        body{background-size: cover; background-repeat: repeat-x; background-position: center top; background-attachment: fixed;}
-        .body_background_default{ background-image: url(https://image.vmiis.com/bg009.jpg);}
-    </style>
 </div>
