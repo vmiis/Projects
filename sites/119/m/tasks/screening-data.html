@@ -1,0 +1,24 @@
+<div id=D__ID>
+  <div>
+    VmInclude:__COMPONENT__/g/grid.01.html
+  </div>
+  <script>
+    function F__ID(){
+      //-------------------------------------
+      VmInclude:__COMPONENT__/g/grid.01.js
+      VmInclude:__CURRENT_PATH__/shared-data.js
+      //-------------------------------------
+      var fields="australia,between_18_65,english,smartphone,baby,shift,disease,mental_health,time_difference_2h,time_difference_1h,phq_9,Eligible";
+      m.fields="_Form,_Status,_Notes,_Participant_ID,"+fields+",Submit_date,Submitted_by,_Delete";
+    }
+  </script>
+  <style>
+      VmInclude:__COMPONENT__/g/grid.01.css
+      #D__ID{
+        height:100%;
+        overflow:auto;
+        animation: vm_module_fadein 1.0s;
+        background-color: #fff;
+      }
+</style>
+</div>

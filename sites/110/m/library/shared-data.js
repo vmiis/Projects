@@ -19,6 +19,7 @@ m.load=function(){
     }
 }
 //-------------------------------
+/*
 m.export_records=function(){
     tabledata=m.Table;
     m.Table=$vm.module_list['participant-data'].Table;
@@ -76,11 +77,12 @@ m.export_records=function(){
     });
     
 }
+*/
 //-------------------------------------
 m.cell_render=function(records,I,field,td){
     switch(field){
         case '_Status':
-            td.html("<span style='color:"+records[I].Data['sysStatus']+"'>&#x25cf;</span>");
+            td.html("<span style='color:"+records[I].Data['sysStatus']+"'><i class='fas fa-circle'></i></span>");
             td.css('text-align','center');
             break;
         case '_Participant_ID':

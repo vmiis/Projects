@@ -1,0 +1,617 @@
+<div id=D__ID>
+    <!--third html start -->
+    <div class="container mt-95 mb-3">
+        <div class="row">
+            <!-- form container start -->
+            <div class="col-12 col-lg-12 col-md-12 col-sm-12 mx-auto formbox">
+                <div class="row">
+                    <div class="col-12">
+                        <!-- form start -->
+                        <form id="F__ID">
+                            <h3 id=title__ID></h3>
+                            <!-- participant part for all tsak forms -------------------->
+                            <div id="participant_div__ID">
+                                <div class="form-group">
+                                    <fieldset class="subquestions">
+                                        <label><span class="">Participant</span>
+                                            <input type=text name="Participant" class=form-control id=Participant__ID
+                                                data-id="Participant" />
+                                        </label><br>
+                                        <label><span class="">Participant ID</span>
+                                            <input type=text name="Participant_uid" class=form-control readonly />
+                                        </label>
+                                    </fieldset>
+                                </div>
+                            </div>
+                            <!-- form group -->
+                            <div id=surgery_part__ID>
+                                <div class="form-group">
+                                    <h4 style="background-color: lightgrey;">&nbsp;&nbsp;1. Review Details</h4>
+                                </div>
+                                <div class="form-group">
+                                    <div class="questiongroup ">
+                                        <fieldset class="">
+                                            <label><span class="">1.1 Date of review</span>
+                                                <input class="form-control" type="date" name="Date_of_review">
+                                            </label><br>
+                                        </fieldset>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="questiongroup ">
+                                        <fieldset class="">
+                                            <label><span class="">1.2 Physician name</span>
+                                                <input class="form-control" type="text" name="Physician"
+                                                    placeholder="Researcher">
+                                            </label><br>
+                                        </fieldset>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="questiongroup">
+                                        <label>1.3 Location</label>
+                                        <fieldset class="">
+                                            <label class="radiobuttons ">
+                                                <input type="radio" name="Location" value="Adelaide">
+                                                <span class="checkmark"></span>Adelaide</label>
+                                            <label class="radiobuttons ">
+                                                <input type="radio" name="Location" value="Wollongong">
+                                                <span class="checkmark"></span>Wollongong</label>
+                                            <label class="radiobuttons ">
+                                                <input type="radio" name="Location" value="Sydney">
+                                                <span class="checkmark"></span>Sydney</label>
+                                            <label class="radiobuttons ">
+                                                <input type="radio" name="Location" value="Perth">
+                                                <span class="checkmark"></span>Perth</label>
+                                        </fieldset>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="questiongroup">
+                                        <label>1.4 Participant continuing with the study?<br><i>If ‘No’, fill out Study Completion/ Withdrawal form at the end of this document.</i></label>
+                                        <fieldset class="">
+                                            <label class="radiobuttons ">
+                                                <input type="radio" name="Continuing_study" value="Y">
+                                                <span class="checkmark"></span>Yes</label>
+                                            <label class="radiobuttons ">
+                                                <input type="radio" name="Continuing_study" value="N">
+                                                <span class="checkmark"></span>No </label>
+                                        </fieldset>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="questiongroup">
+                                        <label>1.5 Has the participant suffered any adverse events in the current sub-study?<br><i> If ‘Yes’, fill out the relevant Adverse Events form.</i></label>
+                                        <fieldset class="">
+                                            <label class="radiobuttons ">
+                                                <input type="radio" name="Adverse_event" value="Y">
+                                                <span class="checkmark"></span>Yes</label>
+                                            <label class="radiobuttons ">
+                                                <input type="radio" name="Adverse_event" value="N">
+                                                <span class="checkmark"></span>No </label>
+                                        </fieldset>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="questiongroup">
+                                        <label>1.6 Review type</label>
+                                        <fieldset class="">
+                                            <label class="radiobuttons ">
+                                                <input type="radio" name="Review_type" value="In person">
+                                                <span class="checkmark"></span>In person</label>
+                                            <label class="radiobuttons ">
+                                                <input type="radio" name="Review_type" value="Phone call">
+                                                <span class="checkmark"></span>Phone call </label>
+                                        </fieldset>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <h4 style="background-color: lightgrey;">&nbsp;&nbsp;2. Participant’s Sleep and General Health</h4>
+                                </div>
+                                <div class="form-group">
+                                    <h6><b>Ask the participant to discuss their current sleep and general health including any concerns they may have.</b></h6>
+                                    <div class="questiongroup">
+                                        <label>Please write any notes here:</label>
+                                        <fieldset class="">
+                                            <label style="width:100%">
+                                                <textarea class="form-control" name="Physician_notes"></textarea>
+                                            </label><br>
+                                        </fieldset>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <h4 style="background-color: lightgrey;">&nbsp;&nbsp;3. Blood Pressure</h4>
+                                    <h6><b>(Researcher to prefill this section with measures taken the morning after the sleep study)</b></h6>
+                                </div>
+                                <div class="form-group">
+                                    <label>3.1 First measurement</label>
+                                    <div class="questiongroup">
+                                        <label>First blood pressure measurement (mmHg)<br><i>(NB: morning BP, sitting, after 5 minutes rest)</i></label>
+                                        <fieldset class="subquestions">
+                                            <label>Systolic
+                                                <input class="form-control" type=number name="First_BP_systolic" >
+                                            </label><br>
+                                            <label>Diastolic
+                                                <input class="form-control" type=number name="First_BP_diastolic" >
+                                            </label><br>
+                                        </fieldset>
+                                        <fieldset class="subquestions">
+                                            <label>Heart rate (bpm)
+                                                <input class="form-control" type=number name="First_HR" >
+                                            </label><br>
+                                        </fieldset>
+                                        <fieldset class="subquestions">
+                                            <label>Time of blood pressure measurement
+                                                <input class="form-control" type=time name="First_time" >
+                                            </label><br>
+                                        </fieldset>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label>3.2 Second measurement</label>
+                                    <div class="questiongroup">
+                                        <label>Second blood pressure measurement (mmHg)</label>
+                                        <fieldset class="subquestions">
+                                            <label>Systolic
+                                                <input class="form-control" type=number name="Second_BP_systolic" >
+                                            </label><br>
+                                            <label>Diastolic
+                                                <input class="form-control" type=number name="Second_BP_diastolic" >
+                                            </label><br>
+                                        </fieldset>
+                                        <fieldset class="subquestions">
+                                            <label>Heart rate (bpm)
+                                                <input class="form-control" type=number name="Second_HR" >
+                                            </label><br>
+                                        </fieldset>
+                                        <fieldset class="subquestions">
+                                            <label>Time of second blood pressure measurement
+                                                <input class="form-control" type=time name="Second_time" >
+                                            </label><br>
+                                        </fieldset>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label>3.3 Third measurement</label>
+                                    <div class="questiongroup">
+                                        <label>Third blood pressure measurement (mmHg)</label>
+                                        <fieldset class="subquestions">
+                                            <label>Systolic
+                                                <input class="form-control" type=number name="Third_BP_systolic" >
+                                            </label><br>
+                                            <label>Diastolic
+                                                <input class="form-control" type=number name="Third_BP_diastolic" >
+                                            </label><br>
+                                        </fieldset>
+                                        <fieldset class="subquestions">
+                                            <label>Heart rate (bpm)
+                                                <input class="form-control" type=number name="Third_HR" >
+                                            </label><br>
+                                        </fieldset>
+                                        <fieldset class="subquestions">
+                                            <label>Time of third blood pressure measurement
+                                                <input class="form-control" type=time name="Third_time" >
+                                            </label><br>
+                                        </fieldset>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <h4 style="background-color: lightgrey;">&nbsp;&nbsp;4. Anthropometric Information</h4>
+                                </div>
+                                <div class="form-group">
+                                    <div class="questiongroup ">
+                                        <fieldset class="subquestions">
+                                            <label><span class="">&nbsp;4.1 Weight (kg)&nbsp;&nbsp;&nbsp;</span>
+                                                <input class="form-control" type="number" step="0.1" name="weight" id=weight__ID placeholder="Weight (kg)">
+                                            </label><br>
+                                            <label><span class="">&nbsp;4.2 Height (cm)&nbsp;&nbsp;&nbsp;</span>
+                                                <input class="form-control" type="number" step="0.1" name="height" id=height__ID placeholder="Height (cm)">
+                                            </label><br>
+                                            <label><span class="">&nbsp;4.3 Body mass index (BMI)</span>
+                                                <input class="form-control" type="text" name="bmi" id=bmi__ID readonly>
+                                            </label><br>
+                                        </fieldset>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                        <div class="questiongroup ">
+                                            <fieldset class="subquestions">
+                                                <label><span class="">&nbsp;4.4 Neck circumference (cm)&nbsp;&nbsp;&nbsp;</span>
+                                                    <input class="form-control" type="number" step="0.1" name="neck"  placeholder="Neck (cm)">
+                                                </label><br>
+                                                <label><span class="">&nbsp;4.5 Waist circumference (cm)&nbsp;&nbsp;&nbsp;</span>
+                                                    <input class="form-control" type="number" step="0.1" name="waist" id=waist__ID  placeholder="Waist (cm)">
+                                                </label><br>
+                                                <label><span class="">&nbsp;4.6 Hip circumference (cm)&nbsp;&nbsp;&nbsp;</span>
+                                                    <input class="form-control" type="number" step="0.1" name="hip" id=hip__ID placeholder="Hip (cm)">
+                                                </label><br>
+                                                <label><span class="">&nbsp;4.7 Waist:Hip ratio</span>
+                                                    <input class="form-control" type="text" name="waist_hip_ratio" id=waist_hip_ratio__ID readonly>
+                                                </label><br>
+                                            </fieldset>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                    <h4 style="background-color: lightgrey;">&nbsp;&nbsp;5. CPAP Download</h4>
+                                    <h6><b>(Researcher to pre-fill this section from download taken at the sleep study)</b></h6>
+                                </div>
+                                <div class="form-group">
+                                    <div class="questiongroup">
+                                        <label>5.1 If using a CPAP device, has the last 3 months of usage data been downloaded from the participant’s machine?</label>
+                                        <fieldset class="">
+                                            <label class="radiobuttons ">
+                                                <input type="radio" name="CPAP_Download" value="Y">
+                                                <span class="checkmark"></span>Yes</label>
+                                            <label class="radiobuttons ">
+                                                <input type="radio" name="CPAP_Download" value="N">
+                                                <span class="checkmark"></span>No </label>
+                                            <label class="radiobuttons ">
+                                                <input type="radio" name="CPAP_Download" value="N/A">
+                                                <span class="checkmark"></span>N/A </label>
+                                        </fieldset>
+                                        <fieldset class="subquestions">
+                                            <label><span class="">&nbsp;If ‘Yes’, Download start date:</span>
+                                                <input class="form-control" type="date" name="CPAP_Download_start_date" >
+                                            </label><br>
+                                            <label><span class="">&nbsp;Download end date:</span>
+                                                <input class="form-control" type="date" name="CPAP_Download_end_date" >
+                                            </label><br>
+                                        </fieldset>
+                                        <fieldset class="">
+                                            <label><span class="">&nbsp;Average CPAP usage</span>
+                                                <input class="form-control" type="number" step="0.1" name="CPAP_usage" >
+                                            </label><span style='font-size: 0.8rem'>&nbsp;hours per night</span><br>
+                                            <label><span class="">&nbsp;AHI: </span>
+                                                <input class="form-control" type="number" step="0.1" name="CPAP_AHI" >
+                                            </label><span style='font-size: 0.8rem'>&nbsp;events per hour</span><br>
+                                        </fieldset>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <h4 style="background-color: lightgrey;">&nbsp;&nbsp;6. Polysomnography (PSG) Results</h4>
+                                </div>
+                                <div class="form-group">
+                                    <div class="questiongroup ">
+                                        <fieldset class="">
+                                            <label><span class="">6.1 Date of PSG</span>
+                                                <input class="form-control" type="date" name="Date_of_PSG">
+                                            </label><br>
+                                        </fieldset>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="questiongroup ">
+                                        <fieldset class="subquestions">
+                                            <label><span class="">&nbsp;6.2 Total AHI&nbsp;&nbsp;&nbsp;</span>
+                                                <input class="form-control" type="number" step="0.1" name="ahi_total">
+                                            </label><br>
+                                            <label><span class="">&nbsp;6.3 AHI non-supine&nbsp;&nbsp;&nbsp;</span>
+                                                <input class="form-control" type="number" step="0.1" name="ahi_non_supine">
+                                            </label><br>
+                                            <label><span class="">&nbsp;6.4 AHI supine&nbsp;&nbsp;&nbsp;</span>
+                                                <input class="form-control" type="number" step="0.1" name="ahi_supine">
+                                            </label><br>
+                                            <label><span class="">&nbsp;6.5 Arousal Index&nbsp;&nbsp;&nbsp;</span>
+                                                <input class="form-control" type="number" step="0.1" name="arousal_index">
+                                            </label><br>
+                                            <label><span class="">&nbsp;6.6 Apnoea Index&nbsp;&nbsp;&nbsp;</span>
+                                                <input class="form-control" type="number" step="0.1" name="apnoea_index">
+                                            </label><br>
+                                        </fieldset>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="questiongroup ">
+                                        <label><span class="">6.7 Sleep Stages</span></label>
+                                        <fieldset class="">
+                                            <label><span class="">&nbsp;Stage N1&nbsp;&nbsp;&nbsp;</span>
+                                                <input class="form-control" type="number" step="0.1" name="N1_duration" placeholder="Minutes">
+                                            </label><span style='font-size: 0.8rem'>&nbsp;min</span>
+                                            <label><span class=""></span>
+                                                <input class="form-control" type="number" step="0.1" name="N1_duration_percentage" placeholder="Percentage" >
+                                            </label><span style='font-size: 0.8rem'>&nbsp;%</span>
+                                        </fieldset>
+                                        <fieldset class="">
+                                            <label><span class="">&nbsp;Stage N2&nbsp;&nbsp;&nbsp;</span>
+                                                <input class="form-control" type="number" step="0.1" name="N2_duration" placeholder="Minutes">
+                                            </label><span style='font-size: 0.8rem'>&nbsp;min</span>
+                                            <label><span class=""></span>
+                                                <input class="form-control" type="number" step="0.1" name="N2_duration_percentage" placeholder="Percentage" >
+                                            </label><span style='font-size: 0.8rem'>&nbsp;%</span>
+                                        </fieldset>
+                                        <fieldset class="">
+                                            <label><span class="">&nbsp;Stage N3&nbsp;&nbsp;&nbsp;</span>
+                                                <input class="form-control" type="number" step="0.1" name="N3_duration" placeholder="Minutes">
+                                            </label><span style='font-size: 0.8rem'>&nbsp;min</span>
+                                            <label><span class=""></span>
+                                                <input class="form-control" type="number" step="0.1" name="N3_duration_percentage" placeholder="Percentage" >
+                                            </label><span style='font-size: 0.8rem'>&nbsp;%</span>
+                                        </fieldset>
+                                        <fieldset class="">
+                                            <label><span class="">&nbsp;Stage R&nbsp;&nbsp;&nbsp;</span>
+                                                <input class="form-control" type="number" step="0.1" name="R_duration" placeholder="Minutes">
+                                            </label><span style='font-size: 0.8rem'>&nbsp;min</span>
+                                            <label><span class=""></span>
+                                                <input class="form-control" type="number" step="0.1" name="R_duration_percentage" placeholder="Percentage" >
+                                            </label><span style='font-size: 0.8rem'>&nbsp;%</span>
+                                        </fieldset>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="questiongroup ">
+                                        <fieldset class="subquestions">
+                                            <label><span class="">&nbsp;6.8 Total sleep time&nbsp;&nbsp;&nbsp;</span>
+                                                <input class="form-control" type="number" step="0.1" name="total_sleep_time">
+                                            </label><span style='font-size: 0.8rem'>&nbsp;min</span><br>
+                                            <label><span class="">&nbsp;6.9 Non-supine sleep time (%)&nbsp;&nbsp;&nbsp;</span>
+                                                <input class="form-control" type="number" step="0.1" name="non_supine_sleep_time">
+                                            </label><span style='font-size: 0.8rem'>&nbsp;%</span><br>
+                                            <label><span class="">&nbsp;6.10 Supine sleep time (%)&nbsp;&nbsp;&nbsp;</span>
+                                                <input class="form-control" type="number" step="0.1" name="supine_sleep_time">
+                                            </label><br>
+                                            <label><span class="">&nbsp;6.11 Sleep efficiency&nbsp;&nbsp;&nbsp;</span>
+                                                <input class="form-control" type="number" step="0.1" name="sleep_efficiency">
+                                            </label><br>
+                                            <label><span class="">&nbsp;6.12 3% Oxygen Desaturation Index (ODI)&nbsp;&nbsp;&nbsp;</span>
+                                                <input class="form-control" type="number" step="0.1" name="odi_3">
+                                            </label><br>
+                                            <label><span class="">&nbsp;6.13 4% Oxygen Desaturation Index (ODI)&nbsp;&nbsp;&nbsp;</span>
+                                                <input class="form-control" type="number" step="0.1" name="odi_4">
+                                            </label><br>
+                                        </fieldset>
+                                        <fieldset class="">
+                                            <label><span class="">&nbsp;6.14 Lowest oxygen desaturation %<br>NREM&nbsp;&nbsp;&nbsp;</span>
+                                                <input class="form-control" type="number" step="1" name="Lowest_SaO2_NREM" placeholder="Percentage">
+                                            </label><span style='font-size: 0.8rem'>&nbsp;%</span>
+                                            <label><span class="">&nbsp;REM&nbsp;&nbsp;&nbsp;</span>
+                                                <input class="form-control" type="number" step="0.1" name="Lowest_SaO2_REM" placeholder="Percentage" >
+                                            </label><span style='font-size: 0.8rem'>&nbsp;%</span>
+                                        </fieldset>
+                                        <fieldset class="">
+                                            <label><span class="">&nbsp;6.15 % of time oxygen saturation &lt; 90% non-supine&nbsp;&nbsp;&nbsp;</span>
+                                                <input class="form-control" type="number" step="0.1" name="SaO2_lt_90_non_supine">
+                                            </label><span style='font-size: 0.8rem'>&nbsp;%</span><br>
+                                            <label><span class="">&nbsp;6.16 % of time oxygen saturation &lt; 90% supine&nbsp;&nbsp;&nbsp;</span>
+                                                <input class="form-control" type="number" step="0.1" name="SaO2_lt_90_supine">
+                                            </label><span style='font-size: 0.8rem'>&nbsp;%</span><br>
+                                            <label><span class="">&nbsp;6.17 Average snoring sound level during sleep&nbsp;&nbsp;&nbsp;</span>
+                                                <input class="form-control" type="number" step="0.1" name="average_snoring_sound_level">
+                                            </label><span style='font-size: 0.8rem'>&nbsp;dB(A)</span><br>
+                                        </fieldset>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="questiongroup ">
+                                        <label><span class="">6.18 Number of Snores (All Sleep)</span></label>
+                                        <fieldset class="subquestions">
+                                            <label><span class="">&nbsp;32-40 dB&nbsp;&nbsp;&nbsp;</span>
+                                                <input class="form-control" type="number" step="1" name="snore_level_40" placeholder="">
+                                            </label><span style='font-size: 0.8rem'></span><br>
+                                            <label><span class="">&nbsp;41-50 dB&nbsp;&nbsp;&nbsp;</span>
+                                                <input class="form-control" type="number" step="1" name="snore_level_50" placeholder="">
+                                            </label><span style='font-size: 0.8rem'></span><br>
+                                            <label><span class="">&nbsp;51-60 dB&nbsp;&nbsp;&nbsp;</span>
+                                                <input class="form-control" type="number" step="1" name="snore_level_60" placeholder="">
+                                            </label><span style='font-size: 0.8rem'></span><br>
+                                            <label><span class="">&nbsp;61-70 dB&nbsp;&nbsp;&nbsp;</span>
+                                                <input class="form-control" type="number" step="1" name="snore_level_70" placeholder="">
+                                            </label><span style='font-size: 0.8rem'></span><br>
+                                            <label><span class="">&nbsp;71-80 dB&nbsp;&nbsp;&nbsp;</span>
+                                                <input class="form-control" type="number" step="1" name="snore_level_80" placeholder="">
+                                            </label><span style='font-size: 0.8rem'></span><br>
+                                            <label><span class="">&nbsp;Total&nbsp;&nbsp;&nbsp;</span>
+                                                <input class="form-control" type="number" step="1" name="snore_level_total" placeholder="">
+                                            </label><span style='font-size: 0.8rem'></span><br>
+                                        </fieldset>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <h4 style="background-color: lightgrey;">&nbsp;&nbsp;7. Any Current Medications. Please use separate form</h4>
+                                </div>
+                                <div class="form-group">
+                                    <h4 style="background-color: lightgrey;">&nbsp;&nbsp;8. Medical History</h4>
+                                </div>
+                                <div class="form-group">
+                                    <div class="questiongroup">
+                                        <label>8.1 Any new medical conditions/ diagnoses?</label>
+                                        <fieldset class="">
+                                            <label class="radiobuttons ">
+                                                <input type="radio" name="new_medical_conditions" value="Y">
+                                                <span class="checkmark"></span>Yes</label>
+                                            <label class="radiobuttons ">
+                                                <input type="radio" name="new_medical_conditions" value="N">
+                                                <span class="checkmark"></span>No </label>
+                                        </fieldset>
+                                        <fieldset class="">
+                                            <label style="width:100%">If ‘Yes’, details here.
+                                                <textarea class="form-control" name="medical_conditions"></textarea>
+                                            </label><br>
+                                        </fieldset>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <h4 style="background-color: lightgrey;">&nbsp;&nbsp;9. Long-Term Complications</h4>
+                                    <h6 style="color:red">Refer to pgs 8,9 (Q11 and 12) regarding ongoing complications and further explore with the participant.</h6>
+                                </div>
+                                <div class="form-group">
+                                    <div class="questiongroup">
+                                        <label>Any notes regarding ongoing complications:</label>
+                                        <fieldset class="">
+                                            <label style="width:100%">If ‘Yes’, details here.
+                                                <textarea class="form-control" name="ongoing_complications"></textarea>
+                                            </label><br>
+                                        </fieldset>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <h4 style="background-color: lightgrey;">&nbsp;&nbsp;10. Review Summaryy</h4>
+                                </div>
+                                <div class="form-group">
+                                    <div class="questiongroup">
+                                        <label>10.1 On the available evidence, is the participant’s sleep health okay?</label>
+                                        <fieldset class="">
+                                            <label class="radiobuttons ">
+                                                <input type="radio" name="sleep_health" value="Y">
+                                                <span class="checkmark"></span>Yes</label>
+                                            <label class="radiobuttons ">
+                                                <input type="radio" name="sleep_health" value="N">
+                                                <span class="checkmark"></span>No </label>
+                                        </fieldset>
+                                        <fieldset class="">
+                                            <label style="width:100%">If No, please detail what you believe the active issues are:
+                                                <textarea class="form-control" name="medical_conditions"></textarea>
+                                            </label><br>
+                                        </fieldset>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <h4 style="background-color: lightgrey;">&nbsp;&nbsp;11. Treatment Recommendations</h4>
+                                </div>    
+                                <div class="form-group">
+                                    <div class="questiongroup">
+                                        <label>Select any therapies/ treatments you would recommend for the participant’s sleep health, tick as many as apply:</i></label>
+                                        <fieldset class=" ">
+                                            <label class="checkboxes ">
+                                                <input type="checkbox" name="No_recommendations" >
+                                                <span class="check_checkmark"></span> No recommendations</b>
+                                            </label><br>
+                                            <label class="checkboxes ">
+                                                <input type="checkbox" name="Review_ENT" >
+                                                <span class="check_checkmark"></span>Review by ENT surgeon <i>(e.g. potential for additional surgery)</i> 
+                                            </label><br>
+                                            <label class="checkboxes ">
+                                                <input type="checkbox" name="Review_sleep_psychologist" >
+                                                <span class="check_checkmark"></span>Review by sleep psychologist <i>(e.g. may have other sleep health issues unrelated to trial surgery)</i> 
+                                            </label><br>
+                                            <label class="checkboxes ">
+                                                <input type="checkbox" name="Review_sleep_physician">
+                                                <span class="check_checkmark"></span>Review by sleep physician <i>(e.g. may have other sleep health issues unrelated to trial surgery)</i> 
+                                            </label><br>
+                                        </fieldset>
+                                        <fieldset class="">
+                                            <label class="checkboxes ">
+                                                    <input type="checkbox" name="Other_recommendations">
+                                                <span class="check_checkmark"></span>Other 
+                                            </label><br>
+                                            <label style="width:100%">
+                                                <textarea class="form-control" name="Other_recommendations_specify"></textarea>
+                                            </label>
+                                        </fieldset>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <h4 style="background-color: lightgrey;">&nbsp;&nbsp;12. Further assessments</h4>
+                                    <h6>If clinically indicated or upon participant request, direct the participant to their GP to request a referral to see a sleep physician or to see an ENT surgeon.</h6>
+                                </div>
+                                <div class="form-group">
+                                    <div class="questiongroup">
+                                        <label>12.1 Encouraged participant to pursue further assessment?</label>
+                                        <fieldset class="">
+                                            <label class="radiobuttons ">
+                                                <input type="radio" name="Encouraged_further_assessment" value="Y">
+                                                <span class="checkmark"></span>Yes</label>
+                                            <label class="radiobuttons ">
+                                                <input type="radio" name="Encouraged_further_assessment" value="N">
+                                                <span class="checkmark"></span>No </label>
+                                        </fieldset>
+                                        <label>If ‘Yes’, select reason:</label>
+                                        <fieldset class="">
+                                            <label class="radiobuttons ">
+                                                <input type="radio" name="Further_assessment_reason" value="Participant request">
+                                                <span class="checkmark"></span>Participant request</label><br>
+                                            <label class="radiobuttons ">
+                                                <input type="radio" name="Further_assessment_reason" value="Clinically indicated">
+                                                <span class="checkmark"></span>Clinically indicated, please explain:
+                                            </label><br>
+                                            <label style="width:100%">
+                                                <textarea class="form-control" name="Clinically_indicated_explain"></textarea>
+                                            </label><br>
+                                        </fieldset>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <h4 style="background-color: lightgrey;">&nbsp;&nbsp;Debrief and Thank</h4>
+                                    <h6><b>Debrief the participant on their involvement in the study and thank them for participating.</b><br>Inform the participant that they will need to follow-up with their treating GP or usual care provider for management of their OSA.
+                                    </h6>
+                                </div>
+                            </div>
+                            <button type="submit" id="submit__ID" class="btn btn-primary btn-lg">Submit</button>
+                            <div class="form-group">
+                                <div class="">
+                                    <fieldset class="">
+                                        <label class="radiobuttons" >
+                                        <input type="radio" name="_status" value="#FF0000" >
+                                        <span class="checkmark" style="background-color:#FF0000"></span></label>
+                                        <label class="radiobuttons">
+                                        <input type="radio" name="_status" value="#FFCC00">
+                                        <span class="checkmark" style="background-color:#FFCC00"></span></label>
+                                        <label class="radiobuttons">
+                                        <input type="radio" name="_status" value="#00FF00">
+                                        <span class="checkmark" style="background-color:#00FF00"></span></label>
+                                        <label class="radiobuttons">
+                                        <input type="radio" name="_status" value="">
+                                        <span class="checkmark" style="background-color:#C9C9C9"></span></label>
+                                    </fieldset>
+                                    <label ><br><span>Modify Status</span><p class="small font-italic text-muted mt-1">If you are not happy with the default status change it here.<br>Restore default click "grey" </p></label>
+                                </div>
+                            </div>    
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        function F__ID() {
+            //-------------------------------------
+            VmInclude: '__COMPONENT__/f/form.01.js'
+            VmInclude: __CURRENT_PATH__/shared-form.js
+            //-------------------------------------
+            $('#weight__ID').on('keyup', function () {
+                if ($('#height__ID').val() !== '' && $('#height__ID').val() !== undefined && $('#weight__ID').val() !== '' && $('#weight__ID').val() !== undefined) {
+                    $('#bmi__ID').val((parseFloat($('#weight__ID').val()) / (parseFloat($('#height__ID').val()) * parseFloat($('#height__ID').val())) * 10000).toFixed(1))
+                }
+            })
+            $('#height__ID').on('keyup', function () {
+                if ($('#height__ID').val() !== '' && $('#height__ID').val() !== undefined && $('#weight__ID').val() !== '' && $('#weight__ID').val() !== undefined) {
+                    $('#bmi__ID').val((parseFloat($('#weight__ID').val()) / (parseFloat($('#height__ID').val()) * parseFloat($('#height__ID').val())) * 10000).toFixed(1))
+                }
+            })
+            $('#waist__ID').on('keyup', function () {
+                if ($('#hip__ID').val() !== '' && $('#hip__ID').val() !== undefined && $('#waist__ID').val() !== '' && $('#waist__ID').val() !== undefined) {
+                    $('#waist_hip_ratio__ID').val((parseFloat($('#waist__ID').val()) / (parseFloat($('#hip__ID').val()))).toFixed(2))
+                }
+            })
+            $('#hip__ID').on('keyup', function () {
+                if ($('#hip__ID').val() !== '' && $('#hip__ID').val() !== undefined && $('#waist__ID').val() !== '' && $('#waist__ID').val() !== undefined) {
+                    $('#waist_hip_ratio__ID').val((parseFloat($('#waist__ID').val()) / (parseFloat($('#hip__ID').val()))).toFixed(2))
+                }
+            })
+            //-------------------------------------
+            var load2 = m.load;
+            m.load = function () {
+                load2();
+                $('#title__ID').text($vm.module_list[$vm.vm['__ID'].name].task_name);
+                if(m.input.participant_record.Data.Intervention_Group=='2') $('#surgery_part__ID').hide();
+                else $('#surgery_part__ID').show();
+                /*$('#D__ID input, #D__ID select, #D__ID textarea').each(
+                    function(index){  
+                        var input = $(this);
+                        console.log(input.attr('name'));
+                    }
+                );*/
+            }
+            //-------------------------------------
+        }
+    </script>
+    <style>
+        #D__ID .mt-95 {
+            max-width: 700px;
+        }
+
+        VmInclude:__CURRENT_PATH__/../../library/wappsystem-form.css
+        #D__ID .tight {
+           margin-right: 0!important;
+        }
+    </style>
+</div>

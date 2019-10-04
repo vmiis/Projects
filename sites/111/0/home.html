@@ -1,0 +1,46 @@
+<div id=D__ID>
+	<div class='text-center p-4' style='max-width:600px;margin-left:auto;margin-right:auto;background-color: rgb(253, 238, 48, 0.7);border-radius:20px'>
+		<span style='font-family:Monoton;font-size:40px;'>SPARDAC SCREENING</span><br><br>
+		<h5>Welcome to the Screening for Spardac Research Study</h5>
+		This space can be used for general introduction of the study.
+		<br><br>
+		<h5>Eligibility</h5>
+		In this example you need to anwser "Yes" to all questions on page 1, and get an Insomnia Severity Index score (sum of the numbers) of >10
+		 to go to the last page with entry of contact details.<br><br>
+		 <a href="https://spardac-recruitment.wappsystem.com.au/index.html" target=_blank class="btn btn-light btn-lg">View results here</a>
+		 <br><br><br>
+		<h5>I agree on completing a number of screening questionnaires to determine if I am suitable for the study:</h5>
+		
+		<br>
+		<button id="yes__ID"  class="btn btn-success btn-lg">I agree</button>
+		<br><br>
+		This study has received ethical approval from XXXXXXXX Ethics Committee (Ethics ID: E9876 5432))<br><br>
+		If you have any questions, please contact us on aaa.bbb@cccc.edu.au or 02 9876 5432<br><br>
+	</div>
+	<style>
+		#D__ID{
+			height:100%;
+	        overflow:auto;
+			animation: vm_module_fadein 1.0s, D__ID 2s;
+	    /*    padding-bottom:10%;*/
+		}
+		#D_ID h5{
+		}
+		@keyframes D__ID {
+			from {padding-top: 300px;}
+			to {padding-top: 0px;}
+		}
+	    @media screen and (max-width: 992px) {
+	        #D__ID{
+	            animation: vm_module_fadein 1.0s;
+	        }
+	    }
+	</style>
+	<script>
+		function F__ID(){
+			$('#yes__ID').on('click',function(e){
+      		  $vm.load_module('recruitment-form',$vm.root_layout_content_slot,{});
+    		})
+		}
+	</script>
+</div>

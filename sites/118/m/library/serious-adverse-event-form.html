@@ -1,0 +1,285 @@
+<div id=D__ID>
+    <!--third html start -->
+    <div class="container mt-95 mb-3">
+        <div class="row">
+            <!-- form container start -->
+            <div class="col-12 col-lg-12 col-md-12 col-sm-12 mx-auto formbox">
+                <div class="row">
+                    <div class="col-12">
+                        <!-- form start -->
+                        <form id="F__ID">
+                            <h3>Serious Adverse Event</h3>
+                            <!-- participant part for all tsak forms -------------------->
+                            <div id="participant_div__ID">
+                                <div class="form-group">
+                                    <fieldset class="subquestions">
+                                        <label><span class="">Participant</span>
+                                            <input type=text name="Participant" class=form-control id=Participant__ID
+                                                data-id="Participant" />
+                                        </label><br>
+                                        <label><span class="">Participant ID</span>
+                                            <input type=text name="Participant_uid" class=form-control readonly />
+                                        </label>
+                                    </fieldset>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="questiongroup ">
+                                    <fieldset class="">
+                                        <label style="width:100%"><span class="">Investigator</span>
+                                            <input type=text class="form-control" name="Investigator" placeholder="">
+                                        </label><br>
+                                    </fieldset>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="questiongroup">
+                                    <label>Location</label>
+                                    <fieldset class="">
+                                        <label class="radiobuttons ">
+                                            <input type="radio" name="Location" value="Adelaide">
+                                            <span class="checkmark"></span>Adelaide</label>
+                                        <label class="radiobuttons ">
+                                            <input type="radio" name="Location" value="Wollongong">
+                                            <span class="checkmark"></span>Wollongong</label>
+                                        <label class="radiobuttons ">
+                                            <input type="radio" name="Location" value="Sydney">
+                                            <span class="checkmark"></span>Sydney</label>
+                                        <label class="radiobuttons ">
+                                            <input type="radio" name="Location" value="Perth">
+                                            <span class="checkmark"></span>Perth</label>
+                                    </fieldset>
+                                </div>
+                            </div>
+                            <!-- form group -->
+                            <div class="form-group">
+                                <div class="questiongroup ">
+                                    <fieldset class="subquestions">
+                                        <label><span class="">1. SAE onset date</span>
+                                            <input class="form-control" type="date" name="SAE_onset_date">
+                                        </label>
+                                        <label><span class="">2. SAE stop date</span>
+                                            <input class="form-control" type="date" name="SAE_stop_date">
+                                        </label>
+                                    </fieldset>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="questiongroup">
+                                   <label><span>3. Brief description of participant with no personal identifiers:</span></label>
+                                        <fieldset class="subquestions">
+                                        <label><span class="">Sex </span>
+                                            <label class="radiobuttons ">
+                                                <input type="radio" name="SAE" value="M">
+                                                <span class="checkmark"></span>M</label>
+                                            <label class="radiobuttons ">
+                                                <input type="radio" name="SAE" value="F">
+                                                <span class="checkmark"></span>F</label>
+                                            </label><br>
+                                            <label ><span class="">Age</span>
+                                                <input type=number name="Age" class=form-control />
+                                            </label>
+                                    </fieldset>
+                                    <fieldset class=""><label><span>Diagnosis for study participation: Obstructive sleep apnoea, CPAP intolerant, upper airway surgery</span></label></fieldset>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="questiongroup ">
+                                    <fieldset class="">
+                                        <label style="width:100%"><span class="">4. Brief description of the nature of the serious adverse event (attach description if more space is needed): </span>
+                                            <textarea class="form-control" name="Description" placeholder=""></textarea>
+                                        </label><br>
+                                    </fieldset>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="questiongroup">
+                                   <label><span>5. Category of the serious adverse event:</span></label>
+                                    <fieldset class="">
+                                        <label><span class="">
+                                            <label class="radiobuttons ">
+                                                <input type="radio" name="Category" value="Death">
+                                                <span class="checkmark"></span>Death
+                                            </label>
+                                                <label ><span class=""></span>
+                                                    <input type=date name="Death_date" class=form-control />
+                                                </label><br>
+                                            <label class="radiobuttons ">
+                                                <input type="radio" name="Category" value="Life threatening">
+                                                <span class="checkmark"></span>Life threatening
+                                            </label><br>
+                                            <label class="radiobuttons ">
+                                                <input type="radio" name="Category" value="Hospitalisation">
+                                                <span class="checkmark"></span>Hospitalisation – initial or prolonged
+                                            </label><br>
+                                            <label class="radiobuttons ">
+                                                <input type="radio" name="Category" value="Disability/ incapacity">
+                                                <span class="checkmark"></span>Disability/ incapacity
+                                            </label><br>
+                                            <label class="radiobuttons ">
+                                                <input type="radio" name="Category" value="Required intervention">
+                                                <span class="checkmark"></span>Required intervention to prevent
+                                                permanent impairment
+                                            </label><br>
+                                            <label class="radiobuttons ">
+                                                <input type="radio" name="Category" value="Other">
+                                                <span class="checkmark"></span>Other
+                                            </label><br>
+                                            <label ><span class="">Other Details</span>
+                                                <input type=text name="Other_details" class=form-control />
+                                            </label>
+                                    </fieldset>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="questiongroup">
+                                    <label><span>6. Severity of serious adverse event:</span></label>
+                                    <fieldset class="">
+                                        <label><span class="">
+                                            <label class="radiobuttons ">
+                                                <input type="radio" name="Severity" value="Mild">
+                                                <span class="checkmark"></span>Mild
+                                            </label><br>
+                                            <label class="radiobuttons ">
+                                                <input type="radio" name="Severity" value="Moderate">
+                                                <span class="checkmark"></span>Moderate
+                                            </label><br>
+                                            <label class="radiobuttons ">
+                                                <input type="radio" name="Severity" value="Severe">
+                                                <span class="checkmark"></span>Severe
+                                            </label><br>
+                                    </fieldset>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="questiongroup">
+                                    <label><span>7. Relationship of event to intervention:</span></label>
+                                    <fieldset class="">
+                                        <label><span class="">
+                                            <label class="radiobuttons ">
+                                                <input type="radio" name="Relationship" value="Unrelated">
+                                                <span class="checkmark"></span>Unrelated (clearly not related to the intervention)
+                                            </label><br>
+                                            <label class="radiobuttons ">
+                                                <input type="radio" name="Relationship" value="Possible">
+                                                <span class="checkmark"></span>Possible (may be related to intervention)
+                                            </label><br>
+                                            <label class="radiobuttons ">
+                                                <input type="radio" name="Relationship" value="Probable">
+                                                <span class="checkmark"></span>Probable (likely to be related to intervention)
+                                            </label><br>
+                                            <label class="radiobuttons ">
+                                                <input type="radio" name="Relationship" value="Definite">
+                                                <span class="checkmark"></span>Definite (clearly related to intervention)
+                                            </label><br>
+                                    </fieldset>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="questiongroup">
+                                    <label>8. Was study intervention discontinued due to event? </label>
+                                    <fieldset class="">
+                                        <label class="radiobuttons ">
+                                            <input type="radio" name="Study_intervention_discontinued" value="Yes">
+                                            <span class="checkmark"></span>Yes</label>
+                                        <label class="radiobuttons ">
+                                            <input type="radio" name="Study_intervention_discontinued" value="No">
+                                            <span class="checkmark"></span>No</label>
+                                    </fieldset>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="questiongroup ">
+                                    <fieldset class="">
+                                        <label style="width:100%"><span class="">9. What medications or other steps were taken to treat the serious adverse event?</span>
+                                            <textarea class="form-control" name="Medications" placeholder=""></textarea>
+                                        </label><br>
+                                    </fieldset>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="questiongroup ">
+                                    <fieldset class="">
+                                        <label style="width:100%"><span class="">10. List any relevant tests, laboratory data, and history, including pre-existing medical conditions:</span>
+                                            <textarea class="form-control" name="Relevant_tests" placeholder=""></textarea>
+                                        </label><br>
+                                    </fieldset>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="questiongroup">
+                                    <label>11. Type of report: </label>
+                                    <fieldset class="">
+                                        <label class="radiobuttons ">
+                                            <input type="radio" name="Report_Type" value="Initial">
+                                            <span class="checkmark"></span>Initial
+                                        </label>
+                                        <label class="radiobuttons ">
+                                            <input type="radio" name="Report_Type" value="Follow-up">
+                                            <span class="checkmark"></span>Follow-up
+                                        </label>
+                                        <label class="radiobuttons ">
+                                                <input type="radio" name="Report_Type" value="Final">
+                                         <span class="checkmark"></span>Final
+                                        </label>
+                                    </fieldset>
+                                </div>
+                            </div>
+                            <button type="submit" id="submit__ID" class="btn btn-primary btn-lg">Submit</button>
+                            <div class="form-group">
+                                <div class="questiongroup p-2" style='background-color:indianred' >
+                                    <label>A Serious Adverse Event Report must be submitted to the Southern Adelaide Clinical Human Research
+                                        Ethics Committee via the Office for Research within 72 hours of the event becoming known to the local
+                                        investigator, and CC’d to Woll and Syd governances if it concerns that site.</label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="" >
+                                    <label><span style='font-size:1.0rem!important'>Office for Research SAHLN:<br></span>
+                                        (08) 8204 6453<br>
+                                        Health.SALHNOfficeforResearch@sa.gov.au<br>
+                                    </label><br>
+                                    <label><span style='font-size:1.0rem!important'>NSLHD (Sydney) governance:<br></span>
+                                        (02) 9926 4589<br>
+                                        NSLHD-Research@health.nsw.gov.au<br>
+                                    </label><br>
+                                    <label><span style='font-size:1.0rem!important'>Illawarra Shoalhaven LHD (Woll) governance:<br></span>
+                                        (02) 4253 4876 (Kristy Pierce, Research Governance Officer)<br>
+                                        Kristy.Pierce@sesiahs.health.nsw.gov.au<br>
+                                    </label><br>
+                                    <label><span style='font-size:1.0rem!important'>Perth site: <br></span>
+                                        Please report SAE to the SCG and OPHC
+                                        ethics committee and forward all documents and
+                                        acknowledgements to the trial manager for
+                                        notification to the overseeing SALHN HREC.
+                                    </label><br>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    VmInclude:__COMPONENT__/m/modal.01.html
+    <script>
+        function F__ID(){
+            //-------------------------------------
+            VmInclude:'__COMPONENT__/f/form.01.js'
+            VmInclude:__CURRENT_PATH__/shared-form.js
+            //-------------------------------------
+            m.old_load=m.load;
+            m.load=function(){
+                m.old_load();
+                m.set_file_link("File_Name");
+            }
+
+        }
+    </script>
+    <style>
+        #D__ID .mt-95 {
+        max-width:600px;
+    }
+        VmInclude:__CURRENT_PATH__/wappsystem-form.css
+    </style>
+</div>

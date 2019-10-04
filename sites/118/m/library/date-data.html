@@ -1,0 +1,25 @@
+<section>
+    VmInclude:__COMPONENT__/g/grid.01.html
+</section>
+<script>
+    function F__ID(){
+        //-------------------------------------
+        VmInclude:__COMPONENT__/g/grid.01.js
+        //-------------------------------------
+        var fields="First_name,Last_name,DOB";
+        m.fields="_Form,"+fields+",Submit_date,Submitted_by,_Delete";
+        m.form_fields=fields;
+        //-------------------------------------
+        m.cell_render=function(records,I,field,td){
+            switch(field){
+                case 'DOB':
+                    td.html($vm.date_to_ddmmyyyy(records[I].Data[field]));
+                    break;
+            }
+        }
+        //-------------------------------------
+    }
+</script>
+<style>
+    VmInclude:__COMPONENT__/g/grid.01.css
+</style>

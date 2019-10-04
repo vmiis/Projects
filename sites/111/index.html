@@ -13,44 +13,40 @@
         <div id=header></div>
         <div id=content></div>
         <div id=footer></div>
-        <div id=system></div>
+        <div id=app style='display:none'></div>
         <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-3.3.1.min.js"></script>
     </body>
     <script boot-up>
         //------------------------------------
-        $vm={};$vm.ver=[0.10,0.10]; //increase ver[0] if any module changed, increase ver[1] if vm.js changed
+        $vm={};$vm.ver=[0.48,0.48]; //increase ver[0] if any module changed, increase ver[1] if vm.js changed
         $vm.debug=1;
         //------------------------------------
         //setup modules location
         $vm.hosting_path=window.location.href.substring(0, window.location.href.split('?')[0].lastIndexOf('/'));
-        if(window.location.href.substring(0,5)=="file:") $vm.hosting_path="https://wappsystem.spardac-screening.com.au/";
         if(window.location.hostname=='127.0.0.1' || window.location.hostname=='localhost') $vm.localhost=true;
-        $vm.m_path='https://wappsystem.spardac-screening.com.au/'; if($vm.localhost==true) $vm.m_path='http://127.0.0.1:8000/wappsystem/spardac-screening'; 
         //------------------------------------
         //where are your start modules
         $vm.start_modules=[
-            "$H/frame.html",  //app frame work
+            "$H/0/frame.html",  //app frame work
         ]
         for(i in $vm.start_modules) $vm.start_modules[i]=$vm.start_modules[i].replace('$H',$vm.hosting_path);
         //------------------------------------
         //modules used immediately
         $vm.module_list={
             //you can add modules here directly
-            "home":	        {url:"$H/home.html",router:1},
-            "frame":	    {url:"$H/frame.html",sys:1},
-            "app":	        {url:"$H/app.html"},
-            "header":	    {url:"$H/header.html"},
-            "footer":	    {url:"$H/footer.html"},
-            "not_elig":     {url:"$H/modules/not_elig.html"},
-            "no-thanks":    {url:"$H/modules/no-thanks.html"},
+            "home":	        {url:"$H/0/home.html",router:1},
+            "app":	        {url:"$H/0/app.html"},
+            "header":	    {url:"$H/0/header.html"},
+            "footer":	    {url:"$H/0/footer.html"},
+            "not_elig":     {url:"$H/m/not_elig.html"},
+            "no-thanks":    {url:"$H/m/no-thanks.html"},
         };
         for(p in $vm.module_list) $vm.module_list[p].url=$vm.module_list[p].url.replace('$H',$vm.hosting_path);
-        //for(p in $vm.module_list) $vm.module_list[p].url=$vm.module_list[p].url.replace('$M',$vm.m_path);
         //------------------------------------
         //all other modules, used on demand 
         $vm.app_modules=[
             //you can add a js file that will add mmodules to the $vm.module_list
-            "$H/components/spardac-screening.js",
+            "$H/module-list.js",
         ]
         for(i in $vm.app_modules) $vm.app_modules[i]=$vm.app_modules[i].replace('$H',$vm.hosting_path);
         //------------------------------------
@@ -58,7 +54,7 @@
         $vm.start=function(){
             $vm.load_component('header',$vm.root_layout_header,{});
             $vm.load_component('footer',$vm.root_layout_footer,{});
-            $vm.load_component('app',$vm.root_layout_system,{});
+            $vm.load_component('app',$vm.root_layout_app,{});
         }
         //------------------------------------
         
@@ -72,7 +68,7 @@
         $vm.root_layout_header='header';
         $vm.root_layout_content_slot='content'
         $vm.root_layout_footer='footer';
-        $vm.root_layout_system='system';
+        $vm.root_layout_app='app';
         //---------------------------------------------
         $vm._I=0; $vm._N=$vm.start_modules.length;
         $vm._boot=function(){
@@ -103,13 +99,13 @@
                     localStorage.setItem(apppath+url+"txt",new_txt);
                     localStorage.setItem(apppath+url+"ver",$vm.ver[0]);
                     console.log('loading from url, done at '+(new Date().getTime()-$vm.start_time)+'ms. '+url );
-                    $('#system').append(new_txt.replace(/__ID/g,'_'+(index+1)));
+                    $('#content').append(new_txt.replace(/__ID/g,'_'+(index+1)));
                     $vm._boot();
                 },'text');
             }
             else{
                 console.log('loading from storage. done at '+(new Date().getTime()-$vm.start_time)+'ms. '+url+' '+ver+'/'+$vm.ver[0]);
-                $('#system').append(txt.replace(/__ID/g,'_'+(index+1)));
+                $('#content').append(txt.replace(/__ID/g,'_'+(index+1)));
                 $vm._boot();
             }
         })

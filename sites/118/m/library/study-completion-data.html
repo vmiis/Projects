@@ -1,0 +1,17 @@
+<section>
+    VmInclude:__CURRENT_PATH__/grid.v1h.html
+</section>
+<script>
+    function F__ID(){
+        //-------------------------------------
+        VmInclude:__COMPONENT__/g/grid.01.js
+        VmInclude:__CURRENT_PATH__/shared-data.js
+        //-------------------------------------
+        var fields="Date_of_completion_withdrawal,Completed,Withdrawal_reason,Withdrawal_unhappy,Withdrawal_other,Data_use,Contact_other_studies";
+        m.fields="_Form,_Lock,_Status,_Notes,_Participant_ID,Participant,Intervention_Group,"+fields+",Submit_date,Submitted_by,_Delete";
+        //-------------------------------------
+    }
+</script>
+<style>
+    VmInclude:__COMPONENT__/g/grid.01.css
+</style>

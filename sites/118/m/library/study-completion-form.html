@@ -1,0 +1,211 @@
+<div id=D__ID>
+    <!--third html start -->
+    <div class="container mt-95 mb-3">
+        <div class="row">
+            <!-- form container start -->
+            <div class="col-12 col-lg-12 col-md-12 col-sm-12 mx-auto formbox">
+                <div class="row">
+                    <div class="col-12">
+                        <!-- form start -->
+                        <form id="F__ID">
+                            <h3 id=title__ID></h3>
+                            <!-- participant part for all tsak forms -------------------->
+                            <div id="participant_div__ID">
+                                <div class="form-group">
+                                    <fieldset class="subquestions">
+                                        <label><span class="">Participant</span>
+                                            <input type=text name="Participant" class=form-control id=Participant__ID
+                                                data-id="Participant" />
+                                        </label><br>
+                                        <label><span class="">Participant ID</span>
+                                            <input type=text name="Participant_uid" class=form-control readonly />
+                                        </label>
+                                    </fieldset>
+                                </div>
+                            </div>
+                            <!-- form group -->
+                            <div class="form-group">
+                                <h4 style="background-color: lightgrey;">&nbsp;&nbsp;1. Study Completion/ Withdrawal</h4>
+                            </div>
+                            <div class="form-group">
+                                <div class="questiongroup ">
+                                    <fieldset class="">
+                                        <label><span class="">1.1 Date of Study Completion/ Withdrawal:</span>
+                                            <input class="form-control" type="date"
+                                                name="Date_of_completion_withdrawal">
+                                        </label><br>
+                                    </fieldset>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="questiongroup">
+                                    <label>1.2 Did the participant complete the study?</label>
+                                    <fieldset class="">
+                                        <label class="radiobuttons ">
+                                            <input type="radio" name="Completed" value="Y">
+                                            <span class="checkmark"></span>Yes</label>
+                                        <label class="radiobuttons ">
+                                            <input type="radio" name="Completed" value="N">
+                                            <span class="checkmark"></span>No </label>
+                                    </fieldset>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="questiongroup">
+                                    <label>If ‘Yes’, go to Question 1.5. If ‘No’, complete Questions 1.3 and
+                                        1.4.</label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="questiongroup">
+                                    <label>1.3 Reason for withdrawal:</label>
+                                    <fieldset class=" ">
+                                        <label class="radiobuttons ">
+                                            <input type="radio" name="Withdrawal_reason" value="Adverse Event">
+                                            <span class="checkmark"></span>Adverse Event <i>(complete Adverse Event
+                                                form)</i>
+                                        </label><br>
+                                        <label class="radiobuttons ">
+                                            <input type="radio" name="Withdrawal_reason" value="Serious Adverse Event">
+                                            <span class="checkmark"></span>Serious Adverse Event <i>(complete Serious
+                                                Adverse Event form)</i>
+                                        </label><br>
+                                        <label class="radiobuttons ">
+                                            <input type="radio" name="Withdrawal_reason"
+                                                value="Protocol non-compliance">
+                                            <span class="checkmark"></span>Protocol non-compliance
+                                        </label><br>
+                                        <label class="radiobuttons ">
+                                            <input type="radio" name="Withdrawal_reason" value="Lost to follow-up">
+                                            <span class="checkmark"></span>Lost to follow-up
+                                        </label><br>
+                                        <label class="radiobuttons ">
+                                            <input type="radio" name="Withdrawal_reason"
+                                                value="Withdrew consent – too busy">
+                                            <span class="checkmark"></span>Withdrew consent – too busy
+                                        </label><br>
+                                        <label class="radiobuttons ">
+                                            <input type="radio" name="Withdrawal_reason"
+                                                value="Withdrew consent – not interested in participating in research">
+                                            <span class="checkmark"></span>Withdrew consent – not interested in
+                                            participating in research
+                                        </label><br>
+                                        <label class="radiobuttons ">
+                                            <input type="radio" name="Withdrawal_reason"
+                                                value="Withdrew consent – travel (geographical)">
+                                            <span class="checkmark"></span>Withdrew consent – travel (geographical)
+                                        </label><br>
+                                        <label class="radiobuttons ">
+                                            <input type="radio" name="Withdrawal_reason"
+                                                value="Withdrew consent – cost">
+                                            <span class="checkmark"></span>Withdrew consent – cost
+                                        </label><br>
+                                        <label class="radiobuttons ">
+                                            <input type="radio" name="Withdrawal_reason" value="Investigator decision">
+                                            <span class="checkmark"></span>Investigator decision
+                                        </label><br>
+                                        <label class="radiobuttons ">
+                                            <input type="radio" name="Withdrawal_reason" value="Unhappy with study">
+                                            <span class="checkmark"></span>Unhappy with study
+                                        </label><br>
+                                        <label class="pl-4" style="width:100%"><span class="">If possible, specify reason</span>
+                                            <textarea class="form-control" name="Withdrawal_unhappy"></textarea>
+                                        </label><br>
+                                        <label class="radiobuttons ">
+                                            <input type="radio" name="Withdrawal_reason" value="Death">
+                                            <span class="checkmark"></span>Death <i>(complete Serious Adverse Event
+                                                form)</i>
+                                        </label><br>
+                                        <label class="radiobuttons ">
+                                            <input type="radio" name="Withdrawal_reason" value="Other">
+                                            <span class="checkmark"></span>Other
+                                        </label><br>
+                                        <label class="pl-4" style="width:100%"><span class="">specify</span>
+                                            <textarea class="form-control" name="Withdrawal_other"></textarea>
+                                        </label><br>
+                                    </fieldset>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="questiongroup">
+                                    <label>1.4 If the participant has chosen to withdraw from the study, do we have permission to use the data we have thus far collected?</label>
+                                    <fieldset class="">
+                                        <label class="radiobuttons ">
+                                            <input type="radio" name="Data_use" value="Y">
+                                            <span class="checkmark"></span>Yes</label>
+                                        <label class="radiobuttons ">
+                                            <input type="radio" name="Data_use" value="N">
+                                            <span class="checkmark"></span>No </label>
+                                    </fieldset>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="questiongroup">
+                                    <label>1.5 Does the participant give permission to be contacted in the future about other sleep research they might be eligible for?</label>
+                                    <fieldset class="">
+                                        <label class="radiobuttons ">
+                                            <input type="radio" name="Contact_other_studies" value="Y">
+                                            <span class="checkmark"></span>Yes</label>
+                                        <label class="radiobuttons ">
+                                            <input type="radio" name="Contact_other_studies" value="N">
+                                            <span class="checkmark"></span>No </label>
+                                    </fieldset>
+                                </div>
+                            </div>
+                            <button type="submit" id="submit__ID" class="btn btn-primary btn-lg">Submit</button>
+                            <div class="form-group">
+                                <div class="">
+                                    <fieldset class="">
+                                        <label class="radiobuttons" >
+                                        <input type="radio" name="_status" value="#FF0000" >
+                                        <span class="checkmark" style="background-color:#FF0000"></span></label>
+                                        <label class="radiobuttons">
+                                        <input type="radio" name="_status" value="#FFCC00">
+                                        <span class="checkmark" style="background-color:#FFCC00"></span></label>
+                                        <label class="radiobuttons">
+                                        <input type="radio" name="_status" value="#00FF00">
+                                        <span class="checkmark" style="background-color:#00FF00"></span></label>
+                                        <label class="radiobuttons">
+                                        <input type="radio" name="_status" value="">
+                                        <span class="checkmark" style="background-color:#C9C9C9"></span></label>
+                                    </fieldset>
+                                    <label ><br><span>Modify Status</span><p class="small font-italic text-muted mt-1">If you are not happy with the default status change it here.<br>Restore default click "grey" </p></label>
+                                </div>
+                            </div>    
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        function F__ID() {
+            //-------------------------------------
+            VmInclude: '__COMPONENT__/f/form.01.js'
+            VmInclude: __CURRENT_PATH__/shared-form.js
+            //-------------------------------------
+            var load2 = m.load;
+            m.load = function () {
+                load2();
+                $('#title__ID').text($vm.module_list[$vm.vm['__ID'].name].task_name);
+                /*$('#D__ID input, #D__ID select, #D__ID textarea').each(
+                    function(index){  
+                        var input = $(this);
+                        console.log(input.attr('name'));
+                    }
+                );*/
+            }
+            //-------------------------------------
+        }
+    </script>
+    <style>
+        #D__ID .mt-95 {
+            max-width: 700px;
+        }
+
+        VmInclude:__CURRENT_PATH__/wappsystem-form.css
+        #D__ID .tight {
+           margin-right: 0!important;
+        }
+    </style>
+</div>

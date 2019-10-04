@@ -1,0 +1,87 @@
+<div id=D__ID>
+	<!--third html start -->
+	<div class="container mt-95 mb-3 text-left">
+		<div class="row">
+			<!-- form container start -->
+			<div class="col-12 col-lg-7 col-md-11 col-sm-12 mx-auto formbox">
+				<div class="row">
+					<div class="col-12">
+						<!-- form start -->
+						<form id=F__ID>
+							<h3>Ready to go</h3>
+							<!-- form group -->
+							<div class="form-group">
+								<fieldset class="subquestions">
+									<h4>
+										<p>Hi <label style='font-size:1.2em' id=first_name__ID></label></p>
+										<p>Thanks for completing your first set of questionnaires. You’re now
+											ready to download SleepFix
+											and begin the program. </p>
+										<p>To download Sleepfix, please visit the following URL using your
+											phone.</p>
+											<p><a href="https://play.google.com/store/apps/details?id=au.com.sydney.poscomp.sleepfix"
+											target="_blank">For Android cick here</a></p>
+											<p><a href="https://itunes.apple.com/au/app/sleepfix/id1429430136?mt=8"
+											target="_blank">For iOS users click here:</a></p>
+										<p> Your unique access code is <label style='font-size:1.2em' id=access__ID></label>. You will
+											be prompted to enter this
+											when creating an account in the SleepFix app.</p>
+										<p> Please click <a id=study_page__ID style="cursor:pointer" ><u>here</u></a> to return back to the study homepage and follow
+											the instructions for set
+											up.</p>
+										<p> If you have any questions or are experiencing technical
+											difficulties, please contact us on
+											02 9114 0481 or Woolcock.Sleepfix@sydney.edu.au.</p>
+										<p> Kind regards,</p>
+										<p> The SleepFix Research Team</p>
+										<p> 02 9114 0481</p>
+									</h4>
+								</fieldset>
+							</div>
+							<div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script>
+		function F__ID() {
+            //-------------------------------------
+            VmInclude: __COMPONENT__/f/form.01.js
+            VmInclude: __CURRENT_PATH__/shared-form.js
+			//-------------------------------------
+			$('#D__ID').css('min-height', $vm.min_height);
+			//--------------------------------------------------------
+            m.default_load = m.load;
+            m.load = function () {
+                m.default_load();
+                $('#D__ID').scrollTop(0);
+				$(window).scrollTop(0);
+				var p_uid=m.input.puid;
+				var qry={I2:p_uid};
+				var tb=$vm.module_list['contact-form'].Table;
+				$vm.request({cmd:"find-s",table:tb,query:qry,options:{}},function(res){
+					if(res.result.length!=0) {
+						$('#first_name__ID').text(res.result[0].Data.first_name);
+						$('#access__ID').text(res.result[0].Data.access_code);
+					}
+				})
+			}
+			$('#study_page__ID').on('click',function(){
+				$vm.load_module_v2(m.prefix + 'sleepfix-study-page', '', {});
+			})
+		}
+	</script>
+	<style>
+		#D__ID {
+			height: 100%;
+			animation: vm_module_fadein 1.0s;
+			/*background-color: #fff;*/
+			overflow: auto;
+		}
+
+		VmInclude:__CURRENT_PATH__/wappsystem-form.css
+	</style>
+</div>

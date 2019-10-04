@@ -1,0 +1,17 @@
+<section>
+    VmInclude:__CURRENT_PATH__/grid.v1h.html
+</section>
+<script>
+    function F__ID(){
+        //-------------------------------------
+        VmInclude:__COMPONENT__/g/grid.01.js
+        VmInclude:__CURRENT_PATH__/shared-data.js
+        //-------------------------------------
+        var fields="Date_of_review,Physician,Location,Continuing_study,Adverse_event,Review_type,Physician_notes,First_BP_systolic,First_BP_diastolic,First_HR,First_time,Second_BP_systolic,Second_BP_diastolic,Second_HR,Second_time,Third_BP_systolic,Third_BP_diastolic,Third_HR,Third_time,weight,height,bmi,neck,waist,hip,waist_hip_ratio,CPAP_Download,CPAP_Download_start_date,CPAP_Download_end_date,CPAP_usage,CPAP_AHI,Date_of_PSG,ahi_total,ahi_non_supine,ahi_supine,arousal_index,apnoea_index,N1_duration,N1_duration_percentage,N2_duration,N2_duration_percentage,N3_duration,N3_duration_percentage,R_duration,R_duration_percentage,total_sleep_time,non_supine_sleep_time,supine_sleep_time,sleep_efficiency,odi_3,odi_4,Lowest_SaO2_NREM,Lowest_SaO2_REM,SaO2_lt_90_non_supine,SaO2_lt_90_supine,average_snoring_sound_level,snore_level_40,snore_level_50,snore_level_60,snore_level_70,snore_level_80,snore_level_total,current_medication,new_medical_conditions,medical_conditions,ongoing_complications,sleep_health,medical_conditions,No_recommendations,Review_ENT,Review_sleep_psychologist,Review_sleep_physician,Other_recommendations,Other_recommendations_specify,Encouraged_further_assessment,Further_assessment_reason,Clinically_indicated_explain";
+        m.fields="_Form,_Lock,_Status,_Notes,_Participant_ID,Participant,Intervention_Group,"+fields+",Submit_date,Submitted_by,_Delete";
+        //-------------------------------------
+    }
+</script>
+<style>
+    VmInclude:__COMPONENT__/g/grid.01.css
+</style>

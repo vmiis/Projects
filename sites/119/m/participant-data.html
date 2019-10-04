@@ -1,0 +1,69 @@
+<div id=D__ID>
+    <div>
+        VmInclude:__COMPONENT__/g/grid.01.html
+    </div>
+    <script>
+        function F__ID(){
+            //-------------------------------------
+            VmInclude:__COMPONENT__/g/grid.01.js       
+            //-------------------------------------
+            var fields="Participant ID|UID,GP,_Data_Entry,_Quest,_Quest_w6,_Login_ID,_Password";
+            m.fields="_Form,"+fields+",Submit_date,Submitted_by,_Delete";
+            m.fields_e="Participant ID|UID,GP,_Data_Entry,_Quest,_Login_ID,_Password"
+            //-------------------------------------
+            //$vm.url_$B=$vm.hosting_path.replace('cansleep','cansleep-online-questionnaire');
+            //------------------------------------
+            //console.log(JSON.stringify(m))
+            m.cell_render=function(records,I,field,td,set_value,source){
+                switch(field){
+                    case '_Data_Entry':
+                        td.html("<u style='cursor:pointer'>Data Entry</u>");
+                        td.find('u').on('click',function(){
+    						$vm.load_module(m.panel_child,'',{record:records[I]});
+                        });
+                        break;
+                    case '_Setup':
+                        td.html("<u style='cursor:pointer'>Login Setup</u>");
+                        td.find('u').on('click',function(){
+    						$vm.load_module(m.online_questionnaire_setup,'',{record:records[I]});
+                        });
+                        break;
+                    case '_Quest':
+                        td.html("<u style='cursor:pointer'>Online Questionnaire</u>");
+                        td.find('u').on('click',function(){
+                            var db=""; if(window.location.toString().indexOf('tb=demo')!=-1) db="&tb=demo";
+                            var d="";  if(window.location.toString().indexOf('_d=1')!=-1) d="&_d=1";
+                            var p="";  if(window.location.toString().indexOf('_p=1')!=-1) p="&_p=1";
+                            var u="?username="+records[I].UID+"&password="+records[I].Data._Password;
+                            var q_url=$vm.module_list[m.online_questionnaire].url+u+db+d+p;
+    						window.open(q_url);
+                        });
+                        break;
+                    case '_Quest_w6':
+                    td.html("<u style='cursor:pointer'>Online Questionnaire W6</u>");
+                    td.find('u').on('click',function(){
+                        var db=""; if(window.location.toString().indexOf('tb=demo')!=-1) db="&tb=demo";
+                        var d="";  if(window.location.toString().indexOf('_d=1')!=-1) d="&_d=1";
+                        var p="";  if(window.location.toString().indexOf('_p=1')!=-1) p="&_p=1";
+                        var u="?username="+records[I].UID+"&password="+records[I].Data._Password;
+                        var q_url=$vm.module_list[m.online_questionnaire_w6].url+u+db+d+p;
+                        window.open(q_url);
+                    });
+                        break;
+                    case '_Login_ID':
+                        //td.html(records[I].UID+"-"+m.Table);
+                        td.html(records[I].UID);
+                        break;
+                }
+            }
+            //-------------------------------------
+            m.before_submit=function(record,dbv){
+                return true;
+            }
+            //-------------------------------------
+        }
+    </script>
+    <style>
+        VmInclude:__COMPONENT__/g/grid.01.css
+    </style>
+</div>

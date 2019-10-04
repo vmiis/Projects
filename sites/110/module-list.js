@@ -74,6 +74,8 @@
         "gad7-form-spardac":                    {url:"$H/m/library/gad7-form.html",Table:"gad7-spardac"},
         "fosq-data-spardac":                    {url:"$H/m/library/fosq-data.html",Table:"fosq-spardac",form_module:"fosq-form-spardac"},
         "fosq-form-spardac":                    {url:"$H/m/library/fosq-form.html",Table:"fosq-spardac"},
+        "fosq30-data-spardac":                  {url:"$H/m/library/fosq30-data.html",Table:"fosq30-spardac",form_module:"fosq30-form-spardac"},
+        "fosq30-form-spardac":                  {url:"$H/m/library/fosq30-form.html",Table:"fosq30-spardac"},
         "fss-data-spardac":                     {url:"$H/m/library/fss-data.html",Table:"fss-spardac",form_module:"fss-form-spardac"},
         "fss-form-spardac":                     {url:"$H/m/library/fss-form.html",Table:"fss-spardac"},
         "isi-data-spardac":                     {url:"$H/m/library/isi-data.html",Table:"isi-spardac",form_module:"isi-form-spardac"},
@@ -180,6 +182,8 @@
         "gds-form-spardac":                     {url:"$H/m/library/gds-form.html",Table:"gds-spardac"},
         "ispq-data-spardac":                    {url:"$H/m/library/ispq-data.html",Table:"ispq-spardac",form_module:"ispq-form-spardac"},
         "ispq-form-spardac":                    {url:"$H/m/library/ispq-form.html",Table:"ispq-spardac"},
+        "tipi-data-spardac":                    {url:"$H/m/library/tipi-data.html",Table:"tipi-spardac",form_module:"tipi-form-spardac"},
+        "tipi-form-spardac":                    {url:"$H/m/library/tipi-form.html",Table:"tipi-spardac"},
     }
     for(p in modules){
         $vm.module_list[p]=modules[p];

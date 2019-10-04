@@ -1,0 +1,61 @@
+<div id=D__ID></d>
+	<div id=form_container__ID>
+		<div id=header__ID>
+			Participant
+		</div>
+		<form id=F__ID>
+			<div class="container">
+				<div class='row row__ID' id=row_participant__ID>
+					<div class="col">
+						<span>Participant ID</span>
+						<input type=text class=form-control id=record__ID readonly >
+					</div>
+				</div>
+				<div class='row row__ID'>
+					<div class="col">
+						<span>GP</span>
+						<input type=text class=form-control name=GP>
+					</div>
+				</div>
+				<div class='row row__ID'>
+					<div class="col">
+						<span>Password</span>
+						<input type=text class=form-control name=_Password>
+					</div>
+				</div>
+				<div class="row">
+					<div class=col>
+						<button id=submit__ID type="submit" class="btn btn-secondary">Submit</button>
+					</div>
+				</div>
+			</div>
+		</form>
+	</div>
+	<script>
+		function F__ID(){
+			//-------------------------------------
+			VmInclude:__COMPONENT__/f/form.01.js
+			//-------------------------------------
+			var load=m.load;
+			m.load=function(){
+				load();
+				if(m.input.record==undefined){
+					$('#row_participant__ID').hide()
+					$('#F__ID input[name=_Password').val($vm.vm_password(8,false));
+					$('#F__ID textarea[name=List]').val('screening-form,t2-form');
+				}
+				else{
+					$('#row_participant__ID').show()
+					$('#record__ID').val(m.input.record.UID)
+				}
+			}
+			//-------------------------------------
+		}
+	</script>
+	<style>
+		VmInclude:__COMPONENT__/f/form.01.css
+		#form_container__ID{
+            max-width:600px;
+        }
+	</style>
+</div>

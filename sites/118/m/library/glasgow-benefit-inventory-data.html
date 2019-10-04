@@ -1,0 +1,17 @@
+<section>
+  VmInclude:__CURRENT_PATH__/grid.v1h.html
+</section>
+<script>
+  function F__ID(){
+      //-------------------------------------
+      VmInclude:__COMPONENT__/g/grid.01.js
+      VmInclude:__CURRENT_PATH__/shared-data.js
+      //-------------------------------------
+      var fields="GBS_1,GBS_2,GBS_3,GBS_4,GBS_5,GBS_6,GBS_7,GBS_8,GBS_9,GBS_10,GBS_11,GBS_12,GBS_13,GBS_14,GBS_15,GBS_16,GBS_17,GBS_18,GBS_Total,GBS_General,GBS_Social,GBS_Physical";
+      m.fields="_Form,_Lock,_Status,_Notes,_Participant_ID,Participant,Intervention_Group,"+fields+",Submit_date,Submitted_by,_Delete";
+      //-------------------------------------
+  }
+</script>
+<style>
+  VmInclude:__COMPONENT__/g/grid.01.css
+</style>

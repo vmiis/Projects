@@ -1,0 +1,56 @@
+<div id=D__ID>
+	<div id=page__ID>
+		<div class="container-fluid" style='max-width:900px'>
+			<div class="text-center panel__ID">
+				<br>
+				<br>
+				<br>
+				<h1>SleepFix GP</h1>
+                <h6>Management Page</h6>
+				<hr style='border-top:1px solid #f0f0f0;'></hr>
+				<p>
+					<a id=get_in__ID class='btn btn-success' >Dashboard</a>
+				</p>
+				<br>
+			</div>
+		</div>
+	</div>
+	<script>
+		$('#get_in__ID').on('click',function(){
+			$vm.load_module('m1','',{})
+		})
+	</script>
+	<style>
+		#D__ID{
+			height:100%;
+	        overflow:auto;
+			animation: vm_module_fadein 1.0s, D__ID 3s;
+	        padding-bottom:10%;
+		}
+		#page__ID{
+			height:100%;
+			display: flex;
+			align-items: center;
+		}
+		.panel__ID{
+			color:#fff;
+			background: rgba(0, 0, 0, 0);
+			border-radius: 25px;
+			padding:10px;
+		}
+		@keyframes D__ID {
+			from {padding-top: 300px;}
+			to {padding-top: 0px;}
+		}
+	    @media screen and (max-width: 992px) {
+	        #D__ID{
+	            animation: vm_module_fadein 1.0s;
+	        }
+	    }
+	</style>
+	<script>
+		function F__ID(){
+			$vm['home_ready']=1;
+		}
+	</script>
+</div>

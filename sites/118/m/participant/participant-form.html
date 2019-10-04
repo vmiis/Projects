@@ -1,0 +1,163 @@
+<div id=D__ID>
+	<div class="container mt-95 mb-3">
+		<div class="row">
+			<!-- form container start -->
+			<div class="col-12 col-lg-12 col-md-12 col-sm-12 mx-auto formbox">
+				<div class="row">
+					<div class="col-12">
+						<!-- form start -->
+						<form id=F__ID>
+							<h3>Participant's Details</h3>
+							<div class='row px-4'>
+								<div class="col-sm-12 col-lg-6 row_participant__ID">
+									<label class=''><span class=''>Participant ID</span>
+										<input type=text class=form-control id=record__ID readonly>
+									</label>
+								</div>
+								<div class="col-sm-12 col-lg-6">
+									<label class=''><span class=''>Randomisation number from trial</span>
+										<input type=text class=form-control name=Randomisation_number>
+									</label>
+								</div>
+							</div>
+							<div class='row px-4'>
+								<div class="form-group col-sm-12 col-lg-4">
+									<div class="questiongroup">
+										<label> Intervention Group</label>
+										<fieldset class="">
+											<label class="radiobuttons ">
+												<input type="radio" name="Intervention_Group" value="1">
+												<span class="checkmark"></span>Surgery</label>
+											<label class="radiobuttons ">
+												<input type="radio" name="Intervention_Group" value="2">
+												<span class="checkmark"></span>EMC </label>
+										</fieldset>
+									</div>
+								</div>
+							<div class='row px-4'>
+								<div class="col-sm-12 col-lg-4">
+									<label class=''><span class=''>Initials</span>
+										<input type=text class=form-control name=Initials>
+									</label>
+								</div>
+								<div class="col-sm-12 col-lg-4">
+									<label class=''><span class=''>DOB</span>
+										<input type=date class=form-control name=DOB>
+									</label>
+								</div>
+								<div class="col-sm-12 col-lg-4 ">
+									<label class=''><span class=''>Gender</span>
+										<select class=form-control name=Gender>
+											<option value=''>---</option>
+											<option>Male</option>
+											<option>Female</option>
+										</select>
+									</label>
+								</div>
+							</div>
+							<div class='row px-4'>
+								<div class="form-group col-sm-12 col-lg-4">
+									<div class="questiongroup">
+										<label>Participant contactable?</label>
+										<fieldset class="">
+											<label class="radiobuttons ">
+												<input type="radio" name="Contactable" value="Y">
+												<span class="checkmark"></span>Yes</label>
+											<label class="radiobuttons ">
+												<input type="radio" name="Contactable" value="N">
+												<span class="checkmark"></span>No </label>
+										</fieldset>
+									</div>
+								</div>
+								<div class="form-group col-sm-12 col-lg-8">
+									<div class="questiongroup ">
+										<fieldset class="">
+											<label><span class="">If ‘No’, give a reason if possible, e.g. participant deceased:
+												</span>
+												<textarea class="form-control" name="Reason_not_contacable"></textarea>
+											</label><br>
+										</fieldset>
+									</div>
+								</div>
+							</div>
+							<div class='row px-4'>
+								<div class="col-sm-12 col-lg-6 ">
+									<label class=''><span class=''>Password</span>
+										<input type=text class=form-control name=_Password>
+									</label>
+								</div>
+								<div class="col-sm-12 col-lg-6">
+								</div>
+							</div>
+<!--
+							<div class='row px-4'>
+								<div class="col-sm-12 col-lg-6 row_participant__ID">
+									<label class=''><span class=''>Randomisation Number</span>
+										<input type=text class=form-control name=Randomisation_Number readonly placeholder='click here to randomise'>
+									</label>
+								</div>
+								<div class="col-sm-12 col-lg-6 row_participant__ID">
+									<label class=''><span class=''>Randomised by</span>
+										<input type=text class=form-control name=Randomised_by readonly>
+									</label>
+								</div>
+							</div>
+-->							
+							<button type="submit" id="submit__ID" class="btn btn-primary btn-lg">Submit</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script>
+		function F__ID() {
+			//-------------------------------------
+			VmInclude: __COMPONENT__/f/form.01.js
+			//-------------------------------------
+			var load = m.load;
+			m.load = function () {
+				load();
+				if (m.input.record == undefined) {
+					$('.row_participant__ID').hide()
+					$('#F__ID input[name=_Password').val($vm.vm_password(8, false));
+				}
+				else {
+					$('.row_participant__ID').show()
+					$('#record__ID').val(m.input.record.UID)
+				}
+			}
+			//-------------------------------------
+			$('#F__ID input[name=Randomisation_Number]').on('click', function () {
+				var I1 = $('#F__ID input[name=Randomisation_Number').val();
+				if (I1 == '') {
+					$vm.request({ cmd: "find", table: m.Table, sort: { I1: -1 }, skip: 0, limit: 1 }, function (res) {
+						if (res.sys.permission == false) {
+							$vm.alert("No permission. Private database table, ask the table's owner for permissions.");
+							return;
+						}
+						var max_I1 = 0;
+						if (res.result.length > 0) {
+							if (res.result[0].I1 !== undefined) max_I1 = res.result[0].I1
+						}
+						max_I1++;
+						$('#F__ID input[name=Randomisation_Number').val(max_I1);
+						$('#F__ID input[name=Randomised_by').val($vm.user_name);
+					})
+				}
+			})
+			//-------------------------------------
+			m.before_submit = function (data, index) {
+				var I1 = $('#F__ID input[name=Randomisation_Number').val(); if (I1 != '' && I1 != '-') index.I1 = parseInt(I1);
+			}
+			//-------------------------------------
+		}
+	</script>
+	<style>
+		#D__ID .mt-95 {
+			max-width: 800px;
+		}
+
+		VmInclude:__CURRENT_PATH__/../../library/wappsystem-form.css
+	</style>
+</div>

@@ -1,0 +1,30 @@
+
+<section>
+    VmInclude:__CURRENT_PATH__/grid.v1h.html
+</section>
+<script>
+    function F__ID(){
+        //-------------------------------------
+        VmInclude:__COMPONENT__/g/grid.01.js
+        VmInclude:__CURRENT_PATH__/shared-data.js
+        //-------------------------------------
+        $('#title__ID').text('Serious Adverse Event')
+        //-------------------------------------
+        var fields="Investigator,Location,SAE_onset_date,SAE_stop_date,SAE,Age,Description,Category,Death_date,Other_details,Severity,Relationship,Study_intervention_discontinued,Medications,Relevant_tests";
+        m.fields="_Form,_Lock,_Status,_Notes,_Participant_ID,Participant,Intervention_Group,"+fields+",Submit_date,Submitted_by,_Delete";
+        //-------------------------------------
+        m.cell_render=function(records,I,field,td){
+            switch(field){
+                case 'SAE_onset_date':
+                case 'SAE_stop_date':
+                case 'Death_date':
+                    td.html($vm.date_to_ddmmyyyy(records[I].Data[field]));
+                    break;
+            }
+        }
+        //-------------------------------------
+    }
+</script>
+<style>
+    VmInclude:__COMPONENT__/g/grid.01.css
+</style>

@@ -1,0 +1,46 @@
+<section id=form_container__ID>
+	<div id=header__ID>
+		Date
+	</div>
+	<form id=F__ID>
+		<div class="container">
+			<div class="row row__ID">
+				<div class=col>
+					<span>First name</span>
+					<input type="text" class="form-control" name=First_name />
+				</div>
+			</div>
+			<div class="row row__ID">
+				<div class=col>
+					<span>Last name</span>
+					<input type="text" class="form-control" name=Last_name />
+				</div>
+			</div>
+			<div class="row row__ID">
+				<div class=col>
+					<span>Date of birth</span>
+					<input type="date" class="form-control" name=DOB />
+				</div>
+			</div>
+			<br>
+			<div class="row">
+				<div class=col>
+					<button id=submit__ID type="submit" class="btn btn-secondary">Submit</button>
+				</div>
+			</div>
+		</div>
+	</form>
+</section>
+<script>
+	function F__ID(){
+		//-------------------------------------
+        VmInclude:__COMPONENT__/f/form.01.js
+		//-------------------------------------
+	}
+</script>
+<style>
+		#form_container__ID{
+			max-width:700px;
+		}
+        VmInclude:__COMPONENT__/f/form.01.css
+</style>
