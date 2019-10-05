@@ -6,12 +6,14 @@
         </div>
         <div class=vm-desk-logo>
             <span id=vm-logo-label-A>Business Portal</span><br>
-            <span id=vm-logo-label-B>Modular distributed web application</span>
+            <span id=vm-logo-label-B>Microservices web application</span>
         </div>
         <div menu id="vm-menu">
             <a href="?/home"><i class="fa fa-home"></i> Home</a>
             <a href="?/dashboard"><i class="fa fa-th"></i> Dashboard</a>
             <a href="?/about"><i class="fa fa-info-circle"></i> About</a>
+            <a dev href=sys_settings><i class="fas fa-cog"></i></i> Settings</a>
+            <a dev href=sys_structure><i class="fas fa-stream"></i> Structure</a>
             <a id=vm_signin onclick="$vm.signin();"><i class="fa fa-user"></i> Sign In</a>
             <a class=vm-hide id=vm_signout onclick=$vm.signout()><i class="fa fa-user"></i> Sign Out</a>
         </div>
@@ -36,10 +38,17 @@
         //------------------------------------
         $('#vm-menu a').on('click',function(e){
             e.preventDefault();
+            var dev=$(this).attr('dev');
             var href=$(this).attr('href');
-            if(href!=undefined && href!='' && href.substring(0,8)=="https://"){ window.open(href); return;}
-            if(href!=undefined && href!=''){
-                if($vm.menu_click!=undefined) $vm.menu_click(href);
+            if(dev==undefined){
+                if(href!=undefined && href!='' && href.substring(0,8)=="https://"){ window.open(href); return;}
+                if(href!=undefined && href!=''){
+                    if($vm.menu_click!=undefined) $vm.menu_click(href);
+                }
+            }
+            else{
+                if(href=='sys_settings')  $vm.sys_settings();
+                else if(href=='sys_structure') $vm.sys_structure();
             }
             $vm.toggle();
         })
@@ -65,7 +74,7 @@
             z-index:10;
         }
         .vm-desk-logo{float:left;padding:36px 30px 0 30px;cursor:pointer;}
-        #vm-menu{ float:left;padding:50px 30px 0 30px;}
+        #vm-menu{ float:right;padding:50px 30px 0 30px; overflow: hidden; display:inline-block;}
         @media screen and (max-width: 1200px){
             #header{height:50px;}
             .vm-desk-logo{display:none;}
@@ -96,15 +105,9 @@
         #vm-logo-label-B{
             font-family: Arial, sans-serif;
             color:#fff;
-            font-size: 93%;
+            font-size: 105%;
             line-height:80%;
             display:inline-block;
-        }
-        /*menu*/
-        #vm-menu {
-            overflow: hidden;
-            display:inline-block;
-            float:left;
         }
         #vm-menu > a {
             color:var(--menu-color);

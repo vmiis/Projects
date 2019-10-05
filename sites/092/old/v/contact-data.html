@@ -1,0 +1,307 @@
+<div id=D__ID>
+    <div>
+        <section>
+            <div id=toolbar__ID class="navbar navbar-default">
+                <div id=row_1__ID>
+                        <button id=info__ID type=button class='btn btn-secondary' title='Add new' style='display:none'><i class="fa fa-info"></i></button>
+                        <button id=new__ID  type=button class='btn btn-secondary' title='Add new'><i class="fa fa-plus"></i></button>
+                        
+                        <input id=keyword__ID type="text" placeholder="Name contains" class="form-control">
+                        <button id=query__ID type=button class="btn btn-secondary" title='Refresh'><i class="fas fa-redo-alt"></i></button>
+                </div>
+                <span id=title__ID class='d-none d-md-block'></span>
+                <div>
+                        Page Size:
+                        <select id=page_size__ID class="form-control" style='margin-right:20px;display:inline-block;width:auto;'><option>30</option><option>50</option><option>100</option><option>200</option></select>
+                        <span id=I__ID style="display:none">0</span><span id=A__ID ></span> <span id=B__ID></span>
+                        <button id=p__ID type=button class="btn btn-secondary" title="Previous page"><i class="fa fa-arrow-left"></i></button>
+                        <button id=n__ID type=button class="btn btn-secondary" title="Next page"><i class="fa fa-arrow-right"></i></button>
+                </div>
+                <div id=import_export_section__ID class="d-none d-sm-block">
+                        <!--<button id=export__ID type=button class="btn btn-secondary" title=Export><i class="fa fa-download" ></i></button>-->
+                </div>
+                <span id=elapsed__ID style='float:right'></span>
+            </div>
+            <div id=table__ID>
+                <table id=grid__ID></table>
+            </div>
+        </section>
+        <style>
+            #toolbar__ID{
+                background-color:#ccc;
+                padding:5px 10px;
+                margin-bottom:0px;
+                overflow:hidden
+            }
+            #toolbar__ID *{
+                margin-right:3px;
+            }
+            #keyword__ID{
+                width: 150px; 
+                display:inline-block;
+            }
+            @media screen and (max-width:768px){
+                #toolbar__ID{
+                    padding: 3px 0;
+                }
+                #toolbar__ID div{
+                    padding-left:3px;
+                }
+                #row_1__ID{
+                    padding-bottom: 3px;
+                    width:100%;
+                }
+                #keyword__ID{
+                    width:auto;
+                }
+            }
+        </style>
+    </div>
+    <script>
+        function F__ID(){
+            //-------------------------------------
+            VmInclude:__COMPONENT__/g/grid.365r.01.js
+            $('#new__ID').hide();
+            //-------------------------------------
+            var create_fields=function(s){
+                var f="";
+                ss=s.split(',');
+                for(var i=0;i<ss.length;i++){
+                    if(f!="") f+=","
+                    var a=ss[i].trim();
+                    var b=ss[i].trim().replace(/ /g,'').replace(/\//g,'_x002f_').replace(/–/g,'_x2013_').replace(/\(/g,'_x2028_').replace(/\)/g,'_x2029_');
+                    if(b.length>32) b=b.substring(0,32);
+                    f+=a+"|"+b;
+                }
+                return f;
+            }
+            //-------------------------------------
+            var fields="\
+					Name|fullname,Email|emailaddress1,\
+					Newsletter|woolcock_newsletter,\
+                    Conditions|woolcock_multiselectcondition,\
+                    Age|woolcock_age,\
+                    Registration Type|woolcock_registrationtype,\
+					Study|woolcock_VolunteerStudyId,\
+					Status|woolcock_contactstatus,\
+                    UnReg|woolcock_isunregister,\
+                    Cooling|woolcock_coolingofffield\
+				";
+            var fields="\
+					Name|fullname,Email|emailaddress1,\
+                    woolcock_firstrelationship,\
+                    woolcock_firstrelationshipdate,\
+                    woolcock_volunteeraddlrelationshipdate\
+				";
+            var fields_hide="contactid|contactid\
+                ";
+            m.ids=(fields+","+fields_hide).split(',');                
+            m.fields="_Form,"+fields+",_Details,Submit_date,Submitted_by";
+            //-------------------------------------
+            m.cell_render=function(records,I,field,td){
+                switch(field){
+                    case '_Studies':
+                        var txt="<u i="+I+" style='cursor:pointer'>Studies</u>";
+                        td.html(txt);
+                        td.find('u').on('click',function(){
+                            var i=$(this).attr('i');
+                            $vm.load_module('child-study-data','',{ record:m.records[i] })
+                        })
+                        break;
+                    case '_Details':
+                        var txt="<u i="+I+" style='cursor:pointer'>Details</u>";
+                        td.html(txt);
+                        td.find('u').on('click',function(){
+                            var i=$(this).attr('i');
+                            $vm.load_module('volunteer-details','',{ record:m.res.value[I]})
+                        })
+                        break;
+                    case 'woolcock_newsletter':
+                        var txt=""; if(records[I].Data[field]==true)  txt="&#10004;";
+                        td.html(txt);
+                        break;
+                    case 'woolcock_contactstatus':
+                        var txt="";
+                            switch(records[I].Data[field]){
+                                case 1: txt="Available";break;
+                                case 3: txt="Screening";break;
+                                case 4: txt="Eligible";break;
+                                case 5: txt="Not Eligible";break;
+                                case 6: txt="Enrolled";break;
+                                case 8: txt="Withdrawn";break;
+                                case 7: txt="Completed";break;
+                            }
+                        td.html(txt);
+                        break;
+                    case 'woolcock_registrationtype':
+                        var txt="";
+                            switch(records[I].Data[field]){
+                                case 0: txt="General Registration";break;
+                                case 1: txt="Study Specific Registration";break;
+                                case 2: txt="Newsletter";break;
+                            }
+                        td.html(txt);
+                        break;
+                    case 'woolcock_multiselectcondition':
+                        var txt=records[I].Data[field];
+                        var t="";
+                        if(txt!=undefined){
+                            txt=txt.replace('11','I do not have a respiratory condition or sleep problem');
+                            txt=txt.replace('10','Restless Leg Syndrome');
+                            txt=txt.replace('9','Rhinitis');
+                            txt=txt.replace('8','Obstructive Sleep Apnoea (OSA)');
+                            txt=txt.replace('7','Emphysema');
+                            txt=txt.replace('6','Narcolepsy');
+                            txt=txt.replace('5','Chronic Bronchitis');
+                            txt=txt.replace('4','Insomnia');
+                            txt=txt.replace('3','COPD (Chronic Obstructive Pulmonary Disease)');
+                            txt=txt.replace('2','Asthma');
+                            txt=txt.replace('1','Lung Cancer');
+                            t=txt;
+                            if(txt.length>30) txt=txt.substring(0,30)+"...";
+                        }
+                        else txt="";
+                        td.html(txt);
+                        td.attr('title',t);
+                        break;
+                    default:
+                        var txt=records[I].Data[field];
+                        var t=txt;
+                        if(txt!=undefined && txt.toString().length>30){
+                            txt=txt.substring(0,30)+"...";
+                            td.html(txt);
+                        } 
+                        td.attr('title',t);
+                        break;
+                }
+            }
+            //-------------------------------------
+            m.next_link=undefined;
+            m.links=[];
+            //-------------------------------------
+            m.set_req=function(){
+                var limit=parseInt($('#page_size__ID').val()); m.odata_maxpagesize=limit;
+                var txt=$('#keyword__ID').val();
+                var $filter="";  if(txt!="") $filter="&$filter=contains(fullname,'"+txt+"')";
+                
+                var $select="&$select=";
+                for(i in m.ids){
+                    if($select!="&$select=") $select=$select+",";
+                    $select=$select+m.ids[i].split('|').pop();
+                }
+                $select="";
+                m.endpoint=m.Table+"?$count=true"+$select+"&$expand=createdby($select=fullname),woolcock_VolunteerStudyId($select=woolcock_name)&$orderby=createdon desc"+$filter;
+                //m.endpoint=m.Table+"?$filter=contains(subject,'"+txt+"')";//+"?$count=true"+$select+"&$expand=createdby($select=fullname),woolcock_VolunteerStudyId($select=woolcock_name)&$orderby=createdon desc"+$filter;
+                m.links=[m.endpoint];
+            }
+            //-------------------------------------
+            m.data_process=function(res){
+                m.res=res;
+                $('#vm_data_loader').hide();
+                m.next_link=res['@odata.nextLink'];
+                m.records=[];
+                for(var i=0;i<res.value.length;i++){
+                    var fs=res.value[i];
+                    var Data={}
+                    var f_ids=(fields+","+fields_hide).split(',')
+                    //var f_ids=(fields).split(',')
+                    for(k in f_ids){
+                        var id=f_ids[k].split('|').pop().trim();
+                        //-------------------------------------
+                        if(id=="woolcock_VolunteerStudyId"){
+                            if(fs["woolcock_VolunteerStudyId"]!=undefined){
+                                Data[id]=fs["woolcock_VolunteerStudyId"]["woolcock_name"];
+                            }
+                            else Data[id]="";
+                            fs["Study"]=Data[id];
+                        }
+                        //-------------------------------------
+                        else Data[id]=fs[id];
+                    }
+                    m.records.push({
+                        "_id":res.value[i]['ID'],
+                        "Submit_date":res.value[i].createdon,
+                        "Submitted_by":res.value[i].createdby.fullname,
+                        Data:Data
+                    })
+                    //console.log(m.records[i].Data)
+                }
+                m.render();
+
+                var N=parseInt(res['@odata.count']);
+                $("#B__ID").text(N)
+                var L=m.links.length;
+                var n1=((L-1)*parseInt(m.odata_maxpagesize)+1);
+                var n2=L*parseInt(m.odata_maxpagesize);
+                if(n2>N) n2=N;
+                var txt=n1+" ~ "+n2+" of ";
+                $("#A__ID").text(txt);
+            }
+            //-------------------------------------
+            m.request_data=function(){
+                console.log(m.links);
+                //$('#vm_data_loader').show();
+                $vm.m365_msal.acquireTokenSilent({scopes: ["https://woolcockdev.crm6.dynamics.com/.default"]}).then(function (tokenResponse) {
+                    //console.log(tokenResponse)
+                    m.ajax(m.endpoint,tokenResponse,function(data){
+                        m.data_process(data);
+                    })
+                }).catch(function (error) {
+                    $('#vm_data_loader').hide();
+                    console.log(error);
+                    $vm.alert("You haven't signed in, or your previous session has expired.")
+                });
+            }
+            //-------------------------------------
+            $("#p__ID").off('click').on('click',function(){
+                m.links.pop();
+                var lk=m.links.pop();
+                if(lk!=undefined){
+                    m.endpoint=lk;
+                    m.links.push(m.endpoint);
+                    m.request_data();
+                }
+                else{
+                    m.set_req();
+                    m.request_data();
+                }
+            })
+            //-------------------------------------
+            $("#n__ID").off('click').on('click',function(){
+                if(m.next_link!=undefined){
+                    m.endpoint=m.next_link;
+                    m.links.push(m.endpoint);
+                    m.request_data();
+                }
+            })
+            //-------------------------------------
+            m.delete=function(rid){
+                $vm.m365_msal.acquireTokenSilent($vm.m365_scope_sharepoint).then(function (tokenResponse) {
+                    var mt1=new Date().getTime();
+                    var xmlHttp = new XMLHttpRequest();
+                    xmlHttp.onreadystatechange = function () {
+                        if (this.readyState == 4 && (this.status == 204 || this.status == 200)){
+                            var mt2=new Date().getTime();
+                            var tt_all=mt2-mt1;
+                            m.request_data();
+                        }
+                    }
+                    xmlHttp.open("DELETE", m.endpoint_d+"("+rid+")", true); // true for asynchronous
+                    xmlHttp.setRequestHeader('Authorization', 'Bearer ' + tokenResponse.accessToken);
+                    xmlHttp.setRequestHeader("Accept", "application/json");  
+                    xmlHttp.setRequestHeader("Content-Type", "application/json; charset=utf-8");  
+                    xmlHttp.setRequestHeader("IF-MATCH", "*");  
+                    xmlHttp.send();
+                }).catch(function (error) {
+                    console.log(error);
+                });
+            };
+            //-------------------------------
+
+
+        }
+    </script>
+    <style>
+        VmInclude:__COMPONENT__/g/grid.01.css
+    </style>
+</div>

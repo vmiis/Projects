@@ -1,0 +1,99 @@
+<div id=D__ID>
+    <!--<button id=json__ID type=button class="btn btn-secondary" style='margin:15px 0 0 15px'>JSON data</button>-->
+	
+    <div style='padding:10px 20px 0 20px;'>
+        <form class="form-inline">
+            <input id=keywords__ID class=form-control style='width:230px' placeholder="filter">
+            <!--<button id=apply__ID type=button class="btn btn-secondary" title='Load'>Apply</button>-->
+        </form>
+        <hr>
+    </div>
+	<div id=table__ID style='padding:0 10px'>
+        <table id=grid__ID></table>
+    </div>
+	<script>
+		function F__ID(){
+			//------------------------------------
+			var J=0;
+			$vm.doc_list__ID=[];
+			var link1="https://graph.microsoft.com/v1.0/sites/woolcockmed.sharepoint.com,904f3621-bfdc-4154-a36e-e73f3d46c7c0,2367a8ed-18d1-4fea-afe2-c5784ffccfa9/lists/7b34be19-7a36-4ba3-90ad-8e6165b5c0bd/items?expand=fields";
+			$vm.m365_graph(link1,{scopes: ["AllSites.Read"]},function(data){
+				for(i in data.value){
+					data.value[i].createdDateTime=data.value[i].createdDateTime.split('T')[0]
+					data.value[i].lastModifiedDateTime=data.value[i].lastModifiedDateTime.split('T')[0];
+					data.value[i].GP="HR";
+					$vm.doc_list__ID.push(data.value[i])
+				}
+				console.log($vm.doc_list__ID)
+				J++;
+				render();
+			})
+			var link2="https://graph.microsoft.com/v1.0/sites/woolcockmed.sharepoint.com,be38b13a-0035-44d3-803c-b624b8e6fa39,2367a8ed-18d1-4fea-afe2-c5784ffccfa9/lists/d22f3277-6bd7-4f7c-a3e6-e9d95dcca208/items?expand=fields";
+			$vm.m365_graph(link2,{scopes: ["AllSites.Read"]},function(data){
+				for(i in data.value){
+					data.value[i].createdDateTime=data.value[i].createdDateTime.split('T')[0]
+					data.value[i].lastModifiedDateTime=data.value[i].lastModifiedDateTime.split('T')[0];
+					data.value[i].GP="LAB";
+					$vm.doc_list__ID.push(data.value[i])
+				}
+				console.log($vm.doc_list__ID)
+				J++;
+				render();
+			})
+			var render=function(){
+				if(J==2){
+					var word=$('#keywords__ID').val();
+					$('#info__ID').html('');
+					var txt="";
+					txt+="<tr><th></th><th>Group</th><th>Document</th><th>Size</th><th>Created by</th><th>Created</th><th>Last Modified By</th><th>Last Modified</th></tr>";
+					var I=0;
+					for(i in $vm.doc_list__ID){
+						I++;
+						var tr="";
+						tr+="<tr>";
+						tr+="<td>"+I+"</td>";
+						tr+="<td>"+$vm.doc_list__ID[i].GP+"</td>";
+						tr+="<td><a style='color:#000' target=_blank href="+$vm.doc_list__ID[i].webUrl+">"+$vm.doc_list__ID[i].fields.LinkFilename+"</a></td>";
+						tr+="<td>"+$vm.doc_list__ID[i].fields.FileSizeDisplay+"</td>";
+						tr+="<td>"+$vm.doc_list__ID[i].createdBy.user.displayName+"</td>";
+						tr+="<td>"+$vm.doc_list__ID[i].createdDateTime+"</td>";
+						tr+="<td>"+$vm.doc_list__ID[i].lastModifiedBy.user.displayName+"</td>";
+						tr+="<td>"+$vm.doc_list__ID[i].lastModifiedDateTime+"</td>";
+						tr+="</tr>";
+						var aaa=$('<div></div>').html(tr).text()
+						if(word=="" || aaa.toUpperCase().indexOf(word.toUpperCase())!==-1) txt+=tr;
+						else I--;
+					}
+					txt+="";
+					$('#grid__ID').html(txt.replace(/null/g,'').replace(/undefined/g,''));
+				}
+			}
+			$('#keywords__ID').on('keyup',function(){
+				render();
+			})
+			//------------------------------------
+		}
+	</script>
+	<style>
+        VmInclude:__COMPONENT__/g/grid.01.css
+		#D__ID{
+			height:100%;
+			animation: vm_module_fadein 1.0s;
+			background-color: #fff;
+		}
+        #info__ID{
+            padding:30px;
+        }
+        #info__ID span{
+            font-weight: bold;
+		}
+		#grid__ID td{
+			padding:2px 5px;
+		}
+		/*
+		#D__ID td{
+			padding-right:20px;
+		}
+		*/
+	</style>
+</div>

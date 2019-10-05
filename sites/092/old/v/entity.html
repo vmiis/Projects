@@ -1,0 +1,113 @@
+<div id=D__ID>
+    <div>
+        <section>
+            <div id=panel__ID class=panel__ID>
+        </section>
+        <style>
+            #toolbar__ID{
+                background-color:#ccc;
+                padding:5px 10px;
+                margin-bottom:0px;
+                overflow:hidden
+            }
+            #toolbar__ID *{
+                margin-right:3px;
+            }
+            #keyword__ID{
+                width: 150px; 
+                display:inline-block;
+            }
+            @media screen and (max-width:768px){
+                #toolbar__ID{
+                    padding: 3px 0;
+                }
+                #toolbar__ID div{
+                    padding-left:3px;
+                }
+                #row_1__ID{
+                    padding-bottom: 3px;
+                    width:100%;
+                }
+                #keyword__ID{
+                    width:auto;
+                }
+            }
+        </style>
+    </div>
+    <script>
+        function F__ID(){
+            //-------------------------------------
+            VmInclude:__COMPONENT__/g/grid.365r.01.js
+            //-------------------------------------
+            var e_id="";
+            m.load=function(){
+                e_id=m.input.id;
+            }
+            m.set_req=function(){
+                if(e_id=="") return;
+                m.endpoint=m.Table+"(LogicalName='"+e_id+"')";
+            }
+            //-------------------------------------
+            var r
+            m.data_process=function(res){
+                r=res;
+                $('#vm_data_loader').hide();
+                
+                var txt="";
+                /*
+                $('#s__ID').text(res.value.length+ " enties");
+                for(var i=0;i<res.value.length;i++){
+                    if(txt!="") txt+=" ";
+                    var id=res.value[i].LogicalName;
+                    if(res.value[i]['DisplayName']['UserLocalizedLabel']!=undefined)   txt+="<a href="+id+">"+res.value[i]['DisplayName']['UserLocalizedLabel']['Label']+"</a>";
+                    else txt+="<a href="+id+">"+res.value[i].LogicalName+"</a>";
+                }
+                */
+                //$('#panel__ID').html(txt);
+                console.log(res);
+                //$('#panel__ID').jsonViewer(res, {collapsed: true});
+                //var editor = new JsonEditor('#panel__ID', res);
+                $vm.load_module('json-viewer','',{json:res})
+
+            }
+            //-------------------------------------
+            m.request_data=function(){
+                if(e_id=="") return;
+                $('#vm_data_loader').show();
+                $vm.m365_msal.acquireTokenSilent({scopes: ["https://woolcockdev.crm6.dynamics.com/.default"]}).then(function (tokenResponse) {
+                    m.ajax(m.endpoint,tokenResponse,function(data){
+                        m.data_process(data);
+                    })
+                }).catch(function (error) {
+                    $('#vm_data_loader').hide();
+                    console.log(error);
+                    $vm.alert("You haven't signed in, or your previous session has expired.")
+                });
+            }
+            //-------------------------------------
+        }
+    </script>
+    <style>
+        VmInclude:__COMPONENT__/g/grid.01.css
+        #panel__ID {
+            padding:0 20px 20px 20px;
+            white-space: normal;
+        }
+        #panel__ID a{
+            margin-right:10px;
+            cursor:pointer;
+        }
+        #panel__ID a:link {
+            color:#555;
+        }
+        #panel__ID a:visited {
+            color:#555;
+        }
+        #panel__ID a:hover {
+            color:red;
+        }
+        #panel__ID a:active {
+            color:#555;
+        }
+    </style>
+</div>

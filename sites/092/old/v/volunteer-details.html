@@ -1,0 +1,339 @@
+<div id=D__ID>
+    <div>
+        <div>
+            <!--
+            <div id=toolbar__ID class="navbar navbar-default">
+            </div>
+        -->
+            <div id=panel__ID style='padding:20px'>
+                <b>Volunter Information</b>
+                <div id=volunter0__ID style='padding-left:15px;'></div>
+                <div id=volunter__ID></div>
+                <b>Study History</b>
+                <div id=study0__ID style='padding-left:15px;'></div>
+                <div id=study__ID></div>
+                <b>Audit</b>
+                <div id=audit0__ID style='padding-left:15px;'></div>
+                <div id=audit__ID></div>
+            </div>
+        </div>
+        <style>
+            #toolbar__ID{
+                background-color:#ccc;
+                padding:5px 10px;
+                margin-bottom:0px;
+                overflow:hidden
+            }
+            #toolbar__ID *{
+                margin-right:3px;
+            }
+            #keyword__ID{
+                width: 150px; 
+                display:inline-block;
+            }
+            @media screen and (max-width:768px){
+                #toolbar__ID{
+                    padding: 3px 0;
+                }
+                #toolbar__ID div{
+                    padding-left:3px;
+                }
+                #row_1__ID{
+                    padding-bottom: 3px;
+                    width:100%;
+                }
+                #keyword__ID{
+                    width:auto;
+                }
+            }
+        </style>
+    </div>
+    <script>
+        function F__ID(){
+            //-------------------------------------
+            var m=$vm.module_list['__MODULE__'];
+            //-------------------------------------
+            $('#D__ID').on('load',function(){
+                var contactid=m.input.record.contactid;
+                renderJson(m.input.record,"volunter__ID");
+                var txt="<table>";
+                txt+="<tr><td>Name</td><td>"+m.input.record.fullname+"</td></tr>"
+                txt+="<tr><td>Email</td><td>"+m.input.record.emailaddress1+"</td></tr>"
+                txt+="<tr><td>Age</td><td>"+m.input.record.woolcock_age+"</td></tr>"
+                
+                var tp=m.input.record.woolcock_registrationtype;
+                switch(tp){
+                    case 0: tp="General Registration";break;
+                    case 1: tp="Study Specific Registration";break;
+                    case 2: tp="Newsletter";break;
+                }
+                txt+="<tr><td>Registration Type</td><td>"+tp+"</td></tr>"
+                
+                
+                txt+="<tr><td>Newsletter</td><td>"+m.input.record.woolcock_newsletter+"</td></tr>"
+                
+                var sele=m.input.record.woolcock_multiselectcondition;
+                if(sele!=undefined){
+                    sele=sele.replace('11','I do not have a respiratory condition or sleep problem');
+                    sele=sele.replace('10','Restless Leg Syndrome');
+                    sele=sele.replace('9','Rhinitis');
+                    sele=sele.replace('8','Obstructive Sleep Apnoea (OSA)');
+                    sele=sele.replace('7','Emphysema');
+                    sele=sele.replace('6','Narcolepsy');
+                    sele=sele.replace('5','Chronic Bronchitis');
+                    sele=sele.replace('4','Insomnia');
+                    sele=sele.replace('3','COPD (Chronic Obstructive Pulmonary Disease)');
+                    sele=sele.replace('2','Asthma');
+                    sele=sele.replace('1','Lung Cancer');
+                }
+                else sele="";
+                txt+="<tr><td>Selection</td><td>"+sele+"</td></tr>"
+                
+                txt+="<tr><td>Study</td><td>"+m.input.record.Study+"</td></tr>"
+                
+                var status=m.input.record.woolcock_contactstatus;
+                switch(status){
+                    case 1: status="Available";break;
+                    case 3: status="Screening";break;
+                    case 4: status="Eligible";break;
+                    case 5: status="Not Eligible";break;
+                    case 6: status="Enrolled";break;
+                    case 8: status="Withdrawn";break;
+                    case 7: status="Completed";break;
+                }
+                txt+="<tr><td>Status</td><td>"+status+"</td></tr>"
+                txt+="<tr><td>Unregister From Research Studies</td><td>"+m.input.record.woolcock_isunregister+"</td></tr>"
+                txt+="<tr><td>Cooling</td><td>"+m.input.record.woolcock_coolingofffield+"</td></tr>"
+                
+                
+                txt+="</table>";
+                $('#volunter0__ID').html(txt);
+                /*
+                var txt="";
+                txt+="Email: "+"<span>"+m.input.record.emailaddress1+",</span>";
+                txt+="Newsletter:"+"<span>"+m.input.record.woolcock_newsletter+",</span>";
+                
+                var sele=m.input.record.woolcock_multiselectcondition;
+                if(sele!=undefined){
+                    sele=sele.replace('11','I do not have a respiratory condition or sleep problem');
+                    sele=sele.replace('10','Restless Leg Syndrome');
+                    sele=sele.replace('9','Rhinitis');
+                    sele=sele.replace('8','Obstructive Sleep Apnoea (OSA)');
+                    sele=sele.replace('7','Emphysema');
+                    sele=sele.replace('6','Narcolepsy');
+                    sele=sele.replace('5','Chronic Bronchitis');
+                    sele=sele.replace('4','Insomnia');
+                    sele=sele.replace('3','COPD (Chronic Obstructive Pulmonary Disease)');
+                    sele=sele.replace('2','Asthma');
+                    sele=sele.replace('1','Lung Cancer');
+                }
+                else sele="";
+                txt+="Selection:"+"<span>"+sele+",</span>";
+                var status=m.input.record.woolcock_contactstatus;
+                switch(status){
+                    case 1: status="Available";break;
+                    case 3: status="Screening";break;
+                    case 4: status="Eligible";break;
+                    case 5: status="Not Eligible";break;
+                    case 6: status="Enrolled";break;
+                    case 8: status="Withdrawn";break;
+                    case 7: status="Completed";break;
+                }
+                txt+="Status:"+"<span>"+status+"</span>";
+                $('#volunter0__ID').html(txt);
+                */
+                var $filter="&$filter=_woolcock_volunteeridid_value eq '"+contactid+"'";
+                var $select="";
+                var endpoint1=m.Table+"woolcock_volunteerauditnews?$count=true"+$select+"&$expand=createdby($select=fullname),woolcock_StudyId($select=woolcock_name)&$orderby=createdon desc"+$filter;
+                $vm.m365_msal.acquireTokenSilent({scopes: ["https://woolcockdev.crm6.dynamics.com/.default"]}).then(function (tokenResponse) {
+                    m.ajax(endpoint1,tokenResponse,function(data){
+                        renderJson(data,"study__ID");
+                        var txt="<table>";
+                        for(i in data.value){
+                            txt+="<tr><td>"+(data.value.length-parseInt(i))+"</td>"
+                            txt+="<td>"+data.value[i].createdon.replace('T',' ').replace('Z','')+"</td><td>"+data.value[i].createdby.fullname+"</td>";
+                            //txt+=(parseInt(i)+1)+". Status:"+"<span>"+data.value[i].woolcock_volunteerstatus+",</span>";
+                            if(data.value[i].woolcock_StudyId!=undefined){
+                                txt+="<td>"+data.value[i].woolcock_StudyId.woolcock_name+"</td>";
+                            }
+                            else txt+="<td></td>";
+                            var status=data.value[i].woolcock_volunteerstatus;
+                            switch(status){
+                                case 1: status="Available";break;
+                                case 3: status="Screening";break;
+                                case 4: status="Eligible";break;
+                                case 5: status="Not Eligible";break;
+                                case 6: status="Enrolled";break;
+                                case 8: status="Withdrawn";break;
+                                case 7: status="Completed";break;
+                            }
+                            txt+="<td>"+status+"</td>";
+                        }
+                        txt+="</table>"
+                        $('#study0__ID').html(txt);
+                    })
+                }).catch(function (error) {
+                    $vm.alert(error);
+                });
+                
+                
+                var $filter="&$filter=_woolcock_volunteerid_value eq '"+contactid+"'";
+                var $select="";
+                var endpoint2=m.Table+"woolcock_volstudymappings?$count=true"+$select+"&$expand=owninguser($select=fullname),woolcock_StudyId($select=woolcock_name)&$orderby=createdon desc"+$filter;
+                $vm.m365_msal.acquireTokenSilent({scopes: ["https://woolcockdev.crm6.dynamics.com/.default"]}).then(function (tokenResponse) {
+                    m.ajax(endpoint2,tokenResponse,function(data){
+                        renderJson(data,"audit__ID");
+                        var txt="<table>";
+                        for(i in data.value){
+                            txt+="<tr><td>"+(data.value.length-parseInt(i))+"</td>"
+                            txt+="<td>"+data.value[i].createdon.replace('T',' ').replace('Z','')+"</td><td>"+data.value[i].owninguser.fullname+"</td>";
+                            
+                            //txt+=(parseInt(i)+1)+". Status:"+"<span>"+data.value[i].woolcock_volunteerstatus+",</span>";
+                            if(data.value[i].woolcock_StudyId!=undefined){
+                                txt+="<td>"+data.value[i].woolcock_StudyId.woolcock_name+"</td>";
+                            }
+                            else txt+="<td></td>";
+                            
+                            var status=data.value[i].woolcock_status;
+                            switch(status){
+                                case 1: status="Available";break;
+                                case 3: status="Screening";break;
+                                case 4: status="Eligible";break;
+                                case 5: status="Not Eligible";break;
+                                case 6: status="Enrolled";break;
+                                case 8: status="Withdrawn";break;
+                                case 7: status="Completed";break;
+                            }
+                            txt+="<td>"+status+"</td>";
+                            
+                            
+                            txt+="<tr>"
+                        }
+                        txt+="</table>"
+                        $('#audit0__ID').html(txt);
+                    })
+                }).catch(function (error) {
+                    $vm.alert(error);
+                });
+                
+
+                
+
+            })
+            //-------------------------------------
+            var renderJson=function(input,slot) {
+                var options = {
+                    collapsed: true,
+                    rootCollapsable: true,
+                    /*
+                    withQuotes: $('#with-quotes').is(':checked'),
+                    withLinks: $('#with-links').is(':checked')
+                    */
+                };
+                $('#'+slot).jsonViewer(input, options);
+            }
+            //-------------------------------------
+
+
+
+            //-------------------------------------
+            m.ajax=function(endpoint,tokenResponse,callback){
+                var mt1=new Date().getTime();
+                var xmlHttp = new XMLHttpRequest();
+                xmlHttp.onreadystatechange = function () {
+                    if (this.readyState == 4 && this.status == 200){
+                        var data=JSON.parse(this.responseText);  
+                        var mt2=new Date().getTime();
+                        var tt_all=mt2-mt1;
+                        console.log((this.response.length/1000).toFixed(1)+"kb/"+tt_all.toString()+"ms");
+                        $('#elapsed__ID').text((this.response.length/1000).toFixed(1)+"kb/"+tt_all.toString()+"ms")
+                        callback(data);
+                    }
+                    else if(this.readyState == 4 && this.status == 403){
+                        $vm.alert("No permission");
+                        callback({});
+                    }
+                    if(this.status == 404){
+                        $vm.alert(endpoint+", 404 (Not found)");
+                        callback({});
+                    }
+                }
+                xmlHttp.open("GET", endpoint, true); // true for asynchronous
+                xmlHttp.setRequestHeader('Authorization', 'Bearer ' + tokenResponse.accessToken);
+                xmlHttp.setRequestHeader("Accept", "application/json");  
+                if(m.odata_maxpagesize!=undefined) xmlHttp.setRequestHeader("Prefer", "odata.maxpagesize="+m.odata_maxpagesize);  
+                xmlHttp.send();
+            }
+            //-------------------------------------
+
+        }
+    </script>
+    <style>
+        #D__ID{
+            background-color: #FFF;
+        }
+        #D__ID td{
+            padding:0 10px;
+        }
+        #D__ID span{
+            margin-right:20px;
+        }
+        /* Root element */
+        #D__ID .json-document {
+            padding: 1em 2em;
+        }
+
+        /* Syntax highlighting for JSON objects */
+        #D__ID ul.json-dict, #D__ID ol.json-array {
+            list-style-type: none;
+            margin: 0 0 0 1px;
+            border-left: 1px dotted #ccc;
+            padding-left: 2em;
+        }
+        #D__ID .json-string {
+            color: #0B7500;
+        }
+        #D__ID .json-literal {
+            color: #1A01CC;
+            font-weight: bold;
+        }
+
+        /* Toggle button */
+        #D__ID a.json-toggle {
+            position: relative;
+            color: inherit;
+            text-decoration: none;
+        }
+        #D__ID a.json-toggle:focus {
+            outline: none;
+        }
+        #D__ID a.json-toggle:before {
+            font-size: 1.1em;
+            color: #c0c0c0;
+            content: "\25BC"; /* down arrow */
+            position: absolute;
+            display: inline-block;
+            width: 1em;
+            text-align: center;
+            line-height: 1em;
+            left: -1.2em;
+        }
+        #D__ID a.json-toggle:hover:before {
+            color: #aaa;
+        }
+        #D__ID a.json-toggle.collapsed:before {
+            /* Use rotated down arrow, prevents right arrow appearing smaller than down arrow in some browsers */
+            transform: rotate(-90deg);
+        }
+
+        /* Collapsable placeholder links */
+        #D__ID a.json-placeholder {
+            color: #aaa;
+            padding: 0 1em;
+            text-decoration: none;
+        }
+        #D__ID a.json-placeholder:hover {
+            text-decoration: underline;
+        }
+    </style>
+</div>

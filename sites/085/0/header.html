@@ -17,6 +17,10 @@
             <a href="?/p4">Page 04</a>
             <a href="?/p5">Page 05</a>
             <a href="?/about">About</a>
+            <a dev href=sys_settings><i class="fas fa-cog"></i></i> Settings</a>
+            <a dev href=sys_structure><i class="fas fa-stream"></i> Structure</a>
+            <a href='' id=vm_signin onclick="$vm.signin();"><i class="fa fa-user"></i> Sign In</a>
+            <a href='' class=vm-hide id=vm_signout onclick=$vm.signout()><i class="fa fa-user"></i> Sign Out</a>
         </div>
     </div>
     <script>
@@ -52,6 +56,25 @@
         }
         //------------------------------------
         $('.vm-menu a').on('click',function(e){
+            e.preventDefault();
+            var dev=$(this).attr('dev');
+            var href=$(this).attr('href');
+            if(dev==undefined){
+                if(href!=undefined && href!='' && href.substring(0,8)=="https://"){ window.open(href); return;}
+                if(href!=undefined && href!=''){
+                    if($vm.menu_click!=undefined) $vm.menu_click(href);
+                }
+            }
+            else{
+                if(href=='sys_settings')  $vm.sys_settings();
+                else if(href=='sys_structure') $vm.sys_structure();
+            }
+            $vm.toggle();
+            $vm.closeNav();
+        })
+        //------------------------------------
+        /*
+        $('.vm-menu a').on('click',function(e){
             var sec=$(this).attr('section');
             if(sec==undefined){
                 e.preventDefault();
@@ -67,6 +90,7 @@
             }
             $vm.closeNav();
         })
+        */
         //------------------------------------
         $vm.menu_click=function(href){
             href=href.replace('?\/','');

@@ -1,11 +1,7 @@
 (function(){
     //-------------------------------------------------------------------------------------
     var modules={
-        "short-page":  	{url:"$H/m/short-page.html",router:1},
-        "long-page":  	{url:"$H/m/long-page.html",router:1},
         "success-page": {url:"$H/m/success.html",router:1,tags:"marketing"},
-        "about-vmiis":  {url:"$H/m/about-vmiis.html",router:1},
-        "module-editor":{url:"https://vm.vmiis.com/component/m/module-editor.html",router:1,sys:1},
     }
     for(p in modules){
         $vm.module_list[p]=modules[p]; 

@@ -1,7 +1,7 @@
 <div id=D__ID>
     <div>
         <div class=vm-mobile>
-            <span id=vm-mobile_title class=vm-mobile-title>Woolcock 365</span>
+            <span id=vm-mobile_title class=vm-mobile-title>Woolcock Operations</span>
             <a id="vm-hamburger_button" class=vm-hamburger-button onclick="$vm.toggle()"><i class="fa fa-bars"></i></a>
         </div>
         <div class=vm-desk-logo>
@@ -10,19 +10,17 @@
         <div menu id="vm-menu">
             <a href="?/home"><i class="fa fa-home"></i> Home</a>
             <a href="?/control-panel-main">Website Contents</a>
-            <!--<a href="?/control-panel-administrator">Administrator</a>-->
             <a id=vm_signin ><i class="fa fa-user"></i> Sign In</a>
             <a class=vm-hide id=vm_signout ><i class="fa fa-user"></i> Sign Out</a>
         </div>
     </div>
     <script>
+        //------------------------------------
         $('#vm_signin').on('click',function(){
-            //$vm.m365.authContext.login();
             $vm.m365_signin();  
         })
         //------------------------------------
         $('#vm_signout').on('click',function(){
-            //$vm.m365.authContext.logOut();  
             $vm.m365_signout();  
             $vm.user_name="";
             $vm.show_user();
@@ -30,13 +28,9 @@
         //------------------------------------
 
 
-
-        
-
         //------------------------------------
         $('#vm-mobile_title').on('click',function(){ $vm.load_module('home',$vm.root_layout_content_slot,{}) })
         $('.vm-desk-logo').on('click',function(){ $vm.load_module('home',$vm.root_layout_content_slot,{}) })
-        //$('.vm-desk-logo').on('click',function(){ $vm.test(); })
         //------------------------------------
         $('.vm-dropdown').on('click',function(e){
             var d=$(this).find('.vm-dropdown-content');
@@ -54,9 +48,15 @@
         $('#vm-menu a').on('click',function(e){
             e.preventDefault();
             var href=$(this).attr('href');
+            var dev=$(this).attr('dev');
             if(href!=undefined && href!='' && href.substring(0,8)=="https://"){ window.open(href); return;}
             if(href!=undefined && href!=''){
                 if($vm.menu_click!=undefined) $vm.menu_click(href);
+            }
+            else if(dev!=undefined){
+                var path=window.location.href.split('?')[0].replace('/index.html','')
+                localStorage.setItem("__temp1001_"+path,JSON.stringify($vm.module_list));
+                window.open('/sitedev/index.html?path='+path)
             }
             $vm.toggle();
         })
@@ -78,11 +78,11 @@
             top:0;
             left:0;
             width:100%;
-            background:rgba(0,0,0,0.0);
+            background:rgba(0,0,0,0.6);
             z-index:10;
         }
         .vm-desk-logo{float:left;padding:10px 30px 0 30px;cursor:pointer;}
-        #vm-menu{float:right; padding:50px 30px 0 30px;}
+        #vm-menu{ float:right;padding:50px 30px 0 30px; overflow: hidden; display:inline-block;}
         @media screen and (max-width: 1200px){
             #header{height:50px;}
             .vm-desk-logo{display:none;}
@@ -103,32 +103,20 @@
             --mobile-hamburger-color:#fff;
             --mobile-menu-background-color:#1c3144;
         }
-        #vm-logo-image{
-            margin-top: -32px;
-            width:94px;
-            height:94px;
-            border-radius: 47px;
-            background: url('__CURRENT_PATH__/header.html.logo.jpg') no-repeat top center;
-            background-size: cover;
-            float:left;
-            margin-right:1px;
-            cursor:pointer;
-        }
         #vm-logo-label-A{
-            font-family: "Gaegu", cursive;
+            font-family: Arial, sans-serif;
             color:#fff;
-            font-size: 300%;
+            font-size: 200%;
             line-height:10px;
             display:inline-block;
         }
         #vm-logo-label-B{
             font-family: Arial, sans-serif;
             color:#fff;
-            font-size: 93%;
+            font-size: 105%;
             line-height:80%;
             display:inline-block;
         }
-        /*menu*/
         #vm-menu > a {
             color:var(--menu-color);
             float: left;

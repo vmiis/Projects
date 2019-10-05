@@ -1,0 +1,112 @@
+<div id=D__ID>
+    <div>
+        <section>
+            <div id=toolbar__ID class="navbar navbar-default">
+                    <!--
+                    <div id=row_1__ID>
+                            <button id=info__ID type=button class='btn btn-secondary' title='Add new' style='display:none'><i class="fa fa-info"></i></button>
+                            <button id=new__ID  type=button class='btn btn-secondary' title='Add new'><i class="fa fa-plus"></i></button>
+                            <button id=query__ID type=button class="btn btn-secondary" title='Refresh'><i class="fas fa-redo-alt"></i></button>
+                    </div>
+                    -->
+            </div>
+            <div id=table__ID>
+                <table id=grid__ID></table>
+                <br>Excel File Location: IT/Documents/demo_01.xlsx
+            </div>
+        </section>
+        <style>
+            #toolbar__ID{
+                background-color:#ccc;
+                padding:5px 10px;
+                margin-bottom:0px;
+                overflow:hidden
+            }
+            #toolbar__ID *{
+                margin-right:3px;
+            }
+            #keyword__ID{
+                width: 150px; 
+                display:inline-block;
+            }
+            @media screen and (max-width:768px){
+                #toolbar__ID{
+                    padding: 3px 0;
+                }
+                #toolbar__ID div{
+                    padding-left:3px;
+                }
+                #row_1__ID{
+                    padding-bottom: 3px;
+                    width:100%;
+                }
+                #keyword__ID{
+                    width:auto;
+                }
+            }
+        </style>
+    </div>
+    <script>
+        function F__ID(){
+            //-------------------------------------
+            VmInclude:__COMPONENT__/g/grid.365r.02.js
+            //-------------------------------------
+            var create_fields=function(s){
+                var f="";
+                ss=s.split(',');
+                for(var i=0;i<ss.length;i++){
+                    if(f!="") f+=","
+                    var a=ss[i].trim();
+                    var b=ss[i].trim().replace(/ /g,'').replace(/\//g,'_x002f_').replace(/–/g,'_x2013_').replace(/\(/g,'_x2028_').replace(/\)/g,'_x2029_');
+                    if(b.length>32) b=b.substring(0,32);
+                    f+=a+"|"+b;
+                }
+                return f;
+            }
+            //-------------------------------------
+            var _id="ID";
+            var fields="\
+					First_Name,\
+					Last_Name\
+				";
+            var fields_hide="\
+                ";
+            m.fields=fields;
+            //-------------------------------------
+            m.set_req=function(){}
+            //-------------------------------------
+            m.data_process=function(res){
+                $('#vm_data_loader').hide();
+                m.records=[];
+                for(var i=1;i<res.values.length;i++){
+                    var fs=res.values[i];
+                    var Data={}
+                    Data['First_Name']=fs[0];
+                    Data['Last_Name']=fs[1];
+                    m.records.push({
+                        Data:Data
+                    })
+                    console.log(m.records[i-1].Data)
+                }
+                m.render();
+            }
+            //-------------------------------------
+            var scope=["Files.Read.All"];
+            m.request_data=function(){
+                var endpoint=m.Table;
+                $vm.m365_msal.acquireTokenSilent({scopes: scope}).then(function (tokenResponse) {
+                    m.ajax_query(endpoint,tokenResponse,function(data){
+                        m.data_process(data);
+                    })
+                }).catch(function (error) {
+                    console.log(error);
+                    $vm.alert("You haven't signed in, or your previous session has expired.")
+                });
+            }
+            //-------------------------------------
+        }
+    </script>
+    <style>
+        VmInclude:__COMPONENT__/g/grid.01.css
+    </style>
+</div>

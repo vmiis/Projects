@@ -1,0 +1,158 @@
+<div id=D__ID>
+    <div>
+        <section>
+            <div id=toolbar__ID class="navbar navbar-default">
+                    <div id=row_1__ID>
+                            <button id=info__ID type=button class='btn btn-secondary' title='Add new' style='display:none'><i class="fa fa-info"></i></button>
+                            <button id=new__ID  type=button class='btn btn-secondary' title='Add new'><i class="fa fa-plus"></i></button>
+                            <button id=query__ID type=button class="btn btn-secondary" title='Refresh'><i class="fas fa-redo-alt"></i></button>
+                    </div>
+            </div>
+            <div id=table__ID>
+                <table id=grid__ID></table>
+            </div>
+        </section>
+        <style>
+            #toolbar__ID{
+                background-color:#ccc;
+                padding:5px 10px;
+                margin-bottom:0px;
+                overflow:hidden
+            }
+            #toolbar__ID *{
+                margin-right:3px;
+            }
+            #keyword__ID{
+                width: 150px; 
+                display:inline-block;
+            }
+            @media screen and (max-width:768px){
+                #toolbar__ID{
+                    padding: 3px 0;
+                }
+                #toolbar__ID div{
+                    padding-left:3px;
+                }
+                #row_1__ID{
+                    padding-bottom: 3px;
+                    width:100%;
+                }
+                #keyword__ID{
+                    width:auto;
+                }
+            }
+        </style>
+    </div>
+    <script>
+        function F__ID(){
+            //-------------------------------------
+            VmInclude:__COMPONENT__/g/grid.365r.01.js
+            //-------------------------------------
+            var fields="\
+                Approval From Executive Director|Approval_x0020_From_x0020_Execut,\
+                Title|Title,\
+                Frist Name|Frist_x0020_Name,\
+                Surname|Surname,\
+                Gender|Gender,\
+                Date Of Birth|Date_x0020_Of_x0020_Birth,\
+                Address|Address,\
+                Email Address|Email_x0020_Address,\
+                Phone Number|Phone_x0020_Number,\
+                Emergency Contact Name|Emergency_x0020_Contact_x0020_Na,\
+                Emergency Contact Relation|Emergency_x0020_Contact_x0020_Re,\
+                Emergency Contact Address|Emergency_x0020_Contact_x0020_Ad,\
+                Emergency Contact Phone No.|Emergency_x0020_Contact_x0020_Ph,\
+                Citizen/Permanent Resident|Citizen_x002f_Permanent_x0020_Re,\
+                Visa Status|Visa_x0020_Status,\
+                Work under the Supervision of|Work_x0020_under_x0020_the_x0020,\
+                Department/Group|Department_x002f_Group,\
+                Project Code|Project_x0020_Code,\
+                Project/Fellowship name|Project_x002f_Fellowship_x0020_n,\
+                Agreement Start Date|Agreement_x0020_Start_x0020_Date,\
+                Agreement End Date|Agreement_x0020_End_x0020_Date,\
+                Do they require computer access?|Do_x0020_they_x0020_require_x002,\
+                Have they ever been affiliated with Sydney Uni (Yes/No)|Have_x0020_they_x0020_ever_x0020,\
+                If yes please advise unikey and uni email address|If_x0020_yes_x0020_please_x0020_,\
+                Do they require a building access card|Do_x0020_they_x0020_require_x0020,\
+                Do they require an allocated desk|Do_x0020_they_x0020_require_x0021,\
+                If they require a desk on what days will they require it|If_x0020_they_x0020_require_x002,\
+                Does the role require lab access|Does_x0020_the_x0020_role_x0020_,\
+                Will the new appointee come into contact with patients/participants|Will_x0020_the_x0020_new_x0020_a,\
+                Will the new appointee be involved in research with study participant|Will_x0020_the_x0020_new_x0020_a0\
+            ";
+            var fields_hide="\
+                ";
+            m.fields="_Form,"+fields+",Submit_date,Submitted_by,_Delete";
+            //-------------------------------------
+            m.set_req=function(){
+                m.endpoint=m.Table+"/items?$expand=Author&$select=*,Author/FirstName,Author/LastName";
+                m.endpoint=m.Table+"/items?$expand=Author&$select=*,Author/UserName,Author/FirstName,Author/LastName&$filter=Author/UserName eq '"+$vm.user_name_365+"' ";
+                m.endpoint_d=m.Table+"/items";
+            }
+            //-------------------------------------
+            m.data_process=function(res){
+                $('#vm_data_loader').hide();
+                m.records=[];
+                for(var i=0;i<res.value.length;i++){
+                    var fs=res.value[i];
+                    var Data={}
+                    //var f_ids=(fields+fields_hide).split(',')
+                    var f_ids=(fields).split(',')
+                    for(k in f_ids){
+                        var id=f_ids[k].split('|').pop().trim();
+                        Data[id]=fs[id];
+                    }
+                    m.records.push({
+                        "_id":res.value[i]['ID'],
+                        "Submit_date":res.value[i]['Created'],
+                        "Submitted_by":res.value[i].Author.FirstName+" "+res.value[i].Author.LastName,
+                        Data:Data
+                    })
+                    console.log(m.records[i].Data)
+                }
+                m.render();
+            }
+            //-------------------------------------
+            m.request_data=function(){
+                $('#vm_data_loader').show();
+                $vm.m365_msal.acquireTokenSilent($vm.m365_scope_sharepoint).then(function (tokenResponse) {
+                    m.ajax(m.endpoint,tokenResponse,function(data){
+                        m.data_process(data);
+                    })
+                }).catch(function (error) {
+                    $('#vm_data_loader').hide();
+                    console.log(error);
+                    $vm.alert("You haven't signed in, or your previous session has expired.")
+                });
+            }
+            //-------------------------------------
+            m.delete=function(rid){
+                $vm.m365_msal.acquireTokenSilent($vm.m365_scope_sharepoint).then(function (tokenResponse) {
+                    var mt1=new Date().getTime();
+                    var xmlHttp = new XMLHttpRequest();
+                    xmlHttp.onreadystatechange = function () {
+                        if (this.readyState == 4 && (this.status == 204 || this.status == 200)){
+                            var mt2=new Date().getTime();
+                            var tt_all=mt2-mt1;
+                            m.request_data();
+                        }
+                    }
+                    xmlHttp.open("DELETE", m.endpoint_d+"("+rid+")", true); // true for asynchronous
+                    xmlHttp.setRequestHeader('Authorization', 'Bearer ' + tokenResponse.accessToken);
+                    xmlHttp.setRequestHeader("Accept", "application/json");  
+                    xmlHttp.setRequestHeader("Content-Type", "application/json; charset=utf-8");  
+                    xmlHttp.setRequestHeader("IF-MATCH", "*");  
+                    xmlHttp.send();
+                }).catch(function (error) {
+                    console.log(error);
+                });
+            };
+            //-------------------------------
+
+
+        }
+    </script>
+    <style>
+        VmInclude:__COMPONENT__/g/grid.01.css
+    </style>
+</div>

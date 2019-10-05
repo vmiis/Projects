@@ -31,46 +31,46 @@
 
                                             
         "entity":                           {url:"$H/v/entity.html",
-                                                Table: "https://woolcockdev.crm6.dynamics.com/api/data/v9.1/EntityDefinitions",
+                                                Table: "https://woolcock.crm6.dynamics.com/api/data/v9.1/EntityDefinitions",
                                                 form_module:"new-hire-form",router:1
                                             },
         "entity-data":                     {url:"$H/v/entity-data.html",
-                                                Table: "https://woolcockdev.crm6.dynamics.com/api/data/v9.1/EntityDefinitions",
+                                                Table: "https://woolcock.crm6.dynamics.com/api/data/v9.1/EntityDefinitions",
                                                 form_module:"new-hire-form",router:1
                                             },
         "project-data":                     {url:"$H/v/project-data.html",
-                                                Table: "https://woolcockdev.crm6.dynamics.com/api/data/v9.1/woolcock_projectses",
+                                                Table: "https://woolcock.crm6.dynamics.com/api/data/v9.1/woolcock_projectses",
                                                 form_module:"new-hire-form",router:1
                                             },
         "study-data":                       {url:"$H/v/study-data.html",
-                                                Table: "https://woolcockdev.crm6.dynamics.com/api/data/v9.1/woolcock_studies",
+                                                Table: "https://woolcock.crm6.dynamics.com/api/data/v9.1/woolcock_studies",
                                                 form_module:"new-hire-form",router:1
                                             },
         "child-study-data":                 {url:"$H/v/child-study-data.html",
-                                                Table: "https://woolcockdev.crm6.dynamics.com/api/data/v9.1/woolcock_volunteerauditnews",
+                                                Table: "https://woolcock.crm6.dynamics.com/api/data/v9.1/woolcock_volunteerauditnews",
                                                 form_module:"new-hire-form",router:1
                                             },
         "volunteer-study-history-data":     {url:"$H/v/volunteer-study-history-data.html",
-                                                Table: "https://woolcockdev.crm6.dynamics.com/api/data/v9.1/woolcock_volunteerauditnews",
+                                                Table: "https://woolcock.crm6.dynamics.com/api/data/v9.1/woolcock_volunteerauditnews",
                                                 form_module:"new-hire-form",router:1
                                             },
         "volunteer-audit-data":             {url:"$H/v/volunteer-audit-data.html",
-                                                Table: "https://woolcockdev.crm6.dynamics.com/api/data/v9.1/woolcock_volstudymappings",
+                                                Table: "https://woolcock.crm6.dynamics.com/api/data/v9.1/woolcock_volstudymappings",
                                                 form_module:"new-hire-form",router:1
                                             },
 
                                             
         "volunteer-details":                {url:"$H/v/volunteer-details.html",
-                                                Table: "https://woolcockdev.crm6.dynamics.com/api/data/v9.1/",
+                                                Table: "https://woolcock.crm6.dynamics.com/api/data/v9.1/",
                                                 form_module:"new-hire-form",router:1
                                             },
 
         "student-data":                     {url:"$H/v/study-data.html",
-                                                Table: "https://woolcockdev.crm6.dynamics.com/api/data/v9.1/woolcock_studentses",
+                                                Table: "https://woolcock.crm6.dynamics.com/api/data/v9.1/woolcock_studentses",
                                                 form_module:"new-hire-form",router:1
                                             },
         "contact-data":                     {url:"$H/v/contact-data.html",
-                                                Table: "https://woolcockdev.crm6.dynamics.com/api/data/v9.1/contacts",
+                                                Table: "https://woolcock.crm6.dynamics.com/api/data/v9.1/contacts",
                                                 form_module:"new-hire-form",router:1
                                             },
         "new-hire-data":                    {url:"$H/h/new-hire-data.html",
@@ -234,17 +234,13 @@
                                                 Table: "https://graph.microsoft.com/v1.0/sites/woolcockmed.sharepoint.com,eadc72df-8198-4320-a11b-6f1bcfbcaf1b,2367a8ed-18d1-4fea-afe2-c5784ffccfa9/drives/b!33Lc6piBIEOhG28bz7yvG-2oZyPRGOpPr-LFeE_8z6kd0nUNzwG9RqeqVggD-7uj/items/013ZBZGZ3WXWJHHEKLE5HYCWXWAGRCHQQK/workbook/worksheets/Sheet1/usedRange",
                                             },
 
-                                                                
-
-
-
         "module-editor":                    {url:"https://vm.vmiis.com/component/m/module-editor.html",router:1,sys:1},
         "json-viewer":                      {url:"https://vm.vmiis.com/component/j/json-viewer.html",router:1},
     }
     for(p in modules){
         $vm.module_list[p]=modules[p]; 
         $vm.module_list[p].url=$vm.module_list[p].url.replace('$H',$vm.hosting_path);
-        if($vm.module_list[p].Table!=undefined) $vm.module_list[p].Table=$vm.module_list[p].Table.replace("https://woolcockdev.crm6","https://woolcock.crm6");
+        //if($vm.module_list[p].Table!=undefined) $vm.module_list[p].Table=$vm.module_list[p].Table.replace("https://woolcockdev.crm6","https://woolcock.crm6");
     }
     //-------------------------------------------------------------------------------------
 })();

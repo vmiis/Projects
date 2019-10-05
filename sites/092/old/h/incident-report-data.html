@@ -1,0 +1,160 @@
+<div id=D__ID>
+    <div>
+        <section>
+            <div id=toolbar__ID class="navbar navbar-default">
+                    <div id=row_1__ID>
+                            <button id=info__ID type=button class='btn btn-secondary' title='Add new' style='display:none'><i class="fa fa-info"></i></button>
+                            <button id=new__ID  type=button class='btn btn-secondary' title='Add new'><i class="fa fa-plus"></i></button>
+                            <button id=query__ID type=button class="btn btn-secondary" title='Refresh'><i class="fas fa-redo-alt"></i></button>
+                    </div>
+            </div>
+            <div id=table__ID>
+                <table id=grid__ID></table>
+            </div>
+        </section>
+        <style>
+            #toolbar__ID{
+                background-color:#ccc;
+                padding:5px 10px;
+                margin-bottom:0px;
+                overflow:hidden
+            }
+            #toolbar__ID *{
+                margin-right:3px;
+            }
+            #keyword__ID{
+                width: 150px; 
+                display:inline-block;
+            }
+            @media screen and (max-width:768px){
+                #toolbar__ID{
+                    padding: 3px 0;
+                }
+                #toolbar__ID div{
+                    padding-left:3px;
+                }
+                #row_1__ID{
+                    padding-bottom: 3px;
+                    width:100%;
+                }
+                #keyword__ID{
+                    width:auto;
+                }
+            }
+        </style>
+    </div>
+    <script>
+        function F__ID(){
+            //-------------------------------------
+            VmInclude:__COMPONENT__/g/grid.365r.01.js
+            //-------------------------------------
+            var create_fields=function(s){
+                var f="";
+                ss=s.split(',');
+                for(var i=0;i<ss.length;i++){
+                    if(f!="") f+=","
+                    var a=ss[i].trim();
+                    var b=ss[i].trim().replace(/ /g,'').replace(/\//g,'_x002f_').replace(/–/g,'_x2013_').replace(/\(/g,'_x2028_').replace(/\)/g,'_x2029_');
+                    if(b.length>32) b=b.substring(0,32);
+                    f+=a+"|"+b;
+                }
+                return f;
+            }
+            //-------------------------------------
+            var fields="\
+                    Nature of incident being reported|Nature_x0020_of_x0020_incident_x,\
+					Name|Name,\
+					Contact number|Contact_x0020_number,\
+					Email address|Email_x0020_address,\
+					Role at the Woolcock|Role_x0020_at_x0020_the_x0020_Wo,\
+					Manager/Supervisor|Manager_x002f_Supervisor,\
+					Department/Group|Department_x002f_Group,\
+					Name of person reporting incident (if not person above)|Name_x0020_of_x0020_person_x0020,\
+					University that student is enrolled at|University_x0020_that_x0020_stud,\
+					Student number|Student_x0020_number,\
+					Woolcock Supervisor|Woolcock_x0020_Supervisor,\
+					Primary Supervisor (if not same as above)|Primary_x0020_Supervisor_x0020__,\
+					Incident date|Incident_x0020_date,\
+					Incident time|Incident_x0020_time,\
+					Reporting date|Reportingdate,\
+					Reporting time|Reportingtime,\
+					Incident location|Incident_x0020_location,\
+					Please briefly describe the incident/near miss/hazard|Please_x0020_briefly_x0020_descr,\
+					Please describe the steps you took after the incident or near miss|Please_x0020_describe_x0020_the_\
+				";
+            var fields_hide="\
+                ";
+            m.fields="_Form,"+fields+",Submit_date,Submitted_by,_Delete";
+            //-------------------------------------
+            m.set_req=function(){
+                m.endpoint=m.Table+"/items?$expand=Author&$select=*,Author/FirstName,Author/LastName";
+                m.endpoint=m.Table+"/items?$expand=Author&$select=*,Author/UserName,Author/FirstName,Author/LastName&$filter=Author/UserName eq '"+$vm.user_name_365+"' ";
+                m.endpoint_d=m.Table+"/items";
+            }
+            //-------------------------------------
+            m.data_process=function(res){
+                $('#vm_data_loader').hide();
+                m.records=[];
+                for(var i=0;i<res.value.length;i++){
+                    var fs=res.value[i];
+                    var Data={}
+                    var f_ids=(fields+fields_hide).split(',')
+                    //var f_ids=(fields).split(',')
+                    for(k in f_ids){
+                        var id=f_ids[k].split('|').pop().trim();
+                        Data[id]=fs[id];
+                    }
+                    m.records.push({
+                        "_id":res.value[i]['ID'],
+                        "Submit_date":res.value[i]['Created'],
+                        "Submitted_by":res.value[i].Author.FirstName+" "+res.value[i].Author.LastName,
+                        Data:Data
+                    })
+                    console.log(m.records[i].Data)
+                }
+                m.render();
+            }
+            //-------------------------------------
+            m.request_data=function(){
+                $('#vm_data_loader').show();
+                $vm.m365_msal.acquireTokenSilent($vm.m365_scope_sharepoint).then(function (tokenResponse) {
+                    m.ajax(m.endpoint,tokenResponse,function(data){
+                        m.data_process(data);
+                    })
+                }).catch(function (error) {
+                    $('#vm_data_loader').hide();
+                    console.log(error);
+                    $vm.alert("You haven't signed in, or your previous session has expired.")
+                });
+            }
+            //-------------------------------------
+            m.delete=function(rid){
+                $vm.m365_msal.acquireTokenSilent($vm.m365_scope_sharepoint).then(function (tokenResponse) {
+                    var mt1=new Date().getTime();
+                    var xmlHttp = new XMLHttpRequest();
+                    xmlHttp.onreadystatechange = function () {
+                        if (this.readyState == 4 && (this.status == 204 || this.status == 200)){
+                            var mt2=new Date().getTime();
+                            var tt_all=mt2-mt1;
+                            m.request_data();
+                        }
+                    }
+                    xmlHttp.open("DELETE", m.endpoint_d+"("+rid+")", true); // true for asynchronous
+                    xmlHttp.setRequestHeader('Authorization', 'Bearer ' + tokenResponse.accessToken);
+                    xmlHttp.setRequestHeader("Accept", "application/json");  
+                    xmlHttp.setRequestHeader("Content-Type", "application/json; charset=utf-8");  
+                    xmlHttp.setRequestHeader("IF-MATCH", "*");  
+                    xmlHttp.send();
+                }).catch(function (error) {
+                    console.log(error);
+                });
+            };
+            //-------------------------------
+
+
+        }
+    </script>
+    <style>
+        VmInclude:__COMPONENT__/g/grid.01.css
+    </style>
+</div>

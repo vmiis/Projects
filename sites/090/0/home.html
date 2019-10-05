@@ -1,22 +1,36 @@
 <div id=D__ID>
-	<div id=page_1__ID class=home_page_1>
-		<div class="panel__ID" >
-			<p style='font-size:16px'> 
-					Unemployment is a measure of the way the labour market is operating at any time and is 
-					widely used and discussed by economists, government, and the media to measure the level 
-					of spare labour capacity in the economy
-			</p>
-			<p class=text-center>
-				<a id=au__ID class='btn btn-success' >Australia</a>
-				<a id=ch__ID class='btn btn-success' >China</a>
-				<a id=us__ID class='btn btn-success' >US</a>
-			</p>
+	<div id=page__ID class=home_page_1>
+		<div class="container-fluid" style='max-width:960px'>
+			<div class="text-center panel__ID" style='color:#000'>
+				<br>
+				<h2>Unemployment</h2>
+				<p style='font-size:16px'> 
+						Unemployment is a measure of the way the labour market is operating at any time and is 
+						widely used and discussed by economists, government, and the media to measure the level 
+						of spare labour capacity in the economy
+				</p>
+				<p class=text-center>
+					<a id=au__ID class='btn btn-success' >Australia</a>
+					<a id=ch__ID class='btn btn-success' >China</a>
+					<a id=us__ID class='btn btn-success' >US</a>
+				</p>
+			</div>
+			<br><br>
+			<br><br>
+			<br><br>
+		</div>
+		<div style='text-align: center;color:#fff;position:absolute;bottom:10px;font-size:150%;width:100%;'>
+			<div id=scroll_down__ID style='display:inline-block;padding:10px 20px;cursor:pointer'>
+				<i class="fas fa-angle-double-down"></i>
+				<br>Scroll
+			</div>
 		</div>
 	</div>
-	<div id=news__ID>
+	<div id=page2__ID class=home_page_1 style='background-color: #fff;'>
+		<div id=component1__ID></div>
 	</div>
 	<script>
-		$vm.load_component('news','news__ID',{topic:"Unemployment",rss:"https://news.google.com/rss/search?q=unemployment&hl=en-AU&gl=AU&ceid=AU%3Aen"})
+		$vm.load_component('about','component1__ID',{})
 		$('#D__ID').on('load',function(){
 			$('#au__ID').on('click',function(){
 				$vm.load_module("australia-unemployment",'',{})
@@ -28,34 +42,31 @@
 				$vm.load_module("united-states-unemployment",'',{})
 			})
 		})
+		$('#scroll_down__ID').on('click',function(e){
+			e.preventDefault();
+    		$('html, body').animate({ scrollTop: $('#page2__ID').offset().top-100}, 800, 'linear');
+		})
 	</script>
 	<style>
 		#D__ID{
 			height:100%;
+	        overflow:auto;
 			animation: vm_module_fadein 1.0s, D__ID 3s;
 		}
-		#page_1__ID{
+		#page__ID{
+			height:100%;
 			display: flex;
 			align-items: center;
-			color: #fff;
-		    line-height: 1.1;
 		}
-		#page_1__ID h1{
-		    font-size: 80px;
-		    font-family: "Gaegu", cursive;
+		.panel__ID{
+			color:#fff;
+			background: rgba(0, 0, 0, 0.0);
+			border-radius: 25px;
+			padding:10px 30px;
 		}
-		#demo__ID{
-			padding:0 50px;
-			background-color: #fff;
+		#page__ID h2{
+			text-shadow: 2px 2px 2px #fff;
 		}
-        .panel__ID{
-            color:#fff;
-            background: rgba(0, 0, 0, 0.3);
-            border-radius: 25px;
-            padding:30px 50px 20px 50px;
-			margin:0 auto 130px auto;
-			max-width:800px;
-        }
 		@keyframes D__ID {
 			from {padding-top: 300px;}
 			to {padding-top: 0px;}
@@ -65,6 +76,24 @@
 	            animation: vm_module_fadein 1.0s;
 	        }
 	    }
+		#scroll_down__ID {
+			color:#fff;
+			animation:scroll__ID 8s;
+			-moz-animation:scroll__ID 8s infinite; /* Firefox */
+			-webkit-animation:scroll__ID 8s infinite; /* Safari and Chrome */
+		}
+    	@keyframes scroll__ID 
+		{
+			0%   {color:#fff;}
+			50%  {color:#333;}
+			100%   {color:#fff;}
+		}
+        @media screen and (max-width: 1200px) {
+			#page__ID h1{
+				font-size: 26px;
+			}
+		}
+
 	</style>
 	<script>
 		function F__ID(){
