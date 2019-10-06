@@ -20,17 +20,18 @@
         function F__ID(){
             var editor=null;
             var file_url="";
-            var module_name="";
+            //var module_name="";
             //--------------------------------------------------------
             $('#D__ID').on('load',function(){
-                url="";
-                module_name="";
+                file_url="";
+                //module_name="";
                 if(editor==null){
                     set_editor();
                 }
                 var aa=window.location.href.split('?path=');
                 if(aa.length=2){
                     var path=aa[1];
+                    file_url=path;
                     $('#path__ID').val(path);
                     $('#load__ID').triggerHandler('click');
                 }
@@ -66,6 +67,7 @@
                     $vm.alert("The HTML contents is not a module");
                     return;
                 }
+                //alert(file_url)
                 $vm.load_content(nm,'module__ID',{},code);
                 $('#module__ID').find('div:first').css('min-height',$vm.min_height+"px");
             })
