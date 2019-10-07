@@ -1,11 +1,23 @@
-<div id=D__ID>
-    <div class="row">
-        <div class="col">
-            <div style="display:table;height:100%;width:100%;">
-                <div style="display:table-cell;vertical-align:middle"><a id="c_footer" target="_blank" style="color:#fff">Copyright © 2019 </a> <a target="_blank" style="color:#fff;font-size:0.7rem" href="https://wappsystem.com.au">Powered by Wappsystem</a></div>
-            </div>
-        </div>
-    </div>        
+<div id=D__ID><footer id=footer>
+                <div class="container mt-0" id=appstore style="display:none">
+                  <div class="row justify-content-end px-0">
+                    <div class="col"><a id=btn2_0><img src="https://www.sfix.com.au/images/AppStore.png" alt="Download from the App Store"/></a><a id=btn3_0><img src="https://www.sfix.com.au/images/GooglePlay.png" alt="Download from Google Play"/></a> </div>
+                  </div>
+                </div>
+                <div class="container mt-0" id=logos__ID style="">
+                  <div class="row justify-content-center px-0">
+                    <div class="col-4-sm ">
+                        <a><img src="https://www.sfix.com.au/images/crc-logo.png" style="width:175px;margin-top:3px" alt="CRC Alertness,Productivity and Safety"/></a>
+                    </div>
+                    <div class="col-4-sm ">
+                        <a ><img src="https://www.sfix.com.au/images/usyd_new_logo.png" style="width:175px" alt="USYD"/></a>
+                    </div>
+                    <div class="col-4-sm ">
+                        <a ><img src="https://www.sfix.com.au/images/woolcock.gif" style="width:200px;margin-top:5px" alt="Woolcock"/></a>
+                    </div>
+                  </div>
+                </div>
+            </footer>
     <script>
         //------------------------------------
         $vm.footer_ready=1;
@@ -14,36 +26,38 @@
     <style>
         #D__ID{
             overflow: hidden;
+            margin-top: 0;
         }
-        #footer a{
-            color: #fff;
-            font-size:120%;
-            margin-right:10px;
-        }
-        #footer{
-            overflow: hidden;
-            color: #fff;
-            padding: 2px;
-            background-color: #333;
-            font-size:80%;
-            text-align: center;
-        }
-        #footer .fa-stack-1x {
-            color:white;
-        }
-        #footer .icon-facebook {
-        color:#3b5998;
+        footer {
+            background-color: #A2D5CB !important;
+            height: 290px !important;
+            padding-top: 35px;
         }
 
-        #footer .icon-twitter {
-            color:#00aced;
+        footer img {
+            width: 170px;
+            height: auto;
+            float: right;
+            margin-left:50px;
+            margin-right:50px;
+            margin-bottom:10px;
         }
-
-        #footer .icon-gplus{
-            color:#dd4b39;
+        .logos {
+            width: 250px;
+            height: auto;
+            float: right;
+            margin-left:5px;
+            margin-right:5px;
         }
-        @media screen and (max-width: 1200px){
-            #footer{ height:110px; }
+        @media (min-width: 768px) {
+            footer {
+                height: 200px !important;
+            }
+        }
+        @media (max-width: 600px) {
+            #D__ID{            
+                margin-top:0;
+            }
         }
     </style>
 </div>

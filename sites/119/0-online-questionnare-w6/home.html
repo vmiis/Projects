@@ -1,22 +1,29 @@
 <div id=D__ID>
-	<div id=page__ID>
-		<div class="container-fluid" style='max-width:600px'>
-			<div class="text-center panel__ID">
-                <h3>Welcome to SleepFix.</h3>
-                <div >
-                    <p> Week 6 questionnaire</p>
+    <div class="jumbotron-fluid home">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-6 col-md-12 col-sm-12 order-xl-2 text-left">
+                    <h1>Welcome to SleepFix</h1>
+                    <p> Week 6 Questionnaire</p>
+                    <div class="row">
+                        <div class="col">
+                            <div id=login__ID class=C__ID__s>
+                                <p>Please enter the unique username and password provided by your GP:</p>
+                                <input id=username__ID placeholder="Username" class=C__ID__input autocomplete="off" />
+                                &nbsp;&nbsp;<input id=password__ID placeholder="Password" class="C__ID__input"
+                                    type=password />
+                                &nbsp;&nbsp;<input id=signin__ID type=button value='Sign in' class="btn-primary" />
+                                <br><span id="ErrMsg__ID"></span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div id=login__ID class=C__ID__s>
-                    <span style='color:black'>Please enter the unique username and password provided by your GP:</span>
-                    <input id=username__ID placeholder="Username" class=C__ID__input autocomplete="off" />
-                    &nbsp;&nbsp;<input id=password__ID placeholder="Password" class=C__ID__input type=password />
-                    &nbsp;&nbsp;<input id=signin__ID type=button value='Sign in' class=C__ID__button />
-                    <br><span id="ErrMsg__ID"></span>
+                <div class="col-xl-5 col-sm-12 order-xl-1 text-center"> <img
+                        src="https://www.sfix.com.au/images/phone-lrg.png" alt="Sleep App" class="mx-auto" />
                 </div>
-			</div>
-		</div>
-	</div>
-
+            </div>
+        </div>
+    </div>
     <script>
         function F__ID(){
             //-------------------------------------
@@ -38,6 +45,7 @@
                 $('#password__ID').val(password);
             }
             $('#D__ID').on('load',function(){
+                $('#footer').css('margin-top','-175px');
             })
             $('#signin__ID').on('click',function(){
                 //------------------------------------
@@ -78,6 +86,7 @@
                             if(res.result.length==0) task='isi-w6-form';
                         })
                         jQuery.ajaxSetup({async:true});
+                        $('#footer').css('margin-top','0');
                         if(task!=""){
                             p_uid=username.split('-')[0];
                             $vm.load_module_v2(m.prefix + task, '', {p_uid:p_uid});
@@ -92,49 +101,239 @@
         }
     </script>
     <style>
-        #D__ID{
-            overflow: auto;
+        #D__ID {
+            height: 100%;
             animation: vm_module_fadein 1.0s;
-            /*padding:120px;*/
-            height:'unset!important'
+            overflow: auto;
+        }
 
+        VmInclude:__CURRENT_PATH__/../../m/tasks/wappsystem-form.css 
+        #D__ID .form-group:hover {
+            background-color: rgb(0, 0, 0, 0);
         }
-        #D__ID h3 {
+
+        #D__ID .form-group {
+            border-bottom: 0 !important
+        }
+    </style>
+    <style third-party>
+        .home {
+            /*background-color: #004955 !important;*/
+            /*background-image: url(images/form-bg.jpg) !important;*/
+            background-size: cover;
+            background-repeat: repeat-x;
+            background-position: center top;
+            background-attachment: fixed;
+
+            margin-bottom: 0px !important;
+            border-radius: 0px;
+            padding-top: 21px;
+            /*100px-80px*/
+        }
+
+        .home img {
+            width: 560px;
+            height: auto;
+            margin-left: -65px !important;
+        }
+
+        @media (max-width: 1200px) {
+            .home img {
+                width: 360px;
+                height: auto;
+                margin-left: 0px !important;
+            }
+
+            .home h1 {
+                font-family: 'Roboto Slab';
+                font-weight: 100;
+                font-size: 32px;
+                color: #FCFBF5;
+                letter-spacing: 0;
+                /*line-height: 72px;*/
+                margin-top: 30px !important;
+            }
+        }
+
+        .home h1 {
             font-family: 'Roboto Slab';
-            font-size: 24px;
-            color: #000;
+            font-weight: 100;
+            font-size: 32px;
+            color: #FCFBF5;
             letter-spacing: 0;
-            display: block;
-            padding: 15px;
-        }        
-        .C__ID__s{
-            font: 18pt "Arial";
-    /*        padding:80px;*/
-            display:inline-block;
-            background: rgba(255,255,255,0);
+            /*line-height: 72px;*/
+            margin-top: 30px;
         }
-        .panel__ID{
-                color:#000;
-                background: rgba(255, 255, 255, 0.6);
-                border-radius: 15px;
+
+        .home p {
+            font-family: 'Nunito Sans';
+            font-weight: 100;
+            font-size: 13px;
+            color: #FFFFFF;
+            letter-spacing: 0;
+        }
+
+        /* HOME BUTTONS */
+        .home .btn-primary,
+        .home .btn-primary:active,
+        .home .btn-primary:visited,
+        .home .btn-primary:focus {
+            background-color: #45496A;
+            border-color: #45496A;
+            font-family: 'Nunito Sans';
+            font-weight: 100;
+            font-size: 12px;
+            letter-spacing: 1px;
+            color: #FFFFFF;
+            text-align: center;
+            line-height: 18px;
+            /*text-transform: uppercase;*/
+            border-radius: 5px;
+            /*padding: 16px 30px;*/
+            margin: 0 10px 10px 0;
+        }
+
+        .home .btn-primary:hover {
+            background-color: #35395D;
+            border-color: #35395D;
+            font-family: 'Nunito Sans';
+            font-weight: 100;
+            font-size: 12px;
+            letter-spacing: 1px;
+            color: #FFFFFF;
+            text-align: center;
+            line-height: 18px;
+            /*text-transform: uppercase;*/
+            border-radius: 5px;
+            /*padding: 16px 30px;*/
+            margin: 0 10px 10px 0;
+        }
+
+        .home .greenbutton,
+        .home .greenbutton:active,
+        .home .greenbutton:visited,
+        .home .greenbutton:focus {
+            background-color: #23807F;
+            border-color: #23807F;
+            font-family: 'Nunito Sans';
+            font-weight: 100;
+            font-size: 12px;
+            letter-spacing: 1px;
+            color: #FFFFFF;
+            text-align: center;
+            line-height: 18px;
+            /*text-transform: uppercase;*/
+            border-radius: 5px;
+            /*	padding: 16px 30px;*/
+            margin: 0 10px 10px 0;
+        }
+
+        .home .greenbutton:hover {
+            background-color: #1F6363;
+            border-color: #1F6363;
+            font-family: 'Nunito Sans';
+            font-weight: 100;
+            font-size: 12px;
+            letter-spacing: 1px;
+            color: #FFFFFF;
+            text-align: center;
+            line-height: 18px;
+            /*text-transform: uppercase;*/
+            border-radius: 5px;
+            /*padding: 16px 30px;*/
+            margin: 0 10px 10px 0;
+        }
+
+        @media (max-width: 600px) {
+
+            .home .btn-primary,
+            .home .btn-primary:active,
+            .home .btn-primary:visited,
+            .home .btn-primary:focus {
+                background-color: #45496A;
+                border-color: #45496A;
                 font-family: 'Nunito Sans';
-                padding:20px;
+                font-weight: 100;
+                font-size: 12px;
+                letter-spacing: 1px;
+                color: #FFFFFF;
+                text-align: center;
+                line-height: 18px;
+                /*text-transform: uppercase;*/
+                border-radius: 5px;
+                padding: 8px 15px;
+                margin: 0 10px 10px 0;
             }
-        @media all and (max-width: 480px){
-            #D__ID{
-                padding:0px;
-                height:100%;
+
+            .home .btn-primary:hover {
+                background-color: #35395D;
+                border-color: #35395D;
+                font-family: 'Nunito Sans';
+                font-weight: 100;
+                font-size: 12px;
+                letter-spacing: 1px;
+                color: #FFFFFF;
+                text-align: center;
+                line-height: 18px;
+                /*text-transform: uppercase;*/
+                border-radius: 5px;
+                padding: 8px 15px;
+                margin: 0 10px 10px 0;
             }
-            .C__ID__s{
-                width:100%;
-                height:100%;
-                padding:60px 0 0 0;
+
+            .home .greenbutton,
+            .home .greenbutton:active,
+            .home .greenbutton:visited,
+            .home .greenbutton:focus {
+                background-color: #23807F;
+                border-color: #23807F;
+                font-family: 'Nunito Sans';
+                font-weight: 100;
+                font-size: 12px;
+                letter-spacing: 1px;
+                color: #FFFFFF;
+                text-align: center;
+                line-height: 18px;
+                /*text-transform: uppercase;*/
+                border-radius: 5px;
+                padding: 8px 15px;
+                margin: 0 10px 10px 0;
+            }
+
+            .home .greenbutton:hover {
+                background-color: #1F6363;
+                border-color: #1F6363;
+                font-family: 'Nunito Sans';
+                font-weight: 100;
+                font-size: 12px;
+                letter-spacing: 1px;
+                color: #FFFFFF;
+                text-align: center;
+                line-height: 18px;
+                /*text-transform: uppercase;*/
+                border-radius: 5px;
+                padding: 8px 15px;
+                margin: 0 10px 10px 0;
+            }
+        }
+
+        @media all and (max-width: 480px) {
+            #D__ID {
+                padding: 0px;
+                height: 100%;
+            }
+
+            .C__ID__s {
+                width: 100%;
+                height: 100%;
+                padding: 60px 0 0 0;
                 text-align: center;
             }
         }
-        .C__ID__input{
+
+        .C__ID__input {
             height: 34px;
-            width:100px;
+            width: 100px;
             color: #555;
             display: inline-block;
             padding: 1px 6px;
@@ -145,8 +344,9 @@
             border-radius: 2px;
             margin-bottom: 0;
         }
+
         .C__ID__button {
-            margin:16px 0;
+            margin: 16px 0;
             -webkit-appearance: button;
             cursor: pointer;
             color: #fff;
@@ -164,70 +364,24 @@
             border: 1px solid transparent;
             border-radius: 4px;
         }
-        .C__ID__button:hover{
+
+        .C__ID__button:hover {
             background-color: #3276b1;
             border-color: #285e8e;
         }
-        .C__ID__s *{
+
+        .C__ID__s * {
             margin: 6px 0;
         }
-        .C__ID__s span{
-            color:#FF0000;
+
+        .C__ID__s span {
+            color: #FF0000;
             font: 12pt "Arial";
         }
-        .C__ID__s u{
-            cursor:pointer;
+
+        .C__ID__s u {
+            cursor: pointer;
             font: 12pt "Arial";
         }
-        #D__ID .checkboxes {
-        display: inline-block;
-        position: relative;
-        cursor: pointer;
-        padding-left: 30px;
-        -webkit-user-select: none;
-        -moz-user-select: none;
-        -ms-user-select: none;
-        user-select: none;
-    }
-    #D__ID .checkboxes input {
-        position: absolute !important;
-        opacity: 0 !important;
-        cursor: pointer;
-    }
-    #D__ID .check_checkmark {
-        position: absolute;
-        top: 0;
-        left: 0;
-        height: 22px;
-        width: 22px;
-        background-color: rgb(255,255,255,0.6);
-        border-radius: 0%;
-    }
-    #D__ID .checkboxes:hover input ~ .check_checkmark {
-        background-color: #506A88;
-    }
-    #D__ID .checkboxes input:checked ~ .check_checkmark {
-        background-color: #EA7859;
-    }
-    #D__ID .check_checkmark:after {
-        content: "";
-        position: absolute !important;
-        display: none;
-    }
-    /* Show the indicator (dot/circle) when checked */
-    #D__ID .checkboxes input:checked ~ .check_checkmark:after {
-        display: block !important;
-    }
-    /* Style the indicator (dot/circle) */
-    #D__ID .container-fluid .check_checkmark:after {
-        top: 0px;
-        left: 6px;
-        color:white;
-        content:"✔";
-    }
-/*    #D__ID .form-group .questiongroup {
-        margin-left: 15px;
-    }
-*/
     </style>
 </div>

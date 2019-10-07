@@ -1,5 +1,12 @@
 <div id=D__ID>
-    <div>
+            <div>
+                    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                      <div class="container"> <a id=logo_0 style='cursor:pointer'><img src="https://www.sfix.com.au/images/sleepfix-logo.png" width="auto" height="45px" alt=""></a>
+                          <!-- <button type="button" id=btn1_0 class="btn btn-outline-light">SLEEPFIX STUDY PAGE</button>-->
+                      </div>
+                    </nav>
+                </div>
+    
 <!--        <div class=vm-mobile>
             <span id=vm-mobile_title class=vm-mobile-title>Logo</span>
             <a id="vm-hamburger_button" class=vm-hamburger-button onclick="$vm.toggle()"><i class="fa fa-bars"></i></a>
@@ -12,7 +19,6 @@
             <a class=vm-hide id=vm_signout onclick=$vm.signout()><i class="fa fa-user"></i> Sign Out</a>
         </div>
         -->
-    </div>
     <script>
         //------------------------------------
         $('#vm-mobile_title').on('click',function(){ $vm.load_module('home',$vm.root_layout_content_slot,{}) })
@@ -241,6 +247,58 @@
             to {max-height: 1000px;}
         }
     </style>
+    <style third-party>
+        .navbar {
+            background-color: rgba(162, 213, 203, 0.7) !important;
+            border-bottom: 1px solid #fff !important;
+            height: 80px;
+        }
+        .btn-outline-light {
+            font-family: 'Nunito Sans';
+            font-weight: 100;
+            font-size: 12px;
+            letter-spacing: 1px;
+            color: #FFFFFF;
+            text-align: center;
+            line-height: 18px;
+            text-transform: uppercase;
+            border-radius: 15px;
+            border-width: 2px;
+            padding-left: 25px;
+            padding-right: 25px
+        }
+        .btn-outline-light:hover {
+            color: #23807F;
+        }
+        footer {
+            background-color: #A2D5CB !important;
+            height: 290px !important;
+            padding-top: 35px;
+        }
+
+        footer img {
+            width: 170px;
+            height: auto;
+            float: right;
+            margin-left:50px;
+            margin-right:50px;
+            margin-bottom:10px;
+        }
+        .logos {
+            width: 250px;
+            height: auto;
+            float: right;
+            margin-left:5px;
+            margin-right:5px;
+        }
+        @media (min-width: 768px) {
+            footer {
+                height: 200px !important;
+            }
+        }
+        /*------------------------*/
+    </style>
+
 </div>
     
 
