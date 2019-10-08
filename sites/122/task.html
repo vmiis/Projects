@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-3.4.1.min.js"></script>
+        <script>$vm={};$VmAPI={}</script>
+        <script src="https://vm.vmiis.com/distribution/vm.js"></script>
+    </head>
+    <body>
+        <button id=login type=button>Login</button>
+        <button id=task type=button>Run Task</button>
+    </body>
+    <script>
+        $vm.api_address="https://api.wappsystem.com";
+        $vm.user_name='guest';
+        window.onmessage=function(e){
+            if(e.data.username!=undefined && e.data.token!=undefined){
+                $vm.user_name=e.data.username;
+                $vm.set_token(e.data.token,e.data.username);
+                console.log($vm.user_name);
+            }
+        };
+        $('#login').on('click',function(){
+            $vm.signin();
+        })
+        $('#task').on('click',function(){
+            task();
+        })
+        function task(){
+            alert('t');
+            $vm.request({cmd:'find',table:'demo-vm-ccontact-us',query:{},sort:{_id:-1},skip:0,limit:1},function(res){
+            });
+        }
+        if(window.location.href.indexOf('run=1')!=-1){
+            task();
+        }
+    </script>
+</html>
+
