@@ -7,10 +7,12 @@
     </head>
     <body>
         <button id=login type=button>Login</button>
-        <button id=task type=button>Run Task</button>
+        <button id=task type=button>Test Task</button>
+        <button id=trigger type=button>Trigger Task</button>
     </body>
     <script>
-        $vm.api_address="https://api.wappsystem.com";
+        //$vm.api_address="https://api.wappsystem.com";
+        $vm.api_address="http://127.0.0.1:8001";
         $vm.user_name='guest';
         window.onmessage=function(e){
             if(e.data.username!=undefined && e.data.token!=undefined){
@@ -25,8 +27,12 @@
         $('#task').on('click',function(){
             task();
         })
+        $('#trigger').on('click',function(){
+            $vm.request({cmd:'task',table:'demo-vm-19100901',query:{task_url:"http://127.0.0.1:8000/122/task.html"}},function(res){
+                console.log(res);
+            });
+        })
         function task(){
-            alert('t');
             $vm.request({cmd:'find',table:'demo-vm-ccontact-us',query:{},sort:{_id:-1},skip:0,limit:1},function(res){
             });
         }
