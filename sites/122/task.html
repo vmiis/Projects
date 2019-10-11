@@ -7,10 +7,32 @@
     </head>
     <body>
         <button id=login type=button>Login</button>
-        <button id=task type=button>Test Task</button>
+        <button id=test_task type=button>Test Task</button>
         <button id=trigger type=button>Trigger Task</button>
     </body>
     <script>
+        //--------------------------------------------------------
+        function run_task(){
+            $vm.request({cmd:'find',table:'demo-vm-19100902',query:{"Data.Name":"sydney"},sort:{_id:-1},skip:0,limit:1},function(res){
+                if(res.result.length>=1){
+                    var r=res.result[0].Data.Result;
+                    var n=parseInt(r);
+                    n++;
+                    var data={}
+                    for(a in res.result[0].Data){
+                        data[a]=res.result[0].Data[a];
+                    }
+                    data.Result=n;
+                    $vm.request({cmd:'update',id:res.result[0]._id,table:'demo-vm-19100902',data:data,index:{},file:{}},function(res){
+                        if(window.close_page!=undefined) window.close_page();
+                        console.log(res);
+                    })
+                }
+                else if(window.close_page!=undefined) window.close_page();
+            });
+        }
+        //--------------------------------------------------------
+        //login and get a token;
         //$vm.api_address="https://api.wappsystem.com";
         $vm.api_address="http://127.0.0.1:8001";
         $vm.user_name='guest';
@@ -24,21 +46,33 @@
         $('#login').on('click',function(){
             $vm.signin();
         })
-        $('#task').on('click',function(){
-            task();
+        //--------------------------------------------------------
+        //The task can be tested directly here after login 
+        $('#test_task').on('click',function(){
+            run_task();
         })
+        //--------------------------------------------------------
+        //trigger the server to run the task;
         $('#trigger').on('click',function(){
-            $vm.request({cmd:'task',table:'demo-vm-19100901',query:{task_url:"http://127.0.0.1:8000/122/task.html"}},function(res){
+            $vm.request({cmd:'task',table:'demo-vm-19100901',task_url:"http://127.0.0.1:8000/122/task.html"},function(res){
                 console.log(res);
             });
         })
-        function task(){
-            $vm.request({cmd:'find',table:'demo-vm-ccontact-us',query:{},sort:{_id:-1},skip:0,limit:1},function(res){
-            });
-        }
+        //--------------------------------------------------------
+        //if this page is loaded by a server, then run immediately;
         if(window.location.href.indexOf('run=1')!=-1){
-            task();
+            var u=decodeURIComponent(window.location.href);
+            console.log(u);
+            var username=u.split('exe_user=').pop().split('&')[0];            
+            var token=u.split('token=').pop().split('&')[0];            
+            $vm.user_name=username;
+            console.log(username);
+            console.log(token);
+            $vm.set_token(token,username);
+            run_task();
+            //window.close_page();
         }
+        //--------------------------------------------------------
     </script>
 </html>
 
