@@ -12,7 +12,12 @@
     </body>
     <script>
         //--------------------------------------------------------
+        var input={};
+        var req_user="";
+        //--------------------------------------------------------
         function run_task(){
+            //do something
+            //as an example, here we read a number (Result) from a table (demo-vm-19100902), increase 1, then save back.
             $vm.request({cmd:'find',table:'demo-vm-19100902',query:{"Data.Name":"sydney"},sort:{_id:-1},skip:0,limit:1},function(res){
                 if(res.result.length>=1){
                     var r=res.result[0].Data.Result;
@@ -25,16 +30,38 @@
                     data.Result=n;
                     $vm.request({cmd:'update',id:res.result[0]._id,table:'demo-vm-19100902',data:data,index:{},file:{}},function(res){
                         if(window.close_page!=undefined) window.close_page();
-                        console.log(res);
+                        //console.log(res);
                     })
                 }
                 else if(window.close_page!=undefined) window.close_page();
             });
         }
         //--------------------------------------------------------
+        //if this page is loaded by a server, then run immediately;
+        if(window.location.href.indexOf('run=1')!=-1){
+            var u=decodeURIComponent(window.location.href);
+            //console.log(u);
+            var username=u.split('exe_user=').pop().split('&')[0];            
+            var token=u.split('token=').pop().split('&')[0];            
+            $vm.user_name=username;
+            //console.log(username);
+            //console.log(token);
+            var input=u.split('input=').pop().split('&')[0];            
+            var req_user=u.split('req_user=').pop().split('&')[0];            
+            $vm.set_token(token,username);
+            run_task();
+        }
+        //--------------------------------------------------------
+        
+        
+        
+        
+        
+        //--------------------------------------------------------
+        //The following code is not necessary for a task. It is only for testing.
+        //--------------------------------------------------------
         //login and get a token;
         $vm.api_address="https://api.wappsystem.com";
-        //$vm.api_address="http://127.0.0.1:8001";
         $vm.user_name='guest';
         window.onmessage=function(e){
             if(e.data.username!=undefined && e.data.token!=undefined){
@@ -54,24 +81,15 @@
         //--------------------------------------------------------
         //trigger the server to run the task;
         $('#trigger').on('click',function(){
-            $vm.request({cmd:'task',table:'demo-vm-19100901',task_url:"https://projects.vmiis.com/sites/122/task.html"},function(res){
+            //The following code is used to trigger the task server to run a task
+            //cmd:'task'
+            //table: a table that contains the task registration,
+            //task_url: the task page url
+            //input: json object send to task as input
+            $vm.request({cmd:'task',table:'demo-vm-19100901',task_url:"https://projects.vmiis.com/sites/122/task.html",input:{}},function(res){
                 console.log(res);
             });
         })
-        //--------------------------------------------------------
-        //if this page is loaded by a server, then run immediately;
-        if(window.location.href.indexOf('run=1')!=-1){
-            var u=decodeURIComponent(window.location.href);
-            console.log(u);
-            var username=u.split('exe_user=').pop().split('&')[0];            
-            var token=u.split('token=').pop().split('&')[0];            
-            $vm.user_name=username;
-            console.log(username);
-            console.log(token);
-            $vm.set_token(token,username);
-            run_task();
-            //window.close_page();
-        }
         //--------------------------------------------------------
     </script>
 </html>
