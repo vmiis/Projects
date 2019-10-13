@@ -12,6 +12,8 @@
     </body>
     <script>
         //--------------------------------------------------------
+        $vm.api_address="https://api.wappsystem.com";
+        $vm.user_name='guest'; //default login
         var input={};
         var req_user="";
         //--------------------------------------------------------
@@ -61,8 +63,6 @@
         //The following code is not necessary for a task. It is only for testing.
         //--------------------------------------------------------
         //login and get a token;
-        $vm.api_address="https://api.wappsystem.com";
-        $vm.user_name='guest';
         window.onmessage=function(e){
             if(e.data.username!=undefined && e.data.token!=undefined){
                 $vm.user_name=e.data.username;
