@@ -7,8 +7,58 @@
     </head>
     <body>
         <button id=login type=button>Login</button>
-        <button id=test_task type=button>Test Task</button>
-        <button id=trigger type=button>Trigger Task</button>
+        <button id=test_task type=button>Run javascript in this page in your local web browser</button><br>
+        <button id=trigger type=button>Send request to a task server and let server side web browser to load this page and run javascript</button>
+        <div style='padding-top:10px;max-width:600px'>
+            What is a task?<br>
+            A task is a html web page and the page can be loaded into a 
+            web browser and running some javascript to perform a task. 
+            The web browser will be running on server side instead of 
+            client side. Any one can send an api request to a task server to 
+            request server side running a html web page that hosted any where. 
+        </div>
+        
+<br><br>
+<br><br>
+<div style='max-width:800px'>
+Request a task server to load and run a task page        
+<pre style='background-color: #000;color:#888;'>
+    //cmd:'task'
+    //table: a table that contains the task registration,
+    //task_url: the task page url
+    //input: json object send to task as input
+    $vm.request({cmd:'task',table:'demo-vm-19100901',task_url:"https://projects.vmiis.com/sites/122/task.html",input:{}},function(res){
+        console.log(res);
+    });
+</pre>
+<br><br>
+<br><br>
+<div style='max-width:800px'>
+Task javascript        
+<pre style='background-color: #000;color:#888;'>
+    function run_task(){
+        //do something
+        //as an example, here we read a number (Result) from a table (demo-vm-19100902), increase 1, then save back.
+        $vm.request({cmd:'find',table:'demo-vm-19100902',query:{"Data.Name":"sydney"},sort:{_id:-1},skip:0,limit:1},function(res){
+            if(res.result.length>=1){
+                var r=res.result[0].Data.Result;
+                var n=parseInt(r);
+                n++;
+                var data={}
+                for(a in res.result[0].Data){
+                    data[a]=res.result[0].Data[a];
+                }
+                data.Result=n;
+                $vm.request({cmd:'update',id:res.result[0]._id,table:'demo-vm-19100902',data:data,index:{},file:{}},function(res){
+                    if(window.close_page!=undefined) window.close_page();
+                    //console.log(res);
+                })
+            }
+            else if(window.close_page!=undefined) window.close_page();
+        });
+    }
+</pre>
+</div>
     </body>
     <script>
         //--------------------------------------------------------
