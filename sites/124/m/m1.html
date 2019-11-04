@@ -1,0 +1,49 @@
+<div id=D__ID>
+	<form id=F__ID>
+	</form>
+    <div>
+		<a id=run__ID class='btn btn-success' style='color:#fff' >Run Custom Code</a>
+    </div>
+    <script>
+    	function F__ID(){
+            VmInclude:__COMPONENT__/f/form.01.js
+			$('#run__ID').on('click',function(){
+				if($vm.user_name=="guest"){
+					alert("Login Please!");
+					return;
+				}
+				var r=confirm("Are you sure to run the code?");
+				if(r==true){
+					var table_list="a,b,c";
+					var group='test';
+					
+					var tbs=table_list.split(',');
+                    jQuery.ajaxSetup({async:false});
+					for(var i=0;i<tbs.length;i++){
+						var tb=tbs[i];
+
+						var data={
+							Table:tb,
+							Group:group
+						}
+						var i_cmd='insert-table';
+						
+						$vm.request({cmd:i_cmd,data:data},function(res){
+						});
+					}
+                    jQuery.ajaxSetup({async:false});
+					alert(tbs.length);
+				}
+			})
+    	}
+    </script>
+    <style>
+        #D__ID{
+    		background-color:#fff;
+    		height:100%;
+    		overflow: auto;
+    		animation: vm_module_fadein 1.0s;
+			padding:30px;
+    	}
+    </style>
+</div>

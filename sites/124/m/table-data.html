@@ -1,0 +1,30 @@
+<div id=D__ID>
+    <section>
+        VmInclude:__COMPONENT__/g/grid.01.html
+    </section>
+    <script>
+        function F__ID(){
+            //-------------------------------------
+            VmInclude:__COMPONENT__/g/grid.01.js
+            m.cmd_type="table";
+            $('#import_export_section__ID').removeClass();
+            $('#import_export_section__ID').hide();
+            //-------------------------------------
+            var fields="Table,Group";
+            m.fields="_Form,"+fields+",Submit_date,Submitted_by,Private,_Delete";
+            //-------------------------------------
+            m.cell_render=function(records,I,field,td){
+                switch(field){
+                    case 'Private':
+                        td.html('No');
+                        if(records[I][field]=='on') td.html('Yes');
+                        break;
+                }
+            }
+            //-------------------------------------
+        }
+    </script>
+    <style>
+        VmInclude:__COMPONENT__/g/grid.01.css
+    </style>
+</div>
