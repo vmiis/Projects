@@ -25,6 +25,58 @@
     			</div>
     		</div>
     	</form>
+<hr>
+First start server at 127.0.0.1:8003
+<br>
+<br>
+
+Data:
+<pre style='background-color: #333;color:#fff'>
+	var data={};
+	var a=$('#F__ID').serializeArray();
+	$.each(a, function () { 
+		data[this.name]=this.value || '';
+	});
+	$("#F__ID input:checkbox:not(:checked)").each(function(){
+		data[this.name]="off";
+	})
+</pre>
+<br>
+Post to server:
+<pre style='background-color: #333;color:#fff'>
+	var db_url="http://localhost:8003/";
+	var req={cmd:"cmd01",data:data}
+	$.ajax(
+		{
+			url:db_url,
+			data: JSON.stringify(req),
+			type: "POST",
+			contentType: "application/json",
+			charset:"utf-8",
+			dataType: "json",
+			error: function(xhr, status, error){
+				var errorMessage = xhr.status + ': ' + xhr.statusText
+				alert(db_url+" is not available.");
+			}
+		}
+	)				
+</pre>
+
+<br>
+Server side code:
+<pre style='background-color: #333;color:#fff'>
+	var sql="INSERT table1 (data) OUTPUT INSERTED.ID VALUES (@data);"
+	var request = new Request(sql, function(err) {  
+		if (err) {  
+			console.log(err);
+		}  
+	});
+	request.addParameter('data', TYPES.NVarChar,JSON.stringify(d.data));  
+	request.on('row', function(columns) {  
+		res.send('We have received and processed your request.');
+	});
+	conn.execSql(request);  
+</pre>
     </section>
     <script>
     	function F__ID(){
@@ -81,8 +133,11 @@
     </script>
     <style>
         #form_container__ID{
-            max-width:600px;
+            max-width:650px;
         }
         VmInclude:__COMPONENT__/f/form.01.css
+		#F__ID{
+			margin-bottom: 30px;
+		}
     </style>
 </div>
