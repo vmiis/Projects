@@ -1,7 +1,6 @@
 (function(){
     //-------------------------------------------------------------------------------------
     var modules={
-        "data":      {url:"$H/m/data.html",Table:"demo-vm-19111101"},
         "m1":        {url:"$H/m/m1.html",Table:"demo-vm-19111101"},
     }
     for(p in modules){
