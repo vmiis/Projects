@@ -223,8 +223,8 @@
         "p-stroop-color-data":	        {url:"$H/m/tasks/stroop-color-data.html",Table:"91000754",form_module:"p-stroop-color-form",quest_module:"p-stroop-color-quest"},
         "p-stroop-color-form":	        {url:"$H/m/tasks/stroop-color-form.html",Table:"91000754"},
         "p-stroop-color-quest":	        {url:"$H/m/tasks/stroop-color-quest.html",Table:"91000754",task_name:"Stroop color"},
-        "word-pairs-set1-practice":	    {url:"$H/m/word-pairs/set1-evening.html"},
-        "word-pairs-set2-practice":	    {url:"$H/m/word-pairs/set2-evening.html"},
+        "word-pairs-set1-practice":	    {url:"$H/m/word-pairs/set1-evening.html",task_name:"word-pairs-set1-practice"},
+        "word-pairs-set2-practice":	    {url:"$H/m/word-pairs/set2-evening.html",task_name:"word-pairs-set2-practice"},
     }
     //-------------------------------------------------------------------------------------
     for(p in modules){
