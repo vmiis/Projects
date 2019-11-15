@@ -1,0 +1,110 @@
+<div id=D__ID>
+    <div>
+        VmInclude:__COMPONENT__/w/week.04.html
+    </div>
+    <script>
+        function F__ID(){
+            //--------------------------------------------------------
+            VmInclude:__COMPONENT__/w/week.04.js
+            //--------------------------------------------------------
+
+
+
+            //--------------------------------------------------------
+            var default_item="All";
+            //set item list
+            $('#item_list__ID').show();
+            $vm.request({cmd:'find',table:m.lookup},function(res){
+                var txt="";
+                for(i in res.result){
+                    var v=res.result[i].Data.Name;
+                    txt+="<option>"+v+"</option>";
+                }
+                $('#item_list__ID').html(txt);
+                $('#item_list__ID').val(default_item);
+                m.request_and_render();
+            });
+            $('#item_list__ID').on('change',function(){
+                m.request_and_render();
+            })
+            //--------------------------------------------------------
+            m.request_and_render=function(){
+                var mt1=new Date().getTime();
+                var dt1=m.first_day.getTime();
+                var dt2=$vm.date_add_days(m.last_day,1).getTime();
+                var item=$('#item_list__ID').val();
+                if(item==undefined) return;
+                var q={I3:item,I1:{"$gte":dt1,"$lt":dt2}};
+                if(item=="") q={I1:{"$gte":dt1,"$lt":dt2}};
+                $vm.request({cmd:"find",table:m.Table,query:q,sort:{I1:1},options:{}},function(res){
+                    if(res.permission==false){
+                        alert("No permission to get booking information.");
+                        return;
+                    }
+                    //-----------------------
+                    var mt2=new Date().getTime();
+                    var tt_all=mt2-mt1;
+                    var tt_server=parseInt(res.sys.elapsed_time);
+                    if(tt_all<tt_server) tt_all=tt_server;
+                    $("#elapsed__ID").text((JSON.stringify(res.result).length/1000).toFixed(1)+"kb/"+tt_all.toString()+"ms/"+tt_server+'ms');
+                    //-----------------------
+                    m.calendar_render("<ul></ul>");
+                    $('#D__ID div.c_row__ID').css('min-height',$vm.min_height);
+                    m.records=res.result;
+                    for(var i=0;i<res.result.length;i++){
+                        if(res.result[i].Data.Time!="") m.cell_render(res.result[i]);
+                    }
+                    for(var i=0;i<res.result.length;i++){
+                        if(res.result[i].Data.Time=="") m.cell_render(res.result[i]);
+                    }
+                });
+            }
+            //--------------------------------------------------------
+            m.cell_render=function(record){
+                var id=record._id;
+                var date=record.Data.Date;
+                var d=$vm.date_yyyymmdd_parse(date).getDay();
+                var time=record.Data.Time;
+                var info=record.Data.Info; if(info===undefined) info="No info";
+                var color=record.Data.Color;
+                if(time!=""){
+                    var t1=$vm.pad(new Date(record.I1).getHours(),2)+":"+$vm.pad(new Date(record.I1).getMinutes(),2);
+                    info=t1+" "+info;
+                }
+                var mm="10px";
+                var $div=m.get_cell_div(d).find('ul');
+                var item="<li style='color:"+color+";' class=item__ID  ><div id=item__ID"+id+" style='cursor:pointer;display:inline-block;' >"+info+"</div></li>"
+                $div.append(item);
+                $('#item__ID'+id).on('click',function(e){
+                    e.stopPropagation();
+                    $vm.load_module(m.booking,'',{record:record});
+                });
+            }
+            //--------------------------------------------------------
+            //overwrite default
+            m.new_record=function(input){
+                $vm.load_module(m.booking,'',input);
+            }
+            //--------------------------------------------------------
+            $('#D__ID').on('load',function(){  m.request_and_render();  });
+            $('#D__ID').on('show',function(){  if($vm.refresh==1){$vm.refresh=0; m.request_and_render();}    });
+            //--------------------------------------------------------
+        }
+    </script>
+    <style>
+        #D__ID{
+            background-color:#fff;
+            font-size:13px;
+            font-family: Helvetica, Arial, sans-serif;
+            height:100%;
+            overflow: auto;
+        }
+        .c_cell__ID u{
+            padding-left:10px;
+            cursor:pointer;
+        }
+        .c_cell__ID u:hover{
+            color:red;
+        }
+    </style>
+</div>

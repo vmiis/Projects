@@ -1,0 +1,115 @@
+<div id=D__ID>
+    <section id=form_container__ID>
+    	<div id=header__ID>
+    		Event/Reminder/Task Form
+    	</div>
+    	<form id=F__ID>
+    		<div class="container">
+    			<div class="row row__ID">
+    				<div class=col>
+    					<span>Category</span>
+    					<input type="text" class="form-control" name=Item readonly />
+    				</div>
+    			</div>
+    			<div class="row row__ID">
+    				<div class="col-sm col-lg-6">
+    					<span>Date</span>
+    					<input type="text" class="form-control" name=Date readonly />
+    				</div>
+    				<div class="col-sm col-lg-6">
+    					<span>Time</span>
+						<select class="form-control" name=Time>
+						</select>
+    				</div>
+    			</div>
+    			<div class="row row__ID">
+    				<div class=col>
+    					<span>Name</span>
+    					<input type="text" class="form-control" name=Info required />
+    				</div>
+    			</div>
+				<br>
+    			<div class="row row__ID">
+    				<div class=col>
+    					<span>Color</span>
+    					<input type="color" style='width:50px' name=Color required value='#008080' />
+    				</div>
+				</div>
+    			<br>
+    			<div class="row">
+    				<div class=col>
+    					<button id=submit__ID type="submit" class="btn btn-secondary">Submit</button>
+    					<button id=delete__ID type="button" class="btn btn-secondary">Delete</button>
+    				</div>
+    			</div>
+    		</div>
+    	</form>
+    </section>
+    <script>
+    	function F__ID(){
+    		//-------------------------------------
+            VmInclude:__COMPONENT__/f/form.01.js
+    		//-------------------------------------
+			m.hour_start=7;
+			m.hour_end=18;
+			$vm.request({cmd:'find',table:m.lookup},function(res){
+				var txt="";
+				for(i in res.result){
+					var v=res.result[i].Data.Name;
+					txt+="<option>"+v+"</option>";
+				}
+				$('#Item__ID').html(txt);
+				if(m.input.item!=undefined){
+					$('#F__ID select[name=Item]').val(m.input.item);
+				}
+			});
+			//--------------------------------------------------------
+			var $List1=$('#F__ID select[name=Time]');
+			$List1.append(  $('<option></option>').val('').html('')  );
+			for(var i=m.hour_start;i<m.hour_end;i++){
+				for(var j=0;j<4;j++){
+					var t1=i;    if(t1<10) t1="0"+t1
+					var t2=j*15; if(t2==0) t2="00";
+					var t=t1+":"+t2;
+					$List1.append(  $('<option></option>').val(t).html(t)  );
+				}
+			}
+			//-------------------------------------
+            old_load=m.load;
+			m.load=function(){
+				old_load();
+				if(m.input.item!=undefined){
+					$('#F__ID input[name=Item]').val(m.input.item);
+				}
+				if(m.input.day!=undefined){
+					$('#F__ID input[name=Date]').val(m.input.day);
+				}
+				if(m.input.time!=undefined){
+					$('#F__ID input[name=Time]').val(m.input.time);
+				}
+				if(m.input.duration!=undefined){
+					$('#F__ID input[name=Duration]').val(m.input.duration);
+				}
+			}
+    		//-------------------------------------
+			m.before_submit=function(data,index){
+				//---------------------------
+				var aa=data.Time.split(':'); 
+				var t1=$vm.date_yyyymmdd_parse(data.Date).getTime()+(parseInt(aa[0])*60+parseInt(aa[1]))*60000;
+				//---------------------------
+				index.I1=t1;
+				index.I3=data.Item;
+    			//---------------------------
+				return true;
+    			//---------------------------
+            }
+            //-------------------------------------
+    	}
+    </script>
+    <style>
+        #form_container__ID{
+            max-width:600px;
+        }
+        VmInclude:__COMPONENT__/f/form.01.css
+    </style>
+</div>
