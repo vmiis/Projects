@@ -39,7 +39,8 @@
                                                 form_module:"new-hire-form",router:1
                                             },
         "project-data":                     {url:"$H/v/project-data.html",
-                                                Table: "https://woolcock.crm6.dynamics.com/api/data/v9.1/woolcock_projectses",
+                                                Table: "https://woolcockdev.crm6.dynamics.com/api/data/v9.1/woolcock_projectses",
+                                                //Table: "https://woolcockdev.crm6.dynamics.com/api/data/v9.1/woolcock_hcpcontacts",
                                                 form_module:"new-hire-form",router:1
                                             },
         "study-data":                       {url:"$H/v/study-data.html",

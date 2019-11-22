@@ -53,6 +53,13 @@
             VmInclude:'__COMPONENT__/f/form.01.js'
             VmInclude:'__CURRENT_PATH__/task-form.js'
             //-------------------------------------
+			var before_submit=m.before_submit;
+			m.before_submit=function(data,index){
+                var d=new Date();
+                if(m.input.record==undefined) data.Time=d.toTimeString().split(' ')[0];
+				return before_submit(data,index);
+			}
+			//-------------------------------------
         }
     </script>
     <style>
