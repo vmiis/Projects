@@ -31,11 +31,11 @@
 
                                             
         "entity":                           {url:"$H/v/entity.html",
-                                                Table: "https://woolcock.crm6.dynamics.com/api/data/v9.1/EntityDefinitions",
+                                                Table: "https://woolcockdev.crm6.dynamics.com/api/data/v9.1/EntityDefinitions",
                                                 form_module:"new-hire-form",router:1
                                             },
         "entity-data":                     {url:"$H/v/entity-data.html",
-                                                Table: "https://woolcock.crm6.dynamics.com/api/data/v9.1/EntityDefinitions",
+                                                Table: "https://woolcockdev.crm6.dynamics.com/api/data/v9.1/EntityDefinitions",
                                                 form_module:"new-hire-form",router:1
                                             },
         "project-data":                     {url:"$H/v/project-data.html",

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name='viewport' content='width=device-width, initial-scale=1'>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.1/css/bootstrap.css" />
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" />
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/v4-shims.css" />
+        <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-3.2.1.min.js"></script>
+        <script>$vm={};$VmAPI={};$vm.ver=[0.52,0.52];$vm.reload='';</script>
+        <script src="https://vm.vmiis.com/distribution/vm.js"></script>
+    </head>
+    <body>
+        <div style="padding:6px">
+            <button type=button id=start__ID class='btn btn-secondary'>Start</button> <button type=button id=stop__ID class='btn btn-secondary'>Stop</button>
+        </div>
+        <div>
+            <div style='margin-left:auto;margin-right:auto;width:960px;height:720px;' >
+                <img id=img__ID >
+            <div>
+        </div>
+    </body>
+    <script>
+        document.title="Woolcock";
+        //------------------------------------
+        var img_array=[
+          {src:'images/Set2/Practice/Set2Slide1.jpg',time:5000},
+          {src:'images/Set2/Practice/Set2Slide2.jpg',time:5000},
+          {src:'images/Set2/Practice/Set2Slide3.jpg',time:5000},
+          {src:'images/Set2/Practice/Set2Slide4.jpg',time:5000},]
+        //----------------------------------
+        var I=-1;
+        var N=img_array.length;
+        $('#D__ID').on('load',function(){
+            I=-1;
+        })
+        $('#start__ID').on('click',function(){
+            if(I<0){
+                I=0;
+                set_img();
+            }
+            else{
+                I=0
+            }
+        })
+        $('#stop__ID').on('click',function(){
+            I=-1;
+        })
+        var set_img=function(){
+            if(I>=0 && I<=3){ //total 163 images
+                var new_I=I+1;
+                $("#img__ID").attr("src",img_array[new_I-1].src);
+                setTimeout(set_img, img_array[new_I-1].time);
+                I++;
+            }
+        }
+        //------------------------------------
+    </script>
+</html>
