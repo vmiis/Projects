@@ -45,7 +45,7 @@
             m.load=function(){
                 load5();
                 new_task_record={};
-                g_tapping_6_callback=flash_callback;
+                g_tapping_12_callback=flash_callback;
             }
             //-------------------------------------
             var flash_callback=function(param){
@@ -69,7 +69,7 @@
                 var group=0;
                 var speed=[];
                 var acc=[];
-                for (var i=0;i<6;i++) {speed[i]=0;acc[i]=0;}
+                for (var i=0;i<12;i++) {speed[i]=0;acc[i]=0;}
                 for(var i=0;i<tt.length;i++){
                     if(parseInt(sn[i])-1!=k){
                         group=0;
@@ -91,13 +91,79 @@
                 new_task_record['Speed_4']=Math.floor(speed[3]/5);
                 new_task_record['Speed_5']=Math.floor(speed[4]/5);
                 new_task_record['Speed_6']=Math.floor(speed[5]/5);
+                new_task_record['Speed_7']=Math.floor(speed[6]/5);
+                new_task_record['Speed_8']=Math.floor(speed[7]/5);
+                new_task_record['Speed_9']=Math.floor(speed[8]/5);
+                new_task_record['Speed_10']=Math.floor(speed[9]/5);
+                new_task_record['Speed_11']=Math.floor(speed[10]/5);
+                new_task_record['Speed_12']=Math.floor(speed[11]/5);
+
                 new_task_record['Accuracy_1']=(acc[0]/Math.floor(speed[0]/5)).toFixed(2);
                 new_task_record['Accuracy_2']=(acc[1]/Math.floor(speed[1]/5)).toFixed(2);
                 new_task_record['Accuracy_3']=(acc[2]/Math.floor(speed[2]/5)).toFixed(2);
                 new_task_record['Accuracy_4']=(acc[3]/Math.floor(speed[3]/5)).toFixed(2);
                 new_task_record['Accuracy_5']=(acc[4]/Math.floor(speed[4]/5)).toFixed(2);
                 new_task_record['Accuracy_6']=(acc[5]/Math.floor(speed[5]/5)).toFixed(2);
+                new_task_record['Accuracy_7']=(acc[6]/Math.floor(speed[6]/5)).toFixed(2);
+                new_task_record['Accuracy_8']=(acc[7]/Math.floor(speed[7]/5)).toFixed(2);
+                new_task_record['Accuracy_9']=(acc[8]/Math.floor(speed[8]/5)).toFixed(2);
+                new_task_record['Accuracy_10']=(acc[9]/Math.floor(speed[9]/5)).toFixed(2);
+                new_task_record['Accuracy_11']=(acc[10]/Math.floor(speed[10]/5)).toFixed(2);
+                new_task_record['Accuracy_12']=(acc[11]/Math.floor(speed[11]/5)).toFixed(2);
             }
+            //-------------------------------------
+            /*
+            var calc=function(){
+                var tt=_records[I]['Tapping_Time'].split(",");
+                var m=_records[I]['Match'].split(",");
+                var sn=_records[I]['Sequence_Number'].split(",");
+                var k=0;
+                var correct=true;
+                var group=0;
+                var speed=[];
+                var acc=[];
+                for (var i=0;i<12;i++) {speed[i]=0;acc[i]=0;}
+                for(var i=0;i<tt.length;i++){
+                    if(parseInt(sn[i])-1!=k){
+                        group=0;
+                        correct=true;
+                    }
+                    k=parseInt(sn[i])-1;
+                    speed[k]++;
+                    if(m[i]=="N") correct=false;
+                    group++
+                    if(group==5){
+                        group=0;
+                        if(correct==false) acc[k]++;
+                        correct=true;
+                    }
+                }
+                _records[I]['Speed_1']=Math.floor(speed[0]/5);
+                _records[I]['Speed_2']=Math.floor(speed[1]/5);
+                _records[I]['Speed_3']=Math.floor(speed[2]/5);
+                _records[I]['Speed_4']=Math.floor(speed[3]/5);
+                _records[I]['Speed_5']=Math.floor(speed[4]/5);
+                _records[I]['Speed_6']=Math.floor(speed[5]/5);
+                _records[I]['Speed_7']=Math.floor(speed[6]/5);
+                _records[I]['Speed_8']=Math.floor(speed[7]/5);
+                _records[I]['Speed_9']=Math.floor(speed[8]/5);
+                _records[I]['Speed_10']=Math.floor(speed[9]/5);
+                _records[I]['Speed_11']=Math.floor(speed[10]/5);
+                _records[I]['Speed_12']=Math.floor(speed[11]/5);
+                _records[I]['Accuracy_1']=(acc[0]/Math.floor(speed[0]/5)).toFixed(2);
+                _records[I]['Accuracy_2']=(acc[1]/Math.floor(speed[1]/5)).toFixed(2);
+                _records[I]['Accuracy_3']=(acc[2]/Math.floor(speed[2]/5)).toFixed(2);
+                _records[I]['Accuracy_4']=(acc[3]/Math.floor(speed[3]/5)).toFixed(2);
+                _records[I]['Accuracy_5']=(acc[4]/Math.floor(speed[4]/5)).toFixed(2);
+                _records[I]['Accuracy_6']=(acc[5]/Math.floor(speed[5]/5)).toFixed(2);
+                _records[I]['Accuracy_7']=(acc[6]/Math.floor(speed[6]/5)).toFixed(2);
+                _records[I]['Accuracy_8']=(acc[7]/Math.floor(speed[7]/5)).toFixed(2);
+                _records[I]['Accuracy_9']=(acc[8]/Math.floor(speed[8]/5)).toFixed(2);
+                _records[I]['Accuracy_10']=(acc[9]/Math.floor(speed[9]/5)).toFixed(2);
+                _records[I]['Accuracy_11']=(acc[10]/Math.floor(speed[10]/5)).toFixed(2);
+                _records[I]['Accuracy_12']=(acc[11]/Math.floor(speed[11]/5)).toFixed(2);
+            }
+            */
             //-------------------------------------
             var save=function(){
                 new_task_record.Participant=$('#F__ID input[name=Participant]').val();
