@@ -1,0 +1,131 @@
+<div id=D__ID>
+	<div id=page__ID class=home_page_1>
+        <div style='padding:10px 20px 0 20px;'>
+            <form class="form-inline text-center">
+				<div class="text-center" style='width:100%'>
+					<input id=keywords__ID class=form-control style='width:230px;' placeholder="multi words filter">
+				</div>
+            </form>
+            <hr>
+        </div>
+        <div id=panel__ID class=panel__ID>
+			<div style='display:inline-block'>
+				<span>Development</span>
+				<ul>
+					<li><a href='?/image-effect'>Image effect</a></li>
+				</ul>
+			</div>
+			<!--
+            <span>Business Portal</span>
+            <ul>
+                <li><a href='128/index.html'>Part I</a></li>
+			</ul>
+			-->
+        </div>
+	</div>
+	<script>
+		function F__ID(){
+            //--------------------------------------------------------
+			$('#apply__ID').on('click',function(){
+				filter();
+			})
+			$('#keywords__ID').on('keyup',function(){
+				filter();
+			})
+			var filter=function(){
+				$('#panel__ID li').show();
+				if($('#keywords__ID').val().length==0){
+					$('#panel__ID span').show();
+				}
+				else{
+					$('#panel__ID span').hide();
+				}
+				var words=$('#keywords__ID').val().split(' ');
+				$('#panel__ID li').each(function(){
+					var name=$(this).html().toUpperCase();
+					for(var i=0;i<words.length;i++){
+						var word=words[i].toUpperCase(); 
+						if(word!=""){
+							if(name.indexOf(word)==-1){
+								$(this).hide();
+								break;
+							}
+						}
+					}
+				})
+			}
+            //--------------------------------------------------------
+            $vm.module_list["__MODULE__"].show=function(){
+                document.title="Panel | "+$vm.default_title;
+                $("meta[name='description']").attr("content","Control Panel");
+            }
+            //--------------------------------------------------------
+            $('#panel__ID a').on('click',function(e){
+                e.preventDefault();
+                var href=$(this).attr('href');
+                if(href!=undefined){
+                    href=href.replace('?\/','');
+					href=href.replace(/\//g,'_');
+                    $vm.load_module(href,'',{});
+                }
+            })
+            //--------------------------------------------------------
+		}
+	</script>
+	<style>
+        #D__ID{
+            background-color:#fff;
+            height:100%;
+            overflow: auto;
+            animation: vm_module_fadein 1.0s;
+        }
+        .panel__ID{
+            padding:0px 50px 10px 50px;
+            font-size:14px;
+    		max-width: 100%;
+    		column-count: 4;
+    		column-width: 300px;
+    		column-gap: 30px;
+            font-size:14px;
+        }
+	    .panel__ID a{
+		    /*margin:3px 10px;*/
+            /*white-space: nowrap;*/
+	    }
+	    .panel__ID span{
+			color:#283f55;
+			font-weight: bold;
+            font-weight: 600;
+			/*margin:3px 10px;*/
+            /*white-space: nowrap;*/
+	    }
+        .panel__ID li{
+            /*text-decoration: none;*/
+        }
+        a {
+            text-decoration: none;
+        }
+        a:link {
+            color:#555;
+        }
+        a:visited {
+            color:#555;
+        }
+        a:hover {
+            color:red;
+        }
+        a:active {
+            color:#555;
+        }
+        #keywords__ID::placeholder {
+            color: #ccc;
+            padding-left:6px;
+        }        
+        @media screen and (max-width:768px){
+            .panel__ID{
+                padding:20px;
+            }
+        }
+
+	</style>
+</div>
