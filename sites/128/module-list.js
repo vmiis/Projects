@@ -1,7 +1,8 @@
 (function(){
     //-------------------------------------------------------------------------------------
     var modules={
-        "image-effect": {url:"$H/m/emage-effect.html"},
+        "lightbox": {url:"$H/m/lightbox/m.html"},
+        "hover-effect-01": {url:"$H/m/hover-effect-01/m.html"},
     }
     for(p in modules){
         $vm.module_list[p]=modules[p]; 
