@@ -1,0 +1,125 @@
+<div id=D__ID>
+    <section id=form_container__ID>
+    	<div id=header__ID>
+    		Booking Form
+    	</div>
+    	<form id=F__ID>
+    		<div class="container">
+    			<div class="row row__ID">
+    				<div class=col>
+    					<span>Car</span>
+    					<input type="text" class="form-control" name=Item readonly />
+    				</div>
+    			</div>
+    			<div class="row row__ID">
+    				<div class="col-sm col-lg-4">
+    					<span>Date</span>
+    					<input type="text" class="form-control" name=Date readonly />
+    				</div>
+    				<div class="col-sm col-lg-4">
+    					<span>Time</span>
+    					<input type="text" class="form-control" name=Time readonly />
+    				</div>
+    				<div class="col-sm col-lg-4">
+    					<span>Duration</span>
+    					<input type="text" class="form-control" name=Duration readonly />
+    				</div>
+    			</div>
+    			<div class="row row__ID">
+    				<div class=col>
+    					<span>Contact Name / Description</span>
+    					<input type="text" class="form-control" name=Info required />
+    				</div>
+    			</div>
+				<br>
+    			<div class="row row__ID">
+    				<div class=col>
+    					<span>Color</span>
+    					<input type="color" style='width:50px' name=Color required value='#008080' />
+    				</div>
+				</div>
+    			<br>
+    			<div class="row">
+    				<div class=col>
+    					<button id=submit__ID type="submit" class="btn btn-secondary">Submit</button>
+    					<button id=delete__ID type="button" class="btn btn-secondary">Delete</button>
+    				</div>
+    			</div>
+    		</div>
+    	</form>
+    </section>
+    <script>
+    	function F__ID(){
+    		//-------------------------------------
+            VmInclude:__COMPONENT__/f/form.01.js
+    		//-------------------------------------
+			$vm.request({cmd:'find',table:m.lookup},function(res){
+				var txt="";
+				for(i in res.result){
+					var v=res.result[i].Data.Name;
+					txt+="<option>"+v+"</option>";
+				}
+				$('#Item__ID').html(txt);
+				if(m.input.item!=undefined){
+					$('#F__ID select[name=Item]').val(m.input.item);
+				}
+			});
+			//--------------------------------------------------------
+            old_load=m.load;
+			m.load=function(){
+				old_load();
+				if(m.input.item!=undefined){
+					$('#F__ID input[name=Item]').val(m.input.item);
+				}
+				if(m.input.day!=undefined){
+					$('#F__ID input[name=Date]').val(m.input.day);
+				}
+				if(m.input.time!=undefined){
+					$('#F__ID input[name=Time]').val(m.input.time);
+				}
+				if(m.input.duration!=undefined){
+					$('#F__ID input[name=Duration]').val(m.input.duration);
+				}
+			}
+    		//-------------------------------------
+			m.before_submit=function(data,index){
+				//---------------------------
+				var aa=data.Time.split(':'); 
+				var bb=data.Duration.split(':'); 
+				var t1=$vm.date_yyyymmdd_parse(data.Date).getTime()+(parseInt(aa[0])*60+parseInt(aa[1]))*60000;
+				var t2=t1+(parseInt(bb[0])*60+parseInt(bb[1]))*60000;
+				//---------------------------
+				index.I1=t1;
+				index.I2=t2;
+				index.I3=data.Item;
+    			//---------------------------
+				//check time slot
+				var rid=undefined; if(m.input!=undefined && m.input.record!=undefined) rid=m.input.record._id;
+				var ok=0;
+				jQuery.ajaxSetup({async:false});				
+            	$vm.request({cmd:"find",table:m.Table,query:{"$or" :[{I1:{"$gt":t1,"$lt":t2}},{I2:{"$gt":t1,"$lt":t2}}]},options:{}},function(res){
+					console.log(res);
+					if(res.result.length==0) ok=1;
+					else if(res.result.length==1){
+						if(rid==res.result[0]._id) ok=1;
+					}
+				})
+				jQuery.ajaxSetup({async:true});
+				if(ok==0){
+					alert("The time slot is not available.");
+					$('#submit__ID').show();
+					return false
+				}
+				else return true;
+    			//---------------------------
+            }
+            //-------------------------------------
+    	}
+    </script>
+    <style>
+        #form_container__ID{
+            max-width:600px;
+        }
+        VmInclude:__COMPONENT__/f/form.01.css
+    </style>
+</div>

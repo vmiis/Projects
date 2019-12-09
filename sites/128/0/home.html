@@ -9,19 +9,49 @@
             <hr>
         </div>
         <div id=panel__ID class=panel__ID>
-			<div style='display:inline-block'>
+            <div class=block__ID>
+				<span>Room booking</span>
+				<ul>
+					<li><a href='?/room-booking-form'>New booking</a></li>
+					<li><a href='?/room-calendar-day'>Booking calendar day</a></li>
+					<li><a href='?/room-calendar-week'>Booking calendar week</a></li>
+					<li><a href='?/room-calendar-month'>Booking calendar month</a></li>
+					<li><a href='?/room-booking-data'>Booking data</a></li>
+					<li><a href='?/room-list-data'>Room list</a></li>
+                </ul>
+			</div>
+            <div class=block__ID>
+				<span>Car booking</span>
+				<ul>
+					<li><a href='?/car-booking-form'>New booking</a></li>
+					<li><a href='?/car-calendar-day'>Booking calendar day</a></li>
+					<li><a href='?/car-calendar-week'>Booking calendar week</a></li>
+					<li><a href='?/car-calendar-month'>Booking calendar month</a></li>
+					<li><a href='?/car-booking-data'>Booking data</a></li>
+					<li><a href='?/car-list-data'>Car list</a></li>
+                </ul>
+			</div>
+            <div class=block__ID>
 				<span>Design</span>
 				<ul>
 					<li><a href='?/lightbox'>Lightbox</a></li>
 					<li><a href='?/hover-effect-01'>Image hover effect 01</a></li>
 				</ul>
 			</div>
-			<!--
-            <span>Business Portal</span>
-            <ul>
-                <li><a href='128/index.html'>Part I</a></li>
-			</ul>
-			-->
+            <div class=block__ID>
+				<span>Chart</span>
+				<ul>
+					<li><a href='?/pie-chart'>Pie chart</a></li>
+					<li><a href='?/pie-chart-3d'>Pie chart 3d</a></li>
+					<li><a href='?/pie-chart-donut'>Pie chart donut</a></li>
+				</ul>
+			</div>
+            <div class=block__ID>
+				<span>Services</span>
+				<ul>
+					<li><a href='?/services-p1'>Services 01</a></li>
+				</ul>
+			</div>
         </div>
 	</div>
 	<script>
@@ -83,11 +113,11 @@
         .panel__ID{
             padding:0px 50px 10px 50px;
             font-size:14px;
-    		max-width: 100%;
+            max-width: 100%;
     		column-count: 4;
     		column-width: 300px;
     		column-gap: 30px;
-            font-size:14px;
+            
         }
 	    .panel__ID a{
 		    /*margin:3px 10px;*/
@@ -121,6 +151,12 @@
         #keywords__ID::placeholder {
             color: #ccc;
             padding-left:6px;
+        }
+        .block__ID{
+            display:inline-block;
+            vertical-align:top;
+            border:0px solid red;
+            width:100%;
         }        
         @media screen and (max-width:768px){
             .panel__ID{

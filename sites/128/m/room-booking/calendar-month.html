@@ -1,0 +1,110 @@
+<div id=D__ID>
+    <div>
+        VmInclude:__COMPONENT__/m/month.02.html
+    </div>
+    <script>
+    function F__ID(){
+        //--------------------------------------------------------
+        VmInclude:__COMPONENT__/m/month.02.js
+        //--------------------------------------------------------
+        $('#item_list__ID').show();
+        $vm.request({cmd:'find',table:m.lookup},function(res){
+            var txt="";
+            for(i in res.result){
+                var v=res.result[i].Data.Name;
+                txt+="<option>"+v+"</option>";
+            }
+            $('#item_list__ID').html(txt);
+            m.request_and_render();
+        });
+        $('#item_list__ID').on('change',function(){
+            m.request_and_render();
+        })
+        //--------------------------------------------------------
+        m.start_point=8*60;
+        m.total_width=(17*60-m.start_point);
+        //--------------------------------------------------------
+    	m.on_day_click_fun=function(date){
+			$vm.load_module(m.booking,'',{item:$('#item_list__ID').val(),day:date,goback:1})
+    	}
+    	//--------------------------------------------------------
+        m.request_and_render=function(){
+            var mt1=new Date().getTime();
+            var dt1=m.first_day.getTime();
+            var dt2=$vm.date_add_days(m.last_day,1).getTime();
+            var room=$('#item_list__ID').val();
+            if(room==undefined) return;
+            $vm.request({cmd:"find",table:m.Table,query:{I3:room,I1:{"$gte":dt1,"$lt":dt2}},sort:{I1:1,I2:1},options:{}},function(res){
+                if(res.permission==false){
+                    alert("No permission to get booking information.");
+                    return;
+                }
+                //-----------------------
+                var mt2=new Date().getTime();
+                var tt_all=mt2-mt1;
+                var tt_server=parseInt(res.sys.elapsed_time);
+                if(tt_all<tt_server) tt_all=tt_server;
+                $("#elapsed__ID").text((JSON.stringify(res.result).length/1000).toFixed(1)+"kb/"+tt_all.toString()+"ms/"+tt_server+'ms');
+                //-----------------------
+    	        m.calendar_render("");
+                m.records=res.result;
+    			for(var i=0;i<res.result.length;i++){
+    	            m.cell_render(res.result[i]);
+    			}
+            });
+        }
+        //--------------------------------------------------------
+        m.cell_render=function(record){
+            var id=record._id;
+            var date=record.Data.Date;
+            var time=record.Data.Time;
+            var duration=record.Data.Duration;
+            //var time2=$vm.pad(new Date(record.I2).getHours(),2)+":"+$vm.pad(new Date(record.I2).getMinutes(),2);
+            var info=record.Data.Info; if(info===undefined) info="No info";
+            var color=record.Data.Color;
+            var t1=$vm.pad(new Date(record.I1).getHours(),2)+":"+$vm.pad(new Date(record.I1).getMinutes(),2);
+            var t2=$vm.pad(new Date(record.I2).getHours(),2)+":"+$vm.pad(new Date(record.I2).getMinutes(),2);
+
+            var mm="10px";
+            var $div=m.get_cell_div(date);
+            var item="<div style='color:"+color+";margin-left:"+mm+";' class=item__ID  ><div id=item__ID"+id+" style='cursor:pointer;display:inline-block;padding-left:3px;' >"+t1+" - "+t2+" "+info+"</div></div>"
+            $div.append(item);
+            $('#item__ID'+id).on('click',function(){
+                $vm.load_module(m.booking,'',{record:record});
+            });
+        }
+        //--------------------------------------------------------
+        $('#D__ID').on('load',function(){
+            var a=$(window).height()-$('#body__ID').offset().top;
+            $('#body__ID').css("min-height",a);
+            m.request_and_render();
+        });
+        //--------------------------------------------------------
+        $('#D__ID').on('show',function(){  if($vm.refresh==1){$vm.refresh=0; m.request_and_render();}    });
+        //--------------------------------------------------------
+    }
+    </script>
+    <style>
+        #D__ID{
+            background-color:#fff;
+            font-size:13px;
+            font-family: Helvetica, Arial, sans-serif;
+            height:100%;
+            overflow: auto;
+        }
+        .item__ID{           
+            /*white-space:nowrap;*/
+            position:relative;
+            height:18px; 
+            
+        }
+        .item__ID:hover{
+            color:red!Important;
+        }
+        .event_container__ID{
+            padding-top:8px;
+        }
+
+
+    </style>
+</div>
