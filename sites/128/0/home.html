@@ -3,7 +3,7 @@
         <div style='padding:10px 20px 0 20px;'>
             <form class="form-inline text-center">
 				<div class="text-center" style='width:100%'>
-					<input id=keywords__ID class=form-control style='width:230px;' placeholder="multi words filter">
+					<input id=keywords__ID class=form-control style='width:230px;' placeholder="multiple words 'AND' filter">
 				</div>
             </form>
             <hr>
@@ -16,8 +16,11 @@
 					<li><a href='?/room-calendar-day'>Booking calendar day</a></li>
 					<li><a href='?/room-calendar-week'>Booking calendar week</a></li>
 					<li><a href='?/room-calendar-month'>Booking calendar month</a></li>
-					<li><a href='?/room-booking-data'>Booking data</a></li>
-					<li><a href='?/room-list-data'>Room list</a></li>
+					<span>Admin</span>
+					<ul>
+						<li><a href='?/room-booking-data'>Booking data</a></li>
+						<li><a href='?/room-list-data'>Room list</a></li>
+					</ul>
                 </ul>
 			</div>
             <div class=block__ID>
@@ -27,8 +30,11 @@
 					<li><a href='?/car-calendar-day'>Booking calendar day</a></li>
 					<li><a href='?/car-calendar-week'>Booking calendar week</a></li>
 					<li><a href='?/car-calendar-month'>Booking calendar month</a></li>
-					<li><a href='?/car-booking-data'>Booking data</a></li>
-					<li><a href='?/car-list-data'>Car list</a></li>
+					<span>Admin</span>
+					<ul>
+						<li><a href='?/car-booking-data'>Booking data</a></li>
+						<li><a href='?/car-list-data'>Car list</a></li>
+					</ul>
                 </ul>
 			</div>
             <div class=block__ID>
@@ -50,6 +56,31 @@
 				<span>Services</span>
 				<ul>
 					<li><a href='?/services-p1'>Services 01</a></li>
+				</ul>
+			</div>
+            <div class=block__ID>
+				<span>Clinical trials</span>
+				<ul>
+					<li><a href='?/clinical-trials-participant-data'>Participants</a></li>
+				</ul>
+			</div>
+            <div class=block__ID>
+				<span>Form fields</span>
+				<ul>
+					<li><a href='?/clinical-trials-participant-data'>Participants</a></li>
+				</ul>
+			</div>
+            <div class=block__ID>
+				<span>Website contents</span>
+				<ul>
+					<span>2 columns content page</span>
+					<ul>
+							<li><a href='?/2-columns-content-page-01'>Page 01</a></li>
+						<li><a href='?/2-columns-content-page-02'>Page 02</a></li>
+						<li><a href='?/2-columns-content-page-03'>Page 03</a></li>
+						<li><a href='?/2-columns-content-page-04'>Page 04</a></li>
+						<li><a href='?/2-columns-content-page-05'>Page 05</a></li>
+					</ul>
 				</ul>
 			</div>
         </div>
@@ -123,7 +154,7 @@
 		    /*margin:3px 10px;*/
             /*white-space: nowrap;*/
 	    }
-	    .panel__ID span{
+	    .panel__ID>div>span{
 			color:#283f55;
 			font-weight: bold;
             font-weight: 600;

@@ -30,6 +30,16 @@
 
         "services-p1":          {url:"$H/m/services/p1.html"},
 
+        "clinical-trials-participant-data": {url:"$H/m/clinical-trials/participant-data.html",Table:"participant",form_module:"clinical-trials-participant-form"},
+        "clinical-trials-participant-form": {url:"$H/m/clinical-trials/participant-form.html",Table:"participant"},
+        
+        "2-columns-content-page-01":          {url:"$H/m/2-columns-content-page/page-01.html"},
+        "2-columns-content-page-02":          {url:"$H/m/2-columns-content-page/page-02.html"},
+        "2-columns-content-page-03":          {url:"$H/m/2-columns-content-page/page-03.html"},
+        "2-columns-content-page-04":          {url:"$H/m/2-columns-content-page/page-04.html"},
+        "2-columns-content-page-05":          {url:"$H/m/2-columns-content-page/page-05.html"},
+
+        
     }
     for(p in modules){
         $vm.module_list[p]=modules[p]; 

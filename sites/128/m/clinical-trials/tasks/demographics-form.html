@@ -1,0 +1,118 @@
+<div id=D__ID>
+	<section id=form_container__ID>
+		<div id=header__ID>
+			Demographics
+		</div>
+		<form id=F__ID>
+			<div class="container">
+                <!-- participant part for all tsak forms -------------------->
+                <div class="row row__ID" id=row_participant__ID>
+                    <div class="col-sm-9 col-lg-9 input__ID">
+                        <span class=label__ID>Participant</span><br>
+                        <input type=text name="Participant" class=form-control id=Participant__ID data-id="Participant" />
+                    </div>
+                    <div class="col-sm-3 col-lg-3 input__ID">
+                        <span class=label__ID>Participant ID</span><br>
+                        <input type=text name="Participant_uid" class=form-control readonly />
+                    </div>
+                    <hr style="border-top: 1px solid #888;width: 100%;margin:10px 0">
+                </div>
+                <!---------------------------------------------------->
+				<div class='row row__ID'>
+					<div class="col-sm col-lg-6">
+						<span>DOB</span>
+						<input type=date class=form-control name=DOB>
+					</div>
+					<div class="col-sm col-lg-6">
+						<span>Gender</span>
+						<select class=form-control name=Gender>
+							<option value=''>---</option>
+							<option>Male</option>
+							<option>Femaile</option>
+							<option>Other</option>
+						</select>
+					</div>
+				</div>
+				<div class='row row__ID'>
+					<div class="col">
+						<span>Ethnicity</span>
+						<select class=form-control name=Ethnicity>
+							<option value=''>---</option>
+							<option>Caucasian</option>
+							<option>Indigenous Australian</option>
+							<option>Pacific Islander</option>
+							<option>South-East Asian</option>
+							<option>South Asian</option>
+							<option>North East Asian</option>
+							<option>North Asian</option>
+							<option>Middle Eastern, Northern African, Somali Peninsular</option>
+							<option>Sub-Saharan African</option>
+							<option>Central/South American</option>
+							<option>Other</option>
+							<option>Don't Know</option>
+						</select>
+					</div>
+				</div>
+				<div class='row row__ID'>
+					<div class="col">
+						<span>Education</span>
+						<select class=form-control name=Education>
+							<option value=''>---</option>
+							<option>Primary or Secondary school (e.g. 8th grade or less)</option>
+							<option>Some high school, but did not graduate</option>
+							<option>High school graduate or HSC</option>
+							<option>TAFE graduate (e.g. Certificate, Diploma)</option>
+							<option>University graduate (e.g. Bachelor’s degree)</option>
+							<option>More than 4-year University degree (e.g. Masters, PhD)</option>
+						</select>
+					</div>
+				</div>
+				<div class='row row__ID'>
+					<div class="col">
+						<span>Employment</span>
+						<select class=form-control name=Employment>
+							<option value=''>---</option>
+							<option>Employed full-time (40+ hours per week)</option>
+							<option>Employed part-time (less than 40 hours per week)</option>
+							<option>Unemployed (currently looking for work)</option>
+							<option>Unemployed (currently not looking for work)</option>
+							<option>Retired</option>
+							<option>Unable to work</option>
+						</select>
+					</div>
+				</div>
+				<div class='row row__ID'>
+					<div class="col-sm col-lg-6">
+						<span>Postcode</span>
+						<input type=text class=form-control name=Postcode>
+					</div>
+				</div>
+                
+                
+                <br>
+				<div class="row">
+					<div class=col>
+						<button id=submit__ID type="submit" class="btn btn-secondary">Submit</button>
+					</div>
+				</div>
+			</div>
+		</form>
+	</section>
+	<script>
+		function F__ID(){
+			//-------------------------------------
+            VmInclude:__COMPONENT__/f/form.01.js
+            VmInclude:__CURRENT_PATH__/task-form.js
+			//-------------------------------------
+		}
+	</script>
+	<style>
+		VmInclude:__COMPONENT__/f/form.01.css
+		#form_container__ID{
+			max-width:700px;
+		}
+		.row__ID span{
+			font-weight: bold;
+		}
+	</style>
+</div>
