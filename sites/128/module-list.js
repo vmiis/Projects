@@ -39,6 +39,10 @@
         "2-columns-content-page-04":          {url:"$H/m/2-columns-content-page/page-04.html"},
         "2-columns-content-page-05":          {url:"$H/m/2-columns-content-page/page-05.html"},
 
+        "wappsystem-secrete-data":            {url:"$H/m/stripe/secrete-data.html",Table:"demo-wappsystem-secrete",form_module:"wappsystem-secrete-form"},
+        "wappsystem-secrete-form":            {url:"$H/m/stripe/secrete-form.html",Table:"demo-wappsystem-secrete"},
+        "shopping-cart":                      {url:"$H/m/stripe/shopping-cart.html",pay:"stripe-pay"},
+        "stripe-pay":                         {url:"$H/m/stripe/pay/index.html"},
         
     }
     for(p in modules){

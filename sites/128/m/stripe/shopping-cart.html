@@ -1,0 +1,89 @@
+<div id=D__ID>
+    <section id=form_container__ID>
+    	<div id=header__ID>
+    		Shopping Cart
+    	</div>
+    	<form id=F__ID>
+    		<div class="container">
+    			<div class="row row__ID">
+    				<div class=col-lg-4>
+    					<span>Item</span>
+    					<input type="Text" class="form-control" name=Item1__ID />
+    				</div>
+    				<div class=col-lg-4>
+    					<span>Qty</span>
+    					<input type="Number" class="form-control" name=Qty1__ID min="0" max="1000000" />
+    				</div>
+    				<div class=col-lg-4>
+    					<span>Amount</span>
+    					<input type="Number" class="form-control" name=Amount1__ID step="0.01" min="0" max="1000000" />
+    				</div>
+    			</div>
+    			<div class="row row__ID">
+    				<div class=col-lg-4>
+    					<span>Item</span>
+    					<input type="Text" class="form-control" name=Item2__ID />
+    				</div>
+    				<div class=col-lg-4>
+    					<span>Qty</span>
+    					<input type="Number" class="form-control" name=Qty2__ID min="0" max="1000000" />
+    				</div>
+    				<div class=col-lg-4>
+    					<span>Amount</span>
+    					<input type="Number" class="form-control" name=Amount2__ID step="0.01" min="0" max="1000000" />
+    				</div>
+    			</div>
+    			<div class="row row__ID">
+    				<div class=col>
+    					<span>Total Amount</span>
+    					<input type="Number" class="form-control" name=Total_Amount__ID step="0.01" min="0" max="1000000" />
+    				</div>
+    			</div>
+				<br>
+    			<div class="row">
+    				<div class=col>
+    					<button id=submit__ID type="submit" class="btn btn-secondary">Check Out</button>
+    				</div>
+    			</div>
+    		</div>
+    	</form>
+    </section>
+    <script>
+    	function F__ID(){
+    		//-------------------------------------
+            VmInclude:__COMPONENT__/f/form.01.js
+    		//-------------------------------------
+    		$vm.stripe_shorpping_cart=[
+				{item:"Book", qty:"1",amount:"90.00"},
+				{item:"Pen", qty:"2",amount:"18.00"}
+			]
+			$vm.stripe_shorpping_total_amount="108.00";
+			//-------------------------------------
+			m.load=function(){
+				//display information base on the global shopping cart data
+				for(var i=0;i<$vm.stripe_shorpping_cart.length;i++){
+					$('input[name=Item'+(i+1)+'__ID]').val($vm.stripe_shorpping_cart[i].item);
+					$('input[name=Qty'+(i+1)+'__ID]').val($vm.stripe_shorpping_cart[i].qty);
+					$('input[name=Amount'+(i+1)+'__ID]').val($vm.stripe_shorpping_cart[i].amount);
+				}
+				$('input[name=Total_Amount__ID]').val($vm.stripe_shorpping_total_amount);
+			}
+			m.submit=function(event){
+    			event.preventDefault();
+				
+				sessionStorage.setItem("shopping_items",JSON.stringify($vm.stripe_shorpping_cart));
+				sessionStorage.setItem("shopping_amount",$vm.stripe_shorpping_total_amount);
+				
+				var url=$vm.module_list[m.pay].url;
+				window.open(url);
+			}
+    		//-------------------------------------
+    	}
+    </script>
+    <style>
+        #form_container__ID{
+            max-width:600px;
+        }
+        VmInclude:__COMPONENT__/f/form.01.css
+    </style>
+</div>
