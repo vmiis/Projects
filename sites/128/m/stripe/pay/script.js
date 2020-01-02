@@ -13,6 +13,9 @@ for(var i=0;i<shopping_items.length;i++){
     orderData.items.push({id:shopping_items[i].item})
 }
 orderData.info.total=shopping_amount;
+async function vm_get_stripe_public_key(){
+    return {"publishableKey":"pk_test_Qt2XuK8annqxYBbQ75iEewb100BbVrGE6i"};
+}
 //****************************************
 
 // A reference to Stripe.js
@@ -26,9 +29,11 @@ var orderData = {
 */
 // Disable the button until we have Stripe set up on the page
 document.querySelector("button").disabled = true;
-  fetch(api_address+"/stripe-key")
+  //fetch(api_address+"/stripe-key")
+  vm_get_stripe_public_key()
   .then(function(result) {
-    return result.json();
+    return result;
+    //return result.json();
   })
   .then(function(data) {
     return setupElements(data);
