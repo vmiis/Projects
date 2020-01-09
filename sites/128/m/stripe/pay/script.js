@@ -1,11 +1,12 @@
 var orderData={
+    cmd:"stripe-pay",
     items:[],
     currency:"aud",
     info:{}
 }
 //****************************************
 //wappsystem code
-var api_address="http://localhost:4242"
+var api_address="http://localhost:8001"
 var items=sessionStorage.getItem("shopping_items");
 var shopping_items=JSON.parse(items);
 var shopping_amount=sessionStorage.getItem("shopping_amount");
