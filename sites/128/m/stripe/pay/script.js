@@ -6,7 +6,7 @@ var orderData={
 }
 //****************************************
 //wappsystem code
-var api_address="http://localhost:8001"
+var api_address="https://api.wappsystem.com"
 var items=sessionStorage.getItem("shopping_items");
 var shopping_items=JSON.parse(items);
 var shopping_amount=sessionStorage.getItem("shopping_amount");
