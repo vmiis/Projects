@@ -1,0 +1,156 @@
+<div id=D__ID>
+	<div>
+		<div id=toolbar__ID class="navbar navbar-default" style='margin-bottom:0px;padding-left:6px;'>
+			<div class="form-inline">
+				&nbsp;Probe: <select id=probe__ID class="form-control" style='margin-right:3px;width:auto;float:left;'>
+					<option >TC1</option>
+					<option >Protein Area</option>
+					<option >TC2+</option>
+					<option >TC3+</option>
+					<option >probe167</option>
+					<option >minus80C Freezer E</option>
+					<option >minus80C Freezer A</option>
+					<option >minus80C Freezer X</option>
+					<option >minus80C Freezer Y</option>
+					<option >TPRh Sensor</option>
+					<option >minus80C Freezer C</option>
+					<option >Pharmacy</option>
+				</select>
+				&nbsp;&nbsp;Start Date:&nbsp; <input  type=date   class="form-control"      id=start_date__ID style='width:200px;display:inline-block' value="2020-01-01" />
+				&nbsp;&nbsp;End Date:&nbsp; <input  type=date   class="form-control"      id=end_date__ID style='width:200px;display:inline-block' value="2020-01-01" />
+				<button type=button class='btn btn-secondary' id=query2__ID>Query</button>
+				<button type=button class='btn btn-secondary' id=export2__ID>Export</button>
+			</div>
+			<span id=elapsed__ID style='float:right'></span>
+		</div>
+		<div style='overflow-x:auto;white-space: nowrap; padding-left:2px;padding-right:2px'>
+			<table id=table__ID>
+				<thead id=thead__ID></thead>
+				<tbody id=tbody__ID></tbody>
+			</table>
+		</div>
+		<style>
+			#table__ID   {	min-width:1200px; width:100%;	border: 1px #888 solid; 	font-size:9pt; 	font-family:Verdana; 	border-spacing: 0;	border-collapse: collapse;	table-layout:fixed;}
+			#table__ID th{ 	border: 1px solid #ddd; 	padding:0px; 	margin:0px; 	text-align:center;	background-color:#bbb}
+			#table__ID td{ 	border: 1px solid #ddd;		padding-top:2px; 	padding-bottom:2px; 	margin:0px; 	white-space: nowrap; }
+			#D__ID{ background-color:#fff;}
+			#table__ID thead tr{
+				height:28px;
+			}
+			#table__ID u{
+				cursor:pointer;
+			}
+			#toolbar__ID{
+				background-color:#ccc;
+				padding:5px 0px;
+				margin-bottom:0px;
+				overflow:hidden
+			}
+			#toolbar__ID *{
+				margin-right:3px;
+			}
+		</style>
+		<div id=table__ID>
+			<table id=grid__ID></table>
+		</div>
+	</div>
+    <script>
+        function F__ID(){
+			//-------------------------------------
+			VmInclude:__COMPONENT__/g/grid.01.js
+			//-------------------------------------
+			m.fields="date,v1,v2,v3,v4";
+			var probe_number="";
+			var probe="";
+			//-------------------------------------
+			$('#query2__ID').on('click',function(){
+				/*
+				if($vm.user_name!="server"){
+					alert("Please check your data server is running. You need to refresh your web browser after your data server is started.");
+					return;
+				}
+				*/
+				probe=$('#probe__ID').val();
+				if(probe=="---") probe="TC1";
+				switch(probe){
+					case "TC1": 				probe_number="10940154"; m.fields="Probe_Number,Probe_Name, Date|date,TC1_fridge|v1, TC1_freezer|v2"; break;
+					case "Protein Area": 		probe_number="10940157"; m.fields="Probe_Number,Probe_Name, Date|date,Protein area 4C|v1, Protein area -20|v2"; break;
+					case "TC2+": 				probe_number="10940158"; m.fields="Probe_Number,Probe_Name, Date|date,TC2 -20 freezer 9|v1, TC2 -20 freezer 10|v2, TC2 Incub E2|v4"; break;
+					case "TC3+": 				probe_number="10940159"; m.fields="Probe_Number,Probe_Name, Date|date,PCR -20 freezer 11|v1, PCR -20 freezer|v2, TC3 incub E1|v3"; break;
+					case "probe167": 			probe_number="17964570"; m.fields="Probe_Number,Probe_Name, Date|date,probe 167 -80|v1"; break;
+					case "minus80C Freezer E": 	probe_number="8962131"; m.fields="Probe_Number,Probe_Name, Date|date,-80 freezer E|v1"; break;
+					case "minus80C Freezer A": 	probe_number="08963150"; m.fields="Probe_Number,Probe_Name, Date|date,-80 Freezer A|v1"; break;
+					case "minus80C Freezer X": 	probe_number="08963151"; m.fields="Probe_Number,Probe_Name, Date|date,-80 Freezer X|v1"; break;
+					case "minus80C Freezer Y": 	probe_number="08963148"; m.fields="Probe_Number,Probe_Name, Date|date,-80 Freezer Y|v1"; break;
+					case "TPRh Sensor": 		probe_number="8960269"; m.fields="Probe_Number,Probe_Name, Date|date,Temp Rm 3032|v1,Humidity 3032|v2,Dew point 3032|v3,Pressure 3032|v4"; break;
+					case "minus80C Freezer C": 	probe_number="08963147"; m.fields="Probe_Number,Probe_Name, Date|date,-80 Freezer C|v1"; break;
+					case "Pharmacy": 			probe_number="11940683"; m.fields="Probe_Number,Probe_Name, Date|date,Pharmacy fridge and room|v1,Pharmacy Room temp|v2"; break;
+				}
+				
+				var start_date=$('#start_date__ID').val();
+				var end_date=$('#end_date__ID').val();
+				if(start_date=="") start_date="2020-01-01";
+				if(end_date=="") end_date="2020-01-01";
+				var dd=new Date(end_date).getTime()-new Date(start_date).getTime()
+				if(dd<0){
+					alert("Incorrect date range");
+					return;
+				}
+				
+				
+				$vm.request({cmd:"report",probe:probe_number,start_date:start_date,end_date:end_date},function(res){
+					if(res.error!=""){
+						alert(res.error);
+						$('#grid__ID').html('');
+						return;
+					}
+					m.records=res.result;
+					for(var i=0;i<m.records.length;i++){
+						m.records[i].Probe_Number=probe_number;
+						m.records[i].Probe_Name=probe;
+					}
+					m.render();
+				})
+			})
+			$('#export2__ID').on('click',function(){
+				if(m.records==undefined){
+					alert("Query data first please.");
+					return;
+				}
+				var hd=m.fields.split(',');
+				var ho={}
+				for(var i=0;i<hd.length;i++){
+					var a=hd[i].split('|');
+					if(a.length==2){
+						ho[a[0]]=a[1];
+					}
+				}
+				var d=[];
+				for(var i=0;i<m.records.length;i++){
+					var r={}
+					r.Probe_Number=probe_number;
+					r.Probe_Name=probe;
+					for( p in ho){
+						r[p]=m.records[i][ho[p]];	
+					}
+					d.push(r);
+				}
+            	$vm.download_csv("report.csv",d);
+			})
+		}
+        
+    </script>
+    <style>
+    	VmInclude:__COMPONENT__/g/grid.01.css
+    	#D__ID{
+    		animation: vm_module_fadein 1.0s;
+    		background: rgba(255,255,255,1);
+    		color:#283f55;
+            font-size:10pt;
+            font-family: Verdana,Helvetica,Arial,sans-serif;
+    	}
+    	#page__ID{
+            padding:10px 0 0 20px;
+        }
+    </style>
+</div>
