@@ -1,0 +1,70 @@
+<div id=D__ID>
+    <section id=form_container__ID>
+    	<div id=header__ID>
+    		Windfarm lab query builder
+    	</div>
+    	<form id=F__ID>
+    		<div class="container">
+                <hr class=hr__ID>
+    			<div class="row row__ID">
+    				<div class=col>
+                        Table ID
+    					<input type="text" id=table_id__ID class=form-control />
+    				</div>
+    			</div>
+                <hr class=hr__ID>
+    			<div class="row row__ID">
+    				<div class=col>
+                        Table Fields
+    					<textarea id=fields__ID  class=form-control style='height:100px'></textarea>
+    				</div>
+    			</div>
+				<hr class=hr__ID>
+    			<div class="row row__ID">
+    				<div class=col>
+                        Result
+    					<textarea id=result__ID  class=form-control style='height:300px'></textarea>
+    				</div>
+    			</div>
+				<hr class=hr__ID>
+    			<br>
+    			<div class="row">
+    				<div class=col>
+    					<button id=build__ID type="button" class="btn btn-secondary">Build</button>
+    				</div>
+    			</div>
+    		</div>
+    	</form>
+    </section>
+    <script>
+    	function F__ID(){
+            //-------------------------------------
+            $('#build__ID').on('click',function(){
+                var tb_id=$('#table_id__ID').val();
+                var fields=$('#fields__ID').val();
+
+                var s_fields="";
+                var fds=fields.split(',');
+                for(var i=0;i<fds.length;i++){
+                    if(s_fields!="") s_fields+=",";
+                    s_fields+=fds[i]+"=dbo.F(Information,'"+fds[i]+"')";
+                }
+                var txt="with \nparticipant as (select Participant_ID=UID, Registration_ID=dbo.F(Information,'Registration_ID') from cms where pid=20009058),";
+                txt+="\ntask as (select PUID, "+s_fields+" from cms where pid="+tb_id+")";
+                txt+="\nselect Participant_ID,Registration_ID,"+fields+" from participant left join task on Participant_ID=PUID order by Participant_ID ";
+                $('#result__ID').text(txt)
+            })
+    		//-------------------------------------
+    	}
+    </script>
+    <style>
+        VmInclude:__COMPONENT__/f/form.01.css
+        #form_container__ID{
+            max-width:1000px;
+        }
+        .hr__ID{
+            margin:6px 0;
+            padding:0;
+        }
+    </style>
+</div>
