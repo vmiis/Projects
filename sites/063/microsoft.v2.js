@@ -21,9 +21,9 @@ $vm.m365_init=function(){
             storeAuthStateInCookie: true
         },
     };
-    $vm.m365_msal=new Msal.UserAgentApplication($vm.msalConfig);
+    $vm.m365_msal=new msal.PublicClientApplication($vm.msalConfig);
     //check login or not
-    $vm.m365_acquireTokenSilent();
+    //$vm.m365_acquireTokenSilent();
     //$vm.m365_signout();
 }
 //------------------------------------
@@ -40,8 +40,10 @@ $vm.m365_acquireTokenSilent=function(){
 }
 //------------------------------------
 $vm.m365_signin=function (){
+    alert(1)
     $vm.m365_msal.loginPopup($vm.m365_scope).then(function (loginResponse) {     
-        $vm.m365_acquireTokenSilent();
+        alert(2)
+        //$vm.m365_acquireTokenSilent();
     }).then(function (accessTokenResponse) {
         //$vm.m365_init();
     }).catch(function (error) {  

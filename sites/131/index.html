@@ -5,7 +5,7 @@
         <meta name="description" content="">
         <meta name='viewport' content='width=device-width, initial-scale=1'>
         <link rel="icon" href="data:,">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/css/bootstrap.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.css" />
     </head>
     <body>
         <!----------------------------------------------->
@@ -14,17 +14,12 @@
             <div id=content></div>
             <div id=footer></div>
             <div id=system></div>
-            <script>$vm={};</script>
             <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-3.4.1.min.js"></script>
-            <!--<script src="https://secure.aadcdn.microsoftonline-p.com/lib/1.1.2/js/msal.min.js"></script>-->
-            <script src="https://alcdn.msftauth.net/lib/1.3.4/js/msal.min.js"></script>
-            <!--<script src="https://alcdn.msauth.net/browser/2.0.1/js/msal-browser.min.js"></script>-->
-            <script src="microsoft.js"></script>
         </div>
         <!----------------------------------------------->
         <script>
             //------------------------------------
-            $vm.ver=[0.11,0.11];
+            $vm={};$vm.ver=[0.11,0.11];
             $vm.hosting_path=window.location.href.substring(0, window.location.href.split('?')[0].lastIndexOf('/'));
             if(window.location.hostname=='127.0.0.1' || window.location.hostname=='localhost') $vm.localhost=true;
             //------------------------------------
@@ -95,7 +90,7 @@
         <style main-style>
             html,body{ margin:0; padding:0; height:100%; font-family:Arial;}
             body{background-size: cover; background-repeat: repeat-x; background-position: center top; background-attachment: fixed;}
-            .body_background_default{ background-image: url(https://images.unsplash.com/photo-1547577284-419f38142091?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80);}
+            .body_background_default{ background-image: url(https://images.unsplash.com/photo-1533424922832-a76b7d3563d7?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80);}
         </style>
     </body>
 </html>
