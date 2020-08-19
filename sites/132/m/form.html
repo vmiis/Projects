@@ -1,0 +1,78 @@
+<div id=D__ID>
+    <section id=form_container__ID>
+    	<div id=header__ID>
+    		Form
+    	</div>
+    	<form id=F__ID>
+    		<div class="container">
+    			<div class="row row__ID">
+    				<div class=col>
+    					<span>First Name</span>
+    					<input type="text" class="form-control" name=First_Name />
+    				</div>
+    			</div>
+    			<div class="row row__ID">
+    				<div class=col>
+    					<span>Last Name</span>
+    					<input type="text" class="form-control" name=Last_Name />
+    				</div>
+    			</div>
+    			<div class="row row__ID">
+    				<div class=col>
+						<span>File 1</span>
+						<div class="form-control" style='height: 80px;'>
+                            <u style='cursor:pointer' id=link_File_1__ID></u>
+                            <br>
+                            <input type="file" name=File_1 style="margin-top:6px" /> <button type="button" id=x_File_1__ID style='margin-left:30px'>Remove</button>
+                        </div>
+    				</div>
+    			</div>
+    			<div class="row row__ID">
+    				<div class=col>
+    					<span>File 2</span>
+						<div class="form-control" style='height: 80px;'>
+                            <u style='cursor:pointer' id=link_File_2__ID></u>
+                            <br>
+                            <input type="file" name=File_2 style="margin-top:6px" /> <button type="button" id=x_File_2__ID style='margin-left:30px'>Remove</button>
+                        </div>
+    				</div>
+    			</div>
+    			<br>
+    			<div class="row">
+    				<div class=col>
+    					<button id=submit__ID type="submit" class="btn btn-secondary">Submit</button>
+    					<!--<button id=clear__ID type="button" class="btn btn-secondary">Clear File Cache</button>-->
+    				</div>
+    			</div>
+    		</div>
+		</form>
+	</section>
+	VmInclude:__COMPONENT__/m/model.01.html
+    <script>
+    	function F__ID(){
+			//--------------------------------------------------------
+			VmInclude:__COMPONENT__/f/form.01.js
+			m.storage_type='s0';
+			//-------------------------------------
+			var old_load=m.load;
+			m.load=function(){
+				old_load();
+                m.set_file_link_s0("File_1");
+                m.set_file_link_s0("File_2");
+			}
+            //-------------------------------------
+			/*
+			m.submit=function(event){
+				m.submit_s0(event);
+			}
+			*/
+			//--------------------------------------------------------
+    	}
+    </script>
+    <style>
+        #form_container__ID{
+            max-width:600px;
+        }
+        VmInclude:__COMPONENT__/f/form.01.css
+    </style>
+</div>
