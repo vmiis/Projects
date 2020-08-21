@@ -1,0 +1,103 @@
+<div id=D__ID>
+    <section id=form_container__ID>
+    	<div id=header__ID>
+    		Form
+    	</div>
+    	<form id=F__ID>
+    		<div class="container">
+				<!-- Form Inputs-------------------------------------->
+				<div id=dynamic_part__ID></div>
+				<!---------------------------------------------------->				
+    			<br>
+    			<div class="row">
+    				<div class=col>
+    					<button id=submit__ID type="submit" class="btn btn-secondary">Submit</button>
+    				</div>
+    			</div>
+    		</div>
+		</form>
+	</section>
+	VmInclude:__COMPONENT__/m/model.01.html
+    <script>
+    	function F__ID(){
+			//--------------------------------------------------------
+			var create_form=function(){
+				var txt="";
+				var excel_field=$vm.module_list['excel-panel'].excel_field;
+				var excel_form_config=$vm.module_list['excel-panel'].excel_form_config;
+				if(excel_field==undefined) excel_field=[];
+				if(excel_form_config==undefined) excel_form_config=[];
+				for(var i=1;i<excel_field.length;i++){
+					var index1=excel_field[0].indexOf('Form Display Name');
+					var index2=excel_field[0].indexOf('Database Name');
+					var index3=excel_field[0].indexOf('Field Type');
+					var index4=excel_field[0].indexOf('Name/Value');
+					var display_name=excel_field[i][index1];
+					var database_name=excel_field[i][index2];
+					var name_value=excel_field[i][index4];
+					var type=excel_field[i][index3];
+					if(database_name=='') database_name=display_name.replace(/ /g,"_");
+					switch(type){
+						case "Text":
+							txt+="<div class='row row__ID'><div class='col'>\r\n";
+							txt+="<span>"+display_name+"</span><input type=text class=form-control name="+database_name+">\r\n";
+							txt+="</div></div>\r\n";
+							break;
+						case "Drop Down List":
+							txt+="<div class='row row__ID'><div class='col'>\r\n";
+							txt+="<span>"+display_name+"</span><select class=form-control name="+database_name+">\r\n";
+							var nv=name_value.split(',');
+							for(var k=0;k<nv.length;k++){
+								var n=nv[k].split('/')[0];
+								var v=nv[k].split('/').pop();
+								txt+="<option value="+v+">"+n+"</option>";
+							}
+							txt+="</select>"
+							txt+="</div></div>\r\n";
+							break;
+						case "Horizontal radio button list":
+							txt+="<div class='row row__ID'><div class='col radio__ID'>\r\n";
+							txt+="<span>"+display_name+"</span><br>\r\n";
+							var nv=name_value.split(',');
+							for(var k=0;k<nv.length;k++){
+								var n=nv[k].split('/')[0];
+								var v=nv[k].split('/').pop();
+								txt+="<label><input type='radio' name="+database_name+" value="+v+">&nbsp&nbsp"+n+"</label>&nbsp&nbsp&nbsp&nbsp";
+							}
+							txt+="</div></div>\r\n";
+							break;
+					}
+
+				}
+				$('#dynamic_part__ID').html(txt);
+				for(var i=0;i<excel_form_config.length;i++){
+					if(excel_form_config[i][0]=='Form Title'){
+						$('#header__ID').text(excel_form_config[i][1]);
+					}
+					else if(excel_form_config[i][0]=='Form Width'){
+						$('#form_container__ID').css('width',excel_form_config[i][1]+'px');
+					}
+				}
+			}
+			//-------------------------------------
+			VmInclude:__COMPONENT__/f/form.01.js
+			//-------------------------------------
+			var old_load=m.load;
+			m.load=function(){
+				create_form();			
+				old_load();
+			}
+            //-------------------------------------
+    	}
+    </script>
+    <style>
+        #form_container__ID{
+            max-width:1200px;
+        }
+        VmInclude:__COMPONENT__/f/form.01.css
+		
+		.radio__ID label:hover{
+			background-color: #999;
+		}
+    </style>
+</div>

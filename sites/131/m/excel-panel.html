@@ -1,0 +1,91 @@
+<div id=D__ID>
+    <div id=panel__ID>
+        <div>
+            You can test your form by submitting an excel file with the form specifications.
+            <br>
+            <br>
+            <br>
+        </div>
+        <input type="file" id="input_file__ID" style='display:none' />
+        <ul>
+            <b><span id=name__ID></span></b><br><br>
+            <li><a id=file__ID>Select file... (Form specifications from an excel file)</a></li>
+            <li><a id=form__ID>Form preeview</a></li>
+            <li><a id=data__ID>Data collection testing</a></li>
+        </ul>
+        <br>
+        <br>
+        <br>
+        <br>
+        <ul>
+            <b>Excel samples</b> (download, modify and submit to see how the form works)<br>
+            <li><a href=__CURRENT_PATH__excel-samples/sample01.xlsx>Sample 01</a></li>
+        </ul>
+    </div>
+    <script>
+        function F__ID(){
+            //---------------------------------------------------------
+            $('#file__ID').on('click',function(){
+                $('#input_file__ID').val('');
+                $('#input_file__ID').trigger('click');
+            })
+            //---------------------------------------------------------
+            $('#form__ID').on('click',function(){
+                $vm.load_module('excel-form','',{excel_field:excel_field,excel_form_config,excel_form_config});
+            })
+            //---------------------------------------------------------
+            $('#data__ID').on('click',function(){
+                $vm.load_module('excel-data','',{excel_field:excel_field,excel_form_config,excel_form_config});
+            })
+            //---------------------------------------------------------
+            $('#input_file__ID').on('change',function(e){ 
+                $('#name__ID').text(e.target.files[0].name);
+                read_excel(e);
+            })
+            //---------------------------------------------------------
+            var excel_field=[];
+            var excel_form_config=[];
+            //---------------------------------------------------------
+            var read_excel=function(e){
+                var f = e.target.files[0];
+                var reader = new FileReader();
+                reader.onload = function(e) {
+                    var data = e.target.result;
+                    data = new Uint8Array(data);
+                    var workbook = XLSX.read(data, {type: 'array'});
+                    var i=0;
+                    workbook.SheetNames.forEach(function(sheetName) {
+                        console.log(sheetName)
+                        if(i==0)  $vm.module_list['excel-panel'].excel_field=XLSX.utils.sheet_to_json(workbook.Sheets[sheetName], {header:1});
+                        if(i==1)  $vm.module_list['excel-panel'].excel_form_config=XLSX.utils.sheet_to_json(workbook.Sheets[sheetName], {header:1});
+                        i++;
+                    })
+                };
+                reader.readAsArrayBuffer(f);
+            }
+            //---------------------------------------------------------
+        }
+    </script>
+    <style>
+        #D__ID{
+            background-color:#fff;
+            height:100%;
+            overflow: auto;
+            animation: vm_module_fadein 1.0s;
+        }
+        #panel__ID{
+            margin:0 auto;
+            max-width:1400px;
+            padding:120px 120px 10px 50px;
+            font-size:14px;
+    		/*max-width: 100%;*/
+            font-size:14px;
+        }
+        #panel__ID a{
+            cursor:pointer;
+        }
+        #panel__ID a:hover {
+            color:red;
+        }
+    </style>
+</div>
