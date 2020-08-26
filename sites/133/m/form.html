@@ -22,13 +22,14 @@
 	VmInclude:__COMPONENT__/m/model.01.html
     <script>
     	function F__ID(){
+			var grid_fields="";
+			var form_contents="";
 			//--------------------------------------------------------
 			var create_form=function(){
-				var txt="";
-				var excel_field=$vm.module_list['excel-panel'].excel_field;
-				var excel_form_config=$vm.module_list['excel-panel'].excel_form_config;
-				if(excel_field==undefined) excel_field=[];
-				if(excel_form_config==undefined) excel_form_config=[];
+				grid_fields="";
+				form_contents="";
+				var excel_field			=$vm.gData.excel_field;			if(excel_field==undefined) 			excel_field=[];
+				var excel_form_config	=$vm.gData.excel_form_config;	if(excel_form_config==undefined) 	excel_form_config=[];
 				for(var i=1;i<excel_field.length;i++){
 					var index1=excel_field[0].indexOf('Form Display Name');
 					var index2=excel_field[0].indexOf('Database Field Name');
@@ -41,37 +42,38 @@
 					if(database_name=='') database_name=display_name.replace(/ /g,"_");
 					switch(type){
 						case "Text":
-							txt+="<div class='row row__ID'><div class='col'>\r\n";
-							txt+="<span>"+display_name+"</span><input type=text class=form-control name="+database_name+">\r\n";
-							txt+="</div></div>\r\n";
+							form_contents+="<div class='row row__ID'><div class='col'>\r\n";
+							form_contents+="<span>"+display_name+"</span>\r\n<input type=text class=form-control name="+database_name+">\r\n";
+							form_contents+="</div></div>\r\n\r\n";
 							break;
 						case "Drop Down List":
-							txt+="<div class='row row__ID'><div class='col'>\r\n";
-							txt+="<span>"+display_name+"</span><select class=form-control name="+database_name+">\r\n";
+							form_contents+="<div class='row row__ID'><div class='col'>\r\n";
+							form_contents+="<span>"+display_name+"</span>\r\n<select class=form-control name="+database_name+">\r\n";
 							var nv=name_value.split(',');
 							for(var k=0;k<nv.length;k++){
 								var n=nv[k].split('/')[0];
 								var v=nv[k].split('/').pop();
-								txt+="<option value="+v+">"+n+"</option>";
+								form_contents+="<option value="+v+">"+n+"</option>";
 							}
-							txt+="</select>"
-							txt+="</div></div>\r\n";
+							form_contents+="\r\n</select>\r\n"
+							form_contents+="</div></div>\r\n\r\n";
 							break;
 						case "Horizontal radio button list":
-							txt+="<div class='row row__ID'><div class='col radio__ID'>\r\n";
-							txt+="<span>"+display_name+"</span><br>\r\n";
+							form_contents+="<div class='row row__ID'><div class='col radio__ID'>\r\n";
+							form_contents+="<span>"+display_name+"</span><br>\r\n";
 							var nv=name_value.split(',');
 							for(var k=0;k<nv.length;k++){
 								var n=nv[k].split('/')[0];
 								var v=nv[k].split('/').pop();
-								txt+="<label><input type='radio' name="+database_name+" value="+v+">&nbsp&nbsp"+n+"</label>&nbsp&nbsp&nbsp&nbsp";
+								form_contents+="<label><input type='radio' name="+database_name+" value="+v+">&nbsp&nbsp"+n+"</label>&nbsp&nbsp&nbsp&nbsp";
 							}
-							txt+="</div></div>\r\n";
+							form_contents+="</div></div>\r\n\r\n";
 							break;
 					}
-
+					if(grid_fields!="") grid_fields+=",";
+					grid_fields+=database_name+"|"+display_name;
 				}
-				$('#dynamic_part__ID').html(txt);
+				$('#dynamic_part__ID').html(form_contents);
 				for(var i=0;i<excel_form_config.length;i++){
 					if(excel_form_config[i][0]=='Form Title'){
 						$('#header__ID').text(excel_form_config[i][1]);
@@ -94,6 +96,8 @@
 			var form_name="";
 			var form_width="600px";
 			//-------------------------------------
+			var grid_fields="";
+			//-------------------------------------
 			var old_load=m.load;
 			m.load=function(){
 				create_form();			
@@ -101,42 +105,47 @@
 			}
             //-------------------------------------
 			$('#downdload_form').on('click',function(){
-                $.get('__CURRENT_PATH__excel-form-template.html',function(txt){
+                $.get('__CURRENT_PATH__templates/template_form01.html',function(txt){
 					txt=txt.replace('___FORM_MODEL___','');
 					txt=txt.replace('___FORM_ON_LOAD___',form_on_load);
 					txt=txt.replace('___FORM_CONTENTS___',form_contents);
 					txt=txt.replace('___FORM_WIDTH___',form_width);
 					var fn='form.html';
-					if(form_name!="") fn=form_name;
+					if(form_name!="") fn="form_"+form_name;
 					$vm.download_txt(fn,txt)
                 },'text');
 			})
             //-------------------------------------
 			$('#downdload_data').on('click',function(){
-				
+                $.get('__CURRENT_PATH__templates/template_data01.html',function(txt){
+					txt=txt.replace('___CELL_RENDER___','');
+					txt=txt.replace('___GRID_FIELDS___',"\""+grid_fields+"\"");
+					var fn='data.html';
+					if(form_name!="") fn="data_"+form_name;
+					$vm.download_txt(fn,txt)
+                },'text');
 			})
 			//-------------------------------------
 			
 
 $vm.download_txt=function(fn,txt){
-    var CSV=txt;
     //-----------------------
     var bytes = [];
         bytes.push(239);
         bytes.push(187);
         bytes.push(191);
-    for (var i = 0; i < CSV.length; i++) {
-        if(CSV.charCodeAt(i)<128) {
-            bytes.push(CSV.charCodeAt(i));
+    for (var i = 0; i < txt.length; i++) {
+        if(txt.charCodeAt(i)<128) {
+            bytes.push(txt.charCodeAt(i));
         }
-        else if(CSV.charCodeAt(i)<2048) {
-            bytes.push(( (CSV.charCodeAt(i) & 192) >> 6 ) + ((CSV.charCodeAt(i) & 1792)>>6 ) +192); //xC0>>6 + x700>>8 +xE0
-            bytes.push(CSV.charCodeAt(i) & 63 + 128); //x3F + x80
+        else if(txt.charCodeAt(i)<2048) {
+            bytes.push(( (txt.charCodeAt(i) & 192) >> 6 ) + ((txt.charCodeAt(i) & 1792)>>6 ) +192); //xC0>>6 + x700>>8 +xE0
+            bytes.push(txt.charCodeAt(i) & 63 + 128); //x3F + x80
         }
-        else if(CSV.charCodeAt(i)<65536) {
-            bytes.push(((CSV.charCodeAt(i) & 61440) >>12) + 224 ); //xF00>>12 + xE0
-            bytes.push(( (CSV.charCodeAt(i) & 192) >> 6 ) + ((CSV.charCodeAt(i) & 3840)>>6 ) +128); //xC0>>6 + xF00>>8 +x80
-            bytes.push(CSV.charCodeAt(i) & 63 + 128); //x3F + x80
+        else if(txt.charCodeAt(i)<65536) {
+            bytes.push(((txt.charCodeAt(i) & 61440) >>12) + 224 ); //xF00>>12 + xE0
+            bytes.push(( (txt.charCodeAt(i) & 192) >> 6 ) + ((txt.charCodeAt(i) & 3840)>>6 ) +128); //xC0>>6 + xF00>>8 +x80
+            bytes.push(txt.charCodeAt(i) & 63 + 128); //x3F + x80
         }
     }
     var u8 = new Uint8Array(bytes);

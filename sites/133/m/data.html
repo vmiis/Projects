@@ -7,8 +7,9 @@
         VmInclude:__COMPONENT__/g/grid.01.js
         //-------------------------------------
         var create_fields=function(){
+            var excel_field			=$vm.gData.excel_field;			if(excel_field==undefined) 			excel_field=[];
+            var excel_form_config	=$vm.gData.excel_form_config;	if(excel_form_config==undefined) 	excel_form_config=[];
             var fields="";
-            var excel_field=$vm.module_list['excel-panel'].excel_field;
             if(excel_field==undefined) excel_field=[];
             for(var i=1;i<excel_field.length;i++){
                 var index1=excel_field[0].indexOf('Form Display Name');
@@ -22,7 +23,7 @@
         }
         //-------------------------------------
         var setup_database_table=function(){
-            var excel_form_config=$vm.module_list['excel-panel'].excel_form_config;
+            var excel_form_config	=$vm.gData.excel_form_config;	if(excel_form_config==undefined) 	excel_form_config=[];
             for(var i=0;i<excel_form_config.length;i++){
                 if(excel_form_config[i][0]=='Database Table Name'){
                     m.Table="vm-demo-"+excel_form_config[i][1];

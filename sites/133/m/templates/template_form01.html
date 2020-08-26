@@ -1,0 +1,38 @@
+<div id=D__ID>
+    <section id=form_container__ID>
+    	<div id=header__ID>
+    		Form
+    	</div>
+    	<form id=F__ID>
+    		<div class="container">
+___FORM_CONTENTS___
+    			<br>
+                <div class="row">
+                        <div class=col>
+                        <button id=submit__ID type="submit" class="btn btn-secondary">Submit</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </section>
+    ___FORM_MODEL___
+    <script>
+    	function F__ID(){
+			//--------------------------------------------------------
+			VmInclude:__COMPONENT__/f/form.01.js
+			//-------------------------------------
+			var old_load=m.load;
+			m.load=function(){
+                old_load();
+                ___FORM_ON_LOAD___
+			}
+            //-------------------------------------
+    	}
+    </script>
+    <style>
+        #form_container__ID{
+            max-width:___FORM_WIDTH___;
+        }
+        VmInclude:__COMPONENT__/f/form.01.css
+    </style>
+</div>

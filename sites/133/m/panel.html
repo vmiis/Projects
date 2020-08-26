@@ -31,11 +31,11 @@
             })
             //---------------------------------------------------------
             $('#form__ID').on('click',function(){
-                $vm.load_module('excel-form','',{excel_field:excel_field,excel_form_config,excel_form_config});
+                $vm.load_module('form','',{excel_field:excel_field,excel_form_config,excel_form_config});
             })
             //---------------------------------------------------------
             $('#data__ID').on('click',function(){
-                $vm.load_module('excel-data','',{excel_field:excel_field,excel_form_config,excel_form_config});
+                $vm.load_module('data','',{excel_field:excel_field,excel_form_config,excel_form_config});
             })
             //---------------------------------------------------------
             $('#input_file__ID').on('change',function(e){ 
@@ -56,8 +56,8 @@
                     var i=0;
                     workbook.SheetNames.forEach(function(sheetName) {
                         console.log(sheetName)
-                        if(sheetName=="Form Field")     $vm.module_list['excel-panel'].excel_field=XLSX.utils.sheet_to_json(workbook.Sheets[sheetName], {header:1});
-                        if(sheetName=="Configuration")  $vm.module_list['excel-panel'].excel_form_config=XLSX.utils.sheet_to_json(workbook.Sheets[sheetName], {header:1});
+                        if(sheetName=="Form Field")     $vm.gData.excel_field=XLSX.utils.sheet_to_json(workbook.Sheets[sheetName], {header:1});
+                        if(sheetName=="Configuration")  $vm.gData.excel_form_config=XLSX.utils.sheet_to_json(workbook.Sheets[sheetName], {header:1});
                         i++;
                     })
                 };
