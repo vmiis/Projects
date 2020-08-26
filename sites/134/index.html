@@ -14,7 +14,7 @@
             <div id=header>
                 <div id=menu>
                     <a href="home">Home</a>
-                    <a href="data">Browsing data</a>
+                    <a href="data">Search data</a>
                     <a href="form">New data</a>
                 </div>
                 <style>
@@ -48,6 +48,8 @@
                 text=text.replace(/__COMPONENT__\//g,'https://vm.vmiis.com/component/');
                 return text;
             }
+            //---------------------------------------------
+            $vm.alert=function(txt){ alert(txt); }
             //=================================================
             //app code
             $vm.load_module('home','content',{})
