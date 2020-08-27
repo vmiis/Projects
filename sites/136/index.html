@@ -5,8 +5,12 @@
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" />
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/v4-shims.css" />
         <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-3.2.1.min.js"></script>
+        <script src="https://www.gstatic.com/charts/loader.js"></script>
+        <script>
+          google.charts.load('current', {packages: ['corechart']});
+        </script>
         
-        <script>$vm={};$VmAPI={};$vm.ver=[0.18,0.17];$vm._id=0;$vm.reload='';$vm.debug_message=true;</script>
+        <script>$vm={};$VmAPI={};$vm.ver=[0.18,0.17];$vm._id=0;$vm.reload='';$vm.debug_message=true; $vm['loader-js']=1;</script>
         <script src="https://vm.vmiis.com/distribution/latest/vm.js"></script></script>
     </head>
     <body>
@@ -14,8 +18,12 @@
             <div id=header>
                 <div id=menu>
                     <a href="home">Home</a>
-                    <a href="data">Search data</a>
-                    <a href="form">New data</a>
+                    <a href="form_booking">New booking</a>
+                    <a href="month">Month</a>
+                    <a href="week">Week</a>
+                    <a href="day">Day</a>
+                    <a href="data_booking">View booking records</a>
+                    <a href="data_car">Manage car list</a>
                 </div>
                 <style>
                     #menu a{
@@ -38,8 +46,17 @@
             //---------------------------------------------
             $vm.module_list={
                 home:{url:$vm.hosting_path+"/home.html"},
-                data:{url:$vm.hosting_path+"/data.html",Table:"vm-demo-Sample1",form_module:"form"},
-                form:{url:$vm.hosting_path+"/form.html",Table:"vm-demo-Sample1"},
+                month:          {url:"/calendar-month.html",Table:"demo-vm-19091807","booking":"form_booking",lookup:"demo-vm-19091808"},
+                week:           {url:"/calendar-week.html", Table:"demo-vm-19091807","booking":"form_booking",lookup:"demo-vm-19091808","booking2":"form_booking_2",},
+                day:            {url:"/calendar-day.html",  Table:"demo-vm-19091807","booking":"form_booking",lookup:"demo-vm-19091808"},
+                data_booking:   {url:"/data-booking.html",  Table:"demo-vm-19091807", form_module:"form_booking"},
+                form_booking:   {url:"/form-booking.html",  Table:"demo-vm-19091807",lookup:"demo-vm-19091808"},
+                form_booking_2: {url:"/form-booking-2.html",Table:"demo-vm-19091807",lookup:"demo-vm-19091808"},
+                data_car:       {url:"/data-car.html",      Table:"demo-vm-19091808", form_module:"form_car"},
+                form_car:       {url:"/form-car.html",      Table:"demo-vm-19091808"},
+                
+                data:{url:$vm.hosting_path+"/data.html",Table:"pie",form_module:"form"},
+                form:{url:$vm.hosting_path+"/form.html",Table:"pie"},
             }
             //---------------------------------------------
             $vm.url=function(text){

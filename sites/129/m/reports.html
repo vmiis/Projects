@@ -104,7 +104,11 @@
 						$('#grid__ID').html('');
 						return;
 					}
-					m.records=res.result;
+					//m.records=res.result;
+					m.records=[];
+					for(var i=0;i<res.result.length;i++){
+						m.records.push(res.result[res.result.length-i-1]);
+					}
 					for(var i=0;i<m.records.length;i++){
 						m.records[i].Probe_Number=probe_number;
 						m.records[i].Probe_Name=probe;
