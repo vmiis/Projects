@@ -4,11 +4,10 @@
   
 How to run the projects on a local computer
 1. [download and unzip](https://github.com/vmiis/projects/archive/master.zip)
-2. install nodejs (https://nodejs.org)
-3. go to the folder "servers/web"
-4. run "npm install" to install nodejs modules
-5. run "server.js.start.bat" to start the server
-6. open you web browser, type http://localhost:8000 
+2. Install Python if haven't (https://www.python.org/downloads/)
+3. goto foleder sites
+4. Run start-server.bat
+4. Open http://localhost:8000 in a web browser
 
 
 Once you get everything running on your computer, you can add, modify and delete any part of the contents.
