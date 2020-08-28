@@ -1,1 +1,2 @@
-py -m http.server 0
+node server.js
+pause
