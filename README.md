@@ -4,7 +4,7 @@
   
 How to run the projects on a local computer
 1. [download and unzip](https://github.com/vmiis/projects/archive/master.zip)
-2. Install Python if haven't (https://www.python.org/downloads/)
+2. Install NodeJS if haven't (https://nodejs.org/)
 3. goto foleder sites
 4. Run start-server.bat
 4. Open http://localhost:8000 in a web browser
