@@ -1,4 +1,4 @@
-<div id=D__ID>
+﻿<div id=D__ID>
     <section id=form_container__ID>
     	<div id=header__ID>
     		Form
@@ -20,7 +20,7 @@
     					<span>Home Phone</span>
     				</div>
     				<div class=col-md-8>
-    					<input type="tel" name=Home_Phone class=form-control pattern="[0-9]{2} [0-9]{8}" required oninvalid="setCustomValidity('format:xx xxxxxxxx x:0~9')" oninput="setCustomValidity('')" />
+    					<input type="tel" name=Home_Phone class=form-control pattern="[0-9]{2} [0-9]{8}" placeholder='xx xxxxxxxx x:0~9' required oninvalid="setCustomValidity('format:xx xxxxxxxx x:0~9')" oninput="setCustomValidity('')" />
     				</div>
     			</div>
                 <hr class=hr__ID>
@@ -29,7 +29,7 @@
     					<span>Mobile Phone</span>
     				</div>
     				<div class=col-md-8>
-    					<input type="tel" name=Mobile_Phone class=form-control pattern="[0][4][0-9]{2} [0-9]{6}" required oninvalid="setCustomValidity('format:04xx xxxxxx x:0~9')" oninput="setCustomValidity('')" />
+    					<input type="tel" name=Mobile_Phone class=form-control pattern="[0][4][0-9]{2} [0-9]{6}" placeholder="04xx xxxxxx x:0~9" required oninvalid="setCustomValidity('format:04xx xxxxxx x:0~9')" oninput="setCustomValidity('')" />
     				</div>
     			</div>
                 <hr class=hr__ID>
@@ -44,14 +44,7 @@
     </section>
     <script>
     	function F__ID(){
-	        /*-------------------------------------
-            The form data can be submitted to a database, such as 
-            Your own MySQL, SQL Server, MongoDB
-            Microsoft Dynamics 365, SharePoint,
-            Google Firebase
-            etc.
-            Here we use Wappsystem Cloud Database to store this form data. All detail code can be found on https://github.com/vmiis/vm
-            -------------------------------------*/
+    		//-------------------------------------
             VmInclude:__COMPONENT__/f/form.01.js
     		//-------------------------------------
     	}
