@@ -5,8 +5,12 @@
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" />
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/v4-shims.css" />
         <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-3.2.1.min.js"></script>
+        <script src="https://www.gstatic.com/charts/loader.js"></script>
+        <script>
+          google.charts.load('current', {packages: ['corechart']});
+        </script>
         
-        <script>$vm={};$VmAPI={};$vm.ver=[0.19,0.17];$vm._id=0;$vm.reload='';$vm.debug_message=true;</script>
+        <script>$vm={};$VmAPI={};$vm.ver=[0.19,0.17];$vm._id=0;$vm.reload='';$vm.debug_message=true; $vm['loader-js']=1;</script>
         <script src="https://vm.vmiis.com/distribution/latest/vm.js"></script></script>
     </head>
     <body>
@@ -16,6 +20,9 @@
                     <a href="home">Home</a>
                     <a href="data">Data</a>
                     <a href="form">Form</a>
+                    <a href="c1">Column</a>
+                    <a href="c2">Column Group</a>
+                    <a href="c3">Column Stack</a>
                 </div>
                 <style>
                     #menu a{
@@ -38,8 +45,11 @@
             //---------------------------------------------
             $vm.module_list={
                 home:{url:$vm.hosting_path+"/home.html"},
-                data:{url:$vm.hosting_path+"/data.html",Table:"demo-vm-19090803",form_module:"form"},
-                form:{url:$vm.hosting_path+"/form.html",Table:"demo-vm-19090803"},
+                data:{url:$vm.hosting_path+"/data.html",Table:"column",form_module:"form"},
+                form:{url:$vm.hosting_path+"/form.html",Table:"column"},
+                c1:  {url:"/chart.html",Table:"column"},
+                c2:  {url:"/chart-group.html",Table:"column"},
+                c3:  {url:"/chart-stack.html",Table:"column"},
             }
             //---------------------------------------------
             $vm.url=function(text){
