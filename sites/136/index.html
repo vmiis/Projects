@@ -5,36 +5,15 @@
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" />
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/v4-shims.css" />
         <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-3.2.1.min.js"></script>
-        <script src="https://www.gstatic.com/charts/loader.js"></script>
-        <script>
-          google.charts.load('current', {packages: ['corechart']});
-        </script>
         
-        <script>$vm={};$VmAPI={};$vm.ver=[0.19,0.17];$vm._id=0;$vm.reload='';$vm.debug_message=true; $vm['loader-js']=1;</script>
+        <script>$vm={};$VmAPI={};$vm.ver=[0.19,0.17];$vm._id=0;$vm.reload='';$vm.debug_message=true;</script>
         <script src="https://vm.vmiis.com/distribution/latest/vm.js"></script></script>
     </head>
     <body>
         <div id=layout>
-            <div id=header>
-                <div id=menu>
-                    <a href="home">Home</a>
-                    <a href="form_booking">New booking</a>
-                    <a href="month">Month</a>
-                    <a href="week">Week</a>
-                    <a href="day">Day</a>
-                    <a href="data_booking">View booking records</a>
-                    <a href="data_car">Manage car list</a>
-                </div>
-                <style>
-                    #menu a{
-                        margin-right:20px;
-                    }
-                </style>
-            </div>
+            <div id=header></div>
             <div id=content></div>
-            <div id=footer>
-                footer
-            </div>
+            <div id=footer></div>
         </div>
         <!----------------------------------------------->
         <script>
@@ -44,7 +23,25 @@
             $vm.root_layout_content_slot='content'
             $vm.api_address="https://api.wappsystem.com";
             //---------------------------------------------
+            $vm.url=function(text){
+                text=text.replace(/__HOST__\//g,$vm.hosting_path+'/');
+                text=text.replace(/__VER__/g,$vm.ver[0]);
+                text=text.replace(/__COMPONENT__\//g,'https://vm.vmiis.com/component/');
+                return text;
+            }
+            //---------------------------------------------
+            $vm.resize_content=function(){
+                if($vm.header_ready==1 && $vm.footer_ready==1){
+                    $('#content').css('min-height',$('#content').outerHeight()+"px");
+                }
+            }
+            window.onresize=function(){$vm.resize_content();}
+            //=================================================
+            //app code
+            //---------------------------------------------
             $vm.module_list={
+                header:{url:$vm.hosting_path+"/header.html",},
+                footer:{url:$vm.hosting_path+"/footer.html",},
                 home:{url:$vm.hosting_path+"/home.html"},
                 month:          {url:"/calendar-month.html",Table:"demo-vm-19091807","booking":"form_booking",lookup:"demo-vm-19091808"},
                 week:           {url:"/calendar-week.html", Table:"demo-vm-19091807","booking":"form_booking",lookup:"demo-vm-19091808","booking2":"form_booking_2",},
@@ -54,26 +51,11 @@
                 form_booking_2: {url:"/form-booking-2.html",Table:"demo-vm-19091807",lookup:"demo-vm-19091808"},
                 data_car:       {url:"/data-car.html",      Table:"demo-vm-19091808", form_module:"form_car"},
                 form_car:       {url:"/form-car.html",      Table:"demo-vm-19091808"},
-                
-                data:{url:$vm.hosting_path+"/data.html",Table:"pie",form_module:"form"},
-                form:{url:$vm.hosting_path+"/form.html",Table:"pie"},
             }
             //---------------------------------------------
-            $vm.url=function(text){
-                text=text.replace(/__HOST__\//g,$vm.hosting_path+'/');
-                text=text.replace(/__VER__/g,$vm.ver[0]);
-                text=text.replace(/__COMPONENT__\//g,'https://vm.vmiis.com/component/');
-                return text;
-            }
-            //=================================================
-            //app code
+            $vm.load_component('header','header',{});
+            $vm.load_component('footer','footer',{});
             $vm.load_module('home','content',{})
-            //---------------------------------------------
-            $('#menu a').on('click',function(e){
-                e.preventDefault();
-                var module_name=$(this).attr('href');
-                $vm.load_module(module_name,'content',{})
-            })
             //=================================================
         </script>
         <!----------------------------------------------->
@@ -97,6 +79,10 @@
             /*make the components area to be hidden*/
             #components{
                 display:none;
+            }
+            @keyframes vm_module_fadein {
+                from { opacity:0; }
+                to {opacity:1;}
             }
         </style>
         <!----------------------------------------------->

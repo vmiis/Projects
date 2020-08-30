@@ -15,25 +15,9 @@
     </head>
     <body>
         <div id=layout>
-            <div id=header>
-                <div id=menu>
-                    <a href="home">Home</a>
-                    <a href="data">Data</a>
-                    <a href="form">Form</a>
-                    <a href="c1">Pie</a>
-                    <a href="c2">Pie 3D</a>
-                    <a href="c3">Pie donut</a>
-                </div>
-                <style>
-                    #menu a{
-                        margin-right:20px;
-                    }
-                </style>
-            </div>
+            <div id=header></div>
             <div id=content></div>
-            <div id=footer>
-                footer
-            </div>
+            <div id=footer></div>
         </div>
         <!----------------------------------------------->
         <script>
@@ -43,7 +27,25 @@
             $vm.root_layout_content_slot='content'
             $vm.api_address="https://api.wappsystem.com";
             //---------------------------------------------
+            $vm.url=function(text){
+                text=text.replace(/__HOST__\//g,$vm.hosting_path+'/');
+                text=text.replace(/__VER__/g,$vm.ver[0]);
+                text=text.replace(/__COMPONENT__\//g,'https://vm.vmiis.com/component/');
+                return text;
+            }
+            //---------------------------------------------
+            $vm.resize_content=function(){
+                if($vm.header_ready==1 && $vm.footer_ready==1){
+                    $('#content').css('min-height',$('#content').outerHeight()+"px");
+                }
+            }
+            window.onresize=function(){$vm.resize_content();}
+            //=================================================
+            //app code
+            //---------------------------------------------
             $vm.module_list={
+                header:{url:$vm.hosting_path+"/header.html",},
+                footer:{url:$vm.hosting_path+"/footer.html",},
                 home:{url:$vm.hosting_path+"/home.html"},
                 data:{url:$vm.hosting_path+"/data.html",Table:"pie",form_module:"form"},
                 form:{url:$vm.hosting_path+"/form.html",Table:"pie"},
@@ -52,21 +54,9 @@
                 c3:  {url:"/pie-chart-donut.html",Table:"pie"},
             }
             //---------------------------------------------
-            $vm.url=function(text){
-                text=text.replace(/__HOST__\//g,$vm.hosting_path+'/');
-                text=text.replace(/__VER__/g,$vm.ver[0]);
-                text=text.replace(/__COMPONENT__\//g,'https://vm.vmiis.com/component/');
-                return text;
-            }
-            //=================================================
-            //app code
+            $vm.load_component('header','header',{});
+            $vm.load_component('footer','footer',{});
             $vm.load_module('home','content',{})
-            //---------------------------------------------
-            $('#menu a').on('click',function(e){
-                e.preventDefault();
-                var module_name=$(this).attr('href');
-                $vm.load_module(module_name,'content',{})
-            })
             //=================================================
         </script>
         <!----------------------------------------------->
@@ -90,6 +80,10 @@
             /*make the components area to be hidden*/
             #components{
                 display:none;
+            }
+            @keyframes vm_module_fadein {
+                from { opacity:0; }
+                to {opacity:1;}
             }
         </style>
         <!----------------------------------------------->
