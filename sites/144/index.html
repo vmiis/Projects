@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.css" />
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" />
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/v4-shims.css" />
+        <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-3.2.1.min.js"></script>
+        
+        <script>$vm={};$VmAPI={};$vm.ver=[0.19,0.17];$vm._id=0;$vm.reload='';$vm.debug_message=true;</script>
+        <script src="https://vm.vmiis.com/distribution/latest/vm.js"></script></script>
+    </head>
+    <body>
+        <div id=layout>
+            <div id=header></div>
+            <div id=content></div>
+            <div id=footer></div>
+        </div>
+        <!----------------------------------------------->
+        <script>
+            //=================================================
+            //VM framework setup
+            $vm.hosting_path=window.location.href.substring(0, window.location.href.split('?')[0].lastIndexOf('/'));
+            $vm.root_layout_content_slot='content'
+            $vm.api_address="https://api.wappsystem.com";
+            //---------------------------------------------
+            $vm.url=function(text){
+                text=text.replace(/__HOST__\//g,$vm.hosting_path+'/');
+                text=text.replace(/__VER__/g,$vm.ver[0]);
+                text=text.replace(/__COMPONENT__\//g,'https://vm.vmiis.com/component/');
+                return text;
+            }
+            //---------------------------------------------
+            $vm.resize_content=function(){
+                if($vm.header_ready==1 && $vm.footer_ready==1){
+                    $('#content').css('min-height',$('#content').outerHeight()+"px");
+                }
+            }
+            window.onresize=function(){$vm.resize_content();}
+            //=================================================
+            //app code
+            //---------------------------------------------
+            $vm.module_list={
+                header:{url:$vm.hosting_path+"/header.html",},
+                footer:{url:$vm.hosting_path+"/footer.html",},
+                home:{url:$vm.hosting_path+"/home.html"},
+                content:{url:$vm.hosting_path+"/content.html"},
+            }
+            //---------------------------------------------
+            $vm.load_component('header','header',{});
+            $vm.load_component('footer','footer',{});
+            $vm.load_module('home','content',{})
+            //=================================================
+        </script>
+        <!----------------------------------------------->
+        <style>
+            html,body{
+                margin:0;
+                padding:0;
+                height:100%;
+            }
+            /*setup the layout*/
+            #layout {
+                height: 100%;
+                display: grid;
+                grid-template-rows: auto 1fr auto;
+                overflow:hidden;
+            }
+            /*create a border line so we can see the sections*/
+            #header,#content{
+                border-bottom:1px solid black;
+            }
+            /*make the components area to be hidden*/
+            #components{
+                display:none;
+            }
+            #content{
+                overflow: auto;
+            }
+            @keyframes vm_module_fadein {
+                from { opacity:0; }
+                to {opacity:1;}
+            }
+        </style>
+        <!----------------------------------------------->
+    </body>
+</html>
