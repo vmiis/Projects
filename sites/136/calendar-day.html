@@ -9,15 +9,17 @@
         $('#new__ID').show();
         //--------------------------------------------------------
         $('#item_list__ID').show();
-        $vm.request({cmd:'find',table:m.lookup},function(res){
-            var txt="";
-            for(i in res.result){
-                var v=res.result[i].Data.Name;
-                txt+="<option>"+v+"</option>";
-            }
-            $('#item_list__ID').html(txt);
-            m.request_and_render();
-        });
+        var set_dropdown_list=function(){
+            $vm.request({cmd:'find',table:m.lookup},function(res){
+                var txt="";
+                for(i in res.result){
+                    var v=res.result[i].Data.Name;
+                    txt+="<option>"+v+"</option>";
+                }
+                $('#item_list__ID').html(txt);
+                m.request_and_render();
+            });
+        }
         $('#item_list__ID').on('change',function(){
             m.request_and_render();
         })
@@ -27,6 +29,9 @@
         $('#new__ID').on('click',function(){ $vm.load_module(m.booking,'',{item:$('#item_list__ID').val(),day:$('#date__ID').val(),goback:1}); })
     	//--------------------------------------------------------
         m.request_and_render=function(){
+            if(m.input!=undefined && m.input.silence==1){
+                return;
+            }
             var txt="<tr>";
             for(var j=6;j<19;j++){
                 txt+="<th style='text-align:left'>"+$vm.pad((j),2)+":00</th>";
@@ -78,8 +83,13 @@
             });
         }
         //--------------------------------------------------------
+        var dropdown_list=0;
         $('#D__ID').on('load',function(){
-            m.request_and_render();
+            if(dropdown_list==0){
+                dropdown_list=1;
+                set_dropdown_list();
+            }
+            else m.request_and_render();
         });
         //--------------------------------------------------------
         $('#D__ID').on('show',function(){  if($vm.refresh==1){$vm.refresh=0; m.request_and_render();}    });
