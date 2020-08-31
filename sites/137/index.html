@@ -32,7 +32,8 @@
             //---------------------------------------------
             $vm.resize_content=function(){
                 if($vm.header_ready==1 && $vm.footer_ready==1){
-                    $('#content').css('min-height',$('#content').outerHeight()+"px");
+                    console.log($('#content').outerHeight())
+                    $('#content').css('min-height',($(window).height()-$('#header').outerHeight()-$('#footer').outerHeight())+"px");
                 }
             }
             window.onresize=function(){$vm.resize_content();}
@@ -73,6 +74,9 @@
             /*make the components area to be hidden*/
             #components{
                 display:none;
+            }
+            #content{
+                overflow: auto;
             }
             @keyframes vm_module_fadein {
                 from { opacity:0; }

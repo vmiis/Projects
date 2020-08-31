@@ -36,7 +36,7 @@
             //---------------------------------------------
             $vm.resize_content=function(){
                 if($vm.header_ready==1 && $vm.footer_ready==1){
-                    $('#content').css('min-height',$('#content').outerHeight()+"px");
+                   $('#content').css('min-height',($(window).height()-$('#header').outerHeight()-$('#footer').outerHeight())+"px");
                 }
             }
             window.onresize=function(){$vm.resize_content();}
