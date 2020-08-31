@@ -6,7 +6,7 @@
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/v4-shims.css" />
         <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-3.2.1.min.js"></script>
         
-        <script>$vm={};$VmAPI={};$vm.ver=[0.19,0.17];$vm._id=0;$vm.reload='';$vm.debug_message=true;</script>
+        <script>$vm={};$VmAPI={};$vm.ver=[0.12,0.12];$vm._id=0;$vm.reload='';$vm.debug_message=true;</script>
         <script src="https://vm.vmiis.com/distribution/latest/vm.js"></script></script>
     </head>
     <body>
@@ -47,9 +47,13 @@
                 form:{url:$vm.hosting_path+"/form.html",Table:"vm-demo-KSS"},
             }
             //---------------------------------------------
+            $vm.init();
             $vm.load_component('header','header',{});
             $vm.load_component('footer','footer',{});
             $vm.load_module('home','content',{})
+            for (m in $vm.module_list) {
+                if(m!="header" && m!="footer" && m!="home") $vm.load_module(m,'content',{silence:1})
+            }
             //=================================================
         </script>
         <!----------------------------------------------->
