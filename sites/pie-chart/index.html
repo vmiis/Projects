@@ -49,10 +49,21 @@
             //---------------------------------------------
             $vm.resize_content=function(){
                 if($vm.header_ready==1 && $vm.footer_ready==1){
-                   $('#content').css('min-height',($(window).height()-$('#header').outerHeight()-$('#footer').outerHeight())+"px");
+                    $vm.min_height=$(window).height()-$('#header').outerHeight()-$('#footer').outerHeight();
+                    $('#content').css('min-height',$vm.min_height+"px");
+                    $vm.show($vm.active_name);
                 }
             }
             window.onresize=function(){$vm.resize_content();}
+            //---------------------------------------------
+            $vm.show=function(m_name){
+                if(m_name==undefined) return;
+                $vm.active_name=m_name;
+                var m=document.getElementById('D'+$vm.module_list[m_name].id);
+                if(m!=null){
+                    $('#content').css('height','unset'); if(m.scrollHeight<$vm.min_height) $('#content').css('height',$vm.min_height+"px");
+                }
+            }
             //---------------------------------------------
             $vm.boot=function(){
                 var url=$vm.url("https://vm.vmiis.com/distribution/latest/vm.js");
@@ -85,6 +96,7 @@
                 $vm.ready();
             }
             //---------------------------------------------
+            $("body").addClass('body_background_default');
             $vm.boot(); //start from here
             //=================================================
         </script>
@@ -110,6 +122,8 @@
                 from { opacity:0; }
                 to {opacity:1;}
             }
+            body{background-size: cover; background-repeat: repeat-x; background-position: center top; background-attachment: fixed;}
+            .body_background_default{ background-image: url(https://images.unsplash.com/photo-1533424922832-a76b7d3563d7?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80);}
         </style>
         <!----------------------------------------------->
     </body>
