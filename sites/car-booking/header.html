@@ -1,0 +1,26 @@
+<div id=D__ID>
+    <div id=menu>
+        <a href="home">Home</a>
+        <a href="form_booking">New booking</a>
+        <a href="month">Month</a>
+        <a href="week">Week</a>
+        <a href="day">Day</a>
+        <a href="data_booking">View booking records</a>
+        <a href="data_car">Manage car list</a>
+        <a href="" onclick="$vm.sys_structure();" style='float:right' >Structure</a>
+</div>
+    <style>
+        #menu a{
+            margin-right:20px;
+        }
+    </style>
+    <script>
+        $vm.header_ready=1;
+        if($vm.resize_content!=undefined) $vm.resize_content();
+        $('#menu a').on('click',function(e){
+            e.preventDefault();
+            var module_name=$(this).attr('href');
+            if(module_name!="") $vm.load_module(module_name,'content',{})
+        })
+    </script>
+</div>

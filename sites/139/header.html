@@ -3,10 +3,11 @@
         <a href="home">Home</a>
         <a href="form">Form</a>
         <a href="data">Data</a>
-        <a href="c1">Pie</a>
-        <a href="c2">Pie 3D</a>
-        <a href="c3">Pie donut</a>
-</div>
+        <a href="c1">Bar</a>
+        <a href="c2">Bar group</a>
+        <a href="c3">Bar stack</a>
+        <a href="" onclick="$vm.sys_structure();" style='float:right' >Structure</a>
+    </div>
     <style>
         #menu a{
             margin-right:20px;
@@ -18,7 +19,7 @@
         $('#menu a').on('click',function(e){
             e.preventDefault();
             var module_name=$(this).attr('href');
-            $vm.load_module(module_name,'content',{})
+            if(module_name!="") $vm.load_module(module_name,'content',{})
         })
     </script>
 </div>

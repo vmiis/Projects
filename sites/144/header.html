@@ -2,6 +2,7 @@
     <div id=menu>
         <a href="home">Home</a>
         <a href="content">Content</a>
+        <a href="" onclick="$vm.sys_structure();" style='float:right' >Structure</a>
     </div>
     <style>
         #menu a{
@@ -14,7 +15,7 @@
         $('#menu a').on('click',function(e){
             e.preventDefault();
             var module_name=$(this).attr('href');
-            $vm.load_module(module_name,'content',{})
+            if(module_name!="") $vm.load_module(module_name,'content',{})
         })
     </script>
 </div>
