@@ -19,9 +19,9 @@
         <script>
             var _id=1;
             var hosting_path=window.location.href.substring(0, window.location.href.split('?')[0].lastIndexOf('/'));
-            $.get(hosting_path+"/a/header.html",function(code){ $('#header').html(code.replace(/__ID/g, (_id++).toString())); },'text');
-            $.get(hosting_path+"/a/footer.html",function(code){ $('#footer').html(code.replace(/__ID/g, (_id++).toString())); },'text');
-            $.get(hosting_path+"/b/home.html",function(code){ $('#content').html(code.replace(/__ID/g, (_id++).toString())); },'text');
+            $.get(hosting_path+"/header.html",function(code){ $('#header').html(code.replace(/__ID/g, (_id++).toString())); },'text');
+            $.get(hosting_path+"/footer.html",function(code){ $('#footer').html(code.replace(/__ID/g, (_id++).toString())); },'text');
+            $.get(hosting_path+"/home.html",function(code){ $('#content').html(code.replace(/__ID/g, (_id++).toString())); },'text');
         </script>
         <!----------------------------------------------->
         <style>

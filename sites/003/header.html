@@ -1,0 +1,21 @@
+<div id=D__ID>
+    <div id=menu>
+        <a href="home">Home</a>
+        <a href="item1">First Module</a>
+        <a href="item2">Second Module</a>
+    </div>
+    <script>
+        /*menu item process*/
+        $('#menu a').on('click',function(e){
+            e.preventDefault();
+            var h=$(this).html();
+            var d=$(this).attr('href');
+            alert(h+" is called");
+        })
+    </script>
+    <style>
+        #menu a{
+            margin-right:20px;
+        }
+    </style>
+</div>

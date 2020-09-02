@@ -1,0 +1,49 @@
+<div id=D__ID>
+    <div id=menu>
+        <a href="home.html">Home</a>
+        <a href="first.html">First Module</a>
+        <a href="second.html">Second Module</a>
+    </div>
+    <script>
+        /*menu item process*/
+        $('#menu a').on('click',function(e){
+            e.preventDefault();
+            var url=$(this).attr('href');
+            $.get(url,function(code){
+                $('#content').html(code);
+            },'text');
+        })
+    </script>
+    <style>
+        #header{
+            height:100px;
+            background: #363f6b;
+        }
+        /*--------------------------*/
+        /*menu css*/
+        #menu {
+            margin-top:50px;
+            margin-left:160px;
+            overflow: hidden;
+            background: rgba(0,0,0,0.0);
+            display:inline-block;
+            float:left;
+        }
+        #menu > a {
+            float: left;
+            display: block;
+            color: #FFF;
+            text-align: center;
+            padding: 10px 8px;
+            text-decoration: none;
+            font-size: 14px;
+            cursor:pointer;
+        }
+        #menu > a:hover{
+            background-color: #555;
+            color: white;
+            border-radius:4px;
+        }
+        /*--------------------------*/
+    </style>
+</div>

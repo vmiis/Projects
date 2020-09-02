@@ -1,0 +1,22 @@
+<div id=D__ID>
+    <div id=menu>
+        <a href="home.html">Home</a>
+        <a href="first.html">First Module</a>
+        <a href="second.html">Second Module</a>
+    </div>
+    <script>
+        /*menu item process*/
+        $('#menu a').on('click',function(e){
+            e.preventDefault();
+            var url=$(this).attr('href');
+            $.get(url,function(code){
+                $('#content').html(code);
+            },'text');
+        })
+    </script>
+    <style>
+        #menu a{
+            margin-right:20px;
+        }
+    </style>
+</div>
