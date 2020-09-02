@@ -1,4 +1,12 @@
 <div id=D__ID>
+    <h5 id=title__ID></h5>
+    <br>
+    <script>
+        var a=window.location.href.split('/'); a.pop();
+        var t=a.pop().replace(/-/g,' ');
+        t=t.charAt(0).toUpperCase() + t.slice(1);
+        $('#title__ID').text(t);
+    </script>
     <div>
         This micro web application contains the following files
         <br><br>

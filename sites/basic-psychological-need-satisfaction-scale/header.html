@@ -1,0 +1,27 @@
+<div id=D__ID>
+    <div id=menu>
+        <a href="home">Home</a>
+        <a href="form">Form</a>
+        <a href="data">Data</a>
+        <a href="" onclick="$vm.sys_structure();" style='float:right' >Structure</a>
+</div>
+    <style>
+        #menu a{
+            margin-right:20px;
+            color:#fff
+        }
+        #menu{
+            padding-left:15px;
+            background-color: lightslategray;
+        }
+    </style>
+    <script>
+        $vm.header_ready=1;
+        if($vm.resize_content!=undefined) $vm.resize_content();
+        $('#menu a').on('click',function(e){
+            e.preventDefault();
+            var module_name=$(this).attr('href');
+            if(module_name!="") $vm.load_module(module_name,'content',{})
+        })
+    </script>
+</div>
