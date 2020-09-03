@@ -7,10 +7,12 @@
         <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-3.5.1.min.js"></script>
     </head>
     <body>
-        <div id=layout>
+        <div id=layout1>
             <div id=header></div>
-            <div id=content></div>
-            <div id=footer></div>
+            <div id=layout2>
+                <div id=content></div>
+                <div id=footer></div>
+            </div>
         </div>
         <!----------------------------------------------->
         <script>
@@ -38,24 +40,6 @@
                 text=text.replace(/__VER__/g,$vm.ver[0]);
                 text=text.replace(/__COMPONENT__\//g,'https://vm.vmiis.com/component/');
                 return text;
-            }
-            //---------------------------------------------
-            $vm.resize_content=function(){
-                if($vm.header_ready==1 && $vm.footer_ready==1){
-                    $vm.min_height=$(window).height()-$('#header').outerHeight()-$('#footer').outerHeight();
-                    $('#content').css('min-height',$vm.min_height+"px");
-                    $vm.show($vm.active_name);
-                }
-            }
-            window.onresize=function(){$vm.resize_content();}
-            //---------------------------------------------
-            $vm.show=function(m_name){
-                if(m_name==undefined) return;
-                $vm.active_name=m_name;
-                var m=document.getElementById('D'+$vm.module_list[m_name].id);
-                if(m!=null){
-                    $('#content').css('height','unset'); if(m.scrollHeight<$vm.min_height) $('#content').css('height',$vm.min_height+"px");
-                }
             }
             //---------------------------------------------
             $vm.boot=function(){
@@ -100,16 +84,16 @@
                 padding:0;
                 height:100%;
             }
-            /*setup the layout*/
-            #layout {
+            #layout1 {
                 height: 100%;
                 display: grid;
-                grid-template-rows: auto 1fr auto;
-                overflow:hidden;
+                grid-template-rows: auto 1fr;
             }
-            /*create a border line so we can see the sections*/
-            #header,#content{
-                border-bottom:1px solid black;
+            #layout2 {
+                height: 100%;
+                display: grid;
+                grid-template-rows: 1fr auto;
+                overflow:auto;
             }
             @keyframes vm_module_fadein {
                 from { opacity:0; }

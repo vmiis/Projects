@@ -1,0 +1,68 @@
+<div id=D__ID>
+    <div id=page__ID>
+        <h5 id=title__ID></h5>
+        <br>
+        <script>
+            var a=window.location.href.split('/'); a.pop();
+            var t=a.pop().replace(/-/g,' ');
+            t=t.charAt(0).toUpperCase() + t.slice(1);
+            $('#title__ID').text(t);
+        </script>
+        <div>
+            This micro web application contains the following files
+            <br><br>
+            Clinet Side
+            <ul>
+                <li><b>index.html</b> layout for header, contents and footer</li>
+                <li><b>header.htm</b> logo, menu, login/logout etc</li>
+                <li><b>footer.htm</b> copyright info, links etc
+                <li><b>home.htm</b> landing page, show some information</li>
+                <li><b>page-01.html</b> content page</li>
+                <li><b>page-02.html</b> content page</li>
+                <li><b>page-03.html</b> content page</li>
+                <li><b>page-04.html</b> content page</li>
+                <li><b>page-05.html</b> content page</li>
+                <li><b>page-05.html</b> this page</li>
+            </ul>
+            Server Side
+            <ul>
+                <li><b>server.js</b> providing web hosting services</li>
+                <li><b>start-server.bat</b> start server</li>
+            </ul>
+            <br>
+            <br>
+            <a id=d__ID href="app.zip"style='color:#000' ><u>Download and run this micro web app on a local computer</u></a><br>
+        </div>
+    </div>
+    <style>
+		#D__ID{
+			height:100%;
+			animation: vm_module_fadein 1.0s;
+            background-color: #fff;
+		}
+        #page__ID{
+            margin:auto;
+            width:500px;
+            margin-left:auto;
+            margin-right:auto;
+            overflow-x: hidden;
+            padding-top:50px;'
+        }
+    	.columnbox__ID{
+    		column-count: 2;
+    		column-gap: 30px;
+            padding:0px;
+    	}
+        @media screen and (max-width: 1200px){
+            .columnbox__ID{
+                padding:15px;
+                column-count: 1;
+            }
+        }
+        .columnbox__ID img {
+            margin:10px 0;
+            width: 100%;
+            height: auto;
+        }
+    </style>
+</div>
