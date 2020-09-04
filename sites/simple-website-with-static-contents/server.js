@@ -5,22 +5,51 @@ const path = require('path');
 
 const baseDir = path.join(__dirname, './');
 const httpServer = http.createServer((request, response) => {
-    const parsedUrl = url.parse(request.url, true);
-    let pathName = parsedUrl.pathname;
-    if(pathName.endsWith("/")) pathName=pathName+'/index.html';
-    console.log(pathName)    
-    const responseContentType = getContentType(pathName);
-    response.setHeader('Content-Type', responseContentType);
-    fs.readFile(`${baseDir}${pathName}`, (error, data) => {
-        if (!error) {
-            response.writeHead(200);
-            response.end(data);
-        } else {
-            console.log(error);
-            response.writeHead(404);
-            response.end('404 - File Not Found');
-        }
-    });
+    if(request.method=='GET'){
+        const parsedUrl = url.parse(request.url, true);
+        let pathName = parsedUrl.pathname;
+        if(pathName.endsWith("/")) pathName=pathName+'/index.html';
+        console.log(pathName)    
+        const responseContentType = getContentType(pathName);
+        response.setHeader('Content-Type', responseContentType);
+        fs.readFile(`${baseDir}${pathName}`, (error, data) => {
+            if (!error) {
+                response.writeHead(200);
+                response.end(data);
+            } else {
+                console.log(error);
+                response.writeHead(404);
+                response.end('404 - File Not Found');
+            }
+        });
+    }
+    if(request.method=='POST'){
+        var r_data='';
+        request.on('data',function(data){
+          r_data+=data;
+        });
+        request.on('end',function(){
+            d=JSON.parse(r_data);
+            var password=d.password;
+            if(password_for_file_saving!="" && password_for_file_saving==password){
+                fs.writeFile(baseDir+"/"+d.path, d.content, function (err) {
+                    if (err) {
+                        console.log(err);
+                        response.writeHead(200);
+                        response.end(err.toString());
+                    }                            
+                    else{
+                        response.writeHead(200);
+                        response.end("Saved");
+                    }
+                });
+            }
+            else{
+                response.writeHead(200);
+                response.end("Incorrect password");
+            }
+        })
+    }
 });
 const mimeTypes = {
     '.html': 'text/html',
@@ -41,6 +70,14 @@ const getContentType = pathName => {
     }
     return contentType;
 };
+var myArgs = process.argv;
+var password_for_file_saving="";
+for (i in myArgs){
+    var a=myArgs[i].split(':');
+    if(a.length==2 && a[0]=='password-for-file-saving'){
+        password_for_file_saving=a[1];
+    }
+}
 httpServer.listen(0, () => {
     console.log('\x1b[32m%s\x1b[0m', `Server is running at http://localhost:${httpServer.address().port}`);
 });

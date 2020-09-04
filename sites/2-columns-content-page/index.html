@@ -20,6 +20,7 @@
             $vm={};$VmAPI={};$vm.ver=[0.12,0.12];
             $vm.hosting_path=window.location.href.substring(0, window.location.href.split('?')[0].lastIndexOf('/'));
             $vm.module_list={
+                sys_editor:{url:$vm.hosting_path+"/editor.html"},
                 header:{url:$vm.hosting_path+"/header.html"},
                 footer:{url:$vm.hosting_path+"/footer.html"},
                 home:{url:$vm.hosting_path+"/home.html"},
@@ -43,6 +44,11 @@
                 text=text.replace(/__VER__/g,$vm.ver[0]);
                 text=text.replace(/__COMPONENT__\//g,'https://vm.vmiis.com/component/');
                 return text;
+            }
+            //---------------------------------------------
+            $vm.show=function(m_name){
+                if(m_name=="sys_editor") return;
+                $vm.active_name=m_name;
             }
             //---------------------------------------------
             $vm.boot=function(){
@@ -71,7 +77,7 @@
                 $vm.load_component('header','header',{});
                 $vm.load_component('footer','footer',{});
                 for (m in $vm.module_list) {
-                    if(m!="header" && m!="footer") $vm.load_module(m,'content',{silence:1})
+                    if(m!="header" && m!="footer" && m!="home") $vm.load_module(m,'content',{silence:1})
                 }
                 $vm.ready();
             }
