@@ -70,14 +70,7 @@ const getContentType = pathName => {
     }
     return contentType;
 };
-var myArgs = process.argv;
-var password_for_file_saving="";
-for (i in myArgs){
-    var a=myArgs[i].split(':');
-    if(a.length==2 && a[0]=='password-for-file-saving'){
-        password_for_file_saving=a[1];
-    }
-}
+var password_for_file_saving=process.env['password_for_file_saving'];;
 httpServer.listen(0, () => {
     console.log('\x1b[32m%s\x1b[0m', `Server is running at http://localhost:${httpServer.address().port}`);
 });

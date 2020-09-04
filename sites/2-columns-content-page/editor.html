@@ -5,7 +5,8 @@
             Password for saving to server: &nbsp;&nbsp;<input id=password__ID type=password title='Password' style='width:80px' />&nbsp;&nbsp;  
             <button id=save__ID type=button class="btn btn-secondary" title='Save'>Save</button>
             <button onclick='location.reload();' type=button class="btn btn-secondary" title='Refresh'>Refresh</button>&nbsp;&nbsp;&nbsp;&nbsp;  
-            <span id=file__ID></span>
+            <span id=file__ID></span>&nbsp;&nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;&nbsp;  
+            <span id=saved__ID></span>
         </form>
     </div>
     <div id=editor__ID></div>
@@ -24,6 +25,7 @@
                     $('#file__ID').text(file_url);
                     $.get(file_url+'?_='+new Date().getTime(),function(txt){
                         editor.setValue(txt,-1);
+                        dirty=0;
                     },'text');
                 }
                 var a=$(window).height()-$('#editor__ID').offset().top-$('#footer').height();
@@ -36,10 +38,14 @@
                 editor.getSession().setMode("ace/mode/html");
                 editor.getSession().setUseWorker(false);
                 editor.setOption("showPrintMargin", false)
+                editor.on('change', function(){
+                    $('#saved__ID').text('');
+                });
             }
             //--------------------------------------------------------
             $('#save__ID').on('click',function(){
-                var endpoint=window.location.protocol+"//"+window.location.hostname+":"+window.location.port;
+                var endpoint=window.location.protocol+"//"+window.location.hostname;
+                if(window.location.port!="") endpoint+=":"+window.location.port;
                 if(file_url==""){
                     $vm.alert("No file path.")
                 }
@@ -50,7 +56,12 @@
                 xmlHttp.onreadystatechange = function () {
                     console.log(this.readyState+" "+this.status);
                     if (this.readyState == 4 && this.status == 200){
-                        $vm.alert(this.responseText);
+                        if(this.responseText!="Saved") $vm.alert(this.responseText);
+                        else{
+                          $('#saved__ID').text('Saved');
+		                      localStorage.removeItem(file_url+"_ver");
+		                      localStorage.removeItem(file_url+"_txt");
+                        }
                     }
                 }
                 xmlHttp.open("POST", endpoint, true);

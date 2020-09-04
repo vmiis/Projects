@@ -1,2 +1,3 @@
-node server.js password-for-file-saving:123
+SET password_for_file_saving=123
+node server.js
 pause
