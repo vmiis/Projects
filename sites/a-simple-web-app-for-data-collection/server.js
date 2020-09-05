@@ -23,7 +23,7 @@ const httpServer = http.createServer((request, response) => {
             }
         });
     }
-    if(request.method=='POST'){
+    else if(request.method=='POST'){
         var r_data='';
         request.on('data',function(data){
           r_data+=data;
@@ -49,6 +49,10 @@ const httpServer = http.createServer((request, response) => {
                 response.end("Incorrect password");
             }
         })
+    }
+    else{
+        response.writeHead(405);
+        response.end("No permission");
     }
 });
 const mimeTypes = {

@@ -63,6 +63,9 @@
 		                      localStorage.removeItem(file_url+"_txt");
                         }
                     }
+                    else if (this.readyState == 4 && this.status == 405){
+                        $vm.alert("No permissions!");
+                    }
                 }
                 xmlHttp.open("POST", endpoint, true);
                 xmlHttp.send(da);
