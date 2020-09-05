@@ -71,6 +71,6 @@ const getContentType = pathName => {
     return contentType;
 };
 var password_for_file_saving=process.env['password_for_file_saving'];;
-httpServer.listen(0, () => {
+httpServer.listen(process.env.PORT, () => {
     console.log('\x1b[32m%s\x1b[0m', `Server is running at http://localhost:${httpServer.address().port}`);
 });
