@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta name="description" content="">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.css" />
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.14.0/css/all.css" />
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.14.0/css/v4-shims.css" />
+        <link rel="stylesheet" href='https://fonts.googleapis.com/css?family=Nunito|Nunito+Sans|Roboto+Slab' />
         <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-3.5.1.min.js"></script>
     </head>
     <body>
@@ -24,8 +24,8 @@
                 header:{url:$vm.hosting_path+"/header.html",description:"logo, menu, login/logout etc"},
                 footer:{url:$vm.hosting_path+"/footer.html",description:"copyright info, links etc"},
                 home:{url:$vm.hosting_path+"/home.html",description:"landing page, show some information, like the current page you are viewing"},
-                data:{url:$vm.hosting_path+"/data.html",Table:"vm-demo-Sample1",form_module:"form",description:"view and search data in a cloud database table"},
-                form:{url:$vm.hosting_path+"/form.html",Table:"vm-demo-Sample1",description:"data collection form"},
+                data:{url:$vm.hosting_path+"/data.html",Table:"ess-spardac",form_module:"form",description:"view and search data in a cloud database table"},
+                form:{url:$vm.hosting_path+"/form.html",Table:"ess-spardac",description:"data collection form"},
             }
             $vm.ready=function(){
                 $vm.load_module('home','content',{})

@@ -24,8 +24,8 @@
                 header:{url:$vm.hosting_path+"/header.html",description:"logo, menu, login/logout etc"},
                 footer:{url:$vm.hosting_path+"/footer.html",description:"copyright info, links etc"},
                 home:{url:$vm.hosting_path+"/home.html",description:"landing page, show some information, like the current page you are viewing"},
-                data:{url:$vm.hosting_path+"/data.html",Table:"vm-demo-Sample1",form_module:"form",description:"view and search data in a cloud database table"},
-                form:{url:$vm.hosting_path+"/form.html",Table:"vm-demo-Sample1",description:"data collection form"},
+                data:{url:$vm.hosting_path+"/data.html",Table:"vm-demo-request",form_module:"form",description:"view and search data in a cloud database table"},
+                form:{url:$vm.hosting_path+"/form.html",Table:"vm-demo-request",description:"data collection form"},
             }
             $vm.ready=function(){
                 $vm.load_module('home','content',{})
