@@ -1,0 +1,43 @@
+<section>
+    VmInclude:__COMPONENT__/g/grid.01.html
+</section>
+<script>
+    function F__ID(){
+        //-------------------------------------
+        VmInclude:__COMPONENT__/g/grid.01.js
+        //-------------------------------------
+        var create_fields=function(){
+            var excel_field			=$vm.gData.excel_field;			if(excel_field==undefined) 			excel_field=[];
+            var excel_form_config	=$vm.gData.excel_form_config;	if(excel_form_config==undefined) 	excel_form_config=[];
+            var fields="";
+            if(excel_field==undefined) excel_field=[];
+            for(var i=1;i<excel_field.length;i++){
+                var index1=excel_field[0].indexOf('Form Display Name');
+                var index2=excel_field[0].indexOf('Database Field Name');
+                var display_name=excel_field[i][index1];
+                var database_name=excel_field[i][index2];
+                if(database_name=='') database_name=display_name.replace(/ /g,"_");
+                fields+=","+database_name+"|"+display_name;
+            }
+            m.fields="_Form"+fields+",Submit_date,Submitted_by,_Delete";
+        }
+        //-------------------------------------
+        var setup_database_table=function(){
+            var excel_form_config	=$vm.gData.excel_form_config;	if(excel_form_config==undefined) 	excel_form_config=[];
+            for(var i=0;i<excel_form_config.length;i++){
+                if(excel_form_config[i][0]=='Database Table Name'){
+                    m.Table="vm-demo-"+excel_form_config[i][1];
+                }
+            }
+        }
+        //-------------------------------------
+        m.load=function(){
+            create_fields();
+            setup_database_table();
+        }
+        //-------------------------------------
+    }
+</script>
+<style>
+    VmInclude:__COMPONENT__/g/grid.01.css
+</style>

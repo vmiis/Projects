@@ -1,0 +1,189 @@
+<div id=D__ID>
+    <section id=form_container__ID>
+    	<div id=header__ID>
+    		Form
+    	</div>
+    	<form id=F__ID>
+    		<div class="container">
+				<!-- Form Inputs-------------------------------------->
+				<div id=dynamic_part__ID></div>
+				<!---------------------------------------------------->				
+    			<br>
+    			<div class="row">
+    				<div class=col>
+    					<button id=submit__ID type="submit" class="btn btn-secondary">Submit</button>
+    				</div>
+    			</div>
+    		</div>
+		</form>
+		<a id=downdload_form>Download HTML form module</a><br>
+		<a id=downdload_data>Download HTML data browser module</a>
+	</section>
+	VmInclude:__COMPONENT__/m/model.01.html
+    <script>
+    	function F__ID(){
+			var grid_fields="";
+			var form_contents="";
+			//--------------------------------------------------------
+			var create_form=function(){
+				grid_fields="";
+				form_contents="";
+				var excel_field			=$vm.gData.excel_field;			if(excel_field==undefined) 			excel_field=[];
+				var excel_form_config	=$vm.gData.excel_form_config;	if(excel_form_config==undefined) 	excel_form_config=[];
+				for(var i=1;i<excel_field.length;i++){
+					var index1=excel_field[0].indexOf('Form Display Name');
+					var index2=excel_field[0].indexOf('Database Field Name');
+					var index3=excel_field[0].indexOf('Field Type');
+					var index4=excel_field[0].indexOf('Option1');
+					var display_name=excel_field[i][index1];
+					var database_name=excel_field[i][index2];
+					var name_value=excel_field[i][index4];
+					var type=excel_field[i][index3];
+					if(database_name=='') database_name=display_name.replace(/ /g,"_");
+					switch(type){
+						case "Text":
+							form_contents+="<div class='row row__ID'><div class='col'>\r\n";
+							form_contents+="<span>"+display_name+"</span>\r\n<input type=text class=form-control name="+database_name+">\r\n";
+							form_contents+="</div></div>\r\n\r\n";
+							break;
+						case "Drop Down List":
+							form_contents+="<div class='row row__ID'><div class='col'>\r\n";
+							form_contents+="<span>"+display_name+"</span>\r\n<select class=form-control name="+database_name+">\r\n";
+							var nv=name_value.split(',');
+							for(var k=0;k<nv.length;k++){
+								var n=nv[k].split('/')[0];
+								var v=nv[k].split('/').pop();
+								form_contents+="<option value="+v+">"+n+"</option>";
+							}
+							form_contents+="\r\n</select>\r\n"
+							form_contents+="</div></div>\r\n\r\n";
+							break;
+						case "Horizontal radio button list":
+							form_contents+="<div class='row row__ID'><div class='col radio__ID'>\r\n";
+							form_contents+="<span>"+display_name+"</span><br>\r\n";
+							var nv=name_value.split(',');
+							for(var k=0;k<nv.length;k++){
+								var n=nv[k].split('/')[0];
+								var v=nv[k].split('/').pop();
+								form_contents+="<label><input type='radio' name="+database_name+" value="+v+">&nbsp&nbsp"+n+"</label>&nbsp&nbsp&nbsp&nbsp";
+							}
+							form_contents+="</div></div>\r\n\r\n";
+							break;
+					}
+					if(grid_fields!="") grid_fields+=",";
+					grid_fields+=database_name+"|"+display_name;
+				}
+				$('#dynamic_part__ID').html(form_contents);
+				for(var i=0;i<excel_form_config.length;i++){
+					if(excel_form_config[i][0]=='Form Title'){
+						$('#header__ID').text(excel_form_config[i][1]);
+						form_name=excel_form_config[i][1]+".html";
+					}
+					else if(excel_form_config[i][0]=='Form Width'){
+						$('#form_container__ID').css('width',excel_form_config[i][1]+'px');
+						form_width=excel_form_config[i][1]+'px';
+					}
+					else if(excel_form_config[i][0]=='Database Table Name'){
+						m.Table="vm-demo-"+excel_form_config[i][1];
+					}
+				}
+			}
+			//-------------------------------------
+			VmInclude:__COMPONENT__/f/form.01.js
+			//-------------------------------------
+			var form_contents="";
+			var form_on_load="";
+			var form_name="";
+			var form_width="600px";
+			//-------------------------------------
+			var grid_fields="";
+			//-------------------------------------
+			var old_load=m.load;
+			m.load=function(){
+				create_form();			
+				old_load();
+			}
+            //-------------------------------------
+			$('#downdload_form').on('click',function(){
+                $.get('__CURRENT_PATH__templates/template_form01.html',function(txt){
+					txt=txt.replace('___FORM_MODEL___','');
+					txt=txt.replace('___FORM_ON_LOAD___',form_on_load);
+					txt=txt.replace('___FORM_CONTENTS___',form_contents);
+					txt=txt.replace('___FORM_WIDTH___',form_width);
+					var fn='form.html';
+					if(form_name!="") fn="form_"+form_name;
+					$vm.download_txt(fn,txt)
+                },'text');
+			})
+            //-------------------------------------
+			$('#downdload_data').on('click',function(){
+                $.get('__CURRENT_PATH__templates/template_data01.html',function(txt){
+					txt=txt.replace('___CELL_RENDER___','');
+					txt=txt.replace('___GRID_FIELDS___',"\""+grid_fields+"\"");
+					var fn='data.html';
+					if(form_name!="") fn="data_"+form_name;
+					$vm.download_txt(fn,txt)
+                },'text');
+			})
+			//-------------------------------------
+			
+
+$vm.download_txt=function(fn,txt){
+    //-----------------------
+    var bytes = [];
+        bytes.push(239);
+        bytes.push(187);
+        bytes.push(191);
+    for (var i = 0; i < txt.length; i++) {
+        if(txt.charCodeAt(i)<128) {
+            bytes.push(txt.charCodeAt(i));
+        }
+        else if(txt.charCodeAt(i)<2048) {
+            bytes.push(( (txt.charCodeAt(i) & 192) >> 6 ) + ((txt.charCodeAt(i) & 1792)>>6 ) +192); //xC0>>6 + x700>>8 +xE0
+            bytes.push(txt.charCodeAt(i) & 63 + 128); //x3F + x80
+        }
+        else if(txt.charCodeAt(i)<65536) {
+            bytes.push(((txt.charCodeAt(i) & 61440) >>12) + 224 ); //xF00>>12 + xE0
+            bytes.push(( (txt.charCodeAt(i) & 192) >> 6 ) + ((txt.charCodeAt(i) & 3840)>>6 ) +128); //xC0>>6 + xF00>>8 +x80
+            bytes.push(txt.charCodeAt(i) & 63 + 128); //x3F + x80
+        }
+    }
+    var u8 = new Uint8Array(bytes);
+    var blob = new Blob([u8]);
+    //-----------------------
+    if (navigator.appVersion.toString().indexOf('.NET') > 0){
+        window.navigator.msSaveBlob(blob, fn);
+    }
+    else{
+        var link = document.createElement("a");
+        link.setAttribute("href", window.URL.createObjectURL(blob));
+        link.setAttribute("download", fn);
+        link.style = "visibility:hidden";
+        link.download = fn;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+    }
+}
+//---------------------------------------------
+
+
+    	}
+    </script>
+    <style>
+        #form_container__ID{
+            max-width:1200px;
+        }
+        #form_container__ID a{
+            cursor:pointer;
+        }
+        #form_container__ID a:hover{
+            color:red;
+        }
+        VmInclude:__COMPONENT__/f/form.01.css
+		
+		.radio__ID label:hover{
+			background-color: #999;
+		}
+    </style>
+</div>
