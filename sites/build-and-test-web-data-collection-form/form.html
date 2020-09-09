@@ -30,46 +30,78 @@
 				form_contents="";
 				var excel_field			=$vm.gData.excel_field;			if(excel_field==undefined) 			excel_field=[];
 				var excel_form_config	=$vm.gData.excel_form_config;	if(excel_form_config==undefined) 	excel_form_config=[];
+				
+				var LL="";
+				for(var i=0;i<excel_form_config.length;i++){
+					if(excel_form_config[i][0]=='Label on left side'){
+						LL=excel_form_config[i][1];
+					}
+				}
+
 				for(var i=1;i<excel_field.length;i++){
-					var index1=excel_field[0].indexOf('Form Display Name');
-					var index2=excel_field[0].indexOf('Database Field Name');
-					var index3=excel_field[0].indexOf('Field Type');
-					var index4=excel_field[0].indexOf('Option1');
-					var display_name=excel_field[i][index1];
-					var database_name=excel_field[i][index2];
-					var name_value=excel_field[i][index4];
-					var type=excel_field[i][index3];
-					if(database_name=='') database_name=display_name.replace(/ /g,"_");
+					var j;
+					j=excel_field[0].indexOf('Database Field Name'); 	var database_name	=excel_field[i][j];
+					j=excel_field[0].indexOf('Form Display Name'); 		var display_name	=excel_field[i][j];
+					j=excel_field[0].indexOf('Field Type'); 			var type			=excel_field[i][j];
+					j=excel_field[0].indexOf('Option1'); 				var option1			=excel_field[i][j];
+					j=excel_field[0].indexOf('Required'); 				var required		=excel_field[i][j];
+					
+					if(required==undefined) required="";
+
+					if(display_name==undefined) display_name=database_name;
+					display_name=display_name.replace(/_/g,' ');
+					database_name=database_name.replace(/ /g,'_');
+
+					var begin1="<div class='row row__ID'><div class='col radio__ID'>\r\n";
+					    begin1+="\t<span>"+display_name+"</span><br>\r\n\t";
+					var end1="\r\n</div></div>\r\n\r\n";
+					var begin2="<div class='row row__ID'>\r\n";
+						begin2+="\t<div class='col-4'>"+display_name+"</div>\r\n";
+						begin2+="\t<div class='col-8'>\r\n\t\t"
+					var end2="\r\n\t</div>\r\n";
+					    end2+="</div>\r\n\r\n";
+
+
+					var c="";
 					switch(type){
-						case "Text":
-							form_contents+="<div class='row row__ID'><div class='col'>\r\n";
-							form_contents+="<span>"+display_name+"</span>\r\n<input type=text class=form-control name="+database_name+">\r\n";
-							form_contents+="</div></div>\r\n\r\n";
-							break;
+						case "Text":  		c="<input type=text class=form-control name="+database_name+" "+required+" />"; 	break;
+						case "Email": 		c="<input type=email class=form-control name="+database_name+" "+required+" />";	break;
+						case "Phone": 		c="<input type=phone class=form-control name="+database_name+" "+required+" />";	break;
+						case "Textarea":	c="<textarea class=form-control name="+database_name+" "+required+" /></textarea>";break;
 						case "Drop Down List":
-							form_contents+="<div class='row row__ID'><div class='col'>\r\n";
-							form_contents+="<span>"+display_name+"</span>\r\n<select class=form-control name="+database_name+">\r\n";
-							var nv=name_value.split(',');
+							var c="<select class=form-control name="+database_name+" "+required+" />\r\n";
+							var nv=option1.split(',');
 							for(var k=0;k<nv.length;k++){
 								var n=nv[k].split('/')[0];
 								var v=nv[k].split('/').pop();
-								form_contents+="<option value="+v+">"+n+"</option>";
+								c+="\t\t\t<option value="+v+">"+n+"</option>\r\n";
 							}
-							form_contents+="\r\n</select>\r\n"
-							form_contents+="</div></div>\r\n\r\n";
+							c+="\t\t</select>"
 							break;
 						case "Horizontal radio button list":
-							form_contents+="<div class='row row__ID'><div class='col radio__ID'>\r\n";
-							form_contents+="<span>"+display_name+"</span><br>\r\n";
-							var nv=name_value.split(',');
+							var c="";
+							var nv=option1.split(',');
 							for(var k=0;k<nv.length;k++){
 								var n=nv[k].split('/')[0];
 								var v=nv[k].split('/').pop();
-								form_contents+="<label><input type='radio' name="+database_name+" value="+v+">&nbsp&nbsp"+n+"</label>&nbsp&nbsp&nbsp&nbsp";
+								if(k==0) c+="<label><input type='radio' name="+database_name+" value="+v+" "+required+" >&nbsp&nbsp"+n+"</label>&nbsp&nbsp&nbsp&nbsp";
+								else c+="<label><input type='radio' name="+database_name+" value="+v+">&nbsp&nbsp"+n+"</label>&nbsp&nbsp&nbsp&nbsp";
 							}
-							form_contents+="</div></div>\r\n\r\n";
+							break;
+						case "Vertical radio button list":
+							var c="";
+							var nv=option1.split(',');
+							for(var k=0;k<nv.length;k++){
+								var n=nv[k].split('/')[0];
+								var v=nv[k].split('/').pop();
+								if(k==0) c+="<label><input type='radio' name="+database_name+" value="+v+" "+required+" >&nbsp&nbsp"+n+"</label><br>";
+								else c+="<label><input type='radio' name="+database_name+" value="+v+">&nbsp&nbsp"+n+"</label><br>";
+							}
 							break;
 					}
+					if(LL!="Yes") form_contents+=begin1+c+end1;
+					else form_contents+=begin2+c+end2;
+					
 					if(grid_fields!="") grid_fields+=",";
 					grid_fields+=database_name+"|"+display_name;
 				}
@@ -84,14 +116,14 @@
 						form_width=excel_form_config[i][1]+'px';
 					}
 					else if(excel_form_config[i][0]=='Database Table Name'){
-						m.Table="vm-demo-"+excel_form_config[i][1];
+						m.Table="demo-vm-"+excel_form_config[i][1];
 					}
 				}
 			}
 			//-------------------------------------
 			VmInclude:__COMPONENT__/f/form.01.js
 			//-------------------------------------
-			var form_contents="";
+			//var form_contents="";
 			var form_on_load="";
 			var form_name="";
 			var form_width="600px";
@@ -184,6 +216,9 @@ $vm.download_txt=function(fn,txt){
 		
 		.radio__ID label:hover{
 			background-color: #999;
+		}
+		#F__ID{
+			margin-bottom: 10px;
 		}
     </style>
 </div>

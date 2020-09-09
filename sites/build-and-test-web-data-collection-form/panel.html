@@ -7,19 +7,20 @@
             <br>
         </div>
         <input type="file" id="input_file__ID" style='display:none' />
-        <ul>
+        <ul style="list-style-type:decimal;">
             <b><span id=name__ID></span></b><br><br>
-            <li><a id=file__ID>Select file... (Form specifications from an excel file)</a></li>
-            <li><a id=form__ID>Form preeview</a></li>
-            <li><a id=data__ID>Data collection testing</a></li>
+            <li><a id=file__ID>first please select an Excel  file... (read form specifications from an excel file)</a></li>
+            <li><a id=form__ID>then you can preeview your form</a></li>
+            <li><a id=data__ID>furthermore you can test data collection functions</a></li>
         </ul>
         <br>
         <br>
         <br>
         <br>
         <ul>
-            <b>Excel samples</b> (download, modify and submit to see how the form works)<br>
+            <b>Excel samples</b> (download, modify and then go to the step 1 above to see how your form works)<br>
             <li><a href=__CURRENT_PATH__excel-samples/sample01.xlsx>Sample 01</a></li>
+            <li><a href=__CURRENT_PATH__excel-samples/student.xlsx>Student</a></li>
         </ul>
     </div>
     <script>
@@ -94,6 +95,7 @@
         }
         #panel__ID a{
             cursor:pointer;
+            text-decoration-line: underline;
         }
         #panel__ID a:hover {
             color:red;

@@ -1,0 +1,104 @@
+﻿<div id=D__ID>
+    <section id=form_container__ID>
+    	<div id=header__ID>
+    		Form
+    	</div>
+    	<form id=F__ID>
+    		<div class="container">
+<div class='row row_2'>
+	<div class='col-4'>Student ID</div>
+	<div class='col-8'>
+		<input type=text class=form-control name=Student_ID Yes />
+	</div>
+</div>
+
+<div class='row row_2'>
+	<div class='col-4'>First Name</div>
+	<div class='col-8'>
+		<input type=text class=form-control name=First_Name Yes />
+	</div>
+</div>
+
+<div class='row row_2'>
+	<div class='col-4'>Last Name</div>
+	<div class='col-8'>
+		<input type=text class=form-control name=Last_Name Yes />
+	</div>
+</div>
+
+<div class='row row_2'>
+	<div class='col-4'>State</div>
+	<div class='col-8'>
+		<select class=form-control name=State  />
+			<option value=></option>
+			<option value=NSW>NSW</option>
+			<option value=VIC>VIC</option>
+			<option value=QLD>QLD</option>
+			<option value=WA>WA</option>
+			<option value=SA>SA</option>
+			<option value=TAS>TAS</option>
+			<option value=ACT>ACT</option>
+			<option value=NT>NT</option>
+		</select>
+	</div>
+</div>
+
+<div class='row row_2'>
+	<div class='col-4'>Gender</div>
+	<div class='col-8'>
+		<label><input type='radio' name=Gender value=Male  >&nbsp&nbspMale</label>&nbsp&nbsp&nbsp&nbsp<label><input type='radio' name=Gender value=Female>&nbsp&nbspFemale</label>&nbsp&nbsp&nbsp&nbsp<label><input type='radio' name=Gender value=Other>&nbsp&nbspOther</label>&nbsp&nbsp&nbsp&nbsp
+	</div>
+</div>
+
+<div class='row row_2'>
+	<div class='col-4'>Address</div>
+	<div class='col-8'>
+		<textarea class=form-control name=Address  /></textarea>
+	</div>
+</div>
+
+<div class='row row_2'>
+	<div class='col-4'>Email</div>
+	<div class='col-8'>
+		<input type=email class=form-control name=Email  />
+	</div>
+</div>
+
+<div class='row row_2'>
+	<div class='col-4'>Mobile Phone</div>
+	<div class='col-8'>
+		<input type=phone class=form-control name=Mobile_Phone  />
+	</div>
+</div>
+
+
+    			<br>
+                <div class="row">
+                        <div class=col>
+                        <button id=submit__ID type="submit" class="btn btn-secondary">Submit</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </section>
+    
+    <script>
+    	function F__ID(){
+			//--------------------------------------------------------
+			VmInclude:__COMPONENT__/f/form.01.js
+			//-------------------------------------
+			var old_load=m.load;
+			m.load=function(){
+                old_load();
+                
+			}
+            //-------------------------------------
+    	}
+    </script>
+    <style>
+        #form_container__ID{
+            max-width:700px;
+        }
+        VmInclude:__COMPONENT__/f/form.01.css
+    </style>
+</div>

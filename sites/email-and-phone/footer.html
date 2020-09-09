@@ -7,6 +7,16 @@
     <script>
         $vm.footer_ready=1;
         if($vm.resize_content!=undefined) $vm.resize_content();
+        $('#D__ID').on('dblclick',function(event){
+            event.stopPropagation();
+            if (event.ctrlKey & event.altKey) {
+                var r=confirm("Click OK will refresh the browser to reinstall all modules.");
+                if(r){
+                    localStorage.clear();
+                    location.reload();
+                }
+            }
+	    });
     </script>
     <style>
         #D__ID{

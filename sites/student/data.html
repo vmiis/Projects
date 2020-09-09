@@ -1,0 +1,22 @@
+﻿<section>
+    VmInclude:__COMPONENT__/g/grid.01.html
+</section>
+<script>
+    function F__ID(){
+        //-------------------------------------
+        VmInclude:__COMPONENT__/g/grid.01.js
+        //-------------------------------------
+        var fields="Student_ID|Student ID,First_Name|First Name,Last_Name|Last Name,State|State,Gender|Gender,Address|Address,Email|Email,Mobile_Phone|Mobile Phone";
+        m.fields="_Form,"+fields+",Submit_date,Submitted_by,_Delete";
+        //-------------------------------------
+        m.cell_render=function(records,I,field,td){
+            switch(field){
+                
+            }
+        }
+        //-------------------------------------
+    }
+</script>
+<style>
+    VmInclude:__COMPONENT__/g/grid.01.css
+</style>
