@@ -10,6 +10,8 @@
                 <li><a href="home"><i class="fa fa-home"></i> Home</a></li>
                 <li><a href="form"><i class="fab fa-wpforms"></i> Form</a></li>
                 <li><a href="data"><i class="fas fa-table"></i> Data</a></li>
+                <li><a href="" id=sigin__ID onclick=$vm.signin() ><i class="fa fa-user"></i> Sigin</a></li>
+                <li><a href="" id=sigout__ID onclick=$vm.signout() ><i class="fa fa-user"></i> Sigout</a></li>
             </ul>
         </div>
     </div>    
@@ -17,17 +19,33 @@
         <div id=menu_right__ID>
             <a href="sys_editor" id=edit__ID >Edit</a>
             <a href="" onclick="$vm.sys_structure();" >Structure</a>
+            <label id=user_name__ID>Jimmy</label>
         </div>
-        <label for="hamburger__ID"><i class="fa fa-bars"></i></label>
+        <label for="hamburger__ID"><i id=m_icon__ID class="fa fa-bars"></i></label>
     </div>    
     <script>
-        $vm.header_ready=1;
-        if($vm.resize_content!=undefined) $vm.resize_content();
-        $('#menu__ID a, #menu_right__ID a').on('click',function(e){
-            e.preventDefault();
-            var module_name=$(this).attr('href');
-            if(module_name!="") $vm.load_module(module_name,'content',{})
-        })
+        function F__ID(){
+            $vm.header_ready=1;
+            if($vm.resize_content!=undefined) $vm.resize_content();
+            $('#menu__ID a, #menu_right__ID a').on('click',function(e){
+                e.preventDefault();
+                var module_name=$(this).attr('href');
+                if(module_name!="") $vm.load_module(module_name,'content',{})
+            })
+            var display_user=function(){
+                if($vm.user_name==undefined || $vm.user_name=='guest'){
+                    $('#sigin__ID').show();
+                    $('#sigout__ID').hide();
+                    $('#user_name__ID').text('');
+                }
+                else{
+                    $('#sigin__ID').hide();
+                    $('#sigout__ID').show();
+                    $('#user_name__ID').text($vm.user_name);
+                }
+            }
+            display_user();
+        }
     </script>
     <style>
         #D__ID{
@@ -72,18 +90,27 @@
         }
         #menu_right__ID a{
             margin-right:20px;
+            margin-bottom:0px;
             color:#fff
         }
-        #right__ID i{
+        #m_icon__ID{
             padding:5px 16px 0px 16px;
             color:#fff;
             font-size:28px;
         }
-        #mobile_logo__ID,#hamburger__ID, #right__ID i{
+        #right__ID .sigin__ID{
+            cursor:pointer;
+        }
+        #user_name__ID{
+            color:#fff;
+            margin-right:10px;
+            margin-bottom:0px;
+        }
+        #mobile_logo__ID,#hamburger__ID, #m_icon__ID{
             display:none;
         }
         @media screen and (max-width: 768px) {
-            #mobile_logo__ID,#hamburger__ID, #right__ID i{
+            #mobile_logo__ID,#hamburger__ID, #m_icon__ID{
                 display:block;
             }
             #left__ID{
