@@ -29,8 +29,9 @@
                 data:{url:$vm.hosting_path+"/data.html",Table:"vm-demo-Sample1",form_module:"form",description:"view and search data in a cloud database table"},
                 form:{url:$vm.hosting_path+"/form.html",Table:"vm-demo-Sample1",description:"data collection form"},
             }
+            var first_module='home';
             $vm.ready=function(){
-                $vm.load_module('home','content',{})
+                $vm.load_module(first_module,'content',{})
             }
             //=================================================
             //VM framework code, do not need to chang the following code in most cases
@@ -75,11 +76,10 @@
             //---------------------------------------------
             $vm.install=function(){
                 //---------------------------------------------
-                $vm.init();
                 $vm.load_component('header','header',{});
                 $vm.load_component('footer','footer',{});
                 for (m in $vm.module_list) {
-                    if(m!="header" && m!="footer" && m!="home") $vm.load_module(m,'content',{silence:1})
+                    if(m!="header" && m!="footer" && m!=first_module) $vm.load_module(m,'content',{silence:1})
                 }
                 $vm.ready();
             }
