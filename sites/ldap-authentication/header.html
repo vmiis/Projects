@@ -8,10 +8,8 @@
         <div id=menu__ID>
             <ul>
                 <li><a href="home"><i class="fa fa-home"></i> Home</a></li>
-                <li><a href="form"><i class="fab fa-wpforms"></i> Form</a></li>
-                <li><a href="data"><i class="fas fa-table"></i> Data</a></li>
-                <li><a href="" id=signin__ID onclick=$vm.signin() ><i class="fa fa-user"></i> Sigin</a></li>
-                <li><a href="" id=signout__ID onclick=$vm.signout() ><i class="fa fa-user"></i> Sigout</a></li>
+                <li><a href="" id=signin__ID ><i class="fa fa-user"></i> Sigin</a></li>
+                <li><a href="" id=signout__ID ><i class="fa fa-user"></i> Sigout</a></li>
             </ul>
         </div>
     </div>    
@@ -37,8 +35,19 @@
                 if(module_name!="") $vm.load_module(module_name,'content',{})
             })
             //---------------------------------------------
+            $('#signin__ID').on('click',function(){
+                window.open($vm.ldap_address,"Sign In","width=600, height=700");
+            })
+            //------------------------------------
+            $('#signout__ID').on('click',function(){
+                sessionStorage.setItem("token_3rd","");
+                sessionStorage.setItem("username_3rd","");
+                $vm.user_name="";
+                $vm.show_user();
+            })
+            //------------------------------------
             $vm.show_user=function(){
-                if($vm.user_name==undefined || $vm.user_name=='guest'){
+                if($vm.user_name==undefined || $vm.user_name=="" || $vm.user_name=='guest'){
             		$('#username__ID').text('');
                     $('#signin__ID').show();
                     $('#signout__ID').hide();
@@ -50,18 +59,56 @@
                 }
             }
             //------------------------------------
-            window.onmessage=function(e){
-                if(e.data.username!=undefined && e.data.token!=undefined){
-                    $vm.user_name=e.data.username;
-                    $vm.set_token(e.data.token,e.data.username);
-                    location.reload(true);
+            $vm.exchange_ldap_token=function(){
+                if($vm.microsoft_token!=undefined){
+                    $vm.request({cmd:'exchange-ldap-token',token:$vm.microsoft_token},function(res){
+                        if(res.status=='ok'){
+                            $vm.user_name=res.result.user_name;
+                            $vm.displayname=res.result.displayname;
+                            $vm.set_token(res.result.token,res.result.username);
+                            $vm.show_user();
+                            var t=JSON.parse(res.result.token.split('|')[0]);
+                            $vm.groups=t.groups;
+                        }
+                    })
                 }
-            };
+            }
+            //------------------------------------
+            $vm.app_after_3rd_signin=function(){
+                /*
+                after user get login, you have 2 choices
+                
+                1. send the 3rd token to a server, and the server will 
+                validate the token and reissue a new token to identify the user 
+                for future to access the resources from that server
+
+                2. use the token to do what you want                
+                */
+                var choice=2;
+                
+                if(choice==1)  $vm.exchange_ldap_token();
+                if(choice==2){
+                    $vm.user_name=$vm.username_3rd;
+                    $vm.show_user();
+                }
+            }
             //------------------------------------
             $vm.init(function(){
                 $vm.init_status=1;
-                $vm.show_user();
+                $vm.token_3rd=sessionStorage.getItem("token_3rd");
+                $vm.username_3rd=sessionStorage.getItem("username_3rd");
+                $vm.app_after_3rd_signin();
             })
+            //------------------------------------
+            window.onmessage=function(e){
+                if(e.data.username!=undefined && e.data.token!=undefined){
+                    $vm.token_3rd=e.data.token;
+                    $vm.username_3rd=e.data.username;
+                    sessionStorage.setItem("token_3rd",$vm.token_3rd);
+                    sessionStorage.setItem("username_3rd",$vm.username_3rd);
+                    $vm.app_after_3rd_signin();
+                }
+            };
             //------------------------------------
         }
     </script>
