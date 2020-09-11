@@ -31,8 +31,9 @@
         function F__ID(){
             $vm.header_ready=1;
             if($vm.resize_content!=undefined) $vm.resize_content();
-            $('#menu__ID a, #menu_right__ID a').on('click',function(e){
+            $('#menu__ID a, #menu_right__ID a, #left__ID a').on('click',function(e){
                 e.preventDefault();
+                $('#hamburger__ID').prop("checked", false);
                 var module_name=$(this).attr('href');
                 if(module_name!="") $vm.load_module(module_name,'content',{})
             })
@@ -67,6 +68,7 @@
     </script>
     <style>
         #D__ID{
+            display: flow-root;
             background-color: lightslategray;
         }
         #top_right_corner__ID{
@@ -125,7 +127,6 @@
             color:#fff
         }
         #m_icon__ID{
-            padding:5px 16px 0px 16px;
             color:#fff;
             font-size:28px;
         }
