@@ -31,7 +31,7 @@
         function F__ID(){
             $vm.header_ready=1;
             if($vm.resize_content!=undefined) $vm.resize_content();
-            $('#menu__ID a, #menu_right__ID a, #left__ID a').on('click',function(e){
+            $('#D__ID a').on('click',function(e){
                 e.preventDefault();
                 $('#hamburger__ID').prop("checked", false);
                 var module_name=$(this).attr('href');
@@ -152,6 +152,7 @@
                 font-weight: bold;
                 font-size: 1.5em;
                 color:#fff;
+                text-decoration: none;
             }
             #menu__ID{
                 float:left;
