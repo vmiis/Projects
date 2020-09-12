@@ -7,9 +7,9 @@
         <input id="hamburger__ID" type="checkbox" style='display:none'>
         <div id=menu__ID>
             <ul>
-                <li><a href="home"><i class="fa fa-home"></i> Home</a></li>
-                <li><a href="form"><i class="fab fa-wpforms"></i> Form</a></li>
-                <li><a href="data"><i class="fas fa-table"></i> Data</a></li>
+                <li><a href="?/home"><i class="fa fa-home"></i> Home</a></li>
+                <li><a href="?/form"><i class="fab fa-wpforms"></i> Form</a></li>
+                <li><a href="?/data"><i class="fas fa-table"></i> Data</a></li>
                 <li><a href="" id=signin__ID onclick=$vm.signin() ><i class="fa fa-user"></i> Sigin</a></li>
                 <li><a href="" id=signout__ID onclick=$vm.signout() ><i class="fa fa-user"></i> Sigout</a></li>
             </ul>
@@ -18,7 +18,6 @@
     <div id=right__ID>
         <div id=menu_right__ID>
             <a href="sys_editor" id=edit__ID >Edit</a>
-            <a href="" onclick="$vm.sys_structure();" >Structure</a>
         </div>
         <label id=m_icon__ID for="hamburger__ID"><i class="fa fa-bars"></i></label>
     </div>    
@@ -34,7 +33,7 @@
             $('#D__ID a').on('click',function(e){
                 e.preventDefault();
                 $('#hamburger__ID').prop("checked", false);
-                var module_name=$(this).attr('href');
+                var module_name=$(this).attr('href').replace('?\/','');
                 if(module_name!="") $vm.load_module(module_name,'content',{})
             })
             //---------------------------------------------

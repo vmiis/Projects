@@ -41,12 +41,6 @@ const httpServer = http.createServer((request, response) => {
         request.on('end',function(){
             d=JSON.parse(r_data);
             if(d.cmd=="signinad"){
-                /*
-                var username=d.data.Username;
-                var password=d.data.Password;
-                response.writeHead(200);
-                response.end(JSON.stringify({username:username,sys:{token:"Token123"}}));
-                */
                 var token=new Date().toString();
                 var username=process.env.LDAP_NAME_B+d.data.Username+process.env.LDAP_NAME_E;
                 var password=d.data.Password;

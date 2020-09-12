@@ -26,10 +26,11 @@
                 header:{url:$vm.hosting_path+"/header.html",description:"logo, menu, login/logout etc"},
                 footer:{url:$vm.hosting_path+"/footer.html",description:"copyright info, links etc"},
                 home:{url:$vm.hosting_path+"/home.html",description:"landing page, show some information, like the current page you are viewing"},
-                data:{url:$vm.hosting_path+"/data.html",Table:"vm-demo-Sample1",form_module:"form",description:"view and search data in a cloud database table"},
-                form:{url:$vm.hosting_path+"/form.html",Table:"vm-demo-Sample1",description:"data collection form"},
+                data:{url:$vm.hosting_path+"/data.html",Table:"vm-demo-Sample1",form_module:"form",router:1,description:"view and search data in a cloud database table"},
+                form:{url:$vm.hosting_path+"/form.html",Table:"vm-demo-Sample1",router:1,description:"data collection form"},
             }
             var first_module='home';
+            var a=window.location.href.split('?/'); if(a.length==2) first_module=a[1].split('&')[0];
             $vm.ready=function(){
                 $vm.load_module(first_module,'content',{})
             }
@@ -41,7 +42,8 @@
             $vm.module_list.sys_editor={url:$vm.hosting_path+"/editor.html"}
             //---------------------------------------------
             $vm.show=function(m_name){
-                var title=$vm.module_list[m_name].url.split('/').pop(); if(title==undefined) title="A micro web application";   document.title=title;
+                var a=window.location.href.split('?/')[0].split('/'); a.pop(); var t=a.pop().replace(/-/g,' ');
+                var title=$vm.module_list[m_name].url.split('/').pop(); document.title=title+" - "+t ;
                 var info=$vm.module_list[m_name].description;           if(info==undefined) info="A micro web application";     $("meta[name='description']").attr("content", info);
                 if(m_name=="sys_editor") return;
                 $vm.active_name=m_name;

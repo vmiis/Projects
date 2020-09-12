@@ -1,0 +1,85 @@
+﻿<div id=D__ID>
+    <section id=form_container__ID>
+    	<div id=header__ID>
+    		DB -> Form
+    	</div>
+    	<form id=F__ID>
+    		<div class="container">
+    			<div class="row row__ID">
+    				<div class=col>
+    					<span>First Name</span>
+    					<input type="text" class="form-control" name=First_Name />
+    				</div>
+    			</div>
+    			<div class="row row__ID">
+    				<div class=col>
+    					<span>Last Name</span>
+    					<input type="text" class="form-control" name=Last_Name />
+    				</div>
+    			</div>
+    			<br>
+    			<div class="row">
+    				<div class=col>
+    					<button id=submit__ID type="submit" class="btn btn-secondary">Get data from MongoDB</button>
+                    </div>
+                </div>
+    			<div class="row">
+    				<div class=col>
+                        <span id=msg__ID></span>
+                    </div>
+    			</div>
+    		</div>
+    	</form>
+    </section>
+    <script>
+    	function F__ID(){
+    		//-------------------------------------
+            $('#D__ID').on('load',function(){
+                $('#F__ID')[0].reset();
+				$('#submit__ID').show();
+				$('#msg__ID').text('');
+            })
+			$('#F__ID').submit(function(event){
+    			//------------------------------
+				event.preventDefault();
+    			//------------------------------
+				var db_url="http://localhost:8011/";
+				var req={cmd:"read"}
+				$.ajax(
+					{
+						url:db_url,
+						data: JSON.stringify(req),
+						type: "POST",
+        				contentType: "application/json",
+        				charset:"utf-8",
+						dataType: "json",
+						success: function(data,textStatus, request){
+							console.log(data);
+							if(data){
+                                if(data.length!=0){
+								    $('#F__ID input[name=First_Name]').val(data[0].First_Name);
+                                    $('#F__ID input[name=Last_Name]').val(data[0].Last_Name);
+                                    $('#msg__ID').text('Read is done.');
+                                }
+                                else{
+                                    $('#msg__ID').text('No data in the database.');
+                                }
+							}
+						},
+						error: function(xhr, status, error){
+         					alert(db_url+" is not available.");
+     					}
+					}
+				)				
+    			//------------------------------
+			})
+			//-------------------------------------
+    	}
+    </script>
+    <style>
+        #form_container__ID{
+            max-width:600px;
+        }
+        VmInclude:__COMPONENT__/f/form.01.css
+    </style>
+</div>

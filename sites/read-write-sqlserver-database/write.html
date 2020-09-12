@@ -1,0 +1,95 @@
+<div id=D__ID>
+    <section id=form_container__ID>
+    	<div id=header__ID>
+    		Form -> DB
+    	</div>
+    	<form id=F__ID>
+    		<div class="container">
+    			<div class="row row__ID">
+    				<div class=col>
+    					<span>First Name</span>
+    					<input type="text" class="form-control" name=First_Name />
+    				</div>
+    			</div>
+    			<div class="row row__ID">
+    				<div class=col>
+    					<span>Last Name</span>
+    					<input type="text" class="form-control" name=Last_Name />
+    				</div>
+    			</div>
+    			<br>
+    			<div class="row">
+    				<div class=col>
+    					<button id=submit__ID type="submit" class="btn btn-secondary">Send data to SQL Server</button>
+    				</div>
+    			</div>
+    			<div class="row">
+    				<div class=col>
+                        <span id=msg__ID></span>
+                    </div>
+    			</div>
+    		</div>
+    	</form>
+    </section>
+    <script>
+    	function F__ID(){
+            //-------------------------------------
+            $('#D__ID').on('load',function(){
+                $('#F__ID')[0].reset();
+				$('#submit__ID').show();
+				$('#msg__ID').text('');
+            })
+			$('#F__ID').submit(function(event){
+    			//------------------------------
+				event.preventDefault();
+    			//------------------------------
+    			var data={};
+    			var a=$('#F__ID').serializeArray();
+    			$.each(a, function () { 
+					data[this.name]=this.value || '';
+				});
+				$("#F__ID input:checkbox:not(:checked)").each(function(){
+					data[this.name]="off";
+				})
+    			//------------------------------
+				var db_url="http://localhost:8012/";
+				var req={cmd:"write",data:data}
+				$.ajax(
+					{
+						url:db_url,
+						data: JSON.stringify(req),
+						type: "POST",
+        				contentType: "application/json",
+        				charset:"utf-8",
+                        dataType: "json",
+						success: function(data,textStatus, request){
+							console.log(data);
+							if(data.status=="ok"){
+                                $('#msg__ID').text('Weite is done.');
+                            }
+                            else{
+                                $('#msg__ID').text(data.err);
+                            }
+						},
+						error: function(xhr, status, error){
+         					alert(db_url+" is not available.");
+     					}
+					}
+				)				
+    			//------------------------------
+				$('#submit__ID').hide();
+    			//------------------------------
+			})
+			//-------------------------------------
+    	}
+    </script>
+    <style>
+        #form_container__ID{
+            max-width:650px;
+        }
+        VmInclude:__COMPONENT__/f/form.01.css
+		#F__ID{
+			margin-bottom: 30px;
+		}
+    </style>
+</div>
