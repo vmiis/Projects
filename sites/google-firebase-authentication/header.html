@@ -7,9 +7,9 @@
         <input id="hamburger__ID" type="checkbox" style='display:none'>
         <div id=menu__ID>
             <ul>
-                <li><a href="?/home"><i class="fa fa-home"></i> Home</a></li>
-                <li><a href="?/help">Help</a></li>
-                <li><a href="?/me">Me</a></li>
+                <li><a href="home"><i class="fa fa-home"></i> Home</a></li>
+                <li><a href="help">Help</a></li>
+                <li><a href="me">Me</a></li>
                 <li><a href="" id=signin__ID ><i class="fa fa-user"></i> Sigin</a></li>
                 <li><a href="" id=signout__ID ><i class="fa fa-user"></i> Sigout</a></li>
             </ul>
@@ -34,19 +34,17 @@
                 e.preventDefault();
                 var module_name=$(this).attr('href').replace('?\/','');
                 if(module_name=='me'){
-                    $vm.m365_graph("https://graph.microsoft.com/v1.0/me/",{scopes: ["user.read"]},function(data){
-                        $vm.load_module('json_viewer','',{json:data})
-				    })
+                    $vm.load_module('json_viewer','',{json:JSON.parse(JSON.stringify(firebase.auth().currentUser))})
                 }
                 else if(module_name!="") $vm.load_module(module_name,'content',{})
             })
             //---------------------------------------------
             $('#signin__ID').on('click',function(){
-                $vm.m365_signin();  
+                $vm.firebase_signin();  
             })
             //------------------------------------
             $('#signout__ID').on('click',function(){
-                $vm.m365_signout();  
+                $vm.firebase_signout();  
                 $vm.user_name="";
                 $vm.show_user();
             })
@@ -64,24 +62,16 @@
                 }
             }
             //------------------------------------
-            $vm.exchange_microsoft_token=function(){
-                if($vm.microsoft_token!=undefined){
-                    $vm.request({cmd:'exchange-microsoft-token',token:$vm.microsoft_token},function(res){
+            $vm.exchange_google_firebase_token=function(){
+                if($vm.google_firebase_token!=undefined){
+                    $vm.request({cmd:'exchange-google_firebase-token',token:$vm.microsoft_token},function(res){
                         if(res.status=='ok'){
                             $vm.user_name=res.result.user_name;
                             $vm.displayname=res.result.displayname;
                             $vm.set_token(res.result.token,res.result.username);
                             $vm.show_user();
-                            var t=JSON.parse(res.result.token.split('|')[0]);
-                            $vm.groups=t.groups;
                         }
                     })
-                    var a=$vm.m365_scope.scopes.indexOf("directory.read.all")
-                    if(a!=-1){
-                        $vm.m365_graph("https://graph.microsoft.com/v1.0/me/memberOf",{scopes: ["user.read","directory.read.all"]},function(data){
-                            $vm.groups_data=data;
-                        })
-                    }
                 }
             }
             //------------------------------------
@@ -89,15 +79,15 @@
                 /*
                 after user get login, you have 2 choices
                 
-                1. send the microsoft token to a server, and the server will 
+                1. send the google firebase token to a server, and the server will 
                 validate the token and reissue a new token to identify the user 
                 for future to access the resources from that server
 
-                2. use the microsoft token to access Microsoft Azure resources                
+                2. use the google firebase token to access google firebase resources               
                 */
                 var choice=2;
                 
-                if(choice==1)  $vm.exchange_microsoft_token();
+                if(choice==1)  $vm.exchange_google_firebase_token();
                 if(choice==2){
                     $vm.user_name=$vm.user_name_3rd;
                     $vm.show_user();
@@ -106,8 +96,7 @@
             //------------------------------------
             $vm.init(function(){
                 $vm.init_status=1;
-                if( $vm.m365_msal.getAccount()!=null ){
-                    $vm.user_name_3rd=$vm.m365_msal.getAccount().name;
+                if( $vm.user_name_3rd!=undefined ){
                     $vm.app_after_3rd_signin();
                 }
                 $vm.show_user();
