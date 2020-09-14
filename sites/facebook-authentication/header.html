@@ -34,7 +34,9 @@
                 e.preventDefault();
                 var module_name=$(this).attr('href').replace('?\/','');
                 if(module_name=='me'){
-                    $vm.load_module('json_viewer','',{json:GoogleAuth.currentUser.get().getBasicProfile()})
+                    FB.api('/me', function(response) {
+                        $vm.load_module('json_viewer','',{json:response})
+                    })
                 }
                 else if(module_name!="") $vm.load_module(module_name,'content',{})
             })

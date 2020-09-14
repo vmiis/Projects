@@ -5,41 +5,36 @@
             <div class=h_txt__ID><h4>Tutorial</h4></div>
         </div>
     	<div class='nav__ID'>
-            <span>How to sign in to Google Firebase and access database with API</span>
+            <span>How to sign in with Facebook authentication</span>
             <br><br>
             <ol>
                 <li>
-                    <a target=_blank href=https://console.developers.google.com/apis/credentials ><u>Create authorization credentials</u></a>
+                    <a target=_blank href=https://developers.facebook.com/apps/ ><u>Create an app</u></a>
                     <br><br>
                 </li>
                 <li>
-                    Add google api js library in index.html
+                    Add your app infomation in the facebook.js
 <pre style='background-color: #333;color:#fff'>
-    &lt;script async defer src="https://apis.google.com/js/api.js"
-            onload="this.onload=function(){};handleClientLoad()"
-            onreadystatechange="if (this.readyState === 'complete') this.onload()">
-    &lt;/script>        
-</pre>
-                </li>
-
-                <li>
-                    Add your app infomation in the google.js
-<pre style='background-color: #333;color:#fff'>
-    'apiKey': 'YOUR_API_KEY',
-    'clientId': 'YOUR_CLIENT_ID',
+    FB.init({
+        appId      : 'YOUR_APP_ID',
+        xfbml      : true,
+        version    : 'v8.0'
+    });
 </pre>
                 </li>
                 <li>
-                    Once you have signed in successfully you can start to use api to exchange data with Google endpoint
+                    Once you have signed in successfully you can start to use api to exchange data with Facebook endpoint
                     <br>The following is an example to get the information about yourself
 <pre style='background-color: #333;color:#fff'>
-    $vm.load_module('json_viewer','',{json:GoogleAuth.currentUser.get().getBasicProfile()})
+    FB.api('/me', function(response) {
+        $vm.load_module('json_viewer','',{json:response})
+    })
 </pre>
                     <u id=test__ID style='cursor:pointer'> click here to test</u>
                     <br><br>
                 </li>
                 <li>
-                    <a target=_blank href='https://console.developers.google.com/apis/library' ><u>Click this link for more information about Google API library</u></a>
+                    <a target=_blank href='https://developers.facebook.com/docs/graph-api/reference/' ><u>Click this link for more information about Facebook API</u></a>
                 </li>
             </ol>
         </div>
@@ -56,7 +51,9 @@
             var this_module=$vm.module_list[$vm.vm['__ID'].name];
             //--------------------------------------------------------
             $('#test__ID').on('click',function(){
-                $vm.load_module('json_viewer','',{json:GoogleAuth.currentUser.get().getBasicProfile()})
+                FB.api('/me', function(response) {
+                    $vm.load_module('json_viewer','',{json:response})
+                })
             })
             //--------------------------------------------------------
         }
