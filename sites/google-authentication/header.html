@@ -34,19 +34,21 @@
                 e.preventDefault();
                 var module_name=$(this).attr('href').replace('?\/','');
                 if(module_name=='me'){
-                    $vm.load_module('json_viewer','',{json:JSON.parse(JSON.stringify(firebase.auth().currentUser))})
+                    $vm.load_module('json_viewer','',{json:GoogleAuth.currentUser.get().getBasicProfile()})
                 }
                 else if(module_name!="") $vm.load_module(module_name,'content',{})
             })
             //---------------------------------------------
             $('#signin__ID').on('click',function(){
-                $vm.firebase_signin();  
+                $vm.google_signin();  
             })
             //------------------------------------
             $('#signout__ID').on('click',function(){
-                $vm.firebase_signout();  
+                $vm.clear_token();
                 $vm.user_name="";
-                $vm.show_user();
+                $vm.google_signout();  
+                location.reload();
+                //$vm.show_user();
             })
             //------------------------------------
             $vm.show_user=function(){
@@ -62,9 +64,9 @@
                 }
             }
             //------------------------------------
-            $vm.exchange_google_firebase_token=function(){
-                if($vm.google_firebase_token!=undefined){
-                    $vm.request({cmd:'exchange-google_firebase-token',token:$vm.google_firebase_token},function(res){
+            $vm.exchange_google_token=function(){
+                if($vm.google_token!=undefined){
+                    $vm.request({cmd:'exchange-google_token',token:$vm.google_token},function(res){
                         if(res.status=='ok'){
                             $vm.user_name=res.result.user_name;
                             $vm.displayname=res.result.displayname;
@@ -79,15 +81,15 @@
                 /*
                 after user get login, you have 2 choices
                 
-                1. send the google firebase token to a server, and the server will 
+                1. send the google token to a server, and the server will 
                 validate the token and reissue a new token to identify the user 
                 for future to access the resources from that server
 
-                2. use the google firebase token to access google firebase resources               
+                2. use the google token to access google resources               
                 */
                 var choice=2;
                 
-                if(choice==1)  $vm.exchange_google_firebase_token();
+                if(choice==1)  $vm.exchange_google_token();
                 if(choice==2){
                     $vm.user_name=$vm.user_name_3rd;
                     $vm.show_user();

@@ -35,7 +35,6 @@ $vm.m365_init=function(){
         });
     }
     $vm.m365_signout=function() {
-	    $vm.clear_token();
         $vm.m365_msal.logout();
     }
     $vm.m365_graph=function(url,scope,callback){

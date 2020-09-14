@@ -46,9 +46,11 @@
             })
             //------------------------------------
             $('#signout__ID').on('click',function(){
-                $vm.m365_signout();  
+                $vm.clear_token();
                 $vm.user_name="";
-                $vm.show_user();
+                $vm.m365_signout();  
+                //$vm.show_user();
+                location.reload();
             })
             //------------------------------------
             $vm.show_user=function(){

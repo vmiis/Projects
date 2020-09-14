@@ -6,7 +6,7 @@ $vm.google_init=function(button_id){
 			auth2 = gapi.auth2.init({
                 client_id:'485153637765-maqa89r5jm9rusuc1u87sh72lrlpckk3.apps.googleusercontent.com',
 				cookiepolicy: 'single_host_origin',
-				scope: 'https://www.googleapis.com/auth/drive.file'
+				scope: 'profile'
 			});
 			var element=document.getElementById(button_id);
 			auth2.attachClickHandler(

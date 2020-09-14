@@ -30,7 +30,7 @@ $vm.firebase_init=function(){
     $vm.firebase_signin=function (){
         var provider = new firebase.auth.GoogleAuthProvider();            
         firebase.auth().signInWithPopup(provider).then(function(result) {
-            var token = result.credential.accessToken;  // This gives you a Google Access Token. You can use it to access the Google API.
+            $vm.google_firebase_token = result.credential.accessToken;  // This gives you a Google Access Token. You can use it to access the Google API.
             var user = result.user; // The signed-in user info.
             $vm.user_name_3rd=result.name;
             if($vm.app_after_3rd_signin!=undefined) $vm.app_after_3rd_signin(); 
