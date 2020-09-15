@@ -1,0 +1,150 @@
+<div id=D__ID>
+    <div id=left__ID>
+        <a id=desk_logo__ID href="home">LOGO</a>
+    </div>
+    <div id=middle__ID>
+        <a id=mobile_logo__ID href="home">M-LOGO</a>
+        <input id="hamburger__ID" type="checkbox" style='display:none'>
+        <div id=menu__ID>
+            <ul>
+                <li><a href="?/home"><i class="fa fa-home"></i> Home</a></li>
+                <li><a href="?/read">Read</a></li>
+                <li><a href="?/write">Write</a></li>
+            </ul>
+        </div>
+    </div>    
+    <div id=right__ID>
+        <div id=menu_right__ID>
+            <a href="sys_editor" id=edit__ID >Edit</a>
+        </div>
+        <label id=m_icon__ID for="hamburger__ID"><i class="fa fa-bars"></i></label>
+    </div>    
+    <script>
+        $vm.header_ready=1;
+        if($vm.resize_content!=undefined) $vm.resize_content();
+        $('#D__ID a').on('click',function(e){
+            e.preventDefault();
+            $('#hamburger__ID').prop("checked", false);
+            var module_name=$(this).attr('href').replace('?\/','');
+            if(module_name!="") $vm.load_module(module_name,'content',{})
+        })
+    </script>
+    <style>
+        #D__ID{
+            display: flow-root;
+            background-color: lightslategray;
+        }
+        #top_right_corner__ID{
+            display:block;
+            position:fixed;
+            top:3px;
+            right:10px;
+            font-size:11px;
+            line-height:13px;
+            color:#fff;
+            z-index: 99999;
+        }
+        #left__ID{
+            float:left;
+        }
+        #middle__ID{
+            display:inline-block;
+        }
+        #right__ID{
+            float:right;
+            margin-right:10px;
+        }
+        #desk_logo__ID {
+            padding-left:15px;
+            font-weight: bold;
+            font-size: 1.5em;
+            color:#fff;
+            text-decoration: none;
+        }
+        #menu__ID ul{
+            margin: 0;
+        }
+        #menu__ID li{
+            display: inline-block;
+        }
+        #menu__ID a{
+            display: inline-block;
+            padding:6px 10px;
+            color:#fff;
+        }
+        #menu__ID a:hover {
+            background-color: #555;
+            color: #29eca6;
+            border-radius:4px;
+            text-decoration: none;
+        }
+        #menu_right__ID{
+            display:inline-block;
+            padding:10px 0 0 3px;
+        }
+        #menu_right__ID a{
+            font-size: 10px;
+            margin-left:6px;
+            margin-right:0px;
+            margin-bottom:0px;
+            color:#fff
+        }
+        #m_icon__ID{
+            color:#fff;
+            font-size:28px;
+        }
+        #right__ID .signin__ID{
+            cursor:pointer;
+        }
+        #mobile_logo__ID,#hamburger__ID, #m_icon__ID{
+            display:none;
+        }
+        @media screen and (max-width: 768px) {
+            #mobile_logo__ID,#hamburger__ID, #m_icon__ID{
+                display:block;
+            }
+            #left__ID{
+                display:none;
+            }
+            #menu_right__ID{
+                display:none;
+            }
+            #mobile_logo__ID {
+                display:block;
+                padding-left:15px;
+                font-weight: bold;
+                font-size: 1.5em;
+                color:#fff;
+                text-decoration: none;
+            }
+            #menu__ID{
+                float:left;
+                overflow:hidden;
+                max-height: 0;
+                transition: max-height 0.5s;
+            }
+            #hamburger__ID:checked ~ #menu__ID{
+                max-height:200px;
+            }
+            #right__ID label{
+                display:block;
+                margin:0;
+            }
+            #menu__ID ul {
+                padding: 0;
+                padding-right: 10px;
+            }
+  
+            #menu__ID li {
+                display: block;
+                padding:0px 0 0 15px;
+            }
+  
+            #menu__ID a {
+                display: inline-block;
+                padding: 5px 10px;
+                width: auto;
+            }
+        }
+    </style>
+</div>
