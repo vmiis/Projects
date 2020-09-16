@@ -1,0 +1,188 @@
+<div id=D__ID>
+    <div id=left__ID>
+        <a id=desk_logo__ID href="home"></a>
+        <span id=logo_label__ID>
+            Driving Business<br>
+            Growth through <br>
+            Digital Transformation
+        </span>
+    </div>
+    <div id=middle__ID>
+        <a id=mobile_logo__ID href="home">Jag</a>
+        <input id="hamburger__ID" type="checkbox" style='display:none'>
+        <div id=menu__ID>
+            <ul>
+                <li><a href="?/home"><i class="fa fa-home"></i> Home</a></li>
+                <li><a href="?/blog"><i class="fas fa-blog"></i> My Blog</a></li>
+                <li><a href="?/skills">My Skills</a></li>
+                <li><a href="?/ideas">My Ideas</a></li>
+                <li><a href="?/form"><i class="fab fa-wpforms"></i> Send a Message</a></li>
+                <li><a href="?/about"><i class="fa fa-info-circle"></i> About</a></li>
+            </ul>
+        </div>
+    </div>    
+    <div id=right__ID>
+        <div id=menu_right__ID>
+            <a href="?/data">Data</a>
+            <a href="sys_editor" id=edit__ID >Edit</a>
+        </div>
+        <label id=m_icon__ID for="hamburger__ID"><i class="fa fa-bars"></i></label>
+    </div>    
+    <script>
+        $vm.header_ready=1;
+        if($vm.resize_content!=undefined) $vm.resize_content();
+        $('#D__ID a').on('click',function(e){
+            e.preventDefault();
+            $('#hamburger__ID').prop("checked", false);
+            var module_name=$(this).attr('href').replace('?\/','');
+            if(module_name!="") $vm.load_module(module_name,'content',{})
+        })
+    </script>
+    <style>
+        #D__ID{
+            display: flow-root;
+            /*background-color: lightslategray;*/
+        }
+        #desk_logo__ID{
+            margin:6px;
+            width:94px;
+            height:94px;
+            border-radius: 47px;
+            background: url('https://media-exp1.licdn.com/dms/image/C5603AQF-tjHv2UpNbw/profile-displayphoto-shrink_200_200/0?e=1605744000&v=beta&t=7Al93sBOlHfOsG-UAyGVRBiKbUzyLEJGXJ1nCRxeXhI') no-repeat top center;
+            background-size: cover;
+            float:left;
+            margin-right:1px;
+            cursor:pointer;
+        }
+        #logo_label__ID{
+            font-family: "Gaegu", cursive;
+            font-size: 20px;
+            line-height: 23px;
+            color: #7193b5;
+            display: inline-block;
+            margin-top: 20px;
+            margin-left: 10px;            
+        }
+        #top_right_corner__ID{
+            display:block;
+            position:fixed;
+            top:3px;
+            right:10px;
+            font-size:11px;
+            line-height:13px;
+            color:#fff;
+            z-index: 99999;
+        }
+        #left__ID{
+            float:left;
+            padding-right:100px;
+        }
+        #middle__ID{
+            padding-top:60px;
+            display:inline-block;
+        }
+        #right__ID{
+            padding-top:60px;
+            float:right;
+            margin-right:10px;
+        }
+        #desk_logo__ID {
+            padding-left:15px;
+            font-weight: bold;
+            font-size: 1.5em;
+            color:#fff;
+            text-decoration: none;
+        }
+        #menu__ID ul{
+            margin: 0;
+        }
+        #menu__ID li{
+            display: inline-block;
+        }
+        #menu__ID a{
+            display: inline-block;
+            padding:6px 10px;
+            color:#fff;
+        }
+        #menu__ID a:hover {
+            background-color: #555;
+            color: #29eca6;
+            border-radius:4px;
+            text-decoration: none;
+        }
+        #menu_right__ID{
+            display:inline-block;
+            padding:10px 0 0 3px;
+        }
+        #menu_right__ID a{
+            font-size: 11px;
+            margin-left:6px;
+            margin-right:0px;
+            margin-bottom:0px;
+            color:#fff
+        }
+        #m_icon__ID{
+            color:#fff;
+            font-size:28px;
+        }
+        #right__ID .signin__ID{
+            cursor:pointer;
+        }
+        #mobile_logo__ID,#hamburger__ID, #m_icon__ID{
+            display:none;
+        }
+        @media screen and (max-width: 768px) {
+            #D__ID{
+                background-color: lightslategray;
+            }
+            #middle__ID,#right__ID{
+                padding-top:0px;
+            }
+            #mobile_logo__ID,#hamburger__ID, #m_icon__ID{
+                display:block;
+            }
+            #left__ID{
+                display:none;
+            }
+            #menu_right__ID{
+                display:none;
+            }
+            #mobile_logo__ID {
+                display:block;
+                padding-left:15px;
+                font-weight: bold;
+                font-size: 1.5em;
+                color:#fff;
+                text-decoration: none;
+            }
+            #menu__ID{
+                float:left;
+                overflow:hidden;
+                max-height: 0;
+                transition: max-height 0.5s;
+            }
+            #hamburger__ID:checked ~ #menu__ID{
+                max-height:200px;
+            }
+            #right__ID label{
+                display:block;
+                margin:0;
+            }
+            #menu__ID ul {
+                padding: 0;
+                padding-right: 10px;
+            }
+  
+            #menu__ID li {
+                display: block;
+                padding:0px 0 0 15px;
+            }
+  
+            #menu__ID a {
+                display: inline-block;
+                padding: 5px 10px;
+                width: auto;
+            }
+        }
+    </style>
+</div>
