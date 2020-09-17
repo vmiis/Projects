@@ -35,11 +35,12 @@
                 minLength:0,
                 source:function(request,response){
                     var result=$vm.flexindex.search(request.term);
-                    var r=[]; for(i in result){
+                    var r=[]; 
+                    for(i in result){
                         var t=result[i].title; if(t=="") t=result[i].id;
                         r.push({label:t,value:result[i].id})
-                        response(r);
                     }
+                    response(r);
                 },
                 select: function(event,ui){
                     $vm.load_module(ui.item.value,'',{})
