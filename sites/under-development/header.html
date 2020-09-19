@@ -1,0 +1,155 @@
+<div id=D__ID>
+    <div id=layout__ID>
+        <div id=left__ID style='padding:15px 0 15px 15px;'>
+            <a id=desk_logo__ID href="home" style='font-weight: bold;font-size: 2.5em;color:#117a8b;text-decoration: none;'>
+            LOGO</a>
+        </div>
+        <div id=middle__ID>
+            <a id=mobile_logo__ID href="home" style='font-weight: bold;font-size: 1.5em;color:#117a8b;text-decoration: none;margin-left:12px;'>
+            Medical Research</a>
+            <input id="hamburger__ID" type="checkbox" style='display:none'>
+            <div id=menu__ID>
+                <ul>
+                    <li><a href="?/home" class='active__ID'>Volunteer</a></li>
+                    <li><a href="?/form">Current Studies</a></li>
+                    <li><a href="?/data">FAQ</a></li>
+                    <li><a href="?/data">REGISTER FOR RESEARCH</a></li>
+                </ul>
+            </div>
+        </div>
+        <div id=right__ID style='padding: 0 12px 0 0;'>
+            <div id=menu_right__ID>
+                <a href="sys_editor" id=edit__ID >Edit</a>
+            </div>
+            <label id=m_icon__ID for="hamburger__ID" style='color:#fff;font-size:28px;'><i class="fa fa-bars"></i></label>
+        </div>
+    </div>
+    <script>
+        $vm.header_ready=1;
+        if($vm.resize_content!=undefined) $vm.resize_content();
+        $('#D__ID a').on('click',function(e){
+            e.preventDefault();
+            $('#hamburger__ID').prop("checked", false);
+            $('#menu__ID a').removeClass('active__ID');
+            $(this).addClass('active__ID');
+            var module_name=$(this).attr('href').replace('?\/','');
+            if(module_name!="") $vm.load_module(module_name,'content',{})
+        })
+    </script>
+    <style>
+        #D__ID{
+            background-color: #fff;
+        }
+        #layout__ID{
+                display: grid;
+                grid-template-columns: auto 1fr auto;
+                overflow:auto;
+        }
+        #top_right_corner__ID{
+            display:block;
+            position:fixed;
+            top:3px;
+            right:10px;
+            font-size:11px;
+            line-height:13px;
+            color:#000;
+            z-index: 99999;
+        }
+        #middle__ID{
+            margin:auto;
+        }
+        #menu__ID ul{
+            margin: 0;
+            padding-left:0;
+        }
+        #menu__ID li{
+            display: inline-block;
+        }
+        #menu__ID a{
+            display: inline-block;
+            margin :0px 10px;
+            color:#000;
+            text-transform:uppercase;
+            position: relative;
+            text-decoration-line: none;
+        }
+        .active__ID{
+            font-weight: 700;
+        }
+        #menu__ID a:before {
+            content: "";
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -3px;
+            left: 0px;
+            background-color: red;
+            visibility: hidden;
+        }
+        #menu__ID a:hover:before {
+            transition: all 0.3s ease-in;
+            visibility: visible;
+            width: 100%;
+        }
+        #menu_right__ID a{
+            font-size: 10px;
+            margin-left:6px;
+            margin-right:0px;
+            margin-bottom:0px;
+            color:#fff
+        }
+        #right__ID .signin__ID{
+            cursor:pointer;
+        }
+        #mobile_logo__ID,#hamburger__ID, #m_icon__ID{
+            display:none;
+        }
+        @media screen and (max-width: 768px) {
+            #mobile_logo__ID,#hamburger__ID, #m_icon__ID{
+                display:block;
+            }
+            #layout__ID{
+                display: grid;
+                grid-template-columns: 1fr auto;
+                overflow:auto;
+            }
+            #left__ID{
+                display:none;
+            }
+            #middle__ID{
+                margin:0;
+            }
+            #menu_right__ID{
+                display:none;
+            }
+            #menu__ID{
+                float:left;
+                overflow:hidden;
+                max-height: 0;
+                transition: max-height 0.5s;
+            }
+            #hamburger__ID:checked ~ #menu__ID{
+                max-height:200px;
+            }
+            #right__ID label{
+                display:block;
+                margin:0;
+            }
+            #menu__ID ul {
+                padding: 0;
+                padding-right: 10px;
+            }
+  
+            #menu__ID li {
+                display: block;
+                padding:0px 0 0 15px;
+            }
+  
+            #menu__ID a {
+                display: inline-block;
+                padding: 5px 10px;
+                width: auto;
+            }
+        }
+    </style>
+</div>

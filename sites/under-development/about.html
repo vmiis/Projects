@@ -1,0 +1,71 @@
+<div id=D__ID>
+    <h5 id=title__ID></h5>
+    <br>
+    <div>
+        This micro web application contains the following files
+        <br><br>
+        Clinet Side
+        <ul id=list__ID>
+        </ul>
+        Server Side
+        <ul>
+            <li><b>server.js</b> providing web hosting services</li>
+            <li><b>start-server.bat</b> start server</li>
+        </ul>
+        Tools
+        <ul>
+            <li><b>editor.html</b> content source file editor</li>
+        </ul>
+        <br>
+        <br>
+        <a id=d__ID href="app.zip"style='color:#000' ><u>Download and run this micro web app on a local computer</u></a><br>
+        <a id=g__ID style='color:#000;cursor:pointer' ><u>Clone this micro web app to Glitch and run over there</u></a><br>
+        <div id=steps__ID style='display:none'>
+            Steps
+            <ul>
+                <li>goto <a target=_blank href='https://glitch.com'>glitch.com</a> (not necessary to have an account)</li>
+                <li>click 'Get Started'-> 'hello-webpage' to create a new app</li>
+                <li>once the app is started, click 'tools'->'import and export'->'Import from GitHub'</li>
+                <li>use this address <b>vmiis/projects:sites/<span id=app__ID></span></b> to import</li>
+                <li>optional: click '.env' to add a 'password_for_file_saving' variable for online editing contents</li>
+            </ul>
+        </div>
+    </div>
+    <script>
+        function F__ID(){
+            var a=window.location.href.split('/'); a.pop();
+            var n=a.pop();
+            var t=n.replace(/-/g,' ');
+            t=t.charAt(0).toUpperCase() + t.slice(1);
+            $('#title__ID').text(t);
+            $('#app__ID').text(n);
+            
+            var txt="";
+            for(a in $vm.module_list){
+                var f=$vm.module_list[a].url.split('/').pop(0);
+                var d=$vm.module_list[a].description; if(d==undefined) d="";
+                if(a.split('_')[0]!='sys') txt+="<li><b>"+f+"</b> "+d+"</li>";
+            }
+            $('#list__ID').html(txt);
+            $('#g__ID').on('click',function(){ 
+                if($('#steps__ID').css('display')=='none') $('#steps__ID').show();
+                else $('#steps__ID').hide();
+            })
+            
+        }
+    </script>
+    <style>
+        #D__ID{
+            padding:50px;
+			height:100%;
+			animation: vm_module_fadein 1.0s;
+            background-image: linear-gradient(135deg, rgba(255,255,255,1),rgba(255,255,255,0), rgba(255,255,255,0));
+        }
+        #steps__ID{
+            display: inline-block;
+            background-color: white;
+            padding: 10px;
+            font-size: 14px;
+        }
+    </style>
+</div>

@@ -1,0 +1,118 @@
+<div id=D__ID>
+    <div class=row style='min-height:550px;'>
+        <div class=col-6 style='background: #007d91;color:#fff;padding:0'>
+            <div style='float:right; max-width:600px;padding:20px'> 
+                <h1><span>Welcome</span> to Logo Research Participation</h1>
+                <p class="text-contents">The Logo Institute of Medical Research and the Logo Clinic have over 200 medical researchers and doctors working to uncover the causes of diseases and to find the best treatments.</p>
+                <p class="text-contents">You have arrived at our Research Participation home page. Our researchers are always looking for people with lung diseases or sleep disorders to participate in research studies. They often also need healthy people without these conditions.</p>
+                <p class="text-contents">Through this web page you can:</p>
+                <ul>
+                    <li><span>Find</span> out about our current research studies and perhaps participate in one of them</li>
+                    <li><span>Register</span> your interest as a research participant for current and upcoming research studies</li>
+                    <li><span>Sign-up</span> to our newsletter and receive updates about our research studies that are underway and about our research findings from completed studies</li>
+                </ul>
+            </div>
+        </div>
+        <div class=col-6 style='width: 100%; height: auto; background: url(https://www.researchvolunteer.org.au/main-img_v_2.jpg);background-size: cover; background-position: bottom center;background-repeat: no-repeat;'>
+        </div>
+    </div>
+    <div style='max-width:1200px;margin:0 auto'>
+        
+        <div class=row style='margin:0; padding:50px 0'>
+            <div class=col-6>
+            
+                <h3>Current research studies</h3>
+                <p>Browse our current research studies at the Logo through the below link. If you find a study that interests you and you want to volunteer as a participant then you can register your interest through the particular study link.</p>
+                <a id=study__ID style="color:#fff; background-color: #E51836; border: #E51836 solid 1px; margin: -4px 0px 50px 0px; text-transform: uppercase; position: relative;" class='btn' ><strong>Current research Studies</strong></a>
+
+
+
+            </div>
+            <div class=col-6
+                style='
+    max-width: 330px;
+    background: #007d91;
+    border-radius: 15px;
+    padding: 10px;
+    color: #FFF;
+    margin: 50px auto 30px;                
+                '
+            
+            >
+
+                <p style='
+                padding:10px;
+                font-size: 23px;
+    text-align: center;                
+                '>Over the last 28 years we have completed more than <span>200</span> research studies</p>
+   
+
+            </div>
+        </div>
+        <div class=row style='margin:0; padding:50px 0'>
+            <div class=col-6 style='color:#000;'>
+            
+                <h3>Register your interest as a research participant</h3>
+             <p>We understand that you may not have time to browse our current research studies or you may not find any that interest you at this time. If this is the case then you may wish to consider registering your interest as a research participant with us for the future. If you register for research with us, our researchers will look at the information you provide and if they think you might be eligible for a study they will be put in contact with you. You can always unregister at any time in the future if you are no longer interested in participating in research.</p>
+                 <a id=reg__ID style="color:#fff; background-color: #E51836; border: #E51836 solid 1px; margin: -4px 0px 50px 0px;" class='btn' ><strong>REGISTER FOR RESEARCH</strong></a>
+
+
+
+            </div>
+            <div class=col-6>
+                <form id=F__ID>
+                    <h2 style='font-size:16px; text-align: center;'>SIGN UP TO RECEIVE OUR NEWSLETTER</h2><br>
+                    <input style='width:100%; padding:6px 12px' placeholder='First Name' name=First_Name><br><br>
+                    <input style='width:100%; padding:6px 12px' placeholder='Last_Name' name=Last_Name><br><br>
+                    <input style='width:100%; padding:6px 12px' placeholder='Email Address' name=Email_Address><br><br>
+                    <input style='width:100%; padding:6px 12px' placeholder='Postal Code' name=Postal_Code><br><br>
+                    <button class='btn btn-primary'>SIGN UP</button>
+                </form>
+            </div>
+        </div>
+
+    </div>
+    <script>
+        function F__ID(){
+            var a=window.location.href.split('/'); a.pop();
+            var n=a.pop();
+            var t=n.replace(/-/g,' ');
+            t=t.charAt(0).toUpperCase() + t.slice(1);
+            $('#title__ID').text(t);
+            $('#app__ID').text(n);
+            
+            var txt="";
+            for(a in $vm.module_list){
+                var f=$vm.module_list[a].url.split('/').pop(0);
+                var d=$vm.module_list[a].description; if(d==undefined) d="";
+                if(a.split('_')[0]!='sys') txt+="<li><b>"+f+"</b> "+d+"</li>";
+            }
+            $('#list__ID').html(txt);
+            $('#g__ID').on('click',function(){ 
+                if($('#steps__ID').css('display')=='none') $('#steps__ID').show();
+                else $('#steps__ID').hide();
+            })
+            
+        }
+    </script>
+    <style>
+        #D__ID{
+			height:100%;
+			animation: vm_module_fadein 1.0s;
+            background-image: linear-gradient(135deg, rgba(255,255,255,1),rgba(255,255,255,0), rgba(255,255,255,0));
+        }
+        #steps__ID{
+            display: inline-block;
+            background-color: white;
+            padding: 10px;
+            font-size: 14px;
+        }
+        #reg__ID:hover, #study__ID:hover{
+            color:red!Important;
+            background-color: #fff!Important;
+        }
+        #D__ID div{
+            _border:1px solid red;
+        }
+    </style>
+</div>

@@ -1,0 +1,59 @@
+<div id=D__ID>
+    <div style='max-width:1200px;margin:0 auto'>
+        <div class=row>
+            <div class='col-6'>
+                <h2>Contact</h2>
+                <p>Logok Institute of Medical Research</p>
+                <p>100 City Road</p>
+                <p>Sydney 2000</p>
+                <p>P: 02 9123 4567</p>
+                <p>E:
+                    <a href="mailto:logo@company.com">logo@company.com</a>
+                </p>
+            </div>
+            <div class='col-6' style='padding-top:25px'>
+                <a target=_blank href="https://github.com/vmiis/projects" style='color:#000'>
+                    <i class="fab fa-github-square"></i> Open source project, powered by vmiis
+                </a>
+            </div>
+        </div>
+    </div>
+    <script>
+        $vm.footer_ready=1;
+        if($vm.resize_content!=undefined) $vm.resize_content();
+        $('#D__ID').on('dblclick',function(event){
+            event.stopPropagation();
+            if (event.ctrlKey & event.altKey) {
+                var r=confirm("Click OK will refresh the browser to reinstall all modules.");
+                if(r){
+                    localStorage.clear();
+                    location.reload();
+                }
+            }
+	    });
+    </script>
+    <style>
+        #D__ID{
+            border-top: #ccc solid 1px;
+            padding-top:25px;
+        }
+        #D__ID h2{
+            font-size: 16px;
+    font-weight: bold;
+    color: #403734;
+    font-family: 'arial';
+    text-transform: uppercase;            
+        }
+
+        #D__ID p{
+            font-weight: 500;
+    font-size: 16px;
+    margin: 0 0 5px 0;
+    color: #666;
+    font-size: 12px;
+    font-family: 'arial'; 
+    line-height: 14px;           
+        }
+
+    </style>
+</div>
