@@ -27,14 +27,14 @@
                 index:{url:$vm.hosting_path+"/index.html",description:"main entry, layout, module list setup"},
                 header:{url:$vm.hosting_path+"/header.html",description:"logo, menu, login/logout etc"},
                 footer:{url:$vm.hosting_path+"/footer.html",description:"copyright info, links etc"},
-                data_public:{url:$vm.hosting_path+"/data-public.html",Table:"vm-demo-research-study",description:"studies for public"},
+                home:{url:$vm.hosting_path+"/data-public.html",Table:"vm-demo-research-study",description:"studies for public"},
                 form_public:{url:$vm.hosting_path+"/form-public.html",Table:"vm-demo-research-study",description:"study details for public"},
                 about:{url:$vm.hosting_path+"/about.html",description:"information"},
                 data:{url:$vm.hosting_path+"/data.html",Table:"vm-demo-research-study",form_module:"form",router:1,description:"studies for backoffice"},
                 form:{url:$vm.hosting_path+"/form.html",Table:"vm-demo-research-study",router:1,description:"study details for backoffice"},
             }
             //---------------------------------------------
-            var first_module='data_public';
+            var first_module='home';
             var a=window.location.href.split('?/'); if(a.length==2) first_module=a[1].split('&')[0];
             $vm.ready=function(){
                 $vm.load_module(first_module,'content',{})
@@ -110,12 +110,17 @@
                 height: 100%;
                 display: grid;
                 grid-template-rows: auto 1fr;
+                overflow:auto;
             }
             #layout2 {
                 height: 100%;
                 display: grid;
                 grid-template-rows: 1fr auto;
-                overflow:auto;
+            }
+            @media screen and (max-width: 768px){
+                #layout2 {
+                    overflow:auto;
+                }
             }
             @keyframes vm_module_fadein {
                 from { opacity:0; }
