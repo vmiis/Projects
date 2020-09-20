@@ -1,0 +1,108 @@
+<div id=D__ID>
+    <div id=page__ID>
+        <div style='display:inline-block;padding:10px; background-color: #007D91;color:#fff' ><b>RESPIRATORY RESEARCH</b></div>
+        <div style='padding:20px 20px 20px 0'>
+            <h1 id=name__ID style='color:red;font-size:26px'></h1>
+        </div>
+        <div class=columnbox__ID>
+            <div style='display:inline-block'>
+                <h5>About the Study</h5>
+                <p id=description__ID>
+                </p>
+                <h5>What's Involved</h5>
+                <p id=whats__ID>
+                </p>
+                </div>
+                <h5>Eligibility Requirements</h5>
+                <p id=Eligibility__ID>
+                </p>
+              <p>
+                  <br><br>
+                <b>Chief Investigator: </b> <span id=chief__ID></span>
+              </p>
+              <p>
+                <br><br>
+              <b>Ethics Approvals:</b><br>
+              <span id=Ethics__ID></span>
+            </p>
+            <br>
+            <h5>Find out more</h5>
+            <b>Contact name: </b> <span id=contact_name__ID></span><br>
+            <b>Call: </b> <span id=contact_phone__ID></span><br>
+            <b>Email: </b> <span id=contact_email__ID></span><br>
+          
+
+              
+        </div>
+
+
+    </div>
+
+
+
+
+
+
+
+    <div style='width:100%;max-width:1200px; margin:0 auto'>
+    </div>
+    <script>
+    	function F__ID(){
+			//--------------------------------------------------------
+            var m=$vm.module_list['__MODULE__'];
+            $('#D__ID').on('load',function(){ 
+                var record=m.input.record;
+                $('#name__ID').text(record.Data.Study_Name);
+                $('#description__ID').text(record.Data.Description);
+                $('#whats__ID').text(record.Data.Whats_Involved);
+                
+                var aa=$vm.text(record.Data.Eligibility_Criteria).split(';');
+                var v3="<ul>";
+                for(var j=0;j<aa.length;j++){
+                    if(aa[j]!=""){
+                        v3+="<li>"+aa[j]+"</li>"
+                    }
+                }
+                v3+="<ul>";
+                $('#Eligibility__ID').html(v3);
+                $('#chief__ID').text(record.Data.Chief_Investigator);
+                $('#Ethics__ID').text(record.Data.Ethics_Approvals);
+                $('#contact_name__ID').text(record.Data.Contact_Name);
+                $('#contact_phone__ID').text(record.Data.Contact_Phone);
+                $('#contact_email__ID').text(record.Data.Contact_Email);
+                
+            })
+        }
+    </script>
+    <style>
+		#D__ID{
+			height:100%;
+			animation: vm_module_fadein 1.0s;
+            background-color: #fff;
+            overflow:auto;
+		}
+        #page__ID{
+            max-width:1170px;
+            margin-left:auto;
+            margin-right:auto;
+            overflow-x: hidden;
+            padding-top:50px;'
+        }
+    	.columnbox__ID{
+    		column-count: 2;
+    		column-gap: 50px;
+            padding:0px;
+    	}
+        @media screen and (max-width: 1200px){
+            .columnbox__ID{
+                padding:15px;
+                column-count: 1;
+            }
+        }
+        .columnbox__ID img {
+            margin:10px 0;
+            width: 100%;
+            height: auto;
+        }
+    </style>
+</div>

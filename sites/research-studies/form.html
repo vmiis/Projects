@@ -1,31 +1,72 @@
 <div id=D__ID>
     <section id=form_container__ID>
     	<div id=header__ID>
-    		Form
+    		Research Study
     	</div>
     	<form id=F__ID>
     		<div class="container">
-<div class='row row_7'><div class='col'>
-<span>First Name</span>
-<input type=text class=form-control name=First_Name>
-</div></div>
+                <div class='row row__ID'><div class='col'>
+                <span>Study Name</span>
+                <input type=text class=form-control name=Study_Name>
+                </div></div>
 
-<div class='row row_7'><div class='col'>
-<span>Last Name</span>
-<input type=text class=form-control name=Last_Name>
-</div></div>
+                <div class='row row__ID'><div class='col'>
+                <span>Description</span>
+                <textarea class=form-control name=Description style="overflow:hidden"></textarea>
+                </div></div>
 
-<div class='row row_7'><div class='col'>
-<span>State</span>
-    <select class=form-control name=State>
-        <option value=NSW>NSW</option>
-        <option value=QLD>QLD</option>
-    </select>
-</div></div>
+                <div class='row row__ID'><div class='col'>
+                <span>Eligibility Criteria</span>
+                <textarea class=form-control name=Eligibility_Criteria style="overflow:hidden"></textarea>
+                </div></div>
+                
+                <div class='row row__ID'><div class='col'>
+                    <span>Ethics Approvals</span>
+                    <textarea class=form-control name=Ethics_Approvals style="overflow:hidden"></textarea>
+                </div></div>
+    
+                <div class='row row__ID'><div class='col'>
+                    <span>What's involved</span>
+                    <textarea class=form-control name=Whats_Involved style="overflow:hidden"></textarea>
+                </div></div>
+                
+                <div class='row row__ID'>
+                    <div class='col-lg-4 col-sm-12'>
+                    <span>Visits Required</span>
+                    <input type=text class=form-control name=Visits_Required>
+                    </div>
 
-<div class='row row_7'><div class='col radio_7'>
-<span>Gender</span><br>
-<label><input type='radio' name=Gender value=Male>&nbsp&nbspMale</label>&nbsp&nbsp&nbsp&nbsp<label><input type='radio' name=Gender value=Female>&nbsp&nbspFemale</label>&nbsp&nbsp&nbsp&nbsp<label><input type='radio' name=Gender value=Other>&nbsp&nbspOther</label>&nbsp&nbsp&nbsp&nbsp</div></div>
+                    <div class='col-lg-4 col-sm-12'>
+                    <span>Chief Investigator</span>
+                    <input type=text class=form-control name=Chief_Investigator>
+                    </div>
+                    
+                    <div class='col-lg-4 col-sm-12'>
+                        <span>Research Category</span>
+                        <select class=form-control name=Research_Category>
+                            <option value=''></option>
+                            <option value=home>home</option>
+                            <option value=info>info</option>
+                        </select>
+                        </div>
+                    </div>
+                
+                <div class='row row__ID'>
+                    <div class='col-lg-4 col-sm-12'>
+                    <span>Contact_Name</span>
+                    <input type=text class=form-control name=Contact_Name>
+                    </div>
+
+                    <div class='col-lg-4 col-sm-12'>
+                    <span>Contact Phone</span>
+                    <input type=phone class=form-control name=Contact_Phone>
+                    </div>
+                    
+                    <div class='col-lg-4 col-sm-12'>
+                    <span>Contact Email</span>
+                    <input type=email class=form-control name=Contact_Email>
+                    </div>
+                </div>
 
 
     			<br>
@@ -46,15 +87,23 @@
 			var old_load=m.load;
 			m.load=function(){
                 old_load();
-                
+                $('#F__ID textarea').triggerHandler('input');
 			}
             //-------------------------------------
+
+            $('#F__ID textarea').on('input',function(e){
+                e.target.style.height='5px';
+                e.target.style.height = (e.target.scrollHeight)+"px";
+            })
     	}
     </script>
     <style>
         #form_container__ID{
-            max-width:700px;
+            max-width:1200px;
         }
         VmInclude:__COMPONENT__/f/form.01.css
+        #F__ID span{
+            font-weight: bold;
+        }
     </style>
 </div>

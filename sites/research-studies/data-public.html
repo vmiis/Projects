@@ -1,0 +1,92 @@
+<div id=D__ID>
+    <div style='background-color:#007d91;min-height:170px;display: flex; justify-content: center;'>
+        <div style='width:100%;max-width:1170px;margin:auto;border:0px solid red'>
+            <h1 style='color:#fff;text-align: left;'>CURRENT STUDIES</h1>
+        </div>  
+    </div>
+
+    <div style='width:100%;max-width:1170px;margin:auto;padding: 30px 0;border:0px solid red'>
+        <div>
+            <h1 style='font-size:32px'>Participate in a Research Study</h1>
+            <span>If you would like to get involved, please browse our current research studies below.</span>
+            <br><br>
+            <div id=table__ID ></div>
+
+        </div>
+    </div>
+    <script>
+        function F__ID(){
+            //-------------------------------------
+            VmInclude:__COMPONENT__/g/grid.01.js
+            m.sort={I1:1}
+            //-------------------------------------
+            m.render=function(){
+                    var txt="<table class='table'>"
+                        console.log(txt)
+                    txt+="<thead>";
+                        txt+="<tr>";
+                            txt+="<th>Research Category</th>";
+                            txt+="<th>Name</th>";
+                            txt+="<th>Eligibility Criteria</th>";
+                            txt+="<th>Visits Required</th>";
+                            txt+="<th>Study Information</th>";
+                        txt+="</tr>";
+                    txt+="</thead>";
+                    txt+="<tbody>";
+                        for(var i=0;i<m.records.length;i++){
+                            txt+="<tr>";
+                            txt+="<td style='text-align: center;'><i style='font-size:32px; color:#007d91' class='fa fa-"+$vm.text(m.records[i].Data.Research_Category)+"'></i></td>";
+                            txt+="<td>"+$vm.text(m.records[i].Data.Study_Name)+"</td>";
+                            var aa=$vm.text(m.records[i].Data.Eligibility_Criteria).split(';');
+                            
+                            var v3="<ul>";
+                            for(var j=0;j<aa.length;j++){
+                                if(aa[j]!=""){
+                                    v3+="<li>"+aa[j]+"</li>"
+                                }
+                            }
+                            v3+="<ul>";
+                            txt+="<td>"+v3+"</td>";
+                            txt+="<td style='text-align: center;'>"+$vm.text(m.records[i].Data.Visits_Required)+"</td>";
+                            txt+="<td style='text-align: center;'><button class='btn btn-danger' I="+i+" style='font-size:13px;white-space:nowrap;'>VIEW STUDY</button></td>"
+                            txt+="</tr>";
+                        }
+                    txt+="</tbody>";
+                txt+="</table>";
+                console.log(txt)
+                $('#table__ID').html(txt);
+
+                $('#table__ID button').on('click',function(){
+                    var I=$(this).attr('I');
+                    $vm.load_module('form_public','',{record:m.records[I]})
+                })
+            }
+            //-------------------------------------
+        }
+    </script>
+    <style>
+        #D__ID{
+            font-size:13px;
+            font-family: Helvetica, Arial, sans-serif;
+            height:100%;
+            overflow: auto;
+            animation: vm_module_fadein 1.0s;
+            background-color:#fff
+        }
+        #table__ID thead{
+            color:#fff;
+            background-color: #007d91;
+        }
+        #table__ID th, #table__ID td{
+            border:1px solid #ccc;
+            vertical-align: middle;
+        }
+        #table__ID td ul{
+            padding-left:15px;
+        }
+
+        #Da__ID {
+            border: 1px solie #888;
+        }
+    </style>
+</div>
