@@ -1,0 +1,120 @@
+<div id=D__ID>
+    <section id=form_container__ID>
+    	<div id=header__ID>
+    		Register for Research
+    	</div>
+    	<form id=F__ID>
+    		<div class="container">
+                <div class='row row__ID'>
+                    <div class='col-lg-6 col-sm-12'>
+                        <span>First Name</span>
+                        <input type=text class=form-control name=First_Name>
+                    </div>
+                    <div class='col-lg-6 col-sm-12'>
+                        <span>Last Name</span>
+                        <input type=text class=form-control name=Last_Name>
+                    </div>
+                </div>
+                <div class='row row__ID'>
+                    <div class='col-lg-6 col-sm-12'>
+                        <span>Phone</span>
+                        <input type=phone class=form-control name=Phone>
+                    </div>
+                    <div class='col-lg-6 col-sm-12'>
+                        <span>Gender</span>
+                        <select class=form-control name=Gender>
+                            <option value=''></option>
+                            <option>Male</option>
+                            <option>Female</option>
+                            <option>Indeterminate/Intersex/Unspecified</option>
+                        </select>
+                    </div>
+                </div>
+                <div class='row row__ID'>
+                    <div class='col-lg-6 col-sm-12'>
+                        <span>Email Address</span>
+                        <input type=email class=form-control name=Email_Address>
+                    </div>
+                    <div class='col-lg-6 col-sm-12'>
+                        <span>Date of Birth</span>
+                        <input type=date class=form-control name=Date_of_Birth>
+                    </div>
+                </div>
+                <div class='row row__ID'>
+                    <div class='col-lg-6 col-sm-12'>
+                        <span>Postal Code</span>
+                        <input type=text class=form-control name=Postcode>
+                    </div>
+                </div>
+                <br>
+                <br>
+                <div class='row'>
+                    <div class='col'>
+                        <b>Have you been diagnosed with, or think you have?
+                        <br>Tick the boxes below where applicable.</b>
+                    </div>
+                </div>
+                <br>
+                <div class='row row__ID'>
+                    <div class='col-lg-6 col-sm-12'>
+                        <label><input type=checkbox class=_form-control name=Lung_Cancer> Lung Cancer</label>
+                    </div>
+                    <div class='col-lg-6 col-sm-12'>
+                        <label><input type=checkbox class=_form-control name=Asthma> Asthma</label>
+                    </div>
+                </div>
+                <div class='row row__ID'>
+                    <div class='col-lg-6 col-sm-12'>
+                        <label><input type=checkbox class=_form-control name=COPD> COPD (Chronic Obstructive Pulmonary Disease)</label>
+                    </div>
+                    <div class='col-lg-6 col-sm-12'>
+                        <label><input type=checkbox class=_form-control name=Insomnia> Insomnia</label>
+                    </div>
+                </div>
+                <div class='row row__ID'>
+                    <div class='col-lg-6 col-sm-12'>
+                        <label><input type=checkbox class=_form-control name=Chronic_Bronchitis> Chronic Bronchitis</label>
+                    </div>
+                    <div class='col-lg-6 col-sm-12'>
+                        <label><input type=checkbox class=_form-control name=Narcolepsy> Narcolepsy</label>
+                    </div>
+                </div>
+
+    			<br>
+                <div class="row">
+                        <div class=col>
+                        <button id=submit__ID type="submit" class="btn btn-secondary">Submit</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </section>
+    
+    <script>
+    	function F__ID(){
+			//--------------------------------------------------------
+			VmInclude:__COMPONENT__/f/form.01.js
+			//-------------------------------------
+			var old_load=m.load;
+			m.load=function(){
+                old_load();
+                $('#F__ID textarea').triggerHandler('input');
+			}
+            //-------------------------------------
+
+            $('#F__ID textarea').on('input',function(e){
+                e.target.style.height='5px';
+                e.target.style.height = (e.target.scrollHeight)+"px";
+            })
+    	}
+    </script>
+    <style>
+        #form_container__ID{
+            max-width:960px;
+        }
+        VmInclude:__COMPONENT__/f/form.01.css
+        #F__ID span{
+            font-weight: bold;
+        }
+    </style>
+</div>

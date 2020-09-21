@@ -1,0 +1,33 @@
+﻿<div id=D__ID>
+    <section>
+        VmInclude:__COMPONENT__/g/grid.01.html
+    </section>
+    <script>
+        function F__ID(){
+            //-------------------------------------
+            VmInclude:__COMPONENT__/g/grid.01.js
+            //-------------------------------------
+            var fields=`
+                First_Name,
+                Last_Name,
+                Phone,
+                Gender,
+                Email_Address,
+                Date_of_Birth,
+                Lung_Cancer,
+                Asthma
+            `;
+            m.fields="_Form,"+fields+",Submit_date,Submitted_by,_Delete";
+            //-------------------------------------
+            m.cell_render=function(records,I,field,td){
+                switch(field){
+                    
+                }
+            }
+            //-------------------------------------
+        }
+    </script>
+    <style>
+        VmInclude:__COMPONENT__/g/grid.01.css
+    </style>
+</div>

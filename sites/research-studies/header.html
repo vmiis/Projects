@@ -36,18 +36,23 @@
                 var module_name=$(this).attr('href').replace('?\/','');
                 if(module_name!="") $vm.load_module(module_name,'content',{})
             })
-            $vm.header_active_menu_item=function(m_name){
+            $vm.header_change=function(m_name){
                 $('#menu__ID a, #menu_right__ID a').removeClass('active__ID');
                 $('#menu__ID a, #menu_right__ID a').each(function(){
                     var module_name=$(this).attr('href').replace('?\/','');
                     if(module_name==m_name) $(this).addClass('active__ID');
                 })
+                if(m_name=='about'){
+                    $('#D__ID').css('background','rgba(255,255,255,0)');
+                }
+                else{
+                    $('#D__ID').css('background','rgba(255,255,255,1)');
+                }
             }
         }
     </script>
     <style>
         #D__ID{
-            background-color:#fff;
         }
         #layout__ID{
             display: grid;

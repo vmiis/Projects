@@ -1,0 +1,152 @@
+<div id=D__ID>
+    <div style='max-width:1000px; margin: 0 auto;padding:20px 0 50px 0'>
+        <h2 style='color:#fff'> Register your interest as a Research Participant</h2>
+        <h4 style="color: #FFF;font-size: 14px;margin-top: 20px;font-family: 'arial';">Fill in the below form to register your interest for participating in our research</h4>
+
+        <br><br>
+    	<form id=F__ID>
+                <div class='row row__ID'>
+                    <div class='col-lg-6 col-sm-12'>
+                        <input type=text class=form-control name=First_Name placeholder='First Name'>
+                    </div>
+                    <div class='col-lg-6 col-sm-12'>
+                        <input type=text class=form-control name=Last_Name placeholder='Last Name'>
+                    </div>
+                </div>
+                <div class='row row__ID'>
+                    <div class='col-lg-6 col-sm-12'>
+                        <input type=phone class=form-control name=Phone placeholder='Phone'>
+                    </div>
+                    <div class='col-lg-6 col-sm-12'>
+                        <select class=form-control name=Gender>
+                            <option value=''>Gender</option>
+                            <option>Male</option>
+                            <option>Female</option>
+                            <option>Indeterminate/Intersex/Unspecified</option>
+                        </select>
+                    </div>
+                </div>
+                <div class='row row__ID'>
+                    <div class='col-lg-6 col-sm-12'>
+                        <input type=email class=form-control name=Email_Address placeholder='Email Address'>
+                    </div>
+                    <div class='col-lg-6 col-sm-12'>
+                        <input type=date class=form-control name=Date_of_Birth placeholder='Date of Birth (DD/MM/YYYY)'>
+                    </div>
+                </div>
+                <div class='row row__ID'>
+                    <div class='col-lg-6 col-sm-12'>
+                        <input type=text class=form-control name=Postcode placeholder='Postal Code'>
+                    </div>
+                </div>
+                <br>
+                <hr style='border-top: 1px solid rgba(255, 255, 255, 1);'>
+                <div class='row'>
+                    <div class='col' style='color:#fff'>
+                        Have you been diagnosed with, or think you have?
+                        <br>Tick the boxes below where applicable.
+                    </div>
+                </div>
+                <br>
+                <div class='row row__ID'>
+                    <div class='col-lg-6 col-sm-12'>
+                        <label><input type=checkbox class=box__ID name=Lung_Cancer style='_display:none'> Lung Cancer</label>
+                    </div>
+                    <div class='col-lg-6 col-sm-12'>
+                        <label><input type=checkbox class=box__ID name=Asthma> Asthma</label>
+                    </div>
+                </div>
+                <div class='row row__ID'>
+                    <div class='col-lg-6 col-sm-12'>
+                        <label><input type=checkbox class=box__ID name=COPD> COPD (Chronic Obstructive Pulmonary Disease)</label>
+                    </div>
+                    <div class='col-lg-6 col-sm-12'>
+                        <label><input type=checkbox class=box__ID name=Insomnia> Insomnia</label>
+                    </div>
+                </div>
+                <div class='row row__ID'>
+                    <div class='col-lg-6 col-sm-12'>
+                        <label><input type=checkbox class=box__ID name=Chronic_Bronchitis> Chronic Bronchitis</label>
+                    </div>
+                    <div class='col-lg-6 col-sm-12'>
+                        <label><input type=checkbox class=box__ID name=Narcolepsy> Narcolepsy</label>
+                    </div>
+                </div>
+
+    			<br>
+                <div class="row">
+                        <div class=col>
+                        <button id=submit__ID type="submit" class="btn btn-danger">REGISTER</button>
+                    </div>
+                </div>
+        </form>
+    </div>
+    
+    <script>
+    	function F__ID(){
+			//--------------------------------------------------------
+			VmInclude:__COMPONENT__/f/form.01.js
+			//-------------------------------------
+			var old_load=m.load;
+			m.load=function(){
+                old_load();
+                $('#F__ID textarea').triggerHandler('input');
+			}
+            //-------------------------------------
+            m.after_insert=function(data,res){
+                alert("Thank you!");
+            }
+            //-------------------------------------
+            $('#F__ID textarea').on('input',function(e){
+                e.target.style.height='5px';
+                e.target.style.height = (e.target.scrollHeight)+"px";
+            })
+    	}
+    </script>
+    <style>
+        #D__ID{
+            background-color: #007d91;
+        }
+        .row__ID{
+            padding:10px 0px;
+        }
+        #form_container__ID{
+            max-width:960px;
+        }
+        #F__ID span{
+            font-weight: bold;
+        }
+        #D__ID label{
+            color:#fff;
+        }
+        #D__ID input[type=checkbox]{
+            height:0;
+            width:0;
+            margin-right:30px;
+        }
+        .box__ID::before{
+            content: '';
+            display: block;
+            width: 18px;
+            height: 18px;
+            border: 1px solid #FFF;
+            position: absolute;
+            left: 20px;
+            top: 4px;
+            opacity: .6;
+            -webkit-transition: all .12s, border-color .08s;
+            transition: all .12s, border-color .08s;            
+        }
+        .box__ID:checked::before{
+            width: 10px;
+            left: 20px;
+            top: 0px;
+            border-radius: 0;
+            opacity: 1;
+            border-top-color: transparent;
+            border-left-color: transparent;
+            -webkit-transform: rotate(45deg);
+            transform: rotate(45deg);
+        }
+    </style>
+</div>
