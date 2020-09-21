@@ -55,6 +55,7 @@
                 editor.getSession().setMode("ace/mode/html");
                 editor.getSession().setUseWorker(false);
                 editor.setOption("showPrintMargin", false)
+                editor.setOptions({maxLines: Infinity});                
                 editor.on('change', function(){
                     $('#saved__ID').text('');
                 });

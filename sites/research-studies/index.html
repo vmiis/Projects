@@ -50,6 +50,7 @@
             $vm.module_list.sys_editor={url:$vm.hosting_path+"/editor.html"}
             //---------------------------------------------
             $vm.show=function(m_name){
+                if($vm.header_active_menu_item!=undefined) $vm.header_active_menu_item(m_name);
                 var a=window.location.href.split('?/')[0].split('/'); a.pop(); var t=a.pop().replace(/-/g,' ');
                 var title=$vm.module_list[m_name].url.split('/').pop(); document.title=title+" - "+t ;
                 var info=$vm.module_list[m_name].description;           if(info==undefined) info="A micro web application";     $("meta[name='description']").attr("content", info);

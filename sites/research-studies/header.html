@@ -1,8 +1,10 @@
 <div id=D__ID>
     <div id=layout__ID>
         <div id=left__ID style='padding:15px 0 15px 15px;'>
-            <a id=desk_logo__ID href="home" style='font-weight: bold;font-size: 2.5em;color:#117a8b;text-decoration: none;'>
-            LOGO</a>
+            <a id=desk_logo__ID href="home" style='color:#117a8b;text-decoration: none;'>
+                <span style='font-size:18px;font-weight:bold;'>MICROSERVICE</span><br>
+                <span style='font-size:17px'>Concept Mockup</span>
+            </a>
         </div>
         <div id=middle__ID>
             <a id=mobile_logo__ID href="home" style='padding-left:15px;font-weight: bold;font-size: 1.5em;color:#007d91;text-decoration: none;'>
@@ -25,14 +27,23 @@
         </div>    
     </div>    
     <script>
-        $vm.header_ready=1;
-        if($vm.resize_content!=undefined) $vm.resize_content();
-        $('#D__ID a').on('click',function(e){
-            e.preventDefault();
-            $('#hamburger__ID').prop("checked", false);
-            var module_name=$(this).attr('href').replace('?\/','');
-            if(module_name!="") $vm.load_module(module_name,'content',{})
-        })
+        function F__ID(){
+            $vm.header_ready=1;
+            if($vm.resize_content!=undefined) $vm.resize_content();
+            $('#D__ID a').on('click',function(e){
+                e.preventDefault();
+                $('#hamburger__ID').prop("checked", false);
+                var module_name=$(this).attr('href').replace('?\/','');
+                if(module_name!="") $vm.load_module(module_name,'content',{})
+            })
+            $vm.header_active_menu_item=function(m_name){
+                $('#menu__ID a, #menu_right__ID a').removeClass('active__ID');
+                $('#menu__ID a, #menu_right__ID a').each(function(){
+                    var module_name=$(this).attr('href').replace('?\/','');
+                    if(module_name==m_name) $(this).addClass('active__ID');
+                })
+            }
+        }
     </script>
     <style>
         #D__ID{
