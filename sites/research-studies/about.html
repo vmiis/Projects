@@ -30,14 +30,15 @@
                 <li>optional: click '.env' to add a 'password_for_file_saving' variable for online editing contents</li>
             </ul>
         </div>
-        <div style='max-width:500px;font-size:13px;padding-top:20px'>
-            What are microservices?<br>
-            Highly maintainable and testable,Loosely coupled,Independently deployable,Organized around business capabilities,Owned by a small team
+        <div style='max-width:500px;font-size:13px;padding-top:20px;'>
+            <b>What are microservices?</b><br>
+            Highly maintainable and testable, loosely coupled, independently deployable, organized around business capabilities,owned by a small team,
+            build large business portal by adding microservices together.
         </div>
     </div>
     <script>
         function F__ID(){
-            var a=window.location.href.split('/'); a.pop();
+            var a=window.location.href.replace('?/','').split('/'); a.pop();
             var n=a.pop();
             var t=n.replace(/-/g,' ');
             t=t.charAt(0).toUpperCase() + t.slice(1);
@@ -57,7 +58,6 @@
             })
             $('#D__ID').on('load',function(){
                 var a=$(window).height()-$('#D__ID').offset().top;
-                console.log(a);
                 $('#D__ID').css("min-height",a);
             })
         }

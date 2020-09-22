@@ -1,0 +1,76 @@
+<div id=D__ID>
+    <section id=form_container__ID>
+    	<div id=header__ID>
+    		File
+    	</div>
+    	<form id=F__ID>
+    		<div class="container">
+				<div class='row row__ID'>
+					<div class="col">
+						<span>Display name</span>
+						<input type=text class=form-control name=Display_name>
+					</div>
+				</div>
+    			<div class="row row__ID">
+    				<div class=col>
+    					<span>File</span>
+                        <div class="form-control" style='height: 80px;'>
+                            <u style='cursor:pointer' id=link_File__ID></u>
+                            <br>
+                            <input type="file" name=File style="margin-top:6px" /> &nbsp&nbsp&nbsp <button type="button" id=x_File__ID>Remove</button>
+                        </div>
+					</div>
+				</div>
+				<div class='row row__ID'>
+					<div class="col-4">
+						<span>Size</span>
+						<input type=text class=form-control name=Size readonly>
+					</div>
+				</div>
+				<div class='row row__ID'>
+					<div class="col-4">
+						<span>Order</span>
+						<input type=text class=form-control name=Order>
+					</div>
+				</div>
+			
+    			<br>
+    			<div class="row">
+    				<div class=col>
+    					<button id=submit__ID type="submit" class="btn btn-secondary">Submit</button>
+    				</div>
+    			</div>
+    		</div>
+    	</form>
+    </section>
+    VmInclude:__COMPONENT__/m/model.01.html
+    <script>
+    	function F__ID(){
+    		//-------------------------------------
+            VmInclude:__COMPONENT__/f/form.01.js
+    		//-------------------------------------
+            m.old_load=m.load;
+            m.load=function(){
+                m.old_load();
+                m.set_file_link("File");
+            }
+			//-------------------------------------
+			$('#F__ID input[name=File]').on('change',function(evt){
+                if(this.files.length==1){
+                    $('#F__ID input[name=Size]').val(this.files[0].size);
+                }
+            });
+			//-------------------------------------
+			m.before_submit=function(data,index){
+				index.I1=data.Order;
+			}
+			//-------------------------------------
+    	}
+    </script>
+    <style>
+		VmInclude:__COMPONENT__/f/form.01.css
+		#form_container__ID{
+			max-width:700px;
+		}
+    </style>
+</div>
