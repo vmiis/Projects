@@ -24,13 +24,13 @@
             $vm.hosting_path=window.location.href.substring(0, window.location.href.split('?')[0].lastIndexOf('/'));
             //---------------------------------------------
             $vm.module_list={
-                index:{url:$vm.hosting_path+"/index.html",description:"main entry, layout, module list setup"},
-                header:{url:$vm.hosting_path+"/header.html",description:"logo, menu, login/logout etc"},
-                footer:{url:$vm.hosting_path+"/footer.html",description:"copyright info, links etc"},
-                about:{url:$vm.hosting_path+"/about.html",description:"information about this app"},
-                "data-public":{url:$vm.hosting_path+"/data-public.html",Table:"document-demo",form_module:"form",router:1,description:"view and search data in a cloud database table"},
-                data:{url:$vm.hosting_path+"/data.html",Table:"document-demo",form_module:"form",router:1,description:"view and search data in a cloud database table"},
-                form:{url:$vm.hosting_path+"/form.html",Table:"document-demo",router:1,description:"data collection form"},
+                "index":        {url:$vm.hosting_path+"/index.html",description:"main entry, layout, module list setup"},
+                "header":       {url:$vm.hosting_path+"/header.html",description:"logo, menu, login/logout etc"},
+                "footer":       {url:$vm.hosting_path+"/footer.html",description:"copyright info, links etc"},
+                "about":        {url:$vm.hosting_path+"/about.html",description:"information about this app"},
+                "data-public":  {url:$vm.hosting_path+"/data-public.html",Table:"document-demo",form_module:"form",router:1,description:"view and search data in a cloud database table"},
+                "data":         {url:$vm.hosting_path+"/data.html",Table:"document-demo",form_module:"form",router:1,description:"view and search data in a cloud database table"},
+                "form":         {url:$vm.hosting_path+"/form.html",Table:"document-demo",router:1,description:"data collection form"},
             }
             //---------------------------------------------
             var first_module='data-public';

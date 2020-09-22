@@ -38,26 +38,17 @@
     </div>
     <script>
         function F__ID(){
-            $vm.module_list["__MODULE__"].show=function(){
-    			document.title="Services";
-                $("meta[name='description']").attr("Services");
-                $("body").removeClass();
-                $("body").addClass('body_background_study__ID');
-            }
             $('#page__ID button').on('click',function(){
                 $vm.load_module("read_more","",{});
             })
         }
     </script>
     <style>
-        .body_background_study__ID{
-            background-image: url(https://image.vmiis.com/bk017.jpg);
-            background-position: left top;
-        }
         #D__ID{
             height:100%;
             overflow:auto;
             animation: vm_module_fadein 1.0s;
+            background: #68af84;
         }
         #D__ID{
           height:100%;
