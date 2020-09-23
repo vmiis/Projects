@@ -1,4 +1,7 @@
 <div id=D__ID>
+    <script type="text/javascript" src="https://gitzip.vmiis.com/js/FileSaver.min.js"></script>
+    <script type="text/javascript" src="https://gitzip.vmiis.com/js/jszip.min.js"></script>
+    <script type="text/javascript" src="https://gitzip.vmiis.com/js/API.js"></script>
     <h5 id=title__ID></h5>
     <br>
     <div>
@@ -18,7 +21,7 @@
         </ul>
         <br>
         <br>
-        <a id=d__ID href="app.zip"style='color:#000' ><u>Download and run this micro web app on a local computer</u></a><br>
+        <a id=d__ID style='cursor:pointer;color:#000'><u>Download and run this micro web app on a local computer</u></a><br>
         <a id=g__ID style='color:#000;cursor:pointer' ><u>Clone this micro web app to Glitch and run over there</u></a><br>
         <div id=steps__ID style='display:none'>
             Steps
@@ -32,7 +35,7 @@
         </div>
         <div style='max-width:500px;font-size:13px;padding-top:20px;'>
             <b>What are microservices?</b><br>
-            Highly maintainable and testable, loosely coupled, independently deployable, organized around business capabilities,owned by a small team,
+            Highly scalable, flexible, reusable, replaceable, maintainable and testable, loosely coupled, independently deployable, organized around business capabilities,owned by a small team,
             build large business portal by adding microservices together.
         </div>
     </div>
@@ -56,7 +59,9 @@
                 if($('#steps__ID').css('display')=='none') $('#steps__ID').show();
                 else $('#steps__ID').hide();
             })
-            
+            $('#d__ID').on('click',function(){
+                GitZip.zipRepo('https://github.com/vmiis/projects/tree/master/sites/'+n);
+            })
         }
     </script>
     <style>

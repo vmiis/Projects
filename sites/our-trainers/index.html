@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <meta name="description" content="">
+        <meta name='viewport' content='width=device-width, initial-scale=1'>
+        <link rel="icon" href="data:,">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.css" />
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.14.0/css/all.css" />
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.14.0/css/v4-shims.css" />
@@ -23,11 +26,16 @@
                 header:{url:$vm.hosting_path+"/header.html",},
                 footer:{url:$vm.hosting_path+"/footer.html",},
                 home:{url:$vm.hosting_path+"/home.html"},
-                trainers:{url:$vm.hosting_path+"/trainers.html"},
+                trainers:{url:$vm.hosting_path+"/trainers.html",router:1},
             }
+            var first_module='home';
+            var a=window.location.href.split('?/'); if(a.length==2) first_module=a[1].split('&')[0];
             $vm.ready=function(){
-                $vm.load_module('trainers','content',{})
+                $vm.load_module(first_module,'content',{})
             }
+            //---------------------------------------------
+        </script>    
+        <script vm framework code>
             //=================================================
             //VM framework code, do not need to chang the following code in most cases
             $vm.root_layout_content_slot='content'
@@ -36,6 +44,9 @@
             $vm.module_list.sys_editor={url:$vm.hosting_path+"/editor.html"}
             //---------------------------------------------
             $vm.show=function(m_name){
+                var a=window.location.href.split('?/')[0].split('/'); a.pop(); var t=a.pop().replace(/-/g,' ');
+                var title=$vm.module_list[m_name].url.split('/').pop(); document.title=title+" - "+t ;
+                var info=$vm.module_list[m_name].description;           if(info==undefined) info="A micro web application";     $("meta[name='description']").attr("content", info);
                 if(m_name=="sys_editor") return;
                 $vm.active_name=m_name;
             }
@@ -73,7 +84,7 @@
                 $vm.load_component('header','header',{});
                 $vm.load_component('footer','footer',{});
                 for (m in $vm.module_list) {
-                    if(m!="header" && m!="footer" && m!="home") $vm.load_module(m,'content',{silence:1})
+                    if(m!="index" && m!="header" && m!="footer" && m!=first_module) $vm.load_module(m,'content',{silence:1})
                 }
                 $vm.ready();
             }
@@ -83,7 +94,7 @@
             //=================================================
         </script>
         <!----------------------------------------------->
-        <style>
+        <style main style>
             html,body{
                 margin:0;
                 padding:0;
