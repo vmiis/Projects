@@ -52,12 +52,12 @@
 					display_name=display_name.replace(/_/g,' ');
 					database_name=database_name.replace(/ /g,'_');
 
-					var begin1="<div class='row row__ID'><div class='col radio__ID'>\r\n";
+					var begin1="<div class='row row__ID'><div class='col'>\r\n";
 					    begin1+="\t<span>"+display_name+"</span><br>\r\n\t";
 					var end1="\r\n</div></div>\r\n\r\n";
 					var begin2="<div class='row row__ID'>\r\n";
-						begin2+="\t<div class='col-4'>"+display_name+"</div>\r\n";
-						begin2+="\t<div class='col-8'>\r\n\t\t"
+						begin2+="\t<div class='col-lg-4 col-sm-12'>"+display_name+"</div>\r\n";
+						begin2+="\t<div class='col-lg-8 col-sm-12'>\r\n\t\t"
 					var end2="\r\n\t</div>\r\n";
 					    end2+="</div>\r\n\r\n";
 
@@ -140,7 +140,7 @@
                 $.get('__CURRENT_PATH__templates/template_form01.html',function(txt){
 					txt=txt.replace('___FORM_MODEL___','');
 					txt=txt.replace('___FORM_ON_LOAD___',form_on_load);
-					txt=txt.replace('___FORM_CONTENTS___',form_contents);
+					txt=txt.replace('___FORM_CONTENTS___',form_contents.replace(/row__ID/g,'row__'+'ID'));
 					txt=txt.replace('___FORM_WIDTH___',form_width);
 					var fn='form.html';
 					if(form_name!="") fn="form_"+form_name;
