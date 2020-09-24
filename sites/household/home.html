@@ -50,11 +50,9 @@
             
             var txt="";
             for(a in $vm.module_list){
-                if($vm.module_list[a].url.indexOf($vm.hosting_path)!=-1){
-                    var f=$vm.module_list[a].url.split('/').pop(0);
-                    var d=$vm.module_list[a].description; if(d==undefined) d="";
-                    if(a.split('_')[0]!='sys') txt+="<li><b>"+f+"</b> "+d+"</li>";
-                }
+                var f=$vm.module_list[a].url.split('/').pop(0);
+                var d=$vm.module_list[a].description; if(d==undefined) d="";
+                if(a.split('_')[0]!='sys') txt+="<li><b>"+f+"</b> "+d+"</li>";
             }
             $('#list__ID').html(txt);
             $('#g__ID').on('click',function(){ 

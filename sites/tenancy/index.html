@@ -32,10 +32,9 @@
                 home:{url:$vm.hosting_path+"/home.html",description:"landing page, show some information, like the current page you are viewing"},
                 data:{url:$vm.hosting_path+"/data.html",Table:"vm-demo-tenancy",form_module:"form",router:1,description:"view and search data in a cloud database table"},
                 form:{url:$vm.hosting_path+"/form.html",Table:"vm-demo-tenancy",lookup1:"vm-demo-tenant",lookup2:"vm-demo-property",router:1,description:"data collection form"},
-
                 //froms from other microservices
-                "form-property":{url:$vm.hosting_path+"/form-property.html",Table:"vm-demo-property",description:"data form"},
-                "form-tenant":{url:$vm.hosting_path+"/form-tenant.html",Table:"vm-demo-tenant",description:"data form"},
+                "form-property":{url:"https://projects.vmiis.com/sites/property/form.html",Table:"vm-demo-property",description:"property form"},
+                "form-tenant":{url:"https://projects.vmiis.com/sites/tenant/form.html",Table:"vm-demo-tenant",description:"tenant form"},
             }
             //---------------------------------------------
             var first_module='home';

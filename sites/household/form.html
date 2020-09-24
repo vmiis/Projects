@@ -1,0 +1,78 @@
+﻿<div id=D__ID>
+    <section id=form_container__ID>
+    	<div id=header__ID>
+    		Household
+    	</div>
+    	<form id=F__ID>
+    		<div class="container">
+<div class='row row__ID'>
+	<div class='col-lg-4 col-sm-12'>First Name</div>
+	<div class='col-lg-8 col-sm-12'>
+		<input type=text class=form-control name=First_Name required />
+	</div>
+</div>
+
+<div class='row row__ID'>
+	<div class='col-lg-4 col-sm-12'>Last Name</div>
+	<div class='col-lg-8 col-sm-12'>
+		<input type=text class=form-control name=Last_Name required />
+	</div>
+</div>
+<div class='row row__ID'>
+	<div class='col-lg-4 col-sm-12'>Date of Birth</div>
+	<div class='col-lg-8 col-sm-12'>
+		<input type=date class=form-control name=Date_of_Birth />
+	</div>
+</div>
+<div class='row row__ID'>
+	<div class='col-lg-4 col-sm-12'>Gender</div>
+	<div class='col-lg-8 col-sm-12'>
+		<label><input type='radio' name=Gender value=Male  >&nbsp&nbspMale</label>&nbsp&nbsp&nbsp&nbsp<label><input type='radio' name=Gender value=Female>&nbsp&nbspFemale</label>&nbsp&nbsp&nbsp&nbsp<label><input type='radio' name=Gender value=Other>&nbsp&nbspOther</label>&nbsp&nbsp&nbsp&nbsp
+	</div>
+</div>
+
+<div class='row row__ID'>
+	<div class='col-lg-4 col-sm-12'>Email</div>
+	<div class='col-lg-8 col-sm-12'>
+		<input type=email class=form-control name=Email  />
+	</div>
+</div>
+
+<div class='row row__ID'>
+	<div class='col-lg-4 col-sm-12'>Mobile Phone</div>
+	<div class='col-lg-8 col-sm-12'>
+		<input type=phone class=form-control name=Mobile_Phone  />
+	</div>
+</div>
+
+
+    			<br>
+                <div class="row">
+                        <div class=col>
+                        <button id=submit__ID type="submit" class="btn btn-secondary">Submit</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </section>
+    
+    <script>
+    	function F__ID(){
+			//--------------------------------------------------------
+			VmInclude:__COMPONENT__/f/form.01.js
+			//-------------------------------------
+			var old_load=m.load;
+			m.load=function(){
+                old_load();
+                if(m.input!=undefined && m.input.readonly==1) $('#submit__ID').hide();
+			}
+            //-------------------------------------
+    	}
+    </script>
+    <style>
+        #form_container__ID{
+            max-width:700px;
+        }
+        VmInclude:__COMPONENT__/f/form.01.css
+    </style>
+</div>

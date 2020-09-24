@@ -19,7 +19,7 @@
             $('#D__ID').on('load',function(){
                 var txt="";
                 for(a in $vm.module_list){
-                    if($vm.module_list[a].url.indexOf($vm.hosting_path)!=-1) if(a!="sys_editor") txt+="<option>"+a+"</option>";
+                    if(a!="sys_editor") txt+="<option>"+a+"</option>";
                 }
                 $('#modules__ID').html(txt);
                 url="";
