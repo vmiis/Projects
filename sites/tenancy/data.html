@@ -1,0 +1,22 @@
+﻿<section>
+    VmInclude:__COMPONENT__/g/grid.01.html
+</section>
+<script>
+    function F__ID(){
+        //-------------------------------------
+        VmInclude:__COMPONENT__/g/grid.01.js
+        //-------------------------------------
+        var fields="Tenancy_ID,Tenant,Tenant_ID,Property,Property_ID,Start_Date,End_Date";
+        m.fields="_Form,"+fields+",Submit_date,Submitted_by,_Delete";
+        //-------------------------------------
+        m.cell_render=function(records,I,field,td){
+            switch(field){
+                case 'Tenancy_ID':td.text(records[I].UID);break;
+            }
+        }
+        //-------------------------------------
+    }
+</script>
+<style>
+    VmInclude:__COMPONENT__/g/grid.01.css
+</style>

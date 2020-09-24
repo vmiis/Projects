@@ -1,0 +1,114 @@
+﻿<div id=D__ID>
+    <section id=form_container__ID>
+    	<div id=header__ID>
+    		Tenancy
+    	</div>
+    	<form id=F__ID>
+    		<div class="container">
+<div class='row row__ID'>
+	<div class='col-lg-2 col-sm-12'>Tenant</div>
+	<div class='col-lg-7 col-sm-12'>
+		<input type=text class=form-control name=Tenant />
+	</div>
+	<div class='col-lg-2 col-sm-12'>
+		<input type=text class=form-control readonly name=Tenant_ID  />
+	</div>
+	<div class='col-lg-1 col-sm-12'>
+		<u id=Tenant_Details__ID style='cursor:pointer'>Details</u>
+		
+	</div>
+</div>
+<div class='row row__ID'>
+	<div class='col-lg-2 col-sm-12'>Property</div>
+	<div class='col-lg-7 col-sm-12'>
+		<textarea class=form-control name=Property ></textarea>
+	</div>
+	<div class='col-lg-2 col-sm-12'>
+		<input type=text class=form-control readonly name=Property_ID  />
+	</div>
+	<div class='col-lg-1 col-sm-12'>
+		<u id=Property_Details__ID style='cursor:pointer'>Details</u>
+	</div>
+</div>
+
+<div class='row row__ID'>
+	<div class='col-lg-2 col-sm-12'>Date</div>
+	<div class='col-lg-5 col-sm-12'>
+		Start Date
+		<input type=date class=form-control name=Start_Date />
+	</div>
+	<div class='col-lg-5 col-sm-12'>
+		End Date
+		<input type=date class=form-control name=End_Date />
+	</div>
+</div>
+    			<br>
+                <div class="row">
+                        <div class=col>
+                        <button id=submit__ID type="submit" class="btn btn-secondary">Submit</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </section>
+    
+    <script>
+    	function F__ID(){
+			//--------------------------------------------------------
+			VmInclude:__COMPONENT__/f/form.01.js
+			//-------------------------------------
+			var autocomplete_req1={cmd:"find",field:'.Data.First_Name',table:m.lookup1,options:{},skip:0,limit:10}
+			var autocomplete_callback1=function(item){$('#F__ID input[name=Tenant_ID').val(item.UID)}
+			var autocomplete_list1=function(records){
+				var items=[];
+				for(var i=0;i<records.length;i++){
+					var obj={};
+					obj.label=records[i].Data["First_Name"]+" "+records[i].Data["Last_Name"];
+					obj.UID=records[i].UID;
+					items.push(obj);
+				}
+				return items;
+			}
+			$vm.autocomplete( $('#F__ID input[name=Tenant'),autocomplete_req1,autocomplete_list1,autocomplete_callback1);
+			//-------------------------------------
+			var autocomplete_req2={cmd:"find",field:'.Data.Address',table:m.lookup2,options:{},skip:0,limit:10}
+			var autocomplete_callback2=function(item){$('#F__ID input[name=Property_ID').val(item.UID)}
+			var autocomplete_list2=function(records){
+				var items=[];
+				for(var i=0;i<records.length;i++){
+					var obj={};
+					obj.label=records[i].Data["Address"];
+					obj.UID=records[i].UID;
+					items.push(obj);
+				}
+				return items;
+			}
+			$vm.autocomplete( $('#F__ID textarea[name=Property'),autocomplete_req2,autocomplete_list2,autocomplete_callback2);
+			//-------------------------------------
+			$('#Tenant_Details__ID').on('click',function(){
+				var uid=$('#F__ID input[name=Tenant_ID').val();
+				if(uid!=""){
+					$vm.request({cmd:'find',table:m.lookup1,query:{UID:parseInt(uid)}},function(res){
+						$vm.load_module('form-tenant','',{record:res.result[0],readonly:1})
+					})
+				}
+			})
+			//-------------------------------------
+			$('#Property_Details__ID').on('click',function(){
+				var uid=$('#F__ID input[name=Property_ID').val();
+				if(uid!=""){
+					$vm.request({cmd:'find',table:m.lookup2,query:{UID:parseInt(uid)}},function(res){
+						$vm.load_module('form-property','',{record:res.result[0],readonly:1})
+					})
+				}
+			})
+			//-------------------------------------
+    	}
+    </script>
+    <style>
+        #form_container__ID{
+            max-width:1000px;
+        }
+        VmInclude:__COMPONENT__/f/form.01.css
+    </style>
+</div>
