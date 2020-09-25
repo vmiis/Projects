@@ -22,7 +22,7 @@
         <!----------------------------------------------->
         <script app code>
             //---------------------------------------------
-            $vm={};$VmAPI={};$vm.ver=[0.15,0.15];
+            $vm={};$VmAPI={};$vm.ver=[0.16,0.15];
             $vm.hosting_path=window.location.href.substring(0, window.location.href.split('?')[0].lastIndexOf('/'));
             //---------------------------------------------
             $vm.module_list={
@@ -33,6 +33,8 @@
                 data:{url:$vm.hosting_path+"/data.html",Table:"vm-demo-tenant",form_module:"form",router:1,description:"view and search data in a cloud database table"},
                 form:{url:$vm.hosting_path+"/form.html",Table:"vm-demo-tenant",router:1,description:"data collection form"},
                 "panel-child-records":{url:$vm.hosting_path+"/panel-child-records.html",tenancy:"vm-demo-tenancy",tenancy:"vm-demo-tenancy",description:"display child records"},
+                "diagram":{url:$vm.hosting_path+"/diagram.html",router:1,description:"show relationship"},
+                
                 //forms from other microservices
                 
                 "data-tenancy": {url:"https://projects.vmiis.com/sites/tenancy/data.html",  Table:"vm-demo-tenancy",form_module:"form-tenancy",description:"child data"},

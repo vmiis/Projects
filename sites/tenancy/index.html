@@ -22,7 +22,7 @@
         <!----------------------------------------------->
         <script app code>
             //---------------------------------------------
-            $vm={};$VmAPI={};$vm.ver=[0.15,0.15];
+            $vm={};$VmAPI={};$vm.ver=[0.16,0.15];
             $vm.hosting_path=window.location.href.substring(0, window.location.href.split('?')[0].lastIndexOf('/'));
             //---------------------------------------------
             $vm.module_list={
@@ -32,6 +32,7 @@
                 home:{url:$vm.hosting_path+"/home.html",description:"landing page, show some information, like the current page you are viewing"},
                 data:{url:$vm.hosting_path+"/data.html",Table:"vm-demo-tenancy",form_module:"form",router:1,description:"view and search data in a cloud database table"},
                 form:{url:$vm.hosting_path+"/form.html",Table:"vm-demo-tenancy",lookup1:"vm-demo-tenant",lookup2:"vm-demo-property",router:1,description:"data collection form"},
+                "diagram":{url:$vm.hosting_path+"/diagram.html",router:1,description:"show relationship"},
                 //froms from other microservices
                 "form-property":    {url:"https://projects.vmiis.com/sites/property/form.html", Table:"vm-demo-property",  lookup:"vm-demo-household", description:"property form"},
                 "form-tenant":      {url:"https://projects.vmiis.com/sites/tenant/form.html",   Table:"vm-demo-tenant",     description:"tenant form"},
