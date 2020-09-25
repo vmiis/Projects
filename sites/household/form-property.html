@@ -61,8 +61,6 @@
 		
 	</div>
 </div>
-
-
     			<br>
                 <div class="row">
                         <div class=col>
@@ -81,7 +79,7 @@
 			var old_load=m.load;
 			m.load=function(){
                 old_load();
-                if(m.input!=undefined && m.input.readonly==1) $('#submit__ID').hide();
+				if(m.input.readonly==1) $('#submit__ID').hide();
 				var p=m.input.parent_record;
 				if(p!=undefined){
 					$('#F__ID input[name=Household').val(p.Data["First_Name"]+" "+p.Data["Last_Name"]);
@@ -111,10 +109,6 @@
 					})
 				}
 			})
-			//-------------------------------------
-            m.before_submit=function(data,index){
-				index.I2=data.Household_ID;
-			}
 			//-------------------------------------
     	}
     </script>

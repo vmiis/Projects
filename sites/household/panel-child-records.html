@@ -1,0 +1,51 @@
+<div id=D__ID>
+    <div style='padding-top:50px;max-width:1200px;margin: 0 auto'>
+        HOUSEHOLD
+        <br>Name: <b><span id=name__ID></span></b>
+        <br>Date of Birth: <b><span id=dob__ID></span></b>
+        <br>Gender: <b><span id=gender__ID></span></b>
+        <br>Email: <b><span id=email__ID></span></b>
+        <br>Phone: <b><span id=phone__ID></span></b>
+        <hr>
+        <b>Records</b>
+        <ul>
+            <li><a href='?/data-property'>Properties</a>&nbsp;&nbsp; <span style='font-size:12px' id=property_n__ID></span></li>
+        </ul>
+    </div>
+    <script>
+        function F__ID(){
+            var m=$vm.module_list['__MODULE__'];
+            var record="";
+            $('#D__ID').on('load',function(){
+                $('#name__ID').val('');
+                if(m.input.parent_record==undefined) return;
+                var p=m.input.parent_record;
+                $('#name__ID').text(p.Data.First_Name+" "+p.Data.Last_Name);
+                $('#dob__ID').text(p.Data.Date_of_Birth);
+                $('#gender__ID').text(p.Data.Gender);
+                $('#email__ID').text(p.Data.Email);
+                $('#phone__ID').text(p.Data.Mobile_Phone);
+
+                $vm.request({cmd:'count',table:m.property,query:{I2:m.input.parent_record.UID.toString()}},function(res){
+                    $('#property_n__ID').text("["+res.result+"]");
+                })
+
+            })
+            $('#D__ID a').on('click',function(e){
+                e.preventDefault();
+                var module_name=$(this).attr('href').replace('?\/','');
+                if(module_name!="") $vm.load_module(module_name,'',{parent_record:m.input.parent_record});
+            })
+        }
+    </script>
+    <style>
+		#D__ID{
+			height:100%;
+			animation: vm_module_fadein 1.0s;
+            background-color: #fff;
+		}
+		#D__ID a {
+            color:#000;
+        }
+    </style>
+</div>

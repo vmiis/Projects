@@ -7,7 +7,9 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.css" />
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.14.0/css/all.css" />
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.14.0/css/v4-shims.css" />
+        <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/jquery.ui/1.12.1/themes/redmond/jquery-ui.css" />
         <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-3.5.1.min.js"></script>
+        <script src="https://ajax.aspnetcdn.com/ajax/jquery.ui/1.12.1/jquery-ui.min.js"></script>
     </head>
     <body>
         <div id=layout1>
@@ -30,6 +32,9 @@
                 home:{url:$vm.hosting_path+"/home.html",description:"landing page, show some information, like the current page you are viewing"},
                 data:{url:$vm.hosting_path+"/data.html",Table:"vm-demo-household",form_module:"form",router:1,description:"view and search data in a cloud database table"},
                 form:{url:$vm.hosting_path+"/form.html",Table:"vm-demo-household",router:1,description:"data collection form"},
+                "panel-child-records":{url:$vm.hosting_path+"/panel-child-records.html",property:"vm-demo-property",description:"display child records"},
+                "data-property":{url:$vm.hosting_path+"/data-property.html",Table:"vm-demo-property",form_module:"form-property",description:"child data"},
+                "form-property":{url:$vm.hosting_path+"/form-property.html",Table:"vm-demo-property",description:"child form"},
             }
             //---------------------------------------------
             var first_module='home';
