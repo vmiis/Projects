@@ -32,8 +32,17 @@
                 home:{url:$vm.hosting_path+"/home.html",description:"landing page, show some information, like the current page you are viewing"},
                 data:{url:$vm.hosting_path+"/data.html",Table:"vm-demo-property",form_module:"form",router:1,description:"view and search data in a cloud database table"},
                 form:{url:$vm.hosting_path+"/form.html",Table:"vm-demo-property",lookup:"vm-demo-household", router:1,description:"data collection form"},
+                "panel-child-records":{url:$vm.hosting_path+"/panel-child-records.html",tenancy:"vm-demo-tenancy",tenancy:"vm-demo-tenancy",description:"display child records"},
                 //froms from other microservices
-                "form-household":{url:"https://projects.vmiis.com/sites/household/form.html",Table:"vm-demo-household",description:"data form"},
+                
+                "form-household":   {url:"https://projects.vmiis.com/sites/household/form.html",Table:"vm-demo-household",description:"data form"},
+                "data-tenancy":     {url:"https://projects.vmiis.com/sites/tenancy/data.html",  Table:"vm-demo-tenancy",form_module:"form-tenancy",description:"child data"},
+                "form-tenancy":     {url:"https://projects.vmiis.com/sites/tenancy/form.html",  Table:"vm-demo-tenancy",description:"child form"},
+                /*
+                "form-household":   {url:"http://localhost:8000/vmiis/projects/sites/household/form.html",  Table:"vm-demo-household",description:"data form"},
+                "data-tenancy":     {url:"http://localhost:8000/vmiis/projects/sites/tenancy/data.html",    Table:"vm-demo-tenancy",form_module:"form-tenancy",description:"child data"},
+                "form-tenancy":     {url:"http://localhost:8000/vmiis/projects/sites/tenancy/form.html",    Table:"vm-demo-tenancy",description:"child form"},
+                */
             }
             //---------------------------------------------
             var first_module='home';

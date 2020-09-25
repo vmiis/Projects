@@ -7,7 +7,9 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.css" />
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.14.0/css/all.css" />
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.14.0/css/v4-shims.css" />
+        <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/jquery.ui/1.12.1/themes/redmond/jquery-ui.css" />
         <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-3.5.1.min.js"></script>
+        <script src="https://ajax.aspnetcdn.com/ajax/jquery.ui/1.12.1/jquery-ui.min.js"></script>
     </head>
     <body>
         <div id=layout1>
@@ -30,6 +32,15 @@
                 home:{url:$vm.hosting_path+"/home.html",description:"landing page, show some information, like the current page you are viewing"},
                 data:{url:$vm.hosting_path+"/data.html",Table:"vm-demo-tenant",form_module:"form",router:1,description:"view and search data in a cloud database table"},
                 form:{url:$vm.hosting_path+"/form.html",Table:"vm-demo-tenant",router:1,description:"data collection form"},
+                "panel-child-records":{url:$vm.hosting_path+"/panel-child-records.html",tenancy:"vm-demo-tenancy",tenancy:"vm-demo-tenancy",description:"display child records"},
+                //forms from other microservices
+                
+                "data-tenancy": {url:"https://projects.vmiis.com/sites/tenancy/data.html",  Table:"vm-demo-tenancy",form_module:"form-tenancy",description:"child data"},
+                "form-tenancy": {url:"https://projects.vmiis.com/sites/tenancy/form.html",  Table:"vm-demo-tenancy",description:"child form"},
+                /*
+                "data-tenancy": {url:"http://localhost:8000/vmiis/projects/sites/tenancy/data.html",    Table:"vm-demo-tenancy",form_module:"form-tenancy",description:"child data"},
+                "form-tenancy": {url:"http://localhost:8000/vmiis/projects/sites/tenancy/form.html",    Table:"vm-demo-tenancy",description:"child form"},
+                */
             }
             //---------------------------------------------
             var first_module='home';

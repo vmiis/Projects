@@ -32,9 +32,20 @@
                 home:{url:$vm.hosting_path+"/home.html",description:"landing page, show some information, like the current page you are viewing"},
                 data:{url:$vm.hosting_path+"/data.html",Table:"vm-demo-household",form_module:"form",router:1,description:"view and search data in a cloud database table"},
                 form:{url:$vm.hosting_path+"/form.html",Table:"vm-demo-household",router:1,description:"data collection form"},
-                "panel-child-records":{url:$vm.hosting_path+"/panel-child-records.html",property:"vm-demo-property",description:"display child records"},
-                "data-property":{url:$vm.hosting_path+"/data-property.html",Table:"vm-demo-property",form_module:"form-property",description:"child data"},
-                "form-property":{url:$vm.hosting_path+"/form-property.html",Table:"vm-demo-property",description:"child form"},
+                "panel-child-records":{url:$vm.hosting_path+"/panel-child-records.html",property:"vm-demo-property",tenancy:"vm-demo-tenancy",description:"display child records"},
+                
+                //forms from other microservices
+                
+                "data-property":{url:"https://projects.vmiis.com/sites/property/data.html", Table:"vm-demo-property",form_module:"form-property",description:"child data"},
+                "form-property":{url:"https://projects.vmiis.com/sites/property/form.html", Table:"vm-demo-property",description:"child form"},
+                "data-tenancy": {url:"https://projects.vmiis.com/sites/tenancy/data.html",  Table:"vm-demo-tenancy",form_module:"form-tenancy",description:"child data"},
+                "form-tenancy": {url:"https://projects.vmiis.com/sites/tenancy/form.html",  Table:"vm-demo-tenancy",description:"child form"},
+                /*
+                "data-property":{url:"http://localhost:8000/vmiis/projects/sites/property/data.html",   Table:"vm-demo-property",form_module:"form-property",description:"child data"},
+                "form-property":{url:"http://localhost:8000/vmiis/projects/sites/property/form.html",   Table:"vm-demo-property",description:"child form"},
+                "data-tenancy": {url:"http://localhost:8000/vmiis/projects/sites/tenancy/data.html",    Table:"vm-demo-tenancy",form_module:"form-tenancy",description:"child data"},
+                "form-tenancy": {url:"http://localhost:8000/vmiis/projects/sites/tenancy/form.html",    Table:"vm-demo-tenancy",description:"child form"},
+                */
             }
             //---------------------------------------------
             var first_module='home';

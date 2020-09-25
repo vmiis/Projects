@@ -1,0 +1,52 @@
+<div id=D__ID>
+    <div style='padding-top:50px;max-width:1200px;margin: 0 auto'>
+        <b>PROPERTY</b><br>
+        <br>Property Type: <b><span id=Property_Type__ID></span></b>
+        <br>Address: <b><span id=Address__ID></span></b>
+        <br>Build type: <b><span id=Build_type__ID></span></b>
+        <br>No of bed room: <b><span id=No_of_bed_room__ID></span></b>
+        <hr>
+        <b>Records</b>
+        <ul>
+            <li><a href='?/data-tenancy'>Tenancies</a>&nbsp;&nbsp; <span style='font-size:12px' id=tenancy_n__ID></span></li>
+        </ul>
+    </div>
+    <script>
+        function F__ID(){
+            var m=$vm.module_list['__MODULE__'];
+            var record="";
+            $('#D__ID').on('load',function(){
+                $('#Property_Type__ID').text('');
+                $('#Address__ID').text('');
+                $('#Build_type__ID').text('');
+                $('#No_of_bed_room__ID').text('');
+                if(m.input.parent_record==undefined) return;
+                var p=m.input.parent_record;
+                $('#Property_Type__ID').text(p.Data.Property_Type);
+                $('#Address__ID').text(p.Data.Address);
+                $('#Build_type__ID').text(p.Data.Build_type);
+                $('#No_of_bed_room__ID').text(p.Data.No_of_bed_room);
+
+                $vm.request({cmd:'count',table:m.tenancy,query:{I3:m.input.parent_record.UID.toString()}},function(res){
+                    $('#tenancy_n__ID').text("["+res.result+"]");
+                })
+
+            })
+            $('#D__ID a').on('click',function(e){
+                e.preventDefault();
+                var module_name=$(this).attr('href').replace('?\/','');
+                if(module_name!="") $vm.load_module(module_name,'',{property_parent_record:m.input.parent_record});
+            })
+        }
+    </script>
+    <style>
+		#D__ID{
+			height:100%;
+			animation: vm_module_fadein 1.0s;
+            background-color: #fff;
+		}
+		#D__ID a {
+            color:#000;
+        }
+    </style>
+</div>

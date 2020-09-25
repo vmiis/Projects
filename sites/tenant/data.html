@@ -5,13 +5,19 @@
     function F__ID(){
         //-------------------------------------
         VmInclude:__COMPONENT__/g/grid.01.js
+        $('#title__ID').text('TENANT')
         //-------------------------------------
         var fields="Tenant_ID,First_Name|First Name,Last_Name|Last Name,State|State,Gender|Gender,Email|Email,Mobile_Phone|Mobile Phone";
-        m.fields="_Form,"+fields+",Submit_date,Submitted_by,_Delete";
+        m.fields="_Form,_Details,"+fields+",Submit_date,Submitted_by,_Delete";
         //-------------------------------------
         m.cell_render=function(records,I,field,td){
             switch(field){
                 case 'Tenant_ID':td.text(records[I].UID);break;
+                case '_Details':td.html("<u style='cursor:pointer'>Details</u>");
+                        td.find('u').on('click',function(){
+                            $vm.load_module('panel-child-records','',{parent_record:records[I]})
+                        })
+                        break;
             }
         }
         //-------------------------------------

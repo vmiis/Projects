@@ -5,6 +5,7 @@
     function F__ID(){
         //-------------------------------------
         VmInclude:__COMPONENT__/g/grid.01.js
+        $('#title__ID').text('TENANCY')
         //-------------------------------------
         var fields="Tenancy_ID,Tenant,Tenant_ID,Property,Property_ID,Start_Date,End_Date";
         m.fields="_Form,"+fields+",Submit_date,Submitted_by,_Delete";
@@ -12,6 +13,28 @@
         m.cell_render=function(records,I,field,td){
             switch(field){
                 case 'Tenancy_ID':td.text(records[I].UID);break;
+            }
+        }
+        //-------------------------------------
+        m.load=function(){
+            var p=m.input.household_parent_record;
+            console.log(p)
+            if(p!=undefined){
+                m.set_req=function(){
+                    m.query={I4:p.UID.toString()};
+                };
+            }
+            else p=m.input.tenant_parent_record;
+            if(p!=undefined){
+                m.set_req=function(){
+                    m.query={I2:p.UID.toString()};
+                };
+            }
+            else p=m.input.property_parent_record;
+            if(p!=undefined){
+                m.set_req=function(){
+                    m.query={I3:p.UID.toString()};
+                };
             }
         }
         //-------------------------------------

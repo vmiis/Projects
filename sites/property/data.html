@@ -5,28 +5,36 @@
     function F__ID(){
         //-------------------------------------
         VmInclude:__COMPONENT__/g/grid.01.js
+        $('#title__ID').text('PROPERTY')
         //-------------------------------------
         var fields="Property_ID, Property_Type|Property Type,Address|Address,Build_type|Build type,No_of_bed_room|No of bed room,Household";
-        m.fields="_Form,"+fields+",Submit_date,Submitted_by,_Delete";
+        m.fields="_Form,_Details,"+fields+",Submit_date,Submitted_by,_Delete";
         //-------------------------------------
         m.cell_render=function(records,I,field,td){
             switch(field){
                 case 'Property_ID':td.text(records[I].UID);break;
+                case '_Details':td.html("<u style='cursor:pointer'>Details</u>");
+                        td.find('u').on('click',function(){
+                            $vm.load_module('panel-child-records','',{parent_record:records[I]})
+                        })
+                        break;
             }
         }
         //-------------------------------------
         m.load=function(){
-            if(m.input.parent_record!=undefined){
+            var p=m.input.household_parent_record;
+            if(p!=undefined){
                 m.set_req=function(){
-                    m.query={I2:m.input.parent_record.UID.toString()};
+                    m.query={I2:p.UID.toString()};
                 };
             }
         }
         //-------------------------------------
         m.new=function(){
             if(m.form_module!=undefined){
-                if(m.input.parent_record!=undefined){
-                    $vm.load_module(m.form_module,'',{parent_record:m.input.parent_record,goback:1});
+                var p=m.input.household_parent_record;
+                if(p!=undefined){
+                    $vm.load_module(m.form_module,'',{parent_record:p,goback:1});
                 }
                 else{
                     $vm.load_module(m.form_module,'',{goback:1});

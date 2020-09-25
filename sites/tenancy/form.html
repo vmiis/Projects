@@ -25,6 +25,7 @@
 	</div>
 	<div class='col-lg-2 col-sm-12'>
 		<input type=text class=form-control readonly name=Property_ID  />
+		<input type=text class=form-control style='display:none' name=Household_ID  />
 	</div>
 	<div class='col-lg-1 col-sm-12'>
 		<u id=Property_Details__ID style='cursor:pointer'>Details</u>
@@ -72,13 +73,14 @@
 			$vm.autocomplete( $('#F__ID input[name=Tenant'),autocomplete_req1,autocomplete_list1,autocomplete_callback1);
 			//-------------------------------------
 			var autocomplete_req2={cmd:"find",field:'.Data.Address',table:m.lookup2,options:{},skip:0,limit:10}
-			var autocomplete_callback2=function(item){$('#F__ID input[name=Property_ID').val(item.UID)}
+			var autocomplete_callback2=function(item){$('#F__ID input[name=Property_ID').val(item.UID); $('#F__ID input[name=Household_ID').val(item.Household_ID);}
 			var autocomplete_list2=function(records){
 				var items=[];
 				for(var i=0;i<records.length;i++){
 					var obj={};
 					obj.label=records[i].Data["Address"];
 					obj.UID=records[i].UID;
+					obj.Household_ID=records[i].Data.Household_ID;
 					items.push(obj);
 				}
 				return items;
@@ -102,6 +104,12 @@
 					})
 				}
 			})
+			//-------------------------------------
+            m.before_submit=function(data,index){
+				index.I2=data.Tenant_ID;
+				index.I3=data.Property_ID;
+				index.I4=data.Household_ID;
+			}
 			//-------------------------------------
     	}
     </script>

@@ -6,14 +6,15 @@
         function F__ID(){
             //-------------------------------------
             VmInclude:__COMPONENT__/g/grid.01.js
+            $('#title__ID').text('HOUSEHOLD')
             //-------------------------------------
             var fields="Household_ID,First_Name,Last_Name,Date_of_Birth,Gender,Email,Mobile_Phone";
-            m.fields="_Form,_Derails,"+fields+",Submit_date,Submitted_by,_Delete";
+            m.fields="_Form,_Details,"+fields+",Submit_date,Submitted_by,_Delete";
             //-------------------------------------
             m.cell_render=function(records,I,field,td){
                 switch(field){
                     case 'Household_ID':td.text(records[I].UID);break;
-                    case '_Derails':td.html("<u style='cursor:pointer'>Details</u>");
+                    case '_Details':td.html("<u style='cursor:pointer'>Details</u>");
                         td.find('u').on('click',function(){
                             $vm.load_module('panel-child-records','',{parent_record:records[I]})
                         })
