@@ -1,0 +1,39 @@
+<div id=D__ID>
+    <div>
+        VmInclude:__COMPONENT__/g/grid.01.html
+    </div>
+    <script>
+        function F__ID(){
+            //-------------------------------------
+            VmInclude:__COMPONENT__/g/grid.01.js
+            //-------------------------------------
+            var fields="Date,Name,Amount,Description,Group,Category,Document,Other_sales,Gross_interest,Salary_expenses,Super_expenses,All_other_expenses";
+            m.fields="_Form,"+fields+",Submit_date,Submitted_by,_Delete";
+            //-------------------------------------
+            m.cell_render=function(records,I,field,td){
+                switch(field){
+                    case 'Amount':
+                    case 'G1_sales':
+                    case '1A_GST':
+                    case '1B_GST':
+                    case 'W1_salary':
+                    case 'W2_withheld':
+                    case 'W4_withheld_no_ABN':
+                    case 'W3_withheld_other':
+                    case 'Other_sales':
+                    case 'Gross_interest':
+                    case 'Salary_expenses':
+                    case 'Super_expenses':
+                    case 'All_other_expenses':
+                        td.html("$"+parseFloat(records[I].Data[field]).toFixed(2));
+                        td.css('text-align','right')
+                        break;
+                }
+            }
+            //-------------------------------------
+        }
+    </script>
+    <style>
+        VmInclude:__COMPONENT__/g/grid.01.css
+    </style>
+</div>

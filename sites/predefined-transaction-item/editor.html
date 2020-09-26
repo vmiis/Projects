@@ -1,0 +1,109 @@
+<div id=D__ID>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.4/ace.js"></script>
+    <div id=toolbar__ID class="navbar navbar-default">
+        <form class="form-inline">
+            <select id=modules__ID class=form-control></select>&nbsp;&nbsp;&nbsp;
+            Password for saving to server: &nbsp;&nbsp;<input id=password__ID type=password title='Password' style='width:80px' class=form-control />&nbsp;&nbsp;  
+            <button id=save__ID type=button class="btn btn-secondary" title='Save'>Save</button>
+            <button onclick='location.reload();' type=button class="btn btn-secondary" title='Refresh'>Refresh Website</button>&nbsp;&nbsp;&nbsp;&nbsp;  
+            <span id=file__ID></span>&nbsp;&nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;&nbsp;  
+            <span id=saved__ID style='color:lightgreen'></span>
+        </form>
+    </div>
+    <div id=editor__ID></div>
+    <script>
+        function F__ID(){
+            var editor=null;
+            var file_url="";
+            //--------------------------------------------------------
+            $('#D__ID').on('load',function(){
+                var txt="";
+                for(a in $vm.module_list){
+                    if(a!="sys_editor") txt+="<option>"+a+"</option>";
+                }
+                $('#modules__ID').html(txt);
+                url="";
+                if(editor==null){
+                    set_editor();
+                }
+                if($vm.active_name!=undefined){
+                    $('#modules__ID').val($vm.active_name);
+                    file_url=$vm.module_list[$vm.active_name].url;
+                    $('#file__ID').text(file_url);
+                    $.get(file_url+'?_='+new Date().getTime(),function(txt){
+                        editor.setValue(txt,-1);
+                        dirty=0;
+                    },'text');
+                }
+                var a=$(window).height()-$('#editor__ID').offset().top-$('#footer').height();
+                $('#editor__ID').css("min-height",a);
+            })
+            //--------------------------------------------------------
+            $('#modules__ID').on('change',function(){
+                var a=$('#modules__ID').val();
+                file_url=$vm.module_list[a].url;
+                $('#file__ID').text(file_url);
+                $.get(file_url+'?_='+new Date().getTime(),function(txt){
+                    editor.setValue(txt,-1);
+                    dirty=0;
+                },'text');
+            })
+            //--------------------------------------------------------
+            var set_editor=function(){
+                editor=ace.edit("editor__ID");
+                editor.setTheme("ace/theme/twilight");
+                editor.getSession().setMode("ace/mode/html");
+                editor.getSession().setUseWorker(false);
+                editor.setOption("showPrintMargin", false)
+                editor.setOptions({maxLines: Infinity});                
+                editor.on('change', function(){
+                    $('#saved__ID').text('');
+                });
+            }
+            //--------------------------------------------------------
+            $('#save__ID').on('click',function(){
+                var endpoint=window.location.protocol+"//"+window.location.hostname;
+                if(window.location.port!="") endpoint+=":"+window.location.port;
+                if(file_url==""){
+                    $vm.alert("No file path.")
+                }
+                var path=file_url.replace(endpoint,"");
+                var d={"path":path,"content":editor.getValue(),password:$('#password__ID').val()}
+                var da=JSON.stringify(d);
+                var xmlHttp = new XMLHttpRequest();
+                xmlHttp.onreadystatechange = function () {
+                    console.log(this.readyState+" "+this.status);
+                    if (this.readyState == 4 && this.status == 200){
+                        if(this.responseText!="Saved") $vm.alert(this.responseText);
+                        else{
+                          $('#saved__ID').text('Saved');
+		                      localStorage.removeItem(file_url+"_ver");
+		                      localStorage.removeItem(file_url+"_txt");
+                        }
+                    }
+                    else if (this.readyState == 4 && this.status == 405){
+                        $vm.alert("No permissions!");
+                    }
+                }
+                xmlHttp.open("POST", endpoint, true);
+                xmlHttp.send(da);
+            })
+            //--------------------------------------------------------
+        }
+    </script>
+    <style>
+        #D__ID{
+            height:100%;
+            animation: vm_module_fadein 1.0s;
+        }
+        #toolbar__ID{
+            background-color:#aaa;
+            padding:5px 10px;
+            margin-bottom:0px;
+            overflow:hidden
+        }
+        #toolbar__ID button{
+            margin-right:8px; 
+        }
+    </style>
+</div>
