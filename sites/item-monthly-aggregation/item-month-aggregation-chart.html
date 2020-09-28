@@ -1,0 +1,92 @@
+<div id=D__ID>
+	VmInclude:__COMPONENT__/c/chart.2select.01.html
+	<section id=chart_container__ID style='padding:10px'>
+		<div id=chart_div__ID></div>
+  </section>
+  <script>
+		function F__ID(){
+			//-------------------------------------
+			VmInclude:__COMPONENT__/c/chart.01.js
+			//-------------------------------------
+			//number dropdown
+			var $List1=$('#select1__ID');
+			var y=new Date().getFullYear();
+			for(var i=0;i<7;i++){
+				$List1.append(  $('<option></option>').val(y-i+1).html(y-i+1)  );
+			}
+			$List1.val(y);
+			//---------------------------------------------
+			var $List2=$('#select2__ID');
+			//---------------------------------------------
+
+			m.set_req=function(){
+				m.query={I1:parseInt($List1.val())}
+			};
+			//-------------------------------------
+			//m.fields="Month";
+			m.sort={I2:1};
+			m.data_process=function(){
+				var old_item=$List2.val();
+				var old_exist=0;
+				var new_first="";
+				if(m.records.length==0){
+					$('#chart_div__ID').text('No data in the yer '+$List1.val())
+					return;
+				}
+                $List2.html('');
+                var R={}
+                for(var i=0;i<m.records.length;i++){
+                    var r=null;
+                    for(a in m.records[i].Data.Result){
+                        if(a=='Result') r=m.records[i].Data.Result[a];
+                        if(R[a]==undefined){
+                            R[a]=1;
+							if(new_first=='') new_first=a;
+							if(a==old_item) old_exist=1;
+							$List2.append(  $('<option></option>').val(a).html(a)  );
+							
+                        }
+                        m.records[i].Data[a]=parseFloat(m.records[i].Data.Result[a]);
+                    }
+                    if(r!=null) m.records[i].Data.Result=parseFloat(r);
+                }
+				if(old_exist==1) $List2.val(old_item);
+
+
+				if(m.google==0) return;
+				google.charts.load('current', {packages: ['corechart', 'bar']});
+				google.charts.setOnLoadCallback(draw_chart);
+			}
+			//-------------------------------------
+			var draw_chart=function(){
+				//----------------------------------
+				var ds=[]
+				ds.push(['Year', $List2.val() ])
+				m.fields="Month,"+$List2.val();
+				var fd=m.fields.split(',')
+				for(var i=0;i<m.records.length;i++){
+					var row=[];
+					for(var j=0;j<fd.length;j++){
+						if(j==0) row.push(m.records[i].Data[fd[j]]);
+						else row.push(parseFloat(m.records[i].Data[fd[j]]));
+					}
+					ds.push(row)
+				}
+				//----------------------------------
+				var data = google.visualization.arrayToDataTable(ds);
+				var options = {title: $List2.val(),vAxis: {minValue: 0} }; 
+				var chart = new google.visualization.ColumnChart(document.getElementById('chart_div__ID'));
+				chart.draw(data, options);				
+			}
+			//-------------------------------------
+		}
+		//-------------------------------------
+  </script>
+  <style>
+		VmInclude:__COMPONENT__/c/chart.01.css
+		#chart_div__ID{
+			height:500px;
+			max-width:700px;
+		}
+  </style>
+</div>
