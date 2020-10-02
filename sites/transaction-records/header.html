@@ -24,15 +24,22 @@
                         </ul>
                     </li>
                     <li><a href="?/diagram"><i class="fas fa-project-diagram"></i> Diagram</a></li>
+                    <li><a href="" id=signin__ID onclick=$vm.signin() ><i class="fa fa-user"></i> Sigin</a></li>
+                    <li><a href="" id=signout__ID onclick=$vm.signout() ><i class="fa fa-user"></i> Sigout</a></li>
                 </ul>
             </div>
         </div>    
-        <div id=right__ID style='margin-right: 10px'>
+        <div id=right__ID style='margin-right: 10px;padding-top:20px'>
             <div id=menu_right__ID>
                 <a href="sys_editor" id=edit__ID >Content Edit</a>
             </div>
             <label id=m_icon__ID for="hamburger__ID" style='color:#fff;font-size:28px;'><i class="fa fa-bars"></i></label>
         </div>    
+        <div top-right-corner id=top_right_corner__ID class='d-none d-xl-block'>
+            <div>
+                <span id=username__ID></span>
+            </div>
+        </div>
     </div>    
     <script>
         function F__ID(){
@@ -68,6 +75,32 @@
                 })
             }
             //---------------------------------------------------------------
+            $vm.show_user=function(){
+                if($vm.user_name==undefined || $vm.user_name=='guest'){
+            		$('#username__ID').text('');
+                    $('#signin__ID').show();
+                    $('#signout__ID').hide();
+                }
+                else{
+            		$('#username__ID').text('Signed in as '+ $vm.user_name);
+                    $('#signin__ID').hide();
+                    $('#signout__ID').show();
+                }
+            }
+            //------------------------------------
+            window.onmessage=function(e){
+                if(e.data.username!=undefined && e.data.token!=undefined){
+                    $vm.user_name=e.data.username;
+                    $vm.set_token(e.data.token,e.data.username);
+                    location.reload(true);
+                }
+            };
+            //------------------------------------
+            $vm.init(function(){
+                $vm.init_status=1;
+                $vm.show_user();
+            })
+            //------------------------------------
         }
     </script>
     <style>
@@ -78,6 +111,16 @@
             display: grid;
             grid-template-columns: auto 1fr auto;
             overflow:auto;
+        }
+        #top_right_corner__ID{
+            display:block;
+            position:fixed;
+            top:3px;
+            right:10px;
+            font-size:11px;
+            line-height:13px;
+            color:#fff;
+            z-index: 99999;
         }
         /*right menu*/
         #menu_right__ID a{

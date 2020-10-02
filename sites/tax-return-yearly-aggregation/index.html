@@ -27,14 +27,24 @@
             $vm={};$VmAPI={};$vm.ver=[0.16,0.15]; $vm['loader-js']=1;
             $vm.hosting_path=window.location.href.substring(0, window.location.href.split('?')[0].lastIndexOf('/'));
             //---------------------------------------------
+            var transaction="vm-demo-transaction-records";
+            var aggregation="vm-demo-tax-return-yearly-aggregation";
+            if(window.location.toString().indexOf('_w=1')!=-1){
+                transaction="transaction-wappsystem";
+                aggregation="ato-tax-return-yearly-aggregation-wappsystem";
+            }
+            else if(window.location.toString().indexOf('_v=1')!=-1){
+                transaction="transaction-vmautomation";
+                aggregation="ato-tax-return-yearly-aggregation-vmautomation";
+            }
             $vm.module_list={
                 index:{url:$vm.hosting_path+"/index.html",description:"main entry, layout, module list setup"},
                 header:{url:$vm.hosting_path+"/header.html",description:"logo, menu, login/logout etc"},
                 footer:{url:$vm.hosting_path+"/footer.html",description:"copyright info, links etc"},
-                home:{url:$vm.hosting_path+"/home.html",description:"landing page, show some information, like the current page you are viewing"},
-                "tax-return-yearly-aggregation-data":{url:$vm.hosting_path+"/ato-tax-return-yearly-aggregation-data.html",Table:"vm-demo-tax-return-yearly-aggregation",transaction_table:'vm-demo-transaction-records',form_module:'tax-return-yearly-aggregation-form',router:1,description:"view and search data in a cloud database table"},
-                "tax-return-yearly-aggregation-form":{url:$vm.hosting_path+"/ato-tax-return-yearly-aggregation-form.html",Table:"vm-demo-tax-return-yearly-aggregation",router:1,description:"data collection form"},
-                "tax-return-yearly-aggregation-chart":{url:$vm.hosting_path+"/ato-tax-return-yearly-aggregation-chart.html",Table:"vm-demo-tax-return-yearly-aggregation",router:1,description:"chart"},
+                home:{url:$vm.hosting_path+"/home.html",router:1,description:"landing page, show some information, like the current page you are viewing"},
+                "tax-return-yearly-aggregation-data":{url:$vm.hosting_path+"/ato-tax-return-yearly-aggregation-data.html",Table:aggregation,transaction_table:transaction,form_module:'tax-return-yearly-aggregation-form',router:1,description:"view and search data in a cloud database table"},
+                "tax-return-yearly-aggregation-form":{url:$vm.hosting_path+"/ato-tax-return-yearly-aggregation-form.html",Table:aggregation,router:1,description:"data collection form"},
+                "tax-return-yearly-aggregation-chart":{url:$vm.hosting_path+"/ato-tax-return-yearly-aggregation-chart.html",Table:aggregation,router:1,description:"chart"},
                 "diagram":{url:$vm.hosting_path+"/diagram.html",router:1,description:"show relationship"},
             }
             //---------------------------------------------

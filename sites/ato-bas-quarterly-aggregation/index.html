@@ -23,13 +23,23 @@
             $vm={};$VmAPI={};$vm.ver=[0.16,0.15];
             $vm.hosting_path=window.location.href.substring(0, window.location.href.split('?')[0].lastIndexOf('/'));
             //---------------------------------------------
+            var transaction="vm-demo-transaction-records";
+            var aggregation="vm-demo-ato-bas-quarter";
+            if(window.location.toString().indexOf('_w=1')!=-1){
+                transaction="transaction-wappsystem";
+                aggregation="ato-bas-quarter-aggregation-wappsystem";
+            }
+            else if(window.location.toString().indexOf('_v=1')!=-1){
+                transaction="transaction-vmautomation";
+                aggregation="ato-bas-quarter-aggregation-vmautomation";
+            }
             $vm.module_list={
                 index:{url:$vm.hosting_path+"/index.html",description:"main entry, layout, module list setup"},
                 header:{url:$vm.hosting_path+"/header.html",description:"logo, menu, login/logout etc"},
                 footer:{url:$vm.hosting_path+"/footer.html",description:"copyright info, links etc"},
-                home:{url:$vm.hosting_path+"/home.html",description:"landing page, show some information, like the current page you are viewing"},
-                "ato-bas-quarter-aggregation-data":{url:$vm.hosting_path+"/ato-bas-quarter-aggregation-data.html",Table:"vm-demo-ato-bas-quarter",transaction_table:'vm-demo-transaction-records',form_module:'ato-bas-quarter-aggregation-form',router:1,description:"view and search data in a cloud database table"},
-                "ato-bas-quarter-aggregation-form":{url:$vm.hosting_path+"/ato-bas-quarter-aggregation-form.html",Table:"vm-demo-ato-bas-quarter",router:1,description:"data collection form"},
+                home:{url:$vm.hosting_path+"/home.html",router:1,description:"landing page, show some information, like the current page you are viewing"},
+                "ato-bas-quarter-aggregation-data":{url:$vm.hosting_path+"/ato-bas-quarter-aggregation-data.html",Table:aggregation,transaction_table:transaction,form_module:'ato-bas-quarter-aggregation-form',router:1,description:"view and search data in a cloud database table"},
+                "ato-bas-quarter-aggregation-form":{url:$vm.hosting_path+"/ato-bas-quarter-aggregation-form.html",Table:aggregation,router:1,description:"data collection form"},
                 "diagram":{url:$vm.hosting_path+"/diagram.html",router:1,description:"show relationship"},
             }
             //---------------------------------------------

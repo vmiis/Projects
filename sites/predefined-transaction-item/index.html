@@ -23,13 +23,20 @@
             $vm={};$VmAPI={};$vm.ver=[0.16,0.15];
             $vm.hosting_path=window.location.href.substring(0, window.location.href.split('?')[0].lastIndexOf('/'));
             //---------------------------------------------
+            var pre_item="vm-demo-predefined-transaction-item";
+            if(window.location.toString().indexOf('_w=1')!=-1){
+                pre_item="predefined-transaction-item-wappsystem";
+            }
+            else if(window.location.toString().indexOf('_v=1')!=-1){
+                pre_item="predefined-transaction-item-vmautomation";
+            }
             $vm.module_list={
                 index:{url:$vm.hosting_path+"/index.html",description:"main entry, layout, module list setup"},
                 header:{url:$vm.hosting_path+"/header.html",description:"logo, menu, login/logout etc"},
                 footer:{url:$vm.hosting_path+"/footer.html",description:"copyright info, links etc"},
-                home:{url:$vm.hosting_path+"/home.html",description:"landing page, show some information, like the current page you are viewing"},
-                data:{url:$vm.hosting_path+"/data.html",Table:"vm-demo-predefined-transaction-item",form_module:"form",router:1,description:"view and search data in a cloud database table"},
-                form:{url:$vm.hosting_path+"/form.html",Table:"vm-demo-predefined-transaction-item",router:1,description:"data collection form"},
+                home:{url:$vm.hosting_path+"/home.html",router:1,description:"landing page, show some information, like the current page you are viewing"},
+                data:{url:$vm.hosting_path+"/data.html",Table:pre_item,form_module:"form",router:1,description:"view and search data in a cloud database table"},
+                form:{url:$vm.hosting_path+"/form.html",Table:pre_item,router:1,description:"data collection form"},
                 "diagram":{url:$vm.hosting_path+"/diagram.html",router:1,description:"show relationship"},
             }
             //---------------------------------------------
