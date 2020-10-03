@@ -1,0 +1,137 @@
+﻿<div id=D__ID>
+    <div>
+        <div id=toolbar__ID class="navbar navbar-default" style='margin-bottom:0px;padding-left:6px;'>
+            <form class="form-inline">
+                <span class=tool__ID>
+                    <input type=file id=file__ID style='display:none' />            
+                    <button type=button class='btn btn-secondary' id=select__ID>Select a file</i></button>
+                    <!--<button type=button class='btn btn-secondary' id=play__ID>Play</i></button>-->
+                    <!--<button type=button class='btn btn-secondary' id=this__ID>This Month</button>-->
+                </span>
+                <span style='margin:0 20px' id=name__ID></span>
+
+                <div id="player__ID" style='display:inline-block;'></div>
+            </form>
+        </div>
+        <div id="svg_output__ID" ></div>
+    </div>
+    <script>
+        function F__ID(){
+
+            $('#select__ID').on('click',function(){ $('#file__ID').trigger('click'); })
+            $('#file__ID').on('change',function(e){
+                $('#name__ID').text(event.target.files[0].name);
+                var reader = new FileReader();
+                reader.onload = (function(e) {
+                    var data=e.target.result;
+                    loadData(data);
+                })
+                reader.readAsText(event.target.files[0]);
+            })
+            //-------------------------------------
+            /*
+            $('#play__ID').on('click',function(){
+                play_midi();
+            })
+            */
+            var vrvToolkit = new verovio.toolkit();
+            var page = 1;
+            var zoom = 60;
+            var pageHeight = 2970;
+            var pageWidth = 2100;
+            
+            var ids = [];
+            var isPlaying = false;
+            
+            function setOptions() {
+                pageHeight = $(document).height() * 100 / zoom ;
+                pageWidth = $(document).width() * 100 / zoom ;
+                options = {
+                            pageHeight: pageHeight,
+                            pageWidth: pageWidth,
+                            scale: zoom,
+                            adjustPageHeight: true
+                        };
+                vrvToolkit.setOptions(options);
+            }
+            function loadData(data) {
+                setOptions();
+                vrvToolkit.loadData(data);
+                page = 1;
+                loadPage();
+                
+                play_midi();
+                $("#player__ID").midiPlayer.stop()
+            }
+
+            function loadPage() {
+                svg = vrvToolkit.renderToSVG(page, {});
+                $("#svg_output__ID").html(svg);
+                $(".note").click(function() {
+                    var id = $(this).attr("id");
+                    var time = vrvToolkit.getTimeForElement(id);
+                    $("#midi-player").midiPlayer.seek(time);
+                });
+            };
+            function play_midi() {
+                if (isPlaying == false) {
+                    var base64midi = vrvToolkit.renderToMIDI();
+                    var song = 'data:audio/midi;base64,' + base64midi;
+                    $("#player").show();
+                    $("#player__ID").midiPlayer.play(song);
+                    isPlaying = true;
+                }
+            }
+            var midiUpdate = function(time) {
+                // time needs to - 400 for adjustment
+                var vrvTime = Math.max(0, time - 400);
+                var elementsattime = vrvToolkit.getElementsAtTime(vrvTime);
+                if (elementsattime.page > 0) {
+                    if (elementsattime.page != page) {
+                        page = elementsattime.page;
+                        loadPage();
+                    }
+                    if ((elementsattime.notes.length > 0) && (ids != elementsattime.notes)) {
+                        ids.forEach(function(noteid) {
+                            if ($.inArray(noteid, elementsattime.notes) == -1) {
+                                $("#" + noteid).attr("fill", "#000").attr("stroke", "#000");
+                            }
+                        });
+                        ids = elementsattime.notes;
+                        ids.forEach(function(noteid) {
+                            if ($.inArray(noteid, elementsattime.notes) != -1) {
+                                $("#" + noteid).attr("fill", "#c00").attr("stroke", "#c00");;
+                            }
+                        });
+                    }
+                }
+            }
+            var midiStop = function() {
+                ids.forEach(function(noteid) {
+                    $("#" + noteid).attr("fill", "#000").attr("stroke", "#000");
+                });
+                $("#player").hide();
+                isPlaying = false;
+                $('#midiPlayer_play').css("display","inline-block");
+                $('#midiPlayer_pause').css("display","inline-block");
+            }
+            $("#player__ID").midiPlayer({
+                color: "#c00",
+                onUpdate: midiUpdate,
+                onStop: midiStop,
+                width: 250
+            });
+            $('#midiPlayer_play').css("display","inline-block");
+            $('#midiPlayer_pause').css("display","inline-block");
+            //-------------------------------------
+        }
+    </script>
+    <style>
+        #D__ID{
+            padding:0px;
+			height:100%;
+            background-color: #fff;
+			animation: vm_module_fadein 1.0s;
+        }
+    </style>
+</div>
