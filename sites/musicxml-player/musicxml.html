@@ -1,5 +1,6 @@
 ﻿<div id=D__ID>
     <div>
+        <span style='padding-left:10px;'>To integrate interactive music scores to any web page</span>
         <div id=toolbar__ID class="navbar navbar-default" style='margin-bottom:0px;padding-left:6px;'>
             <form class="form-inline">
                 <span class=tool__ID>
@@ -8,17 +9,33 @@
                     <!--<button type=button class='btn btn-secondary' id=play__ID>Play</i></button>-->
                     <!--<button type=button class='btn btn-secondary' id=this__ID>This Month</button>-->
                 </span>
-                <span style='margin:0 20px' id=name__ID></span>
 
-                <div id="player__ID" style='display:inline-block;'></div>
+                <div id="player__ID" style='display:inline-block;margin-left:20px'></div>
+                <span style='margin:0 10px 0 30px'>Examples: </span><select id=xml__ID class='form-control'>
+                    <option></option>
+                    <option>Amazing Grace</option>
+                    <option>The Sound of Silence</option>
+                </select>
             </form>
         </div>
-        <div id="svg_output__ID" ></div>
+        <span style='padding-left:10px;'id=name__ID></span>
+        <div id="svg_output__ID"></div>
     </div>
     <script>
         function F__ID(){
 
             $('#select__ID').on('click',function(){ $('#file__ID').trigger('click'); })
+            $('#xml__ID').on('change',function(){
+                var v=$('#xml__ID').val();
+                if(v!=''){
+                    var url=v.replace(/ /g,'_');
+                    url='__CURRENT_PATH__xml/'+url+".musicxml";
+                    $('#name__ID').text(url);
+                    $.get(url,function(data){
+                        loadData(data);
+                    })
+                }
+            })
             $('#file__ID').on('change',function(e){
                 $('#name__ID').text(event.target.files[0].name);
                 var reader = new FileReader();
@@ -45,7 +62,7 @@
             
             function setOptions() {
                 pageHeight = $(document).height() * 100 / zoom ;
-                pageWidth = $(document).width() * 100 / zoom ;
+                pageWidth = ($(document).width()-50) * 100 / zoom ;
                 options = {
                             pageHeight: pageHeight,
                             pageWidth: pageWidth,
