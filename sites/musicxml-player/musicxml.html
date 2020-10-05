@@ -33,7 +33,7 @@
                     $('#name__ID').text(url);
                     $.get(url,function(data){
                         loadData(data);
-                    })
+                    },'text');
                 }
             })
             $('#file__ID').on('change',function(e){
