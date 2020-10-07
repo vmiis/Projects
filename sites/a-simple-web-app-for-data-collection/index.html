@@ -20,7 +20,7 @@
         <!----------------------------------------------->
         <script app code>
             //---------------------------------------------
-            $vm={};$VmAPI={};$vm.ver=[0.16,0.15];
+            $vm={};$VmAPI={};$vm.ver=[0.17,0.16];
             $vm.hosting_path=window.location.href.substring(0, window.location.href.split('?')[0].lastIndexOf('/'));
             //---------------------------------------------
             $vm.module_list={
@@ -36,7 +36,6 @@
             var first_module='home';
             var a=window.location.href.split('?/'); if(a.length==2) first_module=a[1].split('&')[0];
             $vm.ready=function(){
-                $vm.load_module(first_module,'content',{})
             }
             //---------------------------------------------
         </script>    
@@ -89,7 +88,12 @@
                 $vm.load_component('header','header',{});
                 $vm.load_component('footer','footer',{});
                 for (m in $vm.module_list) {
-                    if(m!="index" && m!="header" && m!="footer" && m!=first_module) $vm.load_module(m,'content',{silence:1})
+                    if(m!="index" && m!="header" && m!="footer"){
+                        $vm.install_module(m,'content',{}, function(name,id){
+                            console.log(name + ' is installed');
+                            if(name==first_module) $vm.show_module(first_module,{})
+                        })
+                    }
                 }
                 $vm.ready();
             }

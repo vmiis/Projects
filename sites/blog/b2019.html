@@ -1,0 +1,39 @@
+<div id=D__ID>
+
+    <div id=layout__ID>
+        <div style='padding:50px 0 0 30px'>
+            <div id=menu__ID>
+                <b>2019</b>
+                <ul>
+                    <li><a href='?/blog3'>Blog 3</a></li>
+                    <li><a href='?/blog4'>Blog 4</a></li>
+                </ul>
+            </div>
+        </div>
+        <div id=content__ID></div>     
+    </div>
+    <script>
+    	function F__ID(){
+            $('#D__ID').on('show',function(){
+                var block=0; $('#content__ID > div').each(function(){ if($(this).css('display')=='block') block++; })
+                if(block==0) $('#content__ID > div:first-child').css('display','block')
+            })
+            $('#D__ID a').on('click',function(e){
+                e.preventDefault();
+                var module_name=$(this).attr('href').replace('?\/','');
+                if(module_name!="") $vm.show_module(module_name,{})
+            })
+        }
+    </script>
+    <style>
+        #D__ID{
+            height: 100%;
+        }
+        #layout__ID {
+            height: 100%;
+            display: grid;
+            grid-template-columns: 200px 1fr;
+            background-color: #fff;
+        }
+    </style>
+</div>
