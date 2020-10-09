@@ -1,0 +1,60 @@
+<div id=D__ID>
+    <section id=form_container__ID>
+    	<div id=header__ID>
+    		Form
+    	</div>
+    	<form id=F__ID>
+    		<div class="container">
+<div class='row row__ID'><div class='col'>
+<span>First Name</span>
+<input type=text class=form-control name=First_Name>
+</div></div>
+
+<div class='row row__ID'><div class='col'>
+<span>Last Name</span>
+<input type=text class=form-control name=Last_Name>
+</div></div>
+
+<div class='row row__ID'><div class='col'>
+<span>State</span>
+    <select class=form-control name=State>
+        <option value=NSW>NSW</option>
+        <option value=QLD>QLD</option>
+    </select>
+</div></div>
+
+<div class='row row__ID'><div class='col radio_7'>
+<span>Gender</span><br>
+<label><input type='radio' name=Gender value=Male>&nbsp&nbspMale</label>&nbsp&nbsp&nbsp&nbsp<label><input type='radio' name=Gender value=Female>&nbsp&nbspFemale</label>&nbsp&nbsp&nbsp&nbsp<label><input type='radio' name=Gender value=Other>&nbsp&nbspOther</label>&nbsp&nbsp&nbsp&nbsp</div></div>
+
+
+    			<br>
+                <div class="row">
+                        <div class=col>
+                        <button id=submit__ID type="submit" class="btn btn-secondary">Submit</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </section>
+    
+    <script>
+    	function F__ID(){
+			//--------------------------------------------------------
+			VmInclude:__COMPONENT__/f/form.01.js
+			//-------------------------------------
+			var old_load=m.load;
+			m.load=function(){
+                old_load();
+                
+			}
+            //-------------------------------------
+    	}
+    </script>
+    <style>
+        #form_container__ID{
+            max-width:700px;
+        }
+        VmInclude:__COMPONENT__/f/form.01.css
+    </style>
+</div>
