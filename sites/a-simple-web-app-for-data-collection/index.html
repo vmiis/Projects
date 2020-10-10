@@ -33,10 +33,9 @@
                 "diagram":{url:$vm.hosting_path+"/diagram.html",router:1,description:"show relationship"},
             }
             //---------------------------------------------
-            var first_module='home';
-            var a=window.location.href.split('?/'); if(a.length==2) first_module=a[1].split('&')[0];
-            $vm.ready=function(){
-            }
+            $vm.first_module='home';
+            $vm.ready=function(){}
+            (function(){ var a=window.location.href.split('?/'); if(a.length==2) $vm.first_module=a[1].split('&')[0]; })();
             //---------------------------------------------
         </script>    
         <script vm framework code>
@@ -91,7 +90,7 @@
                     if(m!="index" && m!="header" && m!="footer"){
                         $vm.install_module(m,'content',{}, function(name,id){
                             console.log(name + ' is installed');
-                            if(name==first_module) $vm.show_module(first_module,{})
+                            if(name==$vm.first_module) $vm.show_module($vm.first_module,{})
                         })
                     }
                 }
