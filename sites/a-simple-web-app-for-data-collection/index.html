@@ -34,8 +34,8 @@
             }
             //---------------------------------------------
             $vm.first_module='home';
+            (function(){ var a=window.location.href.split('?/'); if(a.length==2) $vm.first_module=a[1].split('&')[0]; }());
             $vm.ready=function(){}
-            (function(){ var a=window.location.href.split('?/'); if(a.length==2) $vm.first_module=a[1].split('&')[0]; })();
             //---------------------------------------------
         </script>    
         <script vm framework code>
@@ -62,6 +62,12 @@
             }
             //---------------------------------------------
             $vm.boot=function(){
+                if(window.location.toString().indexOf('_i=1')!=-1){
+                    var r=confirm("Click OK will refresh the browser to reinstall all modules.");
+                    if(r){
+                        localStorage.clear();
+                    }
+                }
                 var url=$vm.url("https://vm.vmiis.com/distribution/latest/vm.js");
                 var ver=localStorage.getItem($vm.hosting_path+url+"ver");
                 var txt=localStorage.getItem($vm.hosting_path+url+"txt");
@@ -95,6 +101,7 @@
                     }
                 }
                 $vm.ready();
+                console.log($vm.ready)
             }
             //---------------------------------------------
             $("body").addClass('body_background_default');
