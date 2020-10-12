@@ -53,21 +53,29 @@
     		//-------------------------------------
             VmInclude:__COMPONENT__/f/form.01.js
     		//-------------------------------------
-			$vm.request({cmd:'find',table:m.lookup},function(res){
-				var txt="";
-				for(i in res.result){
-					var v=res.result[i].Data.Name;
-					txt+="<option>"+v+"</option>";
-				}
-				$('#Item__ID').html(txt);
-				if(m.input.item!=undefined){
-					$('#F__ID select[name=Item]').val(m.input.item);
-				}
-			});
+			var setup_list=0;
 			//--------------------------------------------------------
-            old_load=m.load;
+            var old_load=m.load;
 			m.load=function(){
 				old_load();
+
+				if(setup_list==0){
+					setup_list=1;
+					//--------------------------------------------------------
+					$vm.request({cmd:'find',table:m.lookup},function(res){
+						var txt="";
+						for(i in res.result){
+							var v=res.result[i].Data.Name;
+							txt+="<option>"+v+"</option>";
+						}
+						$('#Item__ID').html(txt);
+						if(m.input!=undefined && m.input.item!=undefined){
+							$('#F__ID select[name=Item]').val(m.input.item);
+						}
+					});
+					//--------------------------------------------------------
+				}
+
 				if(m.input.item!=undefined){
 					$('#F__ID input[name=Item]').val(m.input.item);
 				}

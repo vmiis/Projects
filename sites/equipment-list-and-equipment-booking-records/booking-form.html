@@ -61,17 +61,20 @@
 			m.hour_start=7;
 			m.hour_end=18;
     		//-------------------------------------
-			$vm.request({cmd:'find',table:m.lookup},function(res){
-				var txt="";
-				for(i in res.result){
-					var v=res.result[i].Data.Name;
-					txt+="<option>"+v+"</option>";
-				}
-				$('#Item__ID').html(txt);
-				if(m.input.item!=undefined){
-					$('#F__ID select[name=Item]').val(m.input.item);
-				}
-			});
+			var dropdown_list=0;
+			var set_dropdown_list=function(){
+				$vm.request({cmd:'find',table:m.lookup},function(res){
+					var txt="";
+					for(i in res.result){
+						var v=res.result[i].Data.Name;
+						txt+="<option>"+v+"</option>";
+					}
+					$('#Item__ID').html(txt);
+					if(m.input.item!=undefined){
+						$('#F__ID select[name=Item]').val(m.input.item);
+					}
+				});
+			}
 			//--------------------------------------------------------
 			var $List1=$('#F__ID select[name=Time]');
 			for(var i=m.hour_start;i<m.hour_end;i++){
@@ -96,6 +99,10 @@
 			//-------------------------------------
             var old_load=m.load;
 			m.load=function(){
+                if(dropdown_list==0){
+                    dropdown_list=1;
+                    set_dropdown_list();
+                }
 				old_load();
 				if(m.input.day!=undefined){
 					$('#F__ID input[name=Date]').val(m.input.day);

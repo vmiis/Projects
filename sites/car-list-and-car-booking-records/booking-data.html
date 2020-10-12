@@ -9,6 +9,7 @@
         var fields="Car|Item,Date,Time,Duration,Info";
         m.fields="_Form,"+fields+",Submit_date,Submitted_by,_Delete";
         //-------------------------------------
+        if($vm.flexindex!=undefined)  $vm.flexindex.add({id:'__MODULE__',contents:'car booking',title:"Car booking records"});
     }
 </script>
 <style>

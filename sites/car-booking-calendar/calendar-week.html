@@ -13,15 +13,18 @@
             //--------------------------------------------------------
             //set item list
             $('#item_list__ID').show();
-            $vm.request({cmd:'find',table:m.lookup},function(res){
-                var txt="";
-                for(i in res.result){
-                    var v=res.result[i].Data.Name;
-                    txt+="<option>"+v+"</option>";
-                }
-                $('#item_list__ID').html(txt);
-                m.request_and_render();
-            });
+            var dropdown_list=0;
+            var set_dropdown_list=function(){
+                $vm.request({cmd:'find',table:m.lookup},function(res){
+                    var txt="";
+                    for(i in res.result){
+                        var v=res.result[i].Data.Name;
+                        txt+="<option>"+v+"</option>";
+                    }
+                    $('#item_list__ID').html(txt);
+                    m.request_and_render();
+                });
+            }
             $('#item_list__ID').on('change',function(){
                 m.request_and_render();
             })
@@ -94,9 +97,16 @@
                 $vm.load_module(m.booking2,'',input);
             }
             //--------------------------------------------------------
-            $('#D__ID').on('load',function(){  m.request_and_render();  });
+            $('#D__ID').on('load',function(){  
+                if(dropdown_list==0){
+                dropdown_list=1;
+                set_dropdown_list();
+            }
+                m.request_and_render();  
+            });
             $('#D__ID').on('show',function(){  if($vm.refresh==1){$vm.refresh=0; m.request_and_render();}    });
             //--------------------------------------------------------
+            if($vm.flexindex!=undefined)  $vm.flexindex.add({id:'__MODULE__',contents:'car booking weekly calendar',title:"Car booking weekly calendar"});
         }
     </script>
     <style>
