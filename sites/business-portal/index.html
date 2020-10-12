@@ -68,10 +68,8 @@
                     }
                 }
                 var url=$vm.url("https://vm.vmiis.com/distribution/latest/vm.js");
-                var url=$vm.url("http://localhost:8000/vmiis/vm/distribution/latest/vm.js");
                 var ver=localStorage.getItem($vm.hosting_path+url+"ver");
                 var txt=localStorage.getItem($vm.hosting_path+url+"txt");
-                txt=null;
                 if(ver!=$vm.ver[1] || txt==null){
                     $.get(url+'?_='+new Date().getTime(),function(new_txt){
                         localStorage.setItem($vm.hosting_path+url+"txt",new_txt);
@@ -109,8 +107,8 @@
             }
             //---------------------------------------------
             $vm.install=function(){
-                for (m in $vm.module_list) {
-                    $vm.module_list[m].url=$vm.module_list[m].url.replace('https://projects.vmiis.com/sites','http://localhost:8000/vmiis/projects/sites');
+                if(window.location.toString().indexOf('_l=1')!=-1){
+                    for (m in $vm.module_list)  $vm.module_list[m].url=$vm.module_list[m].url.replace('https://projects.vmiis.com/sites','http://localhost:8000/vmiis/projects/sites');
                 }
                 //---------------------------------------------
                 $vm.init();
