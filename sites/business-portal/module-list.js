@@ -3,15 +3,18 @@
     var pre_item="vm-demo-predefined-transaction-item";
     var transaction="vm-demo-transaction-records";
     var aggregation="vm-demo-ato-bas-quarter";
+    var aggregation_ie="vm-demo-income-expense-month-aggregation";
     if(window.location.toString().indexOf('_w=1')!=-1){
         pre_item="predefined-transaction-item-wappsystem";
         transaction="transaction-wappsystem";
         aggregation="ato-bas-quarter-aggregation-wappsystem";
+        aggregation_ie="income-expense-month-aggregation-wappsystem";
     }
     else if(window.location.toString().indexOf('_v=1')!=-1){
         pre_item="predefined-transaction-item-vmautomation";
         transaction="transaction-vmautomation";
         aggregation="ato-bas-quarter-aggregation-vmautomation";
+        aggregation_ie="income-expense-month-aggregation-vmautomation";
     }
     //-------------------------------------------------------------------------------------
     var modules={
@@ -60,7 +63,10 @@
         "transaction-form":                         {url:"https://projects.vmiis.com/sites/transaction-records/form.html",                         Table:transaction,item_table:pre_item,router:1,description:"data collection form"},
         "ato-bas-quarter-aggregation-data":         {url:"https://projects.vmiis.com/sites/ato-bas-quarterly-aggregation/ato-bas-quarter-aggregation-data.html",Table:aggregation,transaction_table:transaction,form_module:'ato-bas-quarter-aggregation-form',router:1,description:"view and search data in a cloud database table"},
         "ato-bas-quarter-aggregation-form":         {url:"https://projects.vmiis.com/sites/ato-bas-quarterly-aggregation/ato-bas-quarter-aggregation-form.html",Table:aggregation,router:1,description:"data collection form"},
-    }
+        "income-expense-month-aggregation-data":    {url:"https://projects.vmiis.com/sites/income-expense-month-aggregation/income-expense-month-aggregation-data.html",Table:aggregation_ie,transaction_table:transaction,form_module:'income-expense-month-aggregation-form',router:1,description:"view and search data in a cloud database table"},
+        "income-expense-month-aggregation-form":    {url:"https://projects.vmiis.com/sites/income-expense-month-aggregation/income-expense-month-aggregation-form.html",Table:aggregation_ie,router:1,description:"data collection form"},
+        "income-expense-month-aggregation-chart":   {url:"https://projects.vmiis.com/sites/income-expense-month-aggregation/income-expense-month-aggregation-chart.html",Table:aggregation_ie,router:1,description:"chart"},
+}
     for(m in modules){$vm.module_list[m]=modules[m];}
     //-------------------------------------------------------------------------------------
 })();
