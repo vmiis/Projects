@@ -4,17 +4,23 @@
     var transaction="vm-demo-transaction-records";
     var aggregation="vm-demo-ato-bas-quarter";
     var aggregation_ie="vm-demo-income-expense-month-aggregation";
+    var aggregation_item="vm-demo-item-monthly-aggregation";
+    var aggregation_tax="vm-demo-tax-return-yearly-aggregation";
     if(window.location.toString().indexOf('_w=1')!=-1){
         pre_item="predefined-transaction-item-wappsystem";
         transaction="transaction-wappsystem";
         aggregation="ato-bas-quarter-aggregation-wappsystem";
         aggregation_ie="income-expense-month-aggregation-wappsystem";
+        aggregation_item="item-month-aggregation-wappsystem";
+        aggregation_tax="ato-tax-return-yearly-aggregation-wappsystem";
     }
     else if(window.location.toString().indexOf('_v=1')!=-1){
         pre_item="predefined-transaction-item-vmautomation";
         transaction="transaction-vmautomation";
         aggregation="ato-bas-quarter-aggregation-vmautomation";
         aggregation_ie="income-expense-month-aggregation-vmautomation";
+        aggregation_item="item-month-aggregation-automation";
+        aggregation_tax="ato-tax-return-yearly-aggregation-vmautomation";
     }
     //-------------------------------------------------------------------------------------
     var modules={
@@ -50,10 +56,10 @@
         equipment_day:           {url:"https://projects.vmiis.com/sites/equipment-booking-calendar/calendar-day.html",              Table:"demo-vm-19091811","booking":"equipment_booking_form",lookup:"demo-vm-19091812",description:"equipment booking daily calendar"},
         equipment_diagram:       {url:"https://projects.vmiis.com/sites/equipment-booking-calendar/diagram.html",                   description:"equipment booking diagram"},       
         
-        finance:                            {url:$vm.hosting_path+"/finance.html",router:1,description:"control panel"},
-        predefined_transaction_item_data:   {url:"https://projects.vmiis.com/sites/predefined-transaction-item/data.html",Table:pre_item,form_module:"predefined_transaction_item_form",router:1,description:"view and search data in a cloud database table"},
-        predefined_transaction_item_form:   {url:"https://projects.vmiis.com/sites/predefined-transaction-item/form.html",Table:pre_item,description:"data collection form"},
-        transaction_diagram:                {url:"https://projects.vmiis.com/sites/predefined-transaction-item/diagram.html",router:1,description:"show relationship"},
+        "finance":                                  {url:$vm.hosting_path+"/finance.html",router:1,description:"control panel"},
+        "predefined_transaction_item_data":         {url:"https://projects.vmiis.com/sites/predefined-transaction-item/data.html",Table:pre_item,form_module:"predefined_transaction_item_form",router:1,description:"view and search data in a cloud database table"},
+        "predefined_transaction_item_form":         {url:"https://projects.vmiis.com/sites/predefined-transaction-item/form.html",Table:pre_item,description:"data collection form"},
+        "transaction_diagram":                      {url:"https://projects.vmiis.com/sites/predefined-transaction-item/diagram.html",router:1,description:"show relationship"},
         "transaction-data-basic":                   {url:"https://projects.vmiis.com/sites/transaction-records/data-basic.html",                   Table:transaction,form_module:"transaction-form",router:1,description:"view and search data in a cloud database table"},
         "transaction-data-year-quarter":            {url:"https://projects.vmiis.com/sites/transaction-records/data-year-quarter.html",            Table:transaction,form_module:"transaction-form",router:1,description:"view and search data in a cloud database table"},
         "transaction-data-bas":                     {url:"https://projects.vmiis.com/sites/transaction-records/data-bas.html",                     Table:transaction,form_module:"transaction-form",router:1,description:"view and search data in a cloud database table"},
@@ -66,7 +72,25 @@
         "income-expense-month-aggregation-data":    {url:"https://projects.vmiis.com/sites/income-expense-month-aggregation/income-expense-month-aggregation-data.html",Table:aggregation_ie,transaction_table:transaction,form_module:'income-expense-month-aggregation-form',router:1,description:"view and search data in a cloud database table"},
         "income-expense-month-aggregation-form":    {url:"https://projects.vmiis.com/sites/income-expense-month-aggregation/income-expense-month-aggregation-form.html",Table:aggregation_ie,router:1,description:"data collection form"},
         "income-expense-month-aggregation-chart":   {url:"https://projects.vmiis.com/sites/income-expense-month-aggregation/income-expense-month-aggregation-chart.html",Table:aggregation_ie,router:1,description:"chart"},
-}
+        "item-monthly-aggregation-data":            {url:"https://projects.vmiis.com/sites/item-monthly-aggregation/item-month-aggregation-data.html",Table:aggregation_item,transaction_table:transaction,form_module:'item-monthly-aggregation-form',router:1,description:"view and search data in a cloud database table"},
+        "item-monthly-aggregation-form":            {url:"https://projects.vmiis.com/sites/item-monthly-aggregation/item-month-aggregation-form.html",Table:aggregation_item,router:1,description:"data collection form"},
+        "item-monthly-aggregation-chart":           {url:"https://projects.vmiis.com/sites/item-monthly-aggregation/item-month-aggregation-chart.html",Table:"vm-demo-item-monthly-aggregation",router:1,description:"chart"},
+        "tax-return-yearly-aggregation-data":       {url:"https://projects.vmiis.com/sites/tax-return-yearly-aggregation/ato-tax-return-yearly-aggregation-data.html",Table:aggregation_tax,transaction_table:transaction,form_module:'tax-return-yearly-aggregation-form',router:1,description:"view and search data in a cloud database table"},
+        "tax-return-yearly-aggregation-form":       {url:"https://projects.vmiis.com/sites/tax-return-yearly-aggregation/ato-tax-return-yearly-aggregation-form.html",Table:aggregation_tax,router:1,description:"data collection form"},
+        "tax-return-yearly-aggregation-chart":      {url:"https://projects.vmiis.com/sites/tax-return-yearly-aggregation/ato-tax-return-yearly-aggregation-chart.html",Table:aggregation_tax,router:1,description:"chart"},
+        
+        "marketing":                                {url:$vm.hosting_path+"/marketing.html",router:1,description:"control panel"},
+        "contact_us_1":                             {url:"https://projects.vmiis.com/sites/contact-us-1/form.html",Table:"demo-vm-ccontact-us",router:1,description:"data collection form"},
+        "contact_us_2":                             {url:"https://projects.vmiis.com/sites/contact-us-2/form.html",Table:"demo-vm-ccontact-us",router:1,description:"data collection form"},
+        "contact_us_3":                             {url:"https://projects.vmiis.com/sites/contact-us-3/form.html",Table:"demo-vm-ccontact-us",router:1,description:"data collection form"},
+        "contact_us_data":                          {url:"https://projects.vmiis.com/sites/contact-us-1/data.html",Table:"demo-vm-ccontact-us",router:1,description:"data collection form"},
+        "services_1":                               {url:"https://projects.vmiis.com/sites/our-services/services.html",router:1,description:"marketing"},
+        "learn_more":                               {url:"https://projects.vmiis.com/sites/our-services/learn-more.html",router:1},
+        "portfolio_1":                              {url:"https://projects.vmiis.com/sites/our-portfolio/portfolio.html",router:1,description:"marketing"},
+        "trainers_1":                               {url:"https://projects.vmiis.com/sites/our-trainers/trainers.html",router:1,description:"marketing"},
+        "medical-services":                         {url:"https://projects.vmiis.com/sites/medical-services/services.html",router:1,description:"marketing"},
+        "read_more":                                {url:"https://projects.vmiis.com/sites/medical-services/read-more.html",router:1},
+    }
     for(m in modules){$vm.module_list[m]=modules[m];}
     //-------------------------------------------------------------------------------------
 })();

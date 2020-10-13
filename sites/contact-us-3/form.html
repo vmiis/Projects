@@ -1,5 +1,5 @@
 ﻿<div id=D__ID>
-	<div>
+	<div id=page__ID>
 		<section class="page-heading">
 	        <div class="container">
 	            <div class="row">
@@ -65,6 +65,7 @@
 	        //-------------------------------------
             VmInclude:__COMPONENT__/f/form.01.js
 	        //-------------------------------------
+            if($vm.flexindex!=undefined)  $vm.flexindex.add({id:'__MODULE__',contents:$('#page__ID').text(),title:'Contact us 3'});
 	    }
 	</script>
 	<style>

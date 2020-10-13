@@ -8,6 +8,8 @@
 			//-------------------------------------
 			VmInclude:__COMPONENT__/c/chart.01.js
 			//-------------------------------------
+			m.google=1;
+			m.start=function(){};
 			//number dropdown
 			var $List1=$('#select1__ID');
 			var y=new Date().getFullYear();
@@ -79,6 +81,7 @@
 				chart.draw(data, options);				
 			}
 			//-------------------------------------
+            if($vm.flexindex!=undefined)  $vm.flexindex.add({id:'__MODULE__',contents:'transaction item aggregation month chart',title:"Item month aggregation chart"});
 		}
 		//-------------------------------------
   </script>
