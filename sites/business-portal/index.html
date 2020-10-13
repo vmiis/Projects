@@ -41,7 +41,7 @@
             }
             //---------------------------------------------
             $vm.first_module='home';
-            (function(){ var a=window.location.href.split('?/'); if(a.length==2) $vm.first_module=a[1].split('&')[0]; }());
+            (function(){ var a=window.location.href.split('?/'); if(a.length==2) $vm.first_module=a[1].split('&')[0].replace(/\//g,'_'); }());
             $vm.ready=function(){}
             //---------------------------------------------
         </script>    
