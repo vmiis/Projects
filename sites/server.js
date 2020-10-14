@@ -23,6 +23,22 @@ const httpServer = http.createServer((request, response) => {
             }
         });
     }
+    else if(request.method=='HEAD'){
+        try{
+            const parsedUrl = url.parse(request.url, true);
+            let pathName = parsedUrl.pathname;
+            if(pathName.endsWith("/")) pathName=pathName+'/index.html';
+            const stats = fs.statSync(`${baseDir}${pathName}`)
+            response.setHeader('Last-Modified', stats.mtime);
+            response.writeHead(200);
+            response.end('');
+        }
+        catch(err){
+            console.log(err)
+            response.writeHead(405);
+            response.end('');
+        }
+    }
     else if(request.method=='POST'){
         var r_data='';
         request.on('data',function(data){
