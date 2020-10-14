@@ -103,3 +103,13 @@
     }
     for(m in modules){ if($vm.module_list[m]!=undefined) alert(m+" is existed"); modules[m].url=modules[m].url.replace("$H","https://projects.vmiis.com/sites/"); $vm.module_list[m]=modules[m];}
 })();
+
+
+(function(){
+    var modules={
+        "clinical-trials":                          {url:$vm.hosting_path+"/clinical-trials.html",router:1},
+        "ameq_data":                                {url:"$H/activity-morning-eveningness-questionnaire/data.html",Table:"me-shf-spardac",form_module:"ameq_form",router:1},
+        "ameq_form":                                {url:"$H/activity-morning-eveningness-questionnaire/form.html",Table:"me-shf-spardac",router:1},
+}
+    for(m in modules){ if($vm.module_list[m]!=undefined) alert(m+" is existed"); modules[m].url=modules[m].url.replace("$H","https://projects.vmiis.com/sites/"); $vm.module_list[m]=modules[m];}
+})();
