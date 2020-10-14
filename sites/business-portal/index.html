@@ -80,13 +80,13 @@
                     $.get(url+'?_='+new Date().getTime(),function(new_txt){
                         localStorage.setItem($vm.hosting_path+url+"txt",new_txt);
                         localStorage.setItem($vm.hosting_path+url+"ver",$vm.ver[1]);
-                        console.log('loading from url. '+url+' '+ver+'/'+$vm.ver[1]);
+                        console.log('%cloading from url. '+url+' '+ver+'/'+$vm.ver[1],"color:#b55");
                         $('head').append('<scr'+'ipt>'+new_txt+'</scr'+'ipt>');
                         $vm.get_module_list();
                     },'text');
                 }
                 else{
-                    console.log('loading from storage. '+url+' '+ver+'/'+$vm.ver[1]);
+                    console.log('%cloading from storage. '+url+' '+ver+'/'+$vm.ver[1],"color:#055");
                     $('head').append('<scr'+'ipt>'+txt+'</scr'+'ipt>');
                     $vm.get_module_list();
                 }
@@ -100,13 +100,13 @@
                     $.get($vm.hosting_path+url+'?_='+new Date().getTime(),function(new_txt){
                         localStorage.setItem($vm.hosting_path+url+"txt",new_txt);
                         localStorage.setItem($vm.hosting_path+url+"ver",$vm.ver[1]);
-                        console.log('loading from url. '+url+' '+ver+'/'+$vm.ver[1]);
+                        console.log('%cloading from url. '+url+' '+ver+'/'+$vm.ver[1],"color:#b55");
                         $('head').append('<scr'+'ipt>'+new_txt+'</scr'+'ipt>');
                         $vm.install();
                     },'text');
                 }
                 else{
-                    console.log('loading from storage. '+url+' '+ver+'/'+$vm.ver[1]);
+                    console.log('%cloading from storage. '+url+' '+ver+'/'+$vm.ver[1],"color:#055");
                     $('head').append('<scr'+'ipt>'+txt+'</scr'+'ipt>');
                     $vm.install();
                 }
