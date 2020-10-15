@@ -6,8 +6,6 @@
                 <span class=tool__ID>
                     <input type=file id=file__ID style='display:none' />            
                     <button type=button class='btn btn-secondary' id=select__ID>Select a file</i></button>
-                    <!--<button type=button class='btn btn-secondary' id=play__ID>Play</i></button>-->
-                    <!--<button type=button class='btn btn-secondary' id=this__ID>This Month</button>-->
                 </span>
 
                 <div id="player__ID" style='display:inline-block;margin-left:20px'></div>
@@ -23,7 +21,6 @@
     </div>
     <script>
         function F__ID(){
-
             $('#select__ID').on('click',function(){ $('#file__ID').trigger('click'); })
             $('#xml__ID').on('change',function(){
                 var v=$('#xml__ID').val();
@@ -46,11 +43,6 @@
                 reader.readAsText(event.target.files[0]);
             })
             //-------------------------------------
-            /*
-            $('#play__ID').on('click',function(){
-                play_midi();
-            })
-            */
             var vrvToolkit = new verovio.toolkit();
             var page = 1;
             var zoom = 60;
@@ -76,7 +68,6 @@
                 vrvToolkit.loadData(data);
                 page = 1;
                 loadPage();
-                
                 play_midi();
                 $("#player__ID").midiPlayer.stop()
             }

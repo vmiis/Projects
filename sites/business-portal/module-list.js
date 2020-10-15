@@ -85,7 +85,7 @@
         "tax-return-yearly-aggregation-form":       {url:"$H/tax-return-yearly-aggregation/ato-tax-return-yearly-aggregation-form.html",Table:aggregation_tax,router:1},
         "tax-return-yearly-aggregation-chart":      {url:"$H/tax-return-yearly-aggregation/ato-tax-return-yearly-aggregation-chart.html",Table:aggregation_tax,router:1},
     }
-    for(m in modules){ if($vm.module_list[m]!=undefined) alert(m+" is existed"); modules[m].url=modules[m].url.replace("$H","https://projects.vmiis.com/sites/"); $vm.module_list[m]=modules[m];}
+    for(m in modules){ if($vm.module_list[m]!=undefined) alert(m+" is existed"); modules[m].url=modules[m].url.replace("$H","https://projects.vmiis.com/sites"); $vm.module_list[m]=modules[m];}
     //-------------------------------------------------------------------------------------
 })();
 
@@ -104,7 +104,7 @@
         "medical-services":                         {url:"$H/medical-services/services.html",router:1},
         "read_more":                                {url:"$H/medical-services/read-more.html",router:1},
     }
-    for(m in modules){ if($vm.module_list[m]!=undefined) alert(m+" is existed"); modules[m].url=modules[m].url.replace("$H","https://projects.vmiis.com/sites/"); $vm.module_list[m]=modules[m];}
+    for(m in modules){ if($vm.module_list[m]!=undefined) alert(m+" is existed"); modules[m].url=modules[m].url.replace("$H","https://projects.vmiis.com/sites"); $vm.module_list[m]=modules[m];}
 })();
 
 //clinical-trials
@@ -118,7 +118,7 @@
         "anthropometry-age-sex_data":               {url:"$H/anthropometry-age-sex/data.html",Table:"anthropometry-age-sex-spardac",form_module:"anthropometry-age-sex_form",router:1},
         "anthropometry-age-sex_form":               {url:"$H/anthropometry-age-sex/form.html",Table:"anthropometry-age-sex-spardac",router:1},
 }
-    for(m in modules){ if($vm.module_list[m]!=undefined) alert(m+" is existed"); modules[m].url=modules[m].url.replace("$H","https://projects.vmiis.com/sites/"); $vm.module_list[m]=modules[m];}
+    for(m in modules){ if($vm.module_list[m]!=undefined) alert(m+" is existed"); modules[m].url=modules[m].url.replace("$H","https://projects.vmiis.com/sites"); $vm.module_list[m]=modules[m];}
 })();
 
 //research-projects
@@ -131,7 +131,7 @@
         "sleep-research-p3":                        {url:"$H/sleep-research/page3.html",router:1,parent:'sleep-research'},
         "sleep-research-p4":                        {url:"$H/sleep-research/page4.html",router:1,parent:'sleep-research'},
 }
-    for(m in modules){ if($vm.module_list[m]!=undefined) alert(m+" is existed"); modules[m].url=modules[m].url.replace("$H","https://projects.vmiis.com/sites/"); $vm.module_list[m]=modules[m];}
+    for(m in modules){ if($vm.module_list[m]!=undefined) alert(m+" is existed"); modules[m].url=modules[m].url.replace("$H","https://projects.vmiis.com/sites"); $vm.module_list[m]=modules[m];}
 })();
 
 
@@ -139,6 +139,8 @@
 (function(){
     var modules={
         "musicxml":                                 {url:"$H/musicxml-player/musicxml.html",router:1},
+        "arpeggios":                                {url:"$H/arpeggios/arpeggios.html",router:1},
+        "chords":                                   {url:"$H/chords/chords.html",router:1},
     }
     for(m in modules){ if($vm.module_list[m]!=undefined) alert(m+" is existed"); modules[m].url=modules[m].url.replace("$H","https://projects.vmiis.com/sites"); $vm.module_list[m]=modules[m];}
 })();

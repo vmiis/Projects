@@ -29,8 +29,8 @@
                     <li><a href="?/dropdown">Music <i class="fa fa-caret-down"></i></a>
                         <ul>
                             <li><a href="?/musicxml">MusicXML player</a></li>
-                            <li><a href="?/research-project">Arpeggios</a></li>
-                            <li><a href="?/research-project">Chords</a></li>
+                            <li><a href="?/arpeggios">Arpeggios</a></li>
+                            <li><a href="?/chords">Chords</a></li>
                         </ul>
                     </li>
                     <li><a href="" id=signin__ID onclick=$vm.signin() ><i class="fa fa-user"></i> Sigin</a></li>
@@ -80,7 +80,7 @@
                 close_all_dropdown();
             })
             $('#menu__ID>ul>li>a').on('mouseover',function(e){
-                close_all_dropdown();
+                //close_all_dropdown();
             })
             //---------------------------------------------------------------
             $('#menu__ID>ul>li>ul').on('mouseleave',function(e){

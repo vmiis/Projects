@@ -35,11 +35,9 @@
                 "musicxml":{url:$vm.hosting_path+"/musicxml.html",router:1,description:"view and play musical notes"},
             }
             //---------------------------------------------
-            var first_module='home';
-            var a=window.location.href.split('?/'); if(a.length==2) first_module=a[1].split('&')[0];
-            $vm.ready=function(){
-                $vm.load_module(first_module,'content',{})
-            }
+            $vm.first_module='home';
+            (function(){ var a=window.location.href.split('?/'); if(a.length==2) $vm.first_module=a[1].split('&')[0]; }());
+            $vm.ready=function(){}
             //---------------------------------------------
         </script>    
         <script vm framework code>
@@ -86,12 +84,16 @@
             }
             //---------------------------------------------
             $vm.install=function(){
-                //---------------------------------------------
                 $vm.init();
                 $vm.load_component('header','header',{});
                 $vm.load_component('footer','footer',{});
                 for (m in $vm.module_list) {
-                    if(m!="index" && m!="header" && m!="footer" && m!=first_module) $vm.load_module(m,'content',{silence:1})
+                    if(m!="index" && m!="header" && m!="footer"){
+                        $vm.install_module(m,'content',{}, function(name,id){
+                            console.log(name + ' is installed');
+                            if(name==$vm.first_module) $vm.show_module($vm.first_module,{})
+                        })
+                    }
                 }
                 $vm.ready();
             }
