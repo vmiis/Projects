@@ -4,29 +4,27 @@
     </div>
     <div id=panel__ID>
         <ul>
-            <div style='display:inline-block'>
+
+            <div>
                 <span class=LT__ID>Company Car Booking</span>
                 <li><a target=_blank href='?/car_month'>Monthly calendar</a></li>
                 <li><a target=_blank href='?/car_week'>Weekly calendar</a></li>
                 <li><a target=_blank href='?/car_day'>Daily calendar</a></li>
                 <li><a target=_blank href='?/car_diagram'>Diagram</a></li>
             </div>
-            <span class=LB__ID></span>
-            <div style='display:inline-block'>
+            <div>
                 <span class=LT__ID>Room Booking</span>
                 <li><a target=_blank href='?/room_month'>Monthly calendar</a></li>
                 <li><a target=_blank href='?/room_week'>Weekly calendar</a></li>
                 <li><a target=_blank href='?/room_day'>Daily calendar</a></li>
             </div>
-            <span class=LB__ID></span>
-            <div style='display:inline-block'>
+            <div>
                 <span class=LT__ID>Lab Equipment Booking</span>
                 <li><a target=_blank href='?/equipment_month'>Monthly calendar</a></li>
                 <li><a target=_blank href='?/equipment_week'>Weekly calendar</a></li>
                 <li><a target=_blank href='?/equipment_day'>Daily calendar</a></li>
             </div>
-            <span class=LB__ID></span>
-            <div style='display:inline-block'>
+            <div>
                 <span class=LT__ID >Administrator</span>
                 <li><a target=_blank href='?/car_booking_data'>Car booking records</a></li>
                 <li><a target=_blank href='?/car_list_data'>Car list</a></li>
@@ -115,7 +113,6 @@
             border-radius: 10px;
 			text-shadow: 2px 2px 2px #000;
         }
-
         .LT__ID{
             display:inline-block;
             margin-top:10px;
@@ -124,17 +121,13 @@
             border-bottom: 2px solid #479824;
             font-size: 18px;
         }
-        .LB__ID{
-            break-before:column;
-            display:block;            
+        #panel__ID div{
+            break-inside: avoid;
         }
-        @media screen and (max-width: 768px) {
-            #panel__ID{
-                column-count: 1;
-                column-width: 100%;
-            }
-            .LB__ID{
-                display:none;            
+        @media screen and (max-width: 1000px) {
+            .h_img__ID{
+                margin-top:0px;
+                border-radius: 0px;
             }
         }
     </style>

@@ -4,7 +4,7 @@
     </div>
     <div id=panel__ID>
         <ul>
-            <div style='display:inline-block'>
+            <div>
                 <span class=LT__ID>Transactions</span>
                 <li><a href='?/transaction-data-basic'>Transactions</a></li>
                 <li><a href='?/transaction-data-year-quarter'>Transactions (year-quarter)</a></li>
@@ -13,8 +13,7 @@
                 <li><a href='?/transaction-data-tax-return'>Transactions (Tax return)</a></li>
                 <li><a href='?/transaction-data-year-quarter-tax-return'>Transactions (Tax return, year-quarter)</a></li>
             </div>
-            <span class=LB__ID></span>
-            <div style='display:inline-block'>
+            <div>
                 <span class=LT__ID>Aggregations</span>
                 <li><a href='?/ato-bas-quarter-aggregation-data'>ATO BAS quarterly</a></li>
                 <li><a href='?/income-expense-month-aggregation-data'>Income/expense monthly (data)</a></li>
@@ -26,8 +25,7 @@
 
 
             </div>
-        <span class=LB__ID></span>
-            <div style='display:inline-block'>
+            <div>
                 <span class=LT__ID >Setup</span>
                 <li><a href='?/predefined_transaction_item_data'>Predefined transaction item</a></li>
                 <li><a href='?/transaction_diagram'>Transaction diagram</a></li>
@@ -121,17 +119,13 @@
             border-bottom: 2px solid #479824;
             font-size: 18px;
         }
-        .LB__ID{
-            break-before:column;
-            display:block;            
+        #panel__ID div{
+            break-inside: avoid;
         }
-        @media screen and (max-width: 768px) {
-            #panel__ID{
-                column-count: 1;
-                column-width: 100%;
-            }
-            .LB__ID{
-                display:none;            
+        @media screen and (max-width: 1000px) {
+            .h_img__ID{
+                margin-top:0px;
+                border-radius: 0px;
             }
         }
     </style>

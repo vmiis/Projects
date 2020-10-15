@@ -4,9 +4,18 @@
     <script type="text/javascript" src="https://gitzip.vmiis.com/js/API.js"></script>
     <h5 id=title__ID></h5>
     <br>
-    <div>We add each team's microservices together.
+    <div>
+        <b>Business Portal</b>: 
+        <br>Adding microservices together.
         <br>
         <br>
+        <br>
+        <b>What are microservices</b>:
+        <br>
+        Modular distributed small web applications.
+        <br>
+        Highly scalable, flexible, reusable, replaceable, maintainable, testable, loosely coupled, 
+        <br>independently deployable, organized around business capabilities, owned and maintained by a small team.
         <br>
         <br>
         <a id=d__ID style='cursor:pointer;color:#000'><u>Download and run this micro web app on a local computer</u></a><br>
@@ -18,7 +27,6 @@
                 <li>click 'Get Started'-> 'hello-webpage' to create a new app</li>
                 <li>once the app is started, click 'tools'->'import and export'->'Import from GitHub'</li>
                 <li>use this address <b>vmiis/projects:sites/<span id=app__ID></span></b> to import</li>
-                <li>optional: click '.env' to add a 'password_for_file_saving' variable for online editing contents</li>
             </ul>
         </div>
     </div>
@@ -28,7 +36,7 @@
             var n=a.pop();
             var t=n.replace(/-/g,' ');
             t=t.charAt(0).toUpperCase() + t.slice(1);
-            $('#title__ID').text(t);
+            //$('#title__ID').text(t);
             $('#app__ID').text(n);
             
             var txt="";

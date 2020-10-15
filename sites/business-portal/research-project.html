@@ -1,25 +1,11 @@
 <div id=D__ID>
     <div class=h_img__ID>
-        <div class=h_txt__ID><h4>Marketing</h4></div>
+        <div class=h_txt__ID><h4>Clinical Trials</h4></div>
     </div>
     <div id=panel__ID>
         <ul>
-            <div>
-                <span class=LT__ID>Contact us</span>
-                <li><a href='?/contact_us_1'>Contact us 1</a></li>
-                <li><a href='?/contact_us_2'>Contact us 2</a></li>
-                <li><a href='?/contact_us_3'>Contact us 3</a></li>
-            </div>
-            <div>
-                <span class=LT__ID>Services</span>
-                <li><a href='?/services_1'>Our services</a></li>
-                <li><a href='?/portfolio_1'>Our portfolio</a></li>
-                <li><a href='?/trainers_1'>Our trainers</a></li>
-                <li><a href='?/medical-services'>Meical services</a></li>
-            </div>
-            <div>
-                <span class=LT__ID >Administrator</span>
-                <li><a href='?/contact_us_data'>Contact us data</a></li>
+            <div style='display:inline-block'>
+                <li><a target=_blank href='?/sleep-research'>Sleep research</a></li>
             </div>
         </ul>
     </div>
@@ -66,7 +52,7 @@
             padding:0px 50px 10px 50px;
             font-size:14px;
     		column-count: 4;
-    		column-width: 300px;
+    		column-width: 600px;
     		column-gap: 30px;
             font-size:14px;
     	}
@@ -85,7 +71,7 @@
             max-width:1400px;          
             height:200px;
             background-size: cover; background-position: center center; 
-            background-image: url(https://images.unsplash.com/photo-1595559975866-ce7c4dbe5001?ixlib=rb-1.2.1&auto=format&fit=crop&w=1355&q=80);
+            background-image: url(https://images.unsplash.com/photo-1471864190281-a93a3070b6de?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80);
             padding-top:60px;
             margin-top:50px;
             margin-bottom:50px;
@@ -101,6 +87,7 @@
             border-radius: 10px;
 			text-shadow: 2px 2px 2px #000;
         }
+
         .LT__ID{
             display:inline-block;
             margin-top:10px;
@@ -109,13 +96,20 @@
             border-bottom: 2px solid #479824;
             font-size: 18px;
         }
-        #panel__ID div{
-            break-inside: avoid;
+        .LB__ID{
+            break-before:column;
+            display:block;            
         }
-        @media screen and (max-width: 768px) {
+        @media screen and (max-width: 1000px) {
             .h_img__ID{
                 margin-top:0px;
-                border-radius: 0px;
+            }
+            #panel__ID{
+                column-count: 1;
+                column-width: 100%;
+            }
+            .LB__ID{
+                display:none;            
             }
         }
     </style>

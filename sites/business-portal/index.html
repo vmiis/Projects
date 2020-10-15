@@ -13,6 +13,12 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/FlexSearch/0.6.22/flexsearch.min.js"></script>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.9.0/css/lightbox.min.css" />
         <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.9.0/js/lightbox.min.js"></script>
+        
+        <script src="https://www.verovio.org/javascript/develop/verovio-toolkit.js" type="text/javascript" ></script>
+        <script src="https://www.verovio.org/javascript/midi-player/wildwebmidi.js" type="text/javascript"></script>
+        <script src="https://www.verovio.org/javascript/midi-player/midiplayer.js" type="text/javascript"></script>
+        <link rel="stylesheet" href="https://www.verovio.org/css/midiplayer.css" /> 
+        
         <script src="https://www.gstatic.com/charts/loader.js"></script>
         <script>
             google.charts.load('current', {packages: ['corechart']});
@@ -113,18 +119,40 @@
             }
             //---------------------------------------------
             $vm.install=function(){
-                if(window.location.toString().indexOf('_l=1')!=-1){
-                    for (m in $vm.module_list)  $vm.module_list[m].url=$vm.module_list[m].url.replace('https://projects.vmiis.com/sites','http://localhost:8000/vmiis/projects/sites');
-                }
                 //---------------------------------------------
                 $vm.init();
                 $vm.load_component('header','header',{});
                 $vm.load_component('footer','footer',{});
                 for (m in $vm.module_list) {
+                    /*
                     if(m!="index" && m!="header" && m!="footer"){
                         $vm.install_module(m,'content',{}, function(name,id){
                             console.log('\x1b[32m%s\x1b[0m',name + ' is installed');
                             if(name==$vm.first_module) $vm.show_module($vm.first_module,{})
+                        })
+                    }
+                    */
+                    if(m!="index" && m!="header" && m!="footer" && $vm.module_list[m].parent==undefined){
+                        $vm.install_module(m,'content',{}, function(name,id){
+                            console.log('\x1b[32m%s\x1b[0m',name + ' is installed');
+                            if($vm.module_list[name].has_child!=undefined){
+                                var n=0;
+                                var d_f=function(cname){
+                                    if(cname==$vm.first_module) $vm.show_module($vm.first_module,{});
+                                    n--;
+                                    if(name==$vm.first_module && n==0) $vm.show_module($vm.first_module,{})
+                                }
+                                for (c in $vm.module_list){
+                                    if($vm.module_list[c].parent==name){
+                                        n++;
+                                        $vm.install_module(c,'content'+id,{}, function(name,id){
+                                            console.log(name + ' is installed');
+                                            d_f(name);
+                                        })
+                                    }
+                                }
+                            }
+                            else if(name==$vm.first_module) $vm.show_module($vm.first_module,{})
                         })
                     }
                 }

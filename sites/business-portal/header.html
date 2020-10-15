@@ -2,8 +2,8 @@
     <div id=layout__ID>
         <div id=left__ID style='margin:auto 10px'>
             <a id=desk_logo__ID href="home" style='font-family: Arial, sans-serif;color:#fff;text-decoration: none;'>
-                <p style='font-size:200%;margin: 8px 0 -8px 0'>Business Portal</p>
-                <p style='font-size:104%;margin: 0 0 8px 0'>Microservices web application</p>
+                <p style='font-size:200%;margin: 8px 0 -8px 0;text-shadow: 2px 2px 2px #000'>Business Portal</p>
+                <p style='font-size:131%;margin: 0 0 8px 0;color:#000;text-shadow: 2px 2px 2px #fff'>Based on microservices</p>
             </a>
         </div>
         <div id=middle__ID style='margin:auto 0; padding-left:15px'>
@@ -13,14 +13,31 @@
             <div id=menu__ID>
                 <ul>
                     <li><a href="?/home"><i class="fa fa-home"></i> Home</a></li>
-                    <li><a href="?/facility">Facilities</a></li>
-                    <li><a href="?/finance">Finance</a></li>
-                    <li><a href="?/marketing">Marketing</a></li>
-                    <li><a href="?/clinical-trials">Clinical Trials</a></li>
+                    <li><a href="?/dropdown">Business Operations <i class="fa fa-caret-down"></i></a>
+                        <ul>
+                            <li><a href="?/facility">Facilities</a></li>
+                            <li><a href="?/finance">Finance</a></li>
+                            <li><a href="?/marketing">Marketing</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="?/dropdown">Medical Research <i class="fa fa-caret-down"></i></a>
+                        <ul>
+                            <li><a href="?/clinical-trials">Clinical Trials</a></li>
+                            <li><a href="?/research-project">Research projects</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="?/dropdown">Music <i class="fa fa-caret-down"></i></a>
+                        <ul>
+                            <li><a href="?/musicxml">MusicXML player</a></li>
+                            <li><a href="?/research-project">Arpeggios</a></li>
+                            <li><a href="?/research-project">Chords</a></li>
+                        </ul>
+                    </li>
                     <li><a href="" id=signin__ID onclick=$vm.signin() ><i class="fa fa-user"></i> Sigin</a></li>
                     <li><a href="" id=signout__ID onclick=$vm.signout() ><i class="fa fa-user"></i> Sigout</a></li>
                 </ul>
             </div>
+
             <div id=search__ID style='padding-left:200px'><input id=search_box__ID type=text class=form-control style='height:26px;width:300px;' placeholder="Search"> </div>
         </div>    
         <div id=right__ID style='margin: auto 15px auto 0'>
@@ -40,11 +57,42 @@
             //--------------------------------------
             $('#D__ID a').on('click',function(e){
                 e.preventDefault();
-                $('#hamburger__ID').prop("checked", false);
+                e.stopPropagation();
                 var module_name=$(this).attr('href').replace('?\/','');
-                if(module_name!="") $vm.show_module(module_name,{})
+                if(module_name=='dropdown'){
+                    var w=$(this).closest('li').width();
+                    var mh=$(this).closest('li').find('ul').first().css('max-height');
+                    if(mh=='0px') $(this).closest('li').find('ul').first().css('max-height','600px');
+                    else $(this).closest('li').find('ul').first().css('max-height','0px');
+                    $(this).closest('li').find('ul').first().css('min-width',w+'px');
+                    return;
+                }
+                if(module_name!="") $vm.load_module(module_name,'content',{})
+                close_all_dropdown();
+                $('#hamburger__ID').prop("checked", false);
             })
-            //--------------------------------------
+            //---------------------------------------------------------------
+            $('#hamburger__ID').on('change',function(e){
+                if($(this).prop("checked")==false) close_all_dropdown();
+            })
+            //---------------------------------------------------------------
+            $('body').on('click',function(){
+                close_all_dropdown();
+            })
+            $('#menu__ID>ul>li>a').on('mouseover',function(e){
+                close_all_dropdown();
+            })
+            //---------------------------------------------------------------
+            $('#menu__ID>ul>li>ul').on('mouseleave',function(e){
+                close_all_dropdown();
+            })
+            //---------------------------------------------------------------
+            var close_all_dropdown=function(){
+                $('#D__ID ul').each(function(){
+                    if($(this).css('max-height')=='600px') $(this).css('max-height','0px');
+                })
+            }
+            //---------------------------------------------------------------
             $('#search_box__ID').focus(function(){$('#search_box__ID').autocomplete("search","");});
             $('#search_box__ID').autocomplete({
                 minLength:0,
@@ -150,44 +198,6 @@
                 margin:0;
             }
         }
-        /*main menu*/
-        #menu__ID ul{
-            margin: 0;
-        }
-        #menu__ID li{
-            display: inline-block;
-        }
-        #menu__ID a{
-            display: inline-block;
-            padding:6px 10px;
-            color:#fff;
-        }
-        #menu__ID a:hover {
-            background-color: #555;
-            color: #29eca6;
-            border-radius:4px;
-            text-decoration: none;
-        }
-        @media screen and (max-width: 768px) {
-            #menu__ID{
-                overflow:hidden;
-                max-height: 0;
-                transition: max-height 0.5s;
-            }
-            #menu__ID ul {
-                padding: 0;
-                padding-right: 10px;
-            }
-  
-            #menu__ID li {
-                display: block;
-                padding:0px 0 0 15px;
-            }
-            #menu__ID a {
-                padding: 5px 10px;
-                width: auto;
-            }
-        }
         .ui-menu{
                 color:black;
                 font-size:12px;
@@ -199,5 +209,66 @@
             white-space: nowrap;
         }
 
+        
+
+
+
+
+        /*main menu*/
+        #menu__ID ul{
+            margin: 0;
+            padding:0;
+        }
+        #menu__ID ul li{
+            display: inline-block;  /*horizontal*/
+        }
+        #menu__ID  ul ul li{
+            display: block;         /*dropdown*/
+            border-bottom:1px solid #666;
+        }
+        #menu__ID a{
+            width:100%;
+            display: inline-block;
+            padding:6px 10px;
+            color:#fff;
+            text-shadow: 2px 2px 2px #000;
+        }
+        #menu__ID a:hover{
+            background-color: #555;
+            color: #29eca6;
+            border-radius:4px;
+            text-decoration: none;
+        }
+        #menu__ID ul ul{        /*dropdown*/
+            position: absolute;
+            background-color: #888;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 100;
+            overflow: hidden;
+            border-radius: 0px 3px 3px 3px;
+            max-height: 0;
+            transition: max-height 0.3s;
+        }
+        @media screen and (max-width: 768px) {
+            #menu__ID{
+                overflow:hidden;
+                max-height: 0;
+                transition: max-height 0.3s;
+            }
+            #menu__ID ul {
+                padding: 0;
+                padding-right: 10px;
+                margin-right:15px;
+            }
+  
+            #menu__ID ul li {
+                display: block;
+            }
+            #menu__ID a {
+                display:block;
+                padding: 5px 10px;
+                width: auto;
+            }
+        }
     </style>
 </div>

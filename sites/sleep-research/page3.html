@@ -1,7 +1,7 @@
 <div id=D__ID>
     <div id=page__ID>
         <div style='text-align: center;padding:20px'>
-            <h1 style='font-family: "Covered By Your Grace"'>Sed non fringilla</h1>
+            <h1 style='font-family: "Covered By Your Grace"'><span id=title__ID>Sleep, Ageing & Dementia</span></h1>
         </div>
         <div class=columnbox__ID>
             <h5>What is Lorem Ipsum?</h5>
@@ -61,6 +61,9 @@
 
     </div>
     <script>
+        function F__ID(){
+            if($vm.flexindex!=undefined)  $vm.flexindex.add({id:'__MODULE__',contents:$('#page__ID').text(),title:$('#title__ID').text()});
+        }
     </script>
     <style>
 		#D__ID{

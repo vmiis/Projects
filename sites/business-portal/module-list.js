@@ -1,3 +1,4 @@
+//facility
 (function(){
     var modules={
         facility:           {url:$vm.hosting_path+"/facility.html",router:1},
@@ -34,6 +35,7 @@
     for(m in modules){ if($vm.module_list[m]!=undefined) alert(m+" is existed"); modules[m].url=modules[m].url.replace("$H","https://projects.vmiis.com/sites/"); $vm.module_list[m]=modules[m];}
 })();
 
+//bookkeeping
 (function(){
     //-------------------------------------------------------------------------------------
     var pre_item="vm-demo-predefined-transaction-item";
@@ -87,6 +89,7 @@
     //-------------------------------------------------------------------------------------
 })();
 
+//marketing
 (function(){
     var modules={
         "marketing":                                {url:$vm.hosting_path+"/marketing.html",router:1},
@@ -104,12 +107,46 @@
     for(m in modules){ if($vm.module_list[m]!=undefined) alert(m+" is existed"); modules[m].url=modules[m].url.replace("$H","https://projects.vmiis.com/sites/"); $vm.module_list[m]=modules[m];}
 })();
 
-
+//clinical-trials
 (function(){
     var modules={
         "clinical-trials":                          {url:$vm.hosting_path+"/clinical-trials.html",router:1},
         "ameq_data":                                {url:"$H/activity-morning-eveningness-questionnaire/data.html",Table:"me-shf-spardac",form_module:"ameq_form",router:1},
         "ameq_form":                                {url:"$H/activity-morning-eveningness-questionnaire/form.html",Table:"me-shf-spardac",router:1},
+        "adverse-event_data":                       {url:"$H/adverse-event/data.html",Table:"adverse-event-spardac",form_module:"adverse-event_form",router:1},
+        "adverse-event_form":                       {url:"$H/adverse-event/form.html",Table:"adverse-event-spardac",router:1},
+        "anthropometry-age-sex_data":               {url:"$H/anthropometry-age-sex/data.html",Table:"anthropometry-age-sex-spardac",form_module:"anthropometry-age-sex_form",router:1},
+        "anthropometry-age-sex_form":               {url:"$H/anthropometry-age-sex/form.html",Table:"anthropometry-age-sex-spardac",router:1},
 }
     for(m in modules){ if($vm.module_list[m]!=undefined) alert(m+" is existed"); modules[m].url=modules[m].url.replace("$H","https://projects.vmiis.com/sites/"); $vm.module_list[m]=modules[m];}
+})();
+
+//research-projects
+(function(){
+    var modules={
+        "research-project":                         {url:$vm.hosting_path+"/research-project.html",router:1},
+        "sleep-research":                           {url:"$H/sleep-research/sleep-research.html",router:1,has_child:1,prefix:'sleep-research-'},
+        "sleep-research-p1":                        {url:"$H/sleep-research/page1.html",router:1,parent:'sleep-research'},
+        "sleep-research-p2":                        {url:"$H/sleep-research/page2.html",router:1,parent:'sleep-research'},
+        "sleep-research-p3":                        {url:"$H/sleep-research/page3.html",router:1,parent:'sleep-research'},
+        "sleep-research-p4":                        {url:"$H/sleep-research/page4.html",router:1,parent:'sleep-research'},
+}
+    for(m in modules){ if($vm.module_list[m]!=undefined) alert(m+" is existed"); modules[m].url=modules[m].url.replace("$H","https://projects.vmiis.com/sites/"); $vm.module_list[m]=modules[m];}
+})();
+
+
+//music
+(function(){
+    var modules={
+        "musicxml":                                 {url:"$H/musicxml-player/musicxml.html",router:1},
+    }
+    for(m in modules){ if($vm.module_list[m]!=undefined) alert(m+" is existed"); modules[m].url=modules[m].url.replace("$H","https://projects.vmiis.com/sites"); $vm.module_list[m]=modules[m];}
+})();
+
+
+//using local files
+(function(){
+    if(window.location.toString().indexOf('_l=1')!=-1){
+        for (m in $vm.module_list)  $vm.module_list[m].url=$vm.module_list[m].url.replace('https://projects.vmiis.com/sites','http://localhost:8000/vmiis/projects/sites');
+    }
 })();
