@@ -15,10 +15,7 @@
     <script>
         function F__ID(){
             //--------------------------------------------------------
-            $vm.module_list["__MODULE__"].show=function(){
-                document.title="Panel | "+$vm.default_title;
-                $("meta[name='description']").attr("content","Control Panel");
-            }
+            $vm.module_list["__MODULE__"].description='Clinical trials control panel';
             //--------------------------------------------------------
             $('#panel__ID a').on('click',function(e){
                 e.preventDefault();

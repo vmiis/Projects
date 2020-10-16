@@ -108,6 +108,15 @@
 })();
 
 
+//modules
+(function(){
+    var modules={
+        "data-sharing-and-management":              {url:$vm.hosting_path+"/m/data-sharing-and-management.html",router:1},
+    }
+    for(m in modules){ if($vm.module_list[m]!=undefined) alert(m+" is existed"); modules[m].url=modules[m].url.replace("$H","https://projects.vmiis.com/sites"); $vm.module_list[m]=modules[m];}
+})();
+
+
 //clinical-trials
 (function(){
     var modules={
@@ -137,17 +146,17 @@
     var modules={
         "participant-data":   		            {url:"xxx",Table:"spardac-participant",participant_id:{field1:"Subject_ID",field2:"Subject_Initials"}, not_install:1},
         "notes-data":  	                        {url:"$H/m/library/notes-data.html",Table:"spardac-notes",form_module:"notes-form",router:1},
-        "notes-form":  	                        {url:"$H/m/library/notes-form.html",Table:"spardac-notes"},
-        "me-shf-data-spardac":                  {url:"$H/m/library/me-shf-data.html",Table:"me-shf-spardac",form_module:"me-shf-form-spardac"},
-        "me-shf-form-spardac":                  {url:"$H/m/library/me-shf-form.html",Table:"me-shf-spardac",task_name:"Activity - Morningness-Eveningness Questionnaire"},
-        "actiwatch-data-spardac":               {url:"$H/m/library/actiwatch-data.html",Table:"actiwatch-spardac",form_module:"actiwatch-form-spardac"},
-        "actiwatch-form-spardac":               {url:"$H/m/library/actiwatch-form.html",Table:"actiwatch-spardac"},
-        "adverse-event-data-spardac":           {url:"$H/m/library/adverse-event-data.html",Table:"adverse-event-spardac",form_module:"adverse-event-form-spardac",task_name:"Unscheduled - Adverse Event"},
-        "adverse-event-form-spardac":           {url:"$H/m/library/adverse-event-form.html",Table:"adverse-event-spardac",task_name:"Unscheduled - Adverse Event"},
-        "kss-data-spardac":                     {url:"$H/m/library/kss-data.html",Table:"kss-spardac",form_module:"kss-form-spardac"},
-        "kss-form-spardac":                     {url:"$H/m/library/kss-form.html",Table:"kss-spardac",task_name:"Karolinska Sleepiness Scale (KSS)"},
+        "notes-form":  	                        {url:"$H/m/library/notes-form.html",Table:"spardac-notes",router:1},
+        "me-shf-data-spardac":                  {url:"$H/m/library/me-shf-data.html",Table:"me-shf-spardac",form_module:"me-shf-form-spardac",router:1},
+        "me-shf-form-spardac":                  {url:"$H/m/library/me-shf-form.html",Table:"me-shf-spardac",task_name:"Activity - Morningness-Eveningness Questionnaire",router:1},
+        "actiwatch-data-spardac":               {url:"$H/m/library/actiwatch-data.html",Table:"actiwatch-spardac",form_module:"actiwatch-form-spardac",router:1},
+        "actiwatch-form-spardac":               {url:"$H/m/library/actiwatch-form.html",Table:"actiwatch-spardac",router:1},
+        "adverse-event-data-spardac":           {url:"$H/m/library/adverse-event-data.html",Table:"adverse-event-spardac",form_module:"adverse-event-form-spardac",task_name:"Unscheduled - Adverse Event",router:1},
+        "adverse-event-form-spardac":           {url:"$H/m/library/adverse-event-form.html",Table:"adverse-event-spardac",task_name:"Unscheduled - Adverse Event",router:1},
+        "kss-data-spardac":                     {url:"$H/m/library/kss-data.html",Table:"kss-spardac",form_module:"kss-form-spardac",router:1},
+        "kss-form-spardac":                     {url:"$H/m/library/kss-form.html",Table:"kss-spardac",task_name:"Karolinska Sleepiness Scale (KSS)",router:1},
     }
-    for(m in modules){ if($vm.module_list[m]!=undefined) alert(m+" is existed"); if(modules[m].url!=undefined) modules[m].url=modules[m].url.replace("$H","https://vmiis.github.io//spardac-forms"); $vm.module_list[prefix+m]=modules[m];$vm.module_list[prefix+m].prefix=prefix;}
+    for(m in modules){ if($vm.module_list[m]!=undefined) alert(m+" is existed"); if(modules[m].url!=undefined) modules[m].url=modules[m].url.replace("$H","https://vmiis.github.io/spardac-forms"); $vm.module_list[prefix+m]=modules[m];$vm.module_list[prefix+m].prefix=prefix;}
 })();
 
 
@@ -169,11 +178,15 @@
     for(m in modules){ if($vm.module_list[m]!=undefined) alert(m+" is existed"); modules[m].url=modules[m].url.replace("$H","https://projects.vmiis.com/sites"); $vm.module_list[m]=modules[m];}
 })();
 
-/*
+
 //using local files
 (function(){
     if(window.location.toString().indexOf('_l=1')!=-1){
-        for (m in $vm.module_list)  if($vm.module_list[m].url!=undefined) $vm.module_list[m].url=$vm.module_list[m].url.replace('https://projects.vmiis.com/sites','http://localhost:8000/vmiis/projects/sites');
+        for (m in $vm.module_list){
+            if($vm.module_list[m].url!=undefined){
+                $vm.module_list[m].url=$vm.module_list[m].url.replace('https://projects.vmiis.com/sites','http://localhost:8000/vmiis/projects/sites');
+                $vm.module_list[m].url=$vm.module_list[m].url.replace('https://vmiis.github.io/spardac-forms','http://localhost:8000/vmiis/spardac-forms');
+            }
+        }
     }
 })();
-*/

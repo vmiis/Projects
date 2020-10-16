@@ -21,7 +21,7 @@
         <!----------------------------------------------->
         <script app code>
             //---------------------------------------------
-            $vm={};$VmAPI={};$vm.ver=[0.22,0.19];$vm['loader-js']=1;$vm['jquery-ui-min-js']=1;
+            $vm={};$VmAPI={};$vm.ver=[0.23,0.19];$vm['loader-js']=1;$vm['jquery-ui-min-js']=1;
             $vm.flexindex=new FlexSearch({  doc: {id: "id",field: ["title","contents"]}    });
             $vm.hosting_path=window.location.href.substring(0, window.location.href.split('?')[0].lastIndexOf('/'));
             //---------------------------------------------
@@ -29,7 +29,7 @@
                 index:{url:$vm.hosting_path+"/index.html",description:"main entry, layout, module list setup"},
                 header:{url:$vm.hosting_path+"/header.html",description:"logo, menu, login/logout etc"},
                 footer:{url:$vm.hosting_path+"/footer.html",description:"copyright info, links etc"},
-                home:{url:$vm.hosting_path+"/home.html",router:1,description:"landing page, show some information, like the current page you are viewing"},
+                home:{url:$vm.hosting_path+"/home.html",router:1,description:"Modular distributed microservices web application."},
             }
             //---------------------------------------------
             $vm.first_module='home';
@@ -47,7 +47,7 @@
             $vm.show=function(m_name){
                 var a=window.location.href.split('?/')[0].split('/'); a.pop(); var t=a.pop().replace(/-/g,' ');
                 var title=$vm.module_list[m_name].url.split('/').pop(); document.title=title+" - "+t ;
-                var info=$vm.module_list[m_name].description;           if(info==undefined) info="A micro web application";     $("meta[name='description']").attr("content", info);
+                var info=$vm.module_list[m_name].description;  if(info==undefined) info="Modular distributed microservices web application."; $("meta[name='description']").attr("content", info);
                 $vm.active_name=m_name;
             }
             //---------------------------------------------
