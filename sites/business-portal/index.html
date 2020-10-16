@@ -5,6 +5,7 @@
         <meta name='viewport' content='width=device-width, initial-scale=1'>
         <link rel="icon" href="data:,">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.css" />
+        <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/jquery.ui/1.12.1/themes/redmond/jquery-ui.css" />
         <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-3.5.1.min.js"></script>
         <script src="https://ajax.aspnetcdn.com/ajax/jquery.ui/1.12.1/jquery-ui.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/FlexSearch/0.6.22/flexsearch.min.js"></script>
@@ -20,7 +21,7 @@
         <!----------------------------------------------->
         <script app code>
             //---------------------------------------------
-            $vm={};$VmAPI={};$vm.ver=[0.21,0.19];$vm['loader-js']=1;$vm['jquery-ui-min-js']=1;
+            $vm={};$VmAPI={};$vm.ver=[0.22,0.19];$vm['loader-js']=1;$vm['jquery-ui-min-js']=1;
             $vm.flexindex=new FlexSearch({  doc: {id: "id",field: ["title","contents"]}    });
             $vm.hosting_path=window.location.href.substring(0, window.location.href.split('?')[0].lastIndexOf('/'));
             //---------------------------------------------
@@ -128,17 +129,19 @@
                                 }
                             })
                         }
+                        if($vm.flexindex!=undefined){
+                            $vm.flexindex.add({id:m,contents:m,title:m});
+                        }
                     }
                 }
-                setTimeout(function (){ $.ajaxSetup({cache:true}); install(); },100);
-                $vm.show_module($vm.first_module,{})
-                $vm.ready();
-                
                 //------------------------------------
                 $vm.load_resource("https://use.fontawesome.com/releases/v5.14.0/css/all.css",function(){})
                 $vm.load_resource("https://use.fontawesome.com/releases/v5.14.0/css/v4-shims.css",function(){})
                 $vm.load_resource("https://maxcdn.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js",function(){})
                 //------------------------------------
+                setTimeout(function (){ $.ajaxSetup({cache:true}); install(); },1000);
+                $vm.show_module($vm.first_module,{})
+                $vm.ready();
             }
             //---------------------------------------------
             $("body").addClass('body_background_default');

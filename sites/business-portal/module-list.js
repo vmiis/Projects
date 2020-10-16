@@ -154,9 +154,9 @@
 //music
 (function(){
     var modules={
-        "musicxml":                                 {url:"$H/musicxml-player/musicxml.html",router:1},
-        "arpeggios":                                {url:"$H/arpeggios/arpeggios.html",router:1},
-        "chords":                                   {url:"$H/chords/chords.html",router:1},
+        "musicxml":                                 {url:"$H/musicxml-player/musicxml.html",router:1, not_install:1},
+        "arpeggios":                                {url:"$H/arpeggios/arpeggios.html",router:1, not_install:1},
+        "chords":                                   {url:"$H/chords/chords.html",router:1, not_install:1},
     }
     for(m in modules){ if($vm.module_list[m]!=undefined) alert(m+" is existed"); modules[m].url=modules[m].url.replace("$H","https://projects.vmiis.com/sites"); $vm.module_list[m]=modules[m];}
 })();
