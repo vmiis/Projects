@@ -106,7 +106,7 @@
     }
     for(m in modules){ if($vm.module_list[m]!=undefined) alert(m+" is existed"); modules[m].url=modules[m].url.replace("$H","https://projects.vmiis.com/sites"); $vm.module_list[m]=modules[m];}
 })();
-
+/*
 //clinical-trials
 (function(){
     var modules={
@@ -117,21 +117,42 @@
         "adverse-event_form":                       {url:"$H/adverse-event/form.html",Table:"adverse-event-spardac",router:1},
         "anthropometry-age-sex_data":               {url:"$H/anthropometry-age-sex/data.html",Table:"anthropometry-age-sex-spardac",form_module:"anthropometry-age-sex_form",router:1},
         "anthropometry-age-sex_form":               {url:"$H/anthropometry-age-sex/form.html",Table:"anthropometry-age-sex-spardac",router:1},
-}
+    }
     for(m in modules){ if($vm.module_list[m]!=undefined) alert(m+" is existed"); modules[m].url=modules[m].url.replace("$H","https://projects.vmiis.com/sites"); $vm.module_list[m]=modules[m];}
 })();
-
+*/
 //research-projects
 (function(){
     var modules={
         "research-project":                         {url:$vm.hosting_path+"/research-project.html",router:1},
-        "sleep-research":                           {url:"$H/sleep-research/sleep-research.html",router:1,has_child:1,prefix:'sleep-research-'},
+        "sleep-research":                           {url:"$H/sleep-research/sleep-research.html",router:1,has_child:1,prefix:'sleep-research-',first:'sleep-research-p1'},
         "sleep-research-p1":                        {url:"$H/sleep-research/page1.html",router:1,parent:'sleep-research'},
         "sleep-research-p2":                        {url:"$H/sleep-research/page2.html",router:1,parent:'sleep-research'},
         "sleep-research-p3":                        {url:"$H/sleep-research/page3.html",router:1,parent:'sleep-research'},
         "sleep-research-p4":                        {url:"$H/sleep-research/page4.html",router:1,parent:'sleep-research'},
 }
-    for(m in modules){ if($vm.module_list[m]!=undefined) alert(m+" is existed"); modules[m].url=modules[m].url.replace("$H","https://projects.vmiis.com/sites"); $vm.module_list[m]=modules[m];}
+    //for(m in modules){ if($vm.module_list[m]!=undefined) alert(m+" is existed"); modules[m].url=modules[m].url.replace("$H","https://projects.vmiis.com/sites"); $vm.module_list[m]=modules[m];}
+})();
+
+
+//spardac
+(function(){
+    var prefix='spardac-'
+    var modules={
+        "participant-data":   		            {url:"xxx",Table:"spardac-participant",participant_id:{field1:"Subject_ID",field2:"Subject_Initials"}, not_install:1},
+        //"participant-form":   		            {url:"$H/m/participant/participant-form.html",Table:"spardac-participant"},
+        "notes-data":  	                        {url:"$H/m/library/notes-data.html",Table:"spardac-notes",form_module:"notes-form",router:1},
+        "notes-form":  	                        {url:"$H/m/library/notes-form.html",Table:"spardac-notes"},
+        "me-shf-data-spardac":                  {url:"$H/m/library/me-shf-data.html",Table:"me-shf-spardac",form_module:"me-shf-form-spardac"},
+        "me-shf-form-spardac":                  {url:"$H/m/library/me-shf-form.html",Table:"me-shf-spardac",task_name:"Activity - Morningness-Eveningness Questionnaire"},
+        "actiwatch-data-spardac":               {url:"$H/m/library/actiwatch-data.html",Table:"actiwatch-spardac",form_module:"actiwatch-form-spardac"},
+        "actiwatch-form-spardac":               {url:"$H/m/library/actiwatch-form.html",Table:"actiwatch-spardac"},
+        "adverse-event-data-spardac":           {url:"$H/m/library/adverse-event-data.html",Table:"adverse-event-spardac",form_module:"adverse-event-form-spardac",task_name:"Unscheduled - Adverse Event"},
+        "adverse-event-form-spardac":           {url:"$H/m/library/adverse-event-form.html",Table:"adverse-event-spardac",task_name:"Unscheduled - Adverse Event"},
+        "kss-data-spardac":                     {url:"$H/m/library/kss-data.html",Table:"kss-spardac",form_module:"kss-form-spardac"},
+        "kss-form-spardac":                     {url:"$H/m/library/kss-form.html",Table:"kss-spardac",task_name:"Karolinska Sleepiness Scale (KSS)"},
+    }
+    for(m in modules){ if($vm.module_list[m]!=undefined) alert(m+" is existed"); if(modules[m].url!=undefined) modules[m].url=modules[m].url.replace("$H","http://localhost:8000/vmiis/spardac-forms"); $vm.module_list[prefix+m]=modules[m];$vm.module_list[prefix+m].prefix=prefix;}
 })();
 
 
@@ -139,16 +160,23 @@
 (function(){
     var modules={
         "musicxml":                                 {url:"$H/musicxml-player/musicxml.html",router:1},
-        "arpeggios":                                {url:"$H/arpeggios/arpeggios.html",router:1},
-        "chords":                                   {url:"$H/chords/chords.html",router:1},
+        //"arpeggios":                                {url:"$H/arpeggios/arpeggios.html",router:1},
+        //"chords":                                   {url:"$H/chords/chords.html",router:1},
     }
     for(m in modules){ if($vm.module_list[m]!=undefined) alert(m+" is existed"); modules[m].url=modules[m].url.replace("$H","https://projects.vmiis.com/sites"); $vm.module_list[m]=modules[m];}
 })();
 
+//under development
+(function(){
+    var modules={
+        "underdevelopment":                          {url:$vm.hosting_path+"/underdevelopment.html",router:1},
+    }
+    for(m in modules){ if($vm.module_list[m]!=undefined) alert(m+" is existed"); modules[m].url=modules[m].url.replace("$H","https://projects.vmiis.com/sites"); $vm.module_list[m]=modules[m];}
+})();
 
 //using local files
 (function(){
     if(window.location.toString().indexOf('_l=1')!=-1){
-        for (m in $vm.module_list)  $vm.module_list[m].url=$vm.module_list[m].url.replace('https://projects.vmiis.com/sites','http://localhost:8000/vmiis/projects/sites');
+        for (m in $vm.module_list)  if($vm.module_list[m].url!=undefined) $vm.module_list[m].url=$vm.module_list[m].url.replace('https://projects.vmiis.com/sites','http://localhost:8000/vmiis/projects/sites');
     }
 })();

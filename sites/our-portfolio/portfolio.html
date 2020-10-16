@@ -1,4 +1,11 @@
 <div id=D__ID>
+
+
+
+	
+
+
+
 	<div id="works-section__ID">
 		<div class="container"> <!-- Container -->
 			<div class="section-title">
@@ -113,13 +120,11 @@
 					positionFromTop: y
 				})
 			}
-			/*
-			var I=0; var loop_1=setInterval(function (){
-				if($vm['lightbox-min-js']!=undefined){  clearInterval(loop_1); wait1(); }
-				I++; if(I>50){ clearInterval(loop_1); alert("lightbox.min.js is not installed."); }
-			},100);
-			*/
-			wait1();
+			$vm.load_resource("https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.9.0/css/lightbox.min.css",function(){
+				$vm.load_resource("https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.9.0/js/lightbox.min.js",function(){
+					wait1();
+				})
+			})
 		}
 	</script>
 	<style>

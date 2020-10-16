@@ -33,6 +33,11 @@
                             <li><a href="?/chords">Chords</a></li>
                         </ul>
                     </li>
+                    <li><a href="?/dropdown">Others <i class="fa fa-caret-down"></i></a>
+                        <ul>
+                            <li><a href="?/underdevelopment">Under development</a></li>
+                        </ul>
+                    </li>
                     <li><a href="" id=signin__ID onclick=$vm.signin() ><i class="fa fa-user"></i> Sigin</a></li>
                     <li><a href="" id=signout__ID onclick=$vm.signout() ><i class="fa fa-user"></i> Sigout</a></li>
                 </ul>
@@ -67,7 +72,8 @@
                     $(this).closest('li').find('ul').first().css('min-width',w+'px');
                     return;
                 }
-                if(module_name!="") $vm.load_module(module_name,'content',{})
+                //if(module_name!="") $vm.load_module(module_name,'content',{})
+                if(module_name!="") $vm.show_module(module_name,{})
                 close_all_dropdown();
                 $('#hamburger__ID').prop("checked", false);
             })

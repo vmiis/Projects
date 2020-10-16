@@ -28,7 +28,7 @@
                 header:{url:$vm.hosting_path+"/header.html",description:"logo, menu, login/logout etc"},
                 footer:{url:$vm.hosting_path+"/footer.html",description:"copyright info, links etc"},
                 home:{url:$vm.hosting_path+"/home.html",router:1,description:"landing page, show some information, like the current page you are viewing"},
-                "sleep-research":{url:$vm.hosting_path+"/sleep-research.html",router:1,description:"sleep research",router:1,has_child:1},
+                "sleep-research":{url:$vm.hosting_path+"/sleep-research.html",router:1,description:"sleep research",router:1,has_child:1,first:'p1'},
                 p1:{url:$vm.hosting_path+"/page1.html",router:1,parent:'sleep-research',description:"web page"},
                 p2:{url:$vm.hosting_path+"/page2.html",router:1,parent:'sleep-research',description:"web page"},
                 p3:{url:$vm.hosting_path+"/page3.html",router:1,parent:'sleep-research',description:"web page"},
@@ -92,7 +92,7 @@
                 for (m in $vm.module_list) {
                     if(m!="index" && m!="header" && m!="footer" && $vm.module_list[m].parent==undefined){
                         $vm.install_module(m,'content',{}, function(name,id){
-                            console.log(name + ' is installed');
+                            //console.log(name + ' is installed');
                             if($vm.module_list[name].has_child!=undefined){
                                 var n=0;
                                 var d_f=function(cname){
@@ -104,7 +104,7 @@
                                     if($vm.module_list[c].parent==name){
                                         n++;
                                         $vm.install_module(c,'content'+id,{}, function(name,id){
-                                            console.log(name + ' is installed');
+                                            //console.log(name + ' is installed');
                                             d_f(name);
                                         })
                                     }

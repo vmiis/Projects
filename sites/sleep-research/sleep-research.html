@@ -18,6 +18,8 @@
     	function F__ID(){
             var m=$vm.module_list['__MODULE__'];
             if(m.prefix==undefined) m.prefix="";
+            //var first=m.first;
+            //$vm.show_module(first,{});
             $('#D__ID').on('show',function(){
                 var block=0; $('#content__ID > div').each(function(){ if($(this).css('display')=='block') block++; })
                 if(block==0) $('#content__ID > div:first-child').css('display','block')

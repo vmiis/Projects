@@ -21,117 +21,138 @@
     </div>
     <script>
         function F__ID(){
-            $('#select__ID').on('click',function(){ $('#file__ID').trigger('click'); })
-            $('#xml__ID').on('change',function(){
-                var v=$('#xml__ID').val();
-                if(v!=''){
-                    var url=v.replace(/ /g,'_');
-                    url='__CURRENT_PATH__xml/'+url+".musicxml";
-                    $('#name__ID').text(url);
-                    $.get(url,function(data){
-                        loadData(data);
-                    },'text');
-                }
-            })
-            $('#file__ID').on('change',function(e){
-                $('#name__ID').text(event.target.files[0].name);
-                var reader = new FileReader();
-                reader.onload = (function(e) {
-                    var data=e.target.result;
-                    loadData(data);
+            var start=function(){
+                //---------------------------------------------
+                $('#select__ID').on('click',function(){ $('#file__ID').trigger('click'); })
+                $('#xml__ID').on('change',function(){
+                    var v=$('#xml__ID').val();
+                    if(v!=''){
+                        var url=v.replace(/ /g,'_');
+                        url='__CURRENT_PATH__xml/'+url+".musicxml";
+                        $('#name__ID').text(url);
+                        $.get(url,function(data){
+                            loadData(data);
+                        },'text');
+                    }
                 })
-                reader.readAsText(event.target.files[0]);
-            })
-            //-------------------------------------
-            var vrvToolkit = new verovio.toolkit();
-            var page = 1;
-            var zoom = 60;
-            var pageHeight = 2970;
-            var pageWidth = 2100;
-            
-            var ids = [];
-            var isPlaying = false;
-            
-            function setOptions() {
-                pageHeight = $(document).height() * 100 / zoom ;
-                pageWidth = ($(document).width()-50) * 100 / zoom ;
-                options = {
-                            pageHeight: pageHeight,
-                            pageWidth: pageWidth,
-                            scale: zoom,
-                            adjustPageHeight: true
-                        };
-                vrvToolkit.setOptions(options);
-            }
-            function loadData(data) {
-                setOptions();
-                vrvToolkit.loadData(data);
-                page = 1;
-                loadPage();
-                play_midi();
-                $("#player__ID").midiPlayer.stop()
-            }
+                $('#file__ID').on('change',function(e){
+                    $('#name__ID').text(event.target.files[0].name);
+                    var reader = new FileReader();
+                    reader.onload = (function(e) {
+                        var data=e.target.result;
+                        loadData(data);
+                    })
+                    reader.readAsText(event.target.files[0]);
+                })
+                //-------------------------------------
+                var vrvToolkit = new verovio.toolkit();
+                var page = 1;
+                var zoom = 60;
+                var pageHeight = 2970;
+                var pageWidth = 2100;
+                
+                var ids = [];
+                var isPlaying = false;
+                
+                function setOptions() {
+                    pageHeight = $(document).height() * 100 / zoom ;
+                    pageWidth = ($(document).width()-50) * 100 / zoom ;
+                    options = {
+                                pageHeight: pageHeight,
+                                pageWidth: pageWidth,
+                                scale: zoom,
+                                adjustPageHeight: true
+                            };
+                    vrvToolkit.setOptions(options);
+                }
+                function loadData(data) {
+                    setOptions();
+                    vrvToolkit.loadData(data);
+                    page = 1;
+                    loadPage();
+                    play_midi();
+                    $("#player__ID").midiPlayer.stop()
+                }
 
-            function loadPage() {
-                svg = vrvToolkit.renderToSVG(page, {});
-                $("#svg_output__ID").html(svg);
-                $(".note").click(function() {
-                    var id = $(this).attr("id");
-                    var time = vrvToolkit.getTimeForElement(id);
-                    $("#midi-player").midiPlayer.seek(time);
-                });
-            };
-            function play_midi() {
-                if (isPlaying == false) {
-                    var base64midi = vrvToolkit.renderToMIDI();
-                    var song = 'data:audio/midi;base64,' + base64midi;
-                    $("#player").show();
-                    $("#player__ID").midiPlayer.play(song);
-                    isPlaying = true;
-                }
-            }
-            var midiUpdate = function(time) {
-                // time needs to - 400 for adjustment
-                var vrvTime = Math.max(0, time - 400);
-                var elementsattime = vrvToolkit.getElementsAtTime(vrvTime);
-                if (elementsattime.page > 0) {
-                    if (elementsattime.page != page) {
-                        page = elementsattime.page;
-                        loadPage();
-                    }
-                    if ((elementsattime.notes.length > 0) && (ids != elementsattime.notes)) {
-                        ids.forEach(function(noteid) {
-                            if ($.inArray(noteid, elementsattime.notes) == -1) {
-                                $("#" + noteid).attr("fill", "#000").attr("stroke", "#000");
-                            }
-                        });
-                        ids = elementsattime.notes;
-                        ids.forEach(function(noteid) {
-                            if ($.inArray(noteid, elementsattime.notes) != -1) {
-                                $("#" + noteid).attr("fill", "#c00").attr("stroke", "#c00");;
-                            }
-                        });
+                function loadPage() {
+                    svg = vrvToolkit.renderToSVG(page, {});
+                    $("#svg_output__ID").html(svg);
+                    $(".note").click(function() {
+                        var id = $(this).attr("id");
+                        var time = vrvToolkit.getTimeForElement(id);
+                        $("#midi-player").midiPlayer.seek(time);
+                    });
+                };
+                function play_midi() {
+                    if (isPlaying == false) {
+                        var base64midi = vrvToolkit.renderToMIDI();
+                        var song = 'data:audio/midi;base64,' + base64midi;
+                        $("#player").show();
+                        $("#player__ID").midiPlayer.play(song);
+                        isPlaying = true;
                     }
                 }
-            }
-            var midiStop = function() {
-                ids.forEach(function(noteid) {
-                    $("#" + noteid).attr("fill", "#000").attr("stroke", "#000");
+                var midiUpdate = function(time) {
+                    // time needs to - 400 for adjustment
+                    var vrvTime = Math.max(0, time - 400);
+                    var elementsattime = vrvToolkit.getElementsAtTime(vrvTime);
+                    if (elementsattime.page > 0) {
+                        if (elementsattime.page != page) {
+                            page = elementsattime.page;
+                            loadPage();
+                        }
+                        if ((elementsattime.notes.length > 0) && (ids != elementsattime.notes)) {
+                            ids.forEach(function(noteid) {
+                                if ($.inArray(noteid, elementsattime.notes) == -1) {
+                                    $("#" + noteid).attr("fill", "#000").attr("stroke", "#000");
+                                }
+                            });
+                            ids = elementsattime.notes;
+                            ids.forEach(function(noteid) {
+                                if ($.inArray(noteid, elementsattime.notes) != -1) {
+                                    $("#" + noteid).attr("fill", "#c00").attr("stroke", "#c00");;
+                                }
+                            });
+                        }
+                    }
+                }
+                var midiStop = function() {
+                    ids.forEach(function(noteid) {
+                        $("#" + noteid).attr("fill", "#000").attr("stroke", "#000");
+                    });
+                    $("#player").hide();
+                    isPlaying = false;
+                    $('#midiPlayer_play').css("display","inline-block");
+                    $('#midiPlayer_pause').css("display","inline-block");
+                }
+                $("#player__ID").midiPlayer({
+                    color: "#c00",
+                    onUpdate: midiUpdate,
+                    onStop: midiStop,
+                    width: 250
                 });
-                $("#player").hide();
-                isPlaying = false;
                 $('#midiPlayer_play').css("display","inline-block");
                 $('#midiPlayer_pause').css("display","inline-block");
+                //-------------------------------------
             }
-            $("#player__ID").midiPlayer({
-                color: "#c00",
-                onUpdate: midiUpdate,
-                onStop: midiStop,
-                width: 250
+            //---------------------------------------------
+            var resources=[
+                "https://www.verovio.org/javascript/midi-player/wildwebmidi.js",
+                "https://www.verovio.org/javascript/midi-player/midiplayer.js",
+                "https://www.verovio.org/javascript/develop/verovio-toolkit.js",
+                "https://www.verovio.org/css/midiplayer.css"
+            ];
+            //---------------------------------------------
+            $vm.load_resource(resources[0],function(){
+                $vm.load_resource(resources[1],function(){
+                    $vm.load_resource(resources[2],function(){
+                        $vm.load_resource(resources[3],function(){
+                            start();
+                        })
+                    })
+                })
             });
-            $('#midiPlayer_play').css("display","inline-block");
-            $('#midiPlayer_pause').css("display","inline-block");
-            //-------------------------------------
+            //---------------------------------------------
         }
     </script>
     <style>
