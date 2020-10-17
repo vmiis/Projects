@@ -111,7 +111,7 @@
 //modules
 (function(){
     var modules={
-        "data-sharing-and-management":              {url:$vm.hosting_path+"/m/data-sharing-and-management.html",router:1},
+        "data-sharing-and-management":              {url:$vm.hosting_path+"/m/data-sharing-and-management.html",router:1, not_install:1},
     }
     for(m in modules){ if($vm.module_list[m]!=undefined) alert(m+" is existed"); modules[m].url=modules[m].url.replace("$H","https://projects.vmiis.com/sites"); $vm.module_list[m]=modules[m];}
 })();
@@ -153,6 +153,18 @@
         "actiwatch-form-spardac":               {url:"$H/m/library/actiwatch-form.html",Table:"actiwatch-spardac",router:1},
         "adverse-event-data-spardac":           {url:"$H/m/library/adverse-event-data.html",Table:"adverse-event-spardac",form_module:"adverse-event-form-spardac",task_name:"Unscheduled - Adverse Event",router:1},
         "adverse-event-form-spardac":           {url:"$H/m/library/adverse-event-form.html",Table:"adverse-event-spardac",task_name:"Unscheduled - Adverse Event",router:1},
+        "anthropometry-age-sex-data-spardac":   {url:"$H/m/library/anthropometry-age-sex-data.html",Table:"anthropometry-age-sex-spardac",form_module:"anthropometry-age-sex-form-spardac",router:1},
+        "anthropometry-age-sex-form-spardac":   {url:"$H/m/library/anthropometry-age-sex-form.html",Table:"anthropometry-age-sex-spardac",router:1},
+        "bpns-form-spardac":                    {url:"$H/m/library/bpns-form.html",Table:"bpns-spardac",task_name:"Basic Psychological Need Satisfaction Scale"},
+        "gses-data-spardac":                    {url:"$H/m/library/gses-data.html",Table:"gses-spardac",form_module:"gses-form-spardac"},
+        "brief-illness-perception-questionnaire-data-spardac":   {url:"$H/m/library/brief-illness-perception-questionnaire-data.html",Table:"brief-illness-perception-questionnaire-spardac",form_module:"brief-illness-perception-questionnaire-form-spardac",router:1},
+        "brief-illness-perception-questionnaire-form-spardac":   {url:"$H/m/library/brief-illness-perception-questionnaire-form.html",Table:"brief-illness-perception-questionnaire-spardac",task_name:"Brief Illness Perception Questionnaire",router:1},
+        "breif-sexual-function-inventory-data-spardac":          {url:"$H/m/library/breif-sexual-function-inventory-data.html",Table:"breif-sexual-function-inventory-spardac",form_module:"breif-sexual-function-inventory-form-spardac",router:1},
+        "breif-sexual-function-inventory-form-spardac":          {url:"$H/m/library/breif-sexual-function-inventory-form.html",Table:"breif-sexual-function-inventory-spardac",task_name:"Brief Sexual Function Inventory",router:1},
+        "concom-medication-data-spardac":       {url:"$H/m/library/concom-medication-data.html",Table:"concom-medication-spardac",form_module:"concom-medication-form-spardac",task_name:"Unscheduled - Concomitant Medication"},
+        "concom-medication-form-spardac":       {url:"$H/m/library/concom-medication-form.html",Table:"concom-medication-spardac",task_name:"Unscheduled - Concomitant Medication"},
+        
+        
         "kss-data-spardac":                     {url:"$H/m/library/kss-data.html",Table:"kss-spardac",form_module:"kss-form-spardac",router:1},
         "kss-form-spardac":                     {url:"$H/m/library/kss-form.html",Table:"kss-spardac",task_name:"Karolinska Sleepiness Scale (KSS)",router:1},
     }
