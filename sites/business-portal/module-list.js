@@ -44,7 +44,7 @@
     var aggregation_ie="vm-demo-income-expense-month-aggregation";
     var aggregation_item="vm-demo-item-monthly-aggregation";
     var aggregation_tax="vm-demo-tax-return-yearly-aggregation";
-    if(window.location.toString().indexOf('_w=1')!=-1){
+    if(window.location.toString().indexOf('tables=wapp')!=-1){
         pre_item="predefined-transaction-item-wappsystem";
         transaction="transaction-wappsystem";
         aggregation="ato-bas-quarter-aggregation-wappsystem";
@@ -52,7 +52,7 @@
         aggregation_item="item-month-aggregation-wappsystem";
         aggregation_tax="ato-tax-return-yearly-aggregation-wappsystem";
     }
-    else if(window.location.toString().indexOf('_v=1')!=-1){
+    else if(window.location.toString().indexOf('tables=vm')!=-1){
         pre_item="predefined-transaction-item-vmautomation";
         transaction="transaction-vmautomation";
         aggregation="ato-bas-quarter-aggregation-vmautomation";
@@ -67,6 +67,7 @@
         "predefined_transaction_item_form":         {url:"$H/predefined-transaction-item/form.html",Table:pre_item},
         "transaction_diagram":                      {url:"$H/predefined-transaction-item/diagram.html",router:1},
         "transaction-data-basic":                   {url:"$H/transaction-records/data-basic.html",                   Table:transaction,form_module:"transaction-form",router:1},
+        "transaction-data-date":                    {url:"$H/transaction-records/data-date.html",                    Table:transaction,form_module:"transaction-form",router:1},
         "transaction-data-year-quarter":            {url:"$H/transaction-records/data-year-quarter.html",            Table:transaction,form_module:"transaction-form",router:1},
         "transaction-data-bas":                     {url:"$H/transaction-records/data-bas.html",                     Table:transaction,form_module:"transaction-form",router:1},
         "transaction-data-year-quarter-bas":        {url:"$H/transaction-records/data-year-quarter-bas.html",        Table:transaction,form_module:"transaction-form",router:1},

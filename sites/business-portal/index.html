@@ -21,7 +21,7 @@
         <!----------------------------------------------->
         <script app code>
             //---------------------------------------------
-            $vm={};$VmAPI={};$vm.ver=[0.25,0.20];$vm['loader-js']=1;$vm['jquery-ui-min-js']=1;
+            $vm={};$VmAPI={};$vm.ver=[0.26,0.20];$vm['loader-js']=1;$vm['jquery-ui-min-js']=1;
             $vm.flexindex=new FlexSearch({  doc: {id: "id",field: ["title","contents"]}    });
             $vm.hosting_path=window.location.href.substring(0, window.location.href.split('?')[0].lastIndexOf('/'));
             //---------------------------------------------
@@ -139,7 +139,7 @@
                 var I=1;
                 for (m in $vm.module_list){
                     if(m!="index" && m!="header" && m!="footer" && m!=$vm.first_module && $vm.module_list[m].parent==undefined && $vm.module_list[m].not_install==undefined){
-                        install_one(m,I*10);
+                        install_one(m,I*100);
                         I++;
                     }
                     if($vm.flexindex!=undefined){ if(m!="index" && m!="header" && m!="footer") $vm.flexindex.add({id:m,contents:m,title:m}); }

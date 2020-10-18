@@ -1,4 +1,9 @@
 <div id=D__ID>
+    <select id=select__ID style='float:right'>
+        <option >demo</option>
+        <option >vm</option>
+        <option >wapp</option>
+    </select>
     <div class=h_img__ID>
         <div class=h_txt__ID><h4>Finance</h4></div>
     </div>
@@ -6,7 +11,8 @@
         <ul>
             <div>
                 <span class=LT__ID>Transactions</span>
-                <li><a href='?/transaction-data-basic'>Transactions</a></li>
+                <li><a href='?/transaction-data-basic'>Transactions (sort by submit date) </a></li>
+                <li><a href='?/transaction-data-date'>Transactions (sort by transaction date) </a></li>
                 <li><a href='?/transaction-data-year-quarter'>Transactions (year-quarter)</a></li>
                 <li><a href='?/transaction-data-bas'>Transactions (BAS)</a></li>
                 <li><a href='?/transaction-data-year-quarter-bas'>Transactions (BAS, year-quarter)</a></li>
@@ -55,6 +61,12 @@
                 }
             })
             //--------------------------------------------------------
+            $('#select__ID').on('change',function(){
+                window.location=$vm.hosting_path+"/?/finance&tables="+$(this).val();
+            })
+            //--------------------------------------------------------
+            if(window.location.toString().indexOf('tables=wapp')!=-1) $('#select__ID').val('wapp')
+            else if(window.location.toString().indexOf('tables=vm')!=-1) $('#select__ID').val('vm')
         }
     </script>
     <style>
