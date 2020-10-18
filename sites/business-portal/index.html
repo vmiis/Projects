@@ -21,7 +21,7 @@
         <!----------------------------------------------->
         <script app code>
             //---------------------------------------------
-            $vm={};$VmAPI={};$vm.ver=[0.23,0.19];$vm['loader-js']=1;$vm['jquery-ui-min-js']=1;
+            $vm={};$VmAPI={};$vm.ver=[0.25,0.20];$vm['loader-js']=1;$vm['jquery-ui-min-js']=1;
             $vm.flexindex=new FlexSearch({  doc: {id: "id",field: ["title","contents"]}    });
             $vm.hosting_path=window.location.href.substring(0, window.location.href.split('?')[0].lastIndexOf('/'));
             //---------------------------------------------
@@ -49,6 +49,11 @@
                 var title=$vm.module_list[m_name].url.split('/').pop(); document.title=title+" - "+t ;
                 var info=$vm.module_list[m_name].description;  if(info==undefined) info="Modular distributed microservices web application."; $("meta[name='description']").attr("content", info);
                 $vm.active_name=m_name;
+                document.getElementById('layout2').scrollTop=$vm.module_list[$vm.active_name].scrollTop;
+            }
+            //---------------------------------------------
+            document.getElementById('layout2').onscroll = function(){
+                $vm.module_list[$vm.active_name].scrollTop=this.scrollTop;
             }
             //---------------------------------------------
             $vm.url=function(text){
@@ -84,11 +89,12 @@
                 }
             }
             //---------------------------------------------
+            if(window.location.hostname=='127.0.0.1' || window.location.hostname=='localhost') $vm.localhost=true;
             $vm.get_module_list=function(){
                 var url="/module-list.js";
                 var ver=localStorage.getItem($vm.hosting_path+url+"ver");
                 var txt=localStorage.getItem($vm.hosting_path+url+"txt");
-                if(ver!=$vm.ver[0] || txt==null){
+                if(ver!=$vm.ver[0] || txt==null || $vm.localhost==true){
                     $.get($vm.hosting_path+url+'?_='+new Date().getTime(),function(new_txt){
                         localStorage.setItem($vm.hosting_path+url+"txt",new_txt);
                         localStorage.setItem($vm.hosting_path+url+"ver",$vm.ver[0]);
@@ -109,37 +115,41 @@
                 $vm.init();
                 $vm.load_component('header','header',{});
                 $vm.load_component('footer','footer',{});
-                var install=function(){
-                    for (m in $vm.module_list) {
-                        if(m!="index" && m!="header" && m!="footer" && m!=$vm.first_module && $vm.module_list[m].parent==undefined && $vm.module_list[m].not_install==undefined){
-                            $vm.install_module(m,'content',{}, function(name,id){
-                                if($vm.module_list[name].has_child!=undefined){
-                                    var n=0;
-                                    var d_f=function(cname){
-                                        n--;
-                                    }
-                                    for (c in $vm.module_list){
-                                        if($vm.module_list[c].parent==name){
-                                            n++;
-                                            $vm.install_module(c,'content'+id,{}, function(name,id){
-                                                d_f(name);
-                                            })
-                                        }
+                var install_one=function(m,t){
+                    setTimeout(function (){ 
+                        $.ajaxSetup({cache:true}); 
+                        $vm.install_module(m,'content',{}, function(name,id){
+                            if($vm.module_list[name].has_child!=undefined){
+                                var n=0;
+                                var d_f=function(cname){
+                                    n--;
+                                }
+                                for (c in $vm.module_list){
+                                    if($vm.module_list[c].parent==name){
+                                        n++;
+                                        $vm.install_module(c,'content'+id,{}, function(name,id){
+                                            d_f(name);
+                                        })
                                     }
                                 }
-                            })
-                        }
-                        if($vm.flexindex!=undefined){
-                            $vm.flexindex.add({id:m,contents:m,title:m});
-                        }
-                    }
+                            }
+                        })
+                    },t);                
                 }
+                var I=1;
+                for (m in $vm.module_list){
+                    if(m!="index" && m!="header" && m!="footer" && m!=$vm.first_module && $vm.module_list[m].parent==undefined && $vm.module_list[m].not_install==undefined){
+                        install_one(m,I*10);
+                        I++;
+                    }
+                    if($vm.flexindex!=undefined){ if(m!="index" && m!="header" && m!="footer") $vm.flexindex.add({id:m,contents:m,title:m}); }
+                 }
                 //------------------------------------
                 $vm.load_resource("https://use.fontawesome.com/releases/v5.14.0/css/all.css",function(){})
                 $vm.load_resource("https://use.fontawesome.com/releases/v5.14.0/css/v4-shims.css",function(){})
                 $vm.load_resource("https://maxcdn.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js",function(){})
                 //------------------------------------
-                setTimeout(function (){ $.ajaxSetup({cache:true}); install(); },1000);
+                //setTimeout(function (){ $.ajaxSetup({cache:true}); install(); },1000);
                 $vm.show_module($vm.first_module,{})
                 $vm.ready();
             }

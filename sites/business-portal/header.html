@@ -16,7 +16,7 @@
                     <li><a href="?/dropdown">Business Operations <i class="fa fa-caret-down"></i></a>
                         <ul>
                             <li><a href="?/facility">Facilities</a></li>
-                            <li><a href="?/finance">Finance</a></li>
+                            <li><a href="?/finance">Bookkeeping</a></li>
                             <li><a href="?/marketing">Marketing</a></li>
                         </ul>
                     </li>
@@ -107,7 +107,7 @@
                 source:function(request,response){
                     var result=$vm.flexindex.search(request.term);
                     var r=[]; 
-                    for(var i=0; i<result.length && i<50; i++){
+                    for(var i=0; i<result.length && i<35; i++){
                         var t=result[i].title; if(t=="") t=result[i].id;
                         r.push({label:t,value:result[i].id})
                     }
