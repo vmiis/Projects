@@ -10,6 +10,7 @@
             var fields="Date,Name,Amount,Description,Group,Category,Document,G1_sales,1A_GST,1B_GST,W1_salary,W2_withheld,W4_withheld_no_ABN,W3_withheld_other";
             m.fields="_Form,"+fields+",Submit_date,Submitted_by,_Delete";
             //-------------------------------------
+            m.sort={I1: -1}
             m.cell_render=function(records,I,field,td){
                 switch(field){
                     case 'Amount':
