@@ -1,104 +1,154 @@
 ﻿<div id=D__ID>
-    <section id=form_container__ID>
-    	<div id=header__ID>
-    		Enquiry
-    	</div>
-    	<form id=F__ID>
-    		<div class="container">
-    			<div class="row row__ID">
-    				<div class=col-sm-6>
-    					<span>First name</span>
-    					<input type="text" class="form-control" name=First_name />
-    				</div>
-    				<div class=col-sm-6>
-    					<span>Last name</span>
-    					<input type="text" class="form-control" name=Last_name />
-    				</div>
-    			</div>
-    			<div class="row row__ID">
-    				<div class=col-sm-4>
-    					<span>Title</span>
-                        <select class="form-control" name="Title" >
-                            <option></option>
-                            <option value="Miss">Miss</option>
-                            <option value="Ms">Ms</option>
-                            <option value="Mrs">Mrs</option>
-                            <option value="Mr">Mr</option>
-                            <option value="Dr">Dr</option>
-                        </select>
-    				</div>
-    				<div class=col-sm-8>
-    					<span>Occupation</span>
-    					<input type="text" class="form-control" name=Occupation />
-    				</div>
-    			</div>
-    			<div class="row row__ID">
-    				<div class=col>
-    					<span>Email</span>
-    					<input type="email" class="form-control" name=Email />
-    				</div>
-                </div>
-    			<div class="row row__ID">
-    				<div class=col>
-    					<span>Enquire type</span>
-                        <select class="form-control" name="Enquire_type" >
-                            <option></option>
-                            <option value="Pricing levels">Pricing levels</option>
-                            <option value="Maintenance">Maintenance</option>
-                            <option value="Testing">Testing</option>
-                            <option value="Complaints">Complaints</option>
-                        </select>
-                    </div>
-    			</div>
-    			<div class="row row__ID">
-    				<div class=col>
-    					<span>Details</span>
-    					<textarea class="form-control" style="height:150px" name=Details ></textarea>
-    				</div>
-                </div>
-    			<div class="row row__ID">
-    				<div class=col-lg-6>
-                        <span>Contact by phone</span>
-                        <br>
-                        <div class="col-sm">
-                            <div class="form-check form-check-inline">
-                                <label class="form-check-label">
-                                    <input class="form-check-input" type="radio" name="Contact_by_phone" value="Yes"> Yes
-                                </label>
-                            </div>
-                            <div class="form-check form-check-inline">
-                                <label class="form-check-label">
-                                    <input class="form-check-input" type="radio" name="Contact_by_phone" value="No"> No
-                                </label>
-                            </div>
-                        </div>                
-                    </div>
-                    <div class=col-lg-6>
-                        <span>Phone</span>
-                        <input type="phone" class="form-control" name=Phone />
-                    </div>
-                </div>
-    			<br>
-    			<div class="row">
-    				<div class=col>
-    					<button id=submit__ID type="submit" class="btn btn-secondary">Submit</button>
-    				</div>
-    			</div>
-    		</div>
-    	</form>
-    </section>
-    VmInclude:__COMPONENT__/m/model.01.html
+	<div id=form_container__ID bp=576 style='display:flow-root;'>
+		<div id=header__ID>
+			Enquiry
+		</div>
+		<form id=F__ID >
+			<div>
+				<div w='100|50'>
+					<span>First name</span>
+					<input type="text" class="form-control" name=First_name />
+				</div>
+				<div w='100|50'>
+					<span>Last name</span>
+					<input type="text" class="form-control" name=Last_name />
+				</div>
+			</div>
+			<div>
+				<div w='100|33.333'>
+					<span>Title</span>
+					<select class="form-control" name="Title" >
+						<option></option>
+						<option value="Miss">Miss</option>
+						<option value="Ms">Ms</option>
+						<option value="Mrs">Mrs</option>
+						<option value="Mr">Mr</option>
+						<option value="Dr">Dr</option>
+					</select>
+				</div>
+				<div w='100|66.666'>
+					<span>Occupation</span>
+					<input type="text" class="form-control" name=Occupation />
+				</div>
+			</div>
+			<div>
+				<div w='100|100'>
+					<span>Email</span>
+					<input type="email" class="form-control" name=Email />
+				</div>
+			</div>
+			<div>
+				<div w='100|100'>
+					<span>Enquire type</span>
+					<select class="form-control" name="Enquire_type" >
+						<option></option>
+						<option value="Pricing levels">Pricing levels</option>
+						<option value="Maintenance">Maintenance</option>
+						<option value="Testing">Testing</option>
+						<option value="Complaints">Complaints</option>
+					</select>
+				</div>
+			</div>
+			<div>
+				<div w='100|100'>
+					<span>Details</span>
+					<textarea class="form-control" style="height:150px" name=Details ></textarea>
+				</div>
+			</div>
+			<div>
+				<div w='100|50'>
+					<span>Contact by phone</span>
+					<br>
+					<div style='padding-left:30px'>
+						<label><input type="radio" name="Contact_by_phone" value="Yes"> Yes</label>
+						<label><input type="radio" name="Contact_by_phone" value="No"> No</label>
+					</div>
+				</div>
+				<div w='100|50'>
+					<span>Phone</span>
+					<input type="phone" class="form-control" name=Phone />
+				</div>
+			</div>
+			<div>
+				<div w='100|100'>
+					<button id=submit__ID type="submit" class="btn btn-secondary">Submit</button>
+				</div>
+			</div>
+		</form>
+	</div>
+	VmInclude:__COMPONENT__/m/model.01.html
     <script>
     	function F__ID(){
     		//-------------------------------------
             VmInclude:__COMPONENT__/f/form.01.js
     		//-------------------------------------
+			
+            $vm.responsive=function(a){
+                var dw=a[0].contentRect.width;
+                var id=a[0].target.id;
+				var bp=document.getElementById(id).getAttribute("bp"); 
+				if(bp==null) return;
+                var bps=bp.split('|');
+                var n0=10000000; if(bps.length>0) n0=parseInt(bps[0]);
+                var n1=20000000; if(bps.length>1) n1=parseInt(bps[1]);
+                var n2=30000000; if(bps.length>2) n2=parseInt(bps[2]);
+                var n3=40000000; if(bps.length>3) n3=parseInt(bps[3]);
+
+                var divs = document.getElementById(id).getElementsByTagName('div');
+                for( i=0; i< divs.length; i++ ){
+                    var vmw=divs[i].getAttribute("w");
+                    if(vmw!=null){
+                        divs[i].style['float']='left';
+                        divs[i].style['box-sizing']='border-box';
+                        divs[i].parentElement.style['border-width']=0;
+                        divs[i].parentElement.style['box-sizing']='border-box';
+                        divs[i].parentElement.style['display']="flow-root";
+                        var ws=vmw.split('|');
+                        var pw=parseFloat(getComputedStyle(divs[i].parentElement, null).getPropertyValue('width').replace('.px',''));
+                        var LR1=parseFloat(getComputedStyle(divs[i].parentElement, null).getPropertyValue('padding-left').replace('.px',''))+
+                                parseFloat(getComputedStyle(divs[i].parentElement, null).getPropertyValue('padding-right').replace('.px',''))+
+                                parseFloat(getComputedStyle(divs[i].parentElement, null).getPropertyValue('border-left-width').replace('.px',''))+
+                                parseFloat(getComputedStyle(divs[i].parentElement, null).getPropertyValue('border-right-width').replace('.px',''));
+                        pw=pw-LR1;
+                        
+                        var nw0=576; if(ws.length>0) nw0=(pw*ws[0]/100);
+                        var nw1=nw0; if(ws.length>1) nw1=(pw*ws[1]/100);
+                        var nw2=nw1; if(ws.length>2) nw2=(pw*ws[2]/100);
+                        var nw3=nw2; if(ws.length>3) nw3=(pw*ws[3]/100);
+                        var nw4=nw3; if(ws.length>4) nw4=(pw*ws[4]/100);
+
+                        var nw=0;
+                        if(dw<n0)           nw=nw0;
+                        if(dw>=n0 && dw<n1) nw=nw1
+                        if(dw>=n1 && dw<n2) nw=nw2
+                        if(dw>=n2 && dw<n3) nw=nw3;
+                        if(dw>=n3)          nw=nw4;
+						divs[i].style.width=nw+"px"; 
+                    }
+                }                    
+            }
+			new ResizeObserver($vm.responsive).observe(form_container__ID);
     	}
     </script>
     <style>
 		#form_container__ID{
 			max-width:700px;
 		}
-        VmInclude:__COMPONENT__/f/form.01.css
+		
+
+
+		
+		#F__ID > div{
+			padding:6px 5px;
+		}
+		#F__ID > div:hover{
+    		background-color: #ddd;
+		}
+		#F__ID > div div{
+			padding: 0px 15px;
+		}
+		
+		VmInclude:__COMPONENT__/f/form.01.css
+
     </style>
 </div>

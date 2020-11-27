@@ -20,7 +20,7 @@
         <!----------------------------------------------->
         <script>
             //---------------------------------------------
-            $vm={};$VmAPI={};$vm.ver=[0.17,0.16];
+            $vm={};$VmAPI={};$vm.ver=[0.17,0.17];
             $vm.hosting_path=window.location.href.substring(0, window.location.href.split('?')[0].lastIndexOf('/'));
             $vm.module_list={
                 header:{url:$vm.hosting_path+"/header.html",},
@@ -103,6 +103,9 @@
                 display: grid;
                 grid-template-rows: 1fr auto;
                 overflow:auto;
+            }
+            #content{
+                overflow-x: auto;
             }
             @keyframes vm_module_fadein {
                 from { opacity:0; }
